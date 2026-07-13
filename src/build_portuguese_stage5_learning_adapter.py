@@ -42,10 +42,10 @@ STAGE4_REQUIRED = [
 ]
 
 DATASET_ID = "pt_grid_benchmark_stage5_adapter"
-RELEASE_ID = "pt_grid_benchmark_stage5_adapter_v1"
-SCHEMA_VERSION = "1.0"
-FEATURE_CONTRACT_VERSION = "1.0"
-PREPROCESSING_CONTRACT_VERSION = "1.0"
+RELEASE_ID = "pt_grid_benchmark_stage5_adapter_v2"
+SCHEMA_VERSION = "1.1"
+FEATURE_CONTRACT_VERSION = "1.1"
+PREPROCESSING_CONTRACT_VERSION = "1.1"
 
 FORBIDDEN_INPUT_COLUMNS = {
     "sample_id",
@@ -58,7 +58,10 @@ FORBIDDEN_INPUT_COLUMNS = {
     "target_value_column",
     "recommended_split_id",
     "recommended_partition",
+    "recommended_split_family",
     "grouped_challenge_partition",
+    "relative_classification_partition",
+    "balanced_plumbing_partition",
     "scenario_holdout_partition",
     "governance_sensitive_flag",
     "governance_sensitive_reason",
@@ -66,6 +69,13 @@ FORBIDDEN_INPUT_COLUMNS = {
     "challenge_subset",
     "leakage_group_id",
     "label_definition_version",
+    "benchmark_role",
+    "task_readiness",
+    "evaluation_protocol",
+    "eligible_subset",
+    "headline_eligible",
+    "line_relative_high_stress_eligible",
+    "generator_relative_high_dispatch_eligible",
     "source_release_id",
     "publication_allowed",
     "diagnostic_only",
@@ -117,7 +127,10 @@ def as_bool(value: Any) -> bool:
         return value
     if pd.isna(value):
         return False
-    return str(value).strip().lower() in {"true", "1", "yes", "y"}
+    normalized = str(value).strip().lower()
+    if normalized not in {"true", "false", "1", "0", "yes", "no", "y", "n"}:
+        raise ValueError(f"Invalid boolean value: {value!r}")
+    return normalized in {"true", "1", "yes", "y"}
 
 
 def load_inputs() -> dict[str, Any]:
@@ -247,16 +260,49 @@ def explode_tasks(samples: pd.DataFrame, task_registry: pd.DataFrame, task_names
     for _, task_row in registry.iterrows():
         task_name = str(task_row["task_name"])
         target_column = str(task_row["target_column"])
-        piece = samples.copy()
+        eligible_subset = str(task_row["eligible_subset"])
+        if eligible_subset == "benchmark_core":
+            piece = samples[
+                samples["benchmark_eligible"].apply(as_bool)
+                & samples["benchmark_core_candidate"].apply(as_bool)
+            ].copy()
+        elif eligible_subset == "all_benchmark_eligible":
+            piece = samples[samples["benchmark_eligible"].apply(as_bool)].copy()
+        else:
+            raise RuntimeError(f"Unsupported task eligible_subset: {eligible_subset}")
         piece["task_name"] = task_name
         piece["target_column"] = target_column
         piece["task_type"] = str(task_row["task_type"])
         piece["primary_metric"] = str(task_row["primary_metric"])
         piece["recommended_split_id"] = str(task_row["recommended_split_id"])
+        piece["eligible_subset"] = eligible_subset
+        piece["benchmark_role"] = str(task_row["benchmark_role"])
+        piece["task_readiness"] = str(task_row["task_readiness"])
+        piece["evaluation_protocol"] = str(task_row["evaluation_protocol"])
+        piece["headline_eligible"] = as_bool(task_row["headline_eligible"])
         piece["target_value"] = piece[target_column]
         piece["target_value_column"] = target_label
         rows.append(piece)
     return pd.concat(rows, ignore_index=True)
+
+
+def attach_recommended_partitions(
+    supervision: pd.DataFrame,
+    splits: pd.DataFrame,
+    split_registry: pd.DataFrame,
+) -> pd.DataFrame:
+    lookup = splits[["split_id", "sample_id", "partition"]].rename(
+        columns={"split_id": "recommended_split_id", "partition": "recommended_partition"}
+    )
+    out = supervision.merge(
+        lookup,
+        on=["recommended_split_id", "sample_id"],
+        how="left",
+        validate="many_to_one",
+    )
+    split_families = split_registry.set_index("split_id")["split_family"].astype(str).to_dict()
+    out["recommended_split_family"] = out["recommended_split_id"].map(split_families)
+    return out
 
 
 def build_line_supervision_adapter(data: dict[str, Any]) -> pd.DataFrame:
@@ -264,25 +310,32 @@ def build_line_supervision_adapter(data: dict[str, Any]) -> pd.DataFrame:
         data["stage4_line_samples"],
         data["stage4_line_splits"],
         {
-            "line_balanced_recommended_v1": "recommended_partition",
             "line_grouped_entity_primary_v1": "grouped_challenge_partition",
+            "line_grouped_entity_relative_stress_v1": "relative_classification_partition",
+            "line_balanced_recommended_v1": "balanced_plumbing_partition",
             "line_scenario_family_holdout_v1": "scenario_holdout_partition",
         },
     )
     out = explode_tasks(
         samples,
         data["stage4_task_registry"],
-        ["line_overload_binary_classification", "line_loading_regression"],
+        [
+            "line_overload_binary_classification",
+            "line_loading_regression",
+            "line_relative_high_stress_classification",
+        ],
         "line_target_value",
     )
+    out = attach_recommended_partitions(out, data["stage4_line_splits"], data["stage4_split_registry"])
     out["challenge_subset"] = out["governance_sensitive_flag"].apply(
         lambda v: "governance_sensitive" if as_bool(v) else "benchmark_core"
     )
     out.insert(0, "adapter_view", "line_risk_supervision")
     out.insert(1, "adapter_sample_type", "line_risk_sample")
     out["entity_id"] = out["line_id"].astype(str)
-    out["recommended_split_family"] = "balanced_recommended"
     out["grouped_challenge_split_id"] = "line_grouped_entity_primary_v1"
+    out["relative_classification_split_id"] = "line_grouped_entity_relative_stress_v1"
+    out["balanced_plumbing_split_id"] = "line_balanced_recommended_v1"
     out["scenario_holdout_split_id"] = "line_scenario_family_holdout_v1"
     ordered = [
         "adapter_view",
@@ -306,6 +359,10 @@ def build_line_supervision_adapter(data: dict[str, Any]) -> pd.DataFrame:
         "recommended_partition",
         "grouped_challenge_split_id",
         "grouped_challenge_partition",
+        "relative_classification_split_id",
+        "relative_classification_partition",
+        "balanced_plumbing_split_id",
+        "balanced_plumbing_partition",
         "scenario_holdout_split_id",
         "scenario_holdout_partition",
         "benchmark_eligible",
@@ -330,25 +387,32 @@ def build_generator_supervision_adapter(data: dict[str, Any]) -> pd.DataFrame:
         data["stage4_generator_samples"],
         data["stage4_generator_splits"],
         {
-            "generator_balanced_recommended_v1": "recommended_partition",
             "generator_grouped_entity_primary_v1": "grouped_challenge_partition",
+            "generator_grouped_entity_relative_dispatch_v1": "relative_classification_partition",
+            "generator_balanced_recommended_v1": "balanced_plumbing_partition",
             "generator_scenario_family_holdout_v1": "scenario_holdout_partition",
         },
     )
     out = explode_tasks(
         samples,
         data["stage4_task_registry"],
-        ["generator_top_dispatch_classification", "generator_dispatch_regression"],
+        [
+            "generator_top_dispatch_classification",
+            "generator_dispatch_regression",
+            "generator_relative_high_dispatch_classification",
+        ],
         "generator_target_value",
     )
+    out = attach_recommended_partitions(out, data["stage4_generator_splits"], data["stage4_split_registry"])
     out["challenge_subset"] = out["governance_sensitive_flag"].apply(
         lambda v: "governance_sensitive" if as_bool(v) else "benchmark_core"
     )
     out.insert(0, "adapter_view", "generator_risk_supervision")
     out.insert(1, "adapter_sample_type", "generator_risk_sample")
     out["entity_id"] = out["generator_id"].astype(str)
-    out["recommended_split_family"] = "balanced_recommended"
     out["grouped_challenge_split_id"] = "generator_grouped_entity_primary_v1"
+    out["relative_classification_split_id"] = "generator_grouped_entity_relative_dispatch_v1"
+    out["balanced_plumbing_split_id"] = "generator_balanced_recommended_v1"
     out["scenario_holdout_split_id"] = "generator_scenario_family_holdout_v1"
     ordered = [
         "adapter_view",
@@ -370,6 +434,10 @@ def build_generator_supervision_adapter(data: dict[str, Any]) -> pd.DataFrame:
         "recommended_partition",
         "grouped_challenge_split_id",
         "grouped_challenge_partition",
+        "relative_classification_split_id",
+        "relative_classification_partition",
+        "balanced_plumbing_split_id",
+        "balanced_plumbing_partition",
         "scenario_holdout_split_id",
         "scenario_holdout_partition",
         "benchmark_eligible",
@@ -390,9 +458,29 @@ def build_generator_supervision_adapter(data: dict[str, Any]) -> pd.DataFrame:
 
 
 def classify_semantic_role(column: str, table_name: str) -> tuple[str, str]:
-    if column in {"target_value", "line_overload_binary_classification_target", "line_loading_regression_target", "generator_top_dispatch_classification_target", "generator_dispatch_regression_target"}:
+    if column in {
+        "target_value",
+        "line_overload_binary_classification_target",
+        "line_loading_regression_target",
+        "line_relative_high_stress_classification_target",
+        "generator_top_dispatch_classification_target",
+        "generator_dispatch_regression_target",
+        "generator_relative_high_dispatch_classification_target",
+    }:
         return "target", "target_only"
-    if column in {"target_column", "target_value_column", "task_name", "task_type", "primary_metric", "recommended_split_id", "recommended_split_family", "recommended_partition", "grouped_challenge_split_id", "grouped_challenge_partition", "scenario_holdout_split_id", "scenario_holdout_partition", "benchmark_core_candidate", "challenge_subset", "governance_sensitive_flag", "governance_sensitive_reason", "leakage_group_id", "benchmark_eligible", "split_eligibility", "benchmark_exclusion_reason", "stage4_benchmark_eligible", "stage4_exclusion_reason", "group_key", "is_primary_split"}:
+    if column in {
+        "target_column", "target_value_column", "task_name", "task_type", "primary_metric",
+        "recommended_split_id", "recommended_split_family", "recommended_partition",
+        "grouped_challenge_split_id", "grouped_challenge_partition",
+        "relative_classification_split_id", "relative_classification_partition",
+        "balanced_plumbing_split_id", "balanced_plumbing_partition",
+        "scenario_holdout_split_id", "scenario_holdout_partition", "benchmark_core_candidate",
+        "challenge_subset", "governance_sensitive_flag", "governance_sensitive_reason",
+        "leakage_group_id", "benchmark_eligible", "split_eligibility", "benchmark_exclusion_reason",
+        "stage4_benchmark_eligible", "stage4_exclusion_reason", "group_key", "is_primary_split",
+        "eligible_subset", "benchmark_role", "task_readiness", "evaluation_protocol", "headline_eligible",
+        "line_relative_high_stress_eligible", "generator_relative_high_dispatch_eligible",
+    }:
         return "split_or_control", "split_control_only"
     if column.startswith("prov_") or column in {"source_release_id", "source_scenario_id", "publication_allowed", "diagnostic_only", "label_definition_version"}:
         return "provenance", "provenance_only"
@@ -454,8 +542,8 @@ def build_adapter_registry() -> pd.DataFrame:
             "adapter_family": "graph_structure",
             "entity_scope": "line_edge",
             "intended_use": "canonical line-edge view for homogeneous graph adapters",
-            "supports_tasks": "line_overload_binary_classification|line_loading_regression",
-            "recommended_split_id": "line_balanced_recommended_v1",
+            "supports_tasks": "line_overload_binary_classification|line_loading_regression|line_relative_high_stress_classification",
+            "recommended_split_id": "",
             "diagnostic_only": True,
             "publication_allowed": False,
         },
@@ -465,8 +553,8 @@ def build_adapter_registry() -> pd.DataFrame:
             "adapter_family": "graph_structure",
             "entity_scope": "generator_node",
             "intended_use": "generator node sidecar for heterogeneous or bipartite adapters",
-            "supports_tasks": "generator_top_dispatch_classification|generator_dispatch_regression",
-            "recommended_split_id": "generator_balanced_recommended_v1",
+            "supports_tasks": "generator_top_dispatch_classification|generator_dispatch_regression|generator_relative_high_dispatch_classification",
+            "recommended_split_id": "",
             "diagnostic_only": True,
             "publication_allowed": False,
         },
@@ -476,8 +564,8 @@ def build_adapter_registry() -> pd.DataFrame:
             "adapter_family": "graph_structure",
             "entity_scope": "generator_bus_link",
             "intended_use": "generator-to-bus linkage sidecar for heterogeneous adapters",
-            "supports_tasks": "generator_top_dispatch_classification|generator_dispatch_regression",
-            "recommended_split_id": "generator_balanced_recommended_v1",
+            "supports_tasks": "generator_top_dispatch_classification|generator_dispatch_regression|generator_relative_high_dispatch_classification",
+            "recommended_split_id": "",
             "diagnostic_only": True,
             "publication_allowed": False,
         },
@@ -487,8 +575,8 @@ def build_adapter_registry() -> pd.DataFrame:
             "adapter_family": "supervision",
             "entity_scope": "line_sample",
             "intended_use": "framework-neutral line supervision table with explicit split assignments and target metadata",
-            "supports_tasks": "line_overload_binary_classification|line_loading_regression",
-            "recommended_split_id": "line_balanced_recommended_v1",
+            "supports_tasks": "line_overload_binary_classification|line_loading_regression|line_relative_high_stress_classification",
+            "recommended_split_id": "",
             "diagnostic_only": True,
             "publication_allowed": False,
         },
@@ -498,8 +586,8 @@ def build_adapter_registry() -> pd.DataFrame:
             "adapter_family": "supervision",
             "entity_scope": "generator_sample",
             "intended_use": "framework-neutral generator supervision table with explicit split assignments and target metadata",
-            "supports_tasks": "generator_top_dispatch_classification|generator_dispatch_regression",
-            "recommended_split_id": "generator_balanced_recommended_v1",
+            "supports_tasks": "generator_top_dispatch_classification|generator_dispatch_regression|generator_relative_high_dispatch_classification",
+            "recommended_split_id": "",
             "diagnostic_only": True,
             "publication_allowed": False,
         },
@@ -507,7 +595,19 @@ def build_adapter_registry() -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def build_preprocessing_contract() -> dict[str, Any]:
+def build_preprocessing_contract(data: dict[str, Any]) -> dict[str, Any]:
+    task_registry = data["stage4_task_registry"]
+    recommended_split_ids = sorted(set(task_registry["recommended_split_id"].astype(str)))
+    primary_evaluation_split_ids = sorted(set(
+        task_registry[
+            task_registry["benchmark_role"].astype(str).isin({"PRIMARY", "AUXILIARY_LIMITED_SUPPORT"})
+        ]["recommended_split_id"].astype(str)
+    ))
+    plumbing_only_split_ids = sorted(set(
+        task_registry[
+            task_registry["benchmark_role"].astype(str).eq("CHALLENGE_INSUFFICIENT_SUPPORT")
+        ]["recommended_split_id"].astype(str)
+    ))
     return {
         "generated_at": utc_now(),
         "contract_name": "pt_stage5_train_only_preprocessing_contract",
@@ -522,13 +622,14 @@ def build_preprocessing_contract() -> dict[str, Any]:
             "forbid_split_columns_as_model_inputs": True,
             "forbid_provenance_columns_as_model_inputs": True,
         },
-        "recommended_split_ids": [
-            "line_balanced_recommended_v1",
-            "generator_balanced_recommended_v1",
-        ],
+        "recommended_split_ids": recommended_split_ids,
+        "primary_evaluation_split_ids": primary_evaluation_split_ids,
+        "plumbing_only_split_ids": plumbing_only_split_ids,
         "challenge_split_ids": [
             "line_grouped_entity_primary_v1",
+            "line_grouped_entity_relative_stress_v1",
             "generator_grouped_entity_primary_v1",
+            "generator_grouped_entity_relative_dispatch_v1",
             "line_scenario_family_holdout_v1",
             "generator_scenario_family_holdout_v1",
         ],
@@ -537,7 +638,8 @@ def build_preprocessing_contract() -> dict[str, Any]:
         "notes": [
             "This contract is framework-neutral and does not serialize fitted transformers.",
             "Governance-sensitive rows remain tagged and may be filtered explicitly by downstream code rather than silently dropped.",
-            "Recommended balanced splits are intended for paper-usable baseline experiments; grouped challenge splits remain available for robustness evaluation.",
+            "Primary and auxiliary evaluation uses task-specific grouped entity splits.",
+            "Row-balanced splits are plumbing-only and cannot support cross-entity generalization claims.",
         ],
     }
 
@@ -567,10 +669,7 @@ def build_manifest(row_counts: dict[str, int], data: dict[str, Any]) -> dict[str
             "line_risk_supervision",
             "generator_risk_supervision",
         ],
-        "recommended_split_ids": [
-            "line_balanced_recommended_v1",
-            "generator_balanced_recommended_v1",
-        ],
+        "recommended_split_ids": sorted(set(data["stage4_task_registry"]["recommended_split_id"].astype(str))),
         "feature_contract_version": FEATURE_CONTRACT_VERSION,
         "preprocessing_contract_version": PREPROCESSING_CONTRACT_VERSION,
         "excluded_scope": [
@@ -583,8 +682,8 @@ def build_manifest(row_counts: dict[str, int], data: dict[str, Any]) -> dict[str
         ],
         "caveats": [
             "Adapter tables are machine-readable contracts for downstream training code, not model-ready tensors.",
-            "Recommended balanced splits improve positive-label support but do not preserve strict entity holdout across partitions.",
-            "Strict grouped challenge splits remain available downstream through explicit supervision columns and stage-4 split registries.",
+            "Primary regression and auxiliary relative classification tasks use strict grouped entity splits.",
+            "Original rare-event classifications remain plumbing/challenge tasks because benchmark-core positive entity support is insufficient.",
         ],
     }
 
@@ -656,7 +755,7 @@ def main() -> None:
     }
     feature_contract = build_feature_contract(adapter_tables)
     adapter_registry = build_adapter_registry()
-    preprocessing_contract = build_preprocessing_contract()
+    preprocessing_contract = build_preprocessing_contract(data)
 
     graph_node_adapter.to_csv(OUT / "pt_stage5_graph_node_adapter.csv", index=False)
     graph_edge_adapter.to_csv(OUT / "pt_stage5_graph_edge_adapter.csv", index=False)

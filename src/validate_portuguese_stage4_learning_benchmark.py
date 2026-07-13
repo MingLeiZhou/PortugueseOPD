@@ -24,6 +24,7 @@ REQUIRED_FILES = {
     "split_registry": OUT / "pt_stage4_split_registry.csv",
     "line_sample_splits": OUT / "pt_stage4_line_sample_splits.csv",
     "generator_sample_splits": OUT / "pt_stage4_generator_sample_splits.csv",
+    "label_support_audit": OUT / "pt_stage4_label_support_audit.csv",
     "entity_registry": OUT / "pt_stage4_entity_registry.csv",
     "sample_registry": OUT / "pt_stage4_sample_registry.csv",
     "manifest": OUT / "pt_stage4_manifest.json",
@@ -34,12 +35,13 @@ REQUIRED_COLUMNS = {
     "line_edge_features": {"edge_id", "line_id", "stage4_benchmark_eligible", "governance_sensitive_flag", "leakage_group_id", "source_release_id"},
     "generator_node_features": {"node_id", "generator_id", "stage4_benchmark_eligible", "governance_sensitive_flag", "leakage_group_id", "source_release_id"},
     "generator_bus_link_features": {"edge_id", "generator_id", "stage4_benchmark_eligible", "governance_sensitive_flag", "leakage_group_id", "source_release_id"},
-    "line_risk_benchmark_samples": {"sample_id", "line_id", "benchmark_eligible", "benchmark_core_candidate", "governance_sensitive_flag", "leakage_group_id", "line_overload_binary_classification_target", "line_loading_regression_target"},
-    "generator_risk_benchmark_samples": {"sample_id", "generator_id", "benchmark_eligible", "benchmark_core_candidate", "governance_sensitive_flag", "leakage_group_id", "generator_top_dispatch_classification_target", "generator_dispatch_regression_target"},
-    "task_registry": {"task_name", "target_column", "task_type", "eligible_table", "recommended_split_id"},
+    "line_risk_benchmark_samples": {"sample_id", "line_id", "benchmark_eligible", "benchmark_core_candidate", "governance_sensitive_flag", "leakage_group_id", "line_overload_binary_classification_target", "line_loading_regression_target", "line_relative_high_stress_classification_target"},
+    "generator_risk_benchmark_samples": {"sample_id", "generator_id", "benchmark_eligible", "benchmark_core_candidate", "governance_sensitive_flag", "leakage_group_id", "generator_top_dispatch_classification_target", "generator_dispatch_regression_target", "generator_relative_high_dispatch_classification_target"},
+    "task_registry": {"task_name", "target_column", "task_type", "eligible_table", "recommended_split_id", "eligible_subset", "benchmark_role", "task_readiness", "evaluation_protocol", "headline_eligible"},
     "split_registry": {"split_id", "task_name", "split_family", "unit_of_separation", "leakage_policy", "is_primary_recommended_split"},
     "line_sample_splits": {"split_id", "sample_id", "partition", "group_key", "leakage_group_id", "challenge_subset"},
     "generator_sample_splits": {"split_id", "sample_id", "partition", "group_key", "leakage_group_id", "challenge_subset"},
+    "label_support_audit": {"task_name", "task_type", "target_column", "subset", "total_rows", "total_entities", "positive_rows", "positive_entities", "support_status", "recommended_split_id", "recommended_split_unit", "leakage_groups_crossing_partitions"},
     "entity_registry": {"registry_id", "entity_type", "entity_id", "benchmark_eligible", "provenance_complete", "leakage_group_id", "split_eligible"},
     "sample_registry": {"registry_id", "sample_type", "sample_id", "benchmark_eligible", "benchmark_core_candidate", "provenance_complete", "leakage_group_id", "split_eligible"},
 }
@@ -56,6 +58,17 @@ def load_manifest() -> dict[str, Any]:
 
 def add_error(errors: list[str], message: str) -> None:
     errors.append(message)
+
+
+def as_bool(value: Any) -> bool:
+    if isinstance(value, bool):
+        return value
+    if pd.isna(value):
+        return False
+    normalized = str(value).strip().lower()
+    if normalized not in {"true", "false", "1", "0", "yes", "no", "y", "n"}:
+        raise ValueError(f"Invalid boolean value: {value!r}")
+    return normalized in {"true", "1", "yes", "y"}
 
 
 def check_required_files(errors: list[str]) -> None:
@@ -148,6 +161,7 @@ def main() -> None:
     split_registry = read_csv(REQUIRED_FILES["split_registry"])
     line_splits = read_csv(REQUIRED_FILES["line_sample_splits"])
     generator_splits = read_csv(REQUIRED_FILES["generator_sample_splits"])
+    label_support = read_csv(REQUIRED_FILES["label_support_audit"])
     entity_registry = read_csv(REQUIRED_FILES["entity_registry"])
     sample_registry = read_csv(REQUIRED_FILES["sample_registry"])
     manifest = load_manifest()
@@ -163,6 +177,7 @@ def main() -> None:
         "split_registry": split_registry,
         "line_sample_splits": line_splits,
         "generator_sample_splits": generator_splits,
+        "label_support_audit": label_support,
         "entity_registry": entity_registry,
         "sample_registry": sample_registry,
     }.items():
@@ -208,16 +223,18 @@ def main() -> None:
     check_counts["invalid_task_targets"] = invalid_task_targets
     check_counts["invalid_task_splits"] = invalid_task_splits
 
-    line_primary_split = line_splits[line_splits["split_id"].astype(str) == "line_balanced_recommended_v1"].copy()
-    generator_primary_split = generator_splits[generator_splits["split_id"].astype(str) == "generator_balanced_recommended_v1"].copy()
-    line_challenge_split = line_splits[line_splits["split_id"].astype(str) == "line_grouped_entity_primary_v1"].copy()
-    generator_challenge_split = generator_splits[generator_splits["split_id"].astype(str) == "generator_grouped_entity_primary_v1"].copy()
+    line_regression_split = line_splits[line_splits["split_id"].astype(str) == "line_grouped_entity_primary_v1"].copy()
+    generator_regression_split = generator_splits[generator_splits["split_id"].astype(str) == "generator_grouped_entity_primary_v1"].copy()
+    line_relative_split = line_splits[line_splits["split_id"].astype(str) == "line_grouped_entity_relative_stress_v1"].copy()
+    generator_relative_split = generator_splits[generator_splits["split_id"].astype(str) == "generator_grouped_entity_relative_dispatch_v1"].copy()
+    line_plumbing_split = line_splits[line_splits["split_id"].astype(str) == "line_balanced_recommended_v1"].copy()
+    generator_plumbing_split = generator_splits[generator_splits["split_id"].astype(str) == "generator_balanced_recommended_v1"].copy()
 
     def leakage_violations(df: pd.DataFrame, split_registry: pd.DataFrame) -> int:
         if df.empty:
             return 0
         grouped_split_ids = set(
-            split_registry[split_registry["split_family"].astype(str) == "grouped_entity_primary"]["split_id"].astype(str)
+            split_registry[split_registry["split_family"].astype(str).str.startswith("grouped_entity")]["split_id"].astype(str)
         )
         scoped = df[df["split_id"].astype(str).isin(grouped_split_ids)].copy()
         if scoped.empty:
@@ -233,8 +250,8 @@ def main() -> None:
     check_counts["line_leakage_group_violations"] = line_leakage
     check_counts["generator_leakage_group_violations"] = generator_leakage
 
-    excluded_line_in_challenge = int((line_challenge_split["challenge_subset"].astype(str) != "benchmark_core").sum())
-    excluded_generator_in_challenge = int((generator_challenge_split["challenge_subset"].astype(str) != "benchmark_core").sum())
+    excluded_line_in_challenge = int((line_regression_split["challenge_subset"].astype(str) != "benchmark_core").sum())
+    excluded_generator_in_challenge = int((generator_regression_split["challenge_subset"].astype(str) != "benchmark_core").sum())
     if excluded_line_in_challenge:
         add_error(errors, f"line grouped challenge split contains {excluded_line_in_challenge} governance-sensitive challenge rows")
     if excluded_generator_in_challenge:
@@ -254,72 +271,72 @@ def main() -> None:
     check_counts["negative_line_targets"] = negative_line_targets
     check_counts["invalid_generator_top_dispatch_rows"] = invalid_generator_top_dispatch
 
-    line_partitions = set(line_primary_split["partition"].astype(str))
-    generator_partitions = set(generator_primary_split["partition"].astype(str))
-    line_challenge_partitions = set(line_challenge_split["partition"].astype(str))
-    generator_challenge_partitions = set(generator_challenge_split["partition"].astype(str))
-    missing_line_partitions = len({"train", "validation", "test"} - line_partitions)
-    missing_generator_partitions = len({"train", "validation", "test"} - generator_partitions)
-    missing_line_challenge_partitions = len({"train", "validation", "test"} - line_challenge_partitions)
-    missing_generator_challenge_partitions = len({"train", "validation", "test"} - generator_challenge_partitions)
-    if missing_line_partitions:
-        add_error(errors, "line recommended split does not cover train/validation/test partitions")
-    if missing_generator_partitions:
-        add_error(errors, "generator recommended split does not cover train/validation/test partitions")
-    if missing_line_challenge_partitions:
-        warnings.append("line grouped challenge split does not cover train/validation/test partitions")
-    if missing_generator_challenge_partitions:
-        warnings.append("generator grouped challenge split does not cover train/validation/test partitions")
-    check_counts["line_missing_primary_partitions"] = missing_line_partitions
-    check_counts["generator_missing_primary_partitions"] = missing_generator_partitions
-    check_counts["line_missing_grouped_challenge_partitions"] = missing_line_challenge_partitions
-    check_counts["generator_missing_grouped_challenge_partitions"] = missing_generator_challenge_partitions
+    required_partitions = {"train", "validation", "test"}
+    split_partition_checks = {
+        "line_regression": line_regression_split,
+        "generator_regression": generator_regression_split,
+        "line_relative_classification": line_relative_split,
+        "generator_relative_classification": generator_relative_split,
+        "line_rare_event_plumbing": line_plumbing_split,
+        "generator_rare_event_plumbing": generator_plumbing_split,
+    }
+    for label, split_df in split_partition_checks.items():
+        missing_partitions = required_partitions - set(split_df["partition"].astype(str))
+        if missing_partitions:
+            add_error(errors, f"{label} split is missing partitions: {', '.join(sorted(missing_partitions))}")
+        check_counts[f"{label}_missing_partitions"] = int(len(missing_partitions))
 
-    line_primary_ids = set(line_primary_split["sample_id"].astype(str))
-    generator_primary_ids = set(generator_primary_split["sample_id"].astype(str))
-    line_primary_labels = line_samples[line_samples["sample_id"].astype(str).isin(line_primary_ids)].merge(
-        line_primary_split[["sample_id", "partition"]], on="sample_id", how="inner"
-    )
-    generator_primary_labels = generator_samples[generator_samples["sample_id"].astype(str).isin(generator_primary_ids)].merge(
-        generator_primary_split[["sample_id", "partition"]], on="sample_id", how="inner"
-    )
-    line_challenge_ids = set(line_challenge_split["sample_id"].astype(str))
-    generator_challenge_ids = set(generator_challenge_split["sample_id"].astype(str))
-    line_challenge_labels = line_samples[line_samples["sample_id"].astype(str).isin(line_challenge_ids)].merge(
-        line_challenge_split[["sample_id", "partition"]], on="sample_id", how="inner"
-    )
-    generator_challenge_labels = generator_samples[generator_samples["sample_id"].astype(str).isin(generator_challenge_ids)].merge(
-        generator_challenge_split[["sample_id", "partition"]], on="sample_id", how="inner"
-    )
+    def partitions_without_positive(
+        samples: pd.DataFrame,
+        split_df: pd.DataFrame,
+        target_column: str,
+    ) -> int:
+        joined = samples.merge(split_df[["sample_id", "partition"]], on="sample_id", how="inner")
+        missing = 0
+        for partition in ["train", "validation", "test"]:
+            scoped = joined[joined["partition"].astype(str) == partition]
+            if scoped.empty or not scoped[target_column].apply(as_bool).any():
+                missing += 1
+        return missing
 
-    line_partition_positive_support = 0
-    for partition in ["train", "validation", "test"]:
-        sub = line_primary_labels[line_primary_labels["partition"].astype(str) == partition]
-        if sub.empty or not sub["line_overload_binary_classification_target"].apply(lambda v: str(v).lower() == "true").any():
-            line_partition_positive_support += 1
-            add_error(errors, f"line recommended split partition {partition} has no positive overload rows")
-    generator_partition_positive_support = 0
-    for partition in ["train", "validation", "test"]:
-        sub = generator_primary_labels[generator_primary_labels["partition"].astype(str) == partition]
-        if sub.empty or not sub["generator_top_dispatch_classification_target"].apply(lambda v: str(v).lower() == "true").any():
-            generator_partition_positive_support += 1
-            add_error(errors, f"generator recommended split partition {partition} has no positive top-dispatch rows")
-    line_challenge_positive_support = 0
-    for partition in ["train", "validation", "test"]:
-        sub = line_challenge_labels[line_challenge_labels["partition"].astype(str) == partition]
-        if sub.empty or not sub["line_overload_binary_classification_target"].apply(lambda v: str(v).lower() == "true").any():
-            line_challenge_positive_support += 1
-            warnings.append(f"line grouped challenge split partition {partition} has no positive overload rows")
-    generator_challenge_positive_support = 0
-    for partition in ["train", "validation", "test"]:
-        sub = generator_challenge_labels[generator_challenge_labels["partition"].astype(str) == partition]
-        if sub.empty or not sub["generator_top_dispatch_classification_target"].apply(lambda v: str(v).lower() == "true").any():
-            generator_challenge_positive_support += 1
-            warnings.append(f"generator grouped challenge split partition {partition} has no positive top-dispatch rows")
-    check_counts["line_primary_partitions_without_positive_support"] = line_partition_positive_support
-    check_counts["generator_primary_partitions_without_positive_support"] = generator_partition_positive_support
-    check_counts["line_grouped_challenge_partitions_without_positive_support"] = line_challenge_positive_support
-    check_counts["generator_grouped_challenge_partitions_without_positive_support"] = generator_challenge_positive_support
+    line_relative_missing_positive = partitions_without_positive(
+        line_samples,
+        line_relative_split,
+        "line_relative_high_stress_classification_target",
+    )
+    generator_relative_missing_positive = partitions_without_positive(
+        generator_samples,
+        generator_relative_split,
+        "generator_relative_high_dispatch_classification_target",
+    )
+    if line_relative_missing_positive:
+        add_error(errors, "line relative-stress grouped split lacks positive support in one or more partitions")
+    if generator_relative_missing_positive:
+        add_error(errors, "generator relative-dispatch grouped split lacks positive support in one or more partitions")
+    check_counts["line_relative_grouped_partitions_without_positive_support"] = line_relative_missing_positive
+    check_counts["generator_relative_grouped_partitions_without_positive_support"] = generator_relative_missing_positive
+
+    support_index = label_support.set_index(["task_name", "subset"])
+    expected_support = {
+        ("line_overload_binary_classification", "benchmark_core"): "NO_POSITIVE_ENTITIES",
+        ("generator_top_dispatch_classification", "benchmark_core"): "INSUFFICIENT_FOR_THREE_WAY_GROUPED",
+        ("line_relative_high_stress_classification", "benchmark_core"): "LIMITED_GROUPED_SUPPORT",
+        ("generator_relative_high_dispatch_classification", "benchmark_core"): "LIMITED_GROUPED_SUPPORT",
+    }
+    support_status_mismatches = 0
+    for key, expected_status in expected_support.items():
+        if key not in support_index.index or str(support_index.loc[key, "support_status"]) != expected_status:
+            support_status_mismatches += 1
+            add_error(errors, f"label support audit status mismatch for {key[0]} / {key[1]}")
+    check_counts["label_support_status_mismatches"] = support_status_mismatches
+
+    challenge_headline_rows = task_registry[
+        task_registry["benchmark_role"].astype(str).eq("CHALLENGE_INSUFFICIENT_SUPPORT")
+        & task_registry["headline_eligible"].apply(as_bool)
+    ]
+    if not challenge_headline_rows.empty:
+        add_error(errors, "insufficient-support challenge tasks must not be headline eligible")
+    check_counts["insufficient_support_tasks_marked_headline"] = int(len(challenge_headline_rows))
 
     sample_registry_missing = int((~sample_registry["sample_id"].astype(str).isin(line_sample_ids | generator_sample_ids)).sum())
     if sample_registry_missing:
@@ -338,6 +355,7 @@ def main() -> None:
         "pt_stage4_split_registry.csv": int(len(split_registry)),
         "pt_stage4_line_sample_splits.csv": int(len(line_splits)),
         "pt_stage4_generator_sample_splits.csv": int(len(generator_splits)),
+        "pt_stage4_label_support_audit.csv": int(len(label_support)),
         "pt_stage4_entity_registry.csv": int(len(entity_registry)),
         "pt_stage4_sample_registry.csv": int(len(sample_registry)),
     }

@@ -70,6 +70,25 @@ python src/run_portuguese_stage5_learning_adapter_pipeline.py
 Stage 4 defines diagnostic benchmark tasks and splits. Stage 5 exports framework-neutral
 adapter tables. Labels are scenario-derived diagnostic targets, not observed grid events.
 
+Stage 4 v2 uses strict entity-grouped splits for the primary loading/dispatch regression
+tasks. Relative high-stress and high-dispatch classifications are limited-support auxiliary
+tasks. The original overload and top-dispatch classifications are retained only as
+insufficient-support challenge/plumbing tasks; their row-balanced compatibility splits must
+not be used to claim cross-entity generalization.
+
+## QA smoke tests
+
+After rebuilding stage 4 and stage 5, run:
+
+```bash
+python src/qa_smoke_test_stage4_consumers.py
+python src/qa_smoke_test_stage5_consumers.py
+```
+
+These smoke tests verify that the current repository layout, stage-4 benchmark contracts,
+and stage-5 adapter contracts remain usable for downstream consumers after structure or
+documentation changes. The human review checklist lives at `docs/QA_CHECKLIST.md`.
+
 ## Release boundary
 
 - Code may be used under the MIT license.
