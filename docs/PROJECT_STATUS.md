@@ -21,6 +21,11 @@ claim that the real Portuguese operational grid has been reconstructed.
   - DC OPF reference: S30 parallel-equivalent diagnostic scenario.
 - Stage 1-5 dataset packaging, graph export, task/split contracts, and framework-neutral
   learning adapters.
+- Consumer-facing QA smoke coverage for stage-4 benchmark contracts and stage-5 adapter
+  contracts.
+- Stage-4 v2 label-support policy: grouped regression as the primary benchmark, relative
+  high-stress/high-dispatch classification as limited-support auxiliary tasks, and original
+  overload/top-dispatch classification retained as non-headline challenge tasks.
 
 ## Current limitations
 
@@ -28,6 +33,8 @@ claim that the real Portuguese operational grid has been reconstructed.
 - Important line parameters and actual circuit counts are incomplete or scenario-based.
 - Generator, import, and cost semantics are proxies.
 - Benchmark labels are generated from diagnostic scenarios rather than observed events.
+- Benchmark-core positive entities remain insufficient for the original overload and
+  top-dispatch classifications; row-balanced splits are plumbing-only.
 - AC OPF is outside benchmark-v1 scope.
 - Public redistribution of topology-derived data awaits source-license clarification.
 

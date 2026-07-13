@@ -2,9 +2,9 @@
 
 ## Version-controlled content
 
-- `src/`: all reproducible pipeline and diagnostic scenario code.
-- `docs/`: stable project and release documentation.
-- `README.md`: user entry point and rebuild commands.
+- `src/`: all reproducible pipeline, diagnostic scenario, and QA smoke-test code.
+- `docs/`: stable project, release, and QA documentation.
+- `README.md`: user entry point, rebuild commands, and QA smoke-test entry points.
 - `requirements.txt`: Python dependencies.
 - `LICENSE`: source-code license.
 - `DATA_LICENSE.md`: data redistribution boundary.
