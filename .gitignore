@@ -1,0 +1,47 @@
+# Python
+.venv/
+.deps/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local caches and editors
+.cache/
+.DS_Store
+.idea/
+.vscode/
+.claude/
+
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+
+# Downloaded and generated data
+data/raw/*
+!data/raw/.gitkeep
+data/metadata/*
+!data/metadata/.gitkeep
+data/samples/
+data/benchmark_results/
+data/processed/*
+!data/processed/.gitkeep
+
+# Generated execution artifacts
+reports/*
+!reports/.gitkeep
+figures/*
+!figures/.gitkeep
+logs/*
+!logs/.gitkeep
+notebooks/.ipynb_checkpoints/
+
+# Downloaded papers and source documents
+*.pdf
+
+# Packaging
+build/
+dist/

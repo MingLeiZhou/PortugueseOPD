@@ -1,0 +1,8 @@
+matplotlib>=3.9,<4
+networkx>=3.4,<4
+numpy>=2.0,<3
+pandapower==3.5.2
+pandas>=2.2,<3
+requests>=2.32,<3
+simbench==1.6.2
+tqdm>=4.66,<5
