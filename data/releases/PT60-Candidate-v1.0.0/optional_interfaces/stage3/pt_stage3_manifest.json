@@ -1,0 +1,51 @@
+{
+  "generated_at": "2026-07-13T11:46:18+00:00",
+  "dataset_id": "pt_grid_benchmark_stage3_graph",
+  "release_id": "pt_grid_benchmark_stage3_graph_v1",
+  "schema_version": "1.0",
+  "builder_script": "src/build_portuguese_stage3_graph_dataset.py",
+  "release_scope": "graph export and graph-linked sample indexing layer for later SSL and risk work; no ML included",
+  "upstream_stage2_release_id": "pt_grid_benchmark_stage2_v1",
+  "benchmark_freeze": {
+    "acpf": "S16_BACKBONE_DIAGNOSTIC_CORE_DEPTH6",
+    "dcopf": "S30_PARALLEL_EQUIVALENT_ATPL_00147_DIAGNOSTIC"
+  },
+  "source_artifacts": [
+    "data/processed/dataset_release_stage2/pt_stage2_bus_features.csv",
+    "data/processed/dataset_release_stage2/pt_stage2_line_features.csv",
+    "data/processed/dataset_release_stage2/pt_stage2_generator_features.csv",
+    "data/processed/dataset_release_stage2/pt_stage2_line_risk_targets.csv",
+    "data/processed/dataset_release_stage2/pt_stage2_generator_risk_targets.csv",
+    "data/processed/dataset_release_stage2/pt_stage2_provenance_flags.csv",
+    "data/processed/dataset_release_stage2/pt_stage2_manifest.json"
+  ],
+  "table_row_counts": {
+    "pt_stage3_graph_nodes.csv": 54,
+    "pt_stage3_graph_edges.csv": 36,
+    "pt_stage3_generator_nodes.csv": 18,
+    "pt_stage3_generator_bus_links.csv": 18,
+    "pt_stage3_line_risk_samples.csv": 163,
+    "pt_stage3_generator_risk_samples.csv": 94
+  },
+  "publication_allowed": false,
+  "diagnostic_only": true,
+  "operator_grade_ready": false,
+  "ml_ready": false,
+  "downstream_intended_use": [
+    "graph export for downstream adapters",
+    "graph-linked line risk sample indexing",
+    "graph-linked generator risk sample indexing"
+  ],
+  "excluded_scope": [
+    "ML model training",
+    "train/validation/test split generation",
+    "framework-specific tensor exports",
+    "graph augmentations",
+    "AC OPF products"
+  ],
+  "caveats": [
+    "Canonical GraphML export is homogeneous bus-line only.",
+    "Generator graph structures are exported as sidecar tables.",
+    "Scenario-conditioned supervision remains in sample tables, not duplicated as graph edges."
+  ]
+}

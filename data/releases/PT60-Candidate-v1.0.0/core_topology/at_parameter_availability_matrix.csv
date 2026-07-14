@@ -1,0 +1,38 @@
+object_type,parameter,required_for_power_flow,required_for_opf,available_directly,derivable,estimated_by_lookup_table,source_dataset,source_field,missing_rate,confidence,notes
+branch,from_bus,True,True,True,False,False,at_interfacility_candidate_branches,from_facility_code,0.0,high,Candidate topology branch terminal.
+branch,to_bus,True,True,True,False,False,at_interfacility_candidate_branches,to_facility_code,0.0,high,Candidate topology branch terminal.
+branch,voltage level,True,True,True,False,False,at_interfacility_candidate_branches,voltage,0.0,high,All reliable candidate branches currently use 60 kV.
+branch,line length,True,True,False,True,False,at_interfacility_candidate_branches,total_length_km; geometry,0.0,high,Derived from merged circuit geometry; geometry length check is included.
+branch,line type overhead/underground,False,True,True,False,False,rede-at-teste,tipo,22.3464,medium,Direct source type exists but branches with mixed source segments remain ambiguous.
+branch,number of circuits,True,True,False,False,False,none,,100.0,red,No circuit-count or conductor-count field found in E-REDES AT line data.
+branch,status / situacao,False,True,True,False,False,at_interfacility_candidate_branches; rede-at-teste,status; situacao,0.0,high,Operational status is available; two candidate branches are disconnected/reserve.
+branch,r_ohm_per_km,True,True,False,False,True,none,,100.0,red,Requires Portugal-specific voltage and asset-type lookup source.
+branch,x_ohm_per_km,True,True,False,False,True,none,,100.0,red,Requires Portugal-specific voltage and asset-type lookup source.
+branch,b_siemens_per_km,True,True,False,False,True,none,,100.0,red,Requires Portugal-specific line/cable lookup source.
+branch,rated_current,False,True,False,False,True,none,,100.0,red,Requires conductor/cable/rating lookup source or owner rating data.
+branch,thermal_limit_mva,False,True,False,True,True,none,,100.0,red,"Derivable from rated current and voltage, but rated current is missing."
+branch,r_total_ohm,True,True,False,True,True,derived,r_ohm_per_km * length_km,100.0,red,Derivable only after R lookup is sourced.
+branch,x_total_ohm,True,True,False,True,True,derived,x_ohm_per_km * length_km,100.0,red,Derivable only after X lookup is sourced.
+branch,b_total,True,True,False,True,True,derived,b_siemens_per_km * length_km,100.0,red,Derivable only after B lookup is sourced.
+branch,r_pu,True,True,False,True,True,derived,r_total_ohm / z_base_ohm,100.0,red,Per-unit conversion is reproducible on 100 MVA base after impedance lookup exists.
+branch,x_pu,True,True,False,True,True,derived,x_total_ohm / z_base_ohm,100.0,red,Per-unit conversion is reproducible on 100 MVA base after impedance lookup exists.
+branch,b_pu,True,True,False,True,True,derived,admittance base conversion,100.0,red,Requires confirmed B and conversion convention before use.
+branch,confidence score,False,False,True,False,False,at_interfacility_candidate_branches,confidence_score,0.0,medium,Topology confidence only; not an electrical parameter confidence.
+transformer,substation code,True,True,True,False,False,candidate graph; caracteristicas-da-rede,codigo_da_instalacao,0.0,high,Candidate graph nodes can be matched by installation code when present in RARI tables.
+transformer,transformation ratio,True,True,True,False,False,caracteristicas-da-rede; carga-na-subestacao,relacao_de_transformacao_at_mt; tensao,17.7686,medium,"Available for many SE nodes, but not for postos de corte and unmatched nodes."
+transformer,high-voltage side,True,True,False,True,False,caracteristicas-da-rede,relacao_de_transformacao_at_mt,17.7686,medium,Parsed from transformation ratio.
+transformer,low-voltage side,True,True,False,True,False,caracteristicas-da-rede,relacao_de_transformacao_at_mt,17.7686,medium,Parsed from transformation ratio.
+transformer,installed power / capacity,True,True,True,False,False,caracteristicas-da-rede; carga-na-subestacao,potencia_instalada,17.7686,medium,Available for many substations; transformer count is still missing.
+transformer,transformer count,True,True,False,False,False,none,,100.0,red,No transformer-unit count found.
+transformer,r_pu,True,True,False,False,True,none,,100.0,red,Requires Portuguese transformer impedance lookup or owner data.
+transformer,x_pu,True,True,False,False,True,none,,100.0,red,Requires Portuguese transformer impedance lookup or owner data.
+transformer,tap ratio / tap range,True,True,False,False,False,none,,100.0,red,Not defensibly estimable from current public data.
+transformer,control mode,False,True,False,False,False,none,,100.0,red,Missing; needed for OPF-grade voltage control.
+transformer,neutral regime,False,False,True,False,False,caracteristicas-da-rede,regime_de_neutro_mt,17.7686,medium,"Available for MT side in characteristics dataset, not an AT line parameter."
+validation,short-circuit power,False,False,True,False,False,caracteristicas-da-rede,potencia_de_curto_circuito_maxima_at; potencia_de_curto_circuito_minima_at,0.0,high,"Useful for node-level sanity checks, not direct line impedance recovery."
+validation,short-circuit current,False,False,True,False,False,caracteristicas-da-rede,corrente_de_curto_circuito_para_efeitos_de_dimensionamento_do_equipamento_at,0.0,high,Equipment-sizing current available.
+validation,installed capacity,False,True,True,False,False,caracteristicas-da-rede; carga-na-subestacao,potencia_instalada,17.7686,medium,Can support transformer capacity and plausibility checks.
+validation,natural load,False,True,True,False,False,carga-na-subestacao,carga_natural,0.0,high,"Substation-level seasonal load, not hourly in this table."
+validation,guaranteed power,False,True,True,False,False,carga-na-subestacao,potencia_garantida,0.0,high,Useful capacity-risk feature.
+validation,reception capacity,False,True,True,False,False,capacidade-rececao-rnd,capacidade_de_recepcao_*,0.0,medium,Fields are available but E-REDES describes them as approximate hosting-capacity values.
+validation,substation location,False,False,True,False,False,se-at_2025,coordenadas,0.0,high,Point coordinates available for AT substations.

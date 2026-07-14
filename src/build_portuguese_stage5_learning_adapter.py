@@ -91,6 +91,25 @@ FORBIDDEN_INPUT_COLUMNS = {
     "stage4_exclusion_reason",
     "is_primary_split",
     "group_key",
+    # Post-simulation outcomes and aggregates derived from the supervised targets.
+    "metric_max_loading_percent",
+    "over_80_loading_flag",
+    "over_100_loading_flag",
+    "top_congested_flag",
+    "binding_under_internal_dispatch_flag",
+    "max_target_loading_percent",
+    "top_congested_appearance_count",
+    "bottleneck_persistence_count",
+    "repeated_bottleneck",
+    "preferred_next_scenario",
+    "dispatch_mw",
+    "dispatch_share_of_total_gen",
+    "dispatch_positive_flag",
+    "top_dispatch_flag",
+    "import_dependence_flag",
+    "max_dispatch_mw",
+    "max_dispatch_share_of_total_gen",
+    "top_dispatch_appearance_count",
 }
 
 

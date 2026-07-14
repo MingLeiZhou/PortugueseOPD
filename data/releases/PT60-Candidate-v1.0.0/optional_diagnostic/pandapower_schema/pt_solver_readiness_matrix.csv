@@ -1,0 +1,16 @@
+table,field,required_for_basic_ac_pf,required_for_opf,current_status,blocking_issue,recommended_next_action
+bus,name/vn_kv/index,True,True,partially_ready,multi-voltage representation and voltage limits not fully validated,Validate busbar/node inventory and voltage levels.
+line,from_bus/to_bus/length_km,True,True,ready,,Keep topology QA and no self-loop checks.
+line,r_ohm_per_km,True,True,missing,No final Portuguese 60 kV line R LUT selected.,Request E-REDES/REN standard overhead/cable parameters.
+line,x_ohm_per_km,True,True,missing,No final Portuguese 60 kV line X LUT selected.,Request E-REDES/REN standard overhead/cable parameters.
+line,c_nf_per_km,True,True,missing,Cable/line capacitance not available for final use.,Request manufacturer fichas or operator standards.
+line,max_i_ka,False,True,scenario_only,Cable ampacity bands exist; overhead current missing; branch cable section unknown.,Get branch-level conductor/cable section and installation condition.
+trafo,hv_bus/lv_bus/sn_mva,True,True,partially_ready,Installed power exists but unit count/rating not confirmed.,Request transformer unit count or station inventory.
+trafo,vk_percent,True,True,scenario_only,"E-REDES uk% table exists, but rating match often uses installed power proxy.",Confirm unit rating mapping.
+trafo,vkr_percent,True,True,missing,R/X split missing.,Request load losses or typical R/X split.
+trafo,tap fields,False,True,partially_ready,Range/step known; actual position/control missing.,Request tap-control assumptions.
+load,p_mw,True,True,partially_ready,Substation summary loads available; hourly mapping not validated.,Join and validate hourly diagrams.
+load,q_mvar,True,True,missing,Reactive power absent.,Request Q or state power-factor scenario separately.
+sgen,p_mw/q_mvar,False,True,missing,No actual generation dispatch available.,Use DGEG/REN generation data later; do not use hosting capacity as dispatch.
+ext_grid,slack bus/vm_pu/va_degree,True,True,missing,No confirmed REN/RNT interface/slack assumption.,Identify interface substations and define slack policy.
+poly_cost / OPF costs,cost function,False,True,missing,No OPF cost or penalty function.,Add market/generator costs or explicit penalty objective later.

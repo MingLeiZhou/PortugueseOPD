@@ -1,0 +1,42 @@
+{
+  "generated_at": "2026-07-14T13:40:16+00:00",
+  "osm_records_with_metadata": 5551,
+  "matched_branches_audited": 358,
+  "branches_with_timestamped_osm_metadata": 358,
+  "unique_matched_osm_ways": 271,
+  "unique_matched_osm_ways_with_history": 271,
+  "history_versions_total": 2326,
+  "branches_with_history_source_risk": 1,
+  "branch_independence_counts": {
+    "more_independent_public_evidence": 266,
+    "possibly_same_source": 5,
+    "unknown": 87
+  },
+  "branch_evidence_role_counts": {
+    "endpoint_name_or_ref+geometry_corridor+operator_tag": 189,
+    "endpoint_name_or_ref+operator_tag": 5,
+    "geometry_corridor": 1,
+    "geometry_corridor+operator_tag": 22,
+    "operator_tag": 4,
+    "partial_endpoint_name_or_ref+geometry_corridor+operator_tag": 78,
+    "partial_endpoint_name_or_ref+operator_tag": 59
+  },
+  "operator_tag_interpretation": "operator=E-REDES is treated as an OSM public tag, not operator confirmation.",
+  "recommended_manuscript_language": "public-source triangulation/concordance",
+  "prohibited_manuscript_language": [
+    "operator validation",
+    "independent precision",
+    "recall",
+    "accuracy",
+    "ground truth"
+  ],
+  "outputs": {
+    "osm_meta_cache": "data/processed/topology_validation/pt_osm_openinframap_60kv_power_ways_meta.json",
+    "osm_history_cache": "data/processed/topology_validation/pt_osm_matched_way_histories.json",
+    "osm_element_audit": "data/processed/topology_validation/pt_osm_openinframap_independence_audit.csv",
+    "osm_history_audit": "data/processed/topology_validation/pt_osm_openinframap_matched_way_history_audit.csv",
+    "branch_audit": "data/processed/topology_validation/pt_topology_cross_validation_osm_matches_independence_audit.csv",
+    "summary": "data/processed/topology_validation/pt_osm_openinframap_independence_audit_summary.json",
+    "report": "reports/105_pt60_osm_openinframap_independence_audit.md"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "generated_at": "2026-07-14T14:17:33+00:00",
+  "release_dir": "data/releases/PT60-Candidate-v1.0.0",
+  "archive_path": "data/releases/PT60-Candidate-v1.0.0.tar.gz",
+  "file_count": 183,
+  "manifest_records": 183,
+  "missing_documentation": [],
+  "documented_missing": [],
+  "missing_required": [],
+  "checksum_mismatches": [],
+  "checksum_missing_paths": [],
+  "status": "PASS"
+}

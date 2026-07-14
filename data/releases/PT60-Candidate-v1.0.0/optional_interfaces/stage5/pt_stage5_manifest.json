@@ -1,0 +1,77 @@
+{
+  "generated_at": "2026-07-13T14:09:38+00:00",
+  "dataset_id": "pt_grid_benchmark_stage5_adapter",
+  "release_id": "pt_grid_benchmark_stage5_adapter_v2",
+  "schema_version": "1.1",
+  "builder_script": "src/build_portuguese_stage5_learning_adapter.py",
+  "release_scope": "framework-neutral adapter layer built on validated stage-3 topology and stage-4 benchmark contracts; no model training or framework-specific tensor export included",
+  "upstream_stage3_release_id": "pt_grid_benchmark_stage3_graph_v1",
+  "upstream_stage4_release_id": "pt_grid_benchmark_stage4_learning_v2",
+  "benchmark_freeze": {
+    "acpf": "S16_BACKBONE_DIAGNOSTIC_CORE_DEPTH6",
+    "dcopf": "S30_PARALLEL_EQUIVALENT_ATPL_00147_DIAGNOSTIC"
+  },
+  "source_artifacts": [
+    "data/processed/dataset_release_stage3/pt_stage3_graph_nodes.csv",
+    "data/processed/dataset_release_stage3/pt_stage3_graph_edges.csv",
+    "data/processed/dataset_release_stage3/pt_stage3_generator_nodes.csv",
+    "data/processed/dataset_release_stage3/pt_stage3_generator_bus_links.csv",
+    "data/processed/dataset_release_stage3/pt_stage3_manifest.json",
+    "data/processed/dataset_release_stage3/pt_stage3_validation_summary.json",
+    "data/processed/dataset_release_stage4/pt_stage4_bus_node_features.csv",
+    "data/processed/dataset_release_stage4/pt_stage4_line_edge_features.csv",
+    "data/processed/dataset_release_stage4/pt_stage4_generator_node_features.csv",
+    "data/processed/dataset_release_stage4/pt_stage4_generator_bus_link_features.csv",
+    "data/processed/dataset_release_stage4/pt_stage4_line_risk_benchmark_samples.csv",
+    "data/processed/dataset_release_stage4/pt_stage4_generator_risk_benchmark_samples.csv",
+    "data/processed/dataset_release_stage4/pt_stage4_task_registry.csv",
+    "data/processed/dataset_release_stage4/pt_stage4_split_registry.csv",
+    "data/processed/dataset_release_stage4/pt_stage4_line_sample_splits.csv",
+    "data/processed/dataset_release_stage4/pt_stage4_generator_sample_splits.csv",
+    "data/processed/dataset_release_stage4/pt_stage4_manifest.json",
+    "data/processed/dataset_release_stage4/pt_stage4_validation_summary.json"
+  ],
+  "table_row_counts": {
+    "pt_stage5_graph_node_adapter.csv": 54,
+    "pt_stage5_graph_edge_adapter.csv": 36,
+    "pt_stage5_generator_node_adapter.csv": 18,
+    "pt_stage5_generator_link_adapter.csv": 18,
+    "pt_stage5_line_supervision_adapter.csv": 403,
+    "pt_stage5_generator_supervision_adapter.csv": 268,
+    "pt_stage5_feature_contract.csv": 272,
+    "pt_stage5_adapter_registry.csv": 6
+  },
+  "publication_allowed": false,
+  "diagnostic_only": true,
+  "operator_grade_ready": false,
+  "ml_ready": true,
+  "adapter_views": [
+    "homogeneous_bus_line_graph",
+    "heterogeneous_generator_sidecar",
+    "line_risk_supervision",
+    "generator_risk_supervision"
+  ],
+  "recommended_split_ids": [
+    "generator_balanced_recommended_v1",
+    "generator_grouped_entity_primary_v1",
+    "generator_grouped_entity_relative_dispatch_v1",
+    "line_balanced_recommended_v1",
+    "line_grouped_entity_primary_v1",
+    "line_grouped_entity_relative_stress_v1"
+  ],
+  "feature_contract_version": "1.1",
+  "preprocessing_contract_version": "1.1",
+  "excluded_scope": [
+    "model training",
+    "framework-specific tensor exports",
+    "learned normalization artifacts",
+    "benchmark relabeling",
+    "silent removal of governance-sensitive rows",
+    "operator-grade promotion"
+  ],
+  "caveats": [
+    "Adapter tables are machine-readable contracts for downstream training code, not model-ready tensors.",
+    "Primary regression and auxiliary relative classification tasks use strict grouped entity splits.",
+    "Original rare-event classifications remain plumbing/challenge tasks because benchmark-core positive entity support is insufficient."
+  ]
+}

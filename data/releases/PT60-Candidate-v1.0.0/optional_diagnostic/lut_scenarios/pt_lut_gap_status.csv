@@ -1,0 +1,7 @@
+object_type,gap,status,evidence
+line,Portuguese overhead R/X/B/current,BLOCKED_EXTERNAL_DATA,Only partial R or benchmark rows available; multilingual best-available rows may support diagnostics but no complete Portuguese branch-level overhead LUT exists.
+line,Portuguese cable R/X/C for all sections/installations,PARTIAL,"LXHIOLE 1x1000/135 36/60(72.5) kV trefoil now has Portugal-specific project R/X/C/current cross-checked by Nexans, and multilingual best-available rows can fill some cable buckets diagnostically, but 400/630 mm2 and broader installation variants remain missing or proxy-only."
+line,Branch-level cable/overhead assignment and circuit count,BLOCKED_EXTERNAL_DATA,"Even with stronger parameter rows, each branch still lacks confirmed conductor/cable family, section, installation condition, and circuit count."
+line,Mixed segment split,BLOCKED_EXTERNAL_DATA,Mixed branches still need segment-level split before a final LUT can be assigned consistently.
+transformer,"R/X split, unit count, actual tap position",PARTIAL,E-REDES uk% and tap range exist; completion remains scenario-assumed.
+opf,Generation cost and dispatch data,NOT_READY_FOR_PUBLICATION,No OPF-ready generator/cost tables in current pipeline.

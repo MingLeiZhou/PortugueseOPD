@@ -1,0 +1,1504 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PT60-Candidate provenance/release_metadata.json",
+  "description": "Path-level JSON field inventory schema. Nested structures are documented in data_dictionary.csv using JSON-pointer-like paths.",
+  "type": [
+    "object",
+    "array"
+  ],
+  "x-dataset-version": "v1.0.0",
+  "x-release-path": "provenance/release_metadata.json",
+  "x-field-pointers": [
+    {
+      "pointer": "$.availability_status.anonymous_reviewer_access_url",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$.availability_status.anonymous_reviewer_access_url` in `provenance/release_metadata.json`.",
+      "nullable": true
+    },
+    {
+      "pointer": "$.availability_status.archive_manifest",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.availability_status.archive_manifest`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.availability_status.checksums_sha256",
+      "inferred_type": "string",
+      "logical_type": "checksum",
+      "description": "Source provenance or release-control field `$.availability_status.checksums_sha256`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.availability_status.data_dictionary.coverage_check",
+      "inferred_type": "string",
+      "logical_type": "ratio_or_score",
+      "description": "Unitless score, ratio, coverage, percentage, or audit metric `$.availability_status.data_dictionary.coverage_check`; interpret according to the file-level method documentation.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.availability_status.data_dictionary.field_records",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.availability_status.data_dictionary.field_records`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.availability_status.data_dictionary.machine_readable_dataset_files_documented_excluding_schema_package",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.availability_status.data_dictionary.machine_readable_dataset_files_documented_excluding_schema_package`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.availability_status.data_dictionary.path",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.availability_status.data_dictionary.path`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.availability_status.data_dictionary.source_path",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.availability_status.data_dictionary.source_path`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.availability_status.data_dictionary.status",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.availability_status.data_dictionary.status`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.availability_status.data_dictionary.total_release_machine_readable_paths_documented",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.availability_status.data_dictionary.total_release_machine_readable_paths_documented`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.availability_status.dataset_archive.archive_path",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.availability_status.dataset_archive.archive_path`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.availability_status.dataset_archive.archive_sha256",
+      "inferred_type": "string",
+      "logical_type": "checksum",
+      "description": "Source provenance or release-control field `$.availability_status.dataset_archive.archive_sha256`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.availability_status.dataset_archive.archive_validation_summary",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.availability_status.dataset_archive.archive_validation_summary`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.availability_status.dataset_archive.claim_boundary_note",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.availability_status.dataset_archive.claim_boundary_note`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.availability_status.dataset_archive.compressed_size",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.availability_status.dataset_archive.compressed_size`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.availability_status.dataset_archive.file_count",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.availability_status.dataset_archive.file_count`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.availability_status.dataset_archive.generator",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.availability_status.dataset_archive.generator`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.availability_status.dataset_archive.manifest_records",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.availability_status.dataset_archive.manifest_records`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.availability_status.dataset_archive.release_dir",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.availability_status.dataset_archive.release_dir`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.availability_status.dataset_archive.self_reference_note",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.availability_status.dataset_archive.self_reference_note`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.availability_status.dataset_archive.status",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.availability_status.dataset_archive.status`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.availability_status.dataset_archive.uncompressed_size",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.availability_status.dataset_archive.uncompressed_size`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.availability_status.dataset_archive.validation_status",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.availability_status.dataset_archive.validation_status`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.availability_status.dataset_doi",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.availability_status.dataset_doi`.",
+      "nullable": true
+    },
+    {
+      "pointer": "$.availability_status.json_schemas.directory",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.availability_status.json_schemas.directory`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.availability_status.json_schemas.principal_schema_files",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.availability_status.json_schemas.principal_schema_files`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.availability_status.json_schemas.status",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.availability_status.json_schemas.status`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.blocking_items_before_submission",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.blocking_items_before_submission`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.blocking_items_before_submission[*]",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.blocking_items_before_submission[*]`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.code_state.code_doi",
+      "inferred_type": "string",
+      "logical_type": "identifier",
+      "description": "Identifier field `$.code_state.code_doi` in `provenance/release_metadata.json`.",
+      "nullable": true
+    },
+    {
+      "pointer": "$.code_state.code_release_tag",
+      "inferred_type": "string",
+      "logical_type": "identifier",
+      "description": "Identifier field `$.code_state.code_release_tag` in `provenance/release_metadata.json`.",
+      "nullable": true
+    },
+    {
+      "pointer": "$.code_state.dependency_manifest.path",
+      "inferred_type": "string",
+      "logical_type": "identifier",
+      "description": "Identifier field `$.code_state.dependency_manifest.path` in `provenance/release_metadata.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.code_state.dependency_manifest.sha256",
+      "inferred_type": "string",
+      "logical_type": "identifier",
+      "description": "Identifier field `$.code_state.dependency_manifest.sha256` in `provenance/release_metadata.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.code_state.dirty_status_note",
+      "inferred_type": "string",
+      "logical_type": "identifier",
+      "description": "Identifier field `$.code_state.dirty_status_note` in `provenance/release_metadata.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.code_state.generator_commit",
+      "inferred_type": "string",
+      "logical_type": "identifier",
+      "description": "Identifier field `$.code_state.generator_commit` in `provenance/release_metadata.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.code_state.git_worktree_status",
+      "inferred_type": "string",
+      "logical_type": "identifier",
+      "description": "Identifier field `$.code_state.git_worktree_status` in `provenance/release_metadata.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.code_state.python_version",
+      "inferred_type": "string",
+      "logical_type": "identifier",
+      "description": "Identifier field `$.code_state.python_version` in `provenance/release_metadata.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.core_artifacts",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.core_artifacts`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.core_artifacts[*].path",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.core_artifacts[*].path`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.core_artifacts[*].role",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.core_artifacts[*].role`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.core_artifacts[*].rows_excluding_header",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.core_artifacts[*].rows_excluding_header`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.core_artifacts[*].sha256",
+      "inferred_type": "string",
+      "logical_type": "checksum",
+      "description": "Source provenance or release-control field `$.core_artifacts[*].sha256`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.dataset.article_route",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.dataset.article_route`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.dataset.geographic_scope",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.dataset.geographic_scope`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.dataset.network_scope",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.dataset.network_scope`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.dataset.release_type",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.dataset.release_type`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.dataset.short_name",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.dataset.short_name`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.dataset.title",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.dataset.title`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.dataset.version",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.dataset.version`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.freeze_policy.change_policy",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.freeze_policy.change_policy`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.freeze_policy.claim_boundary",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.freeze_policy.claim_boundary`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.freeze_policy.claim_boundary[*]",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.freeze_policy.claim_boundary[*]`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.freeze_policy.frozen_for_validation",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `$.freeze_policy.frozen_for_validation`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.freeze_policy.post_validation_threshold_tuning_allowed",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `$.freeze_policy.post_validation_threshold_tuning_allowed`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.freeze_policy.prohibited_claims",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.freeze_policy.prohibited_claims`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.freeze_policy.prohibited_claims[*]",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.freeze_policy.prohibited_claims[*]`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.at_substations",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.frozen_counts.at_substations`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.downgrade_classes.ambiguous",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.frozen_counts.downgrade_classes.ambiguous`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.downgrade_classes.isolated",
+      "inferred_type": "integer",
+      "logical_type": "latitude_degrees",
+      "description": "Source provenance or release-control field `$.frozen_counts.downgrade_classes.isolated`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.downgrade_classes.loop",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.frozen_counts.downgrade_classes.loop`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.downgrade_classes.self_loop",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.frozen_counts.downgrade_classes.self_loop`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.downgrade_classes.single_facility",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.frozen_counts.downgrade_classes.single_facility`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.downgrade_classes.tap_multi_terminal",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.frozen_counts.downgrade_classes.tap_multi_terminal`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.downgraded_or_rejected_records",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.frozen_counts.downgraded_or_rejected_records`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.facility_rows_loaded",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.frozen_counts.facility_rows_loaded`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.largest_connected_component_size",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.frozen_counts.largest_connected_component_size`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.merged_circuit_candidates",
+      "inferred_type": "integer",
+      "logical_type": "datetime_or_date",
+      "description": "Source provenance or release-control field `$.frozen_counts.merged_circuit_candidates`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.osm_evidence_categories.medium",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.frozen_counts.osm_evidence_categories.medium`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.osm_evidence_categories.no_match",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `$.frozen_counts.osm_evidence_categories.no_match`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.osm_evidence_categories.strong",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.frozen_counts.osm_evidence_categories.strong`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.osm_evidence_categories.weak",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.frozen_counts.osm_evidence_categories.weak`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.osm_evidence_retained_branches_tested",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.frozen_counts.osm_evidence_retained_branches_tested`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.osm_openinframap_60kv_public_way_count",
+      "inferred_type": "integer",
+      "logical_type": "voltage",
+      "description": "Source provenance or release-control field `$.frozen_counts.osm_openinframap_60kv_public_way_count`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.other_relevant_facilities",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.frozen_counts.other_relevant_facilities`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.retained_interfacility_branches",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.frozen_counts.retained_interfacility_branches`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.selected_graph_connected_components",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.frozen_counts.selected_graph_connected_components`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.selected_graph_edges",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.frozen_counts.selected_graph_edges`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.selected_graph_nodes",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.frozen_counts.selected_graph_nodes`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.selected_graph_parallel_edges",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.frozen_counts.selected_graph_parallel_edges`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.selected_graph_self_loops",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `$.frozen_counts.selected_graph_self_loops`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.sensitivity_sweep_rows",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.frozen_counts.sensitivity_sweep_rows`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.source_line_features",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.frozen_counts.source_line_features`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.frozen_counts.valid_line_geometries",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.frozen_counts.valid_line_geometries`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.generated_at_utc",
+      "inferred_type": "string",
+      "logical_type": "ratio_or_score",
+      "description": "Unitless score, ratio, coverage, percentage, or audit metric `$.generated_at_utc`; interpret according to the file-level method documentation.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.reconstruction_settings.endpoint_snap_threshold_m",
+      "inferred_type": "number",
+      "logical_type": "distance_m",
+      "description": "Distance or length measurement field `$.reconstruction_settings.endpoint_snap_threshold_m`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.reconstruction_settings.facility_buffer_m",
+      "inferred_type": "integer",
+      "logical_type": "distance_m",
+      "description": "Distance or length measurement field `$.reconstruction_settings.facility_buffer_m`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.reconstruction_settings.facility_node_set",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.reconstruction_settings.facility_node_set`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.reconstruction_settings.merge_mode",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.reconstruction_settings.merge_mode`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.reconstruction_settings.metric_crs",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.reconstruction_settings.metric_crs`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.reconstruction_settings.release_crs",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.reconstruction_settings.release_crs`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.reconstruction_settings.source_crs",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.reconstruction_settings.source_crs`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.reconstruction_settings.voltage_scope",
+      "inferred_type": "string",
+      "logical_type": "voltage",
+      "description": "Source provenance or release-control field `$.reconstruction_settings.voltage_scope`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.reconstruction_settings.voltage_scope[*]",
+      "inferred_type": "string",
+      "logical_type": "voltage",
+      "description": "Source provenance or release-control field `$.reconstruction_settings.voltage_scope[*]`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.record_status",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.record_status`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_release.acpf_dcopf_operational_diagnostics",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.responsible_release.acpf_dcopf_operational_diagnostics`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_release.decision_record.json",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.responsible_release.decision_record.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_release.decision_record.report",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.responsible_release.decision_record.report`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_release.default_raw_source_download_release",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.responsible_release.default_raw_source_download_release`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_release.evidence_urls_public_release",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$.responsible_release.evidence_urls_public_release` in `provenance/release_metadata.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_release.exact_geometries_public_release",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.responsible_release.exact_geometries_public_release`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_release.facility_names_public_release",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.responsible_release.facility_names_public_release`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_release.generated_at_utc",
+      "inferred_type": "string",
+      "logical_type": "ratio_or_score",
+      "description": "Unitless score, ratio, coverage, percentage, or audit metric `$.responsible_release.generated_at_utc`; interpret according to the file-level method documentation.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_release.prohibited_archive_language",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.responsible_release.prohibited_archive_language`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_release.prohibited_archive_language[*]",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.responsible_release.prohibited_archive_language[*]`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_release.prohibited_uses_to_state",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.responsible_release.prohibited_uses_to_state`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_release.prohibited_uses_to_state[*]",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.responsible_release.prohibited_uses_to_state[*]`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_release.remaining_checks",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.responsible_release.remaining_checks`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_release.remaining_checks[*]",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.responsible_release.remaining_checks[*]`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_release.required_archive_language",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.responsible_release.required_archive_language`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_release.required_archive_language[*]",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.responsible_release.required_archive_language[*]`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_release.status",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.responsible_release.status`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_release.third_party_parameter_documents",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.responsible_release.third_party_parameter_documents`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.schema_name",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.schema_name`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.schema_version",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.schema_version`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_snapshot.manifest_csv.path",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.source_snapshot.manifest_csv.path`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_snapshot.manifest_json.generated_at",
+      "inferred_type": "string",
+      "logical_type": "datetime_or_date",
+      "description": "Source provenance or release-control field `$.source_snapshot.manifest_json.generated_at`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_snapshot.manifest_json.path",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.source_snapshot.manifest_json.path`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_snapshot.manifest_json.sha256",
+      "inferred_type": "string",
+      "logical_type": "checksum",
+      "description": "Source provenance or release-control field `$.source_snapshot.manifest_json.sha256`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_snapshot.portal_license",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.source_snapshot.portal_license`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_snapshot.portal_license_statement_url",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$.source_snapshot.portal_license_statement_url` in `provenance/release_metadata.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_snapshot.portal_license_url",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$.source_snapshot.portal_license_url` in `provenance/release_metadata.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_snapshot.public_derived_data_release_allowed_by_current_manifest",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `$.source_snapshot.public_derived_data_release_allowed_by_current_manifest`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_snapshot.release_conditions",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.source_snapshot.release_conditions`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_snapshot.release_conditions[*]",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.source_snapshot.release_conditions[*]`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_snapshot.required_attribution",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.source_snapshot.required_attribution`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_snapshot.sources",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.source_snapshot.sources`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_snapshot.sources[*].checked_at",
+      "inferred_type": "string",
+      "logical_type": "datetime_or_date",
+      "description": "Source provenance or release-control field `$.source_snapshot.sources[*].checked_at`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_snapshot.sources[*].dataset_id",
+      "inferred_type": "string",
+      "logical_type": "identifier",
+      "description": "Identifier field `$.source_snapshot.sources[*].dataset_id` in `provenance/release_metadata.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_snapshot.sources[*].license_basis",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.source_snapshot.sources[*].license_basis`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_snapshot.sources[*].records_count",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.source_snapshot.sources[*].records_count`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_snapshot.sources[*].source_role",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.source_snapshot.sources[*].source_role`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_snapshot.sources[*].topology_critical",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `$.source_snapshot.sources[*].topology_critical`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.clean_room_reproduction",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.clean_room_reproduction`.",
+      "nullable": true
+    },
+    {
+      "pointer": "$.validation_status.dual_independent_human_review",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.dual_independent_human_review`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.endpoint_name_negative_control.branches_tested",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.endpoint_name_negative_control.branches_tested`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.endpoint_name_negative_control.claim_boundary",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.endpoint_name_negative_control.claim_boundary`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.endpoint_name_negative_control.control_design",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.endpoint_name_negative_control.control_design`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.endpoint_name_negative_control.generated_at",
+      "inferred_type": "string",
+      "logical_type": "datetime_or_date",
+      "description": "Source provenance or release-control field `$.validation_status.endpoint_name_negative_control.generated_at`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.endpoint_name_negative_control.negative_control_strong_name_evidence_branches",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.endpoint_name_negative_control.negative_control_strong_name_evidence_branches`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.endpoint_name_negative_control.outputs.matches",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.endpoint_name_negative_control.outputs.matches`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.endpoint_name_negative_control.outputs.report",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.endpoint_name_negative_control.outputs.report`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.endpoint_name_negative_control.outputs.summary",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.endpoint_name_negative_control.outputs.summary`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.endpoint_name_negative_control.real_strong_name_evidence_branches",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.endpoint_name_negative_control.real_strong_name_evidence_branches`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.endpoint_name_negative_control.seed",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.endpoint_name_negative_control.seed`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.endpoint_name_negative_control.status",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.endpoint_name_negative_control.status`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.endpoint_name_negative_control.strong_name_relative_reduction",
+      "inferred_type": "number",
+      "logical_type": "latitude_degrees",
+      "description": "Source provenance or release-control field `$.validation_status.endpoint_name_negative_control.strong_name_relative_reduction`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.check_status_counts.PASS",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.check_status_counts.PASS`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.check_status_counts.WARN",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.check_status_counts.WARN`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.checks_total",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.checks_total`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.claim_boundary",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.claim_boundary`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.frozen_counts.circuit_ledger_rows",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.frozen_counts.circuit_ledger_rows`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.frozen_counts.downgraded_or_rejected_records",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.frozen_counts.downgraded_or_rejected_records`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.frozen_counts.graph_edges",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.frozen_counts.graph_edges`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.frozen_counts.graph_isolated_nodes",
+      "inferred_type": "integer",
+      "logical_type": "latitude_degrees",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.frozen_counts.graph_isolated_nodes`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.frozen_counts.graph_nodes",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.frozen_counts.graph_nodes`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.frozen_counts.graph_parallel_edge_records",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.frozen_counts.graph_parallel_edge_records`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.frozen_counts.graph_parallel_extra_edges",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.frozen_counts.graph_parallel_extra_edges`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.frozen_counts.graph_parallel_groups",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.frozen_counts.graph_parallel_groups`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.frozen_counts.invalid_or_dropped_geometries",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.frozen_counts.invalid_or_dropped_geometries`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.frozen_counts.raw_line_features",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.frozen_counts.raw_line_features`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.frozen_counts.retained_branches",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.frozen_counts.retained_branches`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.frozen_counts.sensitivity_sweep_rows",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.frozen_counts.sensitivity_sweep_rows`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.frozen_counts.valid_line_geometries",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.frozen_counts.valid_line_geometries`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.generated_at",
+      "inferred_type": "string",
+      "logical_type": "datetime_or_date",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.generated_at`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.outputs.checks",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.outputs.checks`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.outputs.missingness",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.outputs.missingness`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.outputs.report",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.outputs.report`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.outputs.summary",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.outputs.summary`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.status",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.status`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.warning_scope",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.warning_scope`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.internal_validation_summary.warning_scope[*]",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.internal_validation_summary.warning_scope[*]`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.operator_validation",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.operator_validation`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.osm_openinframap_independence_audit.branches_with_history_source_risk",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `$.validation_status.osm_openinframap_independence_audit.branches_with_history_source_risk`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.osm_openinframap_independence_audit.branches_with_timestamped_osm_metadata",
+      "inferred_type": "integer",
+      "logical_type": "datetime_or_date",
+      "description": "Source provenance or release-control field `$.validation_status.osm_openinframap_independence_audit.branches_with_timestamped_osm_metadata`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.osm_openinframap_independence_audit.generated_at",
+      "inferred_type": "string",
+      "logical_type": "datetime_or_date",
+      "description": "Source provenance or release-control field `$.validation_status.osm_openinframap_independence_audit.generated_at`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.osm_openinframap_independence_audit.history_versions_total",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.osm_openinframap_independence_audit.history_versions_total`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.osm_openinframap_independence_audit.independence_counts.more_independent_public_evidence",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.osm_openinframap_independence_audit.independence_counts.more_independent_public_evidence`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.osm_openinframap_independence_audit.independence_counts.possibly_same_source",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.osm_openinframap_independence_audit.independence_counts.possibly_same_source`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.osm_openinframap_independence_audit.independence_counts.unknown",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.osm_openinframap_independence_audit.independence_counts.unknown`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.osm_openinframap_independence_audit.matched_branches_audited",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.osm_openinframap_independence_audit.matched_branches_audited`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.osm_openinframap_independence_audit.operator_tag_interpretation",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.osm_openinframap_independence_audit.operator_tag_interpretation`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.osm_openinframap_independence_audit.osm_records_with_metadata",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.osm_openinframap_independence_audit.osm_records_with_metadata`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.osm_openinframap_independence_audit.outputs.branch_audit",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.osm_openinframap_independence_audit.outputs.branch_audit`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.osm_openinframap_independence_audit.outputs.osm_element_audit",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.osm_openinframap_independence_audit.outputs.osm_element_audit`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.osm_openinframap_independence_audit.outputs.osm_history_audit",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.osm_openinframap_independence_audit.outputs.osm_history_audit`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.osm_openinframap_independence_audit.outputs.osm_history_cache",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.osm_openinframap_independence_audit.outputs.osm_history_cache`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.osm_openinframap_independence_audit.outputs.osm_meta_cache",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.osm_openinframap_independence_audit.outputs.osm_meta_cache`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.osm_openinframap_independence_audit.outputs.report",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.osm_openinframap_independence_audit.outputs.report`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.osm_openinframap_independence_audit.outputs.summary",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.osm_openinframap_independence_audit.outputs.summary`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.osm_openinframap_independence_audit.prohibited_language",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.osm_openinframap_independence_audit.prohibited_language`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.osm_openinframap_independence_audit.prohibited_language[*]",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.osm_openinframap_independence_audit.prohibited_language[*]`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.osm_openinframap_independence_audit.recommended_language",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.osm_openinframap_independence_audit.recommended_language`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.osm_openinframap_independence_audit.status",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.osm_openinframap_independence_audit.status`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.osm_openinframap_independence_audit.unique_matched_osm_ways",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.osm_openinframap_independence_audit.unique_matched_osm_ways`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.osm_openinframap_independence_audit.unique_matched_osm_ways_with_history",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.osm_openinframap_independence_audit.unique_matched_osm_ways_with_history`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.precision_recall",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.precision_recall`.",
+      "nullable": true
+    },
+    {
+      "pointer": "$.validation_status.spatial_alignment_negative_control.branches_tested",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.spatial_alignment_negative_control.branches_tested`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.spatial_alignment_negative_control.claim_boundary",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.spatial_alignment_negative_control.claim_boundary`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.spatial_alignment_negative_control.control_design",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.spatial_alignment_negative_control.control_design`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.spatial_alignment_negative_control.corridor_evidence_relative_reduction",
+      "inferred_type": "number",
+      "logical_type": "latitude_degrees",
+      "description": "Source provenance or release-control field `$.validation_status.spatial_alignment_negative_control.corridor_evidence_relative_reduction`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.spatial_alignment_negative_control.delta_lat_degrees",
+      "inferred_type": "number",
+      "logical_type": "latitude_degrees",
+      "description": "Source provenance or release-control field `$.validation_status.spatial_alignment_negative_control.delta_lat_degrees`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.spatial_alignment_negative_control.delta_lon_degrees",
+      "inferred_type": "number",
+      "logical_type": "longitude_degrees",
+      "description": "Source provenance or release-control field `$.validation_status.spatial_alignment_negative_control.delta_lon_degrees`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.spatial_alignment_negative_control.generated_at",
+      "inferred_type": "string",
+      "logical_type": "datetime_or_date",
+      "description": "Source provenance or release-control field `$.validation_status.spatial_alignment_negative_control.generated_at`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.spatial_alignment_negative_control.invalid_transformed_geometries",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `$.validation_status.spatial_alignment_negative_control.invalid_transformed_geometries`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.spatial_alignment_negative_control.negative_control_corridor_evidence_branches",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `$.validation_status.spatial_alignment_negative_control.negative_control_corridor_evidence_branches`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.spatial_alignment_negative_control.outputs.matches",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.spatial_alignment_negative_control.outputs.matches`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.spatial_alignment_negative_control.outputs.report",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.spatial_alignment_negative_control.outputs.report`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.spatial_alignment_negative_control.outputs.summary",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.spatial_alignment_negative_control.outputs.summary`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.spatial_alignment_negative_control.real_corridor_evidence_branches",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.spatial_alignment_negative_control.real_corridor_evidence_branches`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.spatial_alignment_negative_control.records_excluded_after_transform",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `$.validation_status.spatial_alignment_negative_control.records_excluded_after_transform`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.spatial_alignment_negative_control.seed",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.spatial_alignment_negative_control.seed`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.spatial_alignment_negative_control.status",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.validation_status.spatial_alignment_negative_control.status`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.validation_status.spatial_alignment_negative_control.valid_transformed_geometries",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.validation_status.spatial_alignment_negative_control.valid_transformed_geometries`.",
+      "nullable": false
+    }
+  ]
+}

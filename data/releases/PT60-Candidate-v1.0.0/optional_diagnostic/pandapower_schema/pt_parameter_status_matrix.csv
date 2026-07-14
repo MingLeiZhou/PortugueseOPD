@@ -1,0 +1,14 @@
+object_type,parameter,status,source_id,confidence,ready_or_available_rows,total_rows,coverage_percent,notes
+bus,bus_id/facility/voltage,PARTIALLY_READY,E-REDES topology/facility data,medium,0,0,0.0,Bus schema exists but solver_ready remains false.
+line,line r_ohm_per_km,MISSING,,missing,0,358,0.0,Status distribution: {'MISSING': 358}
+line,line x_ohm_per_km,MISSING,,missing,0,358,0.0,Status distribution: {'MISSING': 358}
+line,line c_nf_per_km / b,MISSING,,missing,0,358,0.0,Status distribution: {'MISSING': 358}
+line,line max_i_ka,SCENARIO_ONLY,,medium,59,358,16.4804,"Status distribution: {'MISSING': 299, 'SCENARIO_ASSUMED': 59}"
+line,line thermal_limit_mva,SCENARIO_ONLY,,medium,59,358,16.4804,"Status distribution: {'MISSING': 299, 'SCENARIO_ASSUMED': 59}"
+trafo,uk/vk_percent,SCENARIO_ONLY,SRC_EREDES_DMAC52140,medium,394,394,100.0,"uk% is source-backed where rating match is exact, scenario-only where installed power is used as proxy."
+trafo,vkr_percent / R/X split,MISSING,,missing,0,394,0.0,No vkr_percent or load-loss-based R/X split was fabricated.
+trafo,tap range/step,PARTIALLY_READY,SRC_EREDES_DMAC52140,high,394,394,100.0,Range/step source-backed; actual tap position/control missing.
+load,p_mw,PARTIALLY_READY,carga-na-subestacao via availability table,medium,794,794,100.0,Summary P values only; hourly join not claimed.
+load,q_mvar,MISSING,,missing,0,794,0.0,Reactive load not available and not invented.
+sgen,actual generation dispatch,MISSING,,missing,0,0,0.0,Reception capacity is not actual generation.
+ext_grid,slack bus and Thevenin equivalent,MISSING,short-circuit data context only,low,0,54,0.0,No final slack selected; rx ratio missing.

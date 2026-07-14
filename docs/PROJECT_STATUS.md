@@ -26,6 +26,16 @@ claim that the real Portuguese operational grid has been reconstructed.
 - Stage-4 v2 label-support policy: grouped regression as the primary benchmark, relative
   high-stress/high-dispatch classification as limited-support auxiliary tasks, and original
   overload/top-dispatch classification retained as non-headline challenge tasks.
+- Leakage-safe Stage-4 baselines for four evaluable tasks using five seeds, train-only
+  preprocessing, strict entity grouping, and an explicit ban on target-derived features.
+- A proportional stratified external topology review sample covering 100 of 358 retained
+  branches. Accuracy remains `NOT_EVALUABLE` pending independent evidence and adjudication.
+- Full-model ACPF localization with leave-one-element-out and slack-depth expansion. No
+  single line or transformer removal restores convergence while preserving 95% of load;
+  low-load failure first appears when a 16-line, no-new-load depth-15 frontier is added.
+- A machine-readable reproduction source manifest and attribution-aware release gate. The
+  three topology-critical API records do not repeat an explicit license field, so the
+  manifest records the official portal-level CC BY 4.0 basis as a visible fallback.
 
 ## Current limitations
 
@@ -35,8 +45,11 @@ claim that the real Portuguese operational grid has been reconstructed.
 - Benchmark labels are generated from diagnostic scenarios rather than observed events.
 - Benchmark-core positive entities remain insufficient for the original overload and
   top-dispatch classifications; row-balanced splits are plumbing-only.
+- Diagnostic baseline results demonstrate the software interface only; their labels and
+  electrical inputs remain scenario-derived or proxy-based.
 - AC OPF is outside benchmark-v1 scope.
-- Public redistribution of topology-derived data awaits source-license clarification.
+- A public PT60-Candidate archive and DOI have not yet been packaged; release metadata must
+  preserve E-REDES attribution, source identifiers, access dates, and modification notices.
 
 ## Realistic completion target
 

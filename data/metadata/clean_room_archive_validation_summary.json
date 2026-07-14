@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-07-14T14:21:25+00:00",
+  "validation_mode": "package_clean_room_tarball_extraction",
+  "archive_path": "/Users/jumiray/Projects/PortugueseOPD/data/releases/PT60-Candidate-v1.0.0.tar.gz",
+  "archive_sha256": "0ca66cd5b0ec7e1a6747a8cf20e79edd0497acb0e15b611a2dfa7d0198fe31e1",
+  "extracted_root_name": "PT60-Candidate-v1.0.0",
+  "manifest_records": 183,
+  "file_count": 183,
+  "machine_readable_paths": 143,
+  "dictionary_paths": 143,
+  "dictionary_field_records": 7601,
+  "headline_count_checks": {
+    "retained_interfacility_branches": true,
+    "merged_circuit_candidates": true,
+    "sensitivity_sweep_rows": true,
+    "selected_graph_edges": true
+  },
+  "failures": {
+    "missing_manifest_fields": [],
+    "missing_documentation": [],
+    "documented_missing": [],
+    "missing_required": [],
+    "manifest_hash_mismatches": [],
+    "checksum_mismatches": [],
+    "checksum_missing_paths": [],
+    "checksum_undocumented": [],
+    "checksum_extra": [],
+    "dictionary_missing_paths": [],
+    "dictionary_extra_paths": [],
+    "failed_headline_count_checks": []
+  },
+  "status": "PASS"
+}

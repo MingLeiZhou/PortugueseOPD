@@ -32,12 +32,20 @@ Expected result:
 ```bash
 python src/qa_smoke_test_stage4_consumers.py
 python src/qa_smoke_test_stage5_consumers.py
+python src/run_stage4_leakage_safe_baselines.py
+python src/build_topology_validation_sample.py
+python src/summarize_topology_external_validation.py
+python src/build_reproducibility_source_manifest.py
 ```
 
 Expected result:
 - both smoke tests finish with `status: PASS`;
 - primary and auxiliary grouped splits have zero entity leakage;
 - original rare-event labels remain explicitly marked as insufficient-support challenge tasks.
+- baseline feature audit reports zero target-derived inputs and uses grouped entity splits;
+- topology precision remains blocked unless independent evidence and minimum adjudication requirements pass;
+- the source manifest records the E-REDES portal-level CC BY 4.0 basis for every topology-critical source, including a visible fallback where a dataset catalog record does not repeat the license field;
+- any public core-topology release retains E-REDES attribution, the CC BY 4.0 link, source identifiers and access dates, and an indication of transformations.
 
 ## Repository structure review
 
@@ -112,11 +120,13 @@ Confirm adapter expectations:
 ## Release-boundary review
 
 Confirm these statements remain true:
-- `publication_allowed` stays `false` in release manifests;
-- `diagnostic_only` stays `true` in release manifests;
-- `operator_grade_ready` stays `false` in release manifests;
-- no doc claims operator-grade realism or public data redistribution clearance;
-- benchmark labels are still described as scenario-derived diagnostic targets.
+- the core PT60-Candidate topology release is governed by E-REDES CC BY 4.0 attribution requirements;
+- `publication_allowed` stays `false` for electrical and learning artifacts whose scenario/proxy semantics do not support publication claims;
+- `diagnostic_only` stays `true` in electrical and learning release manifests;
+- `operator_grade_ready` stays `false` in all readiness manifests;
+- no document claims operator-grade realism, external topology validation, AC power-flow readiness, or OPF readiness;
+- benchmark labels are still described as scenario-derived diagnostic targets;
+- the MIT repository license is never presented as the license for E-REDES-derived data.
 
 ## Manual notes
 

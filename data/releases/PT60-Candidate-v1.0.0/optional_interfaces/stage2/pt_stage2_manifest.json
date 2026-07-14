@@ -1,0 +1,65 @@
+{
+  "generated_at": "2026-07-13T11:46:17+00:00",
+  "dataset_id": "pt_grid_benchmark_stage2",
+  "release_id": "pt_grid_benchmark_stage2_v1",
+  "schema_version": "1.0",
+  "builder_script": "src/build_portuguese_stage2_dataset.py",
+  "release_scope": "feature/target/provenance dataset layer for later SSL and risk-prediction preparation; no ML included",
+  "upstream_stage1_release_id": "pt_grid_benchmark_stage1_v1",
+  "benchmark_freeze": {
+    "acpf": "S16_BACKBONE_DIAGNOSTIC_CORE_DEPTH6",
+    "dcopf": "S30_PARALLEL_EQUIVALENT_ATPL_00147_DIAGNOSTIC"
+  },
+  "source_artifacts": [
+    "data/processed/dataset_release_stage1/pt_dataset_buses.csv",
+    "data/processed/dataset_release_stage1/pt_dataset_lines.csv",
+    "data/processed/dataset_release_stage1/pt_dataset_loads.csv",
+    "data/processed/dataset_release_stage1/pt_dataset_generators.csv",
+    "data/processed/dataset_release_stage1/pt_dataset_generator_assignment.csv",
+    "data/processed/dataset_release_stage1/pt_dataset_generator_dispatch_proxy.csv",
+    "data/processed/dataset_release_stage1/pt_dataset_generator_costs.csv",
+    "data/processed/dataset_release_stage1/pt_dataset_benchmark_summaries.csv",
+    "data/processed/dataset_release_stage1/pt_dataset_line_policy.csv",
+    "data/processed/dataset_release_stage1/pt_dataset_manifest.json",
+    "data/processed/mixed_corridor_policy_table.csv",
+    "data/processed/acpf_ready/pt_acpf_source_traceability.csv",
+    "data/processed/acpf_ready/pt_acpf_assumption_register.csv",
+    "data/processed/acpf_diagnostics/pt_acpf_component_diagnostics.csv",
+    "data/processed/dcopf_s20_strict_internal/s20_strict_internal_dcopf_attempts.csv",
+    "data/processed/dcopf_s21_diagnostics/s21_dcopf_line_results_by_scale.csv",
+    "data/processed/dcopf_s21_diagnostics/s21_dcopf_gen_results_by_scale.csv",
+    "data/processed/s22_mixed_corridor_remediation/s22_dcopf_attempts.csv",
+    "data/processed/dcopf_s30_atpl_00147_parallel_equivalent/s30_summary.csv",
+    "data/processed/dcopf_s30_atpl_00147_parallel_equivalent/s30_top_lines.csv",
+    "data/processed/dcopf_s30_atpl_00147_parallel_equivalent/s30_top_generators.csv"
+  ],
+  "table_row_counts": {
+    "pt_stage2_bus_features.csv": 54,
+    "pt_stage2_line_features.csv": 36,
+    "pt_stage2_generator_features.csv": 18,
+    "pt_stage2_line_risk_targets.csv": 163,
+    "pt_stage2_generator_risk_targets.csv": 94,
+    "pt_stage2_provenance_flags.csv": 108
+  },
+  "publication_allowed": false,
+  "diagnostic_only": true,
+  "operator_grade_ready": false,
+  "ml_ready": false,
+  "downstream_intended_use": [
+    "graph entity feature engineering",
+    "scenario-conditioned risk target construction",
+    "later SSL and risk-prediction dataset preparation"
+  ],
+  "excluded_scope": [
+    "model training",
+    "train/validation/test splits",
+    "feature normalization for models",
+    "framework-specific graph exports",
+    "AC OPF products"
+  ],
+  "caveats": [
+    "Targets remain benchmark-diagnostic rather than operator-grade labels.",
+    "Line governance joins rely on semantic corridor IDs via line_name.",
+    "Generator semantics remain proxy-governed."
+  ]
+}

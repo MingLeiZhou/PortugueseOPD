@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-07-13T11:46:17+00:00",
+  "status": "PASS",
+  "errors": [],
+  "warnings": [],
+  "check_counts": {
+    "bus_feature_duplicates": 0,
+    "line_feature_duplicates": 0,
+    "generator_feature_duplicates": 0,
+    "line_target_missing_feature_refs": 0,
+    "generator_target_missing_feature_refs": 0,
+    "missing_governed_lines": 0,
+    "negative_line_loading_rows": 0,
+    "negative_generator_dispatch_rows": 0,
+    "top_congested_true_rows": 22,
+    "invalid_top_dispatch_rows": 0,
+    "missing_provenance_entity_types": 0
+  }
+}

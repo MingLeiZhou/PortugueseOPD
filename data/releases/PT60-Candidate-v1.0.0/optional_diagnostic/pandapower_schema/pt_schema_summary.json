@@ -1,0 +1,65 @@
+{
+  "generated_at": "2026-07-06T17:08:50.363616+00:00",
+  "scope": "Step 3C + Step 4A dry run only; no solver executed",
+  "row_counts": {
+    "bus": 878,
+    "line": 358,
+    "trafo": 394,
+    "load": 794,
+    "sgen": 0,
+    "ext_grid": 54
+  },
+  "quality_checks": {
+    "bus_rows": 878,
+    "bus_id_unique": true,
+    "line_rows": 358,
+    "line_from_bus_missing_count": 0,
+    "line_to_bus_missing_count": 0,
+    "line_self_loop_count": 0,
+    "line_nonpositive_length_count": 0,
+    "line_asset_type_distribution": {
+      "overhead": 219,
+      "mixed": 80,
+      "cable": 59
+    },
+    "line_r_missing_count": 358,
+    "line_x_missing_count": 358,
+    "line_c_b_missing_count": 358,
+    "line_max_i_missing_count": 299,
+    "line_max_i_scenario_count": 59,
+    "line_source_confidence_distribution": {
+      "missing": 1373,
+      "medium": 59
+    },
+    "trafo_rows": 394,
+    "trafo_hv_bus_missing_count": 0,
+    "trafo_lv_bus_missing_count": 0,
+    "trafo_vkr_missing_count": 394,
+    "load_rows": 794,
+    "load_bus_missing_count": 0,
+    "load_q_missing_count": 794,
+    "sgen_rows": 0,
+    "ext_grid_candidate_count": 54,
+    "solver_ready_rows": {
+      "bus": 0,
+      "line": 0,
+      "trafo": 0,
+      "load": 0,
+      "sgen": 0,
+      "ext_grid": 0
+    }
+  },
+  "solver_ready": false,
+  "solver_run_performed": false,
+  "reason_not_solver_ready": [
+    "line R/X/B missing",
+    "overhead current/thermal limits missing",
+    "cable R/X/capacitance missing",
+    "circuit counts missing",
+    "transformer R/X split missing",
+    "reactive load missing",
+    "slack/interface model missing",
+    "tap position/control missing",
+    "OPF costs missing"
+  ]
+}

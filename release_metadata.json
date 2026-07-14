@@ -1,0 +1,486 @@
+{
+  "schema_name": "pt60_candidate_release_metadata",
+  "schema_version": "0.1.0",
+  "record_status": "freeze_draft",
+  "generated_at_utc": "2026-07-14T13:20:19Z",
+  "dataset": {
+    "short_name": "PT60-Candidate",
+    "version": "v1.0.0",
+    "title": "PT60-Candidate: A provenance-tracked candidate dataset and fail-closed pipeline for Portuguese 60 kV topology reconstruction",
+    "article_route": "Scientific Data Data Descriptor, public-source validation route without dual independent human adjudication",
+    "release_type": "candidate_topology_dataset",
+    "geographic_scope": "mainland Portugal and Portuguese E-REDES 60 kV/AT public open-data coverage",
+    "network_scope": "candidate 60 kV distribution/AT topology records derived from public E-REDES Open Data; not an operator-validated operational grid model"
+  },
+  "freeze_policy": {
+    "frozen_for_validation": true,
+    "post_validation_threshold_tuning_allowed": false,
+    "change_policy": "Any change to source snapshots, facility node set, facility buffer, endpoint snapping threshold, merging mode, retained-branch rule, OSM/OpenInfraMap cache, or validation logic requires a new dataset version and rerun of validation.",
+    "claim_boundary": [
+      "provenance-tracked candidate dataset",
+      "fail-closed reconstruction pipeline",
+      "retained/downgraded/rejected circuit ledger",
+      "216-configuration sensitivity sweep",
+      "public-source OSM/OpenInfraMap concordance",
+      "reusable schemas, graph export, and consumer interfaces after final archive assembly"
+    ],
+    "prohibited_claims": [
+      "operator validation",
+      "independently estimated branch precision",
+      "national-grid recall or completeness",
+      "operational grid model",
+      "AC power-flow, OPF, protection, security, contingency, or congestion-analysis readiness"
+    ]
+  },
+  "code_state": {
+    "generator_commit": "1820f10090c19a305a785df3190694c0c9fd8e75",
+    "git_worktree_status": "dirty",
+    "dirty_status_note": "Uncommitted repository changes existed when this freeze draft was generated. The final release must point to an immutable clean commit or release tag.",
+    "code_release_tag": "pending",
+    "code_doi": "pending",
+    "python_version": "3.12.9",
+    "dependency_manifest": {
+      "path": "requirements.txt",
+      "sha256": "3041f3f6e70697cdcf6a462c9613368079ce2344b694230f78e8184ad5e23cef"
+    }
+  },
+  "source_snapshot": {
+    "manifest_json": {
+      "path": "data/metadata/reproduction_source_manifest.json",
+      "generated_at": "2026-07-13T15:23:31+00:00",
+      "sha256": "9a9acef1537b0733b73e270435a443b9ba643338f9a37a44acc09c1d184cd787"
+    },
+    "manifest_csv": {
+      "path": "data/metadata/reproduction_source_manifest.csv"
+    },
+    "portal_license": "CC BY 4.0",
+    "portal_license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "portal_license_statement_url": "https://e-redes.opendatasoft.com/pages/homepage/",
+    "required_attribution": "E-REDES - Distribuicao de Eletricidade, 'E-REDES Open Data Portal'. Accessed [date]. [Online] Available at https://e-redes.opendatasoft.com/pages/homepage/",
+    "public_derived_data_release_allowed_by_current_manifest": true,
+    "release_conditions": [
+      "retain E-REDES attribution",
+      "link CC BY 4.0",
+      "identify source datasets and access dates",
+      "indicate transformations or modifications"
+    ],
+    "sources": [
+      {
+        "dataset_id": "rede-at-teste",
+        "source_role": "topology_critical_at_lines",
+        "topology_critical": true,
+        "records_count": 5334,
+        "checked_at": "2026-07-13T14:15:57+00:00",
+        "license_basis": "PORTAL_LEVEL_CC_BY_4_0"
+      },
+      {
+        "dataset_id": "se-at_2025",
+        "source_role": "topology_critical_at_substations",
+        "topology_critical": true,
+        "records_count": 410,
+        "checked_at": "2026-07-13T14:16:08+00:00",
+        "license_basis": "PORTAL_LEVEL_CC_BY_4_0"
+      },
+      {
+        "dataset_id": "pc-at_2025",
+        "source_role": "topology_critical_switching_facilities",
+        "topology_critical": true,
+        "records_count": 76,
+        "checked_at": "2026-07-13T14:15:31+00:00",
+        "license_basis": "PORTAL_LEVEL_CC_BY_4_0"
+      },
+      {
+        "dataset_id": "se-mt_2025",
+        "source_role": "transformer_and_multivoltage_inventory",
+        "topology_critical": false,
+        "records_count": 28,
+        "checked_at": "2026-07-13T14:16:12+00:00",
+        "license_basis": "PORTAL_LEVEL_CC_BY_4_0"
+      },
+      {
+        "dataset_id": "caracteristicas-da-rede",
+        "source_role": "electrical_characteristics_and_short_circuit_context",
+        "topology_critical": false,
+        "records_count": 437,
+        "checked_at": "2026-07-13T14:14:17+00:00",
+        "license_basis": "DATASET_CATALOG_METADATA"
+      },
+      {
+        "dataset_id": "carga-na-subestacao",
+        "source_role": "substation_load_context",
+        "topology_critical": false,
+        "records_count": 794,
+        "checked_at": "2026-07-13T14:14:22+00:00",
+        "license_basis": "DATASET_CATALOG_METADATA"
+      },
+      {
+        "dataset_id": "capacidade-rececao-rnd",
+        "source_role": "hosting_capacity_context_not_dispatch",
+        "topology_critical": false,
+        "records_count": 469,
+        "checked_at": "2026-07-13T14:14:12+00:00",
+        "license_basis": "DATASET_CATALOG_METADATA"
+      },
+      {
+        "dataset_id": "diagrama-de-carga-de-subestacao",
+        "source_role": "hourly_load_index",
+        "topology_critical": false,
+        "records_count": 5,
+        "checked_at": "2026-07-13T14:14:38+00:00",
+        "license_basis": "DATASET_CATALOG_METADATA"
+      },
+      {
+        "dataset_id": "diagrama_carga_subestacao_01_a_07",
+        "source_role": "hourly_load_partition",
+        "topology_critical": false,
+        "records_count": 4085298,
+        "checked_at": "2026-07-13T14:14:45+00:00",
+        "license_basis": "DATASET_CATALOG_METADATA"
+      },
+      {
+        "dataset_id": "diagrama_carga_subestacao_08_a_10",
+        "source_role": "hourly_load_partition",
+        "topology_critical": false,
+        "records_count": 2185886,
+        "checked_at": "2026-07-13T14:14:50+00:00",
+        "license_basis": "DATASET_CATALOG_METADATA"
+      },
+      {
+        "dataset_id": "diagrama_carga_subestacao_11_a_12",
+        "source_role": "hourly_load_partition",
+        "topology_critical": false,
+        "records_count": 2829724,
+        "checked_at": "2026-07-13T14:14:55+00:00",
+        "license_basis": "DATASET_CATALOG_METADATA"
+      },
+      {
+        "dataset_id": "diagrama_carga_subestacao_13_a_15",
+        "source_role": "hourly_load_partition",
+        "topology_critical": false,
+        "records_count": 3548885,
+        "checked_at": "2026-07-13T14:15:00+00:00",
+        "license_basis": "DATASET_CATALOG_METADATA"
+      },
+      {
+        "dataset_id": "diagrama_carga_subestacao_16_a_18",
+        "source_role": "hourly_load_partition",
+        "topology_critical": false,
+        "records_count": 1259343,
+        "checked_at": "2026-07-13T14:15:05+00:00",
+        "license_basis": "DATASET_CATALOG_METADATA"
+      }
+    ]
+  },
+  "reconstruction_settings": {
+    "facility_node_set": "B",
+    "facility_buffer_m": 100,
+    "endpoint_snap_threshold_m": 0.5,
+    "merge_mode": "voltage-status-aware",
+    "metric_crs": "LOCAL_EQUIRECTANGULAR_PORTUGAL lon0=-8.532604, lat0=39.567953, units=m",
+    "source_crs": "pending_exact_source_crs",
+    "release_crs": "pending_exact_release_crs",
+    "voltage_scope": [
+      "60 kV",
+      "130 kV source features retained only where present in source inventory; PT60-Candidate claims are bounded to 60 kV candidate topology"
+    ]
+  },
+  "frozen_counts": {
+    "source_line_features": 5334,
+    "valid_line_geometries": 5334,
+    "facility_rows_loaded": 586,
+    "at_substations": 409,
+    "other_relevant_facilities": 177,
+    "merged_circuit_candidates": 1342,
+    "retained_interfacility_branches": 358,
+    "downgraded_or_rejected_records": 984,
+    "downgrade_classes": {
+      "self_loop": 101,
+      "single_facility": 496,
+      "isolated": 215,
+      "tap_multi_terminal": 106,
+      "ambiguous": 61,
+      "loop": 5
+    },
+    "selected_graph_nodes": 484,
+    "selected_graph_edges": 358,
+    "selected_graph_connected_components": 170,
+    "largest_connected_component_size": 53,
+    "selected_graph_parallel_edges": 28,
+    "selected_graph_self_loops": 0,
+    "sensitivity_sweep_rows": 216,
+    "osm_openinframap_60kv_public_way_count": 5551,
+    "osm_evidence_retained_branches_tested": 358,
+    "osm_evidence_categories": {
+      "strong": 247,
+      "medium": 104,
+      "weak": 7,
+      "no_match": 0
+    }
+  },
+  "core_artifacts": [
+    {
+      "path": "data/processed/at_paper_logic_summary.json",
+      "role": "selected reconstruction summary and graph statistics",
+      "sha256": "8ab105d73fffb791f7e480256f320d9ec25533f6f4cd8876590e8f5b3d30ed03"
+    },
+    {
+      "path": "data/processed/at_paper_logic_parameter_sweep.csv",
+      "role": "216-configuration reconstruction sensitivity sweep",
+      "rows_excluding_header": 216
+    },
+    {
+      "path": "data/processed/at_interfacility_candidate_branches.csv",
+      "role": "retained candidate branches",
+      "rows_excluding_header": 358
+    },
+    {
+      "path": "data/processed/at_circuit_classification.csv",
+      "role": "full retained/downgraded/rejected circuit ledger",
+      "rows_excluding_header": 1342
+    },
+    {
+      "path": "data/processed/at_paper_logic_graph.graphml",
+      "role": "selected candidate multigraph export"
+    },
+    {
+      "path": "data/processed/topology_validation/pt_topology_cross_validation_summary.json",
+      "role": "OSM/OpenInfraMap public-source concordance summary",
+      "sha256": "7863f383ab56bf5fe4ed9d58006eca6264fa10983ea061f7ea415fdef97ba18d"
+    },
+    {
+      "path": "data/processed/topology_validation/pt_osm_openinframap_60kv_evidence.csv",
+      "role": "cached Portugal 60 kV public way evidence",
+      "rows_excluding_header": 5551
+    },
+    {
+      "path": "data/processed/topology_validation/pt_topology_cross_validation_osm_matches.csv",
+      "role": "branch-level public-source concordance records",
+      "rows_excluding_header": 358
+    }
+  ],
+  "validation_status": {
+    "dual_independent_human_review": "not_used_for_v1.0.0_route",
+    "operator_validation": "not_available",
+    "precision_recall": "not_estimated",
+    "internal_validation_summary": {
+      "status": "PASS_WITH_WARNINGS",
+      "generated_at": "2026-07-14T13:45:52+00:00",
+      "checks_total": 25,
+      "check_status_counts": {
+        "PASS": 23,
+        "WARN": 2
+      },
+      "warning_scope": [
+        "Exact source/release CRS must still be stated in Data Records and the data dictionary.",
+        "Core artifact hashes are recorded as the deterministic baseline; clean-room rerun equality remains P0.12."
+      ],
+      "frozen_counts": {
+        "raw_line_features": 5334,
+        "valid_line_geometries": 5334,
+        "invalid_or_dropped_geometries": 0,
+        "retained_branches": 358,
+        "circuit_ledger_rows": 1342,
+        "downgraded_or_rejected_records": 984,
+        "sensitivity_sweep_rows": 216,
+        "graph_nodes": 484,
+        "graph_edges": 358,
+        "graph_isolated_nodes": 109,
+        "graph_parallel_groups": 27,
+        "graph_parallel_edge_records": 55,
+        "graph_parallel_extra_edges": 28
+      },
+      "outputs": {
+        "summary": "data/processed/topology_validation/internal_validation_summary.json",
+        "checks": "data/processed/topology_validation/internal_validation_checks.csv",
+        "missingness": "data/processed/topology_validation/internal_validation_missingness.csv",
+        "report": "reports/106_pt60_internal_validation_summary.md"
+      },
+      "claim_boundary": "Internal validation checks release consistency and machine-readability only; it does not validate physical topology truth, precision, recall, or operator confirmation."
+    },
+    "endpoint_name_negative_control": {
+      "status": "completed",
+      "generated_at": "2026-07-14T13:25:26+00:00",
+      "seed": 20260714,
+      "branches_tested": 358,
+      "control_design": "length_stratified_endpoint_pair_shift",
+      "real_strong_name_evidence_branches": 183,
+      "negative_control_strong_name_evidence_branches": 9,
+      "strong_name_relative_reduction": 0.9508196721311475,
+      "outputs": {
+        "matches": "data/processed/topology_validation/matcher_negative_control_names.csv",
+        "summary": "data/processed/topology_validation/matcher_negative_control_names_summary.json",
+        "report": "reports/103_pt60_endpoint_name_negative_control.md"
+      },
+      "claim_boundary": "Matcher-selectivity check only; not a precision, recall, operator-validation, or topology-accuracy estimate."
+    },
+    "spatial_alignment_negative_control": {
+      "status": "completed",
+      "generated_at": "2026-07-14T13:30:40+00:00",
+      "seed": 20260714,
+      "branches_tested": 358,
+      "control_design": "fixed_lonlat_translation",
+      "delta_lon_degrees": 1.75,
+      "delta_lat_degrees": 0.85,
+      "valid_transformed_geometries": 358,
+      "invalid_transformed_geometries": 0,
+      "records_excluded_after_transform": 0,
+      "real_corridor_evidence_branches": 290,
+      "negative_control_corridor_evidence_branches": 1,
+      "corridor_evidence_relative_reduction": 0.996551724137931,
+      "outputs": {
+        "matches": "data/processed/topology_validation/matcher_negative_control_geometry.csv",
+        "summary": "data/processed/topology_validation/matcher_negative_control_geometry_summary.json",
+        "report": "reports/104_pt60_spatial_alignment_negative_control.md"
+      },
+      "claim_boundary": "Spatial matcher-selectivity check only; not a precision, recall, operator-validation, or topology-accuracy estimate."
+    },
+    "osm_openinframap_independence_audit": {
+      "status": "completed",
+      "generated_at": "2026-07-14T13:40:16+00:00",
+      "osm_records_with_metadata": 5551,
+      "matched_branches_audited": 358,
+      "branches_with_timestamped_osm_metadata": 358,
+      "unique_matched_osm_ways": 271,
+      "unique_matched_osm_ways_with_history": 271,
+      "history_versions_total": 2326,
+      "branches_with_history_source_risk": 1,
+      "independence_counts": {
+        "more_independent_public_evidence": 266,
+        "unknown": 87,
+        "possibly_same_source": 5
+      },
+      "operator_tag_interpretation": "operator=E-REDES is treated as an OSM public tag, not operator confirmation.",
+      "recommended_language": "public-source triangulation/concordance",
+      "prohibited_language": [
+        "operator validation",
+        "independent precision",
+        "recall",
+        "accuracy",
+        "ground truth"
+      ],
+      "outputs": {
+        "osm_meta_cache": "data/processed/topology_validation/pt_osm_openinframap_60kv_power_ways_meta.json",
+        "osm_history_cache": "data/processed/topology_validation/pt_osm_matched_way_histories.json",
+        "osm_element_audit": "data/processed/topology_validation/pt_osm_openinframap_independence_audit.csv",
+        "osm_history_audit": "data/processed/topology_validation/pt_osm_openinframap_matched_way_history_audit.csv",
+        "branch_audit": "data/processed/topology_validation/pt_topology_cross_validation_osm_matches_independence_audit.csv",
+        "summary": "data/processed/topology_validation/pt_osm_openinframap_independence_audit_summary.json",
+        "report": "reports/105_pt60_osm_openinframap_independence_audit.md"
+      }
+    },
+    "clean_room_reproduction": "pending"
+  },
+  "availability_status": {
+    "dataset_archive": {
+      "status": "built_archive_with_schema_pending_doi_clean_tag_and_clean_room_rerun",
+      "release_dir": "data/releases/PT60-Candidate-v1.0.0",
+      "archive_path": "data/releases/PT60-Candidate-v1.0.0.tar.gz",
+      "archive_sha256": "0ca66cd5b0ec7e1a6747a8cf20e79edd0497acb0e15b611a2dfa7d0198fe31e1",
+      "uncompressed_size": "42M",
+      "compressed_size": "9.7M",
+      "file_count": 183,
+      "manifest_records": 183,
+      "validation_status": "PASS",
+      "archive_validation_summary": "data/releases/PT60-Candidate-v1.0.0/archive_validation_summary.json",
+      "generator": "src/build_pt60_release_archive.py",
+      "claim_boundary_note": "Archive is a candidate-topology dataset release package for reviewer/deposit preparation; it is not a DOI-backed final deposit and still lacks immutable clean code tag and clean-room reproduction."
+    },
+    "dataset_doi": "pending",
+    "anonymous_reviewer_access_url": "pending",
+    "archive_manifest": "data/releases/PT60-Candidate-v1.0.0/manifest.json",
+    "checksums_sha256": "data/releases/PT60-Candidate-v1.0.0/checksums.sha256",
+    "data_dictionary": {
+      "status": "complete_for_current_release_archive",
+      "path": "data/releases/PT60-Candidate-v1.0.0/schema/data_dictionary.csv",
+      "source_path": "data/schema/PT60-Candidate-v1.0.0/data_dictionary.csv",
+      "machine_readable_dataset_files_documented_excluding_schema_package": 122,
+      "total_release_machine_readable_paths_documented": 143,
+      "field_records": 7601,
+      "coverage_check": "0 missing CSV/JSON/GraphML release paths"
+    },
+    "json_schemas": {
+      "status": "complete_for_principal_core_validation_and_provenance_files",
+      "directory": "data/releases/PT60-Candidate-v1.0.0/schema/json_schemas",
+      "principal_schema_files": 16
+    },
+    "checksum_linked_inventory": {
+      "status": "complete_for_current_release_archive",
+      "manifest": "data/releases/PT60-Candidate-v1.0.0/manifest.json",
+      "checksums": "data/releases/PT60-Candidate-v1.0.0/checksums.sha256",
+      "headline_counts": "data/releases/PT60-Candidate-v1.0.0/inventory/headline_counts.json",
+      "manifest_records": 183,
+      "required_manifest_fields": [
+        "path",
+        "purpose",
+        "semantic_role",
+        "source_path",
+        "media_type",
+        "bytes",
+        "sha256",
+        "row_or_item_count",
+        "dataset_version",
+        "schema_version",
+        "generator_commit",
+        "upstream_source_ids",
+        "license_class",
+        "public_release_status",
+        "artifact_access_class"
+      ],
+      "checksum_validation": {
+        "status": "PASS",
+        "checksum_mismatches": 0,
+        "checksum_missing_paths": 0
+      }
+    }
+  },
+  "responsible_release": {
+    "status": "completed_with_conditions",
+    "generated_at_utc": "2026-07-14T13:52:00Z",
+    "exact_geometries_public_release": "include_core_derived_geometries",
+    "facility_names_public_release": "include_core_public_source_names_and_codes",
+    "evidence_urls_public_release": "include_public_source_urls_and_osm_object_urls",
+    "default_raw_source_download_release": "exclude_from_default_public_archive",
+    "third_party_parameter_documents": "exclude_public_unless_redistribution_permission_is_documented",
+    "acpf_dcopf_operational_diagnostics": "exclude_from_core_archive_or_label_optional_diagnostic",
+    "decision_record": {
+      "json": "data/metadata/responsible_release_boundary.json",
+      "report": "reports/107_pt60_responsible_release_boundary.md"
+    },
+    "required_archive_language": [
+      "candidate topology",
+      "public-source concordance",
+      "not operator-validated",
+      "not an operational grid model",
+      "electrical parameters incomplete or diagnostic"
+    ],
+    "prohibited_archive_language": [
+      "operator validated",
+      "ground truth",
+      "precision",
+      "recall",
+      "operational model",
+      "AC power-flow ready",
+      "OPF ready"
+    ],
+    "prohibited_uses_to_state": [
+      "operational switching",
+      "protection studies",
+      "security analysis",
+      "contingency analysis",
+      "congestion analysis",
+      "infrastructure targeting",
+      "emergency operations",
+      "asset condition assessment",
+      "commercial or regulatory statements about actual network capacity"
+    ],
+    "remaining_checks": [
+      "Re-check E-REDES Open Data portal license and dataset catalog metadata immediately before DOI deposit.",
+      "Re-check final artifact roles immediately after DOI deposit and clean-room reproduction."
+    ]
+  },
+  "blocking_items_before_submission": [
+    "Replace dirty generator state with immutable clean commit or release tag.",
+    "Run clean-room reproduction from the immutable release tag.",
+    "Deposit dataset and code releases and insert persistent identifiers."
+  ]
+}

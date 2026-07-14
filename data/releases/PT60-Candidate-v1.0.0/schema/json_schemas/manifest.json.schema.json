@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PT60-Candidate manifest.json",
+  "description": "Path-level JSON field inventory schema. Nested structures are documented in data_dictionary.csv using JSON-pointer-like paths.",
+  "type": [
+    "object",
+    "array"
+  ],
+  "x-dataset-version": "v1.0.0",
+  "x-release-path": "manifest.json",
+  "x-field-pointers": [
+    {
+      "pointer": "$.dataset",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Release field `$.dataset` from `manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.file_count",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Release field `$.file_count` from `manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.generated_at",
+      "inferred_type": "string",
+      "logical_type": "datetime_or_date",
+      "description": "Release field `$.generated_at` from `manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.generator",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Release field `$.generator` from `manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.records",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Release field `$.records` from `manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.records[*].artifact_access_class",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Release field `$.records[*].artifact_access_class` from `manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.records[*].bytes",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Release field `$.records[*].bytes` from `manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.records[*].dataset_version",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Release field `$.records[*].dataset_version` from `manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.records[*].generator_commit",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Release field `$.records[*].generator_commit` from `manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.records[*].license_class",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Release field `$.records[*].license_class` from `manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.records[*].media_type",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Release field `$.records[*].media_type` from `manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.records[*].path",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Release field `$.records[*].path` from `manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.records[*].public_release_status",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Release field `$.records[*].public_release_status` from `manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.records[*].purpose",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Release field `$.records[*].purpose` from `manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.records[*].row_or_item_count",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Release field `$.records[*].row_or_item_count` from `manifest.json`.",
+      "nullable": true
+    },
+    {
+      "pointer": "$.records[*].schema_version",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Release field `$.records[*].schema_version` from `manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.records[*].semantic_role",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Release field `$.records[*].semantic_role` from `manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.records[*].sha256",
+      "inferred_type": "string",
+      "logical_type": "checksum",
+      "description": "Release field `$.records[*].sha256` from `manifest.json`.",
+      "nullable": true
+    },
+    {
+      "pointer": "$.records[*].source_path",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Release field `$.records[*].source_path` from `manifest.json`.",
+      "nullable": true
+    },
+    {
+      "pointer": "$.records[*].upstream_source_ids",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Release field `$.records[*].upstream_source_ids` from `manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.records[*].upstream_source_ids[*]",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Release field `$.records[*].upstream_source_ids[*]` from `manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.self_reference_note",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Release field `$.self_reference_note` from `manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.status",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Release field `$.status` from `manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.version",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Release field `$.version` from `manifest.json`.",
+      "nullable": false
+    }
+  ]
+}

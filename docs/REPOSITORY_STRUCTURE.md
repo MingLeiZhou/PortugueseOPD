@@ -19,8 +19,9 @@
 - `figures/`: generated plots.
 - `logs/`: execution logs.
 
-These paths are excluded from Git. A future data release should be deposited separately
-with a DOI after redistribution rights are confirmed.
+These paths are excluded from ordinary Git. A future PT60-Candidate data release should be
+deposited separately with a DOI under the E-REDES portal's stated CC BY 4.0 terms, retaining
+publisher attribution, source identifiers and access dates, and modification notices.
 
 ## Canonical local release products
 

@@ -1,20 +1,24 @@
 # PortugueseOPD
 
-PortugueseOPD is a fail-closed research pipeline for reconstructing and packaging a
-diagnostic Portuguese 60 kV grid benchmark from E-REDES open data.
+PortugueseOPD is a fail-closed research pipeline for reconstructing and packaging
+PT60-Candidate, a provenance-tracked candidate dataset for an E-REDES Portuguese
+60 kV topology layer.
 
 The project does not claim to reproduce the real operational Portuguese grid. Its
 purpose is to make topology reconstruction, data provenance, engineering assumptions,
 and model-readiness limits explicit and reproducible.
 
-## Current release
+## Current candidate dataset
 
-The frozen benchmark candidate contains:
+The current local build contains:
 
 - a reconstructed topology candidate with 358 reliable inter-facility AT branches;
 - an AC power-flow diagnostic backbone with 54 buses, 36 lines, and 25 loads;
 - a diagnostic DC-OPF reference with proxy-governed generation and costs;
-- five staged dataset packages ending in framework-neutral graph-learning adapters.
+- five staged dataset packages ending in framework-neutral graph-learning adapters;
+- leakage-safe diagnostic baselines for the two primary regressions and two limited-support auxiliary classifications;
+- a 100-branch stratified external-review package whose precision estimate remains fail-closed until independent evidence is recorded;
+- branch-, transformer-, and slack-depth ACPF failure-localization outputs.
 
 All electrical and learning outputs remain diagnostic-only. They are not operator-grade,
 not a source-backed model of the Portuguese system, and not suitable for operational
@@ -25,8 +29,8 @@ decisions.
 - `src/`: acquisition, reconstruction, validation, benchmark, and dataset builders.
 - `data/raw/`: downloaded inputs; generated locally and excluded from Git.
 - `data/metadata/`: generated source metadata; excluded from Git.
-- `data/processed/`: generated candidate and release data; excluded from Git until
-  redistribution clearance is complete.
+- `data/processed/`: generated candidate and release data; excluded from ordinary Git and
+  intended for a separately versioned data archive.
 - `docs/`: stable project, release, licensing, and cleanup documentation.
 - `reports/`, `figures/`, `logs/`: generated outputs; excluded from Git.
 
@@ -52,8 +56,9 @@ python src/download_datasets.py
 python src/reconstruct_at_topology_paper_logic.py
 ```
 
-Raw downloads are intentionally not committed. Review each upstream dataset license
-before redistribution.
+Raw downloads are intentionally not committed. E-REDES states that its portal data are
+available under CC BY 4.0 with publisher attribution; public derived releases must retain
+that attribution, identify source datasets and dates, and indicate transformations.
 
 ## Rebuild packaged dataset stages
 
@@ -89,11 +94,35 @@ These smoke tests verify that the current repository layout, stage-4 benchmark c
 and stage-5 adapter contracts remain usable for downstream consumers after structure or
 documentation changes. The human review checklist lives at `docs/QA_CHECKLIST.md`.
 
+## Validation and diagnostic experiments
+
+```bash
+python src/build_topology_validation_sample.py
+python src/summarize_topology_external_validation.py
+python src/localize_portuguese_acpf_nonconvergence.py
+python src/run_stage4_leakage_safe_baselines.py
+python src/build_reproducibility_source_manifest.py
+```
+
+The topology summarizer returns `NOT_EVALUABLE` until at least 50 sampled branches have
+two independent, evidence-complete reviews. Baseline preprocessing is fitted on train rows
+only and evaluation uses strict entity-grouped splits. ACPF ablation convergence remains a
+diagnostic signal, not electrical validation.
+
 ## Release boundary
 
 - Code may be used under the MIT license.
-- The code license does not grant rights to E-REDES data or derived datasets.
-- Processed data are not cleared for public redistribution in this repository yet.
+- E-REDES-derived data use the portal's CC BY 4.0 terms and required publisher attribution;
+  the MIT code license does not replace those terms.
+- The responsible-release boundary for PT60-Candidate v1.0.0 is recorded in
+  `data/metadata/responsible_release_boundary.json` and
+  `reports/107_pt60_responsible_release_boundary.md`.
+- The core public archive may include exact derived candidate geometries, facility
+  names/codes, OSM evidence URLs, provenance manifests and validation outputs with
+  attribution and non-operational disclaimers.
+- Raw E-REDES downloads are excluded from the default public archive unless final
+  repository/license review explicitly approves raw snapshot deposition.
+- No versioned PT60-Candidate data archive or DOI has been published yet.
 - AC OPF and real-system operating claims are outside the benchmark-v1 scope.
 
 ## Citation
