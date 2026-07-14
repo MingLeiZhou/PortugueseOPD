@@ -1,22 +1,22 @@
 # PT60-Candidate Clean-Room Archive Package Validation
 
-Generated: 2026-07-14T14:21:25+00:00
+Generated: 2026-07-14T15:17:43+00:00
 
 Validation mode: `package_clean_room_tarball_extraction`
 
-Archive: `/Users/jumiray/Projects/PortugueseOPD/data/releases/PT60-Candidate-v1.0.0.tar.gz`
+Archive: `data/releases/PT60-Candidate-v1.0.0.tar.gz`
 
-Archive SHA-256: `0ca66cd5b0ec7e1a6747a8cf20e79edd0497acb0e15b611a2dfa7d0198fe31e1`
+Archive SHA-256: `586cfec3f76440185e0d717ac1a4302393fe2888a15b9f057c7ee07b2ccf226b`
 
 Status: `PASS`
 
 ## Results
 
-- Manifest records: 183
-- Files after extraction: 183
-- Machine-readable CSV/JSON/GraphML paths: 143
-- Data-dictionary documented paths: 143
-- Data-dictionary field records: 7601
+- Manifest records: 63
+- Files after extraction: 63
+- Machine-readable CSV/JSON/GraphML paths: 54
+- Data-dictionary documented paths: 54
+- Data-dictionary field records: 1090
 
 ## Failure counts
 
@@ -36,14 +36,5 @@ Status: `PASS`
 ## Scope
 
 This is an archive-package clean-room validation. It proves that a fresh extraction of the downloadable tarball reconciles manifest records, checksums, schema coverage and frozen headline counts without relying on the development release directory.
-
-## Tag-worktree repeat
-
-The same package-level validator was rerun from a detached clean git worktree checked out at tag `pt60-candidate-v1.0.0-rc1`, commit `bc3ea8e45297b0f11204e137fb055acfbbad85f6`.
-
-- Worktree: `/private/tmp/pt60_tag_cleanroom_bc3ea8e`
-- Archive path in worktree: `/private/tmp/pt60_tag_cleanroom_bc3ea8e/data/releases/PT60-Candidate-v1.0.0.tar.gz`
-- Validation time: `2026-07-14T14:24:30+00:00`
-- Status: `PASS`
 
 It does not prove full source-to-archive regeneration from raw E-REDES/API downloads. That stronger validation requires a clean tagged checkout, frozen or re-downloadable source snapshots, and network/source availability.

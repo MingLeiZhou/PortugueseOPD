@@ -4,11 +4,12 @@ from __future__ import annotations
 
 import argparse
 import csv
+import gzip
 import hashlib
 import json
 import mimetypes
-import re
 import shutil
+import subprocess
 import tarfile
 from pathlib import Path
 from typing import Any
@@ -25,6 +26,8 @@ RELEASES_DIR = config.DATA_DIR / "releases"
 RELEASE_DIR = RELEASES_DIR / RELEASE_NAME
 ARCHIVE_PATH = RELEASES_DIR / f"{RELEASE_NAME}.tar.gz"
 SCHEMA_VERSION = "pt60_candidate_schema_v1.0.0"
+DATASET_DOI = "10.6084/m9.figshare.32984021"
+DATASET_DOI_URL = f"https://doi.org/{DATASET_DOI}"
 
 
 def root_release_metadata() -> dict[str, Any]:
@@ -34,8 +37,19 @@ def root_release_metadata() -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def release_timestamp() -> str:
+    """Return the frozen release timestamp used in generated package metadata."""
+    return str(root_release_metadata().get("generated_at_utc", "2026-07-14T13:20:19Z"))
+
+
 def generator_commit() -> str:
-    return str(root_release_metadata().get("code_state", {}).get("generator_commit", "pending"))
+    """Resolve the generating source commit, including in a detached tag worktree."""
+    try:
+        return subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=config.ROOT_DIR, text=True
+        ).strip()
+    except (OSError, subprocess.CalledProcessError):
+        return str(root_release_metadata().get("code_state", {}).get("generator_commit", "pending"))
 
 
 def source_ids_for_path(rel: str) -> list[str]:
@@ -51,11 +65,9 @@ def source_ids_for_path(rel: str) -> list[str]:
         return topology_sources + ["openstreetmap", "openinframap"]
     if rel.startswith("validation/"):
         return topology_sources
-    if rel.startswith("optional_interfaces/") or rel.startswith("optional_diagnostic/"):
-        return all_sources or topology_sources
     if rel.startswith("provenance/"):
         return all_sources or topology_sources
-    if rel.startswith("schema/") or rel.startswith("inventory/") or rel.startswith("manuscript/"):
+    if rel.startswith("schema/") or rel.startswith("inventory/"):
         return all_sources or topology_sources
     return []
 
@@ -67,22 +79,16 @@ def license_class_for_path(rel: str) -> str:
         return "LICENSE_AND_ATTRIBUTION_DOCUMENTATION"
     if rel.startswith("validation/") and ("osm" in rel.lower() or "openinframap" in rel.lower()):
         return "E_REDES_CC_BY_4_0_DERIVED_PLUS_OSM_OPENINFRAMAP_PUBLIC_EVIDENCE_ATTRIBUTION_REQUIRED"
-    if rel.startswith("core_topology/") or rel.startswith("optional_interfaces/") or rel.startswith("optional_diagnostic/"):
+    if rel.startswith("core_topology/"):
         return "E_REDES_CC_BY_4_0_DERIVED_WITH_ATTRIBUTION_AND_MODIFICATION_NOTICE"
     if rel.startswith("provenance/"):
         return "SOURCE_PROVENANCE_METADATA_WITH_E_REDES_ATTRIBUTION_CONTEXT"
     if rel.startswith("schema/") or rel.startswith("inventory/"):
         return "PROJECT_GENERATED_RELEASE_METADATA"
-    if rel.startswith("manuscript/"):
-        return "MANUSCRIPT_SUPPORT_MIXED_CITATION_AND_PROJECT_CONTENT"
     return "PROJECT_RELEASE_CONTROL_METADATA"
 
 
 def access_class_for_path(rel: str) -> str:
-    if rel.startswith("optional_diagnostic/"):
-        return "public_optional_diagnostic_not_operational"
-    if rel.startswith("optional_interfaces/"):
-        return "public_optional_derivative_interface"
     if rel.startswith("core_topology/"):
         return "public_core_candidate_dataset"
     if rel.startswith("validation/"):
@@ -124,6 +130,31 @@ def copy_file(src: Path, dst_rel: str, copied: list[dict[str, Any]], purpose: st
     )
 
 
+def copy_csv_selected_columns(
+    src: Path,
+    dst_rel: str,
+    copied: list[dict[str, Any]],
+    columns: list[str],
+    purpose: str,
+    role: str,
+) -> None:
+    if not src.exists():
+        raise FileNotFoundError(f"Required release input missing: {src}")
+    df = pd.read_csv(src)
+    keep = [column for column in columns if column in df.columns]
+    dst = RELEASE_DIR / dst_rel
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    df[keep].to_csv(dst, index=False)
+    copied.append(
+        {
+            "path": dst_rel,
+            "source_path": str(src.relative_to(config.ROOT_DIR)),
+            "purpose": purpose,
+            "semantic_role": role,
+        }
+    )
+
+
 def copy_tree(src: Path, dst_rel: str, copied: list[dict[str, Any]], purpose: str, role: str) -> None:
     if not src.exists():
         raise FileNotFoundError(f"Required release input directory missing: {src}")
@@ -133,20 +164,18 @@ def copy_tree(src: Path, dst_rel: str, copied: list[dict[str, Any]], purpose: st
             copy_file(path, str(rel), copied, purpose, role)
 
 
-def copy_release_metadata_for_archive(copied: list[dict[str, Any]]) -> None:
-    src = config.ROOT_DIR / "release_metadata.json"
+def copy_json_transformed(
+    src: Path,
+    dst_rel: str,
+    copied: list[dict[str, Any]],
+    transform: Any,
+    purpose: str,
+    role: str,
+) -> None:
     if not src.exists():
         raise FileNotFoundError(f"Required release input missing: {src}")
     data = json.loads(src.read_text(encoding="utf-8"))
-    dataset_archive = data.get("availability_status", {}).get("dataset_archive")
-    if isinstance(dataset_archive, dict):
-        dataset_archive["archive_sha256"] = "RECORDED_EXTERNALLY_AFTER_TARBALL_CREATION"
-        dataset_archive["self_reference_note"] = (
-            "The tarball digest is recorded in the repository-side release_metadata.json "
-            "and deposit record after archive creation. The in-archive copy omits the "
-            "digest to avoid self-referential hash instability."
-        )
-    dst_rel = "provenance/release_metadata.json"
+    data = transform(data)
     dst = RELEASE_DIR / dst_rel
     dst.parent.mkdir(parents=True, exist_ok=True)
     write_json(dst, data)
@@ -154,39 +183,72 @@ def copy_release_metadata_for_archive(copied: list[dict[str, Any]]) -> None:
         {
             "path": dst_rel,
             "source_path": str(src.relative_to(config.ROOT_DIR)),
-            "purpose": "release freeze metadata with self-referential archive digest omitted",
-            "semantic_role": "provenance",
+            "purpose": purpose,
+            "semantic_role": role,
         }
     )
 
 
-def copy_tasklist_for_archive(copied: list[dict[str, Any]]) -> None:
-    src = config.ROOT_DIR / "paper" / "TASKLIST.MD"
-    if not src.exists():
-        raise FileNotFoundError(f"Required release input missing: {src}")
-    text = src.read_text(encoding="utf-8")
-    text = re.sub(
-        r"The tarball SHA-256 is `[^`]+`",
-        "The tarball SHA-256 is `RECORDED_EXTERNALLY_AFTER_TARBALL_CREATION`",
-        text,
+def public_osm_independence_summary(data: dict[str, Any]) -> dict[str, Any]:
+    data = dict(data)
+    outputs = dict(data.get("outputs", {}))
+    data["outputs"] = {
+        "branch_audit": "validation/pt_topology_cross_validation_osm_matches_independence_audit.csv",
+        "summary": "validation/pt_osm_openinframap_independence_audit_summary.json",
+        "excluded_from_main_public_archive": [
+            "raw OSM/OpenInfraMap cache blobs",
+            "OSM matched-way history dump",
+            "OSM element-level audit with user identifiers or changesets",
+        ],
+    }
+    data["public_release_note"] = (
+        "The main public archive includes only summary counts and a sanitized branch-level "
+        "independence audit. Raw OSM/OpenInfraMap cache blobs, matched-way history dumps, "
+        "user identifiers and changeset-level records are excluded."
     )
-    text += (
-        "\n\nArchive-copy note: this in-archive task list omits the final tarball "
-        "digest to avoid self-referential hash instability. Use the repository-side "
-        "`release_metadata.json` or deposit record for the final archive SHA-256.\n"
-    )
-    dst_rel = "manuscript/TASKLIST.MD"
-    dst = RELEASE_DIR / dst_rel
-    dst.parent.mkdir(parents=True, exist_ok=True)
-    write_text(dst, text)
-    copied.append(
-        {
-            "path": dst_rel,
-            "source_path": str(src.relative_to(config.ROOT_DIR)),
-            "purpose": "manuscript support task list with self-referential archive digest omitted",
-            "semantic_role": "manuscript",
-        }
-    )
+    if "osm_element_audit" in outputs:
+        data["internal_generation_note"] = "Element-level and history-cache outputs were used internally and excluded from the main public archive."
+    return data
+
+
+def scrub_release_text_files() -> None:
+    """Remove development-machine paths from public release text files."""
+    replacements = {
+        str(config.ROOT_DIR): "<PROJECT_ROOT>",
+        "/Users/jumiray/Projects/PortugueseOPD": "<PROJECT_ROOT>",
+        "/private/tmp": "<TEMP_DIR>",
+        "/tmp": "<TEMP_DIR>",
+        "/mnt/data": "<LOCAL_REFERENCE_PATH>",
+        "clean-room rerun equality remains P0.12": "full source-to-archive clean-room rerun remains pending",
+        "P0.12 clean-room reproduction": "clean-room reproduction",
+        "P0.12": "clean-room reproduction",
+        "manuscript": "article",
+        "Manuscript": "Article",
+    }
+    text_suffixes = {
+        ".csv",
+        ".json",
+        ".md",
+        ".txt",
+        ".cff",
+        ".tex",
+        ".bib",
+        ".sha256",
+        ".graphml",
+        ".svg",
+    }
+    for path in sorted(RELEASE_DIR.rglob("*")):
+        if not path.is_file() or path.suffix.lower() not in text_suffixes:
+            continue
+        try:
+            text = path.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            continue
+        original = text
+        for old, new in replacements.items():
+            text = text.replace(old, new)
+        if text != original:
+            write_text(path, text)
 
 
 def count_rows(path: Path) -> int | None:
@@ -254,11 +316,8 @@ This archive is a candidate-topology dataset, not an operator-validated or opera
 ## Main contents
 
 - `core_topology/`: retained candidate branches, full circuit ledger, GraphML export, sensitivity sweep and reconstruction summaries.
-- `provenance/`: source manifest, release metadata, licensing and responsible-release boundary.
+- `provenance/`: source manifest, licensing and responsible-release boundary.
 - `validation/`: public-source triangulation, negative controls, OSM/OpenInfraMap independence audit and internal validation outputs.
-- `optional_interfaces/`: Stage 1-5 derivative consumer interfaces.
-- `optional_diagnostic/`: non-operational electrical-readiness interface files, where included.
-- `manuscript/`: current Scientific Data draft route and generated figures.
 
 ## Claim boundary
 
@@ -270,9 +329,13 @@ Do not use it for operational switching, protection studies, security analysis, 
 
 Repository code is MIT licensed. E-REDES-derived data use the E-REDES Open Data Portal terms recorded in `DATA_LICENSE.md`, `ATTRIBUTION.md` and `provenance/reproduction_source_manifest.json`. Reuse must retain E-REDES attribution, link CC BY 4.0, identify source datasets/access dates and indicate transformations.
 
-## Status
+## Repository and status
 
-Dataset DOI, code DOI, final schemas/data dictionary and clean-room reproduction are still pending. See `manifest.json`, `checksums.sha256` and `excluded_artifacts.json` for archive contents and exclusions.
+Reserved dataset DOI: `{DATASET_DOI}`.
+
+Dataset DOI URL: `{DATASET_DOI_URL}`.
+
+Code DOI remains pending; the frozen local code tag is `pt60-candidate-v1.0.0`. See `manifest.json`, `checksums.sha256`, `schema/`, `inventory/headline_counts.json` and `excluded_artifacts.json` for archive contents, schemas, checksums and exclusions.
 """
     write_text(RELEASE_DIR / "README.md", text)
 
@@ -312,28 +375,15 @@ def write_changelog() -> None:
 
 Pending after this archive build:
 
-- dataset DOI;
-- code DOI/release tag;
-- final field dictionary and JSON schemas;
-- clean-room reproduction from final clean tag.
+- final public code repository/DOI;
+- full source-to-archive reproduction from raw/API inputs before final publication.
 """
     write_text(RELEASE_DIR / "CHANGELOG.md", text)
 
 
-def write_optional_readmes() -> None:
-    write_text(
-        RELEASE_DIR / "optional_interfaces" / "README.md",
-        "Stage 1-5 files are optional derivative consumer interfaces. Scenario-derived labels are diagnostic targets, not observed grid events or operator records.\n",
-    )
-    write_text(
-        RELEASE_DIR / "optional_diagnostic" / "README.md",
-        "Files in this directory are non-operational diagnostics. They must not be used to claim AC power-flow, OPF, protection or operational readiness.\n",
-    )
-
-
 def write_exclusions() -> None:
     exclusions = {
-        "generated_at": utc_now(),
+        "generated_at": release_timestamp(),
         "dataset_version": VERSION,
         "excluded_or_non_core": [
             {
@@ -358,7 +408,23 @@ def write_exclusions() -> None:
                 "artifact_class": "manual_dual_review_protocol_outputs",
                 "paths": ["data/processed/topology_validation/pt_topology_validation_*"],
                 "decision": "excluded_from_public_validation_route",
-                "reason": "The v1.0.0 manuscript route does not use dual independent human adjudication or report precision.",
+                "reason": "The v1.0.0 article route does not use dual independent human adjudication or report precision.",
+            },
+            {
+                "artifact_class": "raw_osm_openinframap_cache_and_user_history",
+                "paths": [
+                    "raw OSM/OpenInfraMap cache blobs",
+                    "OSM matched-way history dump",
+                    "OSM element-level audit containing user identifiers or changesets",
+                ],
+                "decision": "excluded_from_main_public_archive",
+                "reason": "The main public archive keeps table-level evidence and sanitized branch-level independence categories, but excludes raw public-source cache blobs and OSM user/history dumps.",
+            },
+            {
+                "artifact_class": "optional_interfaces_and_diagnostics",
+                "paths": ["optional_interfaces/**", "optional_diagnostic/**"],
+                "decision": "excluded_from_main_public_archive",
+                "reason": "Optional consumer interfaces and non-operational diagnostics require separate labeling and should be deposited as a separate supplementary archive if needed.",
             },
         ],
     }
@@ -375,8 +441,9 @@ authors:
 version: "{VERSION}"
 date-released: 2026-07-14
 license: "CC-BY-4.0"
-repository-code: "REPLACE_WITH_PUBLIC_CODE_REPOSITORY_URL"
-doi: "REPLACE_WITH_DATASET_DOI"
+repository-code: ""
+doi: "{DATASET_DOI}"
+url: "{DATASET_DOI_URL}"
 abstract: >-
   A provenance-tracked candidate dataset and fail-closed reconstruction pipeline output for Portuguese 60 kV topology reconstruction from public E-REDES Open Data. The dataset is not operator validated and is not an operational grid model.
 """
@@ -393,7 +460,7 @@ def write_headline_counts() -> None:
     headline_counts = {
         "dataset": "PT60-Candidate",
         "dataset_version": VERSION,
-        "generated_at": utc_now(),
+        "generated_at": release_timestamp(),
         "generator": "src/build_pt60_release_archive.py",
         "generator_commit": generator_commit(),
         "release_archive": {
@@ -448,7 +515,6 @@ def copy_release_inputs() -> list[dict[str, Any]]:
 
     copy_file(config.ROOT_DIR / "DATA_LICENSE.md", "DATA_LICENSE.md", copied, "license and data terms", "license")
     copy_file(config.ROOT_DIR / "LICENSE", "LICENSE-CODE-MIT", copied, "software license", "license")
-    copy_release_metadata_for_archive(copied)
 
     for src in [
         "at_interfacility_candidate_branches.csv",
@@ -479,7 +545,6 @@ def copy_release_inputs() -> list[dict[str, Any]]:
 
     validation_files = [
         "pt_osm_openinframap_60kv_evidence.csv",
-        "pt_osm_openinframap_60kv_power_ways.json",
         "pt_topology_cross_validation_osm_matches.csv",
         "pt_topology_cross_validation_source_audit.csv",
         "pt_topology_cross_validation_summary.json",
@@ -487,12 +552,6 @@ def copy_release_inputs() -> list[dict[str, Any]]:
         "matcher_negative_control_names_summary.json",
         "matcher_negative_control_geometry.csv",
         "matcher_negative_control_geometry_summary.json",
-        "pt_osm_openinframap_60kv_power_ways_meta.json",
-        "pt_osm_matched_way_histories.json",
-        "pt_osm_openinframap_independence_audit.csv",
-        "pt_osm_openinframap_independence_audit_summary.json",
-        "pt_osm_openinframap_matched_way_history_audit.csv",
-        "pt_topology_cross_validation_osm_matches_independence_audit.csv",
         "internal_validation_summary.json",
         "internal_validation_checks.csv",
         "internal_validation_missingness.csv",
@@ -500,42 +559,66 @@ def copy_release_inputs() -> list[dict[str, Any]]:
     for src in validation_files:
         copy_file(config.PROCESSED_DIR / "topology_validation" / src, f"validation/{src}", copied, "technical validation output", "validation")
 
-    for report in [
-        "102_pt60_external_topology_cross_validation.md",
-        "103_pt60_endpoint_name_negative_control.md",
-        "104_pt60_spatial_alignment_negative_control.md",
-        "105_pt60_osm_openinframap_independence_audit.md",
-        "106_pt60_internal_validation_summary.md",
-        "107_pt60_responsible_release_boundary.md",
-    ]:
-        copy_file(config.REPORTS_DIR / report, f"validation/reports/{report}", copied, "validation narrative report", "validation_report")
+    copy_json_transformed(
+        config.PROCESSED_DIR / "topology_validation" / "pt_osm_openinframap_independence_audit_summary.json",
+        "validation/pt_osm_openinframap_independence_audit_summary.json",
+        copied,
+        public_osm_independence_summary,
+        "sanitized public OSM/OpenInfraMap independence audit summary",
+        "validation",
+    )
 
-    for stage in range(1, 6):
-        src_dir = config.PROCESSED_DIR / f"dataset_release_stage{stage}"
-        if src_dir.exists():
-            copy_tree(src_dir, f"optional_interfaces/stage{stage}", copied, "optional derivative consumer interface", "optional_interface")
-
-    for src_dir_name in ["pandapower_schema", "lut_scenarios", "load_validation"]:
-        src_dir = config.PROCESSED_DIR / src_dir_name
-        if src_dir.exists():
-            copy_tree(src_dir, f"optional_diagnostic/{src_dir_name}", copied, "optional non-operational diagnostic artifact", "optional_diagnostic")
+    copy_csv_selected_columns(
+        config.PROCESSED_DIR / "topology_validation" / "pt_topology_cross_validation_osm_matches_independence_audit.csv",
+        "validation/pt_topology_cross_validation_osm_matches_independence_audit.csv",
+        copied,
+        [
+            "branch_id",
+            "from_facility_code",
+            "from_facility_name",
+            "to_facility_code",
+            "to_facility_name",
+            "branch_voltage",
+            "branch_length_km",
+            "branch_confidence_score",
+            "osm_id",
+            "osm_power",
+            "osm_voltage",
+            "osm_operator",
+            "osm_name",
+            "osm_ref",
+            "osm_old_ref",
+            "osm_old_name",
+            "osm_circuits",
+            "osm_cables",
+            "osm_length_km",
+            "from_name_score",
+            "to_name_score",
+            "min_distance_m",
+            "median_branch_to_osm_m",
+            "branch_coverage_250m",
+            "branch_coverage_500m",
+            "osm_coverage_500m",
+            "external_evidence_status",
+            "evidence_reason",
+            "osm_url",
+            "history_versions",
+            "history_first_timestamp",
+            "history_last_timestamp",
+            "history_source_fields_observed",
+            "history_source_risk",
+            "evidence_role",
+            "independence_category",
+            "independence_reason",
+            "operator_tag_is_operator_confirmation",
+        ],
+        "sanitized branch-level public-source independence audit without OSM user identifiers or changeset-level history dump",
+        "validation",
+    )
 
     schema_dir = config.DATA_DIR / "schema" / RELEASE_NAME
     if schema_dir.exists():
         copy_tree(schema_dir, "schema", copied, "schema, data dictionary, CRS, units and join documentation", "schema")
-
-    paper_dir = config.ROOT_DIR / "paper"
-    for src, dst in [
-        ("main_scidata_public_validation.pdf", "manuscript/main_scidata_public_validation.pdf"),
-        ("main_scidata_public_validation.tex", "manuscript/main_scidata_public_validation.tex"),
-        ("main_scidata.tex", "manuscript/main_scidata.tex"),
-        ("references.bib", "manuscript/references.bib"),
-        ("figure_manifest.csv", "manuscript/figure_manifest.csv"),
-    ]:
-        copy_file(paper_dir / src, dst, copied, "manuscript support file", "manuscript")
-    copy_tasklist_for_archive(copied)
-    if (paper_dir / "figures" / "generated").exists():
-        copy_tree(paper_dir / "figures" / "generated", "manuscript/figures/generated", copied, "manuscript figure", "manuscript_figure")
 
     return copied
 
@@ -547,8 +630,10 @@ def write_manifest_and_checksums(copied: list[dict[str, Any]]) -> None:
     manifest = {
         "dataset": "PT60-Candidate",
         "version": VERSION,
-        "generated_at": utc_now(),
-        "status": "archive_skeleton_pending_schema_and_doi",
+        "generated_at": release_timestamp(),
+        "status": "figshare_dataset_archive_pending_publication_and_code_doi",
+        "dataset_doi": DATASET_DOI,
+        "dataset_doi_url": DATASET_DOI_URL,
         "generator": "src/build_pt60_release_archive.py",
         "file_count": len(records),
         "records": records,
@@ -606,7 +691,7 @@ def validate_release() -> dict[str, Any]:
             elif sha256(path) != digest:
                 checksum_mismatches.append(rel)
     return {
-        "generated_at": utc_now(),
+        "generated_at": release_timestamp(),
         "release_dir": str(RELEASE_DIR.relative_to(config.ROOT_DIR)),
         "archive_path": str(ARCHIVE_PATH.relative_to(config.ROOT_DIR)),
         "file_count": len(actual),
@@ -629,8 +714,22 @@ def validate_release() -> dict[str, Any]:
 def make_tarball() -> None:
     if ARCHIVE_PATH.exists():
         ARCHIVE_PATH.unlink()
-    with tarfile.open(ARCHIVE_PATH, "w:gz") as tar:
-        tar.add(RELEASE_DIR, arcname=RELEASE_NAME)
+
+    def normalise_tar_info(info: tarfile.TarInfo) -> tarfile.TarInfo:
+        info.uid = 0
+        info.gid = 0
+        info.uname = ""
+        info.gname = ""
+        info.mtime = 0
+        info.pax_headers = {}
+        return info
+
+    # Fix both gzip and tar metadata so a clean tagged checkout produces the
+    # same archive bytes when its release files are unchanged.
+    with ARCHIVE_PATH.open("wb") as raw:
+        with gzip.GzipFile(filename="", mode="wb", fileobj=raw, mtime=0) as compressed:
+            with tarfile.open(fileobj=compressed, mode="w", format=tarfile.PAX_FORMAT) as tar:
+                tar.add(RELEASE_DIR, arcname=RELEASE_NAME, filter=normalise_tar_info)
 
 
 def main() -> None:
@@ -649,17 +748,17 @@ def main() -> None:
     write_attribution()
     write_changelog()
     write_citation()
-    write_optional_readmes()
     write_exclusions()
     write_headline_counts()
     copied.append(
         {
             "path": "inventory/headline_counts.json",
             "source_path": "",
-            "purpose": "frozen manuscript headline counts and source-summary inventory",
+            "purpose": "frozen article headline counts and source-summary inventory",
             "semantic_role": "inventory",
         }
     )
+    scrub_release_text_files()
     write_manifest_and_checksums(copied)
     make_tarball()
     validation = validate_release()

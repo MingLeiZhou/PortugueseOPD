@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-07-14T14:15:32+00:00",
+  "generated_at": "2026-07-14T15:13:46+00:00",
   "dataset_version": "v1.0.0",
   "schema_dir": "data/schema/PT60-Candidate-v1.0.0",
   "release_dir": "data/releases/PT60-Candidate-v1.0.0",
-  "machine_readable_dataset_files_documented_excluding_schema_package": 122,
-  "total_release_machine_readable_paths_documented": 143,
-  "field_records": 7601,
-  "principal_schema_files": 16,
+  "machine_readable_dataset_files_documented_excluding_schema_package": 34,
+  "total_release_machine_readable_paths_documented": 54,
+  "field_records": 1090,
+  "principal_schema_files": 15,
   "status": "PASS"
 }

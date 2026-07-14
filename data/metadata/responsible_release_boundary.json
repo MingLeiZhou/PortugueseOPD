@@ -113,7 +113,7 @@
       "conditions": [
         "operator=E-REDES must be described as an OSM public tag, not operator confirmation",
         "OSM categories must not be converted into precision, recall or ground truth",
-        "include OSM object IDs/URLs and audit categories; full OSM history cache may be included or regenerated from IDs"
+        "include OSM object IDs/URLs and sanitized branch-level audit categories; exclude raw OSM/OpenInfraMap cache blobs, OSM user identifiers, changesets and matched-way history dumps from the main public archive"
       ]
     },
     {
@@ -186,13 +186,14 @@
         "data/processed/dataset_release_stage4",
         "data/processed/dataset_release_stage5"
       ],
-      "decision": "include_public_optional_interface",
+      "decision": "exclude_from_main_public_archive_or_publish_as_separate_labelled_supplement",
       "includes_exact_geometries": false,
       "includes_facility_names": false,
       "includes_evidence_urls": false,
-      "reason": "These are consumer interfaces and diagnostic adapters, not primary validation evidence.",
+      "reason": "These are consumer interfaces and diagnostic adapters, not primary validation evidence; they should not be bundled into the main Scientific Data public dataset archive.",
       "conditions": [
-        "must be labelled optional derivative interfaces",
+        "publish only as a separate supplementary archive if needed",
+        "must be clearly labelled optional derivative interfaces",
         "scenario-derived labels must not be described as observed failures or operator records"
       ]
     }

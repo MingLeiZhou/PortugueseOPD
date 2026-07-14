@@ -1,9 +1,9 @@
 {
   "dataset": "PT60-Candidate",
   "dataset_version": "v1.0.0",
-  "generated_at": "2026-07-14T14:17:30+00:00",
+  "generated_at": "2026-07-14T15:13:46+00:00",
   "generator": "src/build_pt60_release_archive.py",
-  "generator_commit": "1820f10090c19a305a785df3190694c0c9fd8e75",
+  "generator_commit": "bc3ea8e45297b0f11204e137fb055acfbbad85f6",
   "release_archive": {
     "release_dir": "data/releases/PT60-Candidate-v1.0.0",
     "archive_path": "data/releases/PT60-Candidate-v1.0.0.tar.gz"
@@ -154,10 +154,10 @@
     "internal_validation": {}
   },
   "schema_counts": {
-    "machine_readable_dataset_files_documented_excluding_schema_package": 122,
-    "total_release_machine_readable_paths_documented": 143,
-    "field_records": 7601,
-    "principal_schema_files": 16,
+    "machine_readable_dataset_files_documented_excluding_schema_package": 34,
+    "total_release_machine_readable_paths_documented": 54,
+    "field_records": 1090,
+    "principal_schema_files": 15,
     "schema_status": "PASS"
   },
   "claim_boundary": {

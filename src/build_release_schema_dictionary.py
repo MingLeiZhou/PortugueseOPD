@@ -24,6 +24,14 @@ RELEASE_NAME = f"PT60-Candidate-{VERSION}"
 RELEASE_DIR = config.DATA_DIR / "releases" / RELEASE_NAME
 SCHEMA_DIR = config.DATA_DIR / "schema" / RELEASE_NAME
 
+
+def release_timestamp() -> str:
+    metadata_path = config.ROOT_DIR / "release_metadata.json"
+    if metadata_path.exists():
+        metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+        return str(metadata.get("generated_at_utc", "2026-07-14T13:20:19Z"))
+    return "2026-07-14T13:20:19Z"
+
 MISSING_TOKENS = {
     "",
     "nan",
@@ -41,9 +49,6 @@ FILE_GROUP_RULES = [
     ("core_topology/", "core_topology"),
     ("validation/", "technical_validation"),
     ("provenance/", "provenance"),
-    ("optional_interfaces/", "optional_interface"),
-    ("optional_diagnostic/", "optional_diagnostic"),
-    ("manuscript/", "manuscript_support"),
 ]
 
 CORE_SCHEMA_FILES = [
@@ -214,10 +219,6 @@ def infer_description(name: str, rel: str, logical_type: str) -> str:
 
 def infer_semantic_status(rel: str, name: str) -> str:
     n = name.lower()
-    if rel.startswith("optional_diagnostic/"):
-        return "optional_diagnostic_not_operational"
-    if rel.startswith("optional_interfaces/"):
-        return "optional_derivative_interface"
     if any(token in n for token in ["r", "x", "b", "thermal_limit", "tap_settings", "impedance"]):
         if n in {"r", "x", "b", "thermal_limit", "tap_settings", "transformer_impedance"}:
             return "not_estimated_in_core_release"
@@ -319,11 +320,7 @@ def source_or_derivation(rel: str) -> str:
         return "Derived validation output using frozen PT60 artifacts and public OSM/OpenInfraMap evidence where applicable."
     if rel.startswith("provenance/"):
         return "Generated release/source provenance metadata."
-    if rel.startswith("optional_interfaces/"):
-        return "Derivative consumer interface generated from core PT60 artifacts; optional and not part of operational claims."
-    if rel.startswith("optional_diagnostic/"):
-        return "Optional diagnostic artifact; not evidence of AC power-flow, OPF, protection, or operational readiness."
-    return "Release-control or manuscript-support artifact."
+    return "Release-control or article-support artifact."
 
 
 def flatten_json(value: Any, prefix: str, sink: dict[str, list[Any]], depth: int = 0) -> None:
@@ -519,7 +516,7 @@ def graphml_schema(rel: str, records: list[dict[str, Any]]) -> dict[str, Any]:
 def write_crs_docs() -> None:
     crs = {
         "dataset_version": VERSION,
-        "generated_at": utc_now(),
+        "generated_at": release_timestamp(),
         "source_crs": {
             "name": "WGS 84 longitude/latitude as provided in public GeoJSON/CSV geometry exports",
             "epsg": "EPSG:4326",
@@ -642,7 +639,7 @@ def write_readme(records: list[dict[str, Any]]) -> None:
     group_counts = Counter(r["file_group"] for r in records)
     text = f"""# PT60-Candidate v1.0.0 Schema Package
 
-Generated: {utc_now()}
+Generated: {release_timestamp()}
 
 This package documents public CSV, JSON and GraphML fields in the PT60-Candidate v1.0.0 release archive.
 
@@ -890,7 +887,7 @@ def main() -> None:
     write_csv(SCHEMA_DIR / "file_schema_summary.csv", summary_rows)
     write_readme(all_records)
     summary = {
-        "generated_at": utc_now(),
+        "generated_at": release_timestamp(),
         "dataset_version": VERSION,
         "schema_dir": str(SCHEMA_DIR.relative_to(config.ROOT_DIR)),
         "release_dir": str(RELEASE_DIR.relative_to(config.ROOT_DIR)),

@@ -23,4 +23,4 @@ graph_endpoint_reference_parity,graph,PASS,0,0,Every retained-branch endpoint fa
 graph_isolates_and_parallel_edges,graph,PASS,"isolates=109, parallel_groups=27, parallel_edge_records=55, parallel_extra_edges=28, self_loops=0",reported graph structure,Graph structure diagnostics are measured from GraphML.
 sensitivity_sweep_rows,sensitivity,PASS,216,216,Sensitivity sweep contains all 216 declared configurations.
 selected_sweep_row,sensitivity,PASS,1,1,Selected release setting is represented exactly once in the sensitivity sweep.
-release_hash_baseline,determinism,WARN,9,clean-room rerun equality still pending,Core artifact hashes are recorded here as the baseline for P0.12 clean-room reproduction.
+release_hash_baseline,determinism,WARN,9,clean-room rerun equality still pending,Core artifact hashes are recorded here as the baseline for clean-room reproduction.

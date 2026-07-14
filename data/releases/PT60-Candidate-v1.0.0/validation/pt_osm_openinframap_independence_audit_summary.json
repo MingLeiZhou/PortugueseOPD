@@ -22,8 +22,8 @@
     "partial_endpoint_name_or_ref+operator_tag": 59
   },
   "operator_tag_interpretation": "operator=E-REDES is treated as an OSM public tag, not operator confirmation.",
-  "recommended_manuscript_language": "public-source triangulation/concordance",
-  "prohibited_manuscript_language": [
+  "recommended_article_language": "public-source triangulation/concordance",
+  "prohibited_article_language": [
     "operator validation",
     "independent precision",
     "recall",
@@ -31,12 +31,14 @@
     "ground truth"
   ],
   "outputs": {
-    "osm_meta_cache": "data/processed/topology_validation/pt_osm_openinframap_60kv_power_ways_meta.json",
-    "osm_history_cache": "data/processed/topology_validation/pt_osm_matched_way_histories.json",
-    "osm_element_audit": "data/processed/topology_validation/pt_osm_openinframap_independence_audit.csv",
-    "osm_history_audit": "data/processed/topology_validation/pt_osm_openinframap_matched_way_history_audit.csv",
-    "branch_audit": "data/processed/topology_validation/pt_topology_cross_validation_osm_matches_independence_audit.csv",
-    "summary": "data/processed/topology_validation/pt_osm_openinframap_independence_audit_summary.json",
-    "report": "reports/105_pt60_osm_openinframap_independence_audit.md"
-  }
+    "branch_audit": "validation/pt_topology_cross_validation_osm_matches_independence_audit.csv",
+    "summary": "validation/pt_osm_openinframap_independence_audit_summary.json",
+    "excluded_from_main_public_archive": [
+      "raw OSM/OpenInfraMap cache blobs",
+      "OSM matched-way history dump",
+      "OSM element-level audit with user identifiers or changesets"
+    ]
+  },
+  "public_release_note": "The main public archive includes only summary counts and a sanitized branch-level independence audit. Raw OSM/OpenInfraMap cache blobs, matched-way history dumps, user identifiers and changeset-level records are excluded.",
+  "internal_generation_note": "Element-level and history-cache outputs were used internally and excluded from the main public archive."
 }

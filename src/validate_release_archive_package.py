@@ -75,6 +75,10 @@ def safe_extract(tar: tarfile.TarFile, destination: Path) -> None:
 
 
 def validate_extracted(root: Path, archive_sha256: str, archive_path: Path) -> dict[str, Any]:
+    try:
+        archive_path_text = str(archive_path.relative_to(config.ROOT_DIR))
+    except ValueError:
+        archive_path_text = archive_path.name
     manifest_path = root / "manifest.json"
     checksums_path = root / "checksums.sha256"
     dictionary_path = root / "schema" / "data_dictionary.csv"
@@ -160,7 +164,7 @@ def validate_extracted(root: Path, archive_sha256: str, archive_path: Path) -> d
     return {
         "generated_at": utc_now(),
         "validation_mode": "package_clean_room_tarball_extraction",
-        "archive_path": str(archive_path),
+        "archive_path": archive_path_text,
         "archive_sha256": archive_sha256,
         "extracted_root_name": root.name,
         "manifest_records": len(records),

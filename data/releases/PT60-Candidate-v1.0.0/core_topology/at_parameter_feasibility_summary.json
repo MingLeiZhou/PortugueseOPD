@@ -85,7 +85,7 @@
       "applicability_to_portugal": "method transferable; numeric tables not directly transferable",
       "directly_usable": false,
       "confidence": "high for method; low for Portuguese numeric reuse",
-      "notes": "/Users/jumiray/Projects/PortugueseOPD/docs/2605.04289v1.pdf: exists=False; /mnt/data/2605.04289v1(1).pdf: exists=False"
+      "notes": "<PROJECT_ROOT>/docs/2605.04289v1.pdf: exists=False; <LOCAL_REFERENCE_PATH>/2605.04289v1(1).pdf: exists=False"
     },
     {
       "source_name": "E-REDES RND AT line dataset",
@@ -146,14 +146,14 @@
     "cascading_failure_simulation": "RED for electrical cascading; YELLOW only for topology stress experiments"
   },
   "outputs": {
-    "availability_matrix": "/Users/jumiray/Projects/PortugueseOPD/data/processed/at_parameter_availability_matrix.csv",
-    "line_parameter_inputs": "/Users/jumiray/Projects/PortugueseOPD/data/processed/at_line_parameter_inputs.csv",
-    "voltage_class_inventory": "/Users/jumiray/Projects/PortugueseOPD/data/processed/at_voltage_class_inventory.csv",
-    "candidate_lut_template": "/Users/jumiray/Projects/PortugueseOPD/data/processed/at_candidate_lut_template.csv",
-    "candidate_branch_parameter_estimates": "/Users/jumiray/Projects/PortugueseOPD/data/processed/at_candidate_branch_parameter_estimates.csv",
-    "transformer_parameter_availability": "/Users/jumiray/Projects/PortugueseOPD/data/processed/at_transformer_parameter_availability.csv",
-    "short_circuit_validation_inputs": "/Users/jumiray/Projects/PortugueseOPD/data/processed/at_short_circuit_validation_inputs.csv",
-    "report": "/Users/jumiray/Projects/PortugueseOPD/reports/09_electrical_parameter_feasibility.md",
-    "coverage_map": "/Users/jumiray/Projects/PortugueseOPD/reports/maps/at_parameter_coverage_map.html"
+    "availability_matrix": "<PROJECT_ROOT>/data/processed/at_parameter_availability_matrix.csv",
+    "line_parameter_inputs": "<PROJECT_ROOT>/data/processed/at_line_parameter_inputs.csv",
+    "voltage_class_inventory": "<PROJECT_ROOT>/data/processed/at_voltage_class_inventory.csv",
+    "candidate_lut_template": "<PROJECT_ROOT>/data/processed/at_candidate_lut_template.csv",
+    "candidate_branch_parameter_estimates": "<PROJECT_ROOT>/data/processed/at_candidate_branch_parameter_estimates.csv",
+    "transformer_parameter_availability": "<PROJECT_ROOT>/data/processed/at_transformer_parameter_availability.csv",
+    "short_circuit_validation_inputs": "<PROJECT_ROOT>/data/processed/at_short_circuit_validation_inputs.csv",
+    "report": "<PROJECT_ROOT>/reports/09_electrical_parameter_feasibility.md",
+    "coverage_map": "<PROJECT_ROOT>/reports/maps/at_parameter_coverage_map.html"
   }
 }

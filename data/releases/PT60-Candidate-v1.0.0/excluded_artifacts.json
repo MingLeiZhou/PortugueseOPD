@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-14T14:17:30+00:00",
+  "generated_at": "2026-07-14T15:13:46+00:00",
   "dataset_version": "v1.0.0",
   "excluded_or_non_core": [
     {
@@ -35,7 +35,26 @@
         "data/processed/topology_validation/pt_topology_validation_*"
       ],
       "decision": "excluded_from_public_validation_route",
-      "reason": "The v1.0.0 manuscript route does not use dual independent human adjudication or report precision."
+      "reason": "The v1.0.0 article route does not use dual independent human adjudication or report precision."
+    },
+    {
+      "artifact_class": "raw_osm_openinframap_cache_and_user_history",
+      "paths": [
+        "raw OSM/OpenInfraMap cache blobs",
+        "OSM matched-way history dump",
+        "OSM element-level audit containing user identifiers or changesets"
+      ],
+      "decision": "excluded_from_main_public_archive",
+      "reason": "The main public archive keeps table-level evidence and sanitized branch-level independence categories, but excludes raw public-source cache blobs and OSM user/history dumps."
+    },
+    {
+      "artifact_class": "optional_interfaces_and_diagnostics",
+      "paths": [
+        "optional_interfaces/**",
+        "optional_diagnostic/**"
+      ],
+      "decision": "excluded_from_main_public_archive",
+      "reason": "Optional consumer interfaces and non-operational diagnostics require separate labeling and should be deposited as a separate supplementary archive if needed."
     }
   ]
 }

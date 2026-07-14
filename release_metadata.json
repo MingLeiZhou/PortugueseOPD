@@ -22,7 +22,7 @@
       "retained/downgraded/rejected circuit ledger",
       "216-configuration sensitivity sweep",
       "public-source OSM/OpenInfraMap concordance",
-      "reusable schemas, graph export, and consumer interfaces after final archive assembly"
+      "reusable schemas and graph export in the main public archive; optional consumer interfaces require a separate labelled supplementary archive if released"
     ],
     "prohibited_claims": [
       "operator validation",
@@ -33,11 +33,11 @@
     ]
   },
   "code_state": {
-    "generator_commit": "bc3ea8e45297b0f11204e137fb055acfbbad85f6",
-    "git_worktree_status": "release_candidate_tagged_plus_metadata_followup",
-    "dirty_status_note": "The immutable local release candidate tag points to the code, archive, schema, validation reports and manuscript artifacts used for PT60-Candidate v1.0.0 package validation. This root metadata file may receive post-tag bookkeeping updates that do not change the tagged release package.",
-    "code_release_tag": "pt60-candidate-v1.0.0-rc1",
-    "code_release_tag_commit": "bc3ea8e45297b0f11204e137fb055acfbbad85f6",
+    "generator_commit": "resolved_at_build_from_git_HEAD",
+    "git_worktree_status": "final_release_source_tag_planned",
+    "dirty_status_note": "The minimized release builder is ready for the final annotated source tag. Generated package metadata resolves the exact commit from git HEAD.",
+    "code_release_tag": "pt60-candidate-v1.0.0",
+    "code_release_tag_commit": "resolve_annotated_tag_pt60-candidate-v1.0.0",
     "code_release_tag_type": "local_annotated_git_tag",
     "code_doi": "pending",
     "python_version": "3.12.9",
@@ -361,13 +361,14 @@
         "ground truth"
       ],
       "outputs": {
-        "osm_meta_cache": "data/processed/topology_validation/pt_osm_openinframap_60kv_power_ways_meta.json",
-        "osm_history_cache": "data/processed/topology_validation/pt_osm_matched_way_histories.json",
-        "osm_element_audit": "data/processed/topology_validation/pt_osm_openinframap_independence_audit.csv",
-        "osm_history_audit": "data/processed/topology_validation/pt_osm_openinframap_matched_way_history_audit.csv",
         "branch_audit": "data/processed/topology_validation/pt_topology_cross_validation_osm_matches_independence_audit.csv",
         "summary": "data/processed/topology_validation/pt_osm_openinframap_independence_audit_summary.json",
-        "report": "reports/105_pt60_osm_openinframap_independence_audit.md"
+        "report": "reports/105_pt60_osm_openinframap_independence_audit.md",
+        "excluded_from_main_public_archive": [
+          "raw OSM/OpenInfraMap cache blobs",
+          "OSM matched-way history dump",
+          "OSM element-level audit containing user identifiers or changesets"
+        ]
       }
     },
     "clean_room_reproduction": {
@@ -375,66 +376,71 @@
       "validation_mode": "package_clean_room_tarball_extraction",
       "summary_json": "data/metadata/clean_room_archive_validation_summary.json",
       "report": "reports/108_pt60_clean_room_archive_validation.md",
-      "archive_sha256": "0ca66cd5b0ec7e1a6747a8cf20e79edd0497acb0e15b611a2dfa7d0198fe31e1",
-      "summary_sha256": "70ea98dc50240295fc6939f5108dee956c255355c92c3ee519ea58edab269622",
-      "manifest_records": 183,
-      "file_count": 183,
-      "machine_readable_paths": 143,
-      "dictionary_paths": 143,
-      "dictionary_field_records": 7601,
+      "archive_sha256": "586cfec3f76440185e0d717ac1a4302393fe2888a15b9f057c7ee07b2ccf226b",
+      "summary_sha256": "c931e03ff79a4babfbe9ccc5cbe0fd93d4a478e49e1e718291362550cc790b08",
+      "manifest_records": 63,
+      "file_count": 63,
+      "machine_readable_paths": 54,
+      "dictionary_paths": 54,
+      "dictionary_field_records": 1090,
       "checksum_mismatches": 0,
       "dictionary_missing_paths": 0,
       "headline_count_checks_passed": true,
       "tag_worktree_validation": {
-        "status": "PASS",
+        "status": "STALE_AFTER_MAIN_PUBLIC_ARCHIVE_MINIMIZATION",
         "tag": "pt60-candidate-v1.0.0-rc1",
         "commit": "bc3ea8e45297b0f11204e137fb055acfbbad85f6",
-        "worktree": "/private/tmp/pt60_tag_cleanroom_bc3ea8e",
+        "worktree": "<TEMP_DIR>/pt60_tag_cleanroom_bc3ea8e",
         "validated_at_utc": "2026-07-14T14:24:30+00:00",
-        "archive_path_in_tag_worktree": "/private/tmp/pt60_tag_cleanroom_bc3ea8e/data/releases/PT60-Candidate-v1.0.0.tar.gz"
+        "archive_path_in_tag_worktree": "<TEMP_DIR>/pt60_tag_cleanroom_bc3ea8e/data/releases/PT60-Candidate-v1.0.0.tar.gz",
+        "note": "This PASS applies to the older pre-cleanup archive. Rerun tag-worktree validation after committing/tagging the minimized Figshare-ready main public archive."
       },
       "scope_note": "This validates a fresh extraction of the downloadable tarball against manifest records, checksums, schema coverage and frozen headline counts. Full source-to-archive regeneration from raw/API source acquisition remains pending and should be run from the immutable tag before final DOI deposit."
     }
   },
   "availability_status": {
     "dataset_archive": {
-      "status": "built_archive_with_schema_pending_doi_clean_tag_and_clean_room_rerun",
+      "status": "uploaded_to_private_figshare_and_checksum_verified_pending_clean_tag_rebuild",
       "release_dir": "data/releases/PT60-Candidate-v1.0.0",
       "archive_path": "data/releases/PT60-Candidate-v1.0.0.tar.gz",
-      "archive_sha256": "0ca66cd5b0ec7e1a6747a8cf20e79edd0497acb0e15b611a2dfa7d0198fe31e1",
-      "uncompressed_size": "42M",
-      "compressed_size": "9.7M",
-      "file_count": 183,
-      "manifest_records": 183,
+      "archive_sha256": "586cfec3f76440185e0d717ac1a4302393fe2888a15b9f057c7ee07b2ccf226b",
+      "uncompressed_size": "19M",
+      "compressed_size": "5.1M",
+      "file_count": 63,
+      "manifest_records": 63,
       "validation_status": "PASS",
       "archive_validation_summary": "data/releases/PT60-Candidate-v1.0.0/archive_validation_summary.json",
       "generator": "src/build_pt60_release_archive.py",
-      "claim_boundary_note": "Archive is a candidate-topology dataset release package for reviewer/deposit preparation; it is not a DOI-backed final deposit and still lacks immutable clean code tag and clean-room reproduction."
+      "claim_boundary_note": "Archive is the minimized main Figshare dataset package for reviewer/deposit preparation. Private/reviewer/account Figshare links, manuscript/tasklist/internal work-log files, development-machine paths, raw OSM/OpenInfraMap cache/history files, optional interfaces and optional diagnostics are excluded from the main public archive."
     },
-    "dataset_doi": "pending",
-    "anonymous_reviewer_access_url": "pending",
+    "dataset_doi": "10.6084/m9.figshare.32984021",
+    "dataset_doi_url": "https://doi.org/10.6084/m9.figshare.32984021",
+    "figshare_confidential_access_status": "held_outside_public_repository_files",
+    "figshare_account_record_status": "held_outside_public_repository_files",
+    "anonymous_reviewer_access_status": "held_outside_public_repository_files",
+    "figshare_upload_status": "private_item_contains_download_verified_archive_sha256_586cfec3f76440185e0d717ac1a4302393fe2888a15b9f057c7ee07b2ccf226b",
     "archive_manifest": "data/releases/PT60-Candidate-v1.0.0/manifest.json",
     "checksums_sha256": "data/releases/PT60-Candidate-v1.0.0/checksums.sha256",
     "data_dictionary": {
       "status": "complete_for_current_release_archive",
       "path": "data/releases/PT60-Candidate-v1.0.0/schema/data_dictionary.csv",
       "source_path": "data/schema/PT60-Candidate-v1.0.0/data_dictionary.csv",
-      "machine_readable_dataset_files_documented_excluding_schema_package": 122,
-      "total_release_machine_readable_paths_documented": 143,
-      "field_records": 7601,
+      "machine_readable_dataset_files_documented_excluding_schema_package": 34,
+      "total_release_machine_readable_paths_documented": 54,
+      "field_records": 1090,
       "coverage_check": "0 missing CSV/JSON/GraphML release paths"
     },
     "json_schemas": {
       "status": "complete_for_principal_core_validation_and_provenance_files",
       "directory": "data/releases/PT60-Candidate-v1.0.0/schema/json_schemas",
-      "principal_schema_files": 16
+      "principal_schema_files": 15
     },
     "checksum_linked_inventory": {
       "status": "complete_for_current_release_archive",
       "manifest": "data/releases/PT60-Candidate-v1.0.0/manifest.json",
       "checksums": "data/releases/PT60-Candidate-v1.0.0/checksums.sha256",
       "headline_counts": "data/releases/PT60-Candidate-v1.0.0/inventory/headline_counts.json",
-      "manifest_records": 183,
+      "manifest_records": 63,
       "required_manifest_fields": [
         "path",
         "purpose",

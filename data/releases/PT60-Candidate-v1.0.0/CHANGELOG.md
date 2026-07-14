@@ -11,7 +11,6 @@
 
 Pending after this archive build:
 
-- dataset DOI;
 - code DOI/release tag;
-- final field dictionary and JSON schemas;
-- clean-room reproduction from final clean tag.
+- final public code repository/DOI;
+- full source-to-archive reproduction from raw/API inputs before final publication.

@@ -17,6 +17,20 @@
       "nullable": false
     },
     {
+      "pointer": "$.dataset_doi",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Release field `$.dataset_doi` from `manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.dataset_doi_url",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$.dataset_doi_url` in `manifest.json`.",
+      "nullable": false
+    },
+    {
       "pointer": "$.file_count",
       "inferred_type": "integer",
       "logical_type": "integer",

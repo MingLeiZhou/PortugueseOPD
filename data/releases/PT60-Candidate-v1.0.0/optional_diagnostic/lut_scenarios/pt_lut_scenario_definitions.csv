@@ -1,8 +1,0 @@
-scenario_id,purpose,solver_allowed,publication_allowed,status
-S0_MISSING_ONLY_AUDIT,Audit missing Portuguese LUT values.,False,False,BLOCKED_EXTERNAL_DATA
-S1_SOURCE_BACKED_PARTIAL_NO_SOLVER,Collect partial source-backed values without filling missing solver fields.,False,False,PARTIAL
-S_PT_LXHIOLE_1000_VALIDATED_CROSSCHECK,Use the Portuguese PE Tocha II LXHIOLE 1x1000/135 cable parameters with Nexans 72 kV aluminium cross-check as a project-matched validation scenario.,False,False,PARTIAL_PROJECT_MATCHED
-S5_BEST_AVAILABLE_MULTILINGUAL_DIAGNOSTIC,"Use the highest-ranked multilingual direct, same-spec, cross-check, or adjacent-spec candidate rows for diagnostic-only parameter fill.",True,False,DIAGNOSTIC_ONLY
-S2_BENCHMARK_PLUMBING_BASE,Use benchmark-only line values and scenario transformer completion for plumbing diagnostics.,True,False,DIAGNOSTIC_ONLY
-S3_SENSITIVITY_WEAK_GRID,Sensitivity scenario with weaker grid/transformer assumptions.,True,False,DIAGNOSTIC_ONLY
-S4_SENSITIVITY_STRONG_GRID,Sensitivity scenario with stronger grid/transformer assumptions.,True,False,DIAGNOSTIC_ONLY
