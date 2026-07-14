@@ -57,6 +57,19 @@ Scientific Data currently requires reviewer access to the dataset at first submi
 - [x] Separated MIT software licensing from E-REDES-derived data attribution requirements in repository documentation.
 - [x] Compiled the current 14-page draft with no undefined citations/references, LaTeX errors or overfull boxes.
 
+## v1.0.1 corrective release status
+
+- [x] Replace substring-based schema inference with token-aware coordinate, geometry, boolean, voltage, score, and count rules.
+- [x] Add regression tests for the known v1.0.0 misclassifications and fail-closed semantic validation of the generated dictionary.
+- [x] Rebuild a 63-file v1.0.1 archive with 54/54 machine-readable paths covered by 1,090 dictionary records.
+- [x] Pass archive extraction, manifest, checksum, schema-coverage, and headline-count validation with no failures.
+- [x] Regenerate all four manuscript figures and three generated tables from the v1.0.1 release inputs.
+- [x] Update the canonical Scientific Data manuscript to v1.0.1 and disclose the corrected schema logic.
+- [ ] Replace the uploaded v1.0.0 draft on Figshare with `PT60-Candidate-v1.0.1.tar.gz` and verify the downloaded SHA-256.
+- [ ] Create immutable v1.0.1 dataset-builder and complete-code tags; archive the software release if a code DOI is required.
+
+Current v1.0.1 source commit: `84855d0fdb08355c5d78ef705b369588c5579a82`. Final local archive SHA-256: `f6af1d29af1487b4138eb2ada4ace9a3fa267faac4ea4e51adc8629388f18e3c`. The archive is locally validated but has not yet replaced the Figshare upload.
+
 ## P0 — Blocking tasks before initial submission
 
 Complete these in order. Do not prioritize language polishing until P0.1–P0.8 are closed.

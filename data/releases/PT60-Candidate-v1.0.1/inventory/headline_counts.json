@@ -1,0 +1,180 @@
+{
+  "dataset": "PT60-Candidate",
+  "dataset_version": "v1.0.1",
+  "generated_at": "2026-07-14T17:28:17Z",
+  "generator": "src/build_pt60_release_archive.py",
+  "generator_commit": "84855d0fdb08355c5d78ef705b369588c5579a82",
+  "release_archive": {
+    "release_dir": "data/releases/PT60-Candidate-v1.0.1",
+    "archive_path": "data/releases/PT60-Candidate-v1.0.1.tar.gz"
+  },
+  "source_snapshot": {
+    "source_datasets": [
+      {
+        "dataset_id": "rede-at-teste",
+        "source_role": "topology_critical_at_lines",
+        "topology_critical": true,
+        "records_count": 5334,
+        "checked_at": "2026-07-13T14:15:57+00:00",
+        "license_basis": "PORTAL_LEVEL_CC_BY_4_0"
+      },
+      {
+        "dataset_id": "se-at_2025",
+        "source_role": "topology_critical_at_substations",
+        "topology_critical": true,
+        "records_count": 410,
+        "checked_at": "2026-07-13T14:16:08+00:00",
+        "license_basis": "PORTAL_LEVEL_CC_BY_4_0"
+      },
+      {
+        "dataset_id": "pc-at_2025",
+        "source_role": "topology_critical_switching_facilities",
+        "topology_critical": true,
+        "records_count": 76,
+        "checked_at": "2026-07-13T14:15:31+00:00",
+        "license_basis": "PORTAL_LEVEL_CC_BY_4_0"
+      },
+      {
+        "dataset_id": "se-mt_2025",
+        "source_role": "transformer_and_multivoltage_inventory",
+        "topology_critical": false,
+        "records_count": 28,
+        "checked_at": "2026-07-13T14:16:12+00:00",
+        "license_basis": "PORTAL_LEVEL_CC_BY_4_0"
+      },
+      {
+        "dataset_id": "caracteristicas-da-rede",
+        "source_role": "electrical_characteristics_and_short_circuit_context",
+        "topology_critical": false,
+        "records_count": 437,
+        "checked_at": "2026-07-13T14:14:17+00:00",
+        "license_basis": "DATASET_CATALOG_METADATA"
+      },
+      {
+        "dataset_id": "carga-na-subestacao",
+        "source_role": "substation_load_context",
+        "topology_critical": false,
+        "records_count": 794,
+        "checked_at": "2026-07-13T14:14:22+00:00",
+        "license_basis": "DATASET_CATALOG_METADATA"
+      },
+      {
+        "dataset_id": "capacidade-rececao-rnd",
+        "source_role": "hosting_capacity_context_not_dispatch",
+        "topology_critical": false,
+        "records_count": 469,
+        "checked_at": "2026-07-13T14:14:12+00:00",
+        "license_basis": "DATASET_CATALOG_METADATA"
+      },
+      {
+        "dataset_id": "diagrama-de-carga-de-subestacao",
+        "source_role": "hourly_load_index",
+        "topology_critical": false,
+        "records_count": 5,
+        "checked_at": "2026-07-13T14:14:38+00:00",
+        "license_basis": "DATASET_CATALOG_METADATA"
+      },
+      {
+        "dataset_id": "diagrama_carga_subestacao_01_a_07",
+        "source_role": "hourly_load_partition",
+        "topology_critical": false,
+        "records_count": 4085298,
+        "checked_at": "2026-07-13T14:14:45+00:00",
+        "license_basis": "DATASET_CATALOG_METADATA"
+      },
+      {
+        "dataset_id": "diagrama_carga_subestacao_08_a_10",
+        "source_role": "hourly_load_partition",
+        "topology_critical": false,
+        "records_count": 2185886,
+        "checked_at": "2026-07-13T14:14:50+00:00",
+        "license_basis": "DATASET_CATALOG_METADATA"
+      },
+      {
+        "dataset_id": "diagrama_carga_subestacao_11_a_12",
+        "source_role": "hourly_load_partition",
+        "topology_critical": false,
+        "records_count": 2829724,
+        "checked_at": "2026-07-13T14:14:55+00:00",
+        "license_basis": "DATASET_CATALOG_METADATA"
+      },
+      {
+        "dataset_id": "diagrama_carga_subestacao_13_a_15",
+        "source_role": "hourly_load_partition",
+        "topology_critical": false,
+        "records_count": 3548885,
+        "checked_at": "2026-07-13T14:15:00+00:00",
+        "license_basis": "DATASET_CATALOG_METADATA"
+      },
+      {
+        "dataset_id": "diagrama_carga_subestacao_16_a_18",
+        "source_role": "hourly_load_partition",
+        "topology_critical": false,
+        "records_count": 1259343,
+        "checked_at": "2026-07-13T14:15:05+00:00",
+        "license_basis": "DATASET_CATALOG_METADATA"
+      }
+    ],
+    "source_manifest_json": {
+      "path": "data/metadata/reproduction_source_manifest.json",
+      "generated_at": "2026-07-13T15:23:31+00:00",
+      "sha256": "9a9acef1537b0733b73e270435a443b9ba643338f9a37a44acc09c1d184cd787"
+    },
+    "portal_license": "CC BY 4.0",
+    "release_conditions": [
+      "retain E-REDES attribution",
+      "link CC BY 4.0",
+      "identify source datasets and access dates",
+      "indicate transformations or modifications"
+    ]
+  },
+  "core_dataset_counts": {
+    "source_line_features": 5334,
+    "valid_line_geometries": 5334,
+    "facility_rows_loaded": 586,
+    "merged_circuit_candidates": 1342,
+    "retained_interfacility_branches": 358,
+    "downgraded_or_rejected_records": 984,
+    "selected_graph_nodes": 484,
+    "selected_graph_edges": 358,
+    "sensitivity_sweep_rows": 216
+  },
+  "validation_counts": {
+    "osm_openinframap_60kv_public_way_count": 5551,
+    "osm_evidence_retained_branches_tested": 358,
+    "osm_evidence_categories": {
+      "strong": 247,
+      "medium": 104,
+      "weak": 7,
+      "no_match": 0
+    },
+    "endpoint_name_negative_control": {},
+    "spatial_alignment_negative_control": {},
+    "osm_openinframap_independence_audit": {},
+    "internal_validation": {}
+  },
+  "schema_counts": {
+    "machine_readable_dataset_files_documented_excluding_schema_package": 34,
+    "total_release_machine_readable_paths_documented": 54,
+    "field_records": 1090,
+    "principal_schema_files": 15,
+    "schema_status": "PASS"
+  },
+  "claim_boundary": {
+    "supported": [
+      "provenance-tracked candidate dataset",
+      "fail-closed reconstruction pipeline",
+      "retained/downgraded/rejected circuit ledger",
+      "216-configuration sensitivity sweep",
+      "public-source OSM/OpenInfraMap concordance",
+      "reusable schemas and graph export in the main public archive; optional consumer interfaces require a separate labelled supplementary archive if released"
+    ],
+    "prohibited": [
+      "operator validation",
+      "independently estimated branch precision",
+      "national-grid recall or completeness",
+      "operational grid model",
+      "AC power-flow, OPF, protection, security, contingency, or congestion-analysis readiness"
+    ]
+  }
+}

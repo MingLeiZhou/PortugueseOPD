@@ -1,0 +1,87 @@
+{
+  "$schema": "https://specs.frictionlessdata.io/schemas/table-schema.json",
+  "name": "internal_validation_missingness",
+  "path": "validation/internal_validation_missingness.csv",
+  "dataset_version": "v1.0.1",
+  "description": "PT60-Candidate schema for validation/internal_validation_missingness.csv.",
+  "fields": [
+    {
+      "name": "table",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `table`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "field",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `field`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "rows",
+      "type": "integer",
+      "logical_type": "integer",
+      "description": "Technical-validation field `rows`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "missing_or_semantic_missing",
+      "type": "integer",
+      "logical_type": "integer",
+      "description": "Technical-validation field `missing_or_semantic_missing`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "non_missing",
+      "type": "integer",
+      "logical_type": "integer",
+      "description": "Technical-validation field `non_missing`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "value_counts_json",
+      "type": "string",
+      "logical_type": "json_encoded_string",
+      "description": "Technical-validation field `value_counts_json`.",
+      "unit": "count",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    }
+  ],
+  "missingValues": [
+    "",
+    "missing",
+    "missing_not_estimated",
+    "n/a",
+    "na",
+    "nan",
+    "none",
+    "not_estimated",
+    "null",
+    "pending"
+  ]
+}

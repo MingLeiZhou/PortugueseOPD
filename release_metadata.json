@@ -33,12 +33,12 @@
     ]
   },
   "code_state": {
-    "generator_commit": "1eb690302f35f7c0090c14c994d073539cbb5335",
-    "git_worktree_status": "final_release_source_tagged_generated_archive_bookkeeping_pending",
-    "dirty_status_note": "The final source tag is immutable. Post-tag changes record the deterministically rebuilt archive and clean-room evidence; generated package metadata resolves the exact source commit from git HEAD.",
-    "code_release_tag": "pt60-candidate-v1.0.0",
-    "code_release_tag_commit": "1eb690302f35f7c0090c14c994d073539cbb5335",
-    "code_release_tag_type": "local_annotated_git_tag",
+    "generator_commit": "84855d0fdb08355c5d78ef705b369588c5579a82",
+    "git_worktree_status": "v1.0.1_source_commit_created_archive_bookkeeping_pending",
+    "dirty_status_note": "The v1.0.1 archive was generated from source commit 84855d0; final archive, manuscript, metadata, tag, and Figshare replacement remain pending.",
+    "code_release_tag": "pending_pt60-candidate-v1.0.1",
+    "code_release_tag_commit": "84855d0fdb08355c5d78ef705b369588c5579a82",
+    "code_release_tag_type": "pending_annotated_git_tag",
     "code_doi": "pending",
     "python_version": "3.12.9",
     "dependency_manifest": {
@@ -406,7 +406,7 @@
       "status": "v1.0.1_local_archive_validated_figshare_replacement_pending",
       "release_dir": "data/releases/PT60-Candidate-v1.0.1",
       "archive_path": "data/releases/PT60-Candidate-v1.0.1.tar.gz",
-      "archive_sha256": "0f8e476e8f74453da7cb587edbca1888186f5a1c7e4a2b0f2434d7f4ff0b289f",
+      "archive_sha256": "f6af1d29af1487b4138eb2ada4ace9a3fa267faac4ea4e51adc8629388f18e3c",
       "uncompressed_size": "19M",
       "compressed_size": "5.1M",
       "file_count": 63,

@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PT60-Candidate GraphML attributes for core_topology/at_paper_logic_graph.graphml",
+  "description": "GraphML node/edge/all attribute dictionary extracted from the release GraphML file.",
+  "type": "object",
+  "x-dataset-version": "v1.0.1",
+  "x-release-path": "core_topology/at_paper_logic_graph.graphml",
+  "x-graphml-attributes": [
+    {
+      "name": "b",
+      "scope": "graphml_edge_attribute",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `b` from `core_topology/at_paper_logic_graph.graphml`.",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": ""
+    },
+    {
+      "name": "branch_id",
+      "scope": "graphml_edge_attribute",
+      "type": "string",
+      "logical_type": "identifier",
+      "description": "Stable PT60 retained candidate branch identifier.",
+      "nullable": false,
+      "key_role": "foreign_key",
+      "join_target": "core_topology/at_interfacility_candidate_branches.csv:branch_id"
+    },
+    {
+      "name": "circuit_id",
+      "scope": "graphml_edge_attribute",
+      "type": "string",
+      "logical_type": "identifier",
+      "description": "Stable reconstructed circuit/group identifier from the fail-closed merge step.",
+      "nullable": false,
+      "key_role": "foreign_key",
+      "join_target": "core_topology/at_circuit_classification.csv:circuit_id"
+    },
+    {
+      "name": "confidence_score",
+      "scope": "graphml_edge_attribute",
+      "type": "double",
+      "logical_type": "ratio_or_score",
+      "description": "Internal candidate-construction confidence score; not a probability, precision estimate, or operator validation.",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": ""
+    },
+    {
+      "name": "r",
+      "scope": "graphml_edge_attribute",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `r` from `core_topology/at_paper_logic_graph.graphml`.",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": ""
+    },
+    {
+      "name": "status",
+      "scope": "graphml_edge_attribute",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Operational/status text encoded in the public source record.",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": ""
+    },
+    {
+      "name": "thermal_limit",
+      "scope": "graphml_edge_attribute",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `thermal_limit` from `core_topology/at_paper_logic_graph.graphml`.",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": ""
+    },
+    {
+      "name": "total_length_km",
+      "scope": "graphml_edge_attribute",
+      "type": "double",
+      "logical_type": "distance_km",
+      "description": "Candidate circuit or branch length in kilometres.",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": ""
+    },
+    {
+      "name": "voltage",
+      "scope": "graphml_edge_attribute",
+      "type": "string",
+      "logical_type": "voltage",
+      "description": "Voltage class encoded in the public source or derived candidate record.",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": ""
+    },
+    {
+      "name": "x",
+      "scope": "graphml_edge_attribute",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `x` from `core_topology/at_paper_logic_graph.graphml`.",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": ""
+    },
+    {
+      "name": "facility_code",
+      "scope": "graphml_node_attribute",
+      "type": "string",
+      "logical_type": "identifier",
+      "description": "Identifier field `facility_code` in `core_topology/at_paper_logic_graph.graphml`.",
+      "nullable": false,
+      "key_role": "facility_code",
+      "join_target": "E-REDES public facility code fields"
+    },
+    {
+      "name": "facility_name",
+      "scope": "graphml_node_attribute",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `facility_name` from `core_topology/at_paper_logic_graph.graphml`.",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": ""
+    },
+    {
+      "name": "facility_type",
+      "scope": "graphml_node_attribute",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `facility_type` from `core_topology/at_paper_logic_graph.graphml`.",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": ""
+    },
+    {
+      "name": "lat",
+      "scope": "graphml_node_attribute",
+      "type": "double",
+      "logical_type": "latitude_degrees",
+      "description": "Release field `lat` from `core_topology/at_paper_logic_graph.graphml`.",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": ""
+    },
+    {
+      "name": "lon",
+      "scope": "graphml_node_attribute",
+      "type": "double",
+      "logical_type": "longitude_degrees",
+      "description": "Release field `lon` from `core_topology/at_paper_logic_graph.graphml`.",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": ""
+    },
+    {
+      "name": "source_dataset",
+      "scope": "graphml_node_attribute",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `source_dataset` from `core_topology/at_paper_logic_graph.graphml`.",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": ""
+    }
+  ]
+}

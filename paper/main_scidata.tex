@@ -107,13 +107,15 @@ Missing & Intentionally unfilled; dependent readiness gates must block use. \\
 \end{tabular}
 \end{table}
 
-These statuses are carried into the released records and metadata so that consumers can apply explicit admissibility rules. The complete field-level dictionary is provided as \code{schema/data\_dictionary.csv}; \code{schema/file\_schema\_summary.csv}, \code{schema/join\_relationships.csv}, and \code{manifest.json} provide file-level structure, joins, versions, roles, and checksums.
+Table~\ref{tab:semantics} summarizes the evidence distinctions carried into the released records and metadata so that consumers can apply explicit admissibility rules. The complete field-level dictionary is provided as \code{schema/data\_dictionary.csv}; \code{schema/file\_schema\_summary.csv}, \code{schema/join\_relationships.csv}, and \code{manifest.json} provide file-level structure, joins, versions, roles, and checksums.
 
 \subsection{Reconstruction pipeline}
 
 Facility records are converted to circular footprints with radii of 50, 100, 250, and 500~m. Three node sets are evaluated: set A contains 409 AT substations, set B contains 484 AT substations and switching facilities, and set C contains all 586 technically relevant facilities. Each source line contributes two endpoints. When an endpoint intersects multiple footprints, the workflow resolves membership by centroid distance and records ambiguity where needed rather than forcing an unqualified assignment.
 
 Endpoints are then clustered at 0.5, 1, 5, 10, 25, and 50~m. Union--find merging groups features into circuit candidates under geometry-only, voltage-aware, or voltage-plus-status-aware compatibility rules. Explicit conflicts block merging in the corresponding compatibility mode. Endpoint-cluster degree is then used to distinguish ordinary terminal pairs from loop, self-loop, isolated, and tap or multi-terminal patterns.
+
+Figure~\ref{fig:pipeline} shows how retained and downgraded records pass through common validation and release-contract stages.
 
 \begin{figure}[t]
   \centering
@@ -146,13 +148,13 @@ The same workflow packages the reconstruction-sensitivity table, public-source t
 
 \subsection{Repository overview}
 
-\dataset version~1.0.1 has been prepared for a reserved figshare record. Its DOI is \url{https://doi.org/10.6084/m9.figshare.32984021}. The archive \path{PT60-Candidate-v1.0.1.tar.gz} has SHA-256 \hashvalue{0f8e476e8f74453da7cb587edbca1888186f5a1c7e4a2b0f2434d7f4ff0b289f}. The v1.0.1 file must replace the earlier uploaded draft before the item is published.
+\dataset version~1.0.1 has been prepared for a reserved figshare record. Its DOI is \url{https://doi.org/10.6084/m9.figshare.32984021}. The archive \path{PT60-Candidate-v1.0.1.tar.gz} has SHA-256 \hashvalue{f6af1d29af1487b4138eb2ada4ace9a3fa267faac4ea4e51adc8629388f18e3c}. The v1.0.1 file must replace the earlier uploaded draft before the item is published.
 
 The archive contains 63 documented files. It provides the retained candidate topology, the complete downgrade/rejection ledger, the GraphML multigraph, the 216-setting sensitivity record, provenance manifests, validation outputs, schemas, licensing documents, and checksum-linked inventory. Raw E-REDES downloads, raw OSM history/cache blobs, manuscript work files, optional Stage~1--5 interfaces, and non-operational electrical diagnostics are not part of the main public archive. The reasons and reproducibility consequences of these exclusions are recorded in \code{excluded\_artifacts.json}.
 
 \subsection{File organization}
 
-The top-level \path{README.md}, \path{CITATION.cff}, \path{DATA_LICENSE.md}, \path{ATTRIBUTION.md}, \path{CHANGELOG.md}, and \path{LICENSE-CODE-MIT} describe citation, licensing, attribution, version history, and scope. The archive-control files \path{manifest.json}, \path{checksums.sha256}, \path{archive_validation_summary.json}, and \path{excluded_artifacts.json} identify every released file and verify package integrity.
+The top-level \path{README.md}, \path{CITATION.cff}, \path{DATA_LICENSE.md}, \path{ATTRIBUTION.md}, \path{CHANGELOG.md}, and \path{LICENSE-CODE-MIT} describe citation, licensing, attribution, version history, and scope. The archive-control files \path{manifest.json}, \path{checksums.sha256}, \path{archive_validation_summary.json}, and \path{excluded_artifacts.json} identify every released file and verify package integrity. Table~\ref{tab:archive-layout} summarizes the directory-level organization.
 
 \begin{table}[t]
 \centering
@@ -163,6 +165,8 @@ The top-level \path{README.md}, \path{CITATION.cff}, \path{DATA_LICENSE.md}, \pa
 \end{table}
 
 \subsection{Released artifacts}
+
+Table~\ref{tab:composition} identifies the principal machine-readable records and their roles.
 
 \begin{table}[t]
 \centering
@@ -198,7 +202,7 @@ Released geometries use GeoJSON-style WGS~84 coordinates (EPSG:4326) in longitud
 
 \section{Data Overview}
 
-For the selected setting, the release accounts for all 1,342 reconstructed circuit candidates: 358 are retained as inter-facility candidate branches and 984 remain in the ledger with downgrade or rejection dispositions. This overview describes the contents of the deposited files; it does not estimate the correctness or completeness of the physical Portuguese network.
+For the selected setting, the release accounts for all 1,342 reconstructed circuit candidates: 358 are retained as inter-facility candidate branches and 984 remain in the ledger with downgrade or rejection dispositions. Figure~\ref{fig:funnel} reports the complete disposition, and Fig.~\ref{fig:topology-quality} reports aggregate graph structure. This overview describes the contents of the deposited files; it does not estimate the correctness or completeness of the physical Portuguese network.
 
 \begin{figure}[t]
   \centering
@@ -246,7 +250,7 @@ The GraphML/table parity check confirms that all 358 retained branch identifiers
 
 Sensitivity analysis addresses whether the selected release point is stable under the declared reconstruction design space. The direct endpoint-to-substation baseline yields 51 merged edges and a six-node largest component, whereas the selected reconstruction yields 358 retained edges and a 53-node largest component for the current snapshot. These values describe yield and connectivity under two workflows; they are not treated as external accuracy improvements.
 
-Across the 216-setting sweep, increasing the facility buffer from 100~m to 500~m at a 0.5~m endpoint snap threshold raises retained branches from 358 to 369 but also increases ambiguity from 61 to 89 and reduces the largest component from 53 to 27. At 50~m endpoint snapping, only three inter-facility circuits remain for each tested buffer. These results support the claim that reconstruction outputs are sensitive to plausible preprocessing settings and that the selected operating point is a documented trade-off rather than a uniquely correct solution.
+Across the 216-setting sweep, increasing the facility buffer from 100~m to 500~m at a 0.5~m endpoint snap threshold raises retained branches from 358 to 369 but also increases ambiguity from 61 to 89 and reduces the largest component from 53 to 27. At 50~m endpoint snapping, only three inter-facility circuits remain for each tested buffer. Figure~\ref{fig:sensitivity} shows these trade-offs and the selected operating point. These results support the claim that reconstruction outputs are sensitive to plausible preprocessing settings rather than identifying a uniquely correct solution.
 
 \begin{figure}[t]
   \centering
@@ -267,13 +271,13 @@ The external triangulation workflow searches for branch-level public evidence ou
 \input{generated_tables/osm_triangulation_table.tex}
 \end{table}
 
-For the current snapshot, 5,551 Portuguese 60~kV public ways were evaluated and all 358 retained candidate branches receive a non-empty public-evidence category, with 247 strong, 104 medium, and seven weak matches. This result provides public-source concordance and a branch-level evidence index. It does not establish operator validation or branch accuracy, because OSM coverage and tagging are non-authoritative. The internal independence audit inspected histories for the 271 unique matched OSM ways, covering 2,326 historical versions, and classifies 266 retained branches as having more-independent public evidence, 87 as unknown independence, and five as possibly same-source. The public archive contains only summary counts, evidence tables, and a sanitized branch-level audit; raw caches, user identifiers, changesets, and element-history dumps are excluded. These categories must not be interpreted as precision, recall, or confirmation of every retained branch.
+Table~\ref{tab:osm-triangulation} gives the category counts. For the current snapshot, 5,551 Portuguese 60~kV public ways were evaluated and all 358 retained candidate branches receive a non-empty public-evidence category, with 247 strong, 104 medium, and seven weak matches. This result provides public-source concordance and a branch-level evidence index. It does not establish operator validation or branch accuracy, because OSM coverage and tagging are non-authoritative. The internal independence audit inspected histories for the 271 unique matched OSM ways, covering 2,326 historical versions, and classifies 266 retained branches as having more-independent public evidence, 87 as unknown independence, and five as possibly same-source. The public archive contains only summary counts, evidence tables, and a sanitized branch-level audit; raw caches, user identifiers, changesets, and element-history dumps are excluded. These categories must not be interpreted as precision, recall, or confirmation of every retained branch.
 
 \subsection{Claim-bounded validation strategy}
 
 The release does not use human-adjudicated truth labels and does not report an accuracy metric. The validation argument is deliberately claim-bounded. Internal tests establish that the released records satisfy their declared schema, classification, provenance, and graph contracts. The 216-setting sweep quantifies sensitivity to reconstruction choices. The external comparison records concordance with a separately maintained public geospatial layer while preserving the evidence category and source caveat for every retained branch. Together, these tests support reproducibility, internal consistency, sensitivity transparency, and public-source triangulation; they do not support a claim that the inferred connections reproduce the operator's true network.
 
-The public-source comparison is evaluated at branch level but is not converted into binary ground truth. Consequently, the manuscript reports category counts and matching variables rather than precision, recall, $F_1$, or confidence intervals. Precision is not independently estimated, and national or real-network recall is not estimable because neither an authoritative branch census nor a probability sample of true Portuguese 60~kV connections is available.
+The public-source comparison is evaluated at branch level but is not converted into binary ground truth. Consequently, the manuscript reports category counts and matching variables rather than precision, recall, $F_1$, or confidence intervals. Precision is not independently estimated, and national or real-network recall is not estimable because neither an authoritative branch census nor a probability sample of true Portuguese 60~kV connections is available. Table~\ref{tab:claim-bounded-validation} states the supported and excluded interpretation for each validation layer.
 
 \begin{table}[t]
 \centering
@@ -327,7 +331,7 @@ The release has four main limitations. First, it is a candidate topology derived
 
 \section*{Data Availability}
 
-\dataset version~1.0.1 is prepared for the reserved figshare DOI \url{https://doi.org/10.6084/m9.figshare.32984021}. The file \path{PT60-Candidate-v1.0.1.tar.gz}, SHA-256 \hashvalue{0f8e476e8f74453da7cb587edbca1888186f5a1c7e4a2b0f2434d7f4ff0b289f}, must replace the earlier uploaded draft before publication. It contains the core topology, full circuit ledger, GraphML, sensitivity sweep, provenance, validation, corrected schema/data dictionary, licensing, attribution, manifest, and checksum records described in Data Records. Raw source downloads and optional diagnostic/interface artifacts are excluded as documented in \path{excluded\_artifacts.json}. E-REDES-derived records remain subject to the attribution and indication-of-modification terms documented in \path{DATA\_LICENSE.md} and \path{ATTRIBUTION.md}; the software licence does not replace those data terms.
+\dataset version~1.0.1 is prepared for the reserved figshare DOI \url{https://doi.org/10.6084/m9.figshare.32984021}. The file \path{PT60-Candidate-v1.0.1.tar.gz}, SHA-256 \hashvalue{f6af1d29af1487b4138eb2ada4ace9a3fa267faac4ea4e51adc8629388f18e3c}, must replace the earlier uploaded draft before publication. It contains the core topology, full circuit ledger, GraphML, sensitivity sweep, provenance, validation, corrected schema/data dictionary, licensing, attribution, manifest, and checksum records described in Data Records. Raw source downloads and optional diagnostic/interface artifacts are excluded as documented in \path{excluded\_artifacts.json}. E-REDES-derived records remain subject to the attribution and indication-of-modification terms documented in \path{DATA\_LICENSE.md} and \path{ATTRIBUTION.md}; the software licence does not replace those data terms.
 
 \section*{Code Availability}
 

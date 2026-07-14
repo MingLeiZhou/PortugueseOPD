@@ -3,7 +3,7 @@
   "inputs": [
     {
       "path": "data/releases/PT60-Candidate-v1.0.1/manifest.json",
-      "sha256": "d94c927bd888a257d5c480039990408d836c9b71497c565ac5e1772c642fe255"
+      "sha256": "a81a47be331adc79861daacac00ea978a88202330b426b1d456bee5058cf57a8"
     },
     {
       "path": "data/releases/PT60-Candidate-v1.0.1/core_topology/at_interfacility_candidate_branches.csv",
@@ -35,7 +35,7 @@
     },
     {
       "path": "data/releases/PT60-Candidate-v1.0.1/schema/data_dictionary.csv",
-      "sha256": "b97dc513fcbeba2608cc3ba949533977d27ec2290cb7797baef0b6cf3554a3d0"
+      "sha256": "702d3a1ecaf09f1cd453c81f94d0b2b6d176161d8f838f4f3fce7c6ca93e8ff7"
     }
   ],
   "outputs": [

@@ -1,0 +1,159 @@
+{
+  "generated_at": "2026-07-06T16:14:38+00:00",
+  "scope": "Step 3A electrical parameter feasibility validation only",
+  "reference_paper": {
+    "title": "Building Power Grid Models from Open Data: A Complete Pipeline from OpenStreetMap to Optimal Power Flow",
+    "url": "https://arxiv.org/abs/2605.04289",
+    "method_elements_checked": [
+      "voltage-class line LUT",
+      "separate overhead/cable LUT",
+      "geometry length",
+      "transformer voltage-pair LUT",
+      "topology and capacity factors",
+      "short-circuit and aggregate-statistics validation feasibility"
+    ]
+  },
+  "input_topology": {
+    "candidate_branch_count": 358,
+    "merged_circuits_from_step2a2": 1342,
+    "candidate_graph_nodes_from_step2a2": 484,
+    "candidate_graph_edges_from_step2a2": 358
+  },
+  "branch_parameter_input_quality": {
+    "missing_voltage": 0,
+    "missing_length": 0,
+    "abnormal_length": 0,
+    "mixed_voltage": 0,
+    "mixed_status": 0,
+    "ambiguous_asset_type": 80,
+    "parallel_branch_records": 55
+  },
+  "parameter_estimation": {
+    "branches_attempted": 358,
+    "branches_with_numeric_estimates": 0,
+    "branches_missing_lookup_source": 358,
+    "status": "no numeric R/X/B/current/thermal estimates assigned because trustworthy Portuguese LUT values were not found"
+  },
+  "short_circuit_validation": {
+    "substations_with_short_circuit_power_at": 398,
+    "substations_matched_to_candidate_graph_nodes": 398,
+    "can_validate_branch_estimates_now": false,
+    "reason": "short-circuit data is node-level equivalent strength and no branch estimates exist yet"
+  },
+  "transformer_feasibility": {
+    "candidate_graph_facilities": 484,
+    "facilities_with_transformation_ratio": 398,
+    "facilities_with_installed_power": 398,
+    "transformer_impedance_available": false,
+    "tap_settings_available": false
+  },
+  "parallel_capacity_factor_feasibility": {
+    "topology_factor_needed": true,
+    "capacity_factor_needed": true,
+    "circuit_count_available": false,
+    "parallel_branch_groups_same_pair_voltage_status": 26,
+    "parallel_branch_records_same_pair_voltage_status": 52,
+    "max_parallel_records_same_pair_voltage_status": 2,
+    "available_calibration_proxies": [
+      "total line length by voltage class from RND geometry",
+      "parallel candidate branches between same facilities",
+      "installed transformer capacity",
+      "short-circuit strength",
+      "reception capacity and load levels"
+    ],
+    "raw_rnd_length_by_voltage_from_step2a2": [
+      {
+        "voltage": "130 kV",
+        "line_count": 11,
+        "total_length_km": 42.127044
+      },
+      {
+        "voltage": "60 kV",
+        "line_count": 5323,
+        "total_length_km": 9760.273898
+      }
+    ],
+    "calibration_assessment": "Current proxies are useful for diagnostics but do not replace official circuit-km, conductor, or rating statistics. Factors would be assumptions until calibrated.",
+    "false_precision_risk": "high"
+  },
+  "source_audit": [
+    {
+      "source_name": "Reference paper: Building Power Grid Models from Open Data",
+      "url_or_local_path": "https://arxiv.org/abs/2605.04289",
+      "parameter_type": "method; US LUT examples; topology/capacity factors; per-unit conversion",
+      "voltage_level": "US transmission values, not Portugal-specific",
+      "applicability_to_portugal": "method transferable; numeric tables not directly transferable",
+      "directly_usable": false,
+      "confidence": "high for method; low for Portuguese numeric reuse",
+      "notes": "<PROJECT_ROOT>/docs/2605.04289v1.pdf: exists=False; <LOCAL_REFERENCE_PATH>/2605.04289v1(1).pdf: exists=False"
+    },
+    {
+      "source_name": "E-REDES RND AT line dataset",
+      "url_or_local_path": "data/raw/rede-at-teste.csv; https://e-redes.opendatasoft.com/pages/rnd/",
+      "parameter_type": "geometry, voltage, status, overhead/subterranean type",
+      "voltage_level": "60 kV and 130 kV observed in raw AT features",
+      "applicability_to_portugal": "direct",
+      "directly_usable": true,
+      "confidence": "high",
+      "notes": "No conductor type, circuit count, impedance, current rating, or thermal rating fields found."
+    },
+    {
+      "source_name": "E-REDES Caracteristicas da Rede",
+      "url_or_local_path": "data/raw/caracteristicas-da-rede.csv; https://e-redes.opendatasoft.com/explore/dataset/caracteristicas-da-rede/information/",
+      "parameter_type": "transformer ratio, installed power, short-circuit power/current, neutral regime",
+      "voltage_level": "AT/MT substations",
+      "applicability_to_portugal": "direct",
+      "directly_usable": true,
+      "confidence": "high",
+      "notes": "Supports transformer and short-circuit feasibility, but not branch R/X/B or transformer impedance."
+    },
+    {
+      "source_name": "E-REDES Carga na Subestacao",
+      "url_or_local_path": "data/raw/carga-na-subestacao.csv; https://e-redes.opendatasoft.com/explore/dataset/carga-na-subestacao/information/",
+      "parameter_type": "natural load, installed power, guaranteed power, availability",
+      "voltage_level": "AT/MT substations",
+      "applicability_to_portugal": "direct",
+      "directly_usable": true,
+      "confidence": "high",
+      "notes": "Useful validation and risk features; not line electrical parameters."
+    },
+    {
+      "source_name": "E-REDES Capacidade de Rececao RND",
+      "url_or_local_path": "data/raw/capacidade-rececao-rnd.csv; https://e-redes.opendatasoft.com/explore/dataset/capacidade-rececao-rnd/information/",
+      "parameter_type": "hosting/reception capacity, connection power, group capacity",
+      "voltage_level": "AT and MT bus capacity fields",
+      "applicability_to_portugal": "direct but approximate",
+      "directly_usable": true,
+      "confidence": "medium",
+      "notes": "E-REDES page says values are approximations and do not replace formal E-REDES consultation."
+    },
+    {
+      "source_name": "Portuguese conductor/cable/transformer standard sources",
+      "url_or_local_path": "not found in downloaded datasets",
+      "parameter_type": "R/X/B/rated current/transformer impedance",
+      "voltage_level": "60 kV; 130 kV if retained later",
+      "applicability_to_portugal": "required",
+      "directly_usable": false,
+      "confidence": "red",
+      "notes": "Need E-REDES/REN standards, public engineering standards, manufacturer catalogs, or literature before assigning numeric LUT rows."
+    }
+  ],
+  "final_feasibility": {
+    "topological_risk_analysis": "YELLOW/GREEN for non-electrical graph features",
+    "approximate_power_flow_feasibility_testing": "YELLOW only after sourced LUTs",
+    "ac_power_flow": "RED",
+    "opf": "RED",
+    "cascading_failure_simulation": "RED for electrical cascading; YELLOW only for topology stress experiments"
+  },
+  "outputs": {
+    "availability_matrix": "<PROJECT_ROOT>/data/processed/at_parameter_availability_matrix.csv",
+    "line_parameter_inputs": "<PROJECT_ROOT>/data/processed/at_line_parameter_inputs.csv",
+    "voltage_class_inventory": "<PROJECT_ROOT>/data/processed/at_voltage_class_inventory.csv",
+    "candidate_lut_template": "<PROJECT_ROOT>/data/processed/at_candidate_lut_template.csv",
+    "candidate_branch_parameter_estimates": "<PROJECT_ROOT>/data/processed/at_candidate_branch_parameter_estimates.csv",
+    "transformer_parameter_availability": "<PROJECT_ROOT>/data/processed/at_transformer_parameter_availability.csv",
+    "short_circuit_validation_inputs": "<PROJECT_ROOT>/data/processed/at_short_circuit_validation_inputs.csv",
+    "report": "<PROJECT_ROOT>/reports/09_electrical_parameter_feasibility.md",
+    "coverage_map": "<PROJECT_ROOT>/reports/maps/at_parameter_coverage_map.html"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-07-14T13:45:52+00:00",
+  "status": "PASS_WITH_WARNINGS",
+  "checks_total": 25,
+  "check_status_counts": {
+    "PASS": 23,
+    "WARN": 2
+  },
+  "frozen_counts": {
+    "raw_line_features": 5334,
+    "valid_line_geometries": 5334,
+    "invalid_or_dropped_geometries": 0,
+    "retained_branches": 358,
+    "circuit_ledger_rows": 1342,
+    "downgraded_or_rejected_records": 984,
+    "sensitivity_sweep_rows": 216,
+    "graph_nodes": 484,
+    "graph_edges": 358,
+    "graph_isolated_nodes": 109,
+    "graph_parallel_groups": 27,
+    "graph_parallel_edge_records": 55,
+    "graph_parallel_extra_edges": 28
+  },
+  "classification_counts": {
+    "ambiguous": 61,
+    "inter-facility": 358,
+    "isolated": 215,
+    "loop": 5,
+    "self-loop": 101,
+    "single-facility": 496,
+    "tap / multi-terminal": 106
+  },
+  "terminal_count_distribution": {
+    "0": 5,
+    "1": 2,
+    "2": 1223,
+    "3": 100,
+    "4": 10,
+    "6": 2
+  },
+  "coordinate_reference": {
+    "source_and_release_geometry": "GeoJSON longitude/latitude coordinates; exact source CRS declaration not present in frozen GeoJSON metadata.",
+    "metric_reconstruction_crs": "LOCAL_EQUIRECTANGULAR_PORTUGAL lon0=-8.532604, lat0=39.567953, units=m",
+    "crs_submission_gap": "Exact source/release CRS should still be stated in the Data Records section and data dictionary."
+  },
+  "core_artifact_hashes_sha256": {
+    "data/processed/at_interfacility_candidate_branches.csv": "2746f15f149041287d9edf2ab0a454fc9c26fe3746d832e39409b9e9f2b1312d",
+    "data/processed/at_circuit_classification.csv": "2576c693fc3b4b2780b3675c09e1adfa2ed8e8a8081a7f8f0cea5dba9795713c",
+    "data/processed/at_paper_logic_graph.graphml": "d51731446bb3f848ab9dd396ca7c04752dc972a5b8e98ba978eefe4a1f5f9a69",
+    "data/processed/at_paper_logic_parameter_sweep.csv": "d2b00287e68330e98982b99ead58a648be55793cd0356657760b0852e1b04f1e",
+    "data/processed/at_paper_logic_summary.json": "8ab105d73fffb791f7e480256f320d9ec25533f6f4cd8876590e8f5b3d30ed03",
+    "data/processed/at_endpoint_index.csv": "46641ba62603751727a9edf3893d0988fe3e526dfb62d017d6de4dd8f97a8722",
+    "data/processed/at_endpoint_index_summary.csv": "a18728d325be735c6157ccf56315de5c645fd383529564770636dd1f0ddc5662",
+    "data/processed/at_endpoint_facility_membership_summary.csv": "29ca10d6d794c04f8b24c43d40d1b71b68eeaef7dd0931f33177978f58a7dc97",
+    "data/processed/at_facility_footprints_summary.csv": "e51ab84cc952f0b93a3bac340c4ed2a9a496c3ddb2a0568d74adb93489052663"
+  },
+  "outputs": {
+    "summary": "data/processed/topology_validation/internal_validation_summary.json",
+    "checks": "data/processed/topology_validation/internal_validation_checks.csv",
+    "missingness": "data/processed/topology_validation/internal_validation_missingness.csv",
+    "report": "reports/106_pt60_internal_validation_summary.md"
+  },
+  "claim_boundary": "Internal validation checks release consistency and machine-readability only; it does not validate physical topology truth, precision, recall, or operator confirmation."
+}

@@ -1,0 +1,7 @@
+endpoint_snap_threshold_m,total_endpoint_clusters,singleton_clusters,clusters_with_2_endpoints,clusters_with_more_than_2_endpoints,endpoint_clustering_rate_pct,high_degree_endpoint_clusters,mixed_voltage_clusters,mixed_status_clusters
+0.5,6631,2792,3670,169,73.8283,0,0,1
+1.0,6417,2642,3482,293,75.2343,13,0,23
+5.0,5537,2125,2593,819,80.0806,90,0,96
+10.0,4777,1178,2583,1016,88.9576,155,0,119
+25.0,3872,543,2153,1176,94.91,291,0,127
+50.0,3477,406,1882,1189,96.1942,376,1,126

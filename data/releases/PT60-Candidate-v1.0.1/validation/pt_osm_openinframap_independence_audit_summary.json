@@ -1,0 +1,44 @@
+{
+  "generated_at": "2026-07-14T13:40:16+00:00",
+  "osm_records_with_metadata": 5551,
+  "matched_branches_audited": 358,
+  "branches_with_timestamped_osm_metadata": 358,
+  "unique_matched_osm_ways": 271,
+  "unique_matched_osm_ways_with_history": 271,
+  "history_versions_total": 2326,
+  "branches_with_history_source_risk": 1,
+  "branch_independence_counts": {
+    "more_independent_public_evidence": 266,
+    "possibly_same_source": 5,
+    "unknown": 87
+  },
+  "branch_evidence_role_counts": {
+    "endpoint_name_or_ref+geometry_corridor+operator_tag": 189,
+    "endpoint_name_or_ref+operator_tag": 5,
+    "geometry_corridor": 1,
+    "geometry_corridor+operator_tag": 22,
+    "operator_tag": 4,
+    "partial_endpoint_name_or_ref+geometry_corridor+operator_tag": 78,
+    "partial_endpoint_name_or_ref+operator_tag": 59
+  },
+  "operator_tag_interpretation": "operator=E-REDES is treated as an OSM public tag, not operator confirmation.",
+  "recommended_article_language": "public-source triangulation/concordance",
+  "prohibited_article_language": [
+    "operator validation",
+    "independent precision",
+    "recall",
+    "accuracy",
+    "ground truth"
+  ],
+  "outputs": {
+    "branch_audit": "validation/pt_topology_cross_validation_osm_matches_independence_audit.csv",
+    "summary": "validation/pt_osm_openinframap_independence_audit_summary.json",
+    "excluded_from_main_public_archive": [
+      "raw OSM/OpenInfraMap cache blobs",
+      "OSM matched-way history dump",
+      "OSM element-level audit with user identifiers or changesets"
+    ]
+  },
+  "public_release_note": "The main public archive includes only summary counts and a sanitized branch-level independence audit. Raw OSM/OpenInfraMap cache blobs, matched-way history dumps, user identifiers and changeset-level records are excluded.",
+  "internal_generation_note": "Element-level and history-cache outputs were used internally and excluded from the main public archive."
+}

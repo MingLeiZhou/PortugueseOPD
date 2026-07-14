@@ -1,0 +1,335 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PT60-Candidate provenance/reproduction_source_manifest.json",
+  "description": "Path-level JSON field inventory schema. Nested structures are documented in data_dictionary.csv using JSON-pointer-like paths.",
+  "type": [
+    "object",
+    "array"
+  ],
+  "x-dataset-version": "v1.0.1",
+  "x-release-path": "provenance/reproduction_source_manifest.json",
+  "x-field-pointers": [
+    {
+      "pointer": "$.code_release_allowed",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `$.code_release_allowed`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.datasets",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.datasets`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.generated_at",
+      "inferred_type": "string",
+      "logical_type": "datetime_or_date",
+      "description": "Source provenance or release-control field `$.generated_at`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.portal_license",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.portal_license`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.portal_license_statement_url",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$.portal_license_statement_url` in `provenance/reproduction_source_manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.portal_license_url",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$.portal_license_url` in `provenance/reproduction_source_manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.public_derived_data_release_allowed",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `$.public_derived_data_release_allowed`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.public_release_conditions",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.public_release_conditions`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.public_release_conditions[*]",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.public_release_conditions[*]`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.reproduction_mode",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.reproduction_mode`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.required_attribution",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.required_attribution`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_rows",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.source_rows`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_rows[*].acquisition_allowed",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `$.source_rows[*].acquisition_allowed`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_rows[*].attribution_observed",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.source_rows[*].attribution_observed`.",
+      "nullable": true
+    },
+    {
+      "pointer": "$.source_rows[*].attribution_required",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `$.source_rows[*].attribution_required`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_rows[*].catalog_license_metadata_status",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.source_rows[*].catalog_license_metadata_status`.",
+      "nullable": true
+    },
+    {
+      "pointer": "$.source_rows[*].catalog_license_observed",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.source_rows[*].catalog_license_observed`.",
+      "nullable": true
+    },
+    {
+      "pointer": "$.source_rows[*].catalog_license_url_observed",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$.source_rows[*].catalog_license_url_observed` in `provenance/reproduction_source_manifest.json`.",
+      "nullable": true
+    },
+    {
+      "pointer": "$.source_rows[*].checked_at",
+      "inferred_type": "string",
+      "logical_type": "datetime_or_date",
+      "description": "Source provenance or release-control field `$.source_rows[*].checked_at`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_rows[*].csv_export_url",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$.source_rows[*].csv_export_url` in `provenance/reproduction_source_manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_rows[*].dataset_id",
+      "inferred_type": "string",
+      "logical_type": "identifier",
+      "description": "Identifier field `$.source_rows[*].dataset_id` in `provenance/reproduction_source_manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_rows[*].geojson_export_url",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$.source_rows[*].geojson_export_url` in `provenance/reproduction_source_manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_rows[*].license_basis",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.source_rows[*].license_basis`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_rows[*].license_metadata_status",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.source_rows[*].license_metadata_status`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_rows[*].license_observed",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.source_rows[*].license_observed`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_rows[*].license_review_evidence",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.source_rows[*].license_review_evidence`.",
+      "nullable": true
+    },
+    {
+      "pointer": "$.source_rows[*].license_review_status",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.source_rows[*].license_review_status`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_rows[*].license_url_observed",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$.source_rows[*].license_url_observed` in `provenance/reproduction_source_manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_rows[*].local_snapshot_count",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.source_rows[*].local_snapshot_count`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_rows[*].local_snapshots_json",
+      "inferred_type": "string",
+      "logical_type": "json_encoded_string",
+      "description": "Source provenance or release-control field `$.source_rows[*].local_snapshots_json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_rows[*].metadata_status",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.source_rows[*].metadata_status`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_rows[*].metadata_url",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$.source_rows[*].metadata_url` in `provenance/reproduction_source_manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_rows[*].portal_license_statement_url",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$.source_rows[*].portal_license_statement_url` in `provenance/reproduction_source_manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_rows[*].portal_url",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$.source_rows[*].portal_url` in `provenance/reproduction_source_manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_rows[*].records_count",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.source_rows[*].records_count`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_rows[*].redistribution_cleared",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `$.source_rows[*].redistribution_cleared`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_rows[*].redistribution_gate",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.source_rows[*].redistribution_gate`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_rows[*].required_attribution",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.source_rows[*].required_attribution`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_rows[*].source_role",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.source_rows[*].source_role`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.source_rows[*].topology_critical",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `$.source_rows[*].topology_critical`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.status",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.status`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.topology_critical_datasets",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.topology_critical_datasets`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.topology_critical_using_portal_license_fallback",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.topology_critical_using_portal_license_fallback`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.topology_critical_with_approved_review",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.topology_critical_with_approved_review`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.topology_critical_with_effective_cc_by_4_0",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.topology_critical_with_effective_cc_by_4_0`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.topology_critical_with_explicit_catalog_license",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.topology_critical_with_explicit_catalog_license`.",
+      "nullable": false
+    }
+  ]
+}

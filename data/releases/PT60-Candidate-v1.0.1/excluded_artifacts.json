@@ -1,0 +1,60 @@
+{
+  "generated_at": "2026-07-14T17:28:17Z",
+  "dataset_version": "v1.0.1",
+  "excluded_or_non_core": [
+    {
+      "artifact_class": "raw_e_redes_downloads",
+      "paths": [
+        "data/raw/*"
+      ],
+      "decision": "excluded_from_default_public_archive",
+      "reason": "Source IDs, URLs and checked-at timestamps are provided instead. Raw snapshot deposit requires final repository/license review."
+    },
+    {
+      "artifact_class": "third_party_parameter_documents_and_catalogs",
+      "paths": [
+        "manufacturer catalogs",
+        "standards excerpts",
+        "non-open PDFs"
+      ],
+      "decision": "excluded_public",
+      "reason": "Redistribution permission is not documented."
+    },
+    {
+      "artifact_class": "acpf_dcopf_operational_diagnostics",
+      "paths": [
+        "data/processed/acpf_*",
+        "data/processed/dcopf_*"
+      ],
+      "decision": "excluded_from_core_archive",
+      "reason": "Electrical parameters and operating conditions remain incomplete or diagnostic."
+    },
+    {
+      "artifact_class": "manual_dual_review_protocol_outputs",
+      "paths": [
+        "data/processed/topology_validation/pt_topology_validation_*"
+      ],
+      "decision": "excluded_from_public_validation_route",
+      "reason": "The v1.0.1 article route does not use dual independent human adjudication or report precision."
+    },
+    {
+      "artifact_class": "raw_osm_openinframap_cache_and_user_history",
+      "paths": [
+        "raw OSM/OpenInfraMap cache blobs",
+        "OSM matched-way history dump",
+        "OSM element-level audit containing user identifiers or changesets"
+      ],
+      "decision": "excluded_from_main_public_archive",
+      "reason": "The main public archive keeps table-level evidence and sanitized branch-level independence categories, but excludes raw public-source cache blobs and OSM user/history dumps."
+    },
+    {
+      "artifact_class": "optional_interfaces_and_diagnostics",
+      "paths": [
+        "optional_interfaces/**",
+        "optional_diagnostic/**"
+      ],
+      "decision": "excluded_from_main_public_archive",
+      "reason": "Optional consumer interfaces and non-operational diagnostics require separate labeling and should be deposited as a separate supplementary archive if needed."
+    }
+  ]
+}
