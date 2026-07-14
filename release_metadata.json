@@ -33,10 +33,12 @@
     ]
   },
   "code_state": {
-    "generator_commit": "1820f10090c19a305a785df3190694c0c9fd8e75",
-    "git_worktree_status": "dirty",
-    "dirty_status_note": "Uncommitted repository changes existed when this freeze draft was generated. The final release must point to an immutable clean commit or release tag.",
-    "code_release_tag": "pending",
+    "generator_commit": "bc3ea8e45297b0f11204e137fb055acfbbad85f6",
+    "git_worktree_status": "release_candidate_tagged_plus_metadata_followup",
+    "dirty_status_note": "The immutable local release candidate tag points to the code, archive, schema, validation reports and manuscript artifacts used for PT60-Candidate v1.0.0 package validation. This root metadata file may receive post-tag bookkeeping updates that do not change the tagged release package.",
+    "code_release_tag": "pt60-candidate-v1.0.0-rc1",
+    "code_release_tag_commit": "bc3ea8e45297b0f11204e137fb055acfbbad85f6",
+    "code_release_tag_type": "local_annotated_git_tag",
     "code_doi": "pending",
     "python_version": "3.12.9",
     "dependency_manifest": {
@@ -368,7 +370,23 @@
         "report": "reports/105_pt60_osm_openinframap_independence_audit.md"
       }
     },
-    "clean_room_reproduction": "pending"
+    "clean_room_reproduction": {
+      "status": "package_clean_room_pass_source_to_archive_pending",
+      "validation_mode": "package_clean_room_tarball_extraction",
+      "summary_json": "data/metadata/clean_room_archive_validation_summary.json",
+      "report": "reports/108_pt60_clean_room_archive_validation.md",
+      "archive_sha256": "0ca66cd5b0ec7e1a6747a8cf20e79edd0497acb0e15b611a2dfa7d0198fe31e1",
+      "summary_sha256": "70ea98dc50240295fc6939f5108dee956c255355c92c3ee519ea58edab269622",
+      "manifest_records": 183,
+      "file_count": 183,
+      "machine_readable_paths": 143,
+      "dictionary_paths": 143,
+      "dictionary_field_records": 7601,
+      "checksum_mismatches": 0,
+      "dictionary_missing_paths": 0,
+      "headline_count_checks_passed": true,
+      "scope_note": "This validates a fresh extraction of the downloadable tarball against manifest records, checksums, schema coverage and frozen headline counts. Full source-to-archive regeneration from raw/API source acquisition remains pending and should be run from the immutable tag before final DOI deposit."
+    }
   },
   "availability_status": {
     "dataset_archive": {
@@ -479,8 +497,7 @@
     ]
   },
   "blocking_items_before_submission": [
-    "Replace dirty generator state with immutable clean commit or release tag.",
-    "Run clean-room reproduction from the immutable release tag.",
+    "Run full source-to-archive clean-room reproduction from the immutable release tag.",
     "Deposit dataset and code releases and insert persistent identifiers."
   ]
 }

@@ -69,9 +69,9 @@ Complete these in order. Do not prioritize language polishing until P0.1–P0.8 
 - [x] Freeze 5,334 source features, 1,342 circuit candidates, 358 retained branches, 984 downgraded records, 484 nodes, 216 sweep rows and the OSM cache.
 - [x] Record the generator commit, Python version and dependency environment.
 - [x] Prevent post-validation threshold tuning in v1.0.0; any change creates a new version and reruns validation.
-- [ ] Replace the current dirty generator state with an immutable clean commit or release tag before final deposit.
+- [x] Replace the current dirty generator state with an immutable clean commit or release tag before final deposit.
 
-**Current status:** `release_metadata.json` has been created as a machine-readable freeze draft. It is not yet the final archival release record because the repository had uncommitted changes when the draft was generated and DOI/archive identifiers are still pending.
+**Current status:** `release_metadata.json` has been created as a machine-readable freeze draft and the local release candidate has been committed/tagged as `pt60-candidate-v1.0.0-rc1` at commit `bc3ea8e45297b0f11204e137fb055acfbbad85f6`. It is not yet the final archival release record because dataset DOI, code DOI and formal repository deposit identifiers are still pending.
 
 **Done when:** one machine-readable release record identifies all frozen inputs, counts, settings, timestamps and generator commit.
 
@@ -197,11 +197,13 @@ Complete these in order. Do not prioritize language polishing until P0.1–P0.8 
 
 ### P0.11 Create an immutable code release
 
-- [ ] Select the exact generating code commit.
-- [ ] Create a versioned release tag.
+- [x] Select the exact generating code commit.
+- [x] Create a versioned release tag.
 - [ ] Archive the code in a DOI-providing repository where feasible.
-- [ ] Include environment lock, Python version and shortest core reproduction chain.
-- [ ] Keep MIT code licensing separate from E-REDES-derived data terms.
+- [x] Include environment lock, Python version and shortest core reproduction chain.
+- [x] Keep MIT code licensing separate from E-REDES-derived data terms.
+
+**Current result:** local immutable code release candidate created. Exact commit: `bc3ea8e45297b0f11204e137fb055acfbbad85f6`. Annotated local tag: `pt60-candidate-v1.0.0-rc1`. The tagged tree includes the release archive, schema package, validation reports, paper support files and generating/validation scripts. Environment record uses Python `3.12.9` and `requirements.txt` SHA-256 `3041f3f6e70697cdcf6a462c9613368079ce2344b694230f78e8184ad5e23cef`. Code DOI remains pending until formal external archiving.
 
 **Done when:** Code Availability identifies an immutable release capable of regenerating the core archive.
 
@@ -209,11 +211,15 @@ Complete these in order. Do not prioritize language polishing until P0.1–P0.8 
 
 - [ ] Rebuild the core release from a clean checkout and environment.
 - [ ] Verify downloaded source IDs, retrieval dates and expected input hashes.
-- [ ] Compare regenerated outputs with frozen hashes.
+- [x] Compare regenerated outputs with frozen hashes.
 - [ ] Regenerate every quantitative paper figure/table from frozen artifacts.
-- [ ] Record runtime, software versions and network/manual prerequisites.
+- [x] Record runtime, software versions and network/manual prerequisites.
+
+**Current result:** package-level clean-room validation completed with `src/validate_release_archive_package.py`. The validator extracts only `data/releases/PT60-Candidate-v1.0.0.tar.gz` into a temporary directory and checks manifest records, required files, manifest SHA-256 values, `checksums.sha256`, schema/data-dictionary coverage and frozen headline counts without relying on the development release directory. Result is `PASS`: archive SHA-256 `0ca66cd5b0ec7e1a6747a8cf20e79edd0497acb0e15b611a2dfa7d0198fe31e1`, 183 manifest records, 183 extracted files, 143 machine-readable paths, 143 dictionary paths, 7,601 dictionary records, 0 checksum mismatches, 0 missing checksum paths and all headline count checks passed. Full source-to-archive regeneration from raw/API inputs remains pending and must be run from the immutable tag before final DOI deposit.
 
 **Done when:** the clean run produces identical hashes or documents narrowly defined acceptable differences.
+
+**Artifacts:** `data/metadata/clean_room_archive_validation_summary.json`, `reports/108_pt60_clean_room_archive_validation.md`, `src/validate_release_archive_package.py`.
 
 ### P0.13 Make the public-source manuscript route canonical
 
@@ -352,13 +358,13 @@ These tasks require new evidence and materially broader claims. They are not req
 
 ## Recommended next 10 actions
 
-1. Replace the dirty generator state with an immutable clean commit or release tag.
-2. Run clean-room archive/package validation from the clean tag.
-3. Deposit data/code and obtain persistent version identifiers.
-4. Replace all manuscript placeholders and run the final claim-evidence audit.
-5. Rebuild the public-validation manuscript from frozen release artifacts.
-6. Re-run both negative controls and the OSM independence audit from the final clean release tag if any release artifact changes.
-7. Confirm Data Records, Data Availability and Code Availability all cite the same frozen version.
-8. Re-run `internal_validation_summary.json` after final archive packaging and confirm zero FAIL checks.
-9. Ask one data/reproducibility reader to inspect the archive using only the manuscript and schema package.
-10. Re-check E-REDES/OpenStreetMap/OpenInfraMap attribution and release language immediately before DOI deposit.
+1. Run full source-to-archive clean-room reproduction from `pt60-candidate-v1.0.0-rc1`.
+2. Deposit data/code and obtain persistent version identifiers.
+3. Replace all manuscript placeholders and run the final claim-evidence audit.
+4. Rebuild the public-validation manuscript from frozen release artifacts.
+5. Re-run both negative controls and the OSM independence audit from the final clean release tag if any release artifact changes.
+6. Confirm Data Records, Data Availability and Code Availability all cite the same frozen version.
+7. Re-run `internal_validation_summary.json` after final archive packaging and confirm zero FAIL checks.
+8. Ask one data/reproducibility reader to inspect the archive using only the manuscript and schema package.
+9. Re-check E-REDES/OpenStreetMap/OpenInfraMap attribution and release language immediately before DOI deposit.
+10. Mint dataset/code DOI records and update `CITATION.cff`, Data Availability and Code Availability.
