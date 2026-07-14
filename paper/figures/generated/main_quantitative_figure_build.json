@@ -17,11 +17,11 @@
   "outputs": [
     {
       "path": "paper/figures/generated/fig2_reconstruction_funnel.pdf",
-      "sha256": "369796c23bc822ed4372b22cd028f218f789a22e0fd95e6e80b8a0d08bf00310"
+      "sha256": "ab660dac571085324c3102b27d5a46e59b2b9ab48f67bb1f6ceef19ae6bfb7fb"
     },
     {
       "path": "paper/figures/generated/fig2_reconstruction_funnel.svg",
-      "sha256": "a874d6efafeb60a6269d64a446ad10b24afc800f91895e8a528ed024b9f80b32"
+      "sha256": "023e7048130dc2f9e461922a92f38adc769e1269b79b8d59e2c54359e3e14a91"
     },
     {
       "path": "paper/figures/generated/fig2_reconstruction_funnel.png",
@@ -29,11 +29,11 @@
     },
     {
       "path": "paper/figures/generated/fig3_topology_quality.pdf",
-      "sha256": "15290618cd77baffd3b208b59ab1de21a043bf53de2d66f4b9b1cc63d0b0c569"
+      "sha256": "284eed62bcc5b6bf2dfd2e902b0cd41010b601aafc276812f7ea9a7fd8b8751a"
     },
     {
       "path": "paper/figures/generated/fig3_topology_quality.svg",
-      "sha256": "b40d386721dc2daf4280d725e69f5e95a8417e6fb7025c9de4935a74b196af72"
+      "sha256": "769667891a9850b0a34d6b816d934a6f0e90e3f0f6f4ef00d08cdb1c0bf9c230"
     },
     {
       "path": "paper/figures/generated/fig3_topology_quality.png",
@@ -41,11 +41,11 @@
     },
     {
       "path": "paper/figures/generated/fig4_sensitivity_analysis.pdf",
-      "sha256": "1af716dfbdd130f056e24b1b1c4bf4b6faa9d6f1bf11bac019438caa6561cb7b"
+      "sha256": "742d421ad808f589cbb8285d5356a9a5a6a26aa776b08e62dd15cc72ed31c8ce"
     },
     {
       "path": "paper/figures/generated/fig4_sensitivity_analysis.svg",
-      "sha256": "157cb639715ee0fe57624d8a2d6d976c497b03b72221343b7fd1eb5d6c7ad5ea"
+      "sha256": "d59ef53a1a1a9ca65f7470f44445294e706971d23e5b7ba40b0c043a0aee9760"
     },
     {
       "path": "paper/figures/generated/fig4_sensitivity_analysis.png",

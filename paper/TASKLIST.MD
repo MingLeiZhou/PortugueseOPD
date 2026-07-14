@@ -68,7 +68,7 @@ Scientific Data currently requires reviewer access to the dataset at first submi
 - [ ] Replace the uploaded v1.0.0 draft on Figshare with `PT60-Candidate-v1.0.1.tar.gz` and verify the downloaded SHA-256.
 - [ ] Create immutable v1.0.1 dataset-builder and complete-code tags; archive the software release if a code DOI is required.
 
-Current v1.0.1 source commit: `84855d0fdb08355c5d78ef705b369588c5579a82`. Final local archive SHA-256: `f6af1d29af1487b4138eb2ada4ace9a3fa267faac4ea4e51adc8629388f18e3c`. The archive is locally validated but has not yet replaced the Figshare upload.
+Current v1.0.1 source commit: `62d060386bf347a20abdf500c20e78e124cb27f4`. Final local archive SHA-256: `a4dd2d115caae0cd1c873fb7db3341e0aaed0ce62f7f0072ae92642898efb69a`. The archive is locally validated but has not yet replaced the Figshare upload.
 
 ## P0 — Blocking tasks before initial submission
 
