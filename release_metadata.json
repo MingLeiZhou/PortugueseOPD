@@ -385,6 +385,14 @@
       "checksum_mismatches": 0,
       "dictionary_missing_paths": 0,
       "headline_count_checks_passed": true,
+      "tag_worktree_validation": {
+        "status": "PASS",
+        "tag": "pt60-candidate-v1.0.0-rc1",
+        "commit": "bc3ea8e45297b0f11204e137fb055acfbbad85f6",
+        "worktree": "/private/tmp/pt60_tag_cleanroom_bc3ea8e",
+        "validated_at_utc": "2026-07-14T14:24:30+00:00",
+        "archive_path_in_tag_worktree": "/private/tmp/pt60_tag_cleanroom_bc3ea8e/data/releases/PT60-Candidate-v1.0.0.tar.gz"
+      },
       "scope_note": "This validates a fresh extraction of the downloadable tarball against manifest records, checksums, schema coverage and frozen headline counts. Full source-to-archive regeneration from raw/API source acquisition remains pending and should be run from the immutable tag before final DOI deposit."
     }
   },

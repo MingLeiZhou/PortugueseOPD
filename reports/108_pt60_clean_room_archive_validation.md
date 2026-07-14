@@ -37,4 +37,13 @@ Status: `PASS`
 
 This is an archive-package clean-room validation. It proves that a fresh extraction of the downloadable tarball reconciles manifest records, checksums, schema coverage and frozen headline counts without relying on the development release directory.
 
+## Tag-worktree repeat
+
+The same package-level validator was rerun from a detached clean git worktree checked out at tag `pt60-candidate-v1.0.0-rc1`, commit `bc3ea8e45297b0f11204e137fb055acfbbad85f6`.
+
+- Worktree: `/private/tmp/pt60_tag_cleanroom_bc3ea8e`
+- Archive path in worktree: `/private/tmp/pt60_tag_cleanroom_bc3ea8e/data/releases/PT60-Candidate-v1.0.0.tar.gz`
+- Validation time: `2026-07-14T14:24:30+00:00`
+- Status: `PASS`
+
 It does not prove full source-to-archive regeneration from raw E-REDES/API downloads. That stronger validation requires a clean tagged checkout, frozen or re-downloadable source snapshots, and network/source availability.
