@@ -1,0 +1,80 @@
+{
+  "generated_at": "2026-07-14T13:30:40+00:00",
+  "seed": 20260714,
+  "branches_tested": 358,
+  "control_design": "fixed_lonlat_translation",
+  "delta_lon_degrees": 1.75,
+  "delta_lat_degrees": 0.85,
+  "preserved_fields": [
+    "branch_id",
+    "from_facility_name",
+    "to_facility_name",
+    "from_facility_code",
+    "to_facility_code",
+    "voltage",
+    "status",
+    "total_length_km",
+    "confidence_score",
+    "number_of_original_segments"
+  ],
+  "corrupted_fields": [
+    "geometry"
+  ],
+  "original_geometry_bounds": {
+    "west": -9.442778628460154,
+    "south": 37.02743546189305,
+    "east": -7.045917235891917,
+    "north": 42.11007826188013
+  },
+  "displaced_geometry_bounds": {
+    "west": -7.692778628460154,
+    "south": 37.87743546189305,
+    "east": -5.295917235891917,
+    "north": 42.960078261880135
+  },
+  "transformed_geometry_validity": {
+    "valid_transformed_geometries": 358,
+    "invalid_transformed_geometries": 0,
+    "records_excluded_after_transform": 0
+  },
+  "real": {
+    "branches": 358,
+    "status_counts": {
+      "OSM_GEOMETRY_MEDIUM": 48,
+      "OSM_GEOMETRY_OPERATOR_STRONG": 64,
+      "OSM_NAME_OPERATOR_STRONG": 183,
+      "OSM_NEARBY_WEAK": 7,
+      "OSM_PARTIAL_NAME_NEARBY": 56
+    },
+    "geometry_status_branches": 112,
+    "geometry_operator_strong_branches": 64,
+    "geometry_medium_branches": 48,
+    "corridor_evidence_branches": 290,
+    "corridor_evidence_rate": 0.8100558659217877,
+    "median_of_median_branch_to_osm_m": 14.97183819224748,
+    "branches_with_min_distance_lte_250m": 354
+  },
+  "negative_control": {
+    "branches": 358,
+    "status_counts": {
+      "NO_EXTERNAL_OSM_MATCH": 337,
+      "OSM_GEOMETRY_MEDIUM": 1,
+      "OSM_NEARBY_WEAK": 20
+    },
+    "geometry_status_branches": 1,
+    "geometry_operator_strong_branches": 0,
+    "geometry_medium_branches": 1,
+    "corridor_evidence_branches": 1,
+    "corridor_evidence_rate": 0.002793296089385475,
+    "median_of_median_branch_to_osm_m": 8028.373141698014,
+    "branches_with_min_distance_lte_250m": 20
+  },
+  "corridor_evidence_rate_drop": 0.8072625698324022,
+  "corridor_evidence_relative_reduction": 0.996551724137931,
+  "outputs": {
+    "negative_control_matches": "data/processed/topology_validation/matcher_negative_control_geometry.csv",
+    "summary": "data/processed/topology_validation/matcher_negative_control_geometry_summary.json",
+    "report": "reports/104_pt60_spatial_alignment_negative_control.md"
+  },
+  "claim_boundary": "This negative control tests spatial matcher selectivity only. It does not estimate topology precision, recall, operator validation, or real-grid completeness."
+}

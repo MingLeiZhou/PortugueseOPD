@@ -1,0 +1,59 @@
+{
+  "generated_at": "2026-07-14T13:25:26+00:00",
+  "seed": 20260714,
+  "branches_tested": 358,
+  "control_design": "length_stratified_endpoint_pair_shift",
+  "preserved_fields": [
+    "branch_id",
+    "geometry",
+    "voltage",
+    "status",
+    "total_length_km",
+    "confidence_score",
+    "number_of_original_segments"
+  ],
+  "corrupted_fields": [
+    "from_facility_name",
+    "to_facility_name",
+    "from_facility_code",
+    "to_facility_code"
+  ],
+  "real": {
+    "branches": 358,
+    "status_counts": {
+      "OSM_GEOMETRY_MEDIUM": 48,
+      "OSM_GEOMETRY_OPERATOR_STRONG": 64,
+      "OSM_NAME_OPERATOR_STRONG": 183,
+      "OSM_NEARBY_WEAK": 7,
+      "OSM_PARTIAL_NAME_NEARBY": 56
+    },
+    "strong_name_evidence_branches": 183,
+    "partial_name_nearby_branches": 56,
+    "any_name_evidence_branches": 239,
+    "strong_name_evidence_rate": 0.5111731843575419,
+    "any_name_evidence_rate": 0.6675977653631285
+  },
+  "negative_control": {
+    "branches": 358,
+    "status_counts": {
+      "OSM_GEOMETRY_MEDIUM": 14,
+      "OSM_GEOMETRY_OPERATOR_STRONG": 325,
+      "OSM_NAME_OPERATOR_STRONG": 9,
+      "OSM_NEARBY_WEAK": 7,
+      "OSM_PARTIAL_NAME_NEARBY": 3
+    },
+    "strong_name_evidence_branches": 9,
+    "partial_name_nearby_branches": 3,
+    "any_name_evidence_branches": 12,
+    "strong_name_evidence_rate": 0.025139664804469275,
+    "any_name_evidence_rate": 0.0335195530726257
+  },
+  "strong_name_rate_drop": 0.4860335195530726,
+  "strong_name_relative_reduction": 0.9508196721311475,
+  "outputs": {
+    "negative_control_matches": "data/processed/topology_validation/matcher_negative_control_names.csv",
+    "summary": "data/processed/topology_validation/matcher_negative_control_names_summary.json",
+    "report": "reports/103_pt60_endpoint_name_negative_control.md"
+  },
+  "claim_boundary": "This negative control tests name-evidence selectivity only. It does not estimate topology precision, recall, operator validation, or real-grid completeness."
+}

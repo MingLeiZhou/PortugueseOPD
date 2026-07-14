@@ -1,0 +1,95 @@
+{
+  "$schema": "https://specs.frictionlessdata.io/schemas/table-schema.json",
+  "name": "license_approvals",
+  "path": "provenance/license_approvals.csv",
+  "dataset_version": "v1.0.0",
+  "description": "PT60-Candidate schema for provenance/license_approvals.csv.",
+  "fields": [
+    {
+      "name": "dataset_id",
+      "type": "string",
+      "logical_type": "identifier",
+      "description": "Identifier field `dataset_id` in `provenance/license_approvals.csv`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "source_dataset_identifier",
+      "join_target": "provenance/reproduction_source_manifest.csv:dataset_id",
+      "missing_values": []
+    },
+    {
+      "name": "review_status",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `review_status`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "reviewer",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `reviewer`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        ""
+      ]
+    },
+    {
+      "name": "review_date",
+      "type": "string",
+      "logical_type": "datetime_or_date",
+      "description": "Source provenance or release-control field `review_date`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        ""
+      ]
+    },
+    {
+      "name": "evidence_reference",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `evidence_reference`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        ""
+      ]
+    },
+    {
+      "name": "notes",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `notes`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        ""
+      ]
+    }
+  ],
+  "missingValues": [
+    "",
+    "missing",
+    "missing_not_estimated",
+    "n/a",
+    "na",
+    "nan",
+    "none",
+    "not_estimated",
+    "null",
+    "pending"
+  ]
+}

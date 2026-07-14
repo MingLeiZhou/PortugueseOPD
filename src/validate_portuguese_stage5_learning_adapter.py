@@ -31,8 +31,8 @@ REQUIRED_COLUMNS = {
     "graph_edge_adapter": {"adapter_view", "adapter_entity_type", "edge_id", "line_id", "source_node_id", "target_node_id", "stage4_benchmark_eligible", "leakage_group_id", "source_release_id"},
     "generator_node_adapter": {"adapter_view", "adapter_entity_type", "node_id", "generator_id", "bus_id", "stage4_benchmark_eligible", "leakage_group_id", "source_release_id"},
     "generator_link_adapter": {"adapter_view", "adapter_entity_type", "edge_id", "generator_id", "source_node_id", "target_node_id", "stage4_benchmark_eligible", "leakage_group_id", "source_release_id"},
-    "line_supervision_adapter": {"adapter_view", "adapter_sample_type", "sample_id", "entity_id", "line_id", "edge_id", "task_name", "target_column", "target_value", "recommended_split_id", "recommended_partition", "grouped_challenge_partition", "scenario_holdout_partition", "leakage_group_id", "challenge_subset"},
-    "generator_supervision_adapter": {"adapter_view", "adapter_sample_type", "sample_id", "entity_id", "generator_id", "node_id", "task_name", "target_column", "target_value", "recommended_split_id", "recommended_partition", "grouped_challenge_partition", "scenario_holdout_partition", "leakage_group_id", "challenge_subset"},
+    "line_supervision_adapter": {"adapter_view", "adapter_sample_type", "sample_id", "entity_id", "line_id", "edge_id", "task_name", "target_column", "target_value", "recommended_split_id", "recommended_partition", "recommended_split_family", "grouped_challenge_partition", "relative_classification_partition", "balanced_plumbing_partition", "scenario_holdout_partition", "leakage_group_id", "challenge_subset", "benchmark_role", "task_readiness", "evaluation_protocol"},
+    "generator_supervision_adapter": {"adapter_view", "adapter_sample_type", "sample_id", "entity_id", "generator_id", "node_id", "task_name", "target_column", "target_value", "recommended_split_id", "recommended_partition", "recommended_split_family", "grouped_challenge_partition", "relative_classification_partition", "balanced_plumbing_partition", "scenario_holdout_partition", "leakage_group_id", "challenge_subset", "benchmark_role", "task_readiness", "evaluation_protocol"},
     "feature_contract": {"table_name", "column_name", "semantic_role", "feature_type", "admissible_as_model_input", "target_only", "split_control_only", "provenance_only", "leakage_sensitive_or_forbidden"},
     "adapter_registry": {"adapter_view", "table_name", "adapter_family", "entity_scope", "intended_use", "supports_tasks", "recommended_split_id", "diagnostic_only", "publication_allowed"},
 }
@@ -49,6 +49,17 @@ def read_json(path: Path) -> dict[str, Any]:
 
 def add_error(errors: list[str], message: str) -> None:
     errors.append(message)
+
+
+def as_bool(value: Any) -> bool:
+    if isinstance(value, bool):
+        return value
+    if pd.isna(value):
+        return False
+    normalized = str(value).strip().lower()
+    if normalized not in {"true", "false", "1", "0", "yes", "no", "y", "n"}:
+        raise ValueError(f"Invalid boolean value: {value!r}")
+    return normalized in {"true", "1", "yes", "y"}
 
 
 def check_required_files(errors: list[str]) -> None:
@@ -238,6 +249,56 @@ def main() -> None:
     check_counts["line_invalid_recommended_partitions"] = invalid_line_partitions
     check_counts["generator_invalid_recommended_partitions"] = invalid_generator_partitions
 
+    def grouped_supervision_leakage(df: pd.DataFrame) -> int:
+        scoped = df[df["benchmark_role"].astype(str).isin({"PRIMARY", "AUXILIARY_LIMITED_SUPPORT"})]
+        if scoped.empty:
+            return 0
+        return int(
+            scoped.groupby(["task_name", "leakage_group_id"])["recommended_partition"]
+            .nunique()
+            .gt(1)
+            .sum()
+        )
+
+    line_grouped_leakage = grouped_supervision_leakage(line_supervision)
+    generator_grouped_leakage = grouped_supervision_leakage(generator_supervision)
+    if line_grouped_leakage:
+        add_error(errors, f"line supervision has {line_grouped_leakage} grouped evaluation entities crossing partitions")
+    if generator_grouped_leakage:
+        add_error(errors, f"generator supervision has {generator_grouped_leakage} grouped evaluation entities crossing partitions")
+    check_counts["line_grouped_evaluation_leakage_groups"] = line_grouped_leakage
+    check_counts["generator_grouped_evaluation_leakage_groups"] = generator_grouped_leakage
+
+    def positive_partition_gaps(df: pd.DataFrame, task_name: str) -> int:
+        scoped = df[df["task_name"].astype(str) == task_name]
+        missing = 0
+        for partition in ["train", "validation", "test"]:
+            partition_rows = scoped[scoped["recommended_partition"].astype(str) == partition]
+            if partition_rows.empty or not partition_rows["target_value"].apply(as_bool).any():
+                missing += 1
+        return missing
+
+    line_relative_positive_gaps = positive_partition_gaps(
+        line_supervision, "line_relative_high_stress_classification"
+    )
+    generator_relative_positive_gaps = positive_partition_gaps(
+        generator_supervision, "generator_relative_high_dispatch_classification"
+    )
+    if line_relative_positive_gaps:
+        add_error(errors, "line relative-stress supervision lacks positive support in a recommended partition")
+    if generator_relative_positive_gaps:
+        add_error(errors, "generator relative-dispatch supervision lacks positive support in a recommended partition")
+    check_counts["line_relative_positive_partition_gaps"] = line_relative_positive_gaps
+    check_counts["generator_relative_positive_partition_gaps"] = generator_relative_positive_gaps
+
+    invalid_challenge_headline = int(pd.concat([line_supervision, generator_supervision], ignore_index=True)[
+        lambda df: df["benchmark_role"].astype(str).eq("CHALLENGE_INSUFFICIENT_SUPPORT")
+        & df["headline_eligible"].apply(as_bool)
+    ].shape[0])
+    if invalid_challenge_headline:
+        add_error(errors, "insufficient-support challenge supervision rows must not be headline eligible")
+    check_counts["insufficient_support_headline_rows"] = invalid_challenge_headline
+
     adapter_tables = {
         "pt_stage5_graph_node_adapter.csv": graph_nodes,
         "pt_stage5_graph_edge_adapter.csv": graph_edges,
@@ -265,7 +326,7 @@ def main() -> None:
 
     forbidden_misclassified = int(feature_contract[
         feature_contract["column_name"].astype(str).isin(preprocessing_contract.get("forbidden_input_columns", []))
-        & feature_contract["admissible_as_model_input"].astype(bool)
+        & feature_contract["admissible_as_model_input"].apply(as_bool)
     ].shape[0])
     if forbidden_misclassified:
         add_error(errors, f"feature_contract marks {forbidden_misclassified} forbidden preprocessing columns as admissible model input")

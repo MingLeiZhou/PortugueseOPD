@@ -24,6 +24,28 @@ def status_without_key(dataset_id):
     return status
 
 
+def governance_metadata(metadata):
+    metas = metadata.get("metas", {}) if isinstance(metadata, dict) else {}
+    default = metas.get("default", {}) if isinstance(metas, dict) else {}
+    if not isinstance(default, dict):
+        default = {}
+    license_value = default.get("license") or metadata.get("license") or ""
+    license_url = default.get("license_url") or metadata.get("license_url") or ""
+    attribution = default.get("attributions") or default.get("attribution") or ""
+    attribution_url = default.get("attribution_url") or ""
+    license_present = bool(str(license_value).strip() or str(license_url).strip())
+    return {
+        "dataset_title": default.get("title") or metadata.get("dataset_id") or "",
+        "publisher": default.get("publisher") or "E-REDES",
+        "license_observed": license_value,
+        "license_url_observed": license_url,
+        "attribution_observed": attribution,
+        "attribution_url_observed": attribution_url,
+        "license_metadata_status": "EXPLICIT" if license_present else "MISSING",
+        "redistribution_gate": "SOURCE_TERMS_PRESENT_REVIEW_REQUIRED" if license_present else "BLOCKED_MISSING_DATASET_LICENSE",
+    }
+
+
 def validate_dataset(dataset_id, source, logger):
     api_key = source.get("api_key")
     item = {
@@ -41,6 +63,8 @@ def validate_dataset(dataset_id, source, logger):
     if metadata_status != 200 or metadata is None:
         item["error"] = "metadata endpoint failed"
         return item
+    item.update(governance_metadata(metadata))
+    item["portal_dataset_url"] = f"{config.BASE_URL}/explore/dataset/{dataset_id}/"
 
     v2_status, v2_payload = fetch_records_v2(dataset_id, limit=1, offset=0, api_key=api_key)
     item["v2_records_status"] = v2_status
@@ -90,6 +114,8 @@ def build_report(results):
                 "Date": item.get("has_date_time"),
                 "Voltage": item.get("has_voltage"),
                 "Substation": item.get("has_substation_identifier"),
+                "License": item.get("license_metadata_status"),
+                "Redistribution": item.get("redistribution_gate"),
             }
         )
     text = [
@@ -113,6 +139,8 @@ def build_report(results):
                 "Date",
                 "Voltage",
                 "Substation",
+                "License",
+                "Redistribution",
             ],
         ),
         "",

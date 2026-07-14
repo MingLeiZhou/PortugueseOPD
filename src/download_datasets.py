@@ -1,4 +1,5 @@
 import argparse
+import hashlib
 import json
 
 import pandas as pd
@@ -36,6 +37,21 @@ def download_stream(url, path, api_key, logger, overwrite=False):
     tmp_path.replace(path)
     logger.info("Downloaded %s", path)
     return "downloaded"
+
+
+def file_trace(path):
+    if not path.exists():
+        return {"path": str(path), "exists": False, "size_bytes": None, "sha256": None}
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return {
+        "path": str(path),
+        "exists": True,
+        "size_bytes": path.stat().st_size,
+        "sha256": digest.hexdigest(),
+    }
 
 
 def save_sample(dataset_id, source, logger, overwrite=False):
@@ -129,6 +145,19 @@ def main():
         result = {
             "records_expected": meta.get("records_count"),
             "sample": save_sample(dataset_id, source, logger, args.overwrite),
+            "source_urls": {
+                "metadata": f"{config.BASE_URL}/api/explore/v2.1/catalog/datasets/{dataset_id}",
+                "portal": f"{config.BASE_URL}/explore/dataset/{dataset_id}/",
+                "csv": export_url(dataset_id, "csv"),
+                "json": export_url(dataset_id, "json"),
+                "geojson": export_url(dataset_id, "geojson"),
+            },
+            "license_observed": meta.get("license_observed") or meta.get("license") or "",
+            "license_url_observed": meta.get("license_url_observed") or meta.get("license_url") or "",
+            "license_metadata_status": meta.get("license_metadata_status") or (
+                "EXPLICIT" if meta.get("license") or meta.get("license_url") else "MISSING"
+            ),
+            "redistribution_gate": meta.get("redistribution_gate", "BLOCKED_UNREVIEWED"),
         }
         if args.samples_only:
             result["raw_status"] = "samples_only"
@@ -176,6 +205,10 @@ def main():
             "csv": csv_status,
             "json": json_status,
             "geojson": geojson_status,
+        }
+        result["local_files"] = {
+            fmt: file_trace(config.RAW_DIR / f"{dataset_id}.{fmt}")
+            for fmt in ("csv", "json", "geojson")
         }
         manifest["datasets"][dataset_id] = result
 

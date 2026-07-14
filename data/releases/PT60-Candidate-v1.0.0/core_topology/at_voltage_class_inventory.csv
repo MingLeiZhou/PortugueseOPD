@@ -1,0 +1,2 @@
+voltage_kv,voltage_label,branch_count,total_length_km,average_length_km,median_length_km,max_length_km,line_type_distribution,status_distribution,parallel_branch_records,parallel_facility_voltage_groups,missing_type_records,branches_requiring_estimated_parameters
+60.0,60kv,358,3588.381067,10.023411,8.000799,49.434871,"{""overhead"": 219, ""mixed"": 80, ""cable"": 59}","{""em exploração"": 356, ""desligado/reserva"": 2}",55,29,80,358

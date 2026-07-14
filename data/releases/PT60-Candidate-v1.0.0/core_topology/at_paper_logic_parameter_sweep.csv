@@ -1,0 +1,217 @@
+facility_node_set,facility_buffer_m,endpoint_snap_threshold_m,merge_mode,raw_line_features,merged_circuits,reduction_percentage,inter_facility_circuits,self_loops,single_facility,isolated,tap_multi_terminal,ambiguous,loop,clean_branch_count,graph_nodes,graph_edges,connected_components,largest_component_size,isolated_nodes,mixed_voltage_circuits,mixed_status_circuits,suspicious_matches,strategy_score,recommended_yes_no,reason
+A,50,0.5,geometry-only,5334,1341,74.8594,181,37,570,427,110,11,5,181,232,181,64,15,0,0,1,10,17790,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,50,0.5,voltage-aware,5334,1341,74.8594,181,37,570,427,110,11,5,181,232,181,64,15,0,0,1,10,17790,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,50,0.5,voltage-status-aware,5334,1342,74.8406,181,37,570,429,110,10,5,181,232,181,64,15,0,0,0,10,17850,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,50,1.0,geometry-only,5334,1224,77.0529,158,37,476,402,123,18,10,158,210,158,60,14,0,0,9,9,15060,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,50,1.0,voltage-aware,5334,1224,77.0529,158,37,476,402,123,18,10,158,210,158,60,14,0,0,9,9,15060,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,50,1.0,voltage-status-aware,5334,1234,76.8654,158,37,484,407,129,9,10,158,210,158,60,14,0,0,0,9,15600,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,50,5.0,geometry-only,5334,886,83.3896,102,16,298,252,143,49,26,102,156,102,57,6,0,0,40,9,7200,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,50,5.0,voltage-aware,5334,886,83.3896,102,16,298,252,143,49,26,102,156,102,57,6,0,0,40,9,7200,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,50,5.0,voltage-status-aware,5334,950,82.1897,103,20,324,296,168,9,30,103,157,103,57,6,0,0,0,9,9700,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,50,10.0,geometry-only,5334,439,91.7698,36,13,110,133,69,41,37,36,61,36,25,7,0,0,37,5,1280,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,50,10.0,voltage-aware,5334,439,91.7698,36,13,110,133,69,41,37,36,61,36,25,7,0,0,37,5,1280,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,50,10.0,voltage-status-aware,5334,513,90.3825,39,15,130,182,99,5,43,39,66,39,27,7,0,0,0,5,3750,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,50,25.0,geometry-only,5334,127,97.619,3,1,9,68,13,8,25,3,6,3,3,2,0,0,7,1,-120,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,50,25.0,voltage-aware,5334,127,97.619,3,1,9,68,13,8,25,3,6,3,3,2,0,0,7,1,-120,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,50,25.0,voltage-status-aware,5334,201,96.2317,3,2,28,108,21,1,38,3,6,3,3,2,0,0,0,1,300,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,50,50.0,geometry-only,5334,79,98.5189,1,0,1,56,3,4,14,1,2,1,1,2,0,1,3,1,-430,no,moderate facility buffer
+A,50,50.0,voltage-aware,5334,80,98.5002,1,0,1,56,3,5,14,1,2,1,1,2,0,0,4,1,-390,no,no mixed-voltage circuits; moderate facility buffer
+A,50,50.0,voltage-status-aware,5334,151,97.1691,1,1,16,92,7,1,33,1,2,1,1,2,0,0,0,1,-150,no,no mixed-voltage circuits; moderate facility buffer
+A,100,0.5,geometry-only,5334,1341,74.8594,222,51,565,371,109,18,5,222,261,222,60,14,0,0,1,17,21140,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,100,0.5,voltage-aware,5334,1341,74.8594,222,51,565,371,109,18,5,222,261,222,60,14,0,0,1,17,21140,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,100,0.5,voltage-status-aware,5334,1342,74.8406,222,51,565,373,109,17,5,222,261,222,60,14,0,0,0,17,21200,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,100,1.0,geometry-only,5334,1224,77.0529,192,51,475,349,122,25,10,192,240,192,61,11,0,0,9,16,17610,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,100,1.0,voltage-aware,5334,1224,77.0529,192,51,475,349,122,25,10,192,240,192,61,11,0,0,9,16,17610,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,100,1.0,voltage-status-aware,5334,1234,76.8654,192,51,483,354,128,16,10,192,240,192,61,11,0,0,0,16,18150,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,100,5.0,geometry-only,5334,886,83.3896,120,21,306,215,142,56,26,120,179,120,62,6,0,0,40,16,8300,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,100,5.0,voltage-aware,5334,886,83.3896,120,21,306,215,142,56,26,120,179,120,62,6,0,0,40,16,8300,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,100,5.0,voltage-status-aware,5334,950,82.1897,123,26,333,255,167,16,30,123,183,123,63,6,0,0,0,16,11000,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,100,10.0,geometry-only,5334,439,91.7698,43,19,106,121,67,46,37,43,73,43,30,7,0,0,37,11,1430,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,100,10.0,voltage-aware,5334,439,91.7698,43,19,106,121,67,46,37,43,73,43,30,7,0,0,37,11,1430,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,100,10.0,voltage-status-aware,5334,513,90.3825,47,23,127,166,96,11,43,47,80,47,33,7,0,0,0,11,3950,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,100,25.0,geometry-only,5334,127,97.619,5,1,9,66,13,8,25,5,10,5,5,2,0,0,7,2,30,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,100,25.0,voltage-aware,5334,127,97.619,5,1,9,66,13,8,25,5,10,5,5,2,0,0,7,2,30,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,100,25.0,voltage-status-aware,5334,201,96.2317,6,5,28,102,20,2,38,6,12,6,6,2,0,0,0,2,500,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,100,50.0,geometry-only,5334,79,98.5189,1,0,2,55,3,4,14,1,2,1,1,2,0,1,3,1,-430,no,moderate facility buffer
+A,100,50.0,voltage-aware,5334,80,98.5002,1,0,2,55,3,5,14,1,2,1,1,2,0,0,4,1,-390,no,no mixed-voltage circuits; moderate facility buffer
+A,100,50.0,voltage-status-aware,5334,151,97.1691,1,2,18,89,7,1,33,1,2,1,1,2,0,0,0,1,-150,no,no mixed-voltage circuits; moderate facility buffer
+A,250,0.5,geometry-only,5334,1341,74.8594,230,73,550,345,107,31,5,230,265,230,60,11,0,0,1,30,20490,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,250,0.5,voltage-aware,5334,1341,74.8594,230,73,550,345,107,31,5,230,265,230,60,11,0,0,1,30,20490,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,250,0.5,voltage-status-aware,5334,1342,74.8406,230,73,550,347,107,30,5,230,265,230,60,11,0,0,0,30,20550,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,250,1.0,geometry-only,5334,1224,77.0529,201,67,465,325,120,36,10,201,245,201,62,10,0,0,9,27,17360,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,250,1.0,voltage-aware,5334,1224,77.0529,201,67,465,325,120,36,10,201,245,201,62,10,0,0,9,27,17360,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,250,1.0,voltage-status-aware,5334,1234,76.8654,201,67,473,330,126,27,10,201,245,201,62,10,0,0,0,27,17900,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,250,5.0,geometry-only,5334,886,83.3896,123,29,301,202,141,64,26,123,181,123,62,6,0,0,40,26,7700,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,250,5.0,voltage-aware,5334,886,83.3896,123,29,301,202,141,64,26,123,181,123,62,6,0,0,40,26,7700,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,250,5.0,voltage-status-aware,5334,950,82.1897,126,39,327,237,165,26,30,126,186,126,64,6,0,0,0,26,10300,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,250,10.0,geometry-only,5334,439,91.7698,43,23,111,112,67,46,37,43,73,43,30,7,0,0,37,12,1380,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,250,10.0,voltage-aware,5334,439,91.7698,43,23,111,112,67,46,37,43,73,43,30,7,0,0,37,12,1380,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,250,10.0,voltage-status-aware,5334,513,90.3825,47,31,132,153,95,12,43,47,80,47,33,7,0,0,0,12,3850,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,250,25.0,geometry-only,5334,127,97.619,5,2,13,61,13,8,25,5,10,5,5,2,0,0,7,2,30,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,250,25.0,voltage-aware,5334,127,97.619,5,2,13,61,13,8,25,5,10,5,5,2,0,0,7,2,30,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,250,25.0,voltage-status-aware,5334,201,96.2317,6,9,32,94,20,2,38,6,12,6,6,2,0,0,0,2,500,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+A,250,50.0,geometry-only,5334,79,98.5189,1,0,6,51,3,4,14,1,2,1,1,2,0,1,3,1,-430,no,moderate facility buffer
+A,250,50.0,voltage-aware,5334,80,98.5002,1,0,6,51,3,5,14,1,2,1,1,2,0,0,4,1,-390,no,no mixed-voltage circuits; moderate facility buffer
+A,250,50.0,voltage-status-aware,5334,151,97.1691,1,3,24,82,7,1,33,1,2,1,1,2,0,0,0,1,-150,no,no mixed-voltage circuits; moderate facility buffer
+A,500,0.5,geometry-only,5334,1341,74.8594,240,97,521,336,107,35,5,240,272,240,60,11,0,0,1,34,20590,no,no mixed-voltage circuits; conservative endpoint snapping
+A,500,0.5,voltage-aware,5334,1341,74.8594,240,97,521,336,107,35,5,240,272,240,60,11,0,0,1,34,20590,no,no mixed-voltage circuits; conservative endpoint snapping
+A,500,0.5,voltage-status-aware,5334,1342,74.8406,240,97,521,338,107,34,5,240,272,240,60,11,0,0,0,34,20650,no,no mixed-voltage circuits; conservative endpoint snapping
+A,500,1.0,geometry-only,5334,1224,77.0529,207,89,446,316,119,37,10,207,250,207,62,10,0,0,9,28,17360,no,no mixed-voltage circuits; conservative endpoint snapping
+A,500,1.0,voltage-aware,5334,1224,77.0529,207,89,446,316,119,37,10,207,250,207,62,10,0,0,9,28,17360,no,no mixed-voltage circuits; conservative endpoint snapping
+A,500,1.0,voltage-status-aware,5334,1234,76.8654,207,89,454,321,125,28,10,207,250,207,62,10,0,0,0,28,17900,no,no mixed-voltage circuits; conservative endpoint snapping
+A,500,5.0,geometry-only,5334,886,83.3896,128,40,290,197,141,64,26,128,186,128,63,7,0,0,40,26,7750,no,no mixed-voltage circuits; conservative endpoint snapping
+A,500,5.0,voltage-aware,5334,886,83.3896,128,40,290,197,141,64,26,128,186,128,63,7,0,0,40,26,7750,no,no mixed-voltage circuits; conservative endpoint snapping
+A,500,5.0,voltage-status-aware,5334,950,82.1897,131,51,316,231,165,26,30,131,191,131,65,7,0,0,0,26,10350,no,no mixed-voltage circuits; conservative endpoint snapping
+A,500,10.0,geometry-only,5334,439,91.7698,45,28,106,110,67,46,37,45,77,45,32,7,0,0,37,12,1080,no,no mixed-voltage circuits; conservative endpoint snapping
+A,500,10.0,voltage-aware,5334,439,91.7698,45,28,106,110,67,46,37,45,77,45,32,7,0,0,37,12,1080,no,no mixed-voltage circuits; conservative endpoint snapping
+A,500,10.0,voltage-status-aware,5334,513,90.3825,49,38,127,149,95,12,43,49,83,49,34,7,0,0,0,12,3550,no,no mixed-voltage circuits; conservative endpoint snapping
+A,500,25.0,geometry-only,5334,127,97.619,5,3,13,60,13,8,25,5,10,5,5,2,0,0,7,2,-470,no,no mixed-voltage circuits; conservative endpoint snapping
+A,500,25.0,voltage-aware,5334,127,97.619,5,3,13,60,13,8,25,5,10,5,5,2,0,0,7,2,-470,no,no mixed-voltage circuits; conservative endpoint snapping
+A,500,25.0,voltage-status-aware,5334,201,96.2317,6,12,32,91,20,2,38,6,12,6,6,2,0,0,0,2,0,no,no mixed-voltage circuits; conservative endpoint snapping
+A,500,50.0,geometry-only,5334,79,98.5189,1,1,6,50,3,4,14,1,2,1,1,2,0,1,3,1,-930,no,higher ambiguity or weak graph structure
+A,500,50.0,voltage-aware,5334,80,98.5002,1,1,6,50,3,5,14,1,2,1,1,2,0,0,4,1,-890,no,no mixed-voltage circuits
+A,500,50.0,voltage-status-aware,5334,151,97.1691,1,6,24,79,7,1,33,1,2,1,1,2,0,0,0,1,-650,no,no mixed-voltage circuits
+B,50,0.5,geometry-only,5334,1341,74.8594,296,82,538,267,107,46,5,296,336,296,69,19,0,0,1,45,25990,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,50,0.5,voltage-aware,5334,1341,74.8594,296,82,538,267,107,46,5,296,336,296,69,19,0,0,1,45,25990,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,50,0.5,voltage-status-aware,5334,1342,74.8406,296,82,538,269,107,45,5,296,336,296,69,19,0,0,0,45,26050,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,50,1.0,geometry-only,5334,1224,77.0529,244,83,481,259,121,26,10,244,291,244,66,16,0,0,9,18,22910,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,50,1.0,voltage-aware,5334,1224,77.0529,244,83,481,259,121,26,10,244,291,244,66,16,0,0,9,18,22910,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,50,1.0,voltage-status-aware,5334,1234,76.8654,247,83,488,262,124,20,10,247,293,247,66,16,0,0,0,20,23500,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,50,5.0,geometry-only,5334,886,83.3896,136,47,311,172,143,51,26,136,194,136,62,7,0,0,40,11,10450,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,50,5.0,voltage-aware,5334,886,83.3896,136,47,311,172,143,51,26,136,194,136,62,7,0,0,40,11,10450,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,50,5.0,voltage-status-aware,5334,950,82.1897,144,50,334,211,168,13,30,144,201,144,64,9,0,0,0,13,13550,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,50,10.0,geometry-only,5334,439,91.7698,43,17,121,110,69,42,37,43,73,43,30,7,0,0,37,7,1830,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,50,10.0,voltage-aware,5334,439,91.7698,43,17,121,110,69,42,37,43,73,43,30,7,0,0,37,7,1830,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,50,10.0,voltage-status-aware,5334,513,90.3825,49,20,140,155,97,9,43,49,83,49,34,7,0,0,0,9,4350,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,50,25.0,geometry-only,5334,127,97.619,3,1,10,67,13,8,25,3,6,3,3,2,0,0,7,2,-170,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,50,25.0,voltage-aware,5334,127,97.619,3,1,10,67,13,8,25,3,6,3,3,2,0,0,7,2,-170,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,50,25.0,voltage-status-aware,5334,201,96.2317,5,2,31,103,20,2,38,5,10,5,5,2,0,0,0,2,400,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,50,50.0,geometry-only,5334,79,98.5189,1,0,1,56,3,4,14,1,2,1,1,2,0,1,3,1,-430,no,moderate facility buffer
+B,50,50.0,voltage-aware,5334,80,98.5002,1,0,1,56,3,5,14,1,2,1,1,2,0,0,4,1,-390,no,no mixed-voltage circuits; moderate facility buffer
+B,50,50.0,voltage-status-aware,5334,151,97.1691,3,1,18,88,7,1,33,3,6,3,3,2,0,0,0,1,50,no,no mixed-voltage circuits; moderate facility buffer
+B,100,0.5,geometry-only,5334,1341,74.8594,358,101,496,213,106,62,5,358,375,358,61,53,0,0,1,61,32290,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,100,0.5,voltage-aware,5334,1341,74.8594,358,101,496,213,106,62,5,358,375,358,61,53,0,0,1,61,32290,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,100,0.5,voltage-status-aware,5334,1342,74.8406,358,101,496,215,106,61,5,358,375,358,61,53,0,0,0,61,32350,yes,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,100,1.0,geometry-only,5334,1224,77.0529,290,102,452,210,119,41,10,290,331,290,64,26,0,0,9,33,26510,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,100,1.0,voltage-aware,5334,1224,77.0529,290,102,452,210,119,41,10,290,331,290,64,26,0,0,9,33,26510,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,100,1.0,voltage-status-aware,5334,1234,76.8654,293,102,459,213,122,35,10,293,333,293,64,26,0,0,0,35,27100,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,100,5.0,geometry-only,5334,886,83.3896,159,57,302,138,141,63,26,159,223,159,68,9,0,0,40,23,11650,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,100,5.0,voltage-aware,5334,886,83.3896,159,57,302,138,141,63,26,159,223,159,68,9,0,0,40,23,11650,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,100,5.0,voltage-status-aware,5334,950,82.1897,169,61,327,172,166,25,30,169,233,169,71,11,0,0,0,25,14950,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,100,10.0,geometry-only,5334,439,91.7698,54,25,107,101,66,49,37,54,94,54,40,7,0,0,37,16,2130,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,100,10.0,voltage-aware,5334,439,91.7698,54,25,107,101,66,49,37,54,94,54,40,7,0,0,37,16,2130,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,100,10.0,voltage-status-aware,5334,513,90.3825,61,31,128,140,92,18,43,61,105,61,44,7,0,0,0,18,4650,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,100,25.0,geometry-only,5334,127,97.619,6,1,9,65,13,8,25,6,12,6,6,2,0,0,7,2,130,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,100,25.0,voltage-aware,5334,127,97.619,6,1,9,65,13,8,25,6,12,6,6,2,0,0,7,2,130,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,100,25.0,voltage-status-aware,5334,201,96.2317,9,6,30,96,20,2,38,9,18,9,9,2,0,0,0,2,800,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,100,50.0,geometry-only,5334,79,98.5189,1,0,2,55,3,4,14,1,2,1,1,2,0,1,3,1,-430,no,moderate facility buffer
+B,100,50.0,voltage-aware,5334,80,98.5002,1,0,2,55,3,5,14,1,2,1,1,2,0,0,4,1,-390,no,no mixed-voltage circuits; moderate facility buffer
+B,100,50.0,voltage-status-aware,5334,151,97.1691,3,3,20,84,7,1,33,3,6,3,3,2,0,0,0,1,50,no,no mixed-voltage circuits; moderate facility buffer
+B,250,0.5,geometry-only,5334,1341,74.8594,364,117,473,195,104,83,5,364,377,364,59,27,0,0,1,82,29490,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,250,0.5,voltage-aware,5334,1341,74.8594,364,117,473,195,104,83,5,364,377,364,59,27,0,0,1,82,29490,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,250,0.5,voltage-status-aware,5334,1342,74.8406,364,117,473,197,104,82,5,364,377,364,59,27,0,0,0,82,29550,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,250,1.0,geometry-only,5334,1224,77.0529,299,116,432,193,115,59,10,299,335,299,62,25,0,0,9,52,25510,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,250,1.0,voltage-aware,5334,1224,77.0529,299,116,432,193,115,59,10,299,335,299,62,25,0,0,9,52,25510,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,250,1.0,voltage-status-aware,5334,1234,76.8654,302,117,438,196,117,54,10,302,336,302,61,25,0,0,0,54,26050,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,250,5.0,geometry-only,5334,886,83.3896,160,61,295,129,140,75,26,160,223,160,68,9,0,0,40,39,10350,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,250,5.0,voltage-aware,5334,886,83.3896,160,61,295,129,140,75,26,160,223,160,68,9,0,0,40,39,10350,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,250,5.0,voltage-status-aware,5334,950,82.1897,169,71,321,156,162,41,30,169,233,169,71,9,0,0,0,41,13250,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,250,10.0,geometry-only,5334,439,91.7698,56,25,110,94,66,51,37,56,97,56,41,7,0,0,37,20,2030,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,250,10.0,voltage-aware,5334,439,91.7698,56,25,110,94,66,51,37,56,97,56,41,7,0,0,37,20,2030,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,250,10.0,voltage-status-aware,5334,513,90.3825,63,36,132,127,90,22,43,63,107,63,44,7,0,0,0,22,4450,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,250,25.0,geometry-only,5334,127,97.619,6,2,13,60,13,8,25,6,12,6,6,2,0,0,7,2,130,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,250,25.0,voltage-aware,5334,127,97.619,6,2,13,60,13,8,25,6,12,6,6,2,0,0,7,2,130,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,250,25.0,voltage-status-aware,5334,201,96.2317,9,11,34,87,19,3,38,9,18,9,9,2,0,0,0,3,700,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+B,250,50.0,geometry-only,5334,79,98.5189,1,0,6,51,3,4,14,1,2,1,1,2,0,1,3,2,-480,no,moderate facility buffer
+B,250,50.0,voltage-aware,5334,80,98.5002,1,0,6,51,3,5,14,1,2,1,1,2,0,0,4,2,-440,no,no mixed-voltage circuits; moderate facility buffer
+B,250,50.0,voltage-status-aware,5334,151,97.1691,3,5,26,76,6,2,33,3,6,3,3,2,0,0,0,2,-50,no,no mixed-voltage circuits; moderate facility buffer
+B,500,0.5,geometry-only,5334,1341,74.8594,369,151,437,185,104,90,5,369,379,369,58,27,0,0,1,89,28790,no,no mixed-voltage circuits; conservative endpoint snapping
+B,500,0.5,voltage-aware,5334,1341,74.8594,369,151,437,185,104,90,5,369,379,369,58,27,0,0,1,89,28790,no,no mixed-voltage circuits; conservative endpoint snapping
+B,500,0.5,voltage-status-aware,5334,1342,74.8406,369,151,437,187,104,89,5,369,379,369,58,27,0,0,0,89,28850,no,no mixed-voltage circuits; conservative endpoint snapping
+B,500,1.0,geometry-only,5334,1224,77.0529,307,144,404,182,113,64,10,307,340,307,61,26,0,0,9,58,25310,no,no mixed-voltage circuits; conservative endpoint snapping
+B,500,1.0,voltage-aware,5334,1224,77.0529,307,144,404,182,113,64,10,307,340,307,61,26,0,0,9,58,25310,no,no mixed-voltage circuits; conservative endpoint snapping
+B,500,1.0,voltage-status-aware,5334,1234,76.8654,310,146,409,185,114,60,10,310,341,310,60,26,0,0,0,60,25800,no,no mixed-voltage circuits; conservative endpoint snapping
+B,500,5.0,geometry-only,5334,886,83.3896,167,75,278,123,138,79,26,167,229,167,68,9,0,0,40,44,10100,no,no mixed-voltage circuits; conservative endpoint snapping
+B,500,5.0,voltage-aware,5334,886,83.3896,167,75,278,123,138,79,26,167,229,167,68,9,0,0,40,44,10100,no,no mixed-voltage circuits; conservative endpoint snapping
+B,500,5.0,voltage-status-aware,5334,950,82.1897,176,88,303,148,158,47,30,176,238,176,71,9,0,0,0,47,12850,no,no mixed-voltage circuits; conservative endpoint snapping
+B,500,10.0,geometry-only,5334,439,91.7698,58,32,104,90,66,52,37,58,101,58,43,7,0,0,37,21,1630,no,no mixed-voltage circuits; conservative endpoint snapping
+B,500,10.0,voltage-aware,5334,439,91.7698,58,32,104,90,66,52,37,58,101,58,43,7,0,0,37,21,1630,no,no mixed-voltage circuits; conservative endpoint snapping
+B,500,10.0,voltage-status-aware,5334,513,90.3825,65,47,125,120,90,23,43,65,110,65,45,7,0,0,0,23,4050,no,no mixed-voltage circuits; conservative endpoint snapping
+B,500,25.0,geometry-only,5334,127,97.619,6,4,13,58,13,8,25,6,12,6,6,2,0,0,7,2,-370,no,no mixed-voltage circuits; conservative endpoint snapping
+B,500,25.0,voltage-aware,5334,127,97.619,6,4,13,58,13,8,25,6,12,6,6,2,0,0,7,2,-370,no,no mixed-voltage circuits; conservative endpoint snapping
+B,500,25.0,voltage-status-aware,5334,201,96.2317,9,17,34,81,19,3,38,9,18,9,9,2,0,0,0,3,200,no,no mixed-voltage circuits; conservative endpoint snapping
+B,500,50.0,geometry-only,5334,79,98.5189,1,1,7,49,3,4,14,1,2,1,1,2,0,1,3,2,-980,no,higher ambiguity or weak graph structure
+B,500,50.0,voltage-aware,5334,80,98.5002,1,1,7,49,3,5,14,1,2,1,1,2,0,0,4,2,-940,no,no mixed-voltage circuits
+B,500,50.0,voltage-status-aware,5334,151,97.1691,3,10,27,70,5,3,33,3,6,3,3,2,0,0,0,3,-650,no,no mixed-voltage circuits
+C,50,0.5,geometry-only,5334,1341,74.8594,291,82,527,267,107,62,5,291,332,291,69,19,0,0,1,61,23890,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,50,0.5,voltage-aware,5334,1341,74.8594,291,82,527,267,107,62,5,291,332,291,69,19,0,0,1,61,23890,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,50,0.5,voltage-status-aware,5334,1342,74.8406,291,82,527,269,107,61,5,291,332,291,69,19,0,0,0,61,23950,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,50,1.0,geometry-only,5334,1224,77.0529,239,83,472,259,121,40,10,239,287,239,66,16,0,0,9,32,21010,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,50,1.0,voltage-aware,5334,1224,77.0529,239,83,472,259,121,40,10,239,287,239,66,16,0,0,9,32,21010,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,50,1.0,voltage-status-aware,5334,1234,76.8654,242,83,477,262,124,36,10,242,289,242,66,16,0,0,0,36,21400,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,50,5.0,geometry-only,5334,886,83.3896,134,47,303,172,141,63,26,134,194,134,63,7,0,0,40,24,9000,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,50,5.0,voltage-aware,5334,886,83.3896,134,47,303,172,141,63,26,134,194,134,63,7,0,0,40,24,9000,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,50,5.0,voltage-status-aware,5334,950,82.1897,142,50,325,211,165,27,30,142,201,142,65,9,0,0,0,27,11950,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,50,10.0,geometry-only,5334,439,91.7698,44,17,118,110,68,45,37,44,75,44,31,7,0,0,37,10,1630,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,50,10.0,voltage-aware,5334,439,91.7698,44,17,118,110,68,45,37,44,75,44,31,7,0,0,37,10,1630,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,50,10.0,voltage-status-aware,5334,513,90.3825,50,20,136,155,96,13,43,50,85,50,35,7,0,0,0,13,4050,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,50,25.0,geometry-only,5334,127,97.619,3,1,10,67,13,8,25,3,6,3,3,2,0,0,7,2,-170,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,50,25.0,voltage-aware,5334,127,97.619,3,1,10,67,13,8,25,3,6,3,3,2,0,0,7,2,-170,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,50,25.0,voltage-status-aware,5334,201,96.2317,5,2,30,103,20,3,38,5,10,5,5,2,0,0,0,3,300,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,50,50.0,geometry-only,5334,79,98.5189,1,0,1,56,3,4,14,1,2,1,1,2,0,1,3,1,-430,no,moderate facility buffer
+C,50,50.0,voltage-aware,5334,80,98.5002,1,0,1,56,3,5,14,1,2,1,1,2,0,0,4,1,-390,no,no mixed-voltage circuits; moderate facility buffer
+C,50,50.0,voltage-status-aware,5334,151,97.1691,3,1,17,88,7,2,33,3,6,3,3,2,0,0,0,2,-50,no,no mixed-voltage circuits; moderate facility buffer
+C,100,0.5,geometry-only,5334,1341,74.8594,347,97,487,213,106,86,5,347,367,347,63,53,0,0,1,85,28790,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,100,0.5,voltage-aware,5334,1341,74.8594,347,97,487,213,106,86,5,347,367,347,63,53,0,0,1,85,28790,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,100,0.5,voltage-status-aware,5334,1342,74.8406,347,97,487,215,106,85,5,347,367,347,63,53,0,0,0,85,28850,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,100,1.0,geometry-only,5334,1224,77.0529,279,98,445,210,119,63,10,279,323,279,66,26,0,0,9,55,23210,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,100,1.0,voltage-aware,5334,1224,77.0529,279,98,445,210,119,63,10,279,323,279,66,26,0,0,9,55,23210,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,100,1.0,voltage-status-aware,5334,1234,76.8654,282,98,450,213,122,59,10,282,325,282,66,26,0,0,0,59,23600,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,100,5.0,geometry-only,5334,886,83.3896,151,57,297,138,139,78,26,151,214,151,66,9,0,0,40,39,9300,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,100,5.0,voltage-aware,5334,886,83.3896,151,57,297,138,139,78,26,151,214,151,66,9,0,0,40,39,9300,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,100,5.0,voltage-status-aware,5334,950,82.1897,161,61,321,172,163,42,30,161,224,161,69,11,0,0,0,42,12450,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,100,10.0,geometry-only,5334,439,91.7698,52,25,105,101,66,53,37,52,90,52,38,7,0,0,37,20,1530,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,100,10.0,voltage-aware,5334,439,91.7698,52,25,105,101,66,53,37,52,90,52,38,7,0,0,37,20,1530,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,100,10.0,voltage-status-aware,5334,513,90.3825,59,31,125,140,92,23,43,59,101,59,42,7,0,0,0,23,3950,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,100,25.0,geometry-only,5334,127,97.619,6,1,9,65,13,8,25,6,12,6,6,2,0,0,7,2,130,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,100,25.0,voltage-aware,5334,127,97.619,6,1,9,65,13,8,25,6,12,6,6,2,0,0,7,2,130,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,100,25.0,voltage-status-aware,5334,201,96.2317,9,6,29,96,20,3,38,9,18,9,9,2,0,0,0,3,700,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,100,50.0,geometry-only,5334,79,98.5189,1,0,2,55,3,4,14,1,2,1,1,2,0,1,3,2,-480,no,moderate facility buffer
+C,100,50.0,voltage-aware,5334,80,98.5002,1,0,2,55,3,5,14,1,2,1,1,2,0,0,4,2,-440,no,no mixed-voltage circuits; moderate facility buffer
+C,100,50.0,voltage-status-aware,5334,151,97.1691,3,3,19,84,6,3,33,3,6,3,3,2,0,0,0,3,-150,no,no mixed-voltage circuits; moderate facility buffer
+C,250,0.5,geometry-only,5334,1341,74.8594,354,113,465,195,104,105,5,354,370,354,61,27,0,0,1,104,26290,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,250,0.5,voltage-aware,5334,1341,74.8594,354,113,465,195,104,105,5,354,370,354,61,27,0,0,1,104,26290,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,250,0.5,voltage-status-aware,5334,1342,74.8406,354,113,465,197,104,104,5,354,370,354,61,27,0,0,0,104,26350,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,250,1.0,geometry-only,5334,1224,77.0529,289,112,426,193,115,79,10,289,328,289,64,25,0,0,9,72,22510,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,250,1.0,voltage-aware,5334,1224,77.0529,289,112,426,193,115,79,10,289,328,289,64,25,0,0,9,72,22510,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,250,1.0,voltage-status-aware,5334,1234,76.8654,292,113,430,196,117,76,10,292,329,292,63,25,0,0,0,76,22850,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,250,5.0,geometry-only,5334,886,83.3896,153,61,290,129,138,89,26,153,216,153,67,9,0,0,40,53,8250,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,250,5.0,voltage-aware,5334,886,83.3896,153,61,290,129,138,89,26,153,216,153,67,9,0,0,40,53,8250,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,250,5.0,voltage-status-aware,5334,950,82.1897,162,71,315,156,160,56,30,162,226,162,70,9,0,0,0,56,11050,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,250,10.0,geometry-only,5334,439,91.7698,54,25,107,94,66,56,37,54,93,54,39,7,0,0,37,25,1330,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,250,10.0,voltage-aware,5334,439,91.7698,54,25,107,94,66,56,37,54,93,54,39,7,0,0,37,25,1330,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,250,10.0,voltage-status-aware,5334,513,90.3825,61,36,128,127,90,28,43,61,103,61,42,7,0,0,0,28,3650,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,250,25.0,geometry-only,5334,127,97.619,6,2,12,60,13,9,25,6,12,6,6,2,0,0,7,3,30,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,250,25.0,voltage-aware,5334,127,97.619,6,2,12,60,13,9,25,6,12,6,6,2,0,0,7,3,30,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,250,25.0,voltage-status-aware,5334,201,96.2317,9,11,32,87,19,5,38,9,18,9,9,2,0,0,0,5,500,no,no mixed-voltage circuits; moderate facility buffer; conservative endpoint snapping
+C,250,50.0,geometry-only,5334,79,98.5189,1,0,5,51,3,5,14,1,2,1,1,2,0,1,3,3,-580,no,moderate facility buffer
+C,250,50.0,voltage-aware,5334,80,98.5002,1,0,5,51,3,6,14,1,2,1,1,2,0,0,4,3,-540,no,no mixed-voltage circuits; moderate facility buffer
+C,250,50.0,voltage-status-aware,5334,151,97.1691,3,5,24,76,5,5,33,3,6,3,3,2,0,0,0,5,-350,no,no mixed-voltage circuits; moderate facility buffer
+C,500,0.5,geometry-only,5334,1341,74.8594,344,147,427,185,103,130,5,344,364,344,60,27,0,0,1,129,22290,no,no mixed-voltage circuits; conservative endpoint snapping
+C,500,0.5,voltage-aware,5334,1341,74.8594,344,147,427,185,103,130,5,344,364,344,60,27,0,0,1,129,22290,no,no mixed-voltage circuits; conservative endpoint snapping
+C,500,0.5,voltage-status-aware,5334,1342,74.8406,344,147,427,187,103,129,5,344,364,344,60,27,0,0,0,129,22350,no,no mixed-voltage circuits; conservative endpoint snapping
+C,500,1.0,geometry-only,5334,1224,77.0529,288,140,396,182,112,96,10,288,326,288,62,26,0,0,9,92,20110,no,no mixed-voltage circuits; conservative endpoint snapping
+C,500,1.0,voltage-aware,5334,1224,77.0529,288,140,396,182,112,96,10,288,326,288,62,26,0,0,9,92,20110,no,no mixed-voltage circuits; conservative endpoint snapping
+C,500,1.0,voltage-status-aware,5334,1234,76.8654,289,142,399,185,112,97,10,289,327,289,62,26,0,0,0,97,20000,no,no mixed-voltage circuits; conservative endpoint snapping
+C,500,5.0,geometry-only,5334,886,83.3896,155,75,272,123,134,101,26,155,218,155,67,9,0,0,40,67,6650,no,no mixed-voltage circuits; conservative endpoint snapping
+C,500,5.0,voltage-aware,5334,886,83.3896,155,75,272,123,134,101,26,155,218,155,67,9,0,0,40,67,6650,no,no mixed-voltage circuits; conservative endpoint snapping
+C,500,5.0,voltage-status-aware,5334,950,82.1897,162,88,296,148,153,73,30,162,226,162,70,9,0,0,0,73,8850,no,no mixed-voltage circuits; conservative endpoint snapping
+C,500,10.0,geometry-only,5334,439,91.7698,55,32,101,90,66,58,37,55,95,55,40,7,0,0,37,28,680,no,no mixed-voltage circuits; conservative endpoint snapping
+C,500,10.0,voltage-aware,5334,439,91.7698,55,32,101,90,66,58,37,55,95,55,40,7,0,0,37,28,680,no,no mixed-voltage circuits; conservative endpoint snapping
+C,500,10.0,voltage-status-aware,5334,513,90.3825,61,47,121,120,88,33,43,61,103,61,42,7,0,0,0,33,2650,no,no mixed-voltage circuits; conservative endpoint snapping
+C,500,25.0,geometry-only,5334,127,97.619,6,4,12,58,13,9,25,6,12,6,6,2,0,0,7,3,-470,no,no mixed-voltage circuits; conservative endpoint snapping
+C,500,25.0,voltage-aware,5334,127,97.619,6,4,12,58,13,9,25,6,12,6,6,2,0,0,7,3,-470,no,no mixed-voltage circuits; conservative endpoint snapping
+C,500,25.0,voltage-status-aware,5334,201,96.2317,8,17,32,81,18,7,38,8,16,8,8,2,0,0,0,7,-300,no,no mixed-voltage circuits; conservative endpoint snapping
+C,500,50.0,geometry-only,5334,79,98.5189,1,1,6,49,3,5,14,1,2,1,1,2,0,1,3,3,-1080,no,higher ambiguity or weak graph structure
+C,500,50.0,voltage-aware,5334,80,98.5002,1,1,6,49,3,6,14,1,2,1,1,2,0,0,4,3,-1040,no,no mixed-voltage circuits
+C,500,50.0,voltage-status-aware,5334,151,97.1691,2,10,25,70,5,6,33,2,4,2,2,2,0,0,0,6,-1050,no,no mixed-voltage circuits

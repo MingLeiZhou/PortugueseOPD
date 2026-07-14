@@ -1,0 +1,11 @@
+{
+  "generated_at": "2026-07-14T13:20:19Z",
+  "dataset_version": "v1.0.0",
+  "schema_dir": "data/schema/PT60-Candidate-v1.0.0",
+  "release_dir": "data/releases/PT60-Candidate-v1.0.0",
+  "machine_readable_dataset_files_documented_excluding_schema_package": 34,
+  "total_release_machine_readable_paths_documented": 54,
+  "field_records": 1090,
+  "principal_schema_files": 15,
+  "status": "PASS"
+}

@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-07-14T16:18:48+00:00",
+  "validation_mode": "package_clean_room_tarball_extraction",
+  "archive_path": "data/releases/PT60-Candidate-v1.0.0.tar.gz",
+  "archive_sha256": "b4a6c370fbf15c078e15b80a3bbc7f517750fdb763d59147b24f59cd160358d7",
+  "extracted_root_name": "PT60-Candidate-v1.0.0",
+  "manifest_records": 63,
+  "file_count": 63,
+  "machine_readable_paths": 54,
+  "dictionary_paths": 54,
+  "dictionary_field_records": 1090,
+  "headline_count_checks": {
+    "retained_interfacility_branches": true,
+    "merged_circuit_candidates": true,
+    "sensitivity_sweep_rows": true,
+    "selected_graph_edges": true
+  },
+  "failures": {
+    "missing_manifest_fields": [],
+    "missing_documentation": [],
+    "documented_missing": [],
+    "missing_required": [],
+    "manifest_hash_mismatches": [],
+    "checksum_mismatches": [],
+    "checksum_missing_paths": [],
+    "checksum_undocumented": [],
+    "checksum_extra": [],
+    "dictionary_missing_paths": [],
+    "dictionary_extra_paths": [],
+    "failed_headline_count_checks": []
+  },
+  "status": "PASS"
+}

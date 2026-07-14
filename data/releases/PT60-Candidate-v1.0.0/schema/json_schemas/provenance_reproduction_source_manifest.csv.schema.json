@@ -1,0 +1,339 @@
+{
+  "$schema": "https://specs.frictionlessdata.io/schemas/table-schema.json",
+  "name": "reproduction_source_manifest",
+  "path": "provenance/reproduction_source_manifest.csv",
+  "dataset_version": "v1.0.0",
+  "description": "PT60-Candidate schema for provenance/reproduction_source_manifest.csv.",
+  "fields": [
+    {
+      "name": "dataset_id",
+      "type": "string",
+      "logical_type": "identifier",
+      "description": "Identifier field `dataset_id` in `provenance/reproduction_source_manifest.csv`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "source_dataset_identifier",
+      "join_target": "provenance/reproduction_source_manifest.csv:dataset_id",
+      "missing_values": []
+    },
+    {
+      "name": "source_role",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `source_role`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "topology_critical",
+      "type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `topology_critical`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "metadata_status",
+      "type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `metadata_status`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "records_count",
+      "type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `records_count`.",
+      "unit": "count",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "metadata_url",
+      "type": "string",
+      "logical_type": "url",
+      "description": "URL field `metadata_url` in `provenance/reproduction_source_manifest.csv`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "portal_url",
+      "type": "string",
+      "logical_type": "url",
+      "description": "URL field `portal_url` in `provenance/reproduction_source_manifest.csv`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "csv_export_url",
+      "type": "string",
+      "logical_type": "url",
+      "description": "URL field `csv_export_url` in `provenance/reproduction_source_manifest.csv`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "geojson_export_url",
+      "type": "string",
+      "logical_type": "url",
+      "description": "URL field `geojson_export_url` in `provenance/reproduction_source_manifest.csv`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "checked_at",
+      "type": "string",
+      "logical_type": "datetime_or_date",
+      "description": "Source provenance or release-control field `checked_at`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "catalog_license_observed",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `catalog_license_observed`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        ""
+      ]
+    },
+    {
+      "name": "catalog_license_url_observed",
+      "type": "string",
+      "logical_type": "url",
+      "description": "URL field `catalog_license_url_observed` in `provenance/reproduction_source_manifest.csv`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        ""
+      ]
+    },
+    {
+      "name": "catalog_license_metadata_status",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `catalog_license_metadata_status`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        "MISSING"
+      ]
+    },
+    {
+      "name": "license_observed",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `license_observed`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "license_url_observed",
+      "type": "string",
+      "logical_type": "url",
+      "description": "URL field `license_url_observed` in `provenance/reproduction_source_manifest.csv`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "license_basis",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `license_basis`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "portal_license_statement_url",
+      "type": "string",
+      "logical_type": "url",
+      "description": "URL field `portal_license_statement_url` in `provenance/reproduction_source_manifest.csv`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "attribution_required",
+      "type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `attribution_required`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "required_attribution",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `required_attribution`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "attribution_observed",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `attribution_observed`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        ""
+      ]
+    },
+    {
+      "name": "license_metadata_status",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `license_metadata_status`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "license_review_status",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `license_review_status`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "license_review_evidence",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `license_review_evidence`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        ""
+      ]
+    },
+    {
+      "name": "redistribution_cleared",
+      "type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `redistribution_cleared`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "redistribution_gate",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `redistribution_gate`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "local_snapshot_count",
+      "type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `local_snapshot_count`.",
+      "unit": "count",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "local_snapshots_json",
+      "type": "string",
+      "logical_type": "json_encoded_string",
+      "description": "Source provenance or release-control field `local_snapshots_json`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "acquisition_allowed",
+      "type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `acquisition_allowed`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    }
+  ],
+  "missingValues": [
+    "",
+    "missing",
+    "missing_not_estimated",
+    "n/a",
+    "na",
+    "nan",
+    "none",
+    "not_estimated",
+    "null",
+    "pending"
+  ]
+}

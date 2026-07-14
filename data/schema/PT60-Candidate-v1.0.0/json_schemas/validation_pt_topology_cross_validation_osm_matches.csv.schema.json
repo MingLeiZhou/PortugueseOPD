@@ -1,0 +1,352 @@
+{
+  "$schema": "https://specs.frictionlessdata.io/schemas/table-schema.json",
+  "name": "pt_topology_cross_validation_osm_matches",
+  "path": "validation/pt_topology_cross_validation_osm_matches.csv",
+  "dataset_version": "v1.0.0",
+  "description": "PT60-Candidate schema for validation/pt_topology_cross_validation_osm_matches.csv.",
+  "fields": [
+    {
+      "name": "branch_id",
+      "type": "string",
+      "logical_type": "identifier",
+      "description": "Stable PT60 retained candidate branch identifier.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "foreign_key",
+      "join_target": "core_topology/at_interfacility_candidate_branches.csv:branch_id",
+      "missing_values": []
+    },
+    {
+      "name": "from_facility_code",
+      "type": "string",
+      "logical_type": "identifier",
+      "description": "Public source code for the source-side facility where available.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "facility_code",
+      "join_target": "E-REDES public facility code fields",
+      "missing_values": []
+    },
+    {
+      "name": "from_facility_name",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Public source name for the source-side facility where available.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "to_facility_code",
+      "type": "string",
+      "logical_type": "identifier",
+      "description": "Public source code for the target-side facility where available.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "facility_code",
+      "join_target": "E-REDES public facility code fields",
+      "missing_values": []
+    },
+    {
+      "name": "to_facility_name",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Public source name for the target-side facility where available.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "branch_voltage",
+      "type": "string",
+      "logical_type": "voltage",
+      "description": "Technical-validation field `branch_voltage`.",
+      "unit": "kV or V as encoded by field; see field description",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "branch_length_km",
+      "type": "number",
+      "logical_type": "distance_km",
+      "description": "Distance or length measurement field `branch_length_km`.",
+      "unit": "km",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "branch_confidence_score",
+      "type": "number",
+      "logical_type": "ratio_or_score",
+      "description": "Unitless score, ratio, coverage, percentage, or audit metric `branch_confidence_score`; interpret according to the file-level method documentation.",
+      "unit": "unitless",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "osm_id",
+      "type": "integer",
+      "logical_type": "identifier",
+      "description": "Identifier field `osm_id` in `validation/pt_topology_cross_validation_osm_matches.csv`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "external_source_identifier",
+      "join_target": "OpenStreetMap way/relation/node identifier",
+      "missing_values": []
+    },
+    {
+      "name": "osm_power",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `osm_power`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "osm_voltage",
+      "type": "integer",
+      "logical_type": "voltage",
+      "description": "Technical-validation field `osm_voltage`.",
+      "unit": "kV or V as encoded by field; see field description",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "osm_operator",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `osm_operator`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "osm_name",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `osm_name`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        ""
+      ]
+    },
+    {
+      "name": "osm_ref",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `osm_ref`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        ""
+      ]
+    },
+    {
+      "name": "osm_old_ref",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `osm_old_ref`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        ""
+      ]
+    },
+    {
+      "name": "osm_old_name",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `osm_old_name`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        ""
+      ]
+    },
+    {
+      "name": "osm_circuits",
+      "type": "integer",
+      "logical_type": "integer",
+      "description": "Technical-validation field `osm_circuits`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        ""
+      ]
+    },
+    {
+      "name": "osm_cables",
+      "type": "integer",
+      "logical_type": "integer",
+      "description": "Technical-validation field `osm_cables`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        ""
+      ]
+    },
+    {
+      "name": "osm_length_km",
+      "type": "number",
+      "logical_type": "distance_km",
+      "description": "Distance or length measurement field `osm_length_km`.",
+      "unit": "km",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "from_name_score",
+      "type": "number",
+      "logical_type": "ratio_or_score",
+      "description": "Unitless score, ratio, coverage, percentage, or audit metric `from_name_score`; interpret according to the file-level method documentation.",
+      "unit": "unitless",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "to_name_score",
+      "type": "number",
+      "logical_type": "ratio_or_score",
+      "description": "Unitless score, ratio, coverage, percentage, or audit metric `to_name_score`; interpret according to the file-level method documentation.",
+      "unit": "unitless",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "min_distance_m",
+      "type": "number",
+      "logical_type": "distance_m",
+      "description": "Distance or length measurement field `min_distance_m`.",
+      "unit": "m",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "median_branch_to_osm_m",
+      "type": "number",
+      "logical_type": "distance_m",
+      "description": "Distance or length measurement field `median_branch_to_osm_m`.",
+      "unit": "m",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "branch_coverage_250m",
+      "type": "number",
+      "logical_type": "ratio_or_score",
+      "description": "Unitless score, ratio, coverage, percentage, or audit metric `branch_coverage_250m`; interpret according to the file-level method documentation.",
+      "unit": "unitless",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "branch_coverage_500m",
+      "type": "number",
+      "logical_type": "ratio_or_score",
+      "description": "Unitless score, ratio, coverage, percentage, or audit metric `branch_coverage_500m`; interpret according to the file-level method documentation.",
+      "unit": "unitless",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "osm_coverage_500m",
+      "type": "number",
+      "logical_type": "ratio_or_score",
+      "description": "Unitless score, ratio, coverage, percentage, or audit metric `osm_coverage_500m`; interpret according to the file-level method documentation.",
+      "unit": "unitless",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "external_evidence_status",
+      "type": "string",
+      "logical_type": "string",
+      "description": "OSM/OpenInfraMap public-source concordance category.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "evidence_reason",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Human-readable rule explanation for an external-evidence category.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "osm_url",
+      "type": "string",
+      "logical_type": "url",
+      "description": "OpenStreetMap object URL used for public-source triangulation.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    }
+  ],
+  "missingValues": [
+    "",
+    "missing",
+    "missing_not_estimated",
+    "n/a",
+    "na",
+    "nan",
+    "none",
+    "not_estimated",
+    "null",
+    "pending"
+  ]
+}

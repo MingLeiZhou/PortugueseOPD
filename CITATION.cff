@@ -1,14 +1,15 @@
 cff-version: 1.2.0
 message: "If you use PortugueseOPD, cite the software and the accompanying dataset or paper release."
-title: "PortugueseOPD: A Fail-Closed Open-Data Pipeline for a Diagnostic Portuguese 60 kV Grid Benchmark"
+title: "PortugueseOPD: A Fail-Closed Pipeline for the PT60-Candidate Dataset"
 type: software
 authors:
   - name: "PortugueseOPD contributors"
-version: 0.1.0
-date-released: 2026-07-13
+version: 1.0.0
+date-released: 2026-07-14
 license: MIT
-repository-code: "REPLACE_WITH_PUBLIC_REPOSITORY_URL"
+repository-code: "https://github.com/MingLeiZhou/PortugueseOPD"
 abstract: >-
-  A research pipeline for reconstructing, governing, and packaging a diagnostic
-  Portuguese 60 kV grid benchmark from E-REDES open data. The outputs are
-  diagnostic-only and do not represent an operator-grade network model.
+  A research pipeline for reconstructing, validating, governing, and packaging
+  PT60-Candidate, a provenance-tracked Portuguese 60 kV candidate-topology
+  dataset derived from E-REDES open data. The outputs are not operator validated
+  and do not represent an operational grid model.

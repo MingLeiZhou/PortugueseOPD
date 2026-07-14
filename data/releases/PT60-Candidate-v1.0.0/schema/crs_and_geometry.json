@@ -1,0 +1,32 @@
+{
+  "dataset_version": "v1.0.0",
+  "generated_at": "2026-07-14T13:20:19Z",
+  "source_crs": {
+    "name": "WGS 84 longitude/latitude as provided in public GeoJSON/CSV geometry exports",
+    "epsg": "EPSG:4326",
+    "axis_order_in_release_geometry": "longitude, latitude",
+    "coordinate_units": "decimal degrees",
+    "evidence_status": "Release geometry values are encoded as GeoJSON-style longitude/latitude coordinates; confirm exact upstream CRS wording again before DOI deposit."
+  },
+  "processing_metric_crs": {
+    "name": "Local equirectangular Portugal metric workspace",
+    "epsg": null,
+    "parameters": {
+      "lon0": -8.532604,
+      "lat0": 39.567953,
+      "units": "m"
+    },
+    "usage": "Endpoint clustering, facility-distance checks, corridor-distance checks and length/coverage diagnostics."
+  },
+  "release_geometry_encoding": {
+    "csv_geometry_fields": "GeoJSON text in CSV cells",
+    "geometry_types_observed": [
+      "LineString",
+      "MultiLineString",
+      "Point-like facility summaries where applicable"
+    ],
+    "distance_fields": "Fields ending in _m use metres; fields ending in _km use kilometres.",
+    "missing_geometry": "Empty string, null, NaN, or MISSING_NOT_ESTIMATED depending on source artifact."
+  },
+  "claim_boundary": "Coordinate and distance fields support reproducible candidate-topology reconstruction and validation. They do not imply operator-validated asset positions or operational grid-model readiness."
+}
