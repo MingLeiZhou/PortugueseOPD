@@ -10,7 +10,7 @@ and model-readiness limits explicit and reproducible.
 
 ## Current candidate dataset
 
-The versioned PT60-Candidate v1.0.0 release contains:
+The locally validated PT60-Candidate v1.0.1 release candidate contains:
 
 - 484 candidate facilities and 358 retained inter-facility candidate branches;
 - a complete 1,342-row retained/downgraded/rejected circuit ledger;
@@ -30,7 +30,7 @@ diagnostic-only and are excluded from the main public dataset archive.
 - `data/metadata/`: selected provenance and release-control metadata.
 - `data/processed/`: generated candidate and release data; excluded from ordinary Git and
   intended for a separately versioned data archive.
-- `data/releases/PT60-Candidate-v1.0.0/`: minimized public dataset release and schemas.
+- `data/releases/PT60-Candidate-v1.0.1/`: minimized v1.0.1 dataset release and corrected schemas.
 - `paper/`: Scientific Data manuscript source, generated figures, PDF, and editable DOCX.
 - `docs/`: stable project, release, licensing, and cleanup documentation.
 - `reports/`: selected validation and release audit reports.
@@ -115,7 +115,7 @@ diagnostic signal, not electrical validation.
 - Code may be used under the MIT license.
 - E-REDES-derived data use the portal's CC BY 4.0 terms and required publisher attribution;
   the MIT code license does not replace those terms.
-- The responsible-release boundary for PT60-Candidate v1.0.0 is recorded in
+- The responsible-release boundary inherited by PT60-Candidate v1.0.1 is recorded in
   `data/metadata/responsible_release_boundary.json` and
   `reports/107_pt60_responsible_release_boundary.md`.
 - The core public archive may include exact derived candidate geometries, facility

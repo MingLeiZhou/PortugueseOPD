@@ -235,7 +235,7 @@ def main() -> None:
     parser.add_argument(
         "--release-root",
         type=Path,
-        default=ROOT / "data" / "releases" / "PT60-Candidate-v1.0.0",
+        default=ROOT / "data" / "releases" / "PT60-Candidate-v1.0.1",
         help="Extracted frozen release directory.",
     )
     args = parser.parse_args()

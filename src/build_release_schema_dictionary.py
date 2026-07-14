@@ -19,7 +19,7 @@ import config
 from utils import utc_now, write_json, write_text
 
 
-VERSION = "v1.0.0"
+VERSION = "v1.0.1"
 RELEASE_NAME = f"PT60-Candidate-{VERSION}"
 RELEASE_DIR = config.DATA_DIR / "releases" / RELEASE_NAME
 SCHEMA_DIR = config.DATA_DIR / "schema" / RELEASE_NAME
@@ -91,34 +91,54 @@ def file_format(path: Path) -> str:
     return suffix.lstrip(".") or "unknown"
 
 
+def field_leaf(name: str) -> str:
+    """Return a normalized leaf token from a column name or JSON pointer."""
+    leaf = name.rsplit(".", 1)[-1].replace("[*]", "")
+    return re.sub(r"[^a-z0-9_]+", "_", leaf.lower()).strip("_")
+
+
+def boolean_like_name(name: str) -> bool:
+    leaf = field_leaf(name)
+    return (
+        leaf.startswith(("is_", "has_"))
+        or leaf.endswith(("_flag", "_boolean", "_bool"))
+        or leaf in {"mixed_voltage", "mixed_status", "topology_critical"}
+    )
+
+
 def infer_logical_type(name: str, observed_type: str) -> str:
     n = name.lower()
-    if n in {"geometry", "geom"} or "geometry" in n:
-        return "geojson_geometry"
-    if n.endswith("_json") or "details_json" in n:
-        return "json_encoded_string"
-    if "url" in n:
-        return "url"
-    if n.endswith("_id") or n in {"id", "osm_id"} or "uid" in n or "code" in n:
-        return "identifier"
-    if "sha256" in n or "checksum" in n:
-        return "checksum"
-    if "date" in n or "time" in n or n.endswith("_at"):
-        return "datetime_or_date"
-    if "lat" in n:
-        return "latitude_degrees"
-    if "lon" in n or "lng" in n:
-        return "longitude_degrees"
-    if n.endswith("_m") or "_m_" in n or "distance_m" in n or "length_m" in n:
-        return "distance_m"
-    if n.endswith("_km") or "length_km" in n:
-        return "distance_km"
-    if "voltage" in n or "kv" in n or "vn_kv" in n:
-        return "voltage"
-    if "score" in n or "coverage" in n or "rate" in n or "percentage" in n:
-        return "ratio_or_score"
-    if n.startswith("is_") or n.startswith("has_") or n in {"mixed_voltage", "mixed_status", "topology_critical"}:
+    leaf = field_leaf(name)
+    tokens = set(leaf.split("_"))
+    count_like = leaf.endswith(("_count", "_counts", "_rows", "_features", "_nodes", "_circuits", "_clusters"))
+    if count_like and observed_type in {"integer", "number"}:
+        return observed_type
+    if observed_type == "boolean" or boolean_like_name(name):
         return "boolean"
+    if leaf.endswith("_json") or "details_json" in leaf:
+        return "json_encoded_string"
+    if "url" in tokens:
+        return "url"
+    if leaf.endswith("_id") or leaf in {"id", "osm_id"} or "uid" in tokens or "code" in tokens:
+        return "identifier"
+    if "sha256" in leaf or "checksum" in leaf:
+        return "checksum"
+    if "date" in tokens or "time" in tokens or leaf.endswith("_at"):
+        return "datetime_or_date"
+    if leaf in {"lat", "latitude", "north", "south"} or leaf.endswith(("_lat", "_latitude")):
+        return "latitude_degrees"
+    if leaf in {"lon", "lng", "longitude", "east", "west"} or leaf.endswith(("_lon", "_lng", "_longitude")):
+        return "longitude_degrees"
+    if leaf.endswith("_m") or "distance_m" in leaf or "length_m" in leaf:
+        return "distance_m"
+    if leaf.endswith("_km") or "length_km" in leaf:
+        return "distance_km"
+    if leaf in {"geometry", "geom", "original_geometry"} or leaf.endswith("_geojson"):
+        return "geojson_geometry"
+    if "voltage" in tokens or "kv" in tokens or "vn_kv" in leaf:
+        return "voltage"
+    if "score" in tokens or "coverage" in tokens or "rate" in tokens or "percentage" in tokens:
+        return "ratio_or_score"
     return observed_type
 
 
@@ -231,12 +251,16 @@ def infer_semantic_status(rel: str, name: str) -> str:
     return "release_control"
 
 
-def series_type(values: list[Any]) -> str:
+def series_type(values: list[Any], field_name: str = "") -> str:
     non_missing = [v for v in values if not normalise_missing(v)]
     if not non_missing:
         return "string"
+    if all(isinstance(v, bool) for v in non_missing):
+        return "boolean"
     bool_like = {str(v).strip().lower() for v in non_missing}
-    if bool_like <= {"true", "false", "0", "1"}:
+    if bool_like <= {"true", "false"} or (
+        bool_like <= {"true", "false", "0", "1"} and boolean_like_name(field_name)
+    ):
         return "boolean"
     numeric = 0
     integer = 0
@@ -282,7 +306,7 @@ def csv_records(path: Path, rel: str) -> list[dict[str, Any]]:
     for column in df.columns:
         values = df[column].tolist()
         null_count = sum(1 for v in values if normalise_missing(v))
-        observed_type = series_type(values)
+        observed_type = series_type(values, column)
         logical_type = infer_logical_type(column, observed_type)
         key_role, join_target = infer_key_role(column, rel)
         records.append(
@@ -349,7 +373,7 @@ def json_records(path: Path, rel: str) -> list[dict[str, Any]]:
     total_items = max((len(v) for v in sink.values()), default=1)
     for pointer, values in sorted(sink.items()):
         field = pointer
-        observed_type = series_type(values)
+        observed_type = series_type(values, pointer)
         logical_type = infer_logical_type(field, observed_type)
         key_role, join_target = infer_key_role(field.split(".")[-1].replace("[*]", ""), rel)
         null_count = sum(1 for v in values if normalise_missing(v))
@@ -543,9 +567,9 @@ def write_crs_docs() -> None:
         "claim_boundary": "Coordinate and distance fields support reproducible candidate-topology reconstruction and validation. They do not imply operator-validated asset positions or operational grid-model readiness.",
     }
     write_json(SCHEMA_DIR / "crs_and_geometry.json", crs)
-    text = """# CRS, Geometry Encoding, Units and Missing-Value Semantics
+    text = f"""# CRS, Geometry Encoding, Units and Missing-Value Semantics
 
-Dataset version: PT60-Candidate v1.0.0
+Dataset version: PT60-Candidate {VERSION}
 
 ## Coordinate reference systems
 
@@ -637,11 +661,11 @@ def write_readme(records: list[dict[str, Any]]) -> None:
     file_count = len({r["relative_path"] for r in records})
     field_count = len(records)
     group_counts = Counter(r["file_group"] for r in records)
-    text = f"""# PT60-Candidate v1.0.0 Schema Package
+    text = f"""# PT60-Candidate {VERSION} Schema Package
 
 Generated: {release_timestamp()}
 
-This package documents public CSV, JSON and GraphML fields in the PT60-Candidate v1.0.0 release archive.
+This package documents public CSV, JSON and GraphML fields in the PT60-Candidate {VERSION} release archive.
 
 ## Contents
 
@@ -782,6 +806,31 @@ def append_schema_self_documentation(records: list[dict[str, Any]]) -> list[dict
     return augmented
 
 
+def semantic_inference_issues(records: list[dict[str, Any]]) -> list[dict[str, str]]:
+    """Fail closed on implausible name-derived logical types."""
+    issues = []
+    for record in records:
+        name = str(record["field_name"])
+        leaf = field_leaf(name)
+        logical = str(record["logical_type"])
+        if logical == "latitude_degrees" and not (
+            leaf in {"lat", "latitude", "north", "south"} or leaf.endswith(("_lat", "_latitude"))
+        ):
+            issues.append({"field": name, "logical_type": logical, "reason": "non_coordinate_name"})
+        if logical == "longitude_degrees" and not (
+            leaf in {"lon", "lng", "longitude", "east", "west"} or leaf.endswith(("_lon", "_lng", "_longitude"))
+        ):
+            issues.append({"field": name, "logical_type": logical, "reason": "non_coordinate_name"})
+        if logical == "geojson_geometry" and not (
+            leaf in {"geometry", "geom", "original_geometry"} or leaf.endswith("_geojson")
+        ):
+            issues.append({"field": name, "logical_type": logical, "reason": "non_geometry_name"})
+        count_like = leaf.endswith(("_count", "_rows", "_features")) or leaf in {"count", "rows", "features"}
+        if logical == "boolean" and count_like:
+            issues.append({"field": name, "logical_type": logical, "reason": "count_as_boolean"})
+    return issues
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--overwrite", action="store_true", help="Replace existing schema directory.")
@@ -886,6 +935,7 @@ def main() -> None:
     write_csv(SCHEMA_DIR / "data_dictionary.csv", all_records)
     write_csv(SCHEMA_DIR / "file_schema_summary.csv", summary_rows)
     write_readme(all_records)
+    semantic_issues = semantic_inference_issues(all_records)
     summary = {
         "generated_at": release_timestamp(),
         "dataset_version": VERSION,
@@ -895,10 +945,14 @@ def main() -> None:
         "total_release_machine_readable_paths_documented": len({record["relative_path"] for record in all_records}),
         "field_records": len(all_records),
         "principal_schema_files": len(list((SCHEMA_DIR / "json_schemas").glob("*.schema.json"))),
-        "status": "PASS" if records_by_file and all_records else "FAIL",
+        "semantic_inference_issue_count": len(semantic_issues),
+        "semantic_inference_issues": semantic_issues,
+        "status": "PASS" if records_by_file and all_records and not semantic_issues else "FAIL",
     }
     write_json(SCHEMA_DIR / "schema_build_summary.json", summary)
     print(json.dumps(summary, indent=2, ensure_ascii=False))
+    if summary["status"] != "PASS":
+        raise RuntimeError("Schema build failed semantic inference validation")
 
 
 if __name__ == "__main__":

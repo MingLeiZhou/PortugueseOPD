@@ -43,7 +43,7 @@
 \maketitle
 
 \begin{abstract}
-Open infrastructure portals often provide geospatial power-network records without explicit bus--branch connectivity or machine-readable distinctions between observed, derived, inferred, and missing information. We assembled \dataset, a provenance-tracked candidate dataset for Portuguese 60~kV topology reconstruction from E-REDES Open Data. A fail-closed workflow processed 5,334 line features and 586 relevant facility records across 216 reconstruction settings. Version~1.0.0 contains a 484-facility candidate multigraph, 358 retained inter-facility branch records, a complete 1,342-row retained/downgraded/rejected circuit ledger, the sensitivity sweep, provenance records, schemas, checksums, and branch-level public-source triangulation. Internal validation reports 23 passes and two documented warnings across 25 checks. Endpoint-name corruption reduced strong name-based public evidence from 183/358 to 9/358, while spatial displacement reduced corridor evidence from 290/358 to 1/358. Comparison with Portuguese 60~kV \osminfra records assigns 247 retained branches to strong, 104 to medium, and seven to weak public-evidence categories. These results test record consistency and matcher selectivity; they are not truth labels and do not estimate topology precision or recall. The dataset is intended for topology-reconstruction research, geospatial integration, provenance-aware network analysis, and sensitivity studies. It is not operator validated, is not an operational grid model, and lacks the electrical parameters and operating data required for AC power-flow or OPF studies. The versioned dataset is deposited in figshare under DOI \href{https://doi.org/10.6084/m9.figshare.32984021}{10.6084/m9.figshare.32984021}.
+Public distribution-network records rarely provide explicit bus--branch topology. We present \dataset, a provenance-tracked candidate dataset for the Portuguese E-REDES 60~kV layer and its fail-closed construction pipeline. From 5,334 line features and 586 facility records, the selected configuration yields 1,342 classified circuit candidates: 358 retained inter-facility branches and 984 downgraded or rejected records with reasons. Version~1.0.1 includes a 484-node multigraph, 216-configuration sensitivity sweep, source manifests, corrected schemas and data dictionary, checksums, and branch-level public-source evidence. Internal validation tests geometry, identifiers, graph--table parity, schema coverage, missingness, and archive integrity. OpenStreetMap/OpenInfraMap triangulation provides inspectable name or corridor evidence for every retained branch; endpoint-name permutation and displaced-geometry controls reduce the corresponding evidence rates by 95.1\% and 99.7\%. These results test matcher selectivity and public-data concordance, not physical topology accuracy. The dataset is not operator validated, precision and recall are unavailable, and electrical parameters remain incomplete. It supports topology-reconstruction, provenance, geospatial-integration, and interface research, not operational grid studies. Versioned data and code are provided separately.
 \end{abstract}
 
 \noindent\textbf{Keywords:} power-grid dataset; data provenance; topology reconstruction; distribution networks; technical validation; open data
@@ -62,7 +62,7 @@ This framing differs from a conventional engineering paper. The central contribu
 
 \subsection{Source datasets}
 
-The source snapshot combines AT line geometries, AT substations, switching facilities, MT-substation context, network-characteristics tables, substation-load records, reception-capacity context, and load-diagram indices from the E-REDES Open Data Portal \citep{EREDESOpenData2026}. For the documented snapshot, the topology stage loads 586 technically relevant facilities, comprising 409 AT substations and 177 additional facilities. The same snapshot contains 5,334 valid AT line features, of which 5,323 are labeled 60~kV and 11 are labeled 130~kV in the current local build.
+The source snapshot combines AT line geometries, AT substations, switching facilities, MT-substation context, network-characteristics tables, substation-load records, reception-capacity context, and load-diagram indices from the E-REDES Open Data Portal \citep{EREDESOpenData2026}. The topology-critical inputs are \code{rede-at-teste} (5,334 records; checked 2026-07-13 14:15:57 UTC), \code{se-at\_2025} (410 records; checked 2026-07-13 14:16:08 UTC), and \code{pc-at\_2025} (76 records; checked 2026-07-13 14:15:31 UTC); their catalog, portal, CSV-export, and GeoJSON-export URLs are preserved in the source manifest. For the documented snapshot, the topology stage loads 586 technically relevant facilities, comprising 409 AT substations and 177 additional facilities. The same snapshot contains 5,334 valid AT line features, of which 5,323 are labeled 60~kV and 11 are labeled 130~kV in the current local build.
 
 The release uses the portal-level license statement reported by E-REDES for distributable data artifacts. The dataset package records publisher attribution, portal URL, source dataset identifiers, access dates, and transformation notices separately from the repository's MIT code license. Where topology-critical API catalog responses did not repeat an explicit license field, the release policy follows the recorded portal-level statement rather than inferring a different license from the omission. The topology-critical catalog records were checked on 13 July 2026; per-source timestamps are preserved in \code{provenance/reproduction\_source\_manifest.json}.
 
@@ -134,17 +134,19 @@ The reconstruction workflow evaluates 216 settings generated by combining three 
 
 The score is a reproducible engineering rule used to choose one documented release point from the 216-setting sweep. It is not a calibrated probability of correctness and is not presented as an external optimum.
 
+Large-language-model assistance was used for code review, structural editing, and release-checklist support. The authors inspected the generated changes and remain responsible for the methods, numerical results, citations, release files, and claims. This disclosure must be confirmed against the authors' actual use before submission.
+
 \subsection{Dataset generation}
 
 The selected setting converts 5,334 source line features into 1,342 circuit candidates. Of these, 358 satisfy the declared inter-facility rules and are released as retained candidate branches. The remaining 984 circuit candidates are preserved as downgraded records rather than discarded. The selected all-facility GraphML preserves isolated facilities as nodes so that graph outputs remain consistent with the declared isolate policy.
 
-The same workflow packages the reconstruction-sensitivity table, public-source triangulation outputs, negative controls, an independence-risk audit, internal-validation results, source manifests, schemas, and checksum-linked inventory. Electrical diagnostics and Stage~1--5 learning interfaces are excluded from the main v1.0.0 public archive because they depend on incomplete, proxy, benchmark-only, or scenario-derived information.
+The same workflow packages the reconstruction-sensitivity table, public-source triangulation outputs, negative controls, an independence-risk audit, internal-validation results, source manifests, schemas, and checksum-linked inventory. Electrical diagnostics and Stage~1--5 learning interfaces are excluded from the main v1.0.1 public archive because they depend on incomplete, proxy, benchmark-only, or scenario-derived information.
 
-\section{Data Record}
+\section{Data Records}
 
 \subsection{Repository overview}
 
-\dataset version~1.0.0 is deposited in figshare \citep{PT60Candidate2026} under DOI \href{https://doi.org/10.6084/m9.figshare.32984021}{10.6084/m9.figshare.32984021}. The repository item contains the frozen release archive \path{PT60-Candidate-v1.0.0.tar.gz}. The deposited archive has SHA-256 \hashvalue{b4a6c370fbf15c078e15b80a3bbc7f517750fdb763d59147b24f59cd160358d7}.
+\dataset version~1.0.1 has been prepared for a reserved figshare record. Its DOI is \url{https://doi.org/10.6084/m9.figshare.32984021}. The archive \path{PT60-Candidate-v1.0.1.tar.gz} has SHA-256 \hashvalue{0f8e476e8f74453da7cb587edbca1888186f5a1c7e4a2b0f2434d7f4ff0b289f}. The v1.0.1 file must replace the earlier uploaded draft before the item is published.
 
 The archive contains 63 documented files. It provides the retained candidate topology, the complete downgrade/rejection ledger, the GraphML multigraph, the 216-setting sensitivity record, provenance manifests, validation outputs, schemas, licensing documents, and checksum-linked inventory. Raw E-REDES downloads, raw OSM history/cache blobs, manuscript work files, optional Stage~1--5 interfaces, and non-operational electrical diagnostics are not part of the main public archive. The reasons and reproducibility consequences of these exclusions are recorded in \code{excluded\_artifacts.json}.
 
@@ -155,7 +157,7 @@ The top-level \path{README.md}, \path{CITATION.cff}, \path{DATA_LICENSE.md}, \pa
 \begin{table}[t]
 \centering
 \small
-\caption{Directory structure of the deposited \dataset v1.0.0 archive. Counts refer to files, not data rows.}
+\caption{Directory structure of the \dataset v1.0.1 archive. Counts refer to files, not data rows.}
 \label{tab:archive-layout}
 \input{generated_tables/archive_layout_table.tex}
 \end{table}
@@ -190,7 +192,7 @@ The parallel \code{provenance/reproduction\_source\_manifest.csv} and \code{.jso
 
 \subsection{Schema, coordinate systems, units, and missing values}
 
-The schema package documents 54 public machine-readable paths using 1,090 field, JSON-pointer, and GraphML-attribute records. \code{schema/data\_dictionary.csv} defines type, nullability, unit, observed missing representation, allowed values, semantic status, derivation, and key role. \code{schema/join\_relationships.csv} defines six recommended joins among retained branches, the ledger, validation records, source manifests, and archive checksums. Fifteen JSON schema files cover the principal core, validation, provenance, manifest, and GraphML records.
+The schema package documents 54 public machine-readable paths using 1,090 field, JSON-pointer, and GraphML-attribute records. \code{schema/data\_dictionary.csv} defines type, nullability, unit, observed missing representation, allowed values, semantic status, derivation, and key role. Version~1.0.1 corrects the earlier substring-based inference of coordinate, geometry, boolean, and count fields and adds fail-closed semantic checks plus regression tests for those failure modes. \code{schema/join\_relationships.csv} defines six recommended joins among retained branches, the ledger, validation records, source manifests, and archive checksums. Fifteen JSON schema files cover the principal core, validation, provenance, manifest, and GraphML records.
 
 Released geometries use GeoJSON-style WGS~84 coordinates (EPSG:4326) in longitude--latitude order. Endpoint clustering, facility distances, corridor distances, and length diagnostics use a pipeline-defined local equirectangular metric workspace centred at longitude $-8.532604$ and latitude $39.567953$; this workspace has no EPSG identifier. Voltage fields preserve file-specific source encodings. Common missing representations are empty strings, JSON \code{null}, \code{NaN}, absent optional keys, and the explicit token \code{MISSING\_NOT\_ESTIMATED}. The complete conventions are recorded in \code{schema/crs\_and\_geometry.md} and its JSON equivalent.
 
@@ -228,7 +230,7 @@ Structural validation focuses on whether the reconstructed records satisfy the d
 
 The release validates that required files, columns, and machine-readable summaries exist and remain aligned across the retained branch table, full ledger, GraphML, provenance, validation, and archive-control surfaces. The schema package distinguishes identifiers, observed and derived values, provenance metadata, validation variables, and explicit missing electrical fields.
 
-For the frozen public-validation route, the internal validation export records 25 machine-readable checks across source geometry parsing, retained-branch completeness, ledger accounting, endpoint summaries, facility footprints, GraphML/table parity, sensitivity rows, and artifact hashes. The result is \status{PASS\_WITH\_WARNINGS}: 23 checks pass and two checks are release-review warnings rather than data-consistency failures. The release geometry and processing workspace are now documented in Data Record, while the exact wording of the upstream portal CRS remains unverified. The deterministic final-tag rebuild reproduces the deposited archive hash from the frozen derived inputs; raw/API reacquisition remains subject to the limitation stated in Usage Notes. The same export records 5,334 valid source geometries and zero invalid/dropped geometries; zero missing required retained-branch fields; zero missing required ledger fields; 358 retained branches; 984 downgraded or rejected records; 1,342 ledger rows; 64,008 endpoint-index rows across six snap thresholds; and 216 sensitivity rows.
+For the frozen public-validation route, the internal validation export records 25 machine-readable checks across source geometry parsing, retained-branch completeness, ledger accounting, endpoint summaries, facility footprints, GraphML/table parity, sensitivity rows, and artifact hashes. The result is \status{PASS\_WITH\_WARNINGS}: 23 checks pass and two checks are release-review warnings rather than data-consistency failures. The release geometry and processing workspace are now documented in Data Records, while the exact wording of the upstream portal CRS remains unverified. Clean-room extraction validation of the v1.0.1 archive reports no manifest, checksum, dictionary-coverage, or headline-count failures. The earlier v1.0.0 tag rebuild remains the evidence for byte-for-byte reconstruction from frozen derived inputs; a v1.0.1 tagged rebuild is still required, and raw/API reacquisition remains subject to the limitation stated in Usage Notes. The same export records 5,334 valid source geometries and zero invalid/dropped geometries; zero missing required retained-branch fields; zero missing required ledger fields; 358 retained branches; 984 downgraded or rejected records; 1,342 ledger rows; 64,008 endpoint-index rows across six snap thresholds; and 216 sensitivity rows.
 
 \subsection{Referential integrity}
 
@@ -255,7 +257,7 @@ Across the 216-setting sweep, increasing the facility buffer from 100~m to 500~m
 
 \subsection{External triangulation}
 
-The external triangulation workflow searches for branch-level public evidence outside the selected reconstruction rule. The current implementation uses \osminfra 60~kV \code{power=line} and \code{power=cable} records in Portugal, caches the raw Overpass response, parses voltage, operator, name, reference, circuit, and geometry fields, and compares each retained branch against these public records by endpoint-name overlap and corridor proximity.
+The external triangulation workflow searches for branch-level public evidence outside the selected reconstruction rule. The current implementation uses OpenStreetMap/OpenInfraMap 60~kV \code{power=line} and \code{power=cable} records in Portugal \citep{OSM2026,OpenInfraMap2026}, parses voltage, operator, name, reference, circuit, and geometry fields, and compares each retained branch by endpoint-name overlap and corridor proximity. A name score must be at least 0.8. Strong spatial evidence requires minimum distance no greater than 250~m, median branch-to-OSM distance no greater than 500~m, and branch or OSM coverage of at least 0.5 within 500~m; weak proximity is limited to 1,000~m. The operator condition requires a normalized tag containing \code{e redes}.
 
 \begin{table}[t]
 \centering
@@ -265,7 +267,7 @@ The external triangulation workflow searches for branch-level public evidence ou
 \input{generated_tables/osm_triangulation_table.tex}
 \end{table}
 
-For the current snapshot, 5,551 Portuguese 60~kV public ways are cached and all 358 retained candidate branches receive a non-empty public-evidence category, with 247 strong, 104 medium, and seven weak matches. This result provides public-source concordance and a branch-level evidence index. It does not establish operator validation or branch accuracy, because OSM coverage and tagging are non-authoritative. To audit provenance risk, the release records current OSM metadata for the 5,551 cached public ways and full version histories for the 271 unique OSM ways matched to retained branches, covering 2,326 historical versions. The branch-level audit classifies 266 retained branches as having stronger inspectable public evidence, 87 as unknown independence, and five as possibly same-source or operator-tag-only evidence. These categories distinguish public concordance from more inspectable public corroboration, but they still must not be interpreted as precision, recall, or confirmation of every retained branch.
+For the current snapshot, 5,551 Portuguese 60~kV public ways were evaluated and all 358 retained candidate branches receive a non-empty public-evidence category, with 247 strong, 104 medium, and seven weak matches. This result provides public-source concordance and a branch-level evidence index. It does not establish operator validation or branch accuracy, because OSM coverage and tagging are non-authoritative. The internal independence audit inspected histories for the 271 unique matched OSM ways, covering 2,326 historical versions, and classifies 266 retained branches as having more-independent public evidence, 87 as unknown independence, and five as possibly same-source. The public archive contains only summary counts, evidence tables, and a sanitized branch-level audit; raw caches, user identifiers, changesets, and element-history dumps are excluded. These categories must not be interpreted as precision, recall, or confirmation of every retained branch.
 
 \subsection{Claim-bounded validation strategy}
 
@@ -325,11 +327,22 @@ The release has four main limitations. First, it is a candidate topology derived
 
 \section*{Data Availability}
 
-\dataset version~1.0.0 is deposited in figshare \citep{PT60Candidate2026} at \url{https://doi.org/10.6084/m9.figshare.32984021}. The deposited file is \path{PT60-Candidate-v1.0.0.tar.gz}, SHA-256 \hashvalue{b4a6c370fbf15c078e15b80a3bbc7f517750fdb763d59147b24f59cd160358d7}. It contains the core topology, full circuit ledger, GraphML, sensitivity sweep, provenance, validation, schema, data-dictionary, licensing, attribution, manifest, and checksum records described in Data Record. Raw source downloads and optional diagnostic/interface artifacts are excluded as documented in \path{excluded_artifacts.json}. E-REDES-derived records remain subject to the attribution and indication-of-modification terms documented in \path{DATA_LICENSE.md} and \path{ATTRIBUTION.md}; the software licence does not replace those data terms.
+\dataset version~1.0.1 is prepared for the reserved figshare DOI \url{https://doi.org/10.6084/m9.figshare.32984021}. The file \path{PT60-Candidate-v1.0.1.tar.gz}, SHA-256 \hashvalue{0f8e476e8f74453da7cb587edbca1888186f5a1c7e4a2b0f2434d7f4ff0b289f}, must replace the earlier uploaded draft before publication. It contains the core topology, full circuit ledger, GraphML, sensitivity sweep, provenance, validation, corrected schema/data dictionary, licensing, attribution, manifest, and checksum records described in Data Records. Raw source downloads and optional diagnostic/interface artifacts are excluded as documented in \path{excluded\_artifacts.json}. E-REDES-derived records remain subject to the attribution and indication-of-modification terms documented in \path{DATA\_LICENSE.md} and \path{ATTRIBUTION.md}; the software licence does not replace those data terms.
+
+\section*{Code Availability}
+
+The source code is publicly available at \url{https://github.com/MingLeiZhou/PortugueseOPD}. The existing v1.0.0 tags preserve the prior release; an immutable v1.0.1 source tag and DOI-providing software archive remain to be created before submission. The reference environment uses Python~3.12.9 and the versioned \path{requirements.txt}; the software is MIT licensed. The dataset archive is independently usable without installing the generation pipeline, but full regeneration from raw E-REDES/API responses is subject to the source-reacquisition limitation described in Usage Notes.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
 
 \section*{Author Contributions}
 
 The author-responsibility statement will be completed when the final author list is supplied and before submission.
+
+\section*{Competing Interests}
+
+The final competing-interests declaration will be supplied before submission.
 
 \section*{Acknowledgements}
 
@@ -338,16 +351,5 @@ Acknowledgements, if applicable, will be finalized before submission.
 \section*{Funding}
 
 The funding statement will be finalized before submission.
-
-\section*{Competing Interests}
-
-The final competing-interests declaration will be supplied before submission.
-
-\section*{Code Availability}
-
-The source code is publicly available at \url{https://github.com/MingLeiZhou/PortugueseOPD}. The deterministic dataset-release builder is frozen under annotated Git tag \code{pt60-candidate-v1.0.0} at commit \hashvalue{1eb690302f35f7c0090c14c994d073539cbb5335}; the complete manuscript, validation, packaging, and figure-generation snapshot is frozen under tag \code{pt60-candidate-code-v1.0.0}. The reference environment uses Python~3.12.9 and the versioned \path{requirements.txt}; the software is MIT licensed. The dataset archive is independently usable without installing the generation pipeline, but full regeneration from raw E-REDES/API responses is subject to the source-reacquisition limitation described in Usage Notes.
-
-\bibliographystyle{plainnat}
-\bibliography{references}
 
 \end{document}

@@ -215,7 +215,7 @@ It does not prove full source-to-archive regeneration from raw E-REDES/API downl
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--archive", type=Path, default=config.DATA_DIR / "releases" / "PT60-Candidate-v1.0.0.tar.gz")
+    parser.add_argument("--archive", type=Path, default=config.DATA_DIR / "releases" / "PT60-Candidate-v1.0.1.tar.gz")
     parser.add_argument("--output-json", type=Path, default=config.METADATA_DIR / "clean_room_archive_validation_summary.json")
     parser.add_argument("--output-report", type=Path, default=config.REPORTS_DIR / "108_pt60_clean_room_archive_validation.md")
     args = parser.parse_args()

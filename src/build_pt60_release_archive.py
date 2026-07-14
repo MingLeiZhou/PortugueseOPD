@@ -1,4 +1,4 @@
-"""Build the PT60-Candidate v1.0.0 public release directory and tarball."""
+"""Build the PT60-Candidate v1.0.1 public release directory and tarball."""
 
 from __future__ import annotations
 
@@ -20,12 +20,12 @@ import config
 from utils import utc_now, write_json, write_text
 
 
-VERSION = "v1.0.0"
+VERSION = "v1.0.1"
 RELEASE_NAME = f"PT60-Candidate-{VERSION}"
 RELEASES_DIR = config.DATA_DIR / "releases"
 RELEASE_DIR = RELEASES_DIR / RELEASE_NAME
 ARCHIVE_PATH = RELEASES_DIR / f"{RELEASE_NAME}.tar.gz"
-SCHEMA_VERSION = "pt60_candidate_schema_v1.0.0"
+SCHEMA_VERSION = "pt60_candidate_schema_v1.0.1"
 DATASET_DOI = "10.6084/m9.figshare.32984021"
 DATASET_DOI_URL = f"https://doi.org/{DATASET_DOI}"
 
@@ -334,7 +334,7 @@ Reserved dataset DOI: `{DATASET_DOI}`.
 
 Dataset DOI URL: `{DATASET_DOI_URL}`.
 
-Code DOI remains pending; the frozen local code tag is `pt60-candidate-v1.0.0`. See `manifest.json`, `checksums.sha256`, `schema/`, `inventory/headline_counts.json` and `excluded_artifacts.json` for archive contents, schemas, checksums and exclusions.
+Code DOI remains pending; the public source repository is recorded in the associated manuscript. See `manifest.json`, `checksums.sha256`, `schema/`, `inventory/headline_counts.json` and `excluded_artifacts.json` for archive contents, schemas, checksums and exclusions.
 """
     write_text(RELEASE_DIR / "README.md", text)
 
@@ -365,6 +365,7 @@ def write_changelog() -> None:
 
 ## {VERSION} - 2026-07-14
 
+- Corrects token-aware logical-type and unit inference in the schema/data dictionary.
 - Freeze draft for Scientific Data public-source validation route.
 - Includes 358 retained candidate branches and a 1,342-row retained/downgraded/rejected circuit ledger.
 - Includes 216-configuration sensitivity sweep.
@@ -407,7 +408,7 @@ def write_exclusions() -> None:
                 "artifact_class": "manual_dual_review_protocol_outputs",
                 "paths": ["data/processed/topology_validation/pt_topology_validation_*"],
                 "decision": "excluded_from_public_validation_route",
-                "reason": "The v1.0.0 article route does not use dual independent human adjudication or report precision.",
+                "reason": "The v1.0.1 article route does not use dual independent human adjudication or report precision.",
             },
             {
                 "artifact_class": "raw_osm_openinframap_cache_and_user_history",

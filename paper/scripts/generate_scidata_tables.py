@@ -32,7 +32,7 @@ def csv_rows(path: Path) -> int:
 def write_table(name: str, column_spec: str, header: str, rows: list[str]) -> Path:
     path = OUT / name
     content = [
-        "% Generated from PT60-Candidate v1.0.0; do not edit by hand.",
+        "% Generated from PT60-Candidate v1.0.1; do not edit by hand.",
         f"\\begin{{tabular}}{{{column_spec}}}",
         "\\toprule",
         f"{header} \\\\",
@@ -50,7 +50,7 @@ def main() -> None:
     parser.add_argument(
         "--release-root",
         type=Path,
-        default=ROOT / "data" / "releases" / "PT60-Candidate-v1.0.0",
+        default=ROOT / "data" / "releases" / "PT60-Candidate-v1.0.1",
     )
     args = parser.parse_args()
     release = args.release_root.resolve()

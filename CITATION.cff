@@ -4,7 +4,7 @@ title: "PortugueseOPD: A Fail-Closed Pipeline for the PT60-Candidate Dataset"
 type: software
 authors:
   - name: "PortugueseOPD contributors"
-version: 1.0.0
+version: 1.0.1
 date-released: 2026-07-14
 license: MIT
 repository-code: "https://github.com/MingLeiZhou/PortugueseOPD"
