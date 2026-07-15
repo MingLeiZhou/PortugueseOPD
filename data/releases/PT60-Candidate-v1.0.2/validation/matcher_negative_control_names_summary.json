@@ -1,0 +1,59 @@
+{
+  "generated_at": "2026-07-15T14:49:40+00:00",
+  "seed": 20260714,
+  "branches_tested": 358,
+  "control_design": "length_stratified_endpoint_pair_shift",
+  "preserved_fields": [
+    "branch_id",
+    "geometry",
+    "voltage",
+    "status",
+    "total_length_km",
+    "confidence_score",
+    "number_of_original_segments"
+  ],
+  "corrupted_fields": [
+    "from_facility_name",
+    "to_facility_name",
+    "from_facility_code",
+    "to_facility_code"
+  ],
+  "real": {
+    "branches": 358,
+    "status_counts": {
+      "OSM_GEOMETRY_MEDIUM": 50,
+      "OSM_GEOMETRY_OPERATOR_STRONG": 63,
+      "OSM_NAME_OPERATOR_STRONG": 182,
+      "OSM_NEARBY_WEAK": 7,
+      "OSM_PARTIAL_NAME_NEARBY": 56
+    },
+    "strong_name_evidence_branches": 182,
+    "partial_name_nearby_branches": 56,
+    "any_name_evidence_branches": 238,
+    "strong_name_evidence_rate": 0.5083798882681564,
+    "any_name_evidence_rate": 0.664804469273743
+  },
+  "negative_control": {
+    "branches": 358,
+    "status_counts": {
+      "OSM_GEOMETRY_MEDIUM": 9,
+      "OSM_GEOMETRY_OPERATOR_STRONG": 327,
+      "OSM_NAME_OPERATOR_STRONG": 9,
+      "OSM_NEARBY_WEAK": 6,
+      "OSM_PARTIAL_NAME_NEARBY": 7
+    },
+    "strong_name_evidence_branches": 9,
+    "partial_name_nearby_branches": 7,
+    "any_name_evidence_branches": 16,
+    "strong_name_evidence_rate": 0.025139664804469275,
+    "any_name_evidence_rate": 0.0446927374301676
+  },
+  "strong_name_rate_drop": 0.4832402234636871,
+  "strong_name_relative_reduction": 0.9505494505494505,
+  "outputs": {
+    "negative_control_matches": "data/processed/topology_validation/matcher_negative_control_names.csv",
+    "summary": "data/processed/topology_validation/matcher_negative_control_names_summary.json",
+    "report": "reports/103_pt60_endpoint_name_negative_control.md"
+  },
+  "claim_boundary": "This negative control tests name-evidence selectivity only. It does not estimate topology precision, recall, operator validation, or real-grid completeness."
+}

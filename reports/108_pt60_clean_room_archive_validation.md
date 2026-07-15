@@ -1,22 +1,22 @@
 # PT60-Candidate Clean-Room Archive Package Validation
 
-Generated: 2026-07-15T13:50:32+00:00
+Generated: 2026-07-15T15:01:38+00:00
 
 Validation mode: `package_clean_room_tarball_extraction`
 
-Archive: `data/releases/PT60-Candidate-v1.0.1.tar.gz`
+Archive: `data/releases/PT60-Candidate-v1.0.2.tar.gz`
 
-Archive SHA-256: `3240cd741e6af985c2d7e631856cc3482443ab56d0e4a687cdb3b63c6c957271`
+Archive SHA-256: `8bf6f70386d732bf0a275e4a6a84ab86d7cda31d0125a2ab7860873401a7b8d0`
 
 Status: `PASS`
 
 ## Results
 
-- Manifest records: 63
-- Files after extraction: 63
-- Machine-readable CSV/JSON/GraphML paths: 54
-- Data-dictionary documented paths: 54
-- Data-dictionary field records: 1090
+- Manifest records: 67
+- Files after extraction: 67
+- Machine-readable CSV/JSON/GraphML paths: 58
+- Data-dictionary documented paths: 58
+- Data-dictionary field records: 1201
 
 ## Failure counts
 

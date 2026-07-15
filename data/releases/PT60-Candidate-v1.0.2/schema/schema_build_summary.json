@@ -1,0 +1,13 @@
+{
+  "generated_at": "2026-07-15T14:54:00Z",
+  "dataset_version": "v1.0.2",
+  "schema_dir": "data/schema/PT60-Candidate-v1.0.2",
+  "release_dir": "data/releases/PT60-Candidate-v1.0.2",
+  "machine_readable_dataset_files_documented_excluding_schema_package": 37,
+  "total_release_machine_readable_paths_documented": 58,
+  "field_records": 1201,
+  "principal_schema_files": 16,
+  "semantic_inference_issue_count": 0,
+  "semantic_inference_issues": [],
+  "status": "PASS"
+}

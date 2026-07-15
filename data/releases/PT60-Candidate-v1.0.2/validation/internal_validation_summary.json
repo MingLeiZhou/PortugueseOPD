@@ -1,0 +1,63 @@
+{
+  "generated_at": "2026-07-15T15:01:03+00:00",
+  "status": "PASS",
+  "checks_total": 25,
+  "check_status_counts": {
+    "PASS": 25
+  },
+  "frozen_counts": {
+    "raw_line_features": 5334,
+    "valid_line_geometries": 5334,
+    "invalid_or_dropped_geometries": 0,
+    "retained_branches": 358,
+    "circuit_ledger_rows": 1341,
+    "downgraded_or_rejected_records": 983,
+    "sensitivity_sweep_rows": 216,
+    "graph_nodes": 484,
+    "graph_edges": 358,
+    "graph_isolated_nodes": 109,
+    "graph_parallel_groups": 27,
+    "graph_parallel_edge_records": 55,
+    "graph_parallel_extra_edges": 28
+  },
+  "classification_counts": {
+    "ambiguous": 61,
+    "inter-facility": 358,
+    "isolated": 216,
+    "loop": 5,
+    "self-loop": 101,
+    "single-facility": 496,
+    "tap / multi-terminal": 104
+  },
+  "terminal_count_distribution": {
+    "0": 5,
+    "1": 3,
+    "2": 1223,
+    "3": 98,
+    "4": 9,
+    "6": 3
+  },
+  "coordinate_reference": {
+    "source_and_release_geometry": "Opendatasoft v2.1 GeoJSON exports retrieved without an epsg override and therefore exported as EPSG:4326; release geometry uses GeoJSON longitude/latitude order.",
+    "metric_reconstruction_crs": "ETRS89 / Portugal TM06 (EPSG:3763), Transverse Mercator, units=m",
+    "upstream_native_crs_boundary": "The native CRS before Opendatasoft portal ingestion, if different, is not recorded and was not used by the reconstruction pipeline."
+  },
+  "core_artifact_hashes_sha256": {
+    "data/processed/at_interfacility_candidate_branches.csv": "0b73e1efe1bafe2f0ac8ef4cb31bde62e81b22089f71027abac9f99b6f9d4f36",
+    "data/processed/at_circuit_classification.csv": "6a48604d1d788f0fa7e355bcb2d952a772c152b872c4692c5a4823147569616c",
+    "data/processed/at_paper_logic_graph.graphml": "7b1ee51a786276fde60309b2ad68b6c5544a069f620a86cc25cc5bc64b102a7f",
+    "data/processed/at_paper_logic_parameter_sweep.csv": "b0b46855612aa88bbf492cf54ead21ae6821cb34c37b90a14519fb497b23bc16",
+    "data/processed/at_paper_logic_summary.json": "3fd7e3db39e17f81b0ddb01c46dde3ff278c4d627d9ebd581b1b787a3a829969",
+    "data/processed/at_endpoint_index.csv": "bbf0832a97296db7541cee673aaba36d242c411e08c03091a86944f4a5b99d0a",
+    "data/processed/at_endpoint_index_summary.csv": "63c0948898d38bbe94f22e38dd0994be85461832bd1423973b9b5c529341f065",
+    "data/processed/at_endpoint_facility_membership_summary.csv": "eb0b68a246a3eb2325bf07861b74989ffc4bbe989ae36a2da01b7f18ae5975fb",
+    "data/processed/at_facility_footprints_summary.csv": "003acfbe225aae63e8fe9babba16f37a9cd9c000bf5de51a39b5a85a942e5138"
+  },
+  "outputs": {
+    "summary": "data/processed/topology_validation/internal_validation_summary.json",
+    "checks": "data/processed/topology_validation/internal_validation_checks.csv",
+    "missingness": "data/processed/topology_validation/internal_validation_missingness.csv",
+    "report": "reports/106_pt60_internal_validation_summary.md"
+  },
+  "claim_boundary": "Internal validation checks release consistency and machine-readability only; it does not validate physical topology truth, precision, recall, or operator confirmation."
+}

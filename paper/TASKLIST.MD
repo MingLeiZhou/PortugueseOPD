@@ -1,9 +1,9 @@
 # PT60-Candidate Scientific Data Submission Tasklist
 
-Updated: 2026-07-14  
+Updated: 2026-07-15
 Target article type: **Scientific Data — Data Descriptor**  
-Canonical draft route: `paper/main_scidata_public_validation.tex`  
-Current status: **author-review draft; not submission-ready**
+Canonical draft route: `paper/main_scidata.tex`
+Current status: **final author-review draft; author declarations and reviewer data access remain blocking**
 
 ## Locked submission strategy
 
@@ -47,7 +47,7 @@ Scientific Data currently requires reviewer access to the dataset at first submi
 ## Already completed
 
 - [x] Reframed the contribution as a provenance-tracked **candidate dataset** rather than a validated grid model.
-- [x] Created and compiled `paper/main_scidata_public_validation.pdf`.
+- [x] Created and compiled the canonical `paper/main_scidata.pdf`.
 - [x] Preserved all 1,342 dispositions: 358 retained and 984 downgraded/rejected.
 - [x] Generated the 216-configuration sensitivity sweep.
 - [x] Generated the selected 484-node, 358-edge candidate multigraph and graph summaries.
@@ -57,6 +57,17 @@ Scientific Data currently requires reviewer access to the dataset at first submi
 - [x] Separated MIT software licensing from E-REDES-derived data attribution requirements in repository documentation.
 - [x] Compiled the current 15-page draft with no undefined citations/references, LaTeX errors or overfull boxes.
 
+## Final consistency revision — 2026-07-15
+
+- [x] Remove the internal LLM-disclosure reminder while retaining the factual author-responsibility disclosure.
+- [x] Reconcile facility counts: one exact duplicate among 410 AT-substation source records leaves 409; one exact duplicate among 76 switching-facility records leaves 75; node set B is therefore 484.
+- [x] Define archived `confidence_score` as a rule-based endpoint-proximity score with theoretical range 0.65--1.00, observed range 0.6771--0.9691, and an uncalibrated fixed scale factor of 0.35.
+- [x] Re-run the selected topology under EPSG:3763. Both projections yield 358 retained branches, but one retained source-line group is exchanged; 357/358 retained groups and their facility assignments are unchanged. Do not claim projection invariance.
+- [x] Record fresh topology-critical export SHA-256 hashes, byte sizes, retrieval time, and record counts; confirm that the reacquired inputs reproduce all deposited legacy classification records.
+- [x] State that the public acquisition procedure is currently repeatable, while exact deposited-release reconstruction uses frozen derived inputs because upstream API responses may change.
+- [x] Regenerate Figure 3 with a complete four-class legend and reduced connected-facility opacity.
+- [ ] Verify anonymous reviewer download of the private Figshare record immediately before submission. **Deferred by author on 15 July 2026 because the item is not yet public; supply the confidential review link to the journal.**
+
 ## v1.0.1 corrective release status
 
 - [x] Replace substring-based schema inference with token-aware coordinate, geometry, boolean, voltage, score, and count rules.
@@ -65,10 +76,10 @@ Scientific Data currently requires reviewer access to the dataset at first submi
 - [x] Pass archive extraction, manifest, checksum, schema-coverage, and headline-count validation with no failures.
 - [x] Regenerate all four manuscript figures and three generated tables from the v1.0.1 release inputs.
 - [x] Update the canonical Scientific Data manuscript to v1.0.1 and disclose the corrected schema logic.
-- [ ] Replace the Figshare file once more with the final tagged-build `PT60-Candidate-v1.0.1.tar.gz` and verify the downloaded SHA-256 `3240cd741e6af985c2d7e631856cc3482443ab56d0e4a687cdb3b63c6c957271`.
+- [x] Replace the Figshare file with the final tagged-build `PT60-Candidate-v1.0.1.tar.gz` and verify the downloaded SHA-256 `3240cd741e6af985c2d7e631856cc3482443ab56d0e4a687cdb3b63c6c957271`.
 - [x] Create the immutable annotated `pt60-candidate-v1.0.1` source tag at commit `ab6cf36` and verify a detached clean-worktree rebuild from frozen derived inputs. A separate software DOI is not claimed.
 
-Tagged v1.0.1 source commit: `ab6cf36`. The final stabilized tagged-build archive SHA-256 is `3240cd741e6af985c2d7e631856cc3482443ab56d0e4a687cdb3b63c6c957271`; final Figshare replacement and downloaded-hash verification remain manual.
+Tagged v1.0.1 source commit: `ab6cf36`. The final stabilized tagged-build archive SHA-256 is `3240cd741e6af985c2d7e631856cc3482443ab56d0e4a687cdb3b63c6c957271`; the author confirmed that the Figshare replacement and downloaded archive hash match. Logged-out reviewer-link verification remains manual.
 
 ## Submission-review revision batch — 2026-07-14
 
@@ -79,17 +90,17 @@ This batch records the latest manuscript-level review. Items are ordered by thei
 - [x] Keep the abstract within the current Scientific Data recommendation (approximately 170 words), remove DOI/download details, and retain only compact negative-control results. **Verified current state:** approximately 146 whitespace-delimited words and no DOI or download URL.
 - [x] Convert every in-text citation to sequential numerical Nature style and embed the numbered reference list in the LaTeX submission source.
 - [x] Publish the exact parameter-selection rule: formula, term definitions, weights, absence of normalization, and deterministic tie handling; state explicitly that the result is a pipeline design choice rather than externally validated optimality.
-- [x] Narrow every broad reproducibility claim to reproducibility from the frozen derived inputs unless raw-source reacquisition is demonstrated.
-- [x] Fully disclose raw-source reacquisition risk: the current archive has no raw snapshots, and the 14 July 2026 audit records HTTP 404 for the historical topology-critical routes. The manuscript publishes the available source identifiers, checked URLs, access times, record counts, roles, and acquisition boundary; raw/API-to-release byte reproduction is not claimed.
-- [ ] Recover a lawful historical raw snapshot or stable third-party archive if one exists, then publish its byte size, SHA-256, schema, and acquisition record. **Externally unresolved:** no local raw snapshot is available, so hashes and sizes cannot be reconstructed retrospectively; the manuscript now states this limitation without claiming it has been solved.
+- [x] Distinguish repeatable public acquisition from exact reconstruction of the deposited release: the API procedure currently succeeds, while the frozen derived inputs and tagged build fix the exact released bytes.
+- [x] Re-run the topology-critical public acquisition with the required public widget keys and record HTTP success, record counts, byte sizes, SHA-256 digests, and acquisition timestamps in a machine-readable audit.
+- [x] Confirm that the reacquired inputs reproduce every deposited classification record under the v1.0.1 equirectangular build. Do not promise that future dynamic API responses will remain byte-identical.
 - [x] Add a compact Methods table for the topology-critical E-REDES inputs with portal identifier, snapshot evidence, access date, exact retrieval route/status, record count, and role; point to the 13-source machine-readable manifest for the full inventory.
 
 ### P1 — Likely reviewer questions
 
 - [x] Replace language that presents OSM and OpenInfraMap as independent sources with “OSM-derived public evidence, visualized through OpenInfraMap where applicable”; state that OpenInfraMap is a visualization of OSM-derived data and that source independence cannot be proven.
 - [x] Remove “separately maintained public geospatial layer”; explain that 358/358 non-empty OSM-derived evidence categories are concordance coverage, not external validation.
-- [x] Audit the custom local equirectangular workspace against spherical great-circle distance over the released extent. The audit covers 43,505 geometry segments, reports median/p95/max relative errors of 0.47%/2.36%/3.84%, and gives the worst threshold-scale error at 0.5, 50, 100, 250, and 500 m. A future retuned version should use EPSG:3763 or ellipsoidal geodesics.
-- [x] Define `confidence_score`: exact formula, $[0,1]$ range, variables, four-decimal rounding, rule-score status, and non-use in branch retention, parameter selection, or OSM evidence classification.
+- [x] Audit the custom local equirectangular workspace against spherical great-circle distance and re-run the selected configuration under EPSG:3763. The retained count remains 358, but one branch is exchanged; 357/358 retained source-line groups and their facility assignments are unchanged.
+- [x] Define `confidence_score`: exact formula, theoretical $[0.65,1.00]$ retained-branch range, observed 0.6771--0.9691 range, fixed uncalibrated 0.35 scaling convention, four-decimal rounding, rule-score status, and non-use in retention or validation claims.
 - [x] Replace the degree-distribution overview with a publication-ready geographic distribution figure showing 484 facilities, 358 candidate branches, isolates, and largest-component membership without facility labels or a misleading basemap.
 - [x] Reconcile all 11 source records labelled 130 kV: they merge into five ledger candidates (three self-loops, one single-facility, one isolated), with none retained and no mixed-voltage circuit.
 
@@ -254,9 +265,9 @@ Complete these in order. Do not prioritize language polishing until P0.1–P0.8 
 - [x] Include environment lock, Python version and shortest core reproduction chain.
 - [x] Keep MIT code licensing separate from E-REDES-derived data terms.
 
-**Current result:** final local immutable source release created. Exact commit: `1eb690302f35f7c0090c14c994d073539cbb5335`. Annotated tag: `pt60-candidate-v1.0.0`. The build now resolves the generator commit from Git HEAD and normalizes generated timestamps plus gzip/tar metadata for byte-reproducible packaging. Environment record uses Python `3.12.9` and `requirements.txt` SHA-256 `3041f3f6e70697cdcf6a462c9613368079ce2344b694230f78e8184ad5e23cef`. Code DOI remains pending until formal external archiving.
+**Current result:** final local immutable v1.0.1 source release created at commit `ab6cf36` with annotated tag `pt60-candidate-v1.0.1`. The build resolves the generator commit from Git HEAD and normalizes generated timestamps plus gzip/tar metadata for byte-reproducible packaging. Environment record uses Python `3.12.9` and the versioned `requirements.txt`. Code DOI remains optional until formal external archiving.
 
-**Public-code update:** the source repository is public at `https://github.com/MingLeiZhou/PortugueseOPD`. The deterministic dataset builder remains fixed at `pt60-candidate-v1.0.0`/`1eb690302f35f7c0090c14c994d073539cbb5335`; the complete manuscript, validation, packaging and figure-generation snapshot is published separately as `pt60-candidate-code-v1.0.0`. A DOI-providing software archive remains strongly recommended but is no longer an access blocker.
+**Public-code update:** the source repository is public at `https://github.com/MingLeiZhou/PortugueseOPD`, and the deterministic v1.0.1 dataset builder is fixed at `pt60-candidate-v1.0.1`/`ab6cf36`. A DOI-providing software archive remains recommended but is no longer an access blocker.
 
 **Done when:** Code Availability identifies an immutable release capable of regenerating the core archive.
 
@@ -268,7 +279,7 @@ Complete these in order. Do not prioritize language polishing until P0.1–P0.8 
 - [x] Regenerate every quantitative paper figure/table from frozen artifacts.
 - [x] Record runtime, software versions and network/manual prerequisites.
 
-**Current result:** package extraction validation and deterministic tagged rebuild both pass. A detached clean worktree of `pt60-candidate-v1.0.0` (`1eb690302f35f7c0090c14c994d073539cbb5335`) rebuilt the release from the frozen derived core/validation inputs and produced exactly the same SHA-256 as the main worktree: `b4a6c370fbf15c078e15b80a3bbc7f517750fdb763d59147b24f59cd160358d7`. The archive contains 63 manifest records/files, 54 machine-readable paths, 54 dictionary paths and 1,090 dictionary records, with zero checksum/schema/headline-count failures. All three quantitative main-text figures and the three quantitative release/validation tables now regenerate from `data/releases/PT60-Candidate-v1.0.0`; provenance reports record input and output hashes. The source manifest verifies the three topology-critical dataset IDs, roles, record counts and 13 July 2026 catalog-check timestamps. Raw topology snapshots and raw-response hashes were not frozen, and the recorded live v2.1 export URLs returned HTTP 404 during the earlier final clean-room audit. The submission therefore claims deterministic reproduction from frozen derived inputs, not raw/API-to-release byte reproduction.
+**Current result:** package extraction validation and deterministic tagged rebuild both pass. A detached clean worktree of `pt60-candidate-v1.0.1` (`ab6cf36`) rebuilt the release from the frozen derived core/validation inputs and produced archive SHA-256 `3240cd741e6af985c2d7e631856cc3482443ab56d0e4a687cdb3b63c6c957271`. The archive contains 63 manifest records/files, 54 machine-readable paths, 54 dictionary paths and 1,090 dictionary records, with zero checksum/schema/headline-count failures. All three quantitative main-text figures and the quantitative release/validation tables regenerate from `data/releases/PT60-Candidate-v1.0.1`; provenance reports record input and output hashes. A 15 July 2026 repeat public acquisition also recorded raw export hashes, sizes, timestamps, and counts and reproduced all deposited legacy classification records. Exact deposited bytes remain anchored by frozen derived inputs because future upstream API responses may change.
 
 **Done when:** the clean run produces identical hashes or documents narrowly defined acceptable differences.
 
@@ -283,7 +294,7 @@ Complete these in order. Do not prioritize language polishing until P0.1–P0.8 
 - [x] Replace local `data/processed/...` paths with stable archive paths.
 - [x] Align title, abstract, Methods, Data Record, Technical Validation and Usage Notes to the same claim boundary.
 
-**Current result:** `paper/main_scidata_public_validation.tex` is the sole canonical submission entry point. The underlying manuscript contains only the public-source validation route, uses measured internal/negative-control results, and contains no dormant adjudication branch, `NEEDED` markers, or development-tree artifact paths. `submission_readiness.md` and `claim_evidence_matrix.md` now treat dual review as optional future evidence rather than a requirement for the bounded candidate-dataset claims.
+**Current result:** `paper/main_scidata.tex` is the sole canonical submission entry point. The manuscript contains only the public-source validation route, uses measured internal/negative-control results, and contains no dormant adjudication branch or `NEEDED` markers. `submission_readiness.md` and `claim_evidence_matrix.md` treat dual review as optional future evidence rather than a requirement for the bounded candidate-dataset claims.
 
 **Done when:** no manuscript/readiness file implies that precision review is part of the submitted evidence.
 
@@ -295,7 +306,7 @@ Complete these in order. Do not prioritize language polishing until P0.1–P0.8 
 - [x] Make Data Availability repeat the essential DOI/access information from Data Record.
 - [x] Place Code Availability at the required final-manuscript location immediately before References.
 
-**Current result:** Data Record documents the 63-file Figshare v1.0.1 archive, its layout, schemas, checksums and reuse boundaries. Figure 3 places its legend outside the geographic data region. Code Availability identifies annotated tag `pt60-candidate-v1.0.1` at commit `ab6cf36` and does not claim a separate software DOI. The final tagged-build archive passes package validation and has SHA-256 `3240cd741e6af985c2d7e631856cc3482443ab56d0e4a687cdb3b63c6c957271`; Figshare must contain this exact final file before submission.
+**Current result:** Data Record documents the 63-file Figshare v1.0.1 archive, its layout, schemas, checksums and reuse boundaries. Figure 3 places a complete four-class legend outside the geographic data region. Code Availability identifies annotated tag `pt60-candidate-v1.0.1` at commit `ab6cf36` and does not claim a separate software DOI. The final tagged-build archive passes package validation and has SHA-256 `3240cd741e6af985c2d7e631856cc3482443ab56d0e4a687cdb3b63c6c957271`; the author confirmed that the Figshare replacement has the same downloaded hash. Anonymous reviewer-link access remains to be tested before submission.
 
 **Done when:** a reader can find, download, interpret and cite the exact dataset using the paper alone.
 
@@ -425,3 +436,17 @@ These tasks require new evidence and materially broader claims. They are not req
 8. Ask one data/reproducibility reader to inspect the archive using only the manuscript and schema package.
 9. Re-check E-REDES/OpenStreetMap/OpenInfraMap attribution and release language immediately before DOI deposit.
 10. Mint dataset/code DOI records and update `CITATION.cff`, Data Availability and Code Availability.
+## v1.0.2 EPSG:3763 release transition (current priority)
+
+- [x] Adopt ETRS89 / Portugal TM06 (EPSG:3763) for facility buffering, endpoint clustering, matching, corridor distances, and metric length calculations.
+- [x] Re-run the complete 216-configuration sweep and retain the declared selection rule and selected setting.
+- [x] Measure the v1.0.1-to-v1.0.2 topology transition: 357/358 retained source-line groups preserve their facility endpoint pair, with one branch removed and one added.
+- [x] Publish the branch-level transition mapping and summary in the validation package instead of claiming projection invariance.
+- [x] Re-run OSM-derived triangulation, name and spatial negative controls, evidence-independence audit, electrical-readiness checks, and all internal validation.
+- [x] Rebuild the v1.0.2 schema package: 58/58 machine-readable paths, 1,201 dictionary records, and 16 principal schemas.
+- [x] Build and extraction-validate the 67-file v1.0.2 candidate archive; all 25 internal checks and all archive checks pass.
+- [x] Move repeat-acquisition and projection-comparison results from Methods to a dedicated Technical Validation subsection.
+- [ ] Freeze the v1.0.2 source commit and create annotated tag `pt60-candidate-v1.0.2`.
+- [ ] Perform two detached clean-worktree rebuilds from the tag and confirm byte-identical archives.
+- [ ] Insert the final tagged-build SHA-256 and commit identifier into the manuscript and release metadata.
+- [ ] Replace the current Figshare file with `PT60-Candidate-v1.0.2.tar.gz`, then verify its downloaded SHA-256. Figshare access testing is intentionally deferred while the item remains private.

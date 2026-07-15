@@ -1,8 +1,8 @@
+import argparse
 import html
 import json
 import math
 from collections import Counter, defaultdict
-from dataclasses import dataclass
 from itertools import combinations
 from pathlib import Path
 from typing import Any
@@ -12,6 +12,7 @@ import numpy as np
 import pandas as pd
 
 import config
+from metric_projection import PortugalTM06Projection
 from utils import ensure_directories, markdown_table, utc_now, write_json, write_text
 
 
@@ -19,23 +20,6 @@ FACILITY_BUFFERS_M = [50, 100, 250, 500]
 ENDPOINT_SNAP_THRESHOLDS_M = [0.5, 1, 5, 10, 25, 50]
 MERGE_MODES = ["geometry-only", "voltage-aware", "voltage-status-aware"]
 STATUS_ACTIVE_KEYWORDS = ("explor", "servico", "serviço")
-
-
-@dataclass
-class LocalMetricProjection:
-    lon0: float
-    lat0: float
-    radius_m: float = 6_371_008.8
-
-    def xy(self, lon: float, lat: float) -> tuple[float, float]:
-        x = self.radius_m * math.radians(lon - self.lon0) * math.cos(math.radians(self.lat0))
-        y = self.radius_m * math.radians(lat - self.lat0)
-        return x, y
-
-    def lonlat(self, x: float, y: float) -> tuple[float, float]:
-        lon = math.degrees(x / (self.radius_m * math.cos(math.radians(self.lat0)))) + self.lon0
-        lat = math.degrees(y / self.radius_m) + self.lat0
-        return lon, lat
 
 
 class UnionFind:
@@ -92,7 +76,7 @@ def status_compatible(a: Any, b: Any) -> bool:
     return not sa or not sb or sa == sb or (status_is_active(sa) and status_is_active(sb))
 
 
-def circle_polygon(projection: LocalMetricProjection, x: float, y: float, radius_m: float, n=32):
+def circle_polygon(projection: Any, x: float, y: float, radius_m: float, n=32):
     coords = []
     for i in range(n + 1):
         angle = 2 * math.pi * i / n
@@ -143,7 +127,7 @@ def flatten_parts(parts: list[list[list[float]]]) -> list[list[float]]:
     return flattened
 
 
-def projected_length(parts: list[list[list[float]]], projection: LocalMetricProjection) -> float:
+def projected_length(parts: list[list[list[float]]], projection: Any) -> float:
     total = 0.0
     for part in parts:
         points = [projection.xy(float(lon), float(lat)) for lon, lat, *_ in part]
@@ -258,17 +242,17 @@ def load_facilities() -> pd.DataFrame:
     return facilities.drop_duplicates(subset=["facility_uid", "lon", "lat"]).reset_index(drop=True)
 
 
-def build_projection(lines: pd.DataFrame, facilities: pd.DataFrame) -> LocalMetricProjection:
-    lon_values = pd.concat([lines["start_lon"], lines["end_lon"], facilities["lon"]]).astype(float)
-    lat_values = pd.concat([lines["start_lat"], lines["end_lat"], facilities["lat"]]).astype(float)
-    return LocalMetricProjection(lon0=float(lon_values.mean()), lat0=float(lat_values.mean()))
+def build_projection(lines: pd.DataFrame, facilities: pd.DataFrame) -> PortugalTM06Projection:
+    """Return the formal metric CRS used by PT60-Candidate v1.0.2+."""
+
+    return PortugalTM06Projection()
 
 
 def add_projected_columns(
     lines: pd.DataFrame,
     facilities: pd.DataFrame,
     shapes: dict[str, list[list[list[float]]]],
-    projection: LocalMetricProjection,
+    projection: Any,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     lines = lines.copy()
     facilities = facilities.copy()
@@ -349,7 +333,7 @@ def footprint_overlap_summary(facility_set: pd.DataFrame, buffer_m: float) -> di
 
 def build_facility_footprints(
     facilities: pd.DataFrame,
-    projection: LocalMetricProjection,
+    projection: Any,
 ) -> tuple[list[dict[str, Any]], pd.DataFrame]:
     features = []
     rows = []
@@ -1127,6 +1111,7 @@ def create_maps(
     endpoint_index: pd.DataFrame,
     selected: dict[str, Any],
     graph: nx.MultiGraph,
+    projection: Any,
 ) -> dict[str, str]:
     maps_dir = config.REPORTS_DIR / "maps"
     maps_dir.mkdir(parents=True, exist_ok=True)
@@ -1150,7 +1135,7 @@ def create_maps(
         raw_line_subset.extend(line_features_for_ids([row.line_id], shapes, {"voltage": row.voltage, "status": row.status}))
     footprint_features = [
         geojson_feature(
-            {"type": "Polygon", "coordinates": [circle_polygon(LocalMetricProjection(selected.get("projection_lon0", -8.5), selected.get("projection_lat0", 39.5)), row.x, row.y, buffer_m)]},
+            {"type": "Polygon", "coordinates": [circle_polygon(projection, row.x, row.y, buffer_m)]},
             {
                 "facility_uid": row.facility_uid,
                 "facility_name": row.facility_name,
@@ -1188,15 +1173,12 @@ def create_maps(
     )
     map_specs[path.name] = str(path)
 
-    selected_projection = LocalMetricProjection(
-        selected.get("projection_lon0", -8.5), selected.get("projection_lat0", 39.5)
-    )
     cluster_subset = endpoint_index[
         endpoint_index["endpoint_snap_threshold_m"] == float(selected["endpoint_snap_threshold_m"])
     ].copy()
     cluster_features = []
     for row in cluster_subset.itertuples(index=False):
-        lon, lat = selected_projection.lonlat(float(row.centroid_x), float(row.centroid_y))
+        lon, lat = projection.lonlat(float(row.centroid_x), float(row.centroid_y))
         endpoint_count = int(row.endpoint_count)
         if endpoint_count == 1:
             color = "#aaaaaa"
@@ -1515,6 +1497,15 @@ def build_report(
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Reconstruct the PT60 candidate topology and 216-setting sweep.")
+    parser.add_argument("--raw-dir", type=Path, default=config.RAW_DIR, help="Directory containing the E-REDES GeoJSON exports.")
+    parser.add_argument("--processed-dir", type=Path, default=config.PROCESSED_DIR, help="Directory for generated data artifacts.")
+    parser.add_argument("--reports-dir", type=Path, default=config.REPORTS_DIR, help="Directory for generated reports and maps.")
+    args = parser.parse_args()
+    config.RAW_DIR = args.raw_dir.resolve()
+    config.PROCESSED_DIR = args.processed_dir.resolve()
+    config.REPORTS_DIR = args.reports_dir.resolve()
+
     ensure_directories()
     (config.REPORTS_DIR / "maps").mkdir(parents=True, exist_ok=True)
 
@@ -1526,7 +1517,7 @@ def main():
     validation["facility_rows_loaded"] = int(len(facilities))
     validation["at_substations"] = int((facilities["facility_type"] == "SE_AT").sum())
     validation["other_relevant_facilities"] = int((facilities["facility_type"] != "SE_AT").sum())
-    validation["metric_crs"] = f"LOCAL_EQUIRECTANGULAR_PORTUGAL lon0={projection.lon0:.6f}, lat0={projection.lat0:.6f}, units=m"
+    validation["metric_crs"] = projection.description()
     validation["length_by_voltage"] = (
         lines.groupby("voltage")
         .agg(line_count=("line_id", "count"), total_length_km=("length_m", lambda s: round(float(s.sum()) / 1000, 6)))
@@ -1567,8 +1558,9 @@ def main():
         best_classified,
         branches,
         endpoint_index,
-        best | {"projection_lon0": projection.lon0, "projection_lat0": projection.lat0},
+        best,
         graph,
+        projection,
     )
 
     summary = {

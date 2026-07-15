@@ -1,0 +1,243 @@
+{
+  "schema_name": "pt60_candidate_responsible_release_boundary",
+  "schema_version": "0.1.0",
+  "status": "completed_with_conditions",
+  "generated_at_utc": "2026-07-14T13:52:00Z",
+  "release": {
+    "dataset": "PT60-Candidate",
+    "version": "v1.0.1",
+    "route": "Scientific Data public-source validation route without dual independent human adjudication"
+  },
+  "basis": {
+    "source_manifest": "data/metadata/reproduction_source_manifest.json",
+    "license_basis": "E-REDES portal-level and dataset-level CC BY 4.0 metadata as recorded in the frozen source manifest",
+    "license_conditions": [
+      "retain E-REDES attribution",
+      "link CC BY 4.0",
+      "identify source datasets and access dates",
+      "indicate transformations or modifications",
+      "separate MIT software license from E-REDES-derived data terms"
+    ],
+    "website_terms_caveat": "The E-REDES general website terms were checked separately and include general website-use limits; dataset-specific release should rely on the frozen Open Data portal/source-manifest license record and be rechecked before DOI deposit."
+  },
+  "public_release_decisions": [
+    {
+      "artifact_class": "retained_branch_table",
+      "examples": [
+        "data/processed/at_interfacility_candidate_branches.csv"
+      ],
+      "decision": "include_public",
+      "includes_exact_geometries": true,
+      "includes_facility_names": true,
+      "includes_evidence_urls": false,
+      "reason": "Core dataset reuse requires exact candidate branch geometry, endpoint names/codes, source-line membership and provenance fields. These are derived from public E-REDES open-data records and are released with attribution and modification notices.",
+      "conditions": [
+        "must be labelled candidate topology, not operational topology",
+        "must include responsible-use notice",
+        "must include E-REDES attribution and source access dates"
+      ]
+    },
+    {
+      "artifact_class": "full_circuit_ledger",
+      "examples": [
+        "data/processed/at_circuit_classification.csv"
+      ],
+      "decision": "include_public",
+      "includes_exact_geometries": true,
+      "includes_facility_names": true,
+      "includes_evidence_urls": false,
+      "reason": "The retained/downgraded/rejected ledger is necessary to audit fail-closed reconstruction decisions and avoid survivorship bias.",
+      "conditions": [
+        "downgraded/rejected records must not be promoted to true absent/present grid labels",
+        "classification semantics must be documented in the data dictionary"
+      ]
+    },
+    {
+      "artifact_class": "graph_exports",
+      "examples": [
+        "data/processed/at_paper_logic_graph.graphml"
+      ],
+      "decision": "include_public",
+      "includes_exact_geometries": false,
+      "includes_facility_names": true,
+      "includes_evidence_urls": false,
+      "reason": "GraphML is a primary consumer interface and preserves the selected candidate multigraph representation.",
+      "conditions": [
+        "must state isolate policy",
+        "must state multiedge semantics",
+        "must not be described as an operational grid model"
+      ]
+    },
+    {
+      "artifact_class": "sensitivity_sweep",
+      "examples": [
+        "data/processed/at_paper_logic_parameter_sweep.csv"
+      ],
+      "decision": "include_public",
+      "includes_exact_geometries": false,
+      "includes_facility_names": false,
+      "includes_evidence_urls": false,
+      "reason": "The 216-row sweep supports reconstruction sensitivity and selected-setting auditability.",
+      "conditions": [
+        "selected setting must be described as a documented trade-off, not an externally optimal parameterization"
+      ]
+    },
+    {
+      "artifact_class": "source_manifest_and_license_metadata",
+      "examples": [
+        "data/metadata/reproduction_source_manifest.json",
+        "data/metadata/reproduction_source_manifest.csv",
+        "DATA_LICENSE.md"
+      ],
+      "decision": "include_public",
+      "includes_exact_geometries": false,
+      "includes_facility_names": false,
+      "includes_evidence_urls": true,
+      "reason": "Source identifiers, access dates, URLs, license basis and attribution are required for FAIR reuse and CC BY 4.0 compliance.",
+      "conditions": [
+        "must preserve portal URL, dataset IDs, checked_at timestamps and modification notice"
+      ]
+    },
+    {
+      "artifact_class": "osm_openinframap_evidence_and_audits",
+      "examples": [
+        "data/processed/topology_validation/pt_topology_cross_validation_osm_matches.csv",
+        "data/processed/topology_validation/pt_topology_cross_validation_osm_matches_independence_audit.csv",
+        "data/processed/topology_validation/pt_osm_openinframap_independence_audit_summary.json"
+      ],
+      "decision": "include_public",
+      "includes_exact_geometries": false,
+      "includes_facility_names": true,
+      "includes_evidence_urls": true,
+      "reason": "OSM/OpenInfraMap evidence is public and provides triangulation records, source caveats and independence-risk categories.",
+      "conditions": [
+        "operator=E-REDES must be described as an OSM public tag, not operator confirmation",
+        "OSM categories must not be converted into precision, recall or ground truth",
+        "include OSM object IDs/URLs and sanitized branch-level audit categories; exclude raw OSM/OpenInfraMap cache blobs, OSM user identifiers, changesets and matched-way history dumps from the main public archive"
+      ]
+    },
+    {
+      "artifact_class": "internal_validation_outputs",
+      "examples": [
+        "data/processed/topology_validation/internal_validation_summary.json",
+        "data/processed/topology_validation/internal_validation_checks.csv",
+        "data/processed/topology_validation/internal_validation_missingness.csv"
+      ],
+      "decision": "include_public",
+      "includes_exact_geometries": false,
+      "includes_facility_names": false,
+      "includes_evidence_urls": false,
+      "reason": "Validation outputs document release consistency, missingness semantics and graph/table parity.",
+      "conditions": [
+        "claim boundary must state internal consistency only, not topology truth"
+      ]
+    },
+    {
+      "artifact_class": "raw_e_redes_downloads",
+      "examples": [
+        "data/raw/*.geojson",
+        "data/raw/*.csv"
+      ],
+      "decision": "exclude_from_default_public_archive",
+      "includes_exact_geometries": true,
+      "includes_facility_names": true,
+      "includes_evidence_urls": true,
+      "reason": "The release should publish derived PT60-Candidate records and a source manifest rather than duplicating full raw portal snapshots by default. Users can reacquire raw records from the source IDs/URLs where available; a separate archival snapshot can be added only after final repository/license review.",
+      "conditions": [
+        "source access URLs and checked_at timestamps must be included",
+        "if raw snapshots are later deposited, they must carry E-REDES attribution and modification notices"
+      ]
+    },
+    {
+      "artifact_class": "third_party_parameter_documents_and_catalogs",
+      "examples": [
+        "manufacturer catalogs",
+        "standards excerpts",
+        "non-open PDFs"
+      ],
+      "decision": "exclude_public",
+      "includes_exact_geometries": false,
+      "includes_facility_names": false,
+      "includes_evidence_urls": true,
+      "reason": "Redistribution permission is not established for non-open third-party documents.",
+      "conditions": [
+        "release only citations, URLs and derived evidence summaries where allowed"
+      ]
+    },
+    {
+      "artifact_class": "acpf_dcopf_operational_diagnostics",
+      "examples": [
+        "data/processed/acpf_*",
+        "data/processed/dcopf_*"
+      ],
+      "decision": "exclude_from_core_public_archive_or_label_optional_diagnostic",
+      "includes_exact_geometries": false,
+      "includes_facility_names": true,
+      "includes_evidence_urls": false,
+      "reason": "Electrical parameters and operating assumptions remain incomplete, proxy-based or scenario-derived. Including these artifacts in the core archive could invite operational misinterpretation.",
+      "conditions": [
+        "if included, place under optional_diagnostic/ with non-operational warning",
+        "must not be advertised as AC power-flow or OPF ready"
+      ]
+    },
+    {
+      "artifact_class": "learning_benchmark_stage4_stage5",
+      "examples": [
+        "data/processed/dataset_release_stage4",
+        "data/processed/dataset_release_stage5"
+      ],
+      "decision": "exclude_from_main_public_archive_or_publish_as_separate_labelled_supplement",
+      "includes_exact_geometries": false,
+      "includes_facility_names": false,
+      "includes_evidence_urls": false,
+      "reason": "These are consumer interfaces and diagnostic adapters, not primary validation evidence; they should not be bundled into the main Scientific Data public dataset archive.",
+      "conditions": [
+        "publish only as a separate supplementary archive if needed",
+        "must be clearly labelled optional derivative interfaces",
+        "scenario-derived labels must not be described as observed failures or operator records"
+      ]
+    }
+  ],
+  "responsible_use_notice": {
+    "allowed_uses": [
+      "topology reconstruction research",
+      "geospatial data integration",
+      "provenance-aware dataset engineering",
+      "graph and tabular consumer-interface testing",
+      "uncertainty and sensitivity analysis"
+    ],
+    "prohibited_or_not_supported_uses": [
+      "operational switching",
+      "protection studies",
+      "security analysis",
+      "contingency analysis",
+      "congestion analysis",
+      "infrastructure targeting",
+      "emergency operations",
+      "asset condition assessment",
+      "commercial or regulatory statements about actual network capacity"
+    ],
+    "required_language": [
+      "candidate topology",
+      "public-source concordance",
+      "not operator-validated",
+      "not an operational grid model",
+      "electrical parameters incomplete or diagnostic"
+    ],
+    "prohibited_language": [
+      "operator validated",
+      "ground truth",
+      "precision",
+      "recall",
+      "operational model",
+      "AC power-flow ready",
+      "OPF ready"
+    ]
+  },
+  "submission_remaining_checks": [
+    "Re-check E-REDES Open Data portal license and dataset catalog metadata immediately before DOI deposit.",
+    "Add ATTRIBUTION.md and modification notice to the versioned archive.",
+    "Ensure archive manifest marks each artifact as core, optional diagnostic, excluded, or source-manifest-only.",
+    "Do not include third-party catalogs or standards unless redistribution permission is documented."
+  ]
+}

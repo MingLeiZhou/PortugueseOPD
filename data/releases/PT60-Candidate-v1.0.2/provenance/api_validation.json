@@ -1,0 +1,2249 @@
+[
+  {
+    "dataset_id": "12-continuidade-de-servico-indicadores-gerais-de-continuidade-de-servico",
+    "source_refs": [
+      "direct:Indicadores continuidade de servico"
+    ],
+    "requires_page_api_key": false,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/12-continuidade-de-servico-indicadores-gerais-de-continuidade-de-servico",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/12-continuidade-de-servico-indicadores-gerais-de-continuidade-de-servico/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:13:41+00:00",
+    "metadata_status_without_key": 200,
+    "metadata_status": 200,
+    "dataset_title": " Service continuity indicators by municipality",
+    "publisher": "E-REDES",
+    "license_observed": "CC BY 4.0",
+    "license_url_observed": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution_observed": "",
+    "attribution_url_observed": "",
+    "license_metadata_status": "EXPLICIT",
+    "redistribution_gate": "SOURCE_TERMS_PRESENT_REVIEW_REQUIRED",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/12-continuidade-de-servico-indicadores-gerais-de-continuidade-de-servico/",
+    "v2_records_status": 200,
+    "v2_total_count": 12232,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 12232,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/12-continuidade-de-servico-indicadores-gerais-de-continuidade-de-servico/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/12-continuidade-de-servico-indicadores-gerais-de-continuidade-de-servico/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/12-continuidade-de-servico-indicadores-gerais-de-continuidade-de-servico/exports/geojson"
+      },
+      "shp": {
+        "status": 400,
+        "available": false,
+        "content_type": "application/json",
+        "content_length": "172",
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/12-continuidade-de-servico-indicadores-gerais-de-continuidade-de-servico/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/12-continuidade-de-servico-indicadores-gerais-de-continuidade-de-servico/exports/parquet"
+      }
+    },
+    "geometry_fields": [],
+    "date_time_fields": [
+      "ano"
+    ],
+    "voltage_fields": [],
+    "substation_fields": [],
+    "has_geometry": false,
+    "has_date_time": true,
+    "has_voltage": false,
+    "has_substation_identifier": false
+  },
+  {
+    "dataset_id": "apoios-baixa-tensao",
+    "source_refs": [
+      "page:rnd"
+    ],
+    "requires_page_api_key": true,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/apoios-baixa-tensao",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/apoios-baixa-tensao/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:13:47+00:00",
+    "metadata_status_without_key": 200,
+    "metadata_status": 200,
+    "dataset_title": "Low Voltage Poles",
+    "publisher": "E-REDES",
+    "license_observed": "CC BY 4.0",
+    "license_url_observed": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution_observed": "",
+    "attribution_url_observed": "",
+    "license_metadata_status": "EXPLICIT",
+    "redistribution_gate": "SOURCE_TERMS_PRESENT_REVIEW_REQUIRED",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/apoios-baixa-tensao/",
+    "v2_records_status": 200,
+    "v2_total_count": 2994636,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 2994636,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/apoios-baixa-tensao/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/apoios-baixa-tensao/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/apoios-baixa-tensao/exports/geojson"
+      },
+      "shp": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/zip; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/apoios-baixa-tensao/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/apoios-baixa-tensao/exports/parquet"
+      }
+    },
+    "geometry_fields": [
+      "geo_point_2d"
+    ],
+    "date_time_fields": [],
+    "voltage_fields": [],
+    "substation_fields": [],
+    "has_geometry": true,
+    "has_date_time": false,
+    "has_voltage": false,
+    "has_substation_identifier": false
+  },
+  {
+    "dataset_id": "auxiliar1",
+    "source_refs": [
+      "page:rari",
+      "page:rnd"
+    ],
+    "requires_page_api_key": true,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/auxiliar1",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/auxiliar1/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:13:54+00:00",
+    "metadata_status_without_key": 404,
+    "metadata_status": 200,
+    "dataset_title": "Instalações AT - Capacidade",
+    "publisher": "E-REDES",
+    "license_observed": "",
+    "license_url_observed": "",
+    "attribution_observed": "",
+    "attribution_url_observed": "",
+    "license_metadata_status": "MISSING",
+    "redistribution_gate": "BLOCKED_MISSING_DATASET_LICENSE",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/auxiliar1/",
+    "v2_records_status": 200,
+    "v2_total_count": 469,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 469,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/auxiliar1/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/auxiliar1/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/auxiliar1/exports/geojson"
+      },
+      "shp": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/zip; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/auxiliar1/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/auxiliar1/exports/parquet"
+      }
+    },
+    "geometry_fields": [
+      "coordenadas_geograficas_y",
+      "coordenadas_geograficas_x",
+      "coordenadas"
+    ],
+    "date_time_fields": [
+      "data_rari",
+      "data_ultimo_trimestre",
+      "data_previsao"
+    ],
+    "voltage_fields": [
+      "capacidade_de_recepcao_mt_30kv_mva_rari",
+      "capacidade_de_recepcao_mt_15kv_mva_rari",
+      "capacidade_de_recepcao_mt_10kv_mva_rari",
+      "ligacao_rnt_barramento_60kv_rari",
+      "capacidade_de_recepcao_mt_30kv_mva_ultimo_trimestre",
+      "capacidade_de_recepcao_mt_15kv_mva_ultimo_trimestre",
+      "capacidade_de_recepcao_mt_10kv_mva_ultimo_trimestre",
+      "ligacao_rnt_barramento_60kv_ultimo_trimestre",
+      "capacidade_de_recepcao_mt_30kv_mva_previsao",
+      "capacidade_de_recepcao_mt_15kv_mva_previsao",
+      "capacidade_de_recepcao_mt_10kv_mva_previsao",
+      "ligacao_rnt_barramento_60kv_previsao"
+    ],
+    "substation_fields": [
+      "tipo_de_instalacao",
+      "obs",
+      "instalacao",
+      "grupo_de_subestacoes_rari"
+    ],
+    "has_geometry": true,
+    "has_date_time": true,
+    "has_voltage": true,
+    "has_substation_identifier": true
+  },
+  {
+    "dataset_id": "auxiliar2",
+    "source_refs": [
+      "page:rari"
+    ],
+    "requires_page_api_key": true,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/auxiliar2",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/auxiliar2/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:14:01+00:00",
+    "metadata_status_without_key": 404,
+    "metadata_status": 200,
+    "dataset_title": "Rede MT",
+    "publisher": "E-REDES",
+    "license_observed": "",
+    "license_url_observed": "",
+    "attribution_observed": "",
+    "attribution_url_observed": "",
+    "license_metadata_status": "MISSING",
+    "redistribution_gate": "BLOCKED_MISSING_DATASET_LICENSE",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/auxiliar2/",
+    "v2_records_status": 200,
+    "v2_total_count": 3824,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 3824,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/auxiliar2/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/auxiliar2/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/auxiliar2/exports/geojson"
+      },
+      "shp": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/zip; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/auxiliar2/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/auxiliar2/exports/parquet"
+      }
+    },
+    "geometry_fields": [
+      "geo_point_2d",
+      "geo_shape"
+    ],
+    "date_time_fields": [],
+    "voltage_fields": [],
+    "substation_fields": [
+      "codigo_se_montante",
+      "nome_se_montante"
+    ],
+    "has_geometry": true,
+    "has_date_time": false,
+    "has_voltage": false,
+    "has_substation_identifier": true
+  },
+  {
+    "dataset_id": "auxiliar3",
+    "source_refs": [
+      "page:quality"
+    ],
+    "requires_page_api_key": true,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/auxiliar3",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/auxiliar3/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:14:06+00:00",
+    "metadata_status_without_key": 404,
+    "metadata_status": 200,
+    "dataset_title": "Qualidade da Energia Elétrica - Fenómenos Contínuos (Coordenadas)",
+    "publisher": "E-REDES",
+    "license_observed": "",
+    "license_url_observed": "",
+    "attribution_observed": "",
+    "attribution_url_observed": "",
+    "license_metadata_status": "MISSING",
+    "redistribution_gate": "BLOCKED_MISSING_DATASET_LICENSE",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/auxiliar3/",
+    "v2_records_status": 200,
+    "v2_total_count": 5352,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 5352,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/auxiliar3/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/auxiliar3/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/auxiliar3/exports/geojson"
+      },
+      "shp": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/zip; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/auxiliar3/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/auxiliar3/exports/parquet"
+      }
+    },
+    "geometry_fields": [
+      "coordenadas"
+    ],
+    "date_time_fields": [
+      "year",
+      "startdate",
+      "enddate"
+    ],
+    "voltage_fields": [],
+    "substation_fields": [
+      "tipoinstalacao",
+      "observations"
+    ],
+    "has_geometry": true,
+    "has_date_time": true,
+    "has_voltage": true,
+    "has_substation_identifier": true
+  },
+  {
+    "dataset_id": "capacidade-rececao-rnd",
+    "source_refs": [
+      "direct:Capacidade de rececao da RND"
+    ],
+    "requires_page_api_key": false,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/capacidade-rececao-rnd",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/capacidade-rececao-rnd/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:14:12+00:00",
+    "metadata_status_without_key": 200,
+    "metadata_status": 200,
+    "dataset_title": "Reception Capacity in the National Distribution Network (RND)",
+    "publisher": "E-REDES",
+    "license_observed": "CC BY 4.0",
+    "license_url_observed": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution_observed": "",
+    "attribution_url_observed": "",
+    "license_metadata_status": "EXPLICIT",
+    "redistribution_gate": "SOURCE_TERMS_PRESENT_REVIEW_REQUIRED",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/capacidade-rececao-rnd/",
+    "v2_records_status": 200,
+    "v2_total_count": 469,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 469,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/capacidade-rececao-rnd/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/capacidade-rececao-rnd/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/capacidade-rececao-rnd/exports/geojson"
+      },
+      "shp": {
+        "status": 400,
+        "available": false,
+        "content_type": "application/json",
+        "content_length": "172",
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/capacidade-rececao-rnd/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/capacidade-rececao-rnd/exports/parquet"
+      }
+    },
+    "geometry_fields": [],
+    "date_time_fields": [
+      "data_rari",
+      "data_ultimo_trimestre",
+      "data_previsao"
+    ],
+    "voltage_fields": [
+      "capacidade_de_recepcao_mt_30kv_mva_rari",
+      "capacidade_de_recepcao_mt_15kv_mva_rari",
+      "capacidade_de_recepcao_mt_10kv_mva_rari",
+      "ligacao_rnt_barramento_60kv_rari",
+      "capacidade_de_recepcao_mt_30kv_mva_ultimo_trimestre",
+      "capacidade_de_recepcao_mt_15kv_mva_ultimo_trimestre",
+      "capacidade_de_recepcao_mt_10kv_mva_ultimo_trimestre",
+      "ligacao_rnt_barramento_60kv_ultimo_trimestre",
+      "capacidade_de_recepcao_mt_30kv_mva_previsao",
+      "capacidade_de_recepcao_mt_15kv_mva_previsao",
+      "capacidade_de_recepcao_mt_10kv_mva_previsao",
+      "ligacao_rnt_barramento_60kv_previsao"
+    ],
+    "substation_fields": [
+      "tipo_de_instalacao",
+      "obs",
+      "instalacao",
+      "grupo_de_subestacoes_rari"
+    ],
+    "has_geometry": false,
+    "has_date_time": true,
+    "has_voltage": true,
+    "has_substation_identifier": true
+  },
+  {
+    "dataset_id": "caracteristicas-da-rede",
+    "source_refs": [
+      "direct:Caracteristicas da rede",
+      "page:rari"
+    ],
+    "requires_page_api_key": false,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/caracteristicas-da-rede",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/caracteristicas-da-rede/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:14:17+00:00",
+    "metadata_status_without_key": 200,
+    "metadata_status": 200,
+    "dataset_title": "Network Features",
+    "publisher": "E-REDES",
+    "license_observed": "CC BY 4.0",
+    "license_url_observed": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution_observed": "",
+    "attribution_url_observed": "",
+    "license_metadata_status": "EXPLICIT",
+    "redistribution_gate": "SOURCE_TERMS_PRESENT_REVIEW_REQUIRED",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/caracteristicas-da-rede/",
+    "v2_records_status": 200,
+    "v2_total_count": 437,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 437,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/caracteristicas-da-rede/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/caracteristicas-da-rede/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/caracteristicas-da-rede/exports/geojson"
+      },
+      "shp": {
+        "status": 400,
+        "available": false,
+        "content_type": "application/json",
+        "content_length": "172",
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/caracteristicas-da-rede/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/caracteristicas-da-rede/exports/parquet"
+      }
+    },
+    "geometry_fields": [],
+    "date_time_fields": [
+      "ano"
+    ],
+    "voltage_fields": [],
+    "substation_fields": [
+      "codigo_da_instalacao",
+      "corrente_de_curto_circuito_para_efeitos_de_dimensionamento_do_equipamento_at",
+      "corrente_de_curto_circuito_para_efeitos_de_dimensionamento_do_equipamento_mt"
+    ],
+    "has_geometry": false,
+    "has_date_time": true,
+    "has_voltage": true,
+    "has_substation_identifier": true
+  },
+  {
+    "dataset_id": "carga-na-subestacao",
+    "source_refs": [
+      "direct:Carga na subestacao",
+      "page:rari"
+    ],
+    "requires_page_api_key": false,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/carga-na-subestacao",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/carga-na-subestacao/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:14:22+00:00",
+    "metadata_status_without_key": 200,
+    "metadata_status": 200,
+    "dataset_title": "Substation Load",
+    "publisher": "E-REDES",
+    "license_observed": "CC BY 4.0",
+    "license_url_observed": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution_observed": "",
+    "attribution_url_observed": "",
+    "license_metadata_status": "EXPLICIT",
+    "redistribution_gate": "SOURCE_TERMS_PRESENT_REVIEW_REQUIRED",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/carga-na-subestacao/",
+    "v2_records_status": 200,
+    "v2_total_count": 794,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 794,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/carga-na-subestacao/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/carga-na-subestacao/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/carga-na-subestacao/exports/geojson"
+      },
+      "shp": {
+        "status": 400,
+        "available": false,
+        "content_type": "application/json",
+        "content_length": "172",
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/carga-na-subestacao/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/carga-na-subestacao/exports/parquet"
+      }
+    },
+    "geometry_fields": [],
+    "date_time_fields": [
+      "ano"
+    ],
+    "voltage_fields": [
+      "tensao"
+    ],
+    "substation_fields": [
+      "codigo_da_instalacao",
+      "carga_nao_garantida"
+    ],
+    "has_geometry": false,
+    "has_date_time": true,
+    "has_voltage": true,
+    "has_substation_identifier": true
+  },
+  {
+    "dataset_id": "civil-parishes-portugal",
+    "source_refs": [
+      "configured:derived_or_supporting",
+      "page:quality",
+      "page:rnd"
+    ],
+    "requires_page_api_key": false,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/civil-parishes-portugal",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/civil-parishes-portugal/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:14:28+00:00",
+    "metadata_status_without_key": 200,
+    "metadata_status": 200,
+    "dataset_title": "Civil parishes - Portugal",
+    "publisher": "Huwise",
+    "license_observed": "Public domain",
+    "license_url_observed": "https://en.wikipedia.org/wiki/Public_domain",
+    "attribution_observed": [
+      "Informação geográfica cedida pela Direção-Geral do Território"
+    ],
+    "attribution_url_observed": "",
+    "license_metadata_status": "EXPLICIT",
+    "redistribution_gate": "SOURCE_TERMS_PRESENT_REVIEW_REQUIRED",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/civil-parishes-portugal/",
+    "v2_records_status": 200,
+    "v2_total_count": 3259,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 3259,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/civil-parishes-portugal/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/civil-parishes-portugal/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/civil-parishes-portugal/exports/geojson"
+      },
+      "shp": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/zip; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/civil-parishes-portugal/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/civil-parishes-portugal/exports/parquet"
+      }
+    },
+    "geometry_fields": [
+      "geo_point_2d",
+      "geo_shape",
+      "fre_name_long"
+    ],
+    "date_time_fields": [
+      "year"
+    ],
+    "voltage_fields": [],
+    "substation_fields": [
+      "fre_name_upper",
+      "fre_name_lower"
+    ],
+    "has_geometry": true,
+    "has_date_time": true,
+    "has_voltage": false,
+    "has_substation_identifier": true
+  },
+  {
+    "dataset_id": "diagrama-de-carga-de-subestacao",
+    "source_refs": [
+      "direct:Diagrama de carga de subestacao index"
+    ],
+    "requires_page_api_key": false,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama-de-carga-de-subestacao",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama-de-carga-de-subestacao/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:14:38+00:00",
+    "metadata_status_without_key": 200,
+    "metadata_status": 200,
+    "dataset_title": "Substation Load Diagram",
+    "publisher": "E-REDES",
+    "license_observed": "CC BY 4.0",
+    "license_url_observed": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution_observed": "",
+    "attribution_url_observed": "",
+    "license_metadata_status": "EXPLICIT",
+    "redistribution_gate": "SOURCE_TERMS_PRESENT_REVIEW_REQUIRED",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/diagrama-de-carga-de-subestacao/",
+    "v2_records_status": 200,
+    "v2_total_count": 5,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 5,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama-de-carga-de-subestacao/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama-de-carga-de-subestacao/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama-de-carga-de-subestacao/exports/geojson"
+      },
+      "shp": {
+        "status": 400,
+        "available": false,
+        "content_type": "application/json",
+        "content_length": "172",
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama-de-carga-de-subestacao/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama-de-carga-de-subestacao/exports/parquet"
+      }
+    },
+    "geometry_fields": [],
+    "date_time_fields": [
+      "dataset_url",
+      "dataset_identifier"
+    ],
+    "voltage_fields": [],
+    "substation_fields": [
+      "dataset_url",
+      "dataset_identifier"
+    ],
+    "has_geometry": false,
+    "has_date_time": true,
+    "has_voltage": false,
+    "has_substation_identifier": true
+  },
+  {
+    "dataset_id": "diagrama_carga_subestacao_01_a_07",
+    "source_refs": [
+      "configured:derived_or_supporting"
+    ],
+    "requires_page_api_key": false,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_01_a_07",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_01_a_07/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:14:45+00:00",
+    "metadata_status_without_key": 200,
+    "metadata_status": 200,
+    "dataset_title": "Diagrama de Carga de Subestação (Aveiro, Beja, Braga, Bragança, Castelo Branco, Coimbra e Évora)",
+    "publisher": "E-REDES",
+    "license_observed": "CC BY 4.0",
+    "license_url_observed": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution_observed": "",
+    "attribution_url_observed": "",
+    "license_metadata_status": "EXPLICIT",
+    "redistribution_gate": "SOURCE_TERMS_PRESENT_REVIEW_REQUIRED",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/diagrama_carga_subestacao_01_a_07/",
+    "v2_records_status": 200,
+    "v2_total_count": 4085298,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 4085298,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_01_a_07/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_01_a_07/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_01_a_07/exports/geojson"
+      },
+      "shp": {
+        "status": 400,
+        "available": false,
+        "content_type": "application/json",
+        "content_length": "172",
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_01_a_07/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_01_a_07/exports/parquet"
+      }
+    },
+    "geometry_fields": [],
+    "date_time_fields": [
+      "datahora",
+      "data",
+      "hora"
+    ],
+    "voltage_fields": [],
+    "substation_fields": [
+      "codigo_subestacao",
+      "subestacao"
+    ],
+    "has_geometry": false,
+    "has_date_time": true,
+    "has_voltage": false,
+    "has_substation_identifier": true
+  },
+  {
+    "dataset_id": "diagrama_carga_subestacao_08_a_10",
+    "source_refs": [
+      "configured:derived_or_supporting"
+    ],
+    "requires_page_api_key": false,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_08_a_10",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_08_a_10/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:14:50+00:00",
+    "metadata_status_without_key": 200,
+    "metadata_status": 200,
+    "dataset_title": "Diagrama de Carga de Subestação (Faro, Guarda e Leiria)",
+    "publisher": "E-REDES",
+    "license_observed": "CC BY 4.0",
+    "license_url_observed": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution_observed": "",
+    "attribution_url_observed": "",
+    "license_metadata_status": "EXPLICIT",
+    "redistribution_gate": "SOURCE_TERMS_PRESENT_REVIEW_REQUIRED",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/diagrama_carga_subestacao_08_a_10/",
+    "v2_records_status": 200,
+    "v2_total_count": 2185886,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 2185886,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_08_a_10/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_08_a_10/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_08_a_10/exports/geojson"
+      },
+      "shp": {
+        "status": 400,
+        "available": false,
+        "content_type": "application/json",
+        "content_length": "172",
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_08_a_10/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_08_a_10/exports/parquet"
+      }
+    },
+    "geometry_fields": [],
+    "date_time_fields": [
+      "datahora",
+      "data",
+      "hora"
+    ],
+    "voltage_fields": [],
+    "substation_fields": [
+      "codigo_subestacao",
+      "subestacao"
+    ],
+    "has_geometry": false,
+    "has_date_time": true,
+    "has_voltage": false,
+    "has_substation_identifier": true
+  },
+  {
+    "dataset_id": "diagrama_carga_subestacao_11_a_12",
+    "source_refs": [
+      "configured:derived_or_supporting"
+    ],
+    "requires_page_api_key": false,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_11_a_12",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_11_a_12/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:14:55+00:00",
+    "metadata_status_without_key": 200,
+    "metadata_status": 200,
+    "dataset_title": "Diagrama de Carga de Subestação (Lisboa e Portalegre)",
+    "publisher": "E-REDES",
+    "license_observed": "CC BY 4.0",
+    "license_url_observed": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution_observed": "",
+    "attribution_url_observed": "",
+    "license_metadata_status": "EXPLICIT",
+    "redistribution_gate": "SOURCE_TERMS_PRESENT_REVIEW_REQUIRED",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/diagrama_carga_subestacao_11_a_12/",
+    "v2_records_status": 200,
+    "v2_total_count": 2829724,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 2829724,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_11_a_12/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_11_a_12/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_11_a_12/exports/geojson"
+      },
+      "shp": {
+        "status": 400,
+        "available": false,
+        "content_type": "application/json",
+        "content_length": "172",
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_11_a_12/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_11_a_12/exports/parquet"
+      }
+    },
+    "geometry_fields": [],
+    "date_time_fields": [
+      "datahora",
+      "data",
+      "hora"
+    ],
+    "voltage_fields": [],
+    "substation_fields": [
+      "codigo_subestacao",
+      "subestacao"
+    ],
+    "has_geometry": false,
+    "has_date_time": true,
+    "has_voltage": false,
+    "has_substation_identifier": true
+  },
+  {
+    "dataset_id": "diagrama_carga_subestacao_13_a_15",
+    "source_refs": [
+      "configured:derived_or_supporting"
+    ],
+    "requires_page_api_key": false,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_13_a_15",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_13_a_15/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:15:00+00:00",
+    "metadata_status_without_key": 200,
+    "metadata_status": 200,
+    "dataset_title": "Diagrama de Carga de Subestação (Porto, Santarém e Setúbal)",
+    "publisher": "E-REDES",
+    "license_observed": "CC BY 4.0",
+    "license_url_observed": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution_observed": "",
+    "attribution_url_observed": "",
+    "license_metadata_status": "EXPLICIT",
+    "redistribution_gate": "SOURCE_TERMS_PRESENT_REVIEW_REQUIRED",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/diagrama_carga_subestacao_13_a_15/",
+    "v2_records_status": 200,
+    "v2_total_count": 3548885,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 3548885,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_13_a_15/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_13_a_15/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_13_a_15/exports/geojson"
+      },
+      "shp": {
+        "status": 400,
+        "available": false,
+        "content_type": "application/json",
+        "content_length": "172",
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_13_a_15/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_13_a_15/exports/parquet"
+      }
+    },
+    "geometry_fields": [],
+    "date_time_fields": [
+      "datahora",
+      "data",
+      "hora"
+    ],
+    "voltage_fields": [],
+    "substation_fields": [
+      "codigo_subestacao",
+      "subestacao"
+    ],
+    "has_geometry": false,
+    "has_date_time": true,
+    "has_voltage": false,
+    "has_substation_identifier": true
+  },
+  {
+    "dataset_id": "diagrama_carga_subestacao_16_a_18",
+    "source_refs": [
+      "configured:derived_or_supporting"
+    ],
+    "requires_page_api_key": false,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_16_a_18",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_16_a_18/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:15:05+00:00",
+    "metadata_status_without_key": 200,
+    "metadata_status": 200,
+    "dataset_title": "Diagrama de Carga de Subestação (Viana do Castelo, Vila Real e Viseu)",
+    "publisher": "E-REDES",
+    "license_observed": "CC BY 4.0",
+    "license_url_observed": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution_observed": "",
+    "attribution_url_observed": "",
+    "license_metadata_status": "EXPLICIT",
+    "redistribution_gate": "SOURCE_TERMS_PRESENT_REVIEW_REQUIRED",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/diagrama_carga_subestacao_16_a_18/",
+    "v2_records_status": 200,
+    "v2_total_count": 1259343,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 1259343,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_16_a_18/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_16_a_18/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_16_a_18/exports/geojson"
+      },
+      "shp": {
+        "status": 400,
+        "available": false,
+        "content_type": "application/json",
+        "content_length": "172",
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_16_a_18/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_16_a_18/exports/parquet"
+      }
+    },
+    "geometry_fields": [],
+    "date_time_fields": [
+      "datahora",
+      "data",
+      "hora"
+    ],
+    "voltage_fields": [],
+    "substation_fields": [
+      "codigo_subestacao",
+      "subestacao"
+    ],
+    "has_geometry": false,
+    "has_date_time": true,
+    "has_voltage": false,
+    "has_substation_identifier": true
+  },
+  {
+    "dataset_id": "districts-portugal",
+    "source_refs": [
+      "configured:derived_or_supporting",
+      "page:quality",
+      "page:rnd"
+    ],
+    "requires_page_api_key": false,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/districts-portugal",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/districts-portugal/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:15:11+00:00",
+    "metadata_status_without_key": 200,
+    "metadata_status": 200,
+    "dataset_title": "Districts - Portugal",
+    "publisher": "Huwise",
+    "license_observed": "Public domain",
+    "license_url_observed": "https://en.wikipedia.org/wiki/Public_domain",
+    "attribution_observed": [
+      "Informação geográfica cedida pela Direção-Geral do Território"
+    ],
+    "attribution_url_observed": "",
+    "license_metadata_status": "EXPLICIT",
+    "redistribution_gate": "SOURCE_TERMS_PRESENT_REVIEW_REQUIRED",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/districts-portugal/",
+    "v2_records_status": 200,
+    "v2_total_count": 20,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 20,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/districts-portugal/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/districts-portugal/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/districts-portugal/exports/geojson"
+      },
+      "shp": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/zip; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/districts-portugal/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/districts-portugal/exports/parquet"
+      }
+    },
+    "geometry_fields": [
+      "geo_point_2d",
+      "geo_shape"
+    ],
+    "date_time_fields": [
+      "year"
+    ],
+    "voltage_fields": [],
+    "substation_fields": [
+      "dis_name_upper",
+      "dis_name_lower"
+    ],
+    "has_geometry": true,
+    "has_date_time": true,
+    "has_voltage": false,
+    "has_substation_identifier": true
+  },
+  {
+    "dataset_id": "municipalities-portugal",
+    "source_refs": [
+      "configured:derived_or_supporting",
+      "page:quality",
+      "page:rnd"
+    ],
+    "requires_page_api_key": false,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/municipalities-portugal",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/municipalities-portugal/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:15:22+00:00",
+    "metadata_status_without_key": 200,
+    "metadata_status": 200,
+    "dataset_title": "Municipalities - Portugal",
+    "publisher": "Huwise",
+    "license_observed": "Public domain",
+    "license_url_observed": "https://en.wikipedia.org/wiki/Public_domain",
+    "attribution_observed": [
+      "Informação geográfica cedida pela Direção-Geral do Território"
+    ],
+    "attribution_url_observed": "",
+    "license_metadata_status": "EXPLICIT",
+    "redistribution_gate": "SOURCE_TERMS_PRESENT_REVIEW_REQUIRED",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/municipalities-portugal/",
+    "v2_records_status": 200,
+    "v2_total_count": 308,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 308,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/municipalities-portugal/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/municipalities-portugal/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/municipalities-portugal/exports/geojson"
+      },
+      "shp": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/zip; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/municipalities-portugal/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/municipalities-portugal/exports/parquet"
+      }
+    },
+    "geometry_fields": [
+      "geo_point_2d",
+      "geo_shape"
+    ],
+    "date_time_fields": [
+      "year"
+    ],
+    "voltage_fields": [],
+    "substation_fields": [
+      "con_name_upper",
+      "con_name_lower"
+    ],
+    "has_geometry": true,
+    "has_date_time": true,
+    "has_voltage": false,
+    "has_substation_identifier": true
+  },
+  {
+    "dataset_id": "pc-at_2025",
+    "source_refs": [
+      "page:rnd"
+    ],
+    "requires_page_api_key": true,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/pc-at_2025",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/pc-at_2025/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:15:31+00:00",
+    "metadata_status_without_key": 404,
+    "metadata_status": 200,
+    "dataset_title": "PC-AT_2025",
+    "publisher": "E-REDES",
+    "license_observed": "",
+    "license_url_observed": "",
+    "attribution_observed": "",
+    "attribution_url_observed": "",
+    "license_metadata_status": "MISSING",
+    "redistribution_gate": "BLOCKED_MISSING_DATASET_LICENSE",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/pc-at_2025/",
+    "v2_records_status": 200,
+    "v2_total_count": 76,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 76,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/pc-at_2025/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/pc-at_2025/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/pc-at_2025/exports/geojson"
+      },
+      "shp": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/zip; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/pc-at_2025/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/pc-at_2025/exports/parquet"
+      }
+    },
+    "geometry_fields": [
+      "coordenadas"
+    ],
+    "date_time_fields": [],
+    "voltage_fields": [],
+    "substation_fields": [
+      "codigo",
+      "instalacao"
+    ],
+    "has_geometry": true,
+    "has_date_time": false,
+    "has_voltage": false,
+    "has_substation_identifier": true
+  },
+  {
+    "dataset_id": "pc-mt_2025",
+    "source_refs": [
+      "page:rnd"
+    ],
+    "requires_page_api_key": true,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/pc-mt_2025",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/pc-mt_2025/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:15:35+00:00",
+    "metadata_status_without_key": 404,
+    "metadata_status": 200,
+    "dataset_title": "PC-MT_2025",
+    "publisher": "E-REDES",
+    "license_observed": "",
+    "license_url_observed": "",
+    "attribution_observed": "",
+    "attribution_url_observed": "",
+    "license_metadata_status": "MISSING",
+    "redistribution_gate": "BLOCKED_MISSING_DATASET_LICENSE",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/pc-mt_2025/",
+    "v2_records_status": 200,
+    "v2_total_count": 74,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 74,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/pc-mt_2025/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/pc-mt_2025/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/pc-mt_2025/exports/geojson"
+      },
+      "shp": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/zip; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/pc-mt_2025/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/pc-mt_2025/exports/parquet"
+      }
+    },
+    "geometry_fields": [
+      "coordenadas"
+    ],
+    "date_time_fields": [],
+    "voltage_fields": [],
+    "substation_fields": [
+      "codigo",
+      "instalacao"
+    ],
+    "has_geometry": true,
+    "has_date_time": false,
+    "has_voltage": false,
+    "has_substation_identifier": true
+  },
+  {
+    "dataset_id": "postos-transformacao-distribuicao",
+    "source_refs": [
+      "page:rnd"
+    ],
+    "requires_page_api_key": false,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/postos-transformacao-distribuicao",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/postos-transformacao-distribuicao/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:15:39+00:00",
+    "metadata_status_without_key": 200,
+    "metadata_status": 200,
+    "dataset_title": "Secondary Substations (PTD)",
+    "publisher": "E-REDES",
+    "license_observed": "CC BY 4.0",
+    "license_url_observed": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution_observed": "",
+    "attribution_url_observed": "",
+    "license_metadata_status": "EXPLICIT",
+    "redistribution_gate": "SOURCE_TERMS_PRESENT_REVIEW_REQUIRED",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/postos-transformacao-distribuicao/",
+    "v2_records_status": 200,
+    "v2_total_count": 72434,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 72434,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/postos-transformacao-distribuicao/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/postos-transformacao-distribuicao/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/postos-transformacao-distribuicao/exports/geojson"
+      },
+      "shp": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/zip; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/postos-transformacao-distribuicao/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/postos-transformacao-distribuicao/exports/parquet"
+      }
+    },
+    "geometry_fields": [
+      "coordenadas_geo"
+    ],
+    "date_time_fields": [],
+    "voltage_fields": [
+      "potencia_transformacao_kva"
+    ],
+    "substation_fields": [
+      "cod_instalacao"
+    ],
+    "has_geometry": true,
+    "has_date_time": false,
+    "has_voltage": true,
+    "has_substation_identifier": true
+  },
+  {
+    "dataset_id": "qualidade_energia_cavas-final",
+    "source_refs": [
+      "direct:Qualidade de energia - cavas de tensao",
+      "page:quality"
+    ],
+    "requires_page_api_key": false,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/qualidade_energia_cavas-final",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/qualidade_energia_cavas-final/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:15:43+00:00",
+    "metadata_status_without_key": 200,
+    "metadata_status": 200,
+    "dataset_title": "Electrical Power Quality - Voltage Dips",
+    "publisher": "E-REDES",
+    "license_observed": "CC BY 4.0",
+    "license_url_observed": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution_observed": "",
+    "attribution_url_observed": "",
+    "license_metadata_status": "EXPLICIT",
+    "redistribution_gate": "SOURCE_TERMS_PRESENT_REVIEW_REQUIRED",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/qualidade_energia_cavas-final/",
+    "v2_records_status": 200,
+    "v2_total_count": 2846,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 2846,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/qualidade_energia_cavas-final/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/qualidade_energia_cavas-final/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/qualidade_energia_cavas-final/exports/geojson"
+      },
+      "shp": {
+        "status": 400,
+        "available": false,
+        "content_type": "application/json",
+        "content_length": "172",
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/qualidade_energia_cavas-final/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/qualidade_energia_cavas-final/exports/parquet"
+      }
+    },
+    "geometry_fields": [],
+    "date_time_fields": [
+      "year",
+      "startdate",
+      "enddate"
+    ],
+    "voltage_fields": [],
+    "substation_fields": [
+      "tipoinstalacao",
+      "observations"
+    ],
+    "has_geometry": false,
+    "has_date_time": true,
+    "has_voltage": true,
+    "has_substation_identifier": true
+  },
+  {
+    "dataset_id": "qualidade_energia_fenomenoscontinuos-final",
+    "source_refs": [
+      "direct:Qualidade de energia - fenomenos continuos",
+      "page:quality"
+    ],
+    "requires_page_api_key": false,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/qualidade_energia_fenomenoscontinuos-final",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/qualidade_energia_fenomenoscontinuos-final/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:15:48+00:00",
+    "metadata_status_without_key": 200,
+    "metadata_status": 200,
+    "dataset_title": "Electrical Power Quality - Continuous Phenomena",
+    "publisher": "E-REDES",
+    "license_observed": "CC BY 4.0",
+    "license_url_observed": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution_observed": "",
+    "attribution_url_observed": "",
+    "license_metadata_status": "EXPLICIT",
+    "redistribution_gate": "SOURCE_TERMS_PRESENT_REVIEW_REQUIRED",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/qualidade_energia_fenomenoscontinuos-final/",
+    "v2_records_status": 200,
+    "v2_total_count": 5860,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 5860,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/qualidade_energia_fenomenoscontinuos-final/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/qualidade_energia_fenomenoscontinuos-final/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/qualidade_energia_fenomenoscontinuos-final/exports/geojson"
+      },
+      "shp": {
+        "status": 400,
+        "available": false,
+        "content_type": "application/json",
+        "content_length": "172",
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/qualidade_energia_fenomenoscontinuos-final/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/qualidade_energia_fenomenoscontinuos-final/exports/parquet"
+      }
+    },
+    "geometry_fields": [],
+    "date_time_fields": [
+      "year",
+      "startdate",
+      "enddate"
+    ],
+    "voltage_fields": [],
+    "substation_fields": [
+      "tipoinstalacao",
+      "observations"
+    ],
+    "has_geometry": false,
+    "has_date_time": true,
+    "has_voltage": true,
+    "has_substation_identifier": true
+  },
+  {
+    "dataset_id": "qualidade_energia_sobretensoes-final",
+    "source_refs": [
+      "direct:Qualidade de energia - sobretensoes",
+      "page:quality"
+    ],
+    "requires_page_api_key": false,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/qualidade_energia_sobretensoes-final",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/qualidade_energia_sobretensoes-final/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:15:52+00:00",
+    "metadata_status_without_key": 200,
+    "metadata_status": 200,
+    "dataset_title": "Electrical Power Quality - Overvoltages",
+    "publisher": "E-REDES",
+    "license_observed": "CC BY 4.0",
+    "license_url_observed": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution_observed": "",
+    "attribution_url_observed": "",
+    "license_metadata_status": "EXPLICIT",
+    "redistribution_gate": "SOURCE_TERMS_PRESENT_REVIEW_REQUIRED",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/qualidade_energia_sobretensoes-final/",
+    "v2_records_status": 200,
+    "v2_total_count": 2922,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 2922,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/qualidade_energia_sobretensoes-final/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/qualidade_energia_sobretensoes-final/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/qualidade_energia_sobretensoes-final/exports/geojson"
+      },
+      "shp": {
+        "status": 400,
+        "available": false,
+        "content_type": "application/json",
+        "content_length": "172",
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/qualidade_energia_sobretensoes-final/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/qualidade_energia_sobretensoes-final/exports/parquet"
+      }
+    },
+    "geometry_fields": [],
+    "date_time_fields": [
+      "year",
+      "startdate",
+      "enddate"
+    ],
+    "voltage_fields": [],
+    "substation_fields": [
+      "tipoinstalacao",
+      "observations"
+    ],
+    "has_geometry": false,
+    "has_date_time": true,
+    "has_voltage": true,
+    "has_substation_identifier": true
+  },
+  {
+    "dataset_id": "rede-at-teste",
+    "source_refs": [
+      "page:rari",
+      "page:rnd"
+    ],
+    "requires_page_api_key": true,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/rede-at-teste",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/rede-at-teste/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:15:57+00:00",
+    "metadata_status_without_key": 404,
+    "metadata_status": 200,
+    "dataset_title": "rede-at-codigodistritoconcelho",
+    "publisher": "E-REDES",
+    "license_observed": "",
+    "license_url_observed": "",
+    "attribution_observed": "",
+    "attribution_url_observed": "",
+    "license_metadata_status": "MISSING",
+    "redistribution_gate": "BLOCKED_MISSING_DATASET_LICENSE",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/rede-at-teste/",
+    "v2_records_status": 200,
+    "v2_total_count": 5334,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 5334,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/rede-at-teste/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/rede-at-teste/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/rede-at-teste/exports/geojson"
+      },
+      "shp": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/zip; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/rede-at-teste/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/rede-at-teste/exports/parquet"
+      }
+    },
+    "geometry_fields": [
+      "geo_point_2d",
+      "geo_shape"
+    ],
+    "date_time_fields": [],
+    "voltage_fields": [
+      "tensao_de"
+    ],
+    "substation_fields": [],
+    "has_geometry": true,
+    "has_date_time": false,
+    "has_voltage": true,
+    "has_substation_identifier": false
+  },
+  {
+    "dataset_id": "rede-mt-teste",
+    "source_refs": [
+      "page:rnd"
+    ],
+    "requires_page_api_key": true,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/rede-mt-teste",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/rede-mt-teste/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:16:02+00:00",
+    "metadata_status_without_key": 404,
+    "metadata_status": 200,
+    "dataset_title": "rede-mt-codigodistritoconcelho",
+    "publisher": "E-REDES",
+    "license_observed": "",
+    "license_url_observed": "",
+    "attribution_observed": "",
+    "attribution_url_observed": "",
+    "license_metadata_status": "MISSING",
+    "redistribution_gate": "BLOCKED_MISSING_DATASET_LICENSE",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/rede-mt-teste/",
+    "v2_records_status": 200,
+    "v2_total_count": 337725,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 337725,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/rede-mt-teste/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/rede-mt-teste/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/rede-mt-teste/exports/geojson"
+      },
+      "shp": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/zip; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/rede-mt-teste/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/rede-mt-teste/exports/parquet"
+      }
+    },
+    "geometry_fields": [
+      "geo_point_2d",
+      "geo_shape"
+    ],
+    "date_time_fields": [],
+    "voltage_fields": [
+      "tensao_de"
+    ],
+    "substation_fields": [],
+    "has_geometry": true,
+    "has_date_time": false,
+    "has_voltage": true,
+    "has_substation_identifier": false
+  },
+  {
+    "dataset_id": "se-at_2025",
+    "source_refs": [
+      "page:rnd"
+    ],
+    "requires_page_api_key": true,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/se-at_2025",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/se-at_2025/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:16:08+00:00",
+    "metadata_status_without_key": 404,
+    "metadata_status": 200,
+    "dataset_title": "SE-AT_2025",
+    "publisher": "E-REDES",
+    "license_observed": "",
+    "license_url_observed": "",
+    "attribution_observed": "",
+    "attribution_url_observed": "",
+    "license_metadata_status": "MISSING",
+    "redistribution_gate": "BLOCKED_MISSING_DATASET_LICENSE",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/se-at_2025/",
+    "v2_records_status": 200,
+    "v2_total_count": 410,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 410,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/se-at_2025/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/se-at_2025/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/se-at_2025/exports/geojson"
+      },
+      "shp": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/zip; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/se-at_2025/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/se-at_2025/exports/parquet"
+      }
+    },
+    "geometry_fields": [
+      "coordenadas"
+    ],
+    "date_time_fields": [],
+    "voltage_fields": [],
+    "substation_fields": [
+      "codigo",
+      "instalacao"
+    ],
+    "has_geometry": true,
+    "has_date_time": false,
+    "has_voltage": false,
+    "has_substation_identifier": true
+  },
+  {
+    "dataset_id": "se-mt_2025",
+    "source_refs": [
+      "page:rnd"
+    ],
+    "requires_page_api_key": true,
+    "metadata_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/se-mt_2025",
+    "v2_records_url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/se-mt_2025/records",
+    "v1_records_url": "https://e-redes.opendatasoft.com/api/records/1.0/search/",
+    "checked_at": "2026-07-13T14:16:12+00:00",
+    "metadata_status_without_key": 404,
+    "metadata_status": 200,
+    "dataset_title": "SE-MT_2025",
+    "publisher": "E-REDES",
+    "license_observed": "",
+    "license_url_observed": "",
+    "attribution_observed": "",
+    "attribution_url_observed": "",
+    "license_metadata_status": "MISSING",
+    "redistribution_gate": "BLOCKED_MISSING_DATASET_LICENSE",
+    "portal_dataset_url": "https://e-redes.opendatasoft.com/explore/dataset/se-mt_2025/",
+    "v2_records_status": 200,
+    "v2_total_count": 28,
+    "v2_sample_count": 1,
+    "v1_records_status": 200,
+    "v1_total_count": 28,
+    "v1_sample_count": 1,
+    "pagination_status": 200,
+    "pagination_second_record_available": true,
+    "export_formats": {
+      "csv": {
+        "status": 200,
+        "available": true,
+        "content_type": "text/csv; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/se-mt_2025/exports/csv"
+      },
+      "json": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/se-mt_2025/exports/json"
+      },
+      "geojson": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/json; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/se-mt_2025/exports/geojson"
+      },
+      "shp": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/zip; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/se-mt_2025/exports/shp"
+      },
+      "parquet": {
+        "status": 200,
+        "available": true,
+        "content_type": "application/parquet; charset=utf-8",
+        "content_length": null,
+        "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/se-mt_2025/exports/parquet"
+      }
+    },
+    "geometry_fields": [
+      "coordenadas"
+    ],
+    "date_time_fields": [],
+    "voltage_fields": [],
+    "substation_fields": [
+      "codigo",
+      "instalacao"
+    ],
+    "has_geometry": true,
+    "has_date_time": false,
+    "has_voltage": false,
+    "has_substation_identifier": true
+  }
+]

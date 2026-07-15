@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PT60-Candidate provenance/pt60_v1.0.2_source_input_manifest.json",
+  "description": "Path-level JSON field inventory schema. Nested structures are documented in data_dictionary.csv using JSON-pointer-like paths.",
+  "type": [
+    "object",
+    "array"
+  ],
+  "x-dataset-version": "v1.0.2",
+  "x-release-path": "provenance/pt60_v1.0.2_source_input_manifest.json",
+  "x-field-pointers": [
+    {
+      "pointer": "$.checked_at",
+      "inferred_type": "string",
+      "logical_type": "datetime_or_date",
+      "description": "Source provenance or release-control field `$.checked_at`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.output_dir",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.output_dir`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.records",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.records`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.records[*].bytes",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Source provenance or release-control field `$.records[*].bytes`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.records[*].dataset_id",
+      "inferred_type": "string",
+      "logical_type": "identifier",
+      "description": "Identifier field `$.records[*].dataset_id` in `provenance/pt60_v1.0.2_source_input_manifest.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.records[*].format",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.records[*].format`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.records[*].path",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.records[*].path`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.records[*].public_widget_key_discovered",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `$.records[*].public_widget_key_discovered`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.records[*].sha256",
+      "inferred_type": "string",
+      "logical_type": "checksum",
+      "description": "Source provenance or release-control field `$.records[*].sha256`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.scope",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.scope`.",
+      "nullable": false
+    }
+  ]
+}

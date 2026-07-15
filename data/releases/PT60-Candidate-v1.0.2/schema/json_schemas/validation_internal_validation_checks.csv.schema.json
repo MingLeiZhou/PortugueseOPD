@@ -1,0 +1,87 @@
+{
+  "$schema": "https://specs.frictionlessdata.io/schemas/table-schema.json",
+  "name": "internal_validation_checks",
+  "path": "validation/internal_validation_checks.csv",
+  "dataset_version": "v1.0.2",
+  "description": "PT60-Candidate schema for validation/internal_validation_checks.csv.",
+  "fields": [
+    {
+      "name": "check_id",
+      "type": "string",
+      "logical_type": "identifier",
+      "description": "Internal validation check identifier.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "layer",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `layer`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Operational/status text encoded in the public source record.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "observed",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Observed value from a validation check.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "expected",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Expected value for a validation check.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "detail",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Additional validation detail.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    }
+  ],
+  "missingValues": [
+    "",
+    "missing",
+    "missing_not_estimated",
+    "n/a",
+    "na",
+    "nan",
+    "none",
+    "not_estimated",
+    "null",
+    "pending"
+  ]
+}

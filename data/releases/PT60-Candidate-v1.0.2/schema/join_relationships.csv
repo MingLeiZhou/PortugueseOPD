@@ -1,0 +1,7 @@
+left_path,left_field,right_path,right_field,relationship,required,notes
+core_topology/at_interfacility_candidate_branches.csv,branch_id,validation/pt_topology_cross_validation_osm_matches.csv,branch_id,one_to_one_or_one_to_many_best_match_context,True,Use for branch-level public-source concordance categories.
+core_topology/at_interfacility_candidate_branches.csv,circuit_id,core_topology/at_circuit_classification.csv,circuit_id,many_retained_branches_to_full_ledger_record,True,Use to recover fail-closed disposition and source segment lineage.
+core_topology/at_interfacility_candidate_branches.csv,branch_id,validation/pt_topology_cross_validation_osm_matches_independence_audit.csv,branch_id,one_to_one,True,Use for OSM/OpenInfraMap evidence independence-risk category.
+core_topology/at_interfacility_candidate_branches.csv,from_facility_uid/to_facility_uid,core_topology/at_endpoint_facility_membership_summary.csv,facility_uid,many_to_one_where_facility_uid_is_present,False,Facility UID is the preferred internal join key; source facility code/name are descriptive public identifiers.
+provenance/reproduction_source_manifest.csv,dataset_id,provenance/reproduction_source_manifest.json,$.sources[*].dataset_id or equivalent source list key,same_source_manifest_two_formats,True,CSV and JSON are parallel source-manifest representations.
+manifest.json,$.records[*].path,checksums.sha256,relative path after digest,one_to_one_except_checksums_self_reference,True,Use for archive-level integrity checks; checksums.sha256 omits its own digest.

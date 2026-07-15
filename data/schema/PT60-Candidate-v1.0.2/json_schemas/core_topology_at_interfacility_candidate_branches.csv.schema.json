@@ -1,0 +1,297 @@
+{
+  "$schema": "https://specs.frictionlessdata.io/schemas/table-schema.json",
+  "name": "at_interfacility_candidate_branches",
+  "path": "core_topology/at_interfacility_candidate_branches.csv",
+  "dataset_version": "v1.0.2",
+  "description": "PT60-Candidate schema for core_topology/at_interfacility_candidate_branches.csv.",
+  "fields": [
+    {
+      "name": "branch_id",
+      "type": "string",
+      "logical_type": "identifier",
+      "description": "Stable PT60 retained candidate branch identifier.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "primary_key",
+      "join_target": "core_topology/at_interfacility_candidate_branches.csv:branch_id",
+      "missing_values": []
+    },
+    {
+      "name": "circuit_id",
+      "type": "string",
+      "logical_type": "identifier",
+      "description": "Stable reconstructed circuit/group identifier from the fail-closed merge step.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "foreign_key",
+      "join_target": "core_topology/at_circuit_classification.csv:circuit_id",
+      "missing_values": []
+    },
+    {
+      "name": "from_facility_uid",
+      "type": "string",
+      "logical_type": "identifier",
+      "description": "Canonical source-side facility identifier assigned by the reconstruction pipeline.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "facility_identifier",
+      "join_target": "core_topology/at_endpoint_facility_membership_summary.csv:facility_uid where available",
+      "missing_values": []
+    },
+    {
+      "name": "from_facility_code",
+      "type": "string",
+      "logical_type": "identifier",
+      "description": "Public source code for the source-side facility where available.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "facility_code",
+      "join_target": "E-REDES public facility code fields",
+      "missing_values": []
+    },
+    {
+      "name": "from_facility_name",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Public source name for the source-side facility where available.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "from_facility_type",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `from_facility_type` from `core_topology/at_interfacility_candidate_branches.csv`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "to_facility_uid",
+      "type": "string",
+      "logical_type": "identifier",
+      "description": "Canonical target-side facility identifier assigned by the reconstruction pipeline.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "facility_identifier",
+      "join_target": "core_topology/at_endpoint_facility_membership_summary.csv:facility_uid where available",
+      "missing_values": []
+    },
+    {
+      "name": "to_facility_code",
+      "type": "string",
+      "logical_type": "identifier",
+      "description": "Public source code for the target-side facility where available.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "facility_code",
+      "join_target": "E-REDES public facility code fields",
+      "missing_values": []
+    },
+    {
+      "name": "to_facility_name",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Public source name for the target-side facility where available.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "to_facility_type",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `to_facility_type` from `core_topology/at_interfacility_candidate_branches.csv`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "voltage",
+      "type": "string",
+      "logical_type": "voltage",
+      "description": "Voltage class encoded in the public source or derived candidate record.",
+      "unit": "kV or V as encoded by field; see field description",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Operational/status text encoded in the public source record.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "total_length_km",
+      "type": "number",
+      "logical_type": "distance_km",
+      "description": "Candidate circuit or branch length in kilometres.",
+      "unit": "km",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "number_of_original_segments",
+      "type": "integer",
+      "logical_type": "integer",
+      "description": "Release field `number_of_original_segments` from `core_topology/at_interfacility_candidate_branches.csv`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "geometry",
+      "type": "string",
+      "logical_type": "geojson_geometry",
+      "description": "GeoJSON geometry encoded as text in release CSV files.",
+      "unit": "WGS84 longitude/latitude coordinates unless otherwise stated",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "source_line_ids",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Comma-separated public source line identifiers contributing to this record.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "source_lineage_key_list",
+      "join_target": "E-REDES source line identifiers",
+      "missing_values": []
+    },
+    {
+      "name": "confidence_score",
+      "type": "number",
+      "logical_type": "ratio_or_score",
+      "description": "Internal candidate-construction confidence score; not a probability, precision estimate, or operator validation.",
+      "unit": "unitless",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "classification",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Fail-closed disposition class for a reconstructed circuit or branch.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "r",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `r` from `core_topology/at_interfacility_candidate_branches.csv`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        "MISSING_NOT_ESTIMATED"
+      ]
+    },
+    {
+      "name": "x",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `x` from `core_topology/at_interfacility_candidate_branches.csv`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        "MISSING_NOT_ESTIMATED"
+      ]
+    },
+    {
+      "name": "b",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `b` from `core_topology/at_interfacility_candidate_branches.csv`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        "MISSING_NOT_ESTIMATED"
+      ]
+    },
+    {
+      "name": "thermal_limit",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `thermal_limit` from `core_topology/at_interfacility_candidate_branches.csv`.",
+      "unit": "not_estimated_or_source_encoded",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        "MISSING_NOT_ESTIMATED"
+      ]
+    },
+    {
+      "name": "transformer_impedance",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `transformer_impedance` from `core_topology/at_interfacility_candidate_branches.csv`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        "MISSING_NOT_ESTIMATED"
+      ]
+    },
+    {
+      "name": "tap_settings",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `tap_settings` from `core_topology/at_interfacility_candidate_branches.csv`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        "MISSING_NOT_ESTIMATED"
+      ]
+    }
+  ],
+  "missingValues": [
+    "",
+    "missing",
+    "missing_not_estimated",
+    "n/a",
+    "na",
+    "nan",
+    "none",
+    "not_estimated",
+    "null",
+    "pending"
+  ]
+}

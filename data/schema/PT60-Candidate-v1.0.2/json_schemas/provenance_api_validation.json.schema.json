@@ -1,0 +1,475 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PT60-Candidate provenance/api_validation.json",
+  "description": "Path-level JSON field inventory schema. Nested structures are documented in data_dictionary.csv using JSON-pointer-like paths.",
+  "type": [
+    "object",
+    "array"
+  ],
+  "x-dataset-version": "v1.0.2",
+  "x-release-path": "provenance/api_validation.json",
+  "x-field-pointers": [
+    {
+      "pointer": "$",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].attribution_observed",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$[*].attribution_observed`.",
+      "nullable": true
+    },
+    {
+      "pointer": "$[*].attribution_observed[*]",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$[*].attribution_observed[*]`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].attribution_url_observed",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$[*].attribution_url_observed` in `provenance/api_validation.json`.",
+      "nullable": true
+    },
+    {
+      "pointer": "$[*].checked_at",
+      "inferred_type": "string",
+      "logical_type": "datetime_or_date",
+      "description": "Technical-validation field `$[*].checked_at`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].dataset_id",
+      "inferred_type": "string",
+      "logical_type": "identifier",
+      "description": "Identifier field `$[*].dataset_id` in `provenance/api_validation.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].dataset_title",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$[*].dataset_title`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].date_time_fields",
+      "inferred_type": "string",
+      "logical_type": "datetime_or_date",
+      "description": "Technical-validation field `$[*].date_time_fields`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].date_time_fields[*]",
+      "inferred_type": "string",
+      "logical_type": "datetime_or_date",
+      "description": "Technical-validation field `$[*].date_time_fields[*]`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].export_formats.csv.available",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Technical-validation field `$[*].export_formats.csv.available`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].export_formats.csv.content_length",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$[*].export_formats.csv.content_length`.",
+      "nullable": true
+    },
+    {
+      "pointer": "$[*].export_formats.csv.content_type",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$[*].export_formats.csv.content_type`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].export_formats.csv.status",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Technical-validation field `$[*].export_formats.csv.status`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].export_formats.csv.url",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$[*].export_formats.csv.url` in `provenance/api_validation.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].export_formats.geojson.available",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Technical-validation field `$[*].export_formats.geojson.available`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].export_formats.geojson.content_length",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$[*].export_formats.geojson.content_length`.",
+      "nullable": true
+    },
+    {
+      "pointer": "$[*].export_formats.geojson.content_type",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$[*].export_formats.geojson.content_type`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].export_formats.geojson.status",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Technical-validation field `$[*].export_formats.geojson.status`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].export_formats.geojson.url",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$[*].export_formats.geojson.url` in `provenance/api_validation.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].export_formats.json.available",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Technical-validation field `$[*].export_formats.json.available`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].export_formats.json.content_length",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$[*].export_formats.json.content_length`.",
+      "nullable": true
+    },
+    {
+      "pointer": "$[*].export_formats.json.content_type",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$[*].export_formats.json.content_type`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].export_formats.json.status",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Technical-validation field `$[*].export_formats.json.status`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].export_formats.json.url",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$[*].export_formats.json.url` in `provenance/api_validation.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].export_formats.parquet.available",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Technical-validation field `$[*].export_formats.parquet.available`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].export_formats.parquet.content_length",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$[*].export_formats.parquet.content_length`.",
+      "nullable": true
+    },
+    {
+      "pointer": "$[*].export_formats.parquet.content_type",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$[*].export_formats.parquet.content_type`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].export_formats.parquet.status",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Technical-validation field `$[*].export_formats.parquet.status`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].export_formats.parquet.url",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$[*].export_formats.parquet.url` in `provenance/api_validation.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].export_formats.shp.available",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Technical-validation field `$[*].export_formats.shp.available`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].export_formats.shp.content_length",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Technical-validation field `$[*].export_formats.shp.content_length`.",
+      "nullable": true
+    },
+    {
+      "pointer": "$[*].export_formats.shp.content_type",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$[*].export_formats.shp.content_type`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].export_formats.shp.status",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Technical-validation field `$[*].export_formats.shp.status`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].export_formats.shp.url",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$[*].export_formats.shp.url` in `provenance/api_validation.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].geometry_fields",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$[*].geometry_fields`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].geometry_fields[*]",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$[*].geometry_fields[*]`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].has_date_time",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Technical-validation field `$[*].has_date_time`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].has_geometry",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Technical-validation field `$[*].has_geometry`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].has_substation_identifier",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Technical-validation field `$[*].has_substation_identifier`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].has_voltage",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Technical-validation field `$[*].has_voltage`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].license_metadata_status",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$[*].license_metadata_status`.",
+      "nullable": true
+    },
+    {
+      "pointer": "$[*].license_observed",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$[*].license_observed`.",
+      "nullable": true
+    },
+    {
+      "pointer": "$[*].license_url_observed",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$[*].license_url_observed` in `provenance/api_validation.json`.",
+      "nullable": true
+    },
+    {
+      "pointer": "$[*].metadata_status",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Technical-validation field `$[*].metadata_status`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].metadata_status_without_key",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Technical-validation field `$[*].metadata_status_without_key`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].metadata_url",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$[*].metadata_url` in `provenance/api_validation.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].pagination_second_record_available",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Technical-validation field `$[*].pagination_second_record_available`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].pagination_status",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Technical-validation field `$[*].pagination_status`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].portal_dataset_url",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$[*].portal_dataset_url` in `provenance/api_validation.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].publisher",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$[*].publisher`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].redistribution_gate",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$[*].redistribution_gate`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].requires_page_api_key",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Technical-validation field `$[*].requires_page_api_key`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].source_refs",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$[*].source_refs`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].source_refs[*]",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$[*].source_refs[*]`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].substation_fields",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$[*].substation_fields`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].substation_fields[*]",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$[*].substation_fields[*]`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].v1_records_status",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Technical-validation field `$[*].v1_records_status`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].v1_records_url",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$[*].v1_records_url` in `provenance/api_validation.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].v1_sample_count",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Technical-validation field `$[*].v1_sample_count`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].v1_total_count",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Technical-validation field `$[*].v1_total_count`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].v2_records_status",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Technical-validation field `$[*].v2_records_status`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].v2_records_url",
+      "inferred_type": "string",
+      "logical_type": "url",
+      "description": "URL field `$[*].v2_records_url` in `provenance/api_validation.json`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].v2_sample_count",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Technical-validation field `$[*].v2_sample_count`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].v2_total_count",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Technical-validation field `$[*].v2_total_count`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].voltage_fields",
+      "inferred_type": "string",
+      "logical_type": "voltage",
+      "description": "Technical-validation field `$[*].voltage_fields`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$[*].voltage_fields[*]",
+      "inferred_type": "string",
+      "logical_type": "voltage",
+      "description": "Technical-validation field `$[*].voltage_fields[*]`.",
+      "nullable": false
+    }
+  ]
+}

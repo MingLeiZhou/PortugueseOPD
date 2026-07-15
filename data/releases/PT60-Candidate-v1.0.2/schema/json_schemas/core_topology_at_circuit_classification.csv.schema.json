@@ -1,0 +1,356 @@
+{
+  "$schema": "https://specs.frictionlessdata.io/schemas/table-schema.json",
+  "name": "at_circuit_classification",
+  "path": "core_topology/at_circuit_classification.csv",
+  "dataset_version": "v1.0.2",
+  "description": "PT60-Candidate schema for core_topology/at_circuit_classification.csv.",
+  "fields": [
+    {
+      "name": "facility_node_set",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Selected facility-node universe used during reconstruction.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "facility_buffer_m",
+      "type": "integer",
+      "logical_type": "distance_m",
+      "description": "Facility matching buffer radius used during reconstruction.",
+      "unit": "m",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "endpoint_snap_threshold_m",
+      "type": "number",
+      "logical_type": "distance_m",
+      "description": "Endpoint clustering/snap threshold used during reconstruction.",
+      "unit": "m",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "merge_mode",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Circuit-segment merge strategy.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "circuit_id",
+      "type": "string",
+      "logical_type": "identifier",
+      "description": "Stable reconstructed circuit/group identifier from the fail-closed merge step.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "primary_key",
+      "join_target": "core_topology/at_circuit_classification.csv:circuit_id",
+      "missing_values": []
+    },
+    {
+      "name": "classification",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Fail-closed disposition class for a reconstructed circuit or branch.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "terminal_count",
+      "type": "integer",
+      "logical_type": "integer",
+      "description": "Release field `terminal_count` from `core_topology/at_circuit_classification.csv`.",
+      "unit": "count",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "terminal_endpoint_cluster_ids",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `terminal_endpoint_cluster_ids` from `core_topology/at_circuit_classification.csv`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        ""
+      ]
+    },
+    {
+      "name": "terminal_details_json",
+      "type": "string",
+      "logical_type": "json_encoded_string",
+      "description": "Release field `terminal_details_json` from `core_topology/at_circuit_classification.csv`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "terminal_facility_uids",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `terminal_facility_uids` from `core_topology/at_circuit_classification.csv`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "facility_identifier",
+      "join_target": "core_topology/at_endpoint_facility_membership_summary.csv:facility_uid where available",
+      "missing_values": [
+        ""
+      ]
+    },
+    {
+      "name": "ambiguous_facility_match",
+      "type": "boolean",
+      "logical_type": "boolean",
+      "description": "Release field `ambiguous_facility_match` from `core_topology/at_circuit_classification.csv`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "mixed_voltage",
+      "type": "boolean",
+      "logical_type": "boolean",
+      "description": "Release field `mixed_voltage` from `core_topology/at_circuit_classification.csv`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "mixed_status",
+      "type": "boolean",
+      "logical_type": "boolean",
+      "description": "Release field `mixed_status` from `core_topology/at_circuit_classification.csv`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "voltage",
+      "type": "string",
+      "logical_type": "voltage",
+      "description": "Voltage class encoded in the public source or derived candidate record.",
+      "unit": "kV or V as encoded by field; see field description",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Operational/status text encoded in the public source record.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "voltage_values",
+      "type": "string",
+      "logical_type": "voltage",
+      "description": "Release field `voltage_values` from `core_topology/at_circuit_classification.csv`.",
+      "unit": "kV or V as encoded by field; see field description",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "status_values",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `status_values` from `core_topology/at_circuit_classification.csv`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "segment_count",
+      "type": "integer",
+      "logical_type": "integer",
+      "description": "Release field `segment_count` from `core_topology/at_circuit_classification.csv`.",
+      "unit": "count",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "total_length_m",
+      "type": "number",
+      "logical_type": "distance_m",
+      "description": "Candidate circuit or branch length in metres.",
+      "unit": "m",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "total_length_km",
+      "type": "number",
+      "logical_type": "distance_km",
+      "description": "Candidate circuit or branch length in kilometres.",
+      "unit": "km",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "source_line_ids",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Comma-separated public source line identifiers contributing to this record.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "source_lineage_key_list",
+      "join_target": "E-REDES source line identifiers",
+      "missing_values": []
+    },
+    {
+      "name": "line_ids",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `line_ids` from `core_topology/at_circuit_classification.csv`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "source_lineage_key_list",
+      "join_target": "E-REDES source line identifiers",
+      "missing_values": []
+    },
+    {
+      "name": "geometry_type",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `geometry_type` from `core_topology/at_circuit_classification.csv`.",
+      "unit": "not_applicable",
+      "nullable": false,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": []
+    },
+    {
+      "name": "r",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `r` from `core_topology/at_circuit_classification.csv`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        "MISSING_NOT_ESTIMATED"
+      ]
+    },
+    {
+      "name": "x",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `x` from `core_topology/at_circuit_classification.csv`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        "MISSING_NOT_ESTIMATED"
+      ]
+    },
+    {
+      "name": "b",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `b` from `core_topology/at_circuit_classification.csv`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        "MISSING_NOT_ESTIMATED"
+      ]
+    },
+    {
+      "name": "thermal_limit",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `thermal_limit` from `core_topology/at_circuit_classification.csv`.",
+      "unit": "not_estimated_or_source_encoded",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        "MISSING_NOT_ESTIMATED"
+      ]
+    },
+    {
+      "name": "transformer_impedance",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `transformer_impedance` from `core_topology/at_circuit_classification.csv`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        "MISSING_NOT_ESTIMATED"
+      ]
+    },
+    {
+      "name": "tap_settings",
+      "type": "string",
+      "logical_type": "string",
+      "description": "Release field `tap_settings` from `core_topology/at_circuit_classification.csv`.",
+      "unit": "not_applicable",
+      "nullable": true,
+      "key_role": "none",
+      "join_target": "",
+      "missing_values": [
+        "MISSING_NOT_ESTIMATED"
+      ]
+    }
+  ],
+  "missingValues": [
+    "",
+    "missing",
+    "missing_not_estimated",
+    "n/a",
+    "na",
+    "nan",
+    "none",
+    "not_estimated",
+    "null",
+    "pending"
+  ]
+}

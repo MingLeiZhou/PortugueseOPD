@@ -1,0 +1,32 @@
+{
+  "dataset_version": "v1.0.2",
+  "generated_at": "2026-07-15T14:54:00Z",
+  "source_crs": {
+    "name": "WGS 84 longitude/latitude from Opendatasoft v2.1 geometry exports",
+    "epsg": "EPSG:4326",
+    "axis_order_in_release_geometry": "longitude, latitude",
+    "coordinate_units": "decimal degrees",
+    "evidence_status": "Confirmed for the portal export used by the pipeline: the frozen Opendatasoft v2.1 export URLs contain no epsg override, and the export API default is EPSG:4326. The native CRS before portal ingestion, if different, is not recorded and was not used by the pipeline.",
+    "evidence_url": "https://help.opendatasoft.com/apis/ods-explore-v2/",
+    "export_parameter": "epsg",
+    "export_parameter_default": 4326
+  },
+  "processing_metric_crs": {
+    "name": "ETRS89 / Portugal TM06",
+    "epsg": "EPSG:3763",
+    "projection_method": "Transverse Mercator",
+    "units": "m",
+    "usage": "Endpoint clustering, facility buffering, facility-distance checks, corridor-distance checks and length/coverage diagnostics."
+  },
+  "release_geometry_encoding": {
+    "csv_geometry_fields": "GeoJSON text in CSV cells",
+    "geometry_types_observed": [
+      "LineString",
+      "MultiLineString",
+      "Point-like facility summaries where applicable"
+    ],
+    "distance_fields": "Fields ending in _m use metres; fields ending in _km use kilometres.",
+    "missing_geometry": "Empty string, null, NaN, or MISSING_NOT_ESTIMATED depending on source artifact."
+  },
+  "claim_boundary": "Coordinate and distance fields support reproducible candidate-topology reconstruction and validation. They do not imply operator-validated asset positions or operational grid-model readiness."
+}

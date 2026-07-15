@@ -138,7 +138,7 @@ def validate_extracted(root: Path, archive_sha256: str, archive_path: Path) -> d
     core_counts = headline.get("core_dataset_counts", {})
     headline_count_checks = {
         "retained_interfacility_branches": core_counts.get("retained_interfacility_branches") == 358,
-        "merged_circuit_candidates": core_counts.get("merged_circuit_candidates") == 1342,
+        "merged_circuit_candidates": core_counts.get("merged_circuit_candidates") == 1341,
         "sensitivity_sweep_rows": core_counts.get("sensitivity_sweep_rows") == 216,
         "selected_graph_edges": core_counts.get("selected_graph_edges") == 358,
     }
@@ -215,7 +215,7 @@ It does not prove full source-to-archive regeneration from raw E-REDES/API downl
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--archive", type=Path, default=config.DATA_DIR / "releases" / "PT60-Candidate-v1.0.1.tar.gz")
+    parser.add_argument("--archive", type=Path, default=config.DATA_DIR / "releases" / "PT60-Candidate-v1.0.2.tar.gz")
     parser.add_argument("--output-json", type=Path, default=config.METADATA_DIR / "clean_room_archive_validation_summary.json")
     parser.add_argument("--output-report", type=Path, default=config.REPORTS_DIR / "108_pt60_clean_room_archive_validation.md")
     args = parser.parse_args()

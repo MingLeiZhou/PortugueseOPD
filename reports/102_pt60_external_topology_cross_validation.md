@@ -1,6 +1,6 @@
 # 102 PT60 External Topology Cross-Validation
 
-Generated: 2026-07-13T16:52:38+00:00
+Generated: 2026-07-15T14:48:35+00:00
 
 ## Scope
 
@@ -8,9 +8,9 @@ This report tests whether independent public sources can provide external eviden
 
 ## Inputs
 
-- candidate branches: `data/releases/PT60-Candidate-v1.0.0/core_topology/at_interfacility_candidate_branches.csv`
-- OSM/OpenInfraMap raw cache: local generation input excluded from the public repository and main release archive
-- source audit: `data/releases/PT60-Candidate-v1.0.0/validation/pt_topology_cross_validation_source_audit.csv`
+- candidate branches: `/Users/jumiray/Projects/PortugueseOPD/data/processed/at_interfacility_candidate_branches.csv`
+- OSM/OpenInfraMap cache: `/Users/jumiray/Projects/PortugueseOPD/data/processed/topology_validation/pt_osm_openinframap_60kv_power_ways.json`
+- source audit: `/Users/jumiray/Projects/PortugueseOPD/data/processed/topology_validation/pt_topology_cross_validation_source_audit.csv`
 
 ## Source Findings
 
@@ -23,8 +23,8 @@ This report tests whether independent public sources can provide external eviden
 - branches tested: 358
 - OSM 60 kV evidence ways downloaded: 5551
 - branches with any non-empty OSM match category: 358
-- strong OSM evidence branches: 247
-- medium OSM evidence branches: 104
+- strong OSM evidence branches: 245
+- medium OSM evidence branches: 106
 - weak OSM nearby branches: 7
 - no OSM match branches: 0
 
@@ -32,9 +32,9 @@ This report tests whether independent public sources can provide external eviden
 
 | external_evidence_status | branches |
 |---|---:|
-| OSM_GEOMETRY_MEDIUM | 48 |
-| OSM_GEOMETRY_OPERATOR_STRONG | 64 |
-| OSM_NAME_OPERATOR_STRONG | 183 |
+| OSM_GEOMETRY_MEDIUM | 50 |
+| OSM_GEOMETRY_OPERATOR_STRONG | 63 |
+| OSM_NAME_OPERATOR_STRONG | 182 |
 | OSM_NEARBY_WEAK | 7 |
 | OSM_PARTIAL_NAME_NEARBY | 56 |
 
@@ -42,15 +42,15 @@ This report tests whether independent public sources can provide external eviden
 
 | branch_id | endpoints | status | OSM evidence | distance_m | coverage_500m |
 |---|---|---|---|---:|---:|
-| ATPL_00001 | BUSTOS - MIRA | OSM_NAME_OPERATOR_STRONG | Bustos - Mira | 0.0 | 1.00 |
-| ATPL_00002 | OLIVEIRA DO BAIRRO - BUSTOS | OSM_GEOMETRY_MEDIUM | Bustos - Mira | 25.2 | 0.09 |
+| ATPL_00001 | BUSTOS - MIRA | OSM_NAME_OPERATOR_STRONG | Bustos - Mira | 0.1 | 1.00 |
+| ATPL_00002 | OLIVEIRA DO BAIRRO - BUSTOS | OSM_GEOMETRY_MEDIUM | Bustos - Mira | 25.1 | 0.09 |
 | ATPL_00003 | MERCEANA - VALE TEJO | OSM_PARTIAL_NAME_NEARBY | Vale do Tejo - C.P. Vila Franca I | 8.4 | 0.07 |
-| ATPL_00004 | MATACÃES - MERCEANA | OSM_GEOMETRY_MEDIUM | Matacães - Joguinho 2 / Alto da Folgorosa | 5.6 | 0.33 |
+| ATPL_00004 | MATACÃES - MERCEANA | OSM_GEOMETRY_MEDIUM | Matacães - Joguinho 2 / Alto da Folgorosa | 5.7 | 0.33 |
 | ATPL_00005 | EPAL - AREIAS (VFX) | OSM_GEOMETRY_OPERATOR_STRONG | PS Sobralinho - Areias / EPAL | 0.1 | 0.62 |
 | ATPL_00006 | PÓVOA - ANAIA | OSM_NAME_OPERATOR_STRONG | Anaia - Póvoa | 0.3 | 1.00 |
-| ATPL_00007 | MONTECHORO - ALBUFEIRA | OSM_GEOMETRY_MEDIUM | CF Montechoro II - Montechoro | 13.9 | 0.04 |
-| ATPL_00008 | ALBUFEIRA - TUNES | OSM_PARTIAL_NAME_NEARBY | Tunes (REN) - PS Paderne | 16.6 | 0.04 |
-| ATPL_00009 | ALBUFEIRA - TUNES | OSM_PARTIAL_NAME_NEARBY | Tunes (REN) - PS Paderne | 40.6 | 0.04 |
+| ATPL_00007 | MONTECHORO - ALBUFEIRA | OSM_GEOMETRY_MEDIUM | CF Montechoro II - Montechoro | 14.4 | 0.04 |
+| ATPL_00008 | ALBUFEIRA - TUNES | OSM_PARTIAL_NAME_NEARBY | Tunes (REN) - PS Paderne | 17.2 | 0.04 |
+| ATPL_00009 | ALBUFEIRA - TUNES | OSM_PARTIAL_NAME_NEARBY | Tunes (REN) - PS Paderne | 42.0 | 0.04 |
 | ATPL_00010 | ALBUFEIRA - ARMAÇÃO DE PERA | OSM_GEOMETRY_OPERATOR_STRONG | https://www.openstreetmap.org/way/749735849 | 1.6 | 0.73 |
 
 ## Interpretation

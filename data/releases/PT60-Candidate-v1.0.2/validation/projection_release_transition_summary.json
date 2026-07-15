@@ -1,0 +1,45 @@
+{
+  "old_version": "v1.0.1",
+  "new_version": "v1.0.2",
+  "old_retained_branches": 358,
+  "new_retained_branches": 358,
+  "transition_status_counts": {
+    "retained_in_both": 357,
+    "removed_from_retained_set": 1,
+    "added_to_retained_set": 1
+  },
+  "shared_source_line_groups": 357,
+  "shared_groups_with_unchanged_endpoint_pair": 357,
+  "retained_set_exchange_fraction": 0.002793296089385475,
+  "removed_records": [
+    {
+      "transition_status": "removed_from_retained_set",
+      "source_line_ids": "12481240,7824774,7825410,7825439,7825676",
+      "old_branch_id": "ATPL_00192",
+      "new_branch_id": "",
+      "old_from_facility_uid": "SE_AT:1312S5013300",
+      "old_to_facility_uid": "SE_AT:1312S5014000",
+      "new_from_facility_uid": "",
+      "new_to_facility_uid": "",
+      "endpoint_pair_unchanged": false,
+      "old_confidence_score": 0.9134,
+      "new_confidence_score": ""
+    }
+  ],
+  "added_records": [
+    {
+      "transition_status": "added_to_retained_set",
+      "source_line_ids": "258718202",
+      "old_branch_id": "",
+      "new_branch_id": "ATPL_00253",
+      "old_from_facility_uid": "",
+      "old_to_facility_uid": "",
+      "new_from_facility_uid": "SE_AT:0308S5013400",
+      "new_to_facility_uid": "PC_AT:0309P5022500",
+      "endpoint_pair_unchanged": false,
+      "old_confidence_score": "",
+      "new_confidence_score": 0.6529
+    }
+  ],
+  "interpretation": "The formal EPSG:3763 rebuild preserves 357 source-line groups and their endpoint facility pairs, removes one previously retained group, and adds one previously non-retained group. Branch IDs are release-local identifiers and may be renumbered even when source membership is unchanged."
+}

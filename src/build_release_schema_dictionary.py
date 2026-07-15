@@ -19,7 +19,7 @@ import config
 from utils import utc_now, write_json, write_text
 
 
-VERSION = "v1.0.1"
+VERSION = "v1.0.2"
 RELEASE_NAME = f"PT60-Candidate-{VERSION}"
 RELEASE_DIR = config.DATA_DIR / "releases" / RELEASE_NAME
 SCHEMA_DIR = config.DATA_DIR / "schema" / RELEASE_NAME
@@ -552,14 +552,11 @@ def write_crs_docs() -> None:
             "export_parameter_default": 4326,
         },
         "processing_metric_crs": {
-            "name": "Local equirectangular Portugal metric workspace",
-            "epsg": None,
-            "parameters": {
-                "lon0": -8.532604,
-                "lat0": 39.567953,
-                "units": "m",
-            },
-            "usage": "Endpoint clustering, facility-distance checks, corridor-distance checks and length/coverage diagnostics.",
+            "name": "ETRS89 / Portugal TM06",
+            "epsg": "EPSG:3763",
+            "projection_method": "Transverse Mercator",
+            "units": "m",
+            "usage": "Endpoint clustering, facility buffering, facility-distance checks, corridor-distance checks and length/coverage diagnostics.",
         },
         "release_geometry_encoding": {
             "csv_geometry_fields": "GeoJSON text in CSV cells",
@@ -578,7 +575,7 @@ Dataset version: PT60-Candidate {VERSION}
 
 - Release geometry fields are encoded as GeoJSON-style longitude/latitude coordinate arrays in WGS 84 / EPSG:4326 decimal degrees. The frozen Opendatasoft v2.1 export URLs contain no `epsg` override, and the documented default for geometry-capable exports is EPSG:4326.
 - Axis order in CSV geometry cells is longitude, latitude.
-- The reconstruction and validation pipeline also uses a local equirectangular metric workspace centred on Portugal (`lon0=-8.532604`, `lat0=39.567953`, metres). This local CRS is used for endpoint clustering, facility-distance checks, corridor-distance checks and length/coverage diagnostics.
+- The v1.0.2 reconstruction and validation pipeline uses ETRS89 / Portugal TM06 (EPSG:3763; Transverse Mercator, metres) for endpoint clustering, facility buffering, facility-distance checks, corridor-distance checks and length/coverage diagnostics.
 - The native CRS before Opendatasoft portal ingestion, if different, is not recorded. It was not used by the reconstruction pipeline; the relevant input CRS is the EPSG:4326 portal export.
 
 ## Units

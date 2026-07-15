@@ -22,6 +22,7 @@ import pandas as pd
 import requests
 
 import config
+from metric_projection import PortugalTM06Projection
 from utils import write_json, write_text
 
 
@@ -35,8 +36,7 @@ MATCHES = OUT / "pt_topology_cross_validation_osm_matches.csv"
 SOURCE_AUDIT = OUT / "pt_topology_cross_validation_source_audit.csv"
 SUMMARY_JSON = OUT / "pt_topology_cross_validation_summary.json"
 
-EARTH_RADIUS_M = 6_371_008.8
-LOCAL_LAT0_RAD = math.radians(39.5)
+METRIC_PROJECTION = PortugalTM06Projection()
 
 
 def utc_now() -> str:
@@ -54,10 +54,7 @@ def normalize_text(value: object) -> str:
 
 def lonlat_to_xy(point: tuple[float, float]) -> tuple[float, float]:
     lon, lat = point
-    return (
-        EARTH_RADIUS_M * math.radians(lon) * math.cos(LOCAL_LAT0_RAD),
-        EARTH_RADIUS_M * math.radians(lat),
-    )
+    return METRIC_PROJECTION.xy(lon, lat)
 
 
 def parse_line_part(value: object) -> list[tuple[float, float]]:

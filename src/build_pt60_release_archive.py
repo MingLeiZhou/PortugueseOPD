@@ -1,4 +1,4 @@
-"""Build the PT60-Candidate v1.0.1 public release directory and tarball."""
+"""Build the PT60-Candidate v1.0.2 public release directory and tarball."""
 
 from __future__ import annotations
 
@@ -20,12 +20,12 @@ import config
 from utils import utc_now, write_json, write_text
 
 
-VERSION = "v1.0.1"
+VERSION = "v1.0.2"
 RELEASE_NAME = f"PT60-Candidate-{VERSION}"
 RELEASES_DIR = config.DATA_DIR / "releases"
 RELEASE_DIR = RELEASES_DIR / RELEASE_NAME
 ARCHIVE_PATH = RELEASES_DIR / f"{RELEASE_NAME}.tar.gz"
-SCHEMA_VERSION = "pt60_candidate_schema_v1.0.1"
+SCHEMA_VERSION = "pt60_candidate_schema_v1.0.2"
 DATASET_DOI = "10.6084/m9.figshare.32984021"
 DATASET_DOI_URL = f"https://doi.org/{DATASET_DOI}"
 
@@ -363,20 +363,15 @@ PT60-Candidate records are transformed and derived products. The archive reconst
 def write_changelog() -> None:
     text = f"""# Changelog
 
-## {VERSION} - 2026-07-14
+## {VERSION} - 2026-07-15
 
-- Corrects token-aware logical-type and unit inference in the schema/data dictionary.
-- Freeze draft for Scientific Data public-source validation route.
-- Includes 358 retained candidate branches and a 1,342-row retained/downgraded/rejected circuit ledger.
+- Uses ETRS89 / Portugal TM06 (EPSG:3763) for facility buffering, endpoint clustering, matching and metric distances.
+- Includes 358 retained candidate branches and a 1,341-row retained/downgraded/rejected circuit ledger.
+- Records the v1.0.1-to-v1.0.2 projection transition: 357 retained source-line groups are unchanged, one is removed and one is added.
 - Includes 216-configuration sensitivity sweep.
 - Includes OSM/OpenInfraMap public-source triangulation, endpoint-name negative control, spatial-alignment negative control, independence audit and internal validation outputs.
 - Excludes raw E-REDES downloads from the default public archive.
 - Excludes ACPF/DCOPF operational diagnostics from the core archive.
-
-Pending after this archive build:
-
-- final public code repository/DOI;
-- full source-to-archive reproduction from raw/API inputs before final publication.
 """
     write_text(RELEASE_DIR / "CHANGELOG.md", text)
 
@@ -408,7 +403,7 @@ def write_exclusions() -> None:
                 "artifact_class": "manual_dual_review_protocol_outputs",
                 "paths": ["data/processed/topology_validation/pt_topology_validation_*"],
                 "decision": "excluded_from_public_validation_route",
-                "reason": "The v1.0.1 article route does not use dual independent human adjudication or report precision.",
+                "reason": "The v1.0.2 article route does not use dual independent human adjudication or report precision.",
             },
             {
                 "artifact_class": "raw_osm_openinframap_cache_and_user_history",
@@ -453,7 +448,7 @@ abstract: >-
 def write_headline_counts() -> None:
     metadata = root_release_metadata()
     frozen = metadata.get("frozen_counts", {})
-    validation = metadata.get("validation_results", {})
+    validation = metadata.get("validation_status", {})
     source_snapshot = metadata.get("source_snapshot", {})
     schema_summary_path = config.DATA_DIR / "schema" / RELEASE_NAME / "schema_build_summary.json"
     schema_summary = json.loads(schema_summary_path.read_text(encoding="utf-8")) if schema_summary_path.exists() else {}
@@ -540,6 +535,7 @@ def copy_release_inputs() -> list[dict[str, Any]]:
         "reproduction_source_manifest.csv",
         "reproduction_source_manifest.json",
         "responsible_release_boundary.json",
+        "pt60_v1.0.2_source_input_manifest.json",
     ]:
         copy_file(config.METADATA_DIR / src, f"provenance/{src}", copied, "source and release provenance", "provenance")
 
@@ -555,6 +551,8 @@ def copy_release_inputs() -> list[dict[str, Any]]:
         "internal_validation_summary.json",
         "internal_validation_checks.csv",
         "internal_validation_missingness.csv",
+        "projection_release_transition.csv",
+        "projection_release_transition_summary.json",
     ]
     for src in validation_files:
         copy_file(config.PROCESSED_DIR / "topology_validation" / src, f"validation/{src}", copied, "technical validation output", "validation")

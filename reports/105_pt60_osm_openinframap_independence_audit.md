@@ -1,6 +1,6 @@
 # 105 PT60 OSM/OpenInfraMap Evidence Independence Audit
 
-Generated: 2026-07-14T13:40:16+00:00
+Generated: 2026-07-15T14:50:50+00:00
 
 ## Scope
 
@@ -17,7 +17,7 @@ This audit classifies the provenance risk of OSM/OpenInfraMap evidence used for 
 - OSM records with metadata: 5551
 - matched branches audited: 358
 - branches with timestamped matched OSM metadata: 358
-- unique matched OSM ways with history: 271
+- unique matched OSM ways with history: 270
 - branches with historical source-tag risk: 1
 
 | independence_category | branches |

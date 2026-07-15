@@ -1,0 +1,26 @@
+check_id,layer,status,observed,expected,detail
+raw_geometry_validity,source,PASS,5334,5334,Raw E-REDES line geometry parse count.
+retained_branch_geometry_validity,branches,PASS,358,358,"Geometry types: {'LineString': 25, 'MultiLineString': 333}"
+source_coordinate_reference,crs,PASS,Opendatasoft v2.1 GeoJSON export without an epsg override; default EPSG:4326,EPSG:4326 portal export and release geometry,"The frozen export URLs contain no epsg query parameter, and the Opendatasoft v2.1 export API documents EPSG:4326 as the default for geometry-capable formats. Release coordinates use GeoJSON longitude-latitude order. The native CRS before portal ingestion is not recorded and was not used by the pipeline."
+metric_coordinate_reference,crs,PASS,"ETRS89 / Portugal TM06 (EPSG:3763), Transverse Mercator, units=m","ETRS89 / Portugal TM06 (EPSG:3763), Transverse Mercator, units=m","Formal metric projection used for endpoint clustering, facility buffering, matching, and length calculations."
+retained_required_fields,branches,PASS,"{""branch_id"": 0, ""circuit_id"": 0, ""from_facility_uid"": 0, ""to_facility_uid"": 0, ""from_facility_name"": 0, ""to_facility_name"": 0, ""voltage"": 0, ""status"": 0, ""total_length_km"": 0, ""number_of_original_segments"": 0, ""geometry"": 0, ""source_line_ids"": 0, ""confidence_score"": 0, ""classification"": 0}",0 missing required values,Required retained-branch fields are complete.
+retained_branch_id_unique,branches,PASS,358,358,Retained branch identifiers are unique.
+retained_circuit_id_unique,branches,PASS,358,358,Each retained branch maps to one selected circuit.
+retained_no_self_loops,branches,PASS,0,0,Retained inter-facility branches do not connect a facility to itself.
+ledger_required_fields,ledger,PASS,"{""circuit_id"": 0, ""classification"": 0, ""terminal_count"": 0, ""segment_count"": 0, ""total_length_km"": 0, ""source_line_ids"": 0, ""line_ids"": 0, ""geometry_type"": 0}",0 missing required values,Required ledger fields are complete.
+ledger_circuit_id_unique,ledger,PASS,1341,1341,Circuit ledger identifiers are unique.
+ledger_retained_plus_downgraded,ledger,PASS,358+983=1341,358+983=1341,Full retained/downgraded/rejected accounting reconciles for the EPSG:3763 build.
+ledger_class_reconciliation,ledger,PASS,"{""ambiguous"": 61, ""inter-facility"": 358, ""isolated"": 216, ""loop"": 5, ""self-loop"": 101, ""single-facility"": 496, ""tap / multi-terminal"": 104}","{""inter-facility"": 358, ""single-facility"": 496, ""isolated"": 216, ""tap / multi-terminal"": 104, ""self-loop"": 101, ""ambiguous"": 61, ""loop"": 5}",Downgrade classes match frozen release counts.
+ledger_terminal_count_distribution,ledger,PASS,"{""0"": 5, ""1"": 3, ""2"": 1223, ""3"": 98, ""4"": 9, ""6"": 3}",reported distribution,Terminal-count distribution is exported for validation review.
+selected_endpoint_membership,endpoints,PASS,2879 inside; 127 ambiguous,selected B/100 m membership row present,Endpoint-facility membership summary exists for selected settings.
+endpoint_index_rows,endpoints,PASS,64008,64008,Endpoint index contains start and end endpoints for every raw line feature at every snap threshold.
+selected_endpoint_clusters,endpoints,PASS,6627,0.5 m snap-threshold row present,Singleton=2789; two-endpoint=3667; >2=171; mixed voltage=0; mixed status=1.
+selected_facility_footprints,facilities,PASS,484,484,Overlapping footprint pairs=17; nearby pairs <=25 m=6.
+graph_edge_count,graph,PASS,358,358,GraphML edge count equals retained branch table row count.
+graph_node_count,graph,PASS,484,484,"GraphML includes selected facility nodes, including isolates."
+graph_branch_id_parity,graph,PASS,"missing=0, extra=0","0 missing, 0 extra",GraphML branch_id set matches retained branch table.
+graph_endpoint_reference_parity,graph,PASS,0,0,Every retained-branch endpoint facility appears as a GraphML node.
+graph_isolates_and_parallel_edges,graph,PASS,"isolates=109, parallel_groups=27, parallel_edge_records=55, parallel_extra_edges=28, self_loops=0",reported graph structure,Graph structure diagnostics are measured from GraphML.
+sensitivity_sweep_rows,sensitivity,PASS,216,216,Sensitivity sweep contains all 216 declared configurations.
+selected_sweep_row,sensitivity,PASS,1,1,Selected release setting is represented exactly once in the sensitivity sweep.
+release_hash_baseline,determinism,PASS,9,9,SHA-256 baselines are recorded for every declared core artifact; tagged clean-room archive reproduction is checked separately after the source tag is created.

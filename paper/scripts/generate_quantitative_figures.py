@@ -20,6 +20,7 @@ os.environ.setdefault("XDG_CACHE_HOME", str(ROOT / ".cache"))
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
 import networkx as nx
 import numpy as np
 import pandas as pd
@@ -172,7 +173,7 @@ def figure3_topology_quality(core: Path) -> None:
         connected_x,
         connected_y,
         s=5,
-        alpha=0.60,
+        alpha=0.48,
         color=COLORS["green"],
         edgecolors="none",
         zorder=2,
@@ -183,7 +184,14 @@ def figure3_topology_quality(core: Path) -> None:
     ax.set_ylabel("Latitude (°N; EPSG:4326)")
     ax.set_aspect(1 / np.cos(np.deg2rad(np.mean(connected_y + isolate_y))))
     ax.set_title(r"$\bf{a}$  Released candidate geography", loc="left")
+    legend_handles = [
+        Line2D([0], [0], color=COLORS["blue"], linewidth=1.2, label="Largest-component branch"),
+        Line2D([0], [0], color=COLORS["light_gray"], linewidth=1.2, label="Other-component branch"),
+        Line2D([0], [0], marker="o", linestyle="none", markersize=4, markerfacecolor=COLORS["green"], markeredgecolor="none", alpha=0.60, label="Connected facility"),
+        Line2D([0], [0], marker="x", linestyle="none", markersize=4, color=COLORS["orange"], label="Isolated facility"),
+    ]
     ax.legend(
+        handles=legend_handles,
         frameon=False,
         loc="upper center",
         bbox_to_anchor=(0.5, -0.16),
@@ -203,7 +211,7 @@ def figure3_topology_quality(core: Path) -> None:
     axes[1].set_title(rf"$\bf{{b}}$  Component sizes (n={len(components)})", loc="left")
     axes[1].text(0.98, 0.95, f"Largest = {components[0]}\nIsolates = {components.count(1)}", transform=axes[1].transAxes, ha="right", va="top")
 
-    fig.subplots_adjust(wspace=0.34, bottom=0.19)
+    fig.subplots_adjust(wspace=0.34, bottom=0.25)
     save(fig, "fig3_topology_quality")
 
 
@@ -277,7 +285,7 @@ def main() -> None:
     parser.add_argument(
         "--release-root",
         type=Path,
-        default=ROOT / "data" / "releases" / "PT60-Candidate-v1.0.1",
+        default=ROOT / "data" / "releases" / "PT60-Candidate-v1.0.2",
         help="Extracted frozen release directory.",
     )
     args = parser.parse_args()

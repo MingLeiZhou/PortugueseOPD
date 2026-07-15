@@ -1,0 +1,244 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PT60-Candidate provenance/responsible_release_boundary.json",
+  "description": "Path-level JSON field inventory schema. Nested structures are documented in data_dictionary.csv using JSON-pointer-like paths.",
+  "type": [
+    "object",
+    "array"
+  ],
+  "x-dataset-version": "v1.0.2",
+  "x-release-path": "provenance/responsible_release_boundary.json",
+  "x-field-pointers": [
+    {
+      "pointer": "$.basis.license_basis",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.basis.license_basis`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.basis.license_conditions",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.basis.license_conditions`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.basis.license_conditions[*]",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.basis.license_conditions[*]`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.basis.source_manifest",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.basis.source_manifest`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.basis.website_terms_caveat",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.basis.website_terms_caveat`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.generated_at_utc",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.generated_at_utc`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.public_release_decisions",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.public_release_decisions`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.public_release_decisions[*].artifact_class",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.public_release_decisions[*].artifact_class`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.public_release_decisions[*].conditions",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.public_release_decisions[*].conditions`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.public_release_decisions[*].conditions[*]",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.public_release_decisions[*].conditions[*]`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.public_release_decisions[*].decision",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.public_release_decisions[*].decision`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.public_release_decisions[*].examples",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.public_release_decisions[*].examples`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.public_release_decisions[*].examples[*]",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.public_release_decisions[*].examples[*]`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.public_release_decisions[*].includes_evidence_urls",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `$.public_release_decisions[*].includes_evidence_urls`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.public_release_decisions[*].includes_exact_geometries",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `$.public_release_decisions[*].includes_exact_geometries`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.public_release_decisions[*].includes_facility_names",
+      "inferred_type": "boolean",
+      "logical_type": "boolean",
+      "description": "Source provenance or release-control field `$.public_release_decisions[*].includes_facility_names`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.public_release_decisions[*].reason",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.public_release_decisions[*].reason`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.release.dataset",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.release.dataset`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.release.route",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.release.route`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.release.version",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.release.version`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_use_notice.allowed_uses",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.responsible_use_notice.allowed_uses`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_use_notice.allowed_uses[*]",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.responsible_use_notice.allowed_uses[*]`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_use_notice.prohibited_language",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.responsible_use_notice.prohibited_language`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_use_notice.prohibited_language[*]",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.responsible_use_notice.prohibited_language[*]`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_use_notice.prohibited_or_not_supported_uses",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.responsible_use_notice.prohibited_or_not_supported_uses`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_use_notice.prohibited_or_not_supported_uses[*]",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.responsible_use_notice.prohibited_or_not_supported_uses[*]`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_use_notice.required_language",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.responsible_use_notice.required_language`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.responsible_use_notice.required_language[*]",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.responsible_use_notice.required_language[*]`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.schema_name",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.schema_name`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.schema_version",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.schema_version`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.status",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.status`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.submission_remaining_checks",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.submission_remaining_checks`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.submission_remaining_checks[*]",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Source provenance or release-control field `$.submission_remaining_checks[*]`.",
+      "nullable": false
+    }
+  ]
+}

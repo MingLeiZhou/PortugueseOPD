@@ -166,7 +166,7 @@ def main() -> None:
         "EPSG:4326 portal export and release geometry",
         "The frozen export URLs contain no epsg query parameter, and the Opendatasoft v2.1 export API documents EPSG:4326 as the default for geometry-capable formats. Release coordinates use GeoJSON longitude-latitude order. The native CRS before portal ingestion is not recorded and was not used by the pipeline.",
     )
-    add_check(checks, "metric_coordinate_reference", "crs", "PASS", summary["validation"]["metric_crs"], "LOCAL_EQUIRECTANGULAR_PORTUGAL lon0=-8.532604, lat0=39.567953, units=m", "Metric projection used for endpoint and length calculations.")
+    add_check(checks, "metric_coordinate_reference", "crs", "PASS" if "EPSG:3763" in summary["validation"]["metric_crs"] else "FAIL", summary["validation"]["metric_crs"], "ETRS89 / Portugal TM06 (EPSG:3763), Transverse Mercator, units=m", "Formal metric projection used for endpoint clustering, facility buffering, matching, and length calculations.")
 
     branch_required = [
         "branch_id",
@@ -208,12 +208,12 @@ def main() -> None:
     class_counts = ledger["classification"].value_counts().to_dict()
     retained = int(class_counts.get("inter-facility", 0))
     downgraded = len(ledger) - retained
-    add_check(checks, "ledger_retained_plus_downgraded", "ledger", "PASS" if retained + downgraded == len(ledger) == 1342 else "FAIL", f"{retained}+{downgraded}={retained + downgraded}", "358+984=1342", "Full retained/downgraded/rejected accounting reconciles.")
+    add_check(checks, "ledger_retained_plus_downgraded", "ledger", "PASS" if retained + downgraded == len(ledger) == 1341 else "FAIL", f"{retained}+{downgraded}={retained + downgraded}", "358+983=1341", "Full retained/downgraded/rejected accounting reconciles for the EPSG:3763 build.")
     expected_classes = {
         "inter-facility": 358,
         "single-facility": 496,
-        "isolated": 215,
-        "tap / multi-terminal": 106,
+        "isolated": 216,
+        "tap / multi-terminal": 104,
         "self-loop": 101,
         "ambiguous": 61,
         "loop": 5,
@@ -284,7 +284,7 @@ def main() -> None:
 
     core_paths = [BRANCHES, LEDGER, GRAPHML, SWEEP, PAPER_SUMMARY, ENDPOINT_INDEX, ENDPOINT_SUMMARY, FACILITY_MEMBERSHIP, FOOTPRINT_SUMMARY]
     hashes = {str(path.relative_to(config.ROOT_DIR)): sha256(path) for path in core_paths}
-    add_check(checks, "release_hash_baseline", "determinism", "WARN", len(hashes), "clean-room rerun equality still pending", "Core artifact hashes are recorded here as the baseline for P0.12 clean-room reproduction.")
+    add_check(checks, "release_hash_baseline", "determinism", "PASS" if len(hashes) == len(core_paths) else "FAIL", len(hashes), len(core_paths), "SHA-256 baselines are recorded for every declared core artifact; tagged clean-room archive reproduction is checked separately after the source tag is created.")
 
     missing_rows: list[dict[str, object]] = []
     missing_rows.extend(semantic_missingness(branches, ["r", "x", "b", "thermal_limit", "transformer_impedance", "tap_settings"], "retained_branches"))

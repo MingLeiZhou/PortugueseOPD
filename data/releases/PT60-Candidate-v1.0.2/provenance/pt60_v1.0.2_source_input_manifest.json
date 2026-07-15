@@ -1,0 +1,111 @@
+{
+  "checked_at": "2026-07-15T14:53:27.318606+00:00",
+  "output_dir": "<TEMP_DIR>",
+  "records": [
+    {
+      "dataset_id": "rede-at-teste",
+      "format": "csv",
+      "path": "<TEMP_DIR>/rede-at-teste.csv",
+      "bytes": 5537167,
+      "sha256": "162de9fb341cd5f355989b42f52f15016f748e1f82563d8feb73a7ba2a20c735",
+      "public_widget_key_discovered": true
+    },
+    {
+      "dataset_id": "rede-at-teste",
+      "format": "geojson",
+      "path": "<TEMP_DIR>/rede-at-teste.geojson",
+      "bytes": 6376668,
+      "sha256": "fc03f9449b05e7a10680fb1ef33335e8fc757fbd5f07ceae28858e1c59f3431b",
+      "public_widget_key_discovered": true
+    },
+    {
+      "dataset_id": "se-at_2025",
+      "format": "csv",
+      "path": "<TEMP_DIR>/se-at_2025.csv",
+      "bytes": 42287,
+      "sha256": "42b9559e983b5fa096f8c2f49628d024ee08d00815c15d8016f8d07a6a5326c1",
+      "public_widget_key_discovered": true
+    },
+    {
+      "dataset_id": "se-at_2025",
+      "format": "geojson",
+      "path": "<TEMP_DIR>/se-at_2025.geojson",
+      "bytes": 111001,
+      "sha256": "4e682e62065b29392df4c2ee811b218a87ff00ec563380348584ad1f51164f92",
+      "public_widget_key_discovered": true
+    },
+    {
+      "dataset_id": "pc-at_2025",
+      "format": "csv",
+      "path": "<TEMP_DIR>/pc-at_2025.csv",
+      "bytes": 7914,
+      "sha256": "2fa1afb80b56a831f3bcaec69ca119cb5c23efaab48b47155ccd7c0e1a0e11fc",
+      "public_widget_key_discovered": true
+    },
+    {
+      "dataset_id": "pc-at_2025",
+      "format": "geojson",
+      "path": "<TEMP_DIR>/pc-at_2025.geojson",
+      "bytes": 20654,
+      "sha256": "24ee9d58b2f019413e66040aee797b07275055b7f10dc91aa01574ae518043f2",
+      "public_widget_key_discovered": true
+    },
+    {
+      "dataset_id": "se-mt_2025",
+      "format": "csv",
+      "path": "<TEMP_DIR>/se-mt_2025.csv",
+      "bytes": 2975,
+      "sha256": "79c72a474f4ff45a52d1607305f97294ecaa9b983a424a4b967a412d91e78398",
+      "public_widget_key_discovered": true
+    },
+    {
+      "dataset_id": "se-mt_2025",
+      "format": "geojson",
+      "path": "<TEMP_DIR>/se-mt_2025.geojson",
+      "bytes": 7654,
+      "sha256": "1101b6f5857e2f3576230911a18acdfd4c3a124e3d88aa4402a201762aa82b5a",
+      "public_widget_key_discovered": true
+    },
+    {
+      "dataset_id": "pc-mt_2025",
+      "format": "csv",
+      "path": "<TEMP_DIR>/pc-mt_2025.csv",
+      "bytes": 8174,
+      "sha256": "aa7dd5b558d86f14913aa4c6d1d599c6c2f7e711980f3ed3a30f0a4656a032a9",
+      "public_widget_key_discovered": true
+    },
+    {
+      "dataset_id": "pc-mt_2025",
+      "format": "geojson",
+      "path": "<TEMP_DIR>/pc-mt_2025.geojson",
+      "bytes": 20865,
+      "sha256": "e149efed1ca194c7b8256879bbdb677445528dbdc1bf45d33188df9feee1800a",
+      "public_widget_key_discovered": true
+    },
+    {
+      "dataset_id": "caracteristicas-da-rede",
+      "format": "csv",
+      "path": "<TEMP_DIR>/caracteristicas-da-rede.csv",
+      "bytes": 62209,
+      "sha256": "41aa5f0074b6c6ea081ffb9ffc5766dea7dfe9e9ba893939dc4686f16ad54fb0",
+      "public_widget_key_discovered": false
+    },
+    {
+      "dataset_id": "carga-na-subestacao",
+      "format": "csv",
+      "path": "<TEMP_DIR>/carga-na-subestacao.csv",
+      "bytes": 75262,
+      "sha256": "f16037cfa4fd4636e840f13faef601cc11bf7cefd7e86985f51912a83e1822a2",
+      "public_widget_key_discovered": false
+    },
+    {
+      "dataset_id": "capacidade-rececao-rnd",
+      "format": "csv",
+      "path": "<TEMP_DIR>/capacidade-rececao-rnd.csv",
+      "bytes": 151565,
+      "sha256": "fe53b14dbcbb94e4125abb31a5f1c666bcdaefbfd4b83bc62afc0eac4c254780",
+      "public_widget_key_discovered": false
+    }
+  ],
+  "scope": "Bounded source inputs required for topology reconstruction and electrical-readiness metadata; not the full 13-source contextual inventory."
+}

@@ -1,59 +1,59 @@
 {
-  "release_root": "data/releases/PT60-Candidate-v1.0.1",
+  "release_root": "data/releases/PT60-Candidate-v1.0.2",
   "inputs": [
     {
-      "path": "data/releases/PT60-Candidate-v1.0.1/core_topology/at_paper_logic_summary.json",
-      "sha256": "21d6b63d4f3ee9e7eeb026303ef1b4c53024b5705fc780861ba2915e5e1b017c"
+      "path": "data/releases/PT60-Candidate-v1.0.2/core_topology/at_paper_logic_summary.json",
+      "sha256": "42fdedbc2e38e8794dbcd0eb6a542fddafa9c55223aeafac69f69b968e141053"
     },
     {
-      "path": "data/releases/PT60-Candidate-v1.0.1/core_topology/at_paper_logic_graph.graphml",
-      "sha256": "d51731446bb3f848ab9dd396ca7c04752dc972a5b8e98ba978eefe4a1f5f9a69"
+      "path": "data/releases/PT60-Candidate-v1.0.2/core_topology/at_paper_logic_graph.graphml",
+      "sha256": "7b1ee51a786276fde60309b2ad68b6c5544a069f620a86cc25cc5bc64b102a7f"
     },
     {
-      "path": "data/releases/PT60-Candidate-v1.0.1/core_topology/at_interfacility_candidate_branches.csv",
-      "sha256": "2746f15f149041287d9edf2ab0a454fc9c26fe3746d832e39409b9e9f2b1312d"
+      "path": "data/releases/PT60-Candidate-v1.0.2/core_topology/at_interfacility_candidate_branches.csv",
+      "sha256": "0b73e1efe1bafe2f0ac8ef4cb31bde62e81b22089f71027abac9f99b6f9d4f36"
     },
     {
-      "path": "data/releases/PT60-Candidate-v1.0.1/core_topology/at_paper_logic_parameter_sweep.csv",
-      "sha256": "d2b00287e68330e98982b99ead58a648be55793cd0356657760b0852e1b04f1e"
+      "path": "data/releases/PT60-Candidate-v1.0.2/core_topology/at_paper_logic_parameter_sweep.csv",
+      "sha256": "b0b46855612aa88bbf492cf54ead21ae6821cb34c37b90a14519fb497b23bc16"
     }
   ],
   "outputs": [
     {
       "path": "paper/figures/generated/fig2_reconstruction_funnel.pdf",
-      "sha256": "a1ffd5f651b67399bab68b188eacaaf5a63070a974bd41d5d6789e57f3a89ca7"
+      "sha256": "f09397f759a39c0ccab6b7e95275c1b31f2a6f67db09dc71de3c5e88fc176ad8"
     },
     {
       "path": "paper/figures/generated/fig2_reconstruction_funnel.svg",
-      "sha256": "da522c75fab979805957aeb29aee18d58d1e598628abdcc2b4a0c1e1b8b8dd4a"
+      "sha256": "c729b1dcdbe3a9af30647628dfc0aad05abd781439b4235eec488e8fb7da2414"
     },
     {
       "path": "paper/figures/generated/fig2_reconstruction_funnel.png",
-      "sha256": "c8f224b1697236e8a3922779dcb2c6ece2f970157b0c8ee70fd93667e52467c8"
+      "sha256": "c260aa3cd2015500abb33fecccb6ded4664b24465df4a13c297a441dc499e6e3"
     },
     {
       "path": "paper/figures/generated/fig3_topology_quality.pdf",
-      "sha256": "0c0d92b79f0f05a8130ebda501573a770a01e18bc2976448d7d13e98cdf40be5"
+      "sha256": "acc2661810eff1f2577d8231245a87d7fc64e50b9a9c535ab69532582e3c51d1"
     },
     {
       "path": "paper/figures/generated/fig3_topology_quality.svg",
-      "sha256": "459860f0e2d8537148a362065e962dbb74ddf724da9047e1fc8a6adc00bc7250"
+      "sha256": "59e7524787d15b92a3d11daea2c660c14d432c4a7abcfe81e874537857c1dbd2"
     },
     {
       "path": "paper/figures/generated/fig3_topology_quality.png",
-      "sha256": "a9da27639597daf8c7a31ba3151cba1179ef41603b9c08330f1d88d5a69a04d4"
+      "sha256": "b27415910957f587e17bd1ef457364ddba23ddfc7bb29babc81bb75d7943badb"
     },
     {
       "path": "paper/figures/generated/fig4_sensitivity_analysis.pdf",
-      "sha256": "d000be1fe13c46785e7cd07df5c5933b4e2f9dc761e11e4fb6cddb8917640e4a"
+      "sha256": "d09600b59e6ec26ad50801c9eb5ad07c981091d66529f8412e019ccb87f30806"
     },
     {
       "path": "paper/figures/generated/fig4_sensitivity_analysis.svg",
-      "sha256": "ce6600f3f136bf7d4df2334abf2c284aca4e0d093751e8a77f6da05fe773729c"
+      "sha256": "932a56863032674c5b1f4e9a4783f3cd84a7b9a840d7c0443f7085dcb66c88bd"
     },
     {
       "path": "paper/figures/generated/fig4_sensitivity_analysis.png",
-      "sha256": "a8b67649ff6dc3fb5760af16d4857c37d46e1d5ff79e0a87e7e4ec6666da2e85"
+      "sha256": "82faddd24210b701eaf14e09cd2d76ee498a3c3f0a7e068e6218b86e7d7a01aa"
     }
   ],
   "figures": [

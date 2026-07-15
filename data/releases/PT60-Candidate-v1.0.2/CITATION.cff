@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use PT60-Candidate, cite the dataset archive and associated paper."
+title: "PT60-Candidate: A Provenance-Tracked Candidate Dataset for Portuguese 60 kV Topology Reconstruction"
+type: dataset
+authors:
+  - name: "PortugueseOPD contributors"
+version: "v1.0.2"
+date-released: 2026-07-14
+license: "CC-BY-4.0"
+repository-code: ""
+doi: "10.6084/m9.figshare.32984021"
+url: "https://doi.org/10.6084/m9.figshare.32984021"
+abstract: >-
+  A provenance-tracked candidate dataset and fail-closed reconstruction pipeline output for Portuguese 60 kV topology reconstruction from public E-REDES Open Data. The dataset is not operator validated and is not an operational grid model.

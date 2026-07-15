@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PT60-Candidate archive_validation_summary.json",
+  "description": "Path-level JSON field inventory schema. Nested structures are documented in data_dictionary.csv using JSON-pointer-like paths.",
+  "type": [
+    "object",
+    "array"
+  ],
+  "x-dataset-version": "v1.0.2",
+  "x-release-path": "archive_validation_summary.json",
+  "x-field-pointers": [
+    {
+      "pointer": "$.archive_path",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$.archive_path`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.checksum_mismatches",
+      "inferred_type": "string",
+      "logical_type": "checksum",
+      "description": "Technical-validation field `$.checksum_mismatches`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.checksum_missing_paths",
+      "inferred_type": "string",
+      "logical_type": "checksum",
+      "description": "Technical-validation field `$.checksum_missing_paths`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.documented_missing",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$.documented_missing`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.file_count",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Technical-validation field `$.file_count`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.generated_at",
+      "inferred_type": "string",
+      "logical_type": "datetime_or_date",
+      "description": "Technical-validation field `$.generated_at`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.manifest_records",
+      "inferred_type": "integer",
+      "logical_type": "integer",
+      "description": "Technical-validation field `$.manifest_records`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.missing_documentation",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$.missing_documentation`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.missing_required",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$.missing_required`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.release_dir",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$.release_dir`.",
+      "nullable": false
+    },
+    {
+      "pointer": "$.status",
+      "inferred_type": "string",
+      "logical_type": "string",
+      "description": "Technical-validation field `$.status`.",
+      "nullable": false
+    }
+  ]
+}

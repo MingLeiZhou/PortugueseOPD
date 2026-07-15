@@ -95,13 +95,14 @@ def fetch_way_history(osm_id: int, pause_seconds: float) -> list[dict[str, objec
 
 
 def fetch_histories(osm_ids: list[int], cache_path: Path, refresh: bool, pause_seconds: float) -> dict[str, list[dict[str, object]]]:
-    if cache_path.exists() and not refresh:
-        return json.loads(cache_path.read_text(encoding="utf-8"))
     histories: dict[str, list[dict[str, object]]] = {}
-    for idx, osm_id in enumerate(osm_ids, start=1):
+    if cache_path.exists() and not refresh:
+        histories = json.loads(cache_path.read_text(encoding="utf-8"))
+    missing_ids = osm_ids if refresh else [osm_id for osm_id in osm_ids if str(osm_id) not in histories]
+    for idx, osm_id in enumerate(missing_ids, start=1):
         histories[str(osm_id)] = fetch_way_history(osm_id, pause_seconds=pause_seconds)
         if idx % 25 == 0:
-            print(f"Fetched OSM histories: {idx}/{len(osm_ids)}")
+            print(f"Fetched missing OSM histories: {idx}/{len(missing_ids)}")
     cache_path.write_text(json.dumps(histories, indent=2, ensure_ascii=False), encoding="utf-8")
     return histories
 
@@ -321,7 +322,8 @@ def main() -> None:
         refresh=args.refresh_history,
         pause_seconds=args.history_pause_seconds,
     )
-    history = build_history_table(histories)
+    current_histories = {str(osm_id): histories.get(str(osm_id), []) for osm_id in matched_osm_ids}
+    history = build_history_table(current_histories)
     history.to_csv(HISTORY_CSV, index=False)
     history_summary = summarize_history(history)
     audited = matches.merge(

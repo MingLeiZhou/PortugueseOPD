@@ -1,0 +1,13 @@
+facility_node_set,facility_buffer_m,facility_count,overlapping_footprint_pairs,duplicate_or_nearby_facility_pairs_25m,spatially_reasonable
+A,50,409,10,5,True
+A,100,409,14,5,True
+A,250,409,16,5,True
+A,500,409,23,5,True
+B,50,484,13,6,True
+B,100,484,17,6,True
+B,250,484,20,6,True
+B,500,484,36,6,True
+C,50,586,43,12,True
+C,100,586,50,12,True
+C,250,586,62,12,True
+C,500,586,87,12,True

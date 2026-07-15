@@ -1,67 +1,67 @@
 {
-  "release_root": "data/releases/PT60-Candidate-v1.0.1",
+  "release_root": "data/releases/PT60-Candidate-v1.0.2",
   "inputs": [
     {
-      "path": "data/releases/PT60-Candidate-v1.0.1/manifest.json",
-      "sha256": "e1a35a8dc8241ca0ce824f218108543b044322c2918427cb5ca7d52b70affb73"
+      "path": "data/releases/PT60-Candidate-v1.0.2/manifest.json",
+      "sha256": "266f3d3df3f08454b59422901d7bcc8192d22b219a9d80885061f8edb38247c3"
     },
     {
-      "path": "data/releases/PT60-Candidate-v1.0.1/core_topology/at_interfacility_candidate_branches.csv",
-      "sha256": "2746f15f149041287d9edf2ab0a454fc9c26fe3746d832e39409b9e9f2b1312d"
+      "path": "data/releases/PT60-Candidate-v1.0.2/core_topology/at_interfacility_candidate_branches.csv",
+      "sha256": "0b73e1efe1bafe2f0ac8ef4cb31bde62e81b22089f71027abac9f99b6f9d4f36"
     },
     {
-      "path": "data/releases/PT60-Candidate-v1.0.1/core_topology/at_circuit_classification.csv",
-      "sha256": "2576c693fc3b4b2780b3675c09e1adfa2ed8e8a8081a7f8f0cea5dba9795713c"
+      "path": "data/releases/PT60-Candidate-v1.0.2/core_topology/at_circuit_classification.csv",
+      "sha256": "6a48604d1d788f0fa7e355bcb2d952a772c152b872c4692c5a4823147569616c"
     },
     {
-      "path": "data/releases/PT60-Candidate-v1.0.1/core_topology/at_paper_logic_graph.graphml",
-      "sha256": "d51731446bb3f848ab9dd396ca7c04752dc972a5b8e98ba978eefe4a1f5f9a69"
+      "path": "data/releases/PT60-Candidate-v1.0.2/core_topology/at_paper_logic_graph.graphml",
+      "sha256": "7b1ee51a786276fde60309b2ad68b6c5544a069f620a86cc25cc5bc64b102a7f"
     },
     {
-      "path": "data/releases/PT60-Candidate-v1.0.1/core_topology/at_paper_logic_parameter_sweep.csv",
-      "sha256": "d2b00287e68330e98982b99ead58a648be55793cd0356657760b0852e1b04f1e"
+      "path": "data/releases/PT60-Candidate-v1.0.2/core_topology/at_paper_logic_parameter_sweep.csv",
+      "sha256": "b0b46855612aa88bbf492cf54ead21ae6821cb34c37b90a14519fb497b23bc16"
     },
     {
-      "path": "data/releases/PT60-Candidate-v1.0.1/validation/pt_topology_cross_validation_osm_matches.csv",
-      "sha256": "dfc8f91ce055178a6b56bd02066c05683b779d1fdcdfb9b59722b5c37319a1dd"
+      "path": "data/releases/PT60-Candidate-v1.0.2/validation/pt_topology_cross_validation_osm_matches.csv",
+      "sha256": "fc57127fc6da7a0831339421fe72f284d74dbe93f939ff212bc5a8897c631273"
     },
     {
-      "path": "data/releases/PT60-Candidate-v1.0.1/validation/pt_topology_cross_validation_summary.json",
-      "sha256": "7863f383ab56bf5fe4ed9d58006eca6264fa10983ea061f7ea415fdef97ba18d"
+      "path": "data/releases/PT60-Candidate-v1.0.2/validation/pt_topology_cross_validation_summary.json",
+      "sha256": "29ae28e0962feb7cb77390092993a53bbd15d4c4403bdb805bd0d2f4b6cdca83"
     },
     {
-      "path": "data/releases/PT60-Candidate-v1.0.1/provenance/reproduction_source_manifest.csv",
+      "path": "data/releases/PT60-Candidate-v1.0.2/provenance/reproduction_source_manifest.csv",
       "sha256": "30eb1029fb5c8f8e71929b63f276ffc5423682bad1b3faeceb532162396e7589"
     },
     {
-      "path": "data/releases/PT60-Candidate-v1.0.1/provenance/reproduction_source_manifest.json",
+      "path": "data/releases/PT60-Candidate-v1.0.2/provenance/reproduction_source_manifest.json",
       "sha256": "9a9acef1537b0733b73e270435a443b9ba643338f9a37a44acc09c1d184cd787"
     },
     {
-      "path": "data/releases/PT60-Candidate-v1.0.1/schema/data_dictionary.csv",
-      "sha256": "61ceeb2cab222301841eb8e9c93de59503030c1c056b1934e603994185a3de85"
+      "path": "data/releases/PT60-Candidate-v1.0.2/schema/data_dictionary.csv",
+      "sha256": "471a4ab46a7e5fbd3ece46524ed9e221c2c4798bf813a8d5a7f0989006252712"
     },
     {
       "path": "data/metadata/source_reacquisition_audit.json",
-      "sha256": "818c486a782536416f9e298596499e1e09f7a0505696af3ff90ef77733e4ade2"
+      "sha256": "38135ea529038aa52cc35ab5f99c2a59cdee9b392db3f71d4367de678a80f7e5"
     }
   ],
   "outputs": [
     {
       "path": "paper/generated_tables/archive_layout_table.tex",
-      "sha256": "b0d114cccd1815a56e1f8012622327e0696b545b518ae5acbd01842943b35867"
+      "sha256": "6f2a6c22c231a4f4a34e9aa925db10e26288309697bc4f30e6c31a28da489e1a"
     },
     {
       "path": "paper/generated_tables/principal_artifacts_table.tex",
-      "sha256": "80dfe688d9e33cb0d858e2ab9ae9dacca5e35247ff9754fd51003f20570ccb4c"
+      "sha256": "8ffc9e4305e5544511e985a3fdaf676d0e650f940d5101e39d3d87db23cf668e"
     },
     {
       "path": "paper/generated_tables/osm_triangulation_table.tex",
-      "sha256": "ace7362990c815d8d48576d65c93d7e0e456dc9b9682a680e87efad03284510c"
+      "sha256": "d4a43e571437ecf68f63468dacc2fa5fe9a38aa1b774340d55568bc8b4ee74b0"
     },
     {
       "path": "paper/generated_tables/source_inputs_table.tex",
-      "sha256": "e43711457f79c7b37e3168ef9fb3b1e3ae4751eb5301015858ff0a40625058e2"
+      "sha256": "ae73fa107e5213fc5ca3eb7a1b2b2f8ec5460c8421dfa7c75b8f4e4546c370f6"
     }
   ]
 }

@@ -2,10 +2,10 @@
   "schema_name": "pt60_candidate_release_metadata",
   "schema_version": "0.1.0",
   "record_status": "freeze_draft",
-  "generated_at_utc": "2026-07-14T17:28:17Z",
+  "generated_at_utc": "2026-07-15T15:01:38Z",
   "dataset": {
     "short_name": "PT60-Candidate",
-    "version": "v1.0.1",
+    "version": "v1.0.2",
     "title": "PT60-Candidate: A provenance-tracked candidate dataset and fail-closed pipeline for Portuguese 60 kV topology reconstruction",
     "article_route": "Scientific Data Data Descriptor, public-source validation route without dual independent human adjudication",
     "release_type": "candidate_topology_dataset",
@@ -33,11 +33,11 @@
     ]
   },
   "code_state": {
-    "generator_commit": "62d060386bf347a20abdf500c20e78e124cb27f4",
-    "git_worktree_status": "v1.0.1_source_commit_created_archive_bookkeeping_pending",
-    "dirty_status_note": "The v1.0.1 archive was generated from source commit 62d060386bf347a20abdf500c20e78e124cb27f4; final archive, manuscript, metadata, tag, and Figshare replacement remain pending.",
-    "code_release_tag": "pending_pt60-candidate-v1.0.1",
-    "code_release_tag_commit": "62d060386bf347a20abdf500c20e78e124cb27f4",
+    "generator_commit": "pending_v1.0.2_release_commit",
+    "git_worktree_status": "v1.0.2_epsg3763_rebuild_in_progress",
+    "dirty_status_note": "The v1.0.2 EPSG:3763 artifacts and validation outputs have been generated; final commit, annotated tag, clean rebuild, and Figshare replacement remain pending.",
+    "code_release_tag": "pending_pt60-candidate-v1.0.2",
+    "code_release_tag_commit": "pending_v1.0.2_release_commit",
     "code_release_tag_type": "pending_annotated_git_tag",
     "code_doi": "pending",
     "python_version": "3.12.9",
@@ -73,6 +73,9 @@
         "topology_critical": true,
         "records_count": 5334,
         "checked_at": "2026-07-13T14:15:57+00:00",
+        "repeat_acquisition_checked_at": "2026-07-15T14:27:12.762750+00:00",
+        "repeat_acquisition_bytes": 6376668,
+        "repeat_acquisition_sha256": "fc03f9449b05e7a10680fb1ef33335e8fc757fbd5f07ceae28858e1c59f3431b",
         "license_basis": "PORTAL_LEVEL_CC_BY_4_0"
       },
       {
@@ -81,6 +84,9 @@
         "topology_critical": true,
         "records_count": 410,
         "checked_at": "2026-07-13T14:16:08+00:00",
+        "repeat_acquisition_checked_at": "2026-07-15T14:27:12.762750+00:00",
+        "repeat_acquisition_bytes": 111001,
+        "repeat_acquisition_sha256": "4e682e62065b29392df4c2ee811b218a87ff00ec563380348584ad1f51164f92",
         "license_basis": "PORTAL_LEVEL_CC_BY_4_0"
       },
       {
@@ -89,6 +95,9 @@
         "topology_critical": true,
         "records_count": 76,
         "checked_at": "2026-07-13T14:15:31+00:00",
+        "repeat_acquisition_checked_at": "2026-07-15T14:27:12.762750+00:00",
+        "repeat_acquisition_bytes": 20654,
+        "repeat_acquisition_sha256": "24ee9d58b2f019413e66040aee797b07275055b7f10dc91aa01574ae518043f2",
         "license_basis": "PORTAL_LEVEL_CC_BY_4_0"
       },
       {
@@ -178,9 +187,9 @@
     "facility_buffer_m": 100,
     "endpoint_snap_threshold_m": 0.5,
     "merge_mode": "voltage-status-aware",
-    "metric_crs": "LOCAL_EQUIRECTANGULAR_PORTUGAL lon0=-8.532604, lat0=39.567953, units=m",
-    "source_crs": "pending_exact_source_crs",
-    "release_crs": "pending_exact_release_crs",
+    "metric_crs": "ETRS89 / Portugal TM06 (EPSG:3763), Transverse Mercator, units=m",
+    "source_crs": "EPSG:4326 GeoJSON longitude-latitude export (Opendatasoft default; no epsg override)",
+    "release_crs": "EPSG:4326 GeoJSON-style longitude-latitude coordinates",
     "voltage_scope": [
       "60 kV",
       "130 kV source features retained only where present in source inventory; PT60-Candidate claims are bounded to 60 kV candidate topology"
@@ -191,15 +200,20 @@
     "valid_line_geometries": 5334,
     "facility_rows_loaded": 586,
     "at_substations": 409,
+    "at_substation_source_records": 410,
+    "at_substation_exact_duplicates_excluded": 1,
+    "switching_facility_source_records": 76,
+    "switching_facilities_loaded_in_node_set_b": 75,
+    "switching_facility_exact_duplicates_excluded": 1,
     "other_relevant_facilities": 177,
-    "merged_circuit_candidates": 1342,
+    "merged_circuit_candidates": 1341,
     "retained_interfacility_branches": 358,
-    "downgraded_or_rejected_records": 984,
+    "downgraded_or_rejected_records": 983,
     "downgrade_classes": {
       "self_loop": 101,
       "single_facility": 496,
-      "isolated": 215,
-      "tap_multi_terminal": 106,
+      "isolated": 216,
+      "tap_multi_terminal": 104,
       "ambiguous": 61,
       "loop": 5
     },
@@ -213,8 +227,8 @@
     "osm_openinframap_60kv_public_way_count": 5551,
     "osm_evidence_retained_branches_tested": 358,
     "osm_evidence_categories": {
-      "strong": 247,
-      "medium": 104,
+      "strong": 245,
+      "medium": 106,
       "weak": 7,
       "no_match": 0
     }
@@ -223,7 +237,7 @@
     {
       "path": "data/processed/at_paper_logic_summary.json",
       "role": "selected reconstruction summary and graph statistics",
-      "sha256": "8ab105d73fffb791f7e480256f320d9ec25533f6f4cd8876590e8f5b3d30ed03"
+      "sha256": "3fd7e3db39e17f81b0ddb01c46dde3ff278c4d627d9ebd581b1b787a3a829969"
     },
     {
       "path": "data/processed/at_paper_logic_parameter_sweep.csv",
@@ -261,28 +275,24 @@
     }
   ],
   "validation_status": {
-    "dual_independent_human_review": "not_used_for_v1.0.0_route",
+    "dual_independent_human_review": "not_used_for_v1.0.2_route",
     "operator_validation": "not_available",
     "precision_recall": "not_estimated",
     "internal_validation_summary": {
-      "status": "PASS_WITH_WARNINGS",
-      "generated_at": "2026-07-14T13:45:52+00:00",
+      "status": "PASS",
+      "generated_at": "2026-07-15T15:01:03+00:00",
       "checks_total": 25,
       "check_status_counts": {
-        "PASS": 23,
-        "WARN": 2
+        "PASS": 25
       },
-      "warning_scope": [
-        "Exact source/release CRS must still be stated in Data Records and the data dictionary.",
-        "Core artifact hashes are recorded as the deterministic baseline; clean-room rerun equality remains P0.12."
-      ],
+      "warning_scope": [],
       "frozen_counts": {
         "raw_line_features": 5334,
         "valid_line_geometries": 5334,
         "invalid_or_dropped_geometries": 0,
         "retained_branches": 358,
-        "circuit_ledger_rows": 1342,
-        "downgraded_or_rejected_records": 984,
+        "circuit_ledger_rows": 1341,
+        "downgraded_or_rejected_records": 983,
         "sensitivity_sweep_rows": 216,
         "graph_nodes": 484,
         "graph_edges": 358,
@@ -299,15 +309,40 @@
       },
       "claim_boundary": "Internal validation checks release consistency and machine-readability only; it does not validate physical topology truth, precision, recall, or operator confirmation."
     },
+    "projection_topology_stability_audit": {
+      "status": "EPSG3763_ADOPTED_IN_V1.0.2",
+      "generated_at": "2026-07-15T14:48:00+00:00",
+      "comparison_crs": "ETRS89 / Portugal TM06 (EPSG:3763)",
+      "selected_configuration": {
+        "facility_node_set": "B",
+        "facility_buffer_m": 100,
+        "endpoint_snap_threshold_m": 0.5,
+        "merge_mode": "voltage-status-aware"
+      },
+      "legacy_retained_branches": 358,
+      "epsg_3763_retained_branches": 358,
+      "legacy_ambiguous_facility_matches": 61,
+      "epsg_3763_ambiguous_facility_matches": 61,
+      "retained_source_groups_unchanged": 357,
+      "retained_source_groups_exchanged": 1,
+      "unchanged_retained_fraction": 0.9972067039106145,
+      "changed_facility_assignments_among_shared_retained_groups": 0,
+      "reacquired_legacy_vs_deposited_changed_records": 0,
+      "removed_v1.0.1_branch_id": "ATPL_00192",
+      "added_v1.0.2_branch_id": "ATPL_00253",
+      "transition_csv": "data/processed/topology_validation/projection_release_transition.csv",
+      "transition_summary": "data/processed/topology_validation/projection_release_transition_summary.json",
+      "claim_boundary": "The v1.0.2 release adopts the formal EPSG:3763 result. The version transition preserves 357 of 358 retained source-line groups and exchanges one branch."
+    },
     "endpoint_name_negative_control": {
       "status": "completed",
-      "generated_at": "2026-07-14T13:25:26+00:00",
+      "generated_at": "2026-07-15T14:49:40+00:00",
       "seed": 20260714,
       "branches_tested": 358,
       "control_design": "length_stratified_endpoint_pair_shift",
-      "real_strong_name_evidence_branches": 183,
+      "real_strong_name_evidence_branches": 182,
       "negative_control_strong_name_evidence_branches": 9,
-      "strong_name_relative_reduction": 0.9508196721311475,
+      "strong_name_relative_reduction": 0.9505494505494505,
       "outputs": {
         "matches": "data/processed/topology_validation/matcher_negative_control_names.csv",
         "summary": "data/processed/topology_validation/matcher_negative_control_names_summary.json",
@@ -317,7 +352,7 @@
     },
     "spatial_alignment_negative_control": {
       "status": "completed",
-      "generated_at": "2026-07-14T13:30:40+00:00",
+      "generated_at": "2026-07-15T14:49:44+00:00",
       "seed": 20260714,
       "branches_tested": 358,
       "control_design": "fixed_lonlat_translation",
@@ -338,13 +373,13 @@
     },
     "osm_openinframap_independence_audit": {
       "status": "completed",
-      "generated_at": "2026-07-14T13:40:16+00:00",
+      "generated_at": "2026-07-15T14:50:50+00:00",
       "osm_records_with_metadata": 5551,
       "matched_branches_audited": 358,
       "branches_with_timestamped_osm_metadata": 358,
-      "unique_matched_osm_ways": 271,
-      "unique_matched_osm_ways_with_history": 271,
-      "history_versions_total": 2326,
+      "unique_matched_osm_ways": 270,
+      "unique_matched_osm_ways_with_history": 270,
+      "history_versions_total": 2313,
       "branches_with_history_source_risk": 1,
       "independence_counts": {
         "more_independent_public_evidence": 266,
@@ -372,47 +407,39 @@
       }
     },
     "clean_room_reproduction": {
-      "status": "deterministic_tag_rebuild_pass_with_frozen_derived_inputs_raw_source_reacquisition_pending",
-      "validation_mode": "package_extraction_plus_final_tag_rebuild_from_frozen_derived_inputs",
-      "summary_json": "data/metadata/clean_room_archive_validation_summary.json",
+      "status": "package_extraction_pass_tagged_rebuild_pending",
+      "validation_mode": "package_extraction_complete_final_tag_rebuild_pending",
+      "summary_json": "data/releases/PT60-Candidate-v1.0.2/archive_validation_summary.json",
       "report": "reports/108_pt60_clean_room_archive_validation.md",
-      "archive_sha256": "b4a6c370fbf15c078e15b80a3bbc7f517750fdb763d59147b24f59cd160358d7",
-      "summary_sha256": "7c6924dcf689d0768b6fe862557c70edb7b3685ca60edb7f31c8f52b7b190d4e",
-      "manifest_records": 63,
-      "file_count": 63,
-      "machine_readable_paths": 54,
-      "dictionary_paths": 54,
-      "dictionary_field_records": 1090,
+      "archive_sha256": "8bf6f70386d732bf0a275e4a6a84ab86d7cda31d0125a2ab7860873401a7b8d0",
+      "manifest_records": 67,
+      "file_count": 67,
+      "machine_readable_paths": 58,
+      "dictionary_paths": 58,
+      "dictionary_field_records": 1201,
       "checksum_mismatches": 0,
       "dictionary_missing_paths": 0,
       "headline_count_checks_passed": true,
       "tag_worktree_validation": {
-        "status": "PASS_WITH_FROZEN_DERIVED_INPUTS",
-        "tag": "pt60-candidate-v1.0.0",
-        "commit": "1eb690302f35f7c0090c14c994d073539cbb5335",
-        "worktree": "<TEMP_DIR>/pt60_final_cleanroom_1eb6903",
-        "validated_at_utc": "2026-07-14T16:22:22+00:00",
-        "archive_path_in_tag_worktree": "<TEMP_DIR>/pt60_final_cleanroom_1eb6903/data/releases/PT60-Candidate-v1.0.0.tar.gz",
-        "archive_sha256": "b4a6c370fbf15c078e15b80a3bbc7f517750fdb763d59147b24f59cd160358d7",
-        "main_worktree_sha256_match": true,
-        "input_mode": "frozen derived core and validation inputs copied into the clean tagged checkout",
-        "raw_source_reacquisition_status": "blocked: configured v2.1 export URLs for the three topology-critical dataset IDs returned HTTP 404 during the audit"
+        "status": "PENDING",
+        "tag": "pending_pt60-candidate-v1.0.2",
+        "commit": "pending_v1.0.2_release_commit"
       },
-      "scope_note": "A clean checkout of the final source tag rebuilt the archive byte-for-byte from the frozen derived core/validation inputs, and fresh extraction validation passed. This does not prove regeneration from raw E-REDES/API downloads: raw snapshots were not frozen in Git and the recorded v2.1 export URLs returned HTTP 404 during the live reacquisition audit."
+      "scope_note": "Fresh archive extraction validation passes. Two byte-identical detached rebuilds from the annotated v1.0.2 source tag remain required before the archive hash is final."
     }
   },
   "availability_status": {
     "dataset_archive": {
-      "status": "v1.0.1_local_archive_validated_figshare_replacement_pending",
-      "release_dir": "data/releases/PT60-Candidate-v1.0.1",
-      "archive_path": "data/releases/PT60-Candidate-v1.0.1.tar.gz",
-      "archive_sha256": "3240cd741e6af985c2d7e631856cc3482443ab56d0e4a687cdb3b63c6c957271",
+      "status": "v1.0.2_local_archive_validated_tag_and_figshare_replacement_pending",
+      "release_dir": "data/releases/PT60-Candidate-v1.0.2",
+      "archive_path": "data/releases/PT60-Candidate-v1.0.2.tar.gz",
+      "archive_sha256": "8bf6f70386d732bf0a275e4a6a84ab86d7cda31d0125a2ab7860873401a7b8d0",
       "uncompressed_size": "19M",
       "compressed_size": "5.1M",
-      "file_count": 63,
-      "manifest_records": 63,
+      "file_count": 67,
+      "manifest_records": 67,
       "validation_status": "PASS",
-      "archive_validation_summary": "data/releases/PT60-Candidate-v1.0.1/archive_validation_summary.json",
+      "archive_validation_summary": "data/releases/PT60-Candidate-v1.0.2/archive_validation_summary.json",
       "generator": "src/build_pt60_release_archive.py",
       "claim_boundary_note": "Archive is the minimized main Figshare dataset package for reviewer/deposit preparation. Private/reviewer/account Figshare links, manuscript/tasklist/internal work-log files, development-machine paths, raw OSM/OpenInfraMap cache/history files, optional interfaces and optional diagnostics are excluded from the main public archive."
     },
@@ -421,33 +448,33 @@
     "figshare_confidential_access_status": "held_outside_public_repository_files",
     "figshare_account_record_status": "held_outside_public_repository_files",
     "anonymous_reviewer_access_status": "held_outside_public_repository_files",
-    "figshare_upload_status": "v1.0.0_uploaded_and_verified_v1.0.1_replacement_pending",
+    "figshare_upload_status": "private_record_v1.0.2_replacement_pending_access_check_deferred",
     "code_repository_url": "https://github.com/MingLeiZhou/PortugueseOPD",
     "code_repository_visibility": "public",
-    "dataset_builder_tag": "pending_pt60-candidate-v1.0.1",
-    "complete_code_tag": "pending_pt60-candidate-code-v1.0.1",
-    "archive_manifest": "data/releases/PT60-Candidate-v1.0.1/manifest.json",
-    "checksums_sha256": "data/releases/PT60-Candidate-v1.0.1/checksums.sha256",
+    "dataset_builder_tag": "pending_pt60-candidate-v1.0.2",
+    "complete_code_tag": "pending_pt60-candidate-v1.0.2",
+    "archive_manifest": "data/releases/PT60-Candidate-v1.0.2/manifest.json",
+    "checksums_sha256": "data/releases/PT60-Candidate-v1.0.2/checksums.sha256",
     "data_dictionary": {
       "status": "complete_for_current_release_archive",
-      "path": "data/releases/PT60-Candidate-v1.0.1/schema/data_dictionary.csv",
-      "source_path": "data/schema/PT60-Candidate-v1.0.1/data_dictionary.csv",
-      "machine_readable_dataset_files_documented_excluding_schema_package": 34,
-      "total_release_machine_readable_paths_documented": 54,
-      "field_records": 1090,
+      "path": "data/releases/PT60-Candidate-v1.0.2/schema/data_dictionary.csv",
+      "source_path": "data/schema/PT60-Candidate-v1.0.2/data_dictionary.csv",
+      "machine_readable_dataset_files_documented_excluding_schema_package": 37,
+      "total_release_machine_readable_paths_documented": 58,
+      "field_records": 1201,
       "coverage_check": "0 missing CSV/JSON/GraphML release paths"
     },
     "json_schemas": {
       "status": "complete_for_principal_core_validation_and_provenance_files",
-      "directory": "data/releases/PT60-Candidate-v1.0.1/schema/json_schemas",
-      "principal_schema_files": 15
+      "directory": "data/releases/PT60-Candidate-v1.0.2/schema/json_schemas",
+      "principal_schema_files": 16
     },
     "checksum_linked_inventory": {
       "status": "complete_for_current_release_archive",
-      "manifest": "data/releases/PT60-Candidate-v1.0.1/manifest.json",
-      "checksums": "data/releases/PT60-Candidate-v1.0.1/checksums.sha256",
-      "headline_counts": "data/releases/PT60-Candidate-v1.0.1/inventory/headline_counts.json",
-      "manifest_records": 63,
+      "manifest": "data/releases/PT60-Candidate-v1.0.2/manifest.json",
+      "checksums": "data/releases/PT60-Candidate-v1.0.2/checksums.sha256",
+      "headline_counts": "data/releases/PT60-Candidate-v1.0.2/inventory/headline_counts.json",
+      "manifest_records": 67,
       "required_manifest_fields": [
         "path",
         "purpose",
@@ -518,7 +545,6 @@
     ]
   },
   "blocking_items_before_submission": [
-    "Document the raw/API reacquisition limitation or deposit licensed frozen topology-critical source snapshots with hashes.",
     "Optionally archive the public code release in a DOI-providing repository and add the software DOI to the manuscript."
   ]
 }

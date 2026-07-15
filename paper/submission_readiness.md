@@ -1,20 +1,20 @@
 # PT60-Candidate Submission Readiness Review
 
-Updated: 2026-07-14
+Updated: 2026-07-15
 Target: Scientific Data — Data Descriptor
-Canonical manuscript: `paper/main_scidata_public_validation.tex`
+Canonical manuscript: `paper/main_scidata.tex`
 
 ## Current verdict
 
-PT60-Candidate is now framed consistently as a provenance-tracked candidate-topology dataset using a claim-bounded public-source validation route. The dataset archive is built, schema-covered, checksum-linked, deposited in a private Figshare record, and cited using reserved DOI `10.6084/m9.figshare.32984021`. The manuscript no longer treats dual independent human adjudication as required evidence for this route and does not report precision, recall, operator validation, or operational-grid readiness.
+PT60-Candidate is now framed consistently as a provenance-tracked candidate-topology dataset using a claim-bounded public-source validation route. The v1.0.2 candidate archive is built, schema-covered, checksum-linked, and prepared for the private Figshare record with reserved DOI `10.6084/m9.figshare.32984021`. The manuscript no longer treats dual independent human adjudication as required evidence for this route and does not report precision, recall, operator validation, or operational-grid readiness.
 
 The code-access blocker is resolved through the public GitHub repository and immutable release tags. The paper is not yet submission-ready because author/governance metadata remain unresolved. The Figshare item must also remain accessible to reviewers through a confidential link supplied outside the public repository until the DOI becomes public.
 
 ## Supported contribution
 
-**Contribution.** PT60-Candidate v1.0.0 releases a fail-closed reconstruction of a Portuguese E-REDES 60 kV candidate topology together with the complete disposition ledger, sensitivity sweep, provenance, validation records, schemas, and checksums.
+**Contribution.** PT60-Candidate v1.0.2 releases a fail-closed reconstruction of a Portuguese E-REDES 60 kV candidate topology using EPSG:3763, together with the complete disposition ledger, sensitivity sweep, provenance, validation records, schemas, and checksums.
 
-**Evidence.** The deposited archive contains 63 documented files; 358 retained candidate branches; all 1,342 retained/downgraded/rejected circuit records; a 484-node, 358-edge GraphML multigraph; 216 reconstruction configurations; 25 internal checks; two deterministic negative controls; and branch-level OSM/OpenInfraMap concordance and independence-risk records.
+**Evidence.** The candidate archive contains 67 documented files; 358 retained candidate branches; all 1,341 retained/downgraded/rejected circuit records; a 484-node, 358-edge GraphML multigraph; 216 reconstruction configurations; 25 passing internal checks; two deterministic negative controls; and branch-level OSM-derived concordance and independence-risk records.
 
 **Boundary.** The evidence supports internal consistency, deterministic packaging, matcher selectivity, sensitivity transparency, and public-source concordance. It does not support physical-topology accuracy, operator confirmation, national-grid recall, AC power-flow readiness, or OPF readiness.
 
@@ -23,8 +23,7 @@ The code-access blocker is resolved through the public GitHub repository and imm
 ### B1. Preserve and cite the public code release
 
 - The public repository is `https://github.com/MingLeiZhou/PortugueseOPD`.
-- The deterministic dataset builder is frozen at commit `1eb690302f35f7c0090c14c994d073539cbb5335` and annotated tag `pt60-candidate-v1.0.0`.
-- The complete paper/code snapshot is frozen as `pt60-candidate-code-v1.0.0`.
+- Freeze the v1.0.2 source commit and annotated tag `pt60-candidate-v1.0.2` after the final paper and release audit.
 - A DOI-providing software archive is strongly preferred but is no longer a reviewer-access blocker.
 
 ### B2. Complete author and governance metadata
@@ -36,8 +35,8 @@ The code-access blocker is resolved through the public GitHub repository and imm
 
 ### B3. Confirm repository access at submission
 
-- The confidential Figshare link must allow logged-out reviewers to download `PT60-Candidate-v1.0.0.tar.gz`.
-- The downloaded SHA-256 must equal `b4a6c370fbf15c078e15b80a3bbc7f517750fdb763d59147b24f59cd160358d7`.
+- After replacement, the confidential Figshare link must allow logged-out reviewers to download `PT60-Candidate-v1.0.2.tar.gz`.
+- The downloaded SHA-256 must equal the final hash produced by the tagged clean rebuild.
 - When the Figshare item is published, confirm that `https://doi.org/10.6084/m9.figshare.32984021` resolves and replace review-only wording where appropriate.
 
 ## Major limitations to retain
@@ -46,9 +45,13 @@ The code-access blocker is resolved through the public GitHub repository and imm
 
 The manuscript must retain the statement that OSM/OpenInfraMap categories are public-source concordance variables, not truth labels. Dual review is optional future evidence and is not a blocker while the paper avoids accuracy, precision, and recall claims.
 
-### M2. Raw/API reproduction is incomplete
+### Resolved with an upstream-version boundary: public API acquisition
 
-The final tag rebuilds the archive byte-for-byte from the frozen derived input set. Raw E-REDES snapshots were not deposited, and the recorded v2.1 export URLs for the three topology-critical datasets returned HTTP 404 during the final reacquisition audit. The DOI archive is therefore the preserved versioned derived dataset; raw/API-to-release byte reproduction is not claimed.
+The official RND page publicly exposes the widget API keys required by the topology-critical layers. Metadata, record, and export requests returned HTTP 200 for the required inputs. The release records file hashes, sizes, timestamps, and counts in `provenance/pt60_v1.0.2_source_input_manifest.json`. The procedure was executable on the reported date; this statement does not promise immutable future API responses.
+
+### Projection stability
+
+The complete 216-setting sweep was re-run under EPSG:3763 and v1.0.2 adopts that result. Relative to v1.0.1, both metric choices yield 358 retained branches and 61 ambiguous matches; 357/358 retained source-line groups preserve their facility endpoints, but one retained branch is exchanged. The paper reports the exact transition without claiming projection invariance.
 
 ### M3. Electrical readiness is outside the core release
 
@@ -58,16 +61,16 @@ Branch-specific R/X/B/current limits, transformer controls, measured injections,
 
 | Check | Current result |
 |---|---|
-| Archive inventory | PASS: 63 files and 63 manifest records |
+| Archive inventory | PASS: 67 files and 67 manifest records |
 | Checksums | PASS: zero mismatches or missing paths |
-| Schema coverage | PASS: 54/54 machine-readable paths, 1,090 dictionary records |
-| Internal validation | PASS_WITH_WARNINGS: 23 pass, 2 documented warnings |
-| Endpoint-name negative control | 183/358 real strong-name evidence vs 9/358 corrupted |
+| Schema coverage | PASS: 58/58 machine-readable paths, 1,201 dictionary records |
+| Internal validation | PASS: 25/25 checks |
+| Endpoint-name negative control | 182/358 real strong-name evidence vs 9/358 corrupted |
 | Spatial negative control | 290/358 real corridor evidence vs 1/358 displaced |
-| Public-source concordance | 247 strong, 104 medium, 7 weak |
+| Public-source concordance | 245 strong, 106 medium, 7 weak |
 | Independence-risk audit | 266 more independent public evidence, 87 unknown, 5 possibly same-source |
-| Deterministic tagged rebuild | PASS: clean-tag and main-worktree archive hashes identical |
-| Dataset DOI/reference | Present: `10.6084/m9.figshare.32984021` |
+| Deterministic tagged rebuild | Pending for the v1.0.2 annotated tag; package extraction already passes |
+| Dataset DOI/reference | Reserved/private: `10.6084/m9.figshare.32984021`; logged-out reviewer access still requires manual verification |
 | Code release | Public GitHub repository with immutable dataset-builder and complete-code tags |
 | Code DOI | Recommended: not yet minted |
 | Author declarations | Blocking: author input required |

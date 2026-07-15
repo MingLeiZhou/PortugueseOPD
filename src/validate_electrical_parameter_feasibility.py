@@ -1,3 +1,4 @@
+import argparse
 import json
 import math
 import re
@@ -1152,6 +1153,15 @@ def write_report(
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description="Validate electrical-parameter readiness for the current candidate topology.")
+    parser.add_argument("--raw-dir", type=Path, default=config.RAW_DIR)
+    parser.add_argument("--processed-dir", type=Path, default=config.PROCESSED_DIR)
+    parser.add_argument("--reports-dir", type=Path, default=config.REPORTS_DIR)
+    args = parser.parse_args()
+    config.RAW_DIR = args.raw_dir.resolve()
+    config.PROCESSED_DIR = args.processed_dir.resolve()
+    config.REPORTS_DIR = args.reports_dir.resolve()
+
     ensure_directories()
     logger = get_logger("validate_electrical_parameter_feasibility")
     logger.info("Starting Step 3A electrical parameter feasibility validation at %s", utc_now())

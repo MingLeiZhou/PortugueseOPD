@@ -1,0 +1,41 @@
+dataset_version,relative_path,file_group,file_format,field_count,bytes,schema_generated,principal_core_schema,source_or_derivation
+v1.0.2,archive_validation_summary.json,release_control,json,11,376,True,False,Release-control or article-support artifact.
+v1.0.2,core_topology/at_circuit_classification.csv,core_topology,csv,29,1617097,True,True,Derived from public E-REDES source records by the frozen PT60 fail-closed reconstruction pipeline.
+v1.0.2,core_topology/at_endpoint_facility_membership_summary.csv,core_topology,csv,10,833,True,False,Derived from public E-REDES source records by the frozen PT60 fail-closed reconstruction pipeline.
+v1.0.2,core_topology/at_endpoint_index.csv,core_topology,csv,13,11847409,True,False,Derived from public E-REDES source records by the frozen PT60 fail-closed reconstruction pipeline.
+v1.0.2,core_topology/at_endpoint_index_summary.csv,core_topology,csv,9,477,True,False,Derived from public E-REDES source records by the frozen PT60 fail-closed reconstruction pipeline.
+v1.0.2,core_topology/at_facility_footprints_summary.csv,core_topology,csv,6,380,True,False,Derived from public E-REDES source records by the frozen PT60 fail-closed reconstruction pipeline.
+v1.0.2,core_topology/at_interfacility_candidate_branches.csv,core_topology,csv,24,2015173,True,True,Derived from public E-REDES source records by the frozen PT60 fail-closed reconstruction pipeline.
+v1.0.2,core_topology/at_paper_logic_graph.graphml,core_topology,graphml,16,339276,True,True,Derived from public E-REDES source records by the frozen PT60 fail-closed reconstruction pipeline.
+v1.0.2,core_topology/at_paper_logic_parameter_sweep.csv,core_topology,csv,26,36831,True,True,Derived from public E-REDES source records by the frozen PT60 fail-closed reconstruction pipeline.
+v1.0.2,core_topology/at_paper_logic_summary.json,core_topology,json,98,7745,True,False,Derived from public E-REDES source records by the frozen PT60 fail-closed reconstruction pipeline.
+v1.0.2,core_topology/at_parameter_availability_matrix.csv,core_topology,csv,12,6095,True,False,Derived from public E-REDES source records by the frozen PT60 fail-closed reconstruction pipeline.
+v1.0.2,core_topology/at_parameter_feasibility_summary.json,core_topology,json,67,7710,True,False,Derived from public E-REDES source records by the frozen PT60 fail-closed reconstruction pipeline.
+v1.0.2,core_topology/at_voltage_class_inventory.csv,core_topology,csv,13,439,True,False,Derived from public E-REDES source records by the frozen PT60 fail-closed reconstruction pipeline.
+v1.0.2,excluded_artifacts.json,release_control,json,8,2292,True,False,Release-control or article-support artifact.
+v1.0.2,inventory/headline_counts.json,release_control,json,98,10377,True,False,Release-control or article-support artifact.
+v1.0.2,manifest.json,release_control,json,26,70197,True,False,Release-control or article-support artifact.
+v1.0.2,provenance/api_validation.json,provenance,json,66,85420,True,False,Generated release/source provenance metadata.
+v1.0.2,provenance/license_approvals.csv,provenance,csv,6,608,True,False,Generated release/source provenance metadata.
+v1.0.2,provenance/pt60_v1.0.2_source_input_manifest.json,provenance,json,10,3788,True,False,Generated release/source provenance metadata.
+v1.0.2,provenance/reproduction_source_manifest.csv,provenance,csv,28,11916,True,True,Generated release/source provenance metadata.
+v1.0.2,provenance/reproduction_source_manifest.json,provenance,json,46,23884,True,False,Generated release/source provenance metadata.
+v1.0.2,provenance/responsible_release_boundary.json,provenance,json,33,10823,True,False,Generated release/source provenance metadata.
+v1.0.2,validation/internal_validation_checks.csv,technical_validation,csv,6,4519,True,True,Derived validation output using frozen PT60 artifacts and public OSM/OpenInfraMap evidence where applicable.
+v1.0.2,validation/internal_validation_missingness.csv,technical_validation,csv,6,31683,True,True,Derived validation output using frozen PT60 artifacts and public OSM/OpenInfraMap evidence where applicable.
+v1.0.2,validation/internal_validation_summary.json,technical_validation,json,47,3099,True,False,Derived validation output using frozen PT60 artifacts and public OSM/OpenInfraMap evidence where applicable.
+v1.0.2,validation/matcher_negative_control_geometry.csv,technical_validation,csv,34,1980771,True,False,Derived validation output using frozen PT60 artifacts and public OSM/OpenInfraMap evidence where applicable.
+v1.0.2,validation/matcher_negative_control_geometry_summary.json,technical_validation,json,51,2635,True,False,Derived validation output using frozen PT60 artifacts and public OSM/OpenInfraMap evidence where applicable.
+v1.0.2,validation/matcher_negative_control_names.csv,technical_validation,csv,37,168668,True,False,Derived validation output using frozen PT60 artifacts and public OSM/OpenInfraMap evidence where applicable.
+v1.0.2,validation/matcher_negative_control_names_summary.json,technical_validation,json,36,1972,True,False,Derived validation output using frozen PT60 artifacts and public OSM/OpenInfraMap evidence where applicable.
+v1.0.2,validation/projection_release_transition.csv,technical_validation,csv,11,66298,True,False,Derived validation output using frozen PT60 artifacts and public OSM/OpenInfraMap evidence where applicable.
+v1.0.2,validation/projection_release_transition_summary.json,technical_validation,json,35,1696,True,False,Derived validation output using frozen PT60 artifacts and public OSM/OpenInfraMap evidence where applicable.
+v1.0.2,validation/pt_osm_openinframap_60kv_evidence.csv,technical_validation,csv,18,675070,True,False,Derived validation output using frozen PT60 artifacts and public OSM/OpenInfraMap evidence where applicable.
+v1.0.2,validation/pt_osm_openinframap_independence_audit_summary.json,technical_validation,json,28,1942,True,False,Derived validation output using frozen PT60 artifacts and public OSM/OpenInfraMap evidence where applicable.
+v1.0.2,validation/pt_topology_cross_validation_osm_matches.csv,technical_validation,csv,29,133778,True,True,Derived validation output using frozen PT60 artifacts and public OSM/OpenInfraMap evidence where applicable.
+v1.0.2,validation/pt_topology_cross_validation_osm_matches_independence_audit.csv,technical_validation,csv,38,242543,True,True,Derived validation output using frozen PT60 artifacts and public OSM/OpenInfraMap evidence where applicable.
+v1.0.2,validation/pt_topology_cross_validation_source_audit.csv,technical_validation,csv,7,1555,True,False,Derived validation output using frozen PT60 artifacts and public OSM/OpenInfraMap evidence where applicable.
+v1.0.2,validation/pt_topology_cross_validation_summary.json,technical_validation,json,18,1073,True,False,Derived validation output using frozen PT60 artifacts and public OSM/OpenInfraMap evidence where applicable.
+v1.0.2,schema/data_dictionary.csv,schema,csv,21,0,True,False,Generated schema package documentation.
+v1.0.2,schema/file_schema_summary.csv,schema,csv,9,0,True,False,Generated schema package documentation.
+v1.0.2,schema/join_relationships.csv,schema,csv,7,0,True,False,Generated schema package documentation.

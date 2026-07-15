@@ -1,6 +1,6 @@
 # 104 PT60 Spatial-Alignment Negative Control
 
-Generated: 2026-07-14T13:30:40+00:00
+Generated: 2026-07-15T14:49:44+00:00
 
 ## Purpose
 
@@ -24,9 +24,9 @@ This negative control keeps endpoint names and branch attributes fixed but trans
 | external_evidence_status | real branches | displaced-geometry branches |
 |---|---:|---:|
 | NO_EXTERNAL_OSM_MATCH | 0 | 337 |
-| OSM_GEOMETRY_MEDIUM | 48 | 1 |
-| OSM_GEOMETRY_OPERATOR_STRONG | 64 | 0 |
-| OSM_NAME_OPERATOR_STRONG | 183 | 0 |
+| OSM_GEOMETRY_MEDIUM | 50 | 1 |
+| OSM_GEOMETRY_OPERATOR_STRONG | 63 | 0 |
+| OSM_NAME_OPERATOR_STRONG | 182 | 0 |
 | OSM_NEARBY_WEAK | 7 | 20 |
 | OSM_PARTIAL_NAME_NEARBY | 56 | 0 |
 

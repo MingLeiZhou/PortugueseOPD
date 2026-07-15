@@ -1,0 +1,24 @@
+{
+  "generated_at": "2026-07-15T14:48:35+00:00",
+  "branches_tested": 358,
+  "osm_60kv_way_count": 5551,
+  "branches_with_osm_evidence": 358,
+  "strong_osm_evidence_branches": 245,
+  "medium_osm_evidence_branches": 106,
+  "weak_osm_evidence_branches": 7,
+  "no_osm_match_branches": 0,
+  "status_counts": {
+    "OSM_GEOMETRY_MEDIUM": 50,
+    "OSM_GEOMETRY_OPERATOR_STRONG": 63,
+    "OSM_NAME_OPERATOR_STRONG": 182,
+    "OSM_NEARBY_WEAK": 7,
+    "OSM_PARTIAL_NAME_NEARBY": 56
+  },
+  "outputs": {
+    "osm_evidence": "data/processed/topology_validation/pt_osm_openinframap_60kv_evidence.csv",
+    "matches": "data/processed/topology_validation/pt_topology_cross_validation_osm_matches.csv",
+    "source_audit": "data/processed/topology_validation/pt_topology_cross_validation_source_audit.csv",
+    "report": "reports/102_pt60_external_topology_cross_validation.md"
+  },
+  "caveat": "OSM/OpenInfraMap matches are external public evidence, not official operator validation or ground truth; source independence must be checked before using them as strict external validation."
+}

@@ -10,6 +10,7 @@ import json
 from pathlib import Path
 
 import networkx as nx
+import pandas as pd
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -32,7 +33,7 @@ def csv_rows(path: Path) -> int:
 def write_table(name: str, column_spec: str, header: str, rows: list[str]) -> Path:
     path = OUT / name
     content = [
-        "% Generated from PT60-Candidate v1.0.1; do not edit by hand.",
+        "% Generated from PT60-Candidate v1.0.2; do not edit by hand.",
         f"\\begin{{tabular}}{{{column_spec}}}",
         "\\toprule",
         f"{header} \\\\",
@@ -50,7 +51,7 @@ def main() -> None:
     parser.add_argument(
         "--release-root",
         type=Path,
-        default=ROOT / "data" / "releases" / "PT60-Candidate-v1.0.1",
+        default=ROOT / "data" / "releases" / "PT60-Candidate-v1.0.2",
     )
     args = parser.parse_args()
     release = args.release_root.resolve()
@@ -82,7 +83,7 @@ def main() -> None:
         ("core\\_topology/", "core_topology", "Retained branches, complete circuit ledger, GraphML, sensitivity sweep, endpoint/facility summaries, voltage inventory, and parameter-readiness summary."),
         ("provenance/", "provenance", "Source manifests, API validation, licence decisions, and responsible-release boundary."),
         ("validation/", "validation", "Internal checks, missingness, two negative controls, public-source concordance, and sanitized independence-risk records."),
-        ("schema/", "schema", "Field dictionary, file schemas, joins, CRS/geometry documentation, and 15 machine-readable schemas."),
+        ("schema/", "schema", f"Field dictionary, file schemas, joins, CRS/geometry documentation, and {len(list((schema / 'json_schemas').glob('*.schema.json')))} machine-readable schemas."),
         ("inventory/", "inventory", "Frozen headline counts and release-scope statements."),
     ]
     layout_rows = [
@@ -101,7 +102,7 @@ def main() -> None:
         f"Public-source concordance CSV/JSON & {csv_rows(validation / 'pt_topology_cross_validation_osm_matches.csv'):,} branch records & Public-evidence categories, matching variables, source roles, and supporting summaries. \\\\ ".rstrip(),
         "Negative-control CSV/JSON & 2 controls & Endpoint-name corruption and spatial-displacement matcher-selectivity results. \\\\ ".rstrip(),
         f"Source manifests CSV/JSON & {csv_rows(provenance / 'reproduction_source_manifest.csv'):,} sources & Source dataset identifiers, roles, access checks, and attribution metadata. \\\\ ".rstrip(),
-        f"Data dictionary CSV & {csv_rows(schema / 'data_dictionary.csv'):,} records & Field, JSON-pointer, and GraphML-attribute definitions across 54 machine-readable paths. \\\\ ".rstrip(),
+        f"Data dictionary CSV & {csv_rows(schema / 'data_dictionary.csv'):,} records & Field, JSON-pointer, and GraphML-attribute definitions across {pd.read_csv(schema / 'data_dictionary.csv')['relative_path'].nunique():,} machine-readable paths. \\\\ ".rstrip(),
     ]
 
     osm = json.loads((validation / "pt_topology_cross_validation_summary.json").read_text(encoding="utf-8"))
@@ -132,7 +133,8 @@ def main() -> None:
         if not row.get("topology_critical"):
             continue
         audit = status_by_id[row["dataset_id"]]
-        codes = sorted(set(audit["current_http_status"].values()), key=str)
+        status_map = audit.get("current_keyed_http_status") or audit.get("snapshot_keyed_http_status") or audit.get("current_http_status") or {}
+        codes = sorted(set(status_map.values()), key=str)
         status_text = "/".join(str(code) for code in codes)
         source_rows.append(
             f"\\code{{{row['dataset_id'].replace('_', '\\_')}}} & {int(row['records_count']):,} & {row['checked_at'][:10]} & "
