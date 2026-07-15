@@ -23,7 +23,7 @@ The code-access blocker is resolved through the public GitHub repository and imm
 ### B1. Preserve and cite the public code release
 
 - The public repository is `https://github.com/MingLeiZhou/PortugueseOPD`.
-- Freeze the v1.0.2 source commit and annotated tag `pt60-candidate-v1.0.2` after the final paper and release audit.
+- The v1.0.2 source is frozen at commit `93c861c` and annotated tag `pt60-candidate-v1.0.2`.
 - A DOI-providing software archive is strongly preferred but is no longer a reviewer-access blocker.
 
 ### B2. Complete author and governance metadata
@@ -36,7 +36,7 @@ The code-access blocker is resolved through the public GitHub repository and imm
 ### B3. Confirm repository access at submission
 
 - After replacement, the confidential Figshare link must allow logged-out reviewers to download `PT60-Candidate-v1.0.2.tar.gz`.
-- The downloaded SHA-256 must equal the final hash produced by the tagged clean rebuild.
+- The downloaded SHA-256 must equal `328e64adcfc6c7210ed9558793a14fdb661e5e3bab741f1d275a89e5593d1447`.
 - When the Figshare item is published, confirm that `https://doi.org/10.6084/m9.figshare.32984021` resolves and replace review-only wording where appropriate.
 
 ## Major limitations to retain
@@ -69,7 +69,7 @@ Branch-specific R/X/B/current limits, transformer controls, measured injections,
 | Spatial negative control | 290/358 real corridor evidence vs 1/358 displaced |
 | Public-source concordance | 245 strong, 106 medium, 7 weak |
 | Independence-risk audit | 266 more independent public evidence, 87 unknown, 5 possibly same-source |
-| Deterministic tagged rebuild | Pending for the v1.0.2 annotated tag; package extraction already passes |
+| Deterministic tagged rebuild | PASS: two detached tag builds are byte-identical; SHA-256 `328e64adc...d1447` |
 | Dataset DOI/reference | Reserved/private: `10.6084/m9.figshare.32984021`; logged-out reviewer access still requires manual verification |
 | Code release | Public GitHub repository with immutable dataset-builder and complete-code tags |
 | Code DOI | Recommended: not yet minted |

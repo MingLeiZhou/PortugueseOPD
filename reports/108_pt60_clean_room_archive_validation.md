@@ -1,12 +1,12 @@
 # PT60-Candidate Clean-Room Archive Package Validation
 
-Generated: 2026-07-15T15:01:38+00:00
+Generated: 2026-07-15T15:06:58+00:00
 
 Validation mode: `package_clean_room_tarball_extraction`
 
 Archive: `data/releases/PT60-Candidate-v1.0.2.tar.gz`
 
-Archive SHA-256: `8bf6f70386d732bf0a275e4a6a84ab86d7cda31d0125a2ab7860873401a7b8d0`
+Archive SHA-256: `328e64adcfc6c7210ed9558793a14fdb661e5e3bab741f1d275a89e5593d1447`
 
 Status: `PASS`
 
@@ -37,4 +37,8 @@ Status: `PASS`
 
 This is an archive-package clean-room validation. It proves that a fresh extraction of the downloadable tarball reconciles manifest records, checksums, schema coverage and frozen headline counts without relying on the development release directory.
 
-It does not prove full source-to-archive regeneration from raw E-REDES/API downloads. That stronger validation requires a clean tagged checkout, frozen or re-downloadable source snapshots, and network/source availability.
+It does not prove that future dynamic E-REDES API responses will be byte-identical to the recorded snapshot.
+
+## Tagged rebuild result
+
+Two detached clean worktrees of annotated tag `pt60-candidate-v1.0.2` at commit `93c861c0b3a40da7e51f2724b3deed2fcd9adae9` rebuilt the archive from the same frozen derived inputs. Both archives have SHA-256 `328e64adcfc6c7210ed9558793a14fdb661e5e3bab741f1d275a89e5593d1447`, matching the validated main-worktree archive. This establishes byte-identical tagged reconstruction for the deposited build inputs.

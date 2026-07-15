@@ -1,9 +1,9 @@
 {
   "dataset": "PT60-Candidate",
   "dataset_version": "v1.0.2",
-  "generated_at": "2026-07-15T14:54:00Z",
+  "generated_at": "2026-07-15T15:01:38Z",
   "generator": "src/build_pt60_release_archive.py",
-  "generator_commit": "893c0f3f5f342525dddee7d97ce46f55d724a112",
+  "generator_commit": "93c861c0b3a40da7e51f2724b3deed2fcd9adae9",
   "release_archive": {
     "release_dir": "data/releases/PT60-Candidate-v1.0.2",
     "archive_path": "data/releases/PT60-Candidate-v1.0.2.tar.gz"

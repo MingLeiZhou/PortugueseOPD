@@ -446,7 +446,7 @@ These tasks require new evidence and materially broader claims. They are not req
 - [x] Rebuild the v1.0.2 schema package: 58/58 machine-readable paths, 1,201 dictionary records, and 16 principal schemas.
 - [x] Build and extraction-validate the 67-file v1.0.2 candidate archive; all 25 internal checks and all archive checks pass.
 - [x] Move repeat-acquisition and projection-comparison results from Methods to a dedicated Technical Validation subsection.
-- [ ] Freeze the v1.0.2 source commit and create annotated tag `pt60-candidate-v1.0.2`.
-- [ ] Perform two detached clean-worktree rebuilds from the tag and confirm byte-identical archives.
-- [ ] Insert the final tagged-build SHA-256 and commit identifier into the manuscript and release metadata.
+- [x] Freeze source commit `93c861c` and create annotated tag `pt60-candidate-v1.0.2`.
+- [x] Perform two detached clean-worktree rebuilds from the tag and confirm byte-identical archives.
+- [x] Insert final tagged-build SHA-256 `328e64adcfc6c7210ed9558793a14fdb661e5e3bab741f1d275a89e5593d1447` and commit identifier into the manuscript and release metadata.
 - [ ] Replace the current Figshare file with `PT60-Candidate-v1.0.2.tar.gz`, then verify its downloaded SHA-256. Figshare access testing is intentionally deferred while the item remains private.

@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-15T15:01:38+00:00",
+  "generated_at": "2026-07-15T15:06:58+00:00",
   "validation_mode": "package_clean_room_tarball_extraction",
   "archive_path": "data/releases/PT60-Candidate-v1.0.2.tar.gz",
-  "archive_sha256": "8bf6f70386d732bf0a275e4a6a84ab86d7cda31d0125a2ab7860873401a7b8d0",
+  "archive_sha256": "328e64adcfc6c7210ed9558793a14fdb661e5e3bab741f1d275a89e5593d1447",
   "extracted_root_name": "PT60-Candidate-v1.0.2",
   "manifest_records": 67,
   "file_count": 67,

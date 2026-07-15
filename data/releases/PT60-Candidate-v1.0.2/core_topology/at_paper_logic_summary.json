@@ -328,22 +328,22 @@
     "tap_settings": "MISSING_NOT_ESTIMATED"
   },
   "outputs": {
-    "facility_footprints": "<PROJECT_ROOT>/data/processed/at_facility_footprints.geojson",
-    "line_endpoints": "<PROJECT_ROOT>/data/processed/at_line_endpoints.csv",
-    "endpoint_index": "<PROJECT_ROOT>/data/processed/at_endpoint_index.csv",
-    "union_find_groups": "<PROJECT_ROOT>/data/processed/at_union_find_groups.csv",
-    "merged_circuits": "<PROJECT_ROOT>/data/processed/at_merged_circuits.geojson",
-    "circuit_classification": "<PROJECT_ROOT>/data/processed/at_circuit_classification.csv",
-    "interfacility_candidate_branches": "<PROJECT_ROOT>/data/processed/at_interfacility_candidate_branches.csv",
-    "graph": "<PROJECT_ROOT>/data/processed/at_paper_logic_graph.graphml",
+    "facility_footprints": "/Users/jumiray/Projects/PortugueseOPD/data/processed/at_facility_footprints.geojson",
+    "line_endpoints": "/Users/jumiray/Projects/PortugueseOPD/data/processed/at_line_endpoints.csv",
+    "endpoint_index": "/Users/jumiray/Projects/PortugueseOPD/data/processed/at_endpoint_index.csv",
+    "union_find_groups": "/Users/jumiray/Projects/PortugueseOPD/data/processed/at_union_find_groups.csv",
+    "merged_circuits": "/Users/jumiray/Projects/PortugueseOPD/data/processed/at_merged_circuits.geojson",
+    "circuit_classification": "/Users/jumiray/Projects/PortugueseOPD/data/processed/at_circuit_classification.csv",
+    "interfacility_candidate_branches": "/Users/jumiray/Projects/PortugueseOPD/data/processed/at_interfacility_candidate_branches.csv",
+    "graph": "/Users/jumiray/Projects/PortugueseOPD/data/processed/at_paper_logic_graph.graphml",
     "maps": {
-      "at_paper_logic_facility_footprints.html": "<PROJECT_ROOT>/reports/maps/at_paper_logic_facility_footprints.html",
-      "at_paper_logic_raw_segments.html": "<PROJECT_ROOT>/reports/maps/at_paper_logic_raw_segments.html",
-      "at_paper_logic_endpoint_clusters.html": "<PROJECT_ROOT>/reports/maps/at_paper_logic_endpoint_clusters.html",
-      "at_paper_logic_merged_circuits.html": "<PROJECT_ROOT>/reports/maps/at_paper_logic_merged_circuits.html",
-      "at_paper_logic_circuit_classification.html": "<PROJECT_ROOT>/reports/maps/at_paper_logic_circuit_classification.html",
-      "at_paper_logic_interfacility_branches.html": "<PROJECT_ROOT>/reports/maps/at_paper_logic_interfacility_branches.html",
-      "at_paper_logic_largest_component.html": "<PROJECT_ROOT>/reports/maps/at_paper_logic_largest_component.html"
+      "at_paper_logic_facility_footprints.html": "/Users/jumiray/Projects/PortugueseOPD/reports/maps/at_paper_logic_facility_footprints.html",
+      "at_paper_logic_raw_segments.html": "/Users/jumiray/Projects/PortugueseOPD/reports/maps/at_paper_logic_raw_segments.html",
+      "at_paper_logic_endpoint_clusters.html": "/Users/jumiray/Projects/PortugueseOPD/reports/maps/at_paper_logic_endpoint_clusters.html",
+      "at_paper_logic_merged_circuits.html": "/Users/jumiray/Projects/PortugueseOPD/reports/maps/at_paper_logic_merged_circuits.html",
+      "at_paper_logic_circuit_classification.html": "/Users/jumiray/Projects/PortugueseOPD/reports/maps/at_paper_logic_circuit_classification.html",
+      "at_paper_logic_interfacility_branches.html": "/Users/jumiray/Projects/PortugueseOPD/reports/maps/at_paper_logic_interfacility_branches.html",
+      "at_paper_logic_largest_component.html": "/Users/jumiray/Projects/PortugueseOPD/reports/maps/at_paper_logic_largest_component.html"
     }
   }
 }
