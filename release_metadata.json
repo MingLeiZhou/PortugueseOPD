@@ -406,7 +406,7 @@
       "status": "v1.0.1_local_archive_validated_figshare_replacement_pending",
       "release_dir": "data/releases/PT60-Candidate-v1.0.1",
       "archive_path": "data/releases/PT60-Candidate-v1.0.1.tar.gz",
-      "archive_sha256": "a8a17396830407a7d7ea16e50ebb67336a6015f2aee4781391fa59c54fde5459",
+      "archive_sha256": "3240cd741e6af985c2d7e631856cc3482443ab56d0e4a687cdb3b63c6c957271",
       "uncompressed_size": "19M",
       "compressed_size": "5.1M",
       "file_count": 63,

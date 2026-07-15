@@ -65,10 +65,10 @@ Scientific Data currently requires reviewer access to the dataset at first submi
 - [x] Pass archive extraction, manifest, checksum, schema-coverage, and headline-count validation with no failures.
 - [x] Regenerate all four manuscript figures and three generated tables from the v1.0.1 release inputs.
 - [x] Update the canonical Scientific Data manuscript to v1.0.1 and disclose the corrected schema logic.
-- [ ] Replace the uploaded v1.0.0 draft on Figshare with `PT60-Candidate-v1.0.1.tar.gz` and verify the downloaded SHA-256.
-- [ ] Create immutable v1.0.1 dataset-builder and complete-code tags; archive the software release if a code DOI is required.
+- [ ] Replace the Figshare file once more with the final tagged-build `PT60-Candidate-v1.0.1.tar.gz` and verify the downloaded SHA-256 `3240cd741e6af985c2d7e631856cc3482443ab56d0e4a687cdb3b63c6c957271`.
+- [x] Create the immutable annotated `pt60-candidate-v1.0.1` source tag at commit `ab6cf36` and verify a detached clean-worktree rebuild from frozen derived inputs. A separate software DOI is not claimed.
 
-Current v1.0.1 source commit: `62d060386bf347a20abdf500c20e78e124cb27f4`. The archive is locally validated but has not yet replaced the Figshare upload; use the SHA-256 recorded in the current P0.14 result below after the final rebuild.
+Tagged v1.0.1 source commit: `ab6cf36`. The final stabilized tagged-build archive SHA-256 is `3240cd741e6af985c2d7e631856cc3482443ab56d0e4a687cdb3b63c6c957271`; final Figshare replacement and downloaded-hash verification remain manual.
 
 ## Submission-review revision batch — 2026-07-14
 
@@ -174,7 +174,7 @@ Complete these in order. Do not prioritize language polishing until P0.1–P0.8 
 - [x] Test deterministic rerun equality or document narrowly defined non-deterministic fields.
 - [x] Report missingness by semantic status for critical fields.
 
-**Current result:** `internal_validation_summary.json` reports `PASS_WITH_WARNINGS`: 25 checks total, 24 pass and 1 warning. The Opendatasoft v2.1 GeoJSON export URLs contain no `epsg` override and the documented geometry-export default is EPSG:4326, so source/release CRS now passes; the native CRS before portal ingestion remains unrecorded but was not used by the pipeline. The remaining warning records the deterministic artifact-hash baseline while clean-room rerun equality remains P0.12. Measured counts include 5,334/5,334 valid source geometries, 358 retained branches, 984 downgraded/rejected records, 1,342 ledger rows, 216 sensitivity rows, 484 GraphML nodes, 358 GraphML edges, 109 isolates and 28 extra parallel-edge records.
+**Current result:** the deposited `internal_validation_summary.json` records 25 checks, with 24 passes and one release-review warning. The warning concerned tagged clean-room equality before the tag existed and was subsequently closed by two identical stabilized rebuilds from annotated tag `pt60-candidate-v1.0.1` at commit `ab6cf36`, using the frozen derived inputs. The final tagged-build SHA-256 is `3240cd741e6af985c2d7e631856cc3482443ab56d0e4a687cdb3b63c6c957271`. Measured counts remain 5,334/5,334 valid source geometries, 358 retained branches, 984 downgraded/rejected records, 1,342 ledger rows, 216 sensitivity rows, 484 GraphML nodes, 358 GraphML edges, 109 isolates and 28 extra parallel-edge records.
 
 **Done when:** Technical Validation reports actual counts and pass/fail outcomes linked to a versioned validation file.
 
@@ -295,7 +295,7 @@ Complete these in order. Do not prioritize language polishing until P0.1–P0.8 
 - [x] Make Data Availability repeat the essential DOI/access information from Data Record.
 - [x] Place Code Availability at the required final-manuscript location immediately before References.
 
-**Current result:** Data Record now documents the 63-file Figshare v1.0.1 archive, its directory structure, principal files, keys/joins, EPSG:4326 release geometry, metric processing workspace, units, missing tokens, licences, exclusions, manifest, checksums and SHA-256. The section heading and manuscript cross-references use the current-guide singular form `Data Record`. The abstract describes machine-readable schemas and a field-level data dictionary without foregrounding version-correction history. Figure 3 places its legend outside the geographic data region and uses lower-opacity connected-facility markers. The dataset is cited in References, Data Record and Data Availability as DOI `10.6084/m9.figshare.32984021`; the confidential reviewer URL is held outside public repository files. Code Availability identifies the public GitHub repository and both immutable source tags and is immediately before References. The rebuilt v1.0.1 archive passes clean-room package validation and has SHA-256 `a8a17396830407a7d7ea16e50ebb67336a6015f2aee4781391fa59c54fde5459`. A DOI-providing software archive remains recommended under P0.11 but is not required for reviewer access.
+**Current result:** Data Record documents the 63-file Figshare v1.0.1 archive, its layout, schemas, checksums and reuse boundaries. Figure 3 places its legend outside the geographic data region. Code Availability identifies annotated tag `pt60-candidate-v1.0.1` at commit `ab6cf36` and does not claim a separate software DOI. The final tagged-build archive passes package validation and has SHA-256 `3240cd741e6af985c2d7e631856cc3482443ab56d0e4a687cdb3b63c6c957271`; Figshare must contain this exact final file before submission.
 
 **Done when:** a reader can find, download, interpret and cite the exact dataset using the paper alone.
 

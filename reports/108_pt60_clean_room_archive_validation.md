@@ -1,12 +1,12 @@
 # PT60-Candidate Clean-Room Archive Package Validation
 
-Generated: 2026-07-15T13:39:34+00:00
+Generated: 2026-07-15T13:50:32+00:00
 
 Validation mode: `package_clean_room_tarball_extraction`
 
 Archive: `data/releases/PT60-Candidate-v1.0.1.tar.gz`
 
-Archive SHA-256: `a8a17396830407a7d7ea16e50ebb67336a6015f2aee4781391fa59c54fde5459`
+Archive SHA-256: `3240cd741e6af985c2d7e631856cc3482443ab56d0e4a687cdb3b63c6c957271`
 
 Status: `PASS`
 
