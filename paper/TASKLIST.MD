@@ -51,11 +51,11 @@ Scientific Data currently requires reviewer access to the dataset at first submi
 - [x] Preserved all 1,342 dispositions: 358 retained and 984 downgraded/rejected.
 - [x] Generated the 216-configuration sensitivity sweep.
 - [x] Generated the selected 484-node, 358-edge candidate multigraph and graph summaries.
-- [x] Generated OSM/OpenInfraMap triangulation for 358 retained branches: 247 strong, 104 medium and 7 weak public-evidence categories.
-- [x] Recorded a four-source role audit and the limitation that OSM/OpenInfraMap is not ground truth.
+- [x] Generated OSM-derived triangulation for 358 retained branches: 247 strong, 104 medium and 7 weak public-evidence categories; OpenInfraMap is treated only as a visualization of OSM-derived data.
+- [x] Recorded a source-role audit and the limitation that OSM-derived evidence is neither proven independent nor ground truth.
 - [x] Generated a 13-source provenance/source manifest.
 - [x] Separated MIT software licensing from E-REDES-derived data attribution requirements in repository documentation.
-- [x] Compiled the current 14-page draft with no undefined citations/references, LaTeX errors or overfull boxes.
+- [x] Compiled the current 15-page draft with no undefined citations/references, LaTeX errors or overfull boxes.
 
 ## v1.0.1 corrective release status
 
@@ -68,7 +68,43 @@ Scientific Data currently requires reviewer access to the dataset at first submi
 - [ ] Replace the uploaded v1.0.0 draft on Figshare with `PT60-Candidate-v1.0.1.tar.gz` and verify the downloaded SHA-256.
 - [ ] Create immutable v1.0.1 dataset-builder and complete-code tags; archive the software release if a code DOI is required.
 
-Current v1.0.1 source commit: `62d060386bf347a20abdf500c20e78e124cb27f4`. Final local archive SHA-256: `a4dd2d115caae0cd1c873fb7db3341e0aaed0ce62f7f0072ae92642898efb69a`. The archive is locally validated but has not yet replaced the Figshare upload.
+Current v1.0.1 source commit: `62d060386bf347a20abdf500c20e78e124cb27f4`. The archive is locally validated but has not yet replaced the Figshare upload; use the SHA-256 recorded in the current P0.14 result below after the final rebuild.
+
+## Submission-review revision batch — 2026-07-14
+
+This batch records the latest manuscript-level review. Items are ordered by their effect on initial submission. A checked item must be reflected in the canonical LaTeX source, regenerated PDF/DOCX, and—where relevant—a reproducible supporting artifact. Items that require facts only the authors can supply remain explicitly blocked rather than being filled with invented text.
+
+### P0 — Direct submission blockers
+
+- [x] Keep the abstract within the current Scientific Data recommendation (approximately 170 words), remove DOI/download details, and retain only compact negative-control results. **Verified current state:** approximately 146 whitespace-delimited words and no DOI or download URL.
+- [x] Convert every in-text citation to sequential numerical Nature style and embed the numbered reference list in the LaTeX submission source.
+- [x] Publish the exact parameter-selection rule: formula, term definitions, weights, absence of normalization, and deterministic tie handling; state explicitly that the result is a pipeline design choice rather than externally validated optimality.
+- [x] Narrow every broad reproducibility claim to reproducibility from the frozen derived inputs unless raw-source reacquisition is demonstrated.
+- [x] Fully disclose raw-source reacquisition risk: the current archive has no raw snapshots, and the 14 July 2026 audit records HTTP 404 for the historical topology-critical routes. The manuscript publishes the available source identifiers, checked URLs, access times, record counts, roles, and acquisition boundary; raw/API-to-release byte reproduction is not claimed.
+- [ ] Recover a lawful historical raw snapshot or stable third-party archive if one exists, then publish its byte size, SHA-256, schema, and acquisition record. **Externally unresolved:** no local raw snapshot is available, so hashes and sizes cannot be reconstructed retrospectively; the manuscript now states this limitation without claiming it has been solved.
+- [x] Add a compact Methods table for the topology-critical E-REDES inputs with portal identifier, snapshot evidence, access date, exact retrieval route/status, record count, and role; point to the 13-source machine-readable manifest for the full inventory.
+
+### P1 — Likely reviewer questions
+
+- [x] Replace language that presents OSM and OpenInfraMap as independent sources with “OSM-derived public evidence, visualized through OpenInfraMap where applicable”; state that OpenInfraMap is a visualization of OSM-derived data and that source independence cannot be proven.
+- [x] Remove “separately maintained public geospatial layer”; explain that 358/358 non-empty OSM-derived evidence categories are concordance coverage, not external validation.
+- [x] Audit the custom local equirectangular workspace against spherical great-circle distance over the released extent. The audit covers 43,505 geometry segments, reports median/p95/max relative errors of 0.47%/2.36%/3.84%, and gives the worst threshold-scale error at 0.5, 50, 100, 250, and 500 m. A future retuned version should use EPSG:3763 or ellipsoidal geodesics.
+- [x] Define `confidence_score`: exact formula, $[0,1]$ range, variables, four-decimal rounding, rule-score status, and non-use in branch retention, parameter selection, or OSM evidence classification.
+- [x] Replace the degree-distribution overview with a publication-ready geographic distribution figure showing 484 facilities, 358 candidate branches, isolates, and largest-component membership without facility labels or a misleading basemap.
+- [x] Reconcile all 11 source records labelled 130 kV: they merge into five ledger candidates (three self-loops, one single-facility, one isolated), with none retained and no mixed-voltage circuit.
+
+### P2 — Language, structure, and presentation
+
+- [x] Reduce repeated limitation wording across the abstract, Technical Validation, and Usage Notes while preserving every distinct claim boundary.
+- [x] Expand Background & Summary with verified European/open-grid, OSM reconstruction, dataset-documentation, and FAIR literature; DOI metadata for the two new references was independently retrieved.
+- [x] Simplify Figure 1 box text, increase box typography to 13--14 pt in the source canvas, re-export, and inspect the rendered figure.
+- [x] Replace machine-only evidence-category labels in Table 4 with concise human-readable labels; retain traceability to machine codes in the caption and deposited table.
+- [x] Remove the front-page line “Scientific Data draft; public-source validation route”.
+- [ ] Complete author names, affiliations, Author Contributions, Funding, Competing Interests, and applicable Acknowledgements. **Blocked:** requires author-supplied facts and declarations.
+- [x] Keep the terminal section order aligned with the current Scientific Data guidance: Data Availability, Code Availability, References, Author Contributions, Competing Interests, Acknowledgements, and Funding.
+- [x] Regenerate and inspect the canonical PDF and DOCX; confirm sequential numeric citations, figure legibility, table labels, section order, abstract word count, and absence of unresolved LaTeX references. Author/declaration placeholders remain only under the explicitly blocked author-information item above.
+
+**Batch completion rule:** P0 is not complete while raw/API-to-release reproducibility is overstated, the selection rule is undisclosed, or citations remain author–year. The manuscript may explicitly document an unavailable historical raw snapshot, but it must not imply that this limitation has been technically solved.
 
 ## P0 — Blocking tasks before initial submission
 
@@ -138,7 +174,7 @@ Complete these in order. Do not prioritize language polishing until P0.1–P0.8 
 - [x] Test deterministic rerun equality or document narrowly defined non-deterministic fields.
 - [x] Report missingness by semantic status for critical fields.
 
-**Current result:** `internal_validation_summary.json` reports `PASS_WITH_WARNINGS`: 25 checks total, 23 pass and 2 warn. The warnings are not row/graph consistency failures: exact source/release CRS still needs final Data Records wording, and the current artifact hashes are recorded as a deterministic baseline while clean-room rerun equality remains P0.12. Measured counts include 5,334/5,334 valid source geometries, 358 retained branches, 984 downgraded/rejected records, 1,342 ledger rows, 216 sensitivity rows, 484 GraphML nodes, 358 GraphML edges, 109 isolates and 28 extra parallel-edge records.
+**Current result:** `internal_validation_summary.json` reports `PASS_WITH_WARNINGS`: 25 checks total, 24 pass and 1 warning. The Opendatasoft v2.1 GeoJSON export URLs contain no `epsg` override and the documented geometry-export default is EPSG:4326, so source/release CRS now passes; the native CRS before portal ingestion remains unrecorded but was not used by the pipeline. The remaining warning records the deterministic artifact-hash baseline while clean-room rerun equality remains P0.12. Measured counts include 5,334/5,334 valid source geometries, 358 retained branches, 984 downgraded/rejected records, 1,342 ledger rows, 216 sensitivity rows, 484 GraphML nodes, 358 GraphML edges, 109 isolates and 28 extra parallel-edge records.
 
 **Done when:** Technical Validation reports actual counts and pass/fail outcomes linked to a versioned validation file.
 
@@ -179,7 +215,7 @@ Complete these in order. Do not prioritize language polishing until P0.1–P0.8 
 - [x] Document joins among retained branches, ledger, GraphML, manifests and validation records.
 - [x] Add machine-readable schemas for principal core files.
 
-**Current result:** generated `data/schema/PT60-Candidate-v1.0.0/` with `src/build_release_schema_dictionary.py` and embedded it into the versioned release archive under `schema/`. Coverage check passes: all 54 public CSV/JSON/GraphML paths in the minimized main archive have data-dictionary records, with 0 missing and 0 extra documented paths. The dictionary contains 1,090 field, JSON-pointer and GraphML-attribute records across core topology, validation, provenance, release-control, inventory and schema documentation files. Fifteen principal machine-readable schemas were generated for core topology, provenance, validation, archive-control and GraphML files. CRS/geometry documentation states release geometries as WGS84/EPSG:4326 GeoJSON-style longitude-latitude coordinates, the processing metric workspace as a custom local equirectangular Portugal CRS with explicit `lon0=-8.532604`, `lat0=39.567953`, and distance fields in metres or kilometres. The processing metric workspace has no EPSG code because it is a pipeline-defined local projection.
+**Current result:** generated `data/schema/PT60-Candidate-v1.0.1/` with `src/build_release_schema_dictionary.py` and embedded it into the versioned release archive under `schema/`. Coverage check passes: all 54 public CSV/JSON/GraphML paths in the minimized main archive have data-dictionary records, with 0 missing and 0 extra documented paths. The dictionary contains 1,090 field, JSON-pointer and GraphML-attribute records across core topology, validation, provenance, release-control, inventory and schema documentation files. Fifteen principal machine-readable schemas were generated for core topology, provenance, validation, archive-control and GraphML files. CRS/geometry documentation confirms that the portal exports and release geometries use WGS84/EPSG:4326 GeoJSON-style longitude-latitude coordinates based on the Opendatasoft v2.1 default and the recorded export URLs, and documents the processing metric workspace as a custom local equirectangular Portugal CRS with explicit `lon0=-8.532604`, `lat0=39.567953`, and distance fields in metres or kilometres. The processing metric workspace has no EPSG code because it is a pipeline-defined local projection.
 
 **Done when:** a user can interpret and join the release without reading Python source.
 
@@ -192,7 +228,7 @@ Complete these in order. Do not prioritize language polishing until P0.1–P0.8 
 - [x] Validate all hashes after the final archive is built.
 - [x] Generate article headline counts from frozen inventory/upstream summaries.
 
-**Current result:** upgraded `manifest.json` into the canonical checksum-linked release inventory. Each manifest record now includes `path`, `purpose`, `semantic_role`, `source_path`, `media_type`, `bytes`, `sha256`, `row_or_item_count`, `dataset_version`, `schema_version`, `generator_commit`, `upstream_source_ids`, `license_class`, `public_release_status` and `artifact_access_class`. `checksums.sha256` reconciles with the archive: 0 checksum mismatches and 0 missing checksum paths. `inventory/headline_counts.json` records frozen article counts, source manifest summaries, validation counts, schema counts and claim boundaries for Data Records and Technical Validation. Archive validation remains `PASS` with 63 files and 63 manifest records.
+**Current result:** upgraded `manifest.json` into the canonical checksum-linked release inventory. Each manifest record now includes `path`, `purpose`, `semantic_role`, `source_path`, `media_type`, `bytes`, `sha256`, `row_or_item_count`, `dataset_version`, `schema_version`, `generator_commit`, `upstream_source_ids`, `license_class`, `public_release_status` and `artifact_access_class`. `checksums.sha256` reconciles with the archive: 0 checksum mismatches and 0 missing checksum paths. `inventory/headline_counts.json` records frozen article counts, source manifest summaries, validation counts, schema counts and claim boundaries for the Data Record and Technical Validation. Archive validation remains `PASS` with 63 files and 63 manifest records.
 
 **Done when:** `manifest.json` and `checksums.sha256` reconcile with the downloadable archive.
 
@@ -259,7 +295,7 @@ Complete these in order. Do not prioritize language polishing until P0.1–P0.8 
 - [x] Make Data Availability repeat the essential DOI/access information from Data Record.
 - [x] Place Code Availability at the required final-manuscript location immediately before References.
 
-**Current result:** Data Record now documents the 63-file Figshare v1.0.0 archive, its directory structure, principal files, keys/joins, EPSG:4326 release geometry, metric processing workspace, units, missing tokens, licences, exclusions, manifest, checksums and SHA-256. The dataset is cited in References, Data Record and Data Availability as DOI `10.6084/m9.figshare.32984021`; the confidential reviewer URL is held outside public repository files. Code Availability identifies the public GitHub repository and both immutable source tags and is immediately before References. A DOI-providing software archive remains recommended under P0.11 but is not required for reviewer access.
+**Current result:** Data Record now documents the 63-file Figshare v1.0.1 archive, its directory structure, principal files, keys/joins, EPSG:4326 release geometry, metric processing workspace, units, missing tokens, licences, exclusions, manifest, checksums and SHA-256. The section heading and manuscript cross-references use the current-guide singular form `Data Record`. The abstract describes machine-readable schemas and a field-level data dictionary without foregrounding version-correction history. Figure 3 places its legend outside the geographic data region and uses lower-opacity connected-facility markers. The dataset is cited in References, Data Record and Data Availability as DOI `10.6084/m9.figshare.32984021`; the confidential reviewer URL is held outside public repository files. Code Availability identifies the public GitHub repository and both immutable source tags and is immediately before References. The rebuilt v1.0.1 archive passes clean-room package validation and has SHA-256 `a8a17396830407a7d7ea16e50ebb67336a6015f2aee4781391fa59c54fde5459`. A DOI-providing software archive remains recommended under P0.11 but is not required for reviewer access.
 
 **Done when:** a reader can find, download, interpret and cite the exact dataset using the paper alone.
 
@@ -384,7 +420,7 @@ These tasks require new evidence and materially broader claims. They are not req
 3. Replace all manuscript placeholders and run the final claim-evidence audit.
 4. Rebuild the public-validation manuscript from frozen release artifacts.
 5. Re-run both negative controls and the OSM independence audit from the final clean release tag if any release artifact changes.
-6. Confirm Data Records, Data Availability and Code Availability all cite the same frozen version.
+6. Confirm Data Record, Data Availability and Code Availability all cite the same frozen version.
 7. Re-run `internal_validation_summary.json` after final archive packaging and confirm zero FAIL checks.
 8. Ask one data/reproducibility reader to inspect the archive using only the manuscript and schema package.
 9. Re-check E-REDES/OpenStreetMap/OpenInfraMap attribution and release language immediately before DOI deposit.

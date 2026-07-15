@@ -58,6 +58,7 @@ def main() -> None:
     validation = release / "validation"
     provenance = release / "provenance"
     schema = release / "schema"
+    source_audit = ROOT / "data" / "metadata" / "source_reacquisition_audit.json"
     OUT.mkdir(parents=True, exist_ok=True)
 
     required = [
@@ -69,7 +70,9 @@ def main() -> None:
         validation / "pt_topology_cross_validation_osm_matches.csv",
         validation / "pt_topology_cross_validation_summary.json",
         provenance / "reproduction_source_manifest.csv",
+        provenance / "reproduction_source_manifest.json",
         schema / "data_dictionary.csv",
+        source_audit,
     ]
     missing = [str(path) for path in required if not path.is_file()]
     if missing:
@@ -104,22 +107,43 @@ def main() -> None:
     osm = json.loads((validation / "pt_topology_cross_validation_summary.json").read_text(encoding="utf-8"))
     status = osm["status_counts"]
     osm_specs = [
-        ("OSM\\_NAME\\_OPERATOR\\_STRONG", "OSM_NAME_OPERATOR_STRONG", "Endpoint names appear in a 60~kV E-REDES-labelled OSM record."),
-        ("OSM\\_GEOMETRY\\_OPERATOR\\_STRONG", "OSM_GEOMETRY_OPERATOR_STRONG", "Candidate corridor is close to a 60~kV E-REDES-labelled OSM corridor."),
-        ("OSM\\_PARTIAL\\_NAME\\_NEARBY", "OSM_PARTIAL_NAME_NEARBY", "One endpoint name appears and a nearby 60~kV corridor is present."),
-        ("OSM\\_GEOMETRY\\_MEDIUM", "OSM_GEOMETRY_MEDIUM", "Candidate overlaps a 60~kV public corridor without strong name evidence."),
-        ("OSM\\_NEARBY\\_WEAK", "OSM_NEARBY_WEAK", "A nearby 60~kV public feature is present, but evidence is incomplete."),
-        ("NO\\_EXTERNAL\\_OSM\\_MATCH", None, "No retained branch falls in this class for the documented snapshot."),
+        ("Strong endpoint-name and operator-tag evidence", "OSM_NAME_OPERATOR_STRONG", "Both endpoint names appear in an E-REDES-tagged OSM record."),
+        ("Strong corridor and operator-tag evidence", "OSM_GEOMETRY_OPERATOR_STRONG", "Candidate corridor is close to an E-REDES-tagged OSM corridor."),
+        ("Partial endpoint name with nearby corridor", "OSM_PARTIAL_NAME_NEARBY", "One endpoint name appears and a nearby 60~kV corridor is present."),
+        ("Medium corridor-overlap evidence", "OSM_GEOMETRY_MEDIUM", "Candidate overlaps a 60~kV OSM corridor without strong name evidence."),
+        ("Weak nearby-feature evidence", "OSM_NEARBY_WEAK", "A nearby 60~kV OSM feature is present, but evidence is incomplete."),
+        ("No matched OSM-derived evidence", None, "No retained branch falls in this class for the documented snapshot."),
     ]
     osm_rows = [
-        f"\\status{{{label}}} & {int(status.get(key, osm['no_osm_match_branches'] if key is None else 0)):,} & {meaning} \\\\"
+        f"{label} & {int(status.get(key, osm['no_osm_match_branches'] if key is None else 0)):,} & {meaning} \\\\"
         for label, key, meaning in osm_specs
     ]
+
+    source_manifest = json.loads((provenance / "reproduction_source_manifest.json").read_text(encoding="utf-8"))
+    reacquisition = json.loads(source_audit.read_text(encoding="utf-8"))
+    status_by_id = {row["dataset_id"]: row for row in reacquisition["sources"]}
+    role_labels = {
+        "topology_critical_at_lines": "AT line geometries",
+        "topology_critical_at_substations": "AT substation facilities",
+        "topology_critical_switching_facilities": "switching facilities",
+    }
+    source_rows = []
+    for row in source_manifest["source_rows"]:
+        if not row.get("topology_critical"):
+            continue
+        audit = status_by_id[row["dataset_id"]]
+        codes = sorted(set(audit["current_http_status"].values()), key=str)
+        status_text = "/".join(str(code) for code in codes)
+        source_rows.append(
+            f"\\code{{{row['dataset_id'].replace('_', '\\_')}}} & {int(row['records_count']):,} & {row['checked_at'][:10]} & "
+            f"{role_labels[row['source_role']]} & HTTP {status_text} \\\\"
+        )
 
     outputs = [
         write_table("archive_layout_table.tex", "p{0.20\\textwidth}rp{0.59\\textwidth}", "Path & Files & Contents", layout_rows),
         write_table("principal_artifacts_table.tex", "p{0.30\\textwidth}rp{0.42\\textwidth}", "Artifact & Rows/items & Purpose", principal_rows),
         write_table("osm_triangulation_table.tex", "p{0.46\\textwidth}rp{0.32\\textwidth}", "Evidence category & Branches & Interpretation", osm_rows),
+        write_table("source_inputs_table.tex", "p{0.20\\textwidth}rp{0.14\\textwidth}p{0.25\\textwidth}p{0.11\\textwidth}", "Portal identifier & Records & Snapshot date & Role & Recheck", source_rows),
     ]
     report = {
         "release_root": str(release.relative_to(ROOT)),

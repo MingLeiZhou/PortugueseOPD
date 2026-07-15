@@ -3,7 +3,7 @@
   "inputs": [
     {
       "path": "data/releases/PT60-Candidate-v1.0.1/manifest.json",
-      "sha256": "7ba369692dfff01d228941d0a9eeccbc357f24f0b37295030d791d668904ecba"
+      "sha256": "e1a35a8dc8241ca0ce824f218108543b044322c2918427cb5ca7d52b70affb73"
     },
     {
       "path": "data/releases/PT60-Candidate-v1.0.1/core_topology/at_interfacility_candidate_branches.csv",
@@ -34,8 +34,16 @@
       "sha256": "30eb1029fb5c8f8e71929b63f276ffc5423682bad1b3faeceb532162396e7589"
     },
     {
+      "path": "data/releases/PT60-Candidate-v1.0.1/provenance/reproduction_source_manifest.json",
+      "sha256": "9a9acef1537b0733b73e270435a443b9ba643338f9a37a44acc09c1d184cd787"
+    },
+    {
       "path": "data/releases/PT60-Candidate-v1.0.1/schema/data_dictionary.csv",
-      "sha256": "a5c2aaab374cea563beaaccfda40633275d72e837370816d0d7b1c666aa10087"
+      "sha256": "61ceeb2cab222301841eb8e9c93de59503030c1c056b1934e603994185a3de85"
+    },
+    {
+      "path": "data/metadata/source_reacquisition_audit.json",
+      "sha256": "818c486a782536416f9e298596499e1e09f7a0505696af3ff90ef77733e4ade2"
     }
   ],
   "outputs": [
@@ -49,7 +57,11 @@
     },
     {
       "path": "paper/generated_tables/osm_triangulation_table.tex",
-      "sha256": "144a49593ad62fbb23cc8736a6eb6f967b3e2fb76dae7bfb593c3e1cf257b7a4"
+      "sha256": "ace7362990c815d8d48576d65c93d7e0e456dc9b9682a680e87efad03284510c"
+    },
+    {
+      "path": "paper/generated_tables/source_inputs_table.tex",
+      "sha256": "e43711457f79c7b37e3168ef9fb3b1e3ae4751eb5301015858ff0a40625058e2"
     }
   ]
 }

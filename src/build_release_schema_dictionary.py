@@ -542,11 +542,14 @@ def write_crs_docs() -> None:
         "dataset_version": VERSION,
         "generated_at": release_timestamp(),
         "source_crs": {
-            "name": "WGS 84 longitude/latitude as provided in public GeoJSON/CSV geometry exports",
+            "name": "WGS 84 longitude/latitude from Opendatasoft v2.1 geometry exports",
             "epsg": "EPSG:4326",
             "axis_order_in_release_geometry": "longitude, latitude",
             "coordinate_units": "decimal degrees",
-            "evidence_status": "Release geometry values are encoded as GeoJSON-style longitude/latitude coordinates; confirm exact upstream CRS wording again before DOI deposit.",
+            "evidence_status": "Confirmed for the portal export used by the pipeline: the frozen Opendatasoft v2.1 export URLs contain no epsg override, and the export API default is EPSG:4326. The native CRS before portal ingestion, if different, is not recorded and was not used by the pipeline.",
+            "evidence_url": "https://help.opendatasoft.com/apis/ods-explore-v2/",
+            "export_parameter": "epsg",
+            "export_parameter_default": 4326,
         },
         "processing_metric_crs": {
             "name": "Local equirectangular Portugal metric workspace",
@@ -573,10 +576,10 @@ Dataset version: PT60-Candidate {VERSION}
 
 ## Coordinate reference systems
 
-- Release geometry fields are encoded as GeoJSON-style longitude/latitude coordinate arrays and should be treated as WGS 84 / EPSG:4326 decimal degrees.
+- Release geometry fields are encoded as GeoJSON-style longitude/latitude coordinate arrays in WGS 84 / EPSG:4326 decimal degrees. The frozen Opendatasoft v2.1 export URLs contain no `epsg` override, and the documented default for geometry-capable exports is EPSG:4326.
 - Axis order in CSV geometry cells is longitude, latitude.
 - The reconstruction and validation pipeline also uses a local equirectangular metric workspace centred on Portugal (`lon0=-8.532604`, `lat0=39.567953`, metres). This local CRS is used for endpoint clustering, facility-distance checks, corridor-distance checks and length/coverage diagnostics.
-- The exact upstream portal CRS wording should be re-checked immediately before DOI deposit. This is still tracked as a release-review item, not as a row-level validation failure.
+- The native CRS before Opendatasoft portal ingestion, if different, is not recorded. It was not used by the reconstruction pipeline; the relevant input CRS is the EPSG:4326 portal export.
 
 ## Units
 

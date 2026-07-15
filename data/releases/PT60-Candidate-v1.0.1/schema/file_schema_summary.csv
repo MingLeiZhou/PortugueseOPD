@@ -19,10 +19,10 @@ v1.0.1,provenance/api_validation.json,provenance,json,66,85420,True,False,Genera
 v1.0.1,provenance/license_approvals.csv,provenance,csv,6,608,True,False,Generated release/source provenance metadata.
 v1.0.1,provenance/reproduction_source_manifest.csv,provenance,csv,28,11916,True,True,Generated release/source provenance metadata.
 v1.0.1,provenance/reproduction_source_manifest.json,provenance,json,46,23884,True,False,Generated release/source provenance metadata.
-v1.0.1,provenance/responsible_release_boundary.json,provenance,json,33,10905,True,False,Generated release/source provenance metadata.
-v1.0.1,validation/internal_validation_checks.csv,technical_validation,csv,6,4247,True,True,Derived validation output using frozen PT60 artifacts and public OSM/OpenInfraMap evidence where applicable.
+v1.0.1,provenance/responsible_release_boundary.json,provenance,json,33,10823,True,False,Generated release/source provenance metadata.
+v1.0.1,validation/internal_validation_checks.csv,technical_validation,csv,6,4421,True,True,Derived validation output using frozen PT60 artifacts and public OSM/OpenInfraMap evidence where applicable.
 v1.0.1,validation/internal_validation_missingness.csv,technical_validation,csv,6,31691,True,True,Derived validation output using frozen PT60 artifacts and public OSM/OpenInfraMap evidence where applicable.
-v1.0.1,validation/internal_validation_summary.json,technical_validation,json,48,3038,True,False,Derived validation output using frozen PT60 artifacts and public OSM/OpenInfraMap evidence where applicable.
+v1.0.1,validation/internal_validation_summary.json,technical_validation,json,48,3136,True,False,Derived validation output using frozen PT60 artifacts and public OSM/OpenInfraMap evidence where applicable.
 v1.0.1,validation/matcher_negative_control_geometry.csv,technical_validation,csv,34,1985280,True,False,Derived validation output using frozen PT60 artifacts and public OSM/OpenInfraMap evidence where applicable.
 v1.0.1,validation/matcher_negative_control_geometry_summary.json,technical_validation,json,51,2635,True,False,Derived validation output using frozen PT60 artifacts and public OSM/OpenInfraMap evidence where applicable.
 v1.0.1,validation/matcher_negative_control_names.csv,technical_validation,csv,37,168568,True,False,Derived validation output using frozen PT60 artifacts and public OSM/OpenInfraMap evidence where applicable.

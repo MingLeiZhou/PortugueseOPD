@@ -10,6 +10,10 @@
       "sha256": "d51731446bb3f848ab9dd396ca7c04752dc972a5b8e98ba978eefe4a1f5f9a69"
     },
     {
+      "path": "data/releases/PT60-Candidate-v1.0.1/core_topology/at_interfacility_candidate_branches.csv",
+      "sha256": "2746f15f149041287d9edf2ab0a454fc9c26fe3746d832e39409b9e9f2b1312d"
+    },
+    {
       "path": "data/releases/PT60-Candidate-v1.0.1/core_topology/at_paper_logic_parameter_sweep.csv",
       "sha256": "d2b00287e68330e98982b99ead58a648be55793cd0356657760b0852e1b04f1e"
     }
@@ -17,11 +21,11 @@
   "outputs": [
     {
       "path": "paper/figures/generated/fig2_reconstruction_funnel.pdf",
-      "sha256": "ab660dac571085324c3102b27d5a46e59b2b9ab48f67bb1f6ceef19ae6bfb7fb"
+      "sha256": "a1ffd5f651b67399bab68b188eacaaf5a63070a974bd41d5d6789e57f3a89ca7"
     },
     {
       "path": "paper/figures/generated/fig2_reconstruction_funnel.svg",
-      "sha256": "023e7048130dc2f9e461922a92f38adc769e1269b79b8d59e2c54359e3e14a91"
+      "sha256": "da522c75fab979805957aeb29aee18d58d1e598628abdcc2b4a0c1e1b8b8dd4a"
     },
     {
       "path": "paper/figures/generated/fig2_reconstruction_funnel.png",
@@ -29,23 +33,23 @@
     },
     {
       "path": "paper/figures/generated/fig3_topology_quality.pdf",
-      "sha256": "284eed62bcc5b6bf2dfd2e902b0cd41010b601aafc276812f7ea9a7fd8b8751a"
+      "sha256": "0c0d92b79f0f05a8130ebda501573a770a01e18bc2976448d7d13e98cdf40be5"
     },
     {
       "path": "paper/figures/generated/fig3_topology_quality.svg",
-      "sha256": "769667891a9850b0a34d6b816d934a6f0e90e3f0f6f4ef00d08cdb1c0bf9c230"
+      "sha256": "459860f0e2d8537148a362065e962dbb74ddf724da9047e1fc8a6adc00bc7250"
     },
     {
       "path": "paper/figures/generated/fig3_topology_quality.png",
-      "sha256": "a9001783dcd0ba053377b9a05fec910ce0b9766001eb50a595999b48e9285105"
+      "sha256": "a9da27639597daf8c7a31ba3151cba1179ef41603b9c08330f1d88d5a69a04d4"
     },
     {
       "path": "paper/figures/generated/fig4_sensitivity_analysis.pdf",
-      "sha256": "742d421ad808f589cbb8285d5356a9a5a6a26aa776b08e62dd15cc72ed31c8ce"
+      "sha256": "d000be1fe13c46785e7cd07df5c5933b4e2f9dc761e11e4fb6cddb8917640e4a"
     },
     {
       "path": "paper/figures/generated/fig4_sensitivity_analysis.svg",
-      "sha256": "d59ef53a1a1a9ca65f7470f44445294e706971d23e5b7ba40b0c043a0aee9760"
+      "sha256": "ce6600f3f136bf7d4df2334abf2c284aca4e0d093751e8a77f6da05fe773729c"
     },
     {
       "path": "paper/figures/generated/fig4_sensitivity_analysis.png",

@@ -237,7 +237,6 @@
   "submission_remaining_checks": [
     "Re-check E-REDES Open Data portal license and dataset catalog metadata immediately before DOI deposit.",
     "Add ATTRIBUTION.md and modification notice to the versioned archive.",
-    "Ensure Data Records states exact source/release CRS and geometry encoding.",
     "Ensure archive manifest marks each artifact as core, optional diagnostic, excluded, or source-manifest-only.",
     "Do not include third-party catalogs or standards unless redistribution permission is documented."
   ]

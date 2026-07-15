@@ -2,11 +2,14 @@
   "dataset_version": "v1.0.1",
   "generated_at": "2026-07-14T17:28:17Z",
   "source_crs": {
-    "name": "WGS 84 longitude/latitude as provided in public GeoJSON/CSV geometry exports",
+    "name": "WGS 84 longitude/latitude from Opendatasoft v2.1 geometry exports",
     "epsg": "EPSG:4326",
     "axis_order_in_release_geometry": "longitude, latitude",
     "coordinate_units": "decimal degrees",
-    "evidence_status": "Release geometry values are encoded as GeoJSON-style longitude/latitude coordinates; confirm exact upstream CRS wording again before DOI deposit."
+    "evidence_status": "Confirmed for the portal export used by the pipeline: the frozen Opendatasoft v2.1 export URLs contain no epsg override, and the export API default is EPSG:4326. The native CRS before portal ingestion, if different, is not recorded and was not used by the pipeline.",
+    "evidence_url": "https://help.opendatasoft.com/apis/ods-explore-v2/",
+    "export_parameter": "epsg",
+    "export_parameter_default": 4326
   },
   "processing_metric_crs": {
     "name": "Local equirectangular Portugal metric workspace",

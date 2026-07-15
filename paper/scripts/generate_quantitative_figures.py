@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """Generate the canonical data-bearing paper figures from a frozen release.
 
-The script deliberately avoids geographic coordinates and facility identifiers.
-Every plotted value is read from the versioned public archive, never from the
-mutable development tree.
+Every plotted value is read from the versioned public archive.  The geographic
+overview uses released coordinates but prints no facility identifiers.
 """
 
 from __future__ import annotations
@@ -12,7 +11,6 @@ import argparse
 import hashlib
 import json
 import os
-from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -133,35 +131,79 @@ def figure2_reconstruction_funnel(core: Path) -> None:
     save(fig, "fig2_reconstruction_funnel")
 
 
+def geometry_parts(value: str) -> list[list[list[float]]]:
+    geometry = json.loads(value)
+    if geometry["type"] == "LineString":
+        return [geometry["coordinates"]]
+    if geometry["type"] == "MultiLineString":
+        return geometry["coordinates"]
+    raise ValueError(f"Unsupported geometry type: {geometry['type']}")
+
+
 def figure3_topology_quality(core: Path) -> None:
     graph = nx.read_graphml(core / "at_paper_logic_graph.graphml")
-    components = sorted((len(c) for c in nx.connected_components(graph)), reverse=True)
-    degrees = Counter(int(d) for _, d in graph.degree())
+    simple = nx.Graph(graph)
+    component_sets = sorted(nx.connected_components(simple), key=len, reverse=True)
+    components = [len(component) for component in component_sets]
+    largest = component_sets[0]
+    edge_component = {}
+    for rank, component in enumerate(component_sets, start=1):
+        for node in component:
+            edge_component[node] = rank
+    branch_endpoints = {}
+    for u, v, data in graph.edges(data=True):
+        branch_endpoints[str(data["branch_id"])] = (u, v)
+    branches = pd.read_csv(core / "at_interfacility_candidate_branches.csv")
 
-    fig, axes = plt.subplots(1, 2, figsize=(7.2, 2.9))
+    fig, axes = plt.subplots(1, 2, figsize=(7.2, 3.35), gridspec_kw={"width_ratios": [1.45, 1.0]})
+    ax = axes[0]
+    for row in branches.itertuples(index=False):
+        u, _ = branch_endpoints[str(row.branch_id)]
+        color = COLORS["blue"] if u in largest else COLORS["light_gray"]
+        width = 0.75 if u in largest else 0.42
+        for part in geometry_parts(row.geometry):
+            ax.plot([point[0] for point in part], [point[1] for point in part], color=color, linewidth=width, zorder=1)
+    connected_x, connected_y, isolate_x, isolate_y = [], [], [], []
+    for node, data in graph.nodes(data=True):
+        target_x, target_y = (isolate_x, isolate_y) if simple.degree(node) == 0 else (connected_x, connected_y)
+        target_x.append(float(data["lon"]))
+        target_y.append(float(data["lat"]))
+    ax.scatter(
+        connected_x,
+        connected_y,
+        s=5,
+        alpha=0.60,
+        color=COLORS["green"],
+        edgecolors="none",
+        zorder=2,
+        label="Connected facility",
+    )
+    ax.scatter(isolate_x, isolate_y, s=9, marker="x", linewidths=0.55, color=COLORS["orange"], zorder=2, label="Isolated facility")
+    ax.set_xlabel("Longitude (°E; EPSG:4326)")
+    ax.set_ylabel("Latitude (°N; EPSG:4326)")
+    ax.set_aspect(1 / np.cos(np.deg2rad(np.mean(connected_y + isolate_y))))
+    ax.set_title(r"$\bf{a}$  Released candidate geography", loc="left")
+    ax.legend(
+        frameon=False,
+        loc="upper center",
+        bbox_to_anchor=(0.5, -0.16),
+        ncol=2,
+        columnspacing=1.0,
+        handletextpad=0.4,
+    )
+
     ranks = np.arange(1, len(components) + 1)
-    axes[0].plot(ranks, components, color=COLORS["blue"], linewidth=1.5)
-    axes[0].scatter(ranks[:10], components[:10], color=COLORS["blue"], s=12, zorder=3)
-    axes[0].axhline(1, color=COLORS["gray"], linewidth=0.8, linestyle="--")
-    axes[0].set_xlabel("Connected-component rank")
-    axes[0].set_ylabel("Facilities in component")
-    axes[0].set_yscale("log")
-    axes[0].set_yticks([1, 10, 100], ["1", "10", "100"])
-    axes[0].set_title(f"Component sizes (n={len(components)})")
-    axes[0].text(0.98, 0.95, f"Largest = {components[0]}\nIsolates = {components.count(1)}", transform=axes[0].transAxes, ha="right", va="top")
-    panel_label(axes[0], "a")
+    axes[1].plot(ranks, components, color=COLORS["blue"], linewidth=1.5)
+    axes[1].scatter(ranks[:10], components[:10], color=COLORS["blue"], s=12, zorder=3)
+    axes[1].axhline(1, color=COLORS["gray"], linewidth=0.8, linestyle="--")
+    axes[1].set_xlabel("Connected-component rank")
+    axes[1].set_ylabel("Facilities in component")
+    axes[1].set_yscale("log")
+    axes[1].set_yticks([1, 10, 100], ["1", "10", "100"])
+    axes[1].set_title(rf"$\bf{{b}}$  Component sizes (n={len(components)})", loc="left")
+    axes[1].text(0.98, 0.95, f"Largest = {components[0]}\nIsolates = {components.count(1)}", transform=axes[1].transAxes, ha="right", va="top")
 
-    xs = sorted(degrees)
-    ys = [degrees[x] for x in xs]
-    axes[1].bar(xs, ys, color=COLORS["sky"], width=0.8)
-    axes[1].set_xticks(xs)
-    axes[1].set_xlabel("Multigraph degree")
-    axes[1].set_ylabel("Facility count")
-    axes[1].set_title("Degree distribution")
-    axes[1].text(0.98, 0.95, f"Nodes = {graph.number_of_nodes()}\nEdges = {graph.number_of_edges()}", transform=axes[1].transAxes, ha="right", va="top")
-    panel_label(axes[1], "b")
-
-    fig.subplots_adjust(wspace=0.33)
+    fig.subplots_adjust(wspace=0.34, bottom=0.19)
     save(fig, "fig3_topology_quality")
 
 
@@ -244,6 +286,7 @@ def main() -> None:
     inputs = [
         core / "at_paper_logic_summary.json",
         core / "at_paper_logic_graph.graphml",
+        core / "at_interfacility_candidate_branches.csv",
         core / "at_paper_logic_parameter_sweep.csv",
     ]
     missing = [str(path) for path in inputs if not path.is_file()]

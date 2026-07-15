@@ -1,11 +1,11 @@
 # 106 PT60 Internal Validation Summary
 
-Generated: 2026-07-14T13:45:52+00:00
+Generated: 2026-07-15T13:33:59+00:00
 
 Status: `PASS_WITH_WARNINGS`
 
 - total checks: 25
-- status counts: {'PASS': 23, 'WARN': 2}
+- status counts: {'PASS': 24, 'WARN': 1}
 - retained branches: 358
 - circuit ledger rows: 1342
 - retained + downgraded/rejected: 358 + 984 = 1342
@@ -19,7 +19,7 @@ Status: `PASS_WITH_WARNINGS`
 |---|---|---|---|---|
 | raw_geometry_validity | source | PASS | 5334 | 5334 |
 | retained_branch_geometry_validity | branches | PASS | 358 | 358 |
-| source_coordinate_reference | crs | WARN | GeoJSON lon/lat coordinates; no explicit CRS object detected in frozen source summary | Exact source CRS to be stated in release metadata |
+| source_coordinate_reference | crs | PASS | Opendatasoft v2.1 GeoJSON export without an epsg override; default EPSG:4326 | EPSG:4326 portal export and release geometry |
 | metric_coordinate_reference | crs | PASS | LOCAL_EQUIRECTANGULAR_PORTUGAL lon0=-8.532604, lat0=39.567953, units=m | LOCAL_EQUIRECTANGULAR_PORTUGAL lon0=-8.532604, lat0=39.567953, units=m |
 | retained_required_fields | branches | PASS | {"branch_id": 0, "circuit_id": 0, "from_facility_uid": 0, "to_facility_uid": 0, "from_facility_name": 0, "to_facility_name": 0, "voltage": 0, "status": 0, "total_length_km": 0, "number_of_original_segments": 0, "geometry": 0, "source_line_ids": 0, "confidence_score": 0, "classification": 0} | 0 missing required values |
 | retained_branch_id_unique | branches | PASS | 358 | 358 |

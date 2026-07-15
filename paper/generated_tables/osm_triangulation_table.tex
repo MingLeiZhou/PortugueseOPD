@@ -3,11 +3,11 @@
 \toprule
 Evidence category & Branches & Interpretation \\
 \midrule
-\status{OSM\_NAME\_OPERATOR\_STRONG} & 183 & Endpoint names appear in a 60~kV E-REDES-labelled OSM record. \\
-\status{OSM\_GEOMETRY\_OPERATOR\_STRONG} & 64 & Candidate corridor is close to a 60~kV E-REDES-labelled OSM corridor. \\
-\status{OSM\_PARTIAL\_NAME\_NEARBY} & 56 & One endpoint name appears and a nearby 60~kV corridor is present. \\
-\status{OSM\_GEOMETRY\_MEDIUM} & 48 & Candidate overlaps a 60~kV public corridor without strong name evidence. \\
-\status{OSM\_NEARBY\_WEAK} & 7 & A nearby 60~kV public feature is present, but evidence is incomplete. \\
-\status{NO\_EXTERNAL\_OSM\_MATCH} & 0 & No retained branch falls in this class for the documented snapshot. \\
+Strong endpoint-name and operator-tag evidence & 183 & Both endpoint names appear in an E-REDES-tagged OSM record. \\
+Strong corridor and operator-tag evidence & 64 & Candidate corridor is close to an E-REDES-tagged OSM corridor. \\
+Partial endpoint name with nearby corridor & 56 & One endpoint name appears and a nearby 60~kV corridor is present. \\
+Medium corridor-overlap evidence & 48 & Candidate overlaps a 60~kV OSM corridor without strong name evidence. \\
+Weak nearby-feature evidence & 7 & A nearby 60~kV OSM feature is present, but evidence is incomplete. \\
+No matched OSM-derived evidence & 0 & No retained branch falls in this class for the documented snapshot. \\
 \bottomrule
 \end{tabular}

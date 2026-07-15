@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="in-text" default-locale="en-GB">
+  <info>
+    <title>PT60 Nature numeric</title>
+    <id>https://github.com/MingLeiZhou/PortugueseOPD/nature</id>
+    <link href="https://www.nature.com/sdata/publish/submission-guidelines" rel="documentation"/>
+    <updated>2026-07-14T00:00:00+00:00</updated>
+  </info>
+  <macro name="author">
+    <names variable="author">
+      <name initialize-with=". " delimiter=", " and="symbol" et-al-min="6" et-al-use-first="1"/>
+      <substitute><text variable="publisher"/><text variable="title"/></substitute>
+    </names>
+  </macro>
+  <macro name="container">
+    <group delimiter=" ">
+      <text variable="container-title" form="short" font-style="italic"/>
+      <text variable="volume" font-weight="bold"/>
+      <text variable="page"/>
+    </group>
+  </macro>
+  <citation collapse="citation-number">
+    <sort><key variable="citation-number"/></sort>
+    <layout delimiter="," vertical-align="sup"><text variable="citation-number"/></layout>
+  </citation>
+  <bibliography et-al-min="6" et-al-use-first="1" second-field-align="flush" entry-spacing="0">
+    <layout suffix=".">
+      <text variable="citation-number" suffix=". "/>
+      <text macro="author" suffix=". "/>
+      <text variable="title" suffix=". "/>
+      <text macro="container" suffix=" "/>
+      <date variable="issued" prefix="(" suffix=")"><date-part name="year"/></date>
+      <text variable="DOI" prefix=" https://doi.org/"/>
+      <text variable="URL" prefix=" "/>
+    </layout>
+  </bibliography>
+</style>

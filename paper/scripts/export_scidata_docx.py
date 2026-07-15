@@ -23,6 +23,7 @@ def escape_texttt(value: str) -> str:
 def prepare_latex(source: str) -> str:
     """Replace PDF-only display helpers with constructs Pandoc preserves."""
 
+    source = re.sub(r"\\begin\{thebibliography\}.*?\\end\{thebibliography\}", "", source, flags=re.DOTALL)
     for macro in ("path", "hashvalue"):
         pattern = re.compile(rf"\\{macro}\{{([^{{}}]+)\}}")
         source = pattern.sub(lambda match: rf"\texttt{{{escape_texttt(match.group(1))}}}", source)
@@ -52,6 +53,7 @@ def main() -> None:
         "--to=docx",
         "--citeproc",
         "--bibliography=references.bib",
+        "--csl=../nature.csl",
         "--resource-path=.:figures/generated:generated_tables",
         "--lua-filter=scripts/docx_image_filter.lua",
         f"--metadata=title:{TITLE}",

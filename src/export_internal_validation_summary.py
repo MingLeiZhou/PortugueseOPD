@@ -157,7 +157,15 @@ def main() -> None:
     geometry_types = parsed_branch_geometries.apply(lambda item: str(item["type"])).value_counts().sort_index().to_dict()
     add_check(checks, "retained_branch_geometry_validity", "branches", "PASS" if valid_branch_geometries == len(branches) else "FAIL", valid_branch_geometries, len(branches), f"Geometry types: {geometry_types}")
 
-    add_check(checks, "source_coordinate_reference", "crs", "WARN", "GeoJSON lon/lat coordinates; no explicit CRS object detected in frozen source summary", "Exact source CRS to be stated in release metadata", "Coordinates are in longitude/latitude ranges; reconstruction distances use the local metric projection recorded below.")
+    add_check(
+        checks,
+        "source_coordinate_reference",
+        "crs",
+        "PASS",
+        "Opendatasoft v2.1 GeoJSON export without an epsg override; default EPSG:4326",
+        "EPSG:4326 portal export and release geometry",
+        "The frozen export URLs contain no epsg query parameter, and the Opendatasoft v2.1 export API documents EPSG:4326 as the default for geometry-capable formats. Release coordinates use GeoJSON longitude-latitude order. The native CRS before portal ingestion is not recorded and was not used by the pipeline.",
+    )
     add_check(checks, "metric_coordinate_reference", "crs", "PASS", summary["validation"]["metric_crs"], "LOCAL_EQUIRECTANGULAR_PORTUGAL lon0=-8.532604, lat0=39.567953, units=m", "Metric projection used for endpoint and length calculations.")
 
     branch_required = [
@@ -312,9 +320,9 @@ def main() -> None:
         "classification_counts": {str(k): int(v) for k, v in sorted(class_counts.items())},
         "terminal_count_distribution": terminal_counts,
         "coordinate_reference": {
-            "source_and_release_geometry": "GeoJSON longitude/latitude coordinates; exact source CRS declaration not present in frozen GeoJSON metadata.",
+            "source_and_release_geometry": "Opendatasoft v2.1 GeoJSON exports retrieved without an epsg override and therefore exported as EPSG:4326; release geometry uses GeoJSON longitude/latitude order.",
             "metric_reconstruction_crs": summary["validation"]["metric_crs"],
-            "crs_submission_gap": "Exact source/release CRS should still be stated in the Data Records section and data dictionary.",
+            "upstream_native_crs_boundary": "The native CRS before Opendatasoft portal ingestion, if different, is not recorded and was not used by the reconstruction pipeline.",
         },
         "core_artifact_hashes_sha256": hashes,
         "outputs": {

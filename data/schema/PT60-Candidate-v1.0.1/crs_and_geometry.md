@@ -4,10 +4,10 @@ Dataset version: PT60-Candidate v1.0.1
 
 ## Coordinate reference systems
 
-- Release geometry fields are encoded as GeoJSON-style longitude/latitude coordinate arrays and should be treated as WGS 84 / EPSG:4326 decimal degrees.
+- Release geometry fields are encoded as GeoJSON-style longitude/latitude coordinate arrays in WGS 84 / EPSG:4326 decimal degrees. The frozen Opendatasoft v2.1 export URLs contain no `epsg` override, and the documented default for geometry-capable exports is EPSG:4326.
 - Axis order in CSV geometry cells is longitude, latitude.
 - The reconstruction and validation pipeline also uses a local equirectangular metric workspace centred on Portugal (`lon0=-8.532604`, `lat0=39.567953`, metres). This local CRS is used for endpoint clustering, facility-distance checks, corridor-distance checks and length/coverage diagnostics.
-- The exact upstream portal CRS wording should be re-checked immediately before DOI deposit. This is still tracked as a release-review item, not as a row-level validation failure.
+- The native CRS before Opendatasoft portal ingestion, if different, is not recorded. It was not used by the reconstruction pipeline; the relevant input CRS is the EPSG:4326 portal export.
 
 ## Units
 

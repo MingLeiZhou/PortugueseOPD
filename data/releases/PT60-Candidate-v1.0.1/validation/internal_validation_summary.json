@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-14T13:45:52+00:00",
+  "generated_at": "2026-07-15T13:33:59+00:00",
   "status": "PASS_WITH_WARNINGS",
   "checks_total": 25,
   "check_status_counts": {
-    "PASS": 23,
-    "WARN": 2
+    "PASS": 24,
+    "WARN": 1
   },
   "frozen_counts": {
     "raw_line_features": 5334,
@@ -39,9 +39,9 @@
     "6": 2
   },
   "coordinate_reference": {
-    "source_and_release_geometry": "GeoJSON longitude/latitude coordinates; exact source CRS declaration not present in frozen GeoJSON metadata.",
+    "source_and_release_geometry": "Opendatasoft v2.1 GeoJSON exports retrieved without an epsg override and therefore exported as EPSG:4326; release geometry uses GeoJSON longitude/latitude order.",
     "metric_reconstruction_crs": "LOCAL_EQUIRECTANGULAR_PORTUGAL lon0=-8.532604, lat0=39.567953, units=m",
-    "crs_submission_gap": "Exact source/release CRS should still be stated in the Data Records section and data dictionary."
+    "upstream_native_crs_boundary": "The native CRS before Opendatasoft portal ingestion, if different, is not recorded and was not used by the reconstruction pipeline."
   },
   "core_artifact_hashes_sha256": {
     "data/processed/at_interfacility_candidate_branches.csv": "2746f15f149041287d9edf2ab0a454fc9c26fe3746d832e39409b9e9f2b1312d",

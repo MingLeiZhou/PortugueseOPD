@@ -1,7 +1,7 @@
 check_id,layer,status,observed,expected,detail
 raw_geometry_validity,source,PASS,5334,5334,Raw E-REDES line geometry parse count.
 retained_branch_geometry_validity,branches,PASS,358,358,"Geometry types: {'LineString': 25, 'MultiLineString': 333}"
-source_coordinate_reference,crs,WARN,GeoJSON lon/lat coordinates; no explicit CRS object detected in frozen source summary,Exact source CRS to be stated in release metadata,Coordinates are in longitude/latitude ranges; reconstruction distances use the local metric projection recorded below.
+source_coordinate_reference,crs,PASS,Opendatasoft v2.1 GeoJSON export without an epsg override; default EPSG:4326,EPSG:4326 portal export and release geometry,"The frozen export URLs contain no epsg query parameter, and the Opendatasoft v2.1 export API documents EPSG:4326 as the default for geometry-capable formats. Release coordinates use GeoJSON longitude-latitude order. The native CRS before portal ingestion is not recorded and was not used by the pipeline."
 metric_coordinate_reference,crs,PASS,"LOCAL_EQUIRECTANGULAR_PORTUGAL lon0=-8.532604, lat0=39.567953, units=m","LOCAL_EQUIRECTANGULAR_PORTUGAL lon0=-8.532604, lat0=39.567953, units=m",Metric projection used for endpoint and length calculations.
 retained_required_fields,branches,PASS,"{""branch_id"": 0, ""circuit_id"": 0, ""from_facility_uid"": 0, ""to_facility_uid"": 0, ""from_facility_name"": 0, ""to_facility_name"": 0, ""voltage"": 0, ""status"": 0, ""total_length_km"": 0, ""number_of_original_segments"": 0, ""geometry"": 0, ""source_line_ids"": 0, ""confidence_score"": 0, ""classification"": 0}",0 missing required values,Required retained-branch fields are complete.
 retained_branch_id_unique,branches,PASS,358,358,Retained branch identifiers are unique.
