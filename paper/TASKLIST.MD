@@ -446,6 +446,9 @@ These tasks require new evidence and materially broader claims. They are not req
 - [x] Rebuild the v1.0.2 schema package: 58/58 machine-readable paths, 1,201 dictionary records, and 16 principal schemas.
 - [x] Build and extraction-validate the 67-file v1.0.2 candidate archive; all 25 internal checks and all archive checks pass.
 - [x] Move repeat-acquisition and projection-comparison results from Methods to a dedicated Technical Validation subsection.
+- [x] Regenerate Figure 1 from its draw.io source with 983 downgraded/rejected records and the v1.0.2 archive label.
+- [x] Reconcile the Data Record archive inventory to 67 documented files and the 500 m sensitivity result to 368 retained branches.
+- [x] Confirm from the v1.0.2 spatial-control summary that corridor evidence changes from 290/358 real branches to 1/358 displaced branches.
 - [x] Freeze source commit `93c861c` and create annotated tag `pt60-candidate-v1.0.2`.
 - [x] Perform two detached clean-worktree rebuilds from the tag and confirm byte-identical archives.
 - [x] Insert final tagged-build SHA-256 `328e64adcfc6c7210ed9558793a14fdb661e5e3bab741f1d275a89e5593d1447` and commit identifier into the manuscript and release metadata.

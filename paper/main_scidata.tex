@@ -179,7 +179,7 @@ The same workflow packages the reconstruction-sensitivity table, public-source t
 
 \dataset version~1.0.2 is prepared for deposition in the reserved figshare record \cite{PT60Candidate2026}. Its reserved DOI is \url{https://doi.org/10.6084/m9.figshare.32984021}. The tagged-build archive \path{PT60-Candidate-v1.0.2.tar.gz} has SHA-256 \hashvalue{328e64adcfc6c7210ed9558793a14fdb661e5e3bab741f1d275a89e5593d1447}.
 
-The archive contains 63 documented files. It provides the retained candidate topology, the complete downgrade/rejection ledger, the GraphML multigraph, the 216-setting sensitivity record, provenance manifests, validation outputs, schemas, licensing documents, and checksum-linked inventory. Raw E-REDES downloads, raw OSM history/cache blobs, manuscript work files, optional Stage~1--5 interfaces, and non-operational electrical diagnostics are not part of the main public archive. The reasons and reproducibility consequences of these exclusions are recorded in \code{excluded\_artifacts.json}.
+The archive contains 67 documented files. It provides the retained candidate topology, the complete downgrade/rejection ledger, the GraphML multigraph, the 216-setting sensitivity record, provenance manifests, validation outputs, schemas, licensing documents, and checksum-linked inventory. Raw E-REDES downloads, raw OSM history/cache blobs, manuscript work files, optional Stage~1--5 interfaces, and non-operational electrical diagnostics are not part of the main public archive. The reasons and reproducibility consequences of these exclusions are recorded in \code{excluded\_artifacts.json}.
 
 \subsection{File organization}
 
@@ -288,7 +288,7 @@ The GraphML/table parity check confirms that all 358 retained branch identifiers
 
 Sensitivity analysis addresses whether the selected release point is stable under the declared reconstruction design space. The direct endpoint-to-substation baseline yields 51 merged edges and a six-node largest component, whereas the selected reconstruction yields 358 retained edges and a 53-node largest component for the current snapshot. These values describe yield and connectivity under two workflows; they are not treated as external accuracy improvements.
 
-Across the 216-setting sweep, increasing the facility buffer from 100~m to 500~m at a 0.5~m endpoint snap threshold raises retained branches from 358 to 369 but also increases ambiguity from 61 to 89 and reduces the largest component from 53 to 27. At 50~m endpoint snapping, only three inter-facility circuits remain for each tested buffer. Figure~\ref{fig:sensitivity} shows these trade-offs and the selected operating point. These results support the claim that reconstruction outputs are sensitive to plausible preprocessing settings rather than identifying a uniquely correct solution.
+Across the 216-setting sweep, increasing the facility buffer from 100~m to 500~m at a 0.5~m endpoint snap threshold raises retained branches from 358 to 368 but also increases ambiguity from 61 to 89 and reduces the largest component from 53 to 27. At 50~m endpoint snapping, only three inter-facility circuits remain for each tested buffer. Figure~\ref{fig:sensitivity} shows these trade-offs and the selected operating point. These results support the claim that reconstruction outputs are sensitive to plausible preprocessing settings rather than identifying a uniquely correct solution.
 
 \begin{figure}[t]
   \centering
