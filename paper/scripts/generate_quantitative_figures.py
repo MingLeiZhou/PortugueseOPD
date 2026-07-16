@@ -337,9 +337,10 @@ def figure2_reconstruction_funnel(core: Path) -> None:
     raw = int(summary["validation"]["raw_feature_count"])
     merged = int(summary["selected_strategy"]["merged_circuits"])
     retained = int(summary["selected_strategy"]["inter_facility_circuits"])
+    downgraded = merged - retained
     classes = {row["classification"]: row for row in summary["classification_summary"]}
 
-    fig, axes = plt.subplots(1, 2, figsize=(7.2, 3.0), gridspec_kw={"width_ratios": [1.05, 1.45]})
+    fig, axes = plt.subplots(1, 2, figsize=(7.2, 3.2), gridspec_kw={"width_ratios": [1.0, 1.4]})
 
     labels = ["Raw line features", "Merged circuits", "Retained branches"]
     values = [raw, merged, retained]
@@ -350,11 +351,29 @@ def figure2_reconstruction_funnel(core: Path) -> None:
     axes[0].invert_yaxis()
     axes[0].set_xlabel("Count")
     axes[0].set_xlim(0, raw * 1.14)
-    axes[0].set_title("Reconstruction funnel")
+    axes[0].set_title("Line-to-circuit record counts")
     for i, value in enumerate(values):
         axes[0].text(value + raw * 0.015, i, f"{value:,}", va="center", fontsize=8)
-    axes[0].text(merged, 0.55, f"{100 * (1 - merged / raw):.1f}% reduction", ha="right", color=COLORS["blue"])
-    axes[0].text(retained, 1.55, f"{100 * retained / merged:.1f}% retained", ha="left", color=COLORS["green"])
+    axes[0].text(
+        raw * 0.48,
+        0.52,
+        f"{raw:,} → {merged:,} (−{100 * (1 - merged / raw):.1f}%)\nafter line-to-circuit aggregation",
+        ha="center",
+        va="center",
+        fontsize=7.0,
+        color=COLORS["blue"],
+        linespacing=1.15,
+    )
+    axes[0].text(
+        raw * 0.48,
+        1.52,
+        f"{merged:,} → {retained:,} ({100 * retained / merged:.1f}%)\nof merged circuits retained",
+        ha="center",
+        va="center",
+        fontsize=7.0,
+        color=COLORS["green"],
+        linespacing=1.15,
+    )
     panel_label(axes[0], "a")
 
     order = [
@@ -367,20 +386,32 @@ def figure2_reconstruction_funnel(core: Path) -> None:
         "loop",
     ]
     counts = [int(classes[k]["circuit_count"]) for k in order]
-    display = [x.replace("inter-facility", "inter-facility (retained)") for x in order]
-    bar_colors = [COLORS["green"], COLORS["orange"], COLORS["gray"], COLORS["sky"], COLORS["purple"], COLORS["red"], COLORS["light_gray"]]
+    display = ["Retained inter-facility", *order[1:]]
+    bar_colors = [COLORS["green"], *([COLORS["gray"]] * (len(order) - 1))]
     y = np.arange(len(order))
     axes[1].barh(y, counts, color=bar_colors, height=0.62)
     axes[1].set_yticks(y, display)
     axes[1].invert_yaxis()
-    axes[1].set_xlabel("Merged circuits")
+    axes[1].set_xlabel("Circuit count")
     axes[1].set_xlim(0, max(counts) * 1.18)
-    axes[1].set_title("Selected-strategy circuit classification")
+    axes[1].set_title("Circuit disposition", pad=25)
+    axes[1].text(
+        0.5,
+        1.015,
+        f"n = {merged:,}: {retained:,} retained ({100 * retained / merged:.1f}%)\n"
+        f"{downgraded:,} downgraded/rejected ({100 * downgraded / merged:.1f}%)",
+        transform=axes[1].transAxes,
+        ha="center",
+        va="bottom",
+        fontsize=7.0,
+        linespacing=1.15,
+    )
+    axes[1].axhline(0.5, color="black", linewidth=0.7)
     for i, value in enumerate(counts):
         axes[1].text(value + max(counts) * 0.015, i, f"{value:,}", va="center", fontsize=8)
     panel_label(axes[1], "b")
 
-    fig.subplots_adjust(wspace=0.52)
+    fig.subplots_adjust(wspace=0.72, top=0.82, bottom=0.17)
     save(fig, "fig2_reconstruction_funnel")
 
 

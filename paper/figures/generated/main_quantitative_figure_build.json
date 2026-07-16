@@ -41,15 +41,15 @@
     },
     {
       "path": "paper/figures/generated/fig2_reconstruction_funnel.pdf",
-      "sha256": "71df3136613820ad2ea4ed6a14c0398eca0370bd57cadfb1af5cd91105450b02"
+      "sha256": "6214826969057ec0c3b3690ca448c365e394f2294cc1a5fcce796740b8bc37d3"
     },
     {
       "path": "paper/figures/generated/fig2_reconstruction_funnel.svg",
-      "sha256": "270ca07cee70aa3e1a173be15ec03ba5c73010c4ddecd3e290be6ea81d20f1db"
+      "sha256": "a4a8ae4f2fb8e2eb93289b348667ff87d0992fbc18dd2016d3e6ac9a2cc928db"
     },
     {
       "path": "paper/figures/generated/fig2_reconstruction_funnel.png",
-      "sha256": "01c650f540d104c1ca7e18b2c6c2196fcc8904e15bfc927121c664bac60c8a3e"
+      "sha256": "e70dc0cf3a0092953ead4644ecd46e10bcffaa4ad5ef8e8609cd70bd192dc90d"
     },
     {
       "path": "paper/figures/generated/fig3_topology_quality.pdf",

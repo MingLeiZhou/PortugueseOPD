@@ -41,7 +41,7 @@ FIGURES = [
         "generator": "paper/scripts/generate_quantitative_figures.py",
         "stem": "fig2_reconstruction_funnel",
         "width": "double-column",
-        "caption": "Reconstruction funnel and circuit disposition for the selected node-set B, 100 m facility-buffer, 0.5 m endpoint-snap, voltage-status-aware strategy. Counts describe pipeline outputs from the current E-REDES snapshot; retained means passing declared geometric rules, not operator validation.",
+        "caption": "Line-to-circuit record counts and complete circuit disposition for the selected node-set B, 100 m facility-buffer, 0.5 m endpoint-snap, voltage-status-aware strategy. Panel a states both denominators: line-to-circuit aggregation changes the record count from 5,334 to 1,341, after which 358 of 1,341 merged circuits are retained. Panel b shows the retained class in green and all six downgraded/rejected reason classes in gray; their counts reconcile as 358 + 983 = 1,341. Retained means passing declared geometric rules, not operator validation.",
         "uncertainty": "Counts are deterministic for the snapshot but classifications depend on facility coverage and thresholds.",
         "provenance_notes": "Generated directly from the topology summary; no geographic identifiers are plotted.",
         "license_status": "cc_by_4_0_eredes_attribution_required",
