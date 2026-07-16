@@ -25,11 +25,11 @@ FIGURES = [
         "generator": "paper/scripts/generate_quantitative_figures.py",
         "stem": "fig1_pipeline_overview",
         "width": "double-column",
-        "caption": "Fail-closed reconstruction and release workflow. Counts are read from the frozen v1.0.2 topology and internal-validation summaries. Blue boxes are transformations or validation, the yellow diamond is the retention gate, green boxes are released records, and the orange box is the complete downgrade/rejection ledger.",
+        "caption": "Fail-closed reconstruction and release workflow. Counts are read from the frozen v1.0.2 topology and internal-validation summaries. Rectangles distinguish inputs, processing stages, validation, provenance contracts, and released records; the diamond is the inter-facility retention gate. The pass and fail-closed branches preserve retained and non-retained outcomes separately.",
         "uncertainty": "Counts are deterministic for the frozen release; the diagram does not estimate physical-topology accuracy.",
         "provenance_notes": "Generated as vector artwork by Matplotlib from frozen release JSON; no manual editing of outputs.",
         "license_status": "cc_by_4_0_eredes_attribution_required",
-        "notes": "Figure 1 uses the same Matplotlib typography, palette, line weights, and PDF/SVG/PNG export path as Figures 2–4.",
+        "notes": "Figure 1 is a monochrome Matplotlib workflow optimized for grayscale printing; it uses the same typography and PDF/SVG/PNG export path as Figures 2–4.",
     },
     {
         "figure_id": "fig2",

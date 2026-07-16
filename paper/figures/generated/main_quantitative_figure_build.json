@@ -25,15 +25,15 @@
   "outputs": [
     {
       "path": "paper/figures/generated/fig1_pipeline_overview.pdf",
-      "sha256": "a929d691a12c9b9e3a6576a7844bfefa70e9e8191c1ad8f0c17ab408c8eb7f79"
+      "sha256": "a5315fd3e4ea86b2225d4bcd6f6e2e772edd70cab76602f9fca83c10f69a2ab4"
     },
     {
       "path": "paper/figures/generated/fig1_pipeline_overview.svg",
-      "sha256": "64f5b7486646be7f5d41c6ce81fdea196157d0507d3db17d469b001b32859af9"
+      "sha256": "8c26a514db860f8b7c325035c2a9e10d40ec5d46e4955faa677d452ad2e94b21"
     },
     {
       "path": "paper/figures/generated/fig1_pipeline_overview.png",
-      "sha256": "154ed6551fcb1096c6eb286bc510ead079155ed404773215cbebc6b1673b3aa6"
+      "sha256": "ecb72fa62201ecd14085f4cb3e4169e6d3d293421e55de3d088c03d5aea30b0d"
     },
     {
       "path": "paper/figures/generated/fig2_reconstruction_funnel.pdf",

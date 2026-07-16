@@ -139,7 +139,7 @@ Figure~\ref{fig:pipeline} shows how retained and downgraded records pass through
 \begin{figure}[t]
   \centering
   \includegraphics[width=\textwidth]{fig1_pipeline_overview.pdf}
-  \caption{Fail-closed reconstruction and release workflow for \dataset. The gray box denotes public inputs; blue boxes denote transformations or validation; the yellow diamond is the declared retention gate; green boxes denote retained and packaged release records; the orange box preserves downgraded/rejected records; and the purple box records provenance and reuse contracts. Counts are read from the frozen v1.0.2 release. They describe dataset construction and internal checks, not physical-topology accuracy.}
+  \caption{Fail-closed reconstruction and release workflow for \dataset. Rectangles distinguish public inputs, processing stages, validation, provenance contracts, and released records; the diamond is the declared inter-facility retention gate. The pass and fail-closed paths preserve retained and non-retained outcomes separately before common validation and packaging. Counts are read from the frozen v1.0.2 release and describe dataset construction and internal checks, not physical-topology accuracy.}
   \label{fig:pipeline}
 \end{figure}
 

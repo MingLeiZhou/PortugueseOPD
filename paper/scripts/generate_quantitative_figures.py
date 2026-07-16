@@ -21,7 +21,7 @@ os.environ.setdefault("XDG_CACHE_HOME", str(ROOT / ".cache"))
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
-from matplotlib.patches import FancyArrowPatch, FancyBboxPatch, Polygon
+from matplotlib.patches import FancyArrowPatch, Polygon, Rectangle
 import networkx as nx
 import numpy as np
 import pandas as pd
@@ -103,7 +103,7 @@ def sha256(path: Path) -> str:
 
 
 def figure1_pipeline(core: Path, validation: Path) -> None:
-    """Render the release workflow as a data-linked Matplotlib diagram."""
+    """Render a monochrome, data-linked workflow diagram for print."""
 
     summary = json.loads((core / "at_paper_logic_summary.json").read_text())
     checks = json.loads((validation / "internal_validation_summary.json").read_text())
@@ -115,7 +115,7 @@ def figure1_pipeline(core: Path, validation: Path) -> None:
     sensitivity_rows = int(checks["frozen_counts"]["sensitivity_sweep_rows"])
     checks_total = int(checks["checks_total"])
 
-    fig, ax = plt.subplots(figsize=(7.2, 3.45))
+    fig, ax = plt.subplots(figsize=(7.2, 4.2))
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.axis("off")
@@ -125,161 +125,179 @@ def figure1_pipeline(core: Path, validation: Path) -> None:
         y: float,
         width: float,
         height: float,
-        text: str,
-        *,
-        face: str,
-        edge: str,
-        weight: str = "normal",
-        fontsize: float = 7.0,
+        title: str,
+        body: str = "",
+        title_size: float = 7.0,
+        body_size: float = 7.0,
     ) -> None:
-        patch = FancyBboxPatch(
-            (x, y),
-            width,
-            height,
-            boxstyle="round,pad=0.008,rounding_size=0.012",
-            linewidth=1.0,
-            facecolor=face,
-            edgecolor=edge,
-            zorder=2,
+        ax.add_patch(
+            Rectangle(
+                (x, y),
+                width,
+                height,
+                linewidth=0.9,
+                facecolor="white",
+                edgecolor="black",
+                zorder=2,
+            )
         )
-        ax.add_patch(patch)
-        ax.text(
-            x + width / 2,
-            y + height / 2,
-            text,
-            ha="center",
-            va="center",
-            fontsize=fontsize,
-            fontweight=weight,
-            linespacing=1.18,
-            zorder=3,
-        )
+        if body:
+            ax.text(
+                x + width / 2,
+                y + height * 0.65,
+                title,
+                ha="center",
+                va="center",
+                fontsize=title_size,
+                fontweight="bold",
+                fontstretch="condensed",
+                linespacing=1.15,
+                zorder=3,
+            )
+            ax.text(
+                x + width / 2,
+                y + height * 0.31,
+                body,
+                ha="center",
+                va="center",
+                fontsize=body_size,
+                linespacing=1.22,
+                zorder=3,
+            )
+        else:
+            ax.text(
+                x + width / 2,
+                y + height / 2,
+                title,
+                ha="center",
+                va="center",
+                fontsize=title_size,
+                fontweight="bold",
+                fontstretch="condensed",
+                linespacing=1.18,
+                zorder=3,
+            )
 
-    def arrow(points: list[tuple[float, float]], color: str = COLORS["gray"]) -> None:
+    def arrow(points: list[tuple[float, float]]) -> None:
         for start, end in zip(points[:-2], points[1:-1]):
-            ax.plot([start[0], end[0]], [start[1], end[1]], color=color, linewidth=0.9, zorder=1)
+            ax.plot([start[0], end[0]], [start[1], end[1]], color="black", linewidth=0.8, zorder=1)
         ax.add_patch(
             FancyArrowPatch(
                 points[-2],
                 points[-1],
                 arrowstyle="-|>",
-                mutation_scale=8,
-                linewidth=0.9,
-                color=color,
+                mutation_scale=8.5,
+                linewidth=0.8,
+                color="black",
                 shrinkA=0,
                 shrinkB=0,
                 zorder=1,
             )
         )
 
-    blue_fill = "#E8F1F8"
-    green_fill = "#E5F4EE"
-    orange_fill = "#FCECE7"
-    purple_fill = "#F0EAF5"
-    gray_fill = "#F3F4F6"
-
-    box(0.01, 0.72, 0.14, 0.14, f"E-REDES inputs\n{raw:,} lines\n{facilities:,} facilities", face=gray_fill, edge=COLORS["gray"])
+    box(0.01, 0.74, 0.16, 0.17, "E-REDES inputs", f"{raw:,} lines\n{facilities:,} facilities")
+    box(0.19, 0.74, 0.18, 0.17, "Normalize + audit", "schema • geometry\nmetric CRS")
+    box(0.39, 0.74, 0.16, 0.17, "Endpoint–facility\nmatching")
     box(
-        0.175,
-        0.72,
-        0.165,
-        0.14,
-        "Normalize + audit\nschema • geometry\nmetric CRS",
-        face=blue_fill,
-        edge=COLORS["blue"],
-        fontsize=7.0,
+        0.57,
+        0.74,
+        0.18,
+        0.17,
+        "Merge + classify",
+        f"{merged:,} circuit groups",
     )
-    box(0.365, 0.72, 0.16, 0.14, "Endpoint–facility\nmatching", face=blue_fill, edge=COLORS["blue"])
-    box(0.55, 0.72, 0.17, 0.14, f"Merge + classify\n{merged:,} circuit groups", face=blue_fill, edge=COLORS["blue"])
 
-    diamond_center = (0.84, 0.79)
+    diamond_center = (0.88, 0.825)
     diamond = Polygon(
         [
-            (diamond_center[0], 0.88),
-            (0.92, diamond_center[1]),
-            (diamond_center[0], 0.70),
-            (0.76, diamond_center[1]),
+            (diamond_center[0], 0.94),
+            (0.98, diamond_center[1]),
+            (diamond_center[0], 0.71),
+            (0.78, diamond_center[1]),
         ],
         closed=True,
-        facecolor="#FFF4D6",
-        edgecolor=COLORS["orange"],
-        linewidth=1.0,
+        facecolor="white",
+        edgecolor="black",
+        linewidth=0.9,
         zorder=2,
     )
     ax.add_patch(diamond)
-    ax.text(*diamond_center, "Retention\nrules?", ha="center", va="center", fontsize=7.0, zorder=3)
-
-    arrow([(0.15, 0.79), (0.175, 0.79)])
-    arrow([(0.34, 0.79), (0.365, 0.79)])
-    arrow([(0.525, 0.79), (0.55, 0.79)])
-    arrow([(0.72, 0.79), (0.76, 0.79)])
-
-    box(
-        0.70,
-        0.47,
-        0.26,
-        0.13,
-        f"Retained candidates\n{retained:,} branches + GraphML",
-        face=green_fill,
-        edge=COLORS["green"],
-        weight="bold",
+    ax.text(
+        *diamond_center,
+        "Retention\nrules?",
+        ha="center",
+        va="center",
+        fontsize=7.1,
+        fontweight="bold",
+        fontstretch="condensed",
+        linespacing=1.15,
+        zorder=3,
     )
-    box(
-        0.40,
-        0.47,
-        0.25,
-        0.13,
-        f"Downgrade/rejection ledger\n{downgraded:,} records + reasons",
-        face=orange_fill,
-        edge=COLORS["red"],
-    )
-    arrow([(0.84, 0.70), (0.84, 0.60)], COLORS["green"])
-    arrow([(0.78, 0.74), (0.73, 0.65), (0.525, 0.65), (0.525, 0.60)], COLORS["red"])
-    ax.text(0.855, 0.645, "pass", color=COLORS["green"], fontsize=7.0, ha="left")
-    ax.text(0.66, 0.665, "fail closed", color=COLORS["red"], fontsize=7.0, ha="center")
+
+    arrow([(0.17, 0.825), (0.19, 0.825)])
+    arrow([(0.37, 0.825), (0.39, 0.825)])
+    arrow([(0.55, 0.825), (0.57, 0.825)])
+    arrow([(0.75, 0.825), (0.78, 0.825)])
 
     box(
-        0.05,
-        0.19,
+        0.69,
+        0.44,
         0.28,
         0.14,
-        f"Validation + sensitivity\n{checks_total} checks • {sensitivity_rows} settings\n2 negative controls",
-        face=blue_fill,
-        edge=COLORS["blue"],
+        "Retained candidates",
+        f"{retained:,} branches + GraphML",
+    )
+    box(
+        0.39,
+        0.44,
+        0.26,
+        0.14,
+        "Disposition ledger",
+        f"{downgraded:,} downgraded/rejected\nrecords + reasons",
+    )
+    arrow([(0.88, 0.71), (0.88, 0.58)])
+    arrow([(0.82, 0.755), (0.75, 0.63), (0.52, 0.63), (0.52, 0.58)])
+    ax.text(0.895, 0.645, "pass", fontsize=7.0, ha="left", va="center")
+    ax.text(0.67, 0.647, "fail closed", fontsize=7.0, ha="center", va="center")
+
+    box(
+        0.04,
+        0.16,
+        0.27,
+        0.15,
+        "Validation + sensitivity",
+        f"{checks_total} checks • {sensitivity_rows} settings\n2 negative controls",
     )
     box(
         0.36,
-        0.19,
+        0.16,
         0.28,
-        0.14,
-        "Provenance + reuse\nmanifest • schema • dictionary\nlicences • release boundary",
-        face=purple_fill,
-        edge="#8B6FA8",
-        fontsize=7.0,
+        0.15,
+        "Provenance + reuse",
+        "manifest • schema • dictionary\nlicences • release boundary",
     )
     box(
-        0.68,
-        0.19,
+        0.69,
+        0.16,
         0.28,
-        0.14,
-        "PT60-Candidate v1.0.2\n67 files + checksums\nretained + rejected",
-        face=green_fill,
-        edge=COLORS["green"],
-        weight="bold",
+        0.15,
+        "PT60-Candidate v1.0.2",
+        "67 files • checksums\nretained + rejected",
     )
-    arrow([(0.525, 0.47), (0.525, 0.40), (0.19, 0.40), (0.19, 0.33)])
-    arrow([(0.83, 0.47), (0.83, 0.38), (0.25, 0.38), (0.25, 0.33)])
-    arrow([(0.33, 0.26), (0.36, 0.26)])
-    arrow([(0.64, 0.26), (0.68, 0.26)])
+    arrow([(0.52, 0.44), (0.52, 0.36), (0.18, 0.36), (0.18, 0.31)])
+    ax.plot([0.83, 0.83, 0.52], [0.44, 0.36, 0.36], color="black", linewidth=0.8, zorder=1)
+    arrow([(0.31, 0.235), (0.36, 0.235)])
+    arrow([(0.64, 0.235), (0.69, 0.235)])
 
+    ax.plot([0.02, 0.98], [0.095, 0.095], color="black", linewidth=0.65)
     ax.text(
         0.5,
-        0.055,
+        0.048,
         "Candidate topology • transparent exclusions • public-source concordance • not an operational grid model",
         ha="center",
         va="center",
         fontsize=7.0,
-        color="#374151",
+        color="black",
     )
     save(fig, "fig1_pipeline_overview")
 

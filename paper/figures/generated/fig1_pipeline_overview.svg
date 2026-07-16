@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="416.16pt" height="205.668pt" viewBox="0 0 416.16 205.668" xmlns="http://www.w3.org/2000/svg" version="1.1">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="416.16pt" height="247.248pt" viewBox="0 0 416.16 247.248" xmlns="http://www.w3.org/2000/svg" version="1.1">
  <title>fig1_pipeline_overview</title>
  <metadata>
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -22,8 +22,8 @@
  </defs>
  <g id="figure_1">
   <g id="patch_1">
-   <path d="M 0 205.668
-L 416.16 205.668
+   <path d="M 0 247.248
+L 416.16 247.248
 L 416.16 0
 L 0 0
 z
@@ -31,319 +31,282 @@ z
   </g>
   <g id="axes_1">
    <g id="patch_2">
-    <path d="M 67.464 47.36628
-Q 72.486 47.36628 76.501769 47.36628
-" clip-path="url(#pdab487323f)" style="fill: none; stroke: #6b7280; stroke-width: 0.9; stroke-linecap: round"/>
-    <path d="M 73.301769 45.76628
-L 76.501769 47.36628
-L 73.301769 48.96628
+    <path d="M 75.4992 47.9484
+Q 79.5168 47.9484 82.639973 47.9484
+" clip-path="url(#pdfacd8eb36)" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linecap: round"/>
+    <path d="M 79.239973 46.2484
+L 82.639973 47.9484
+L 79.239973 49.6484
 z
-" clip-path="url(#pdab487323f)" style="fill: #6b7280; stroke: #6b7280; stroke-width: 0.9; stroke-linecap: round"/>
+" clip-path="url(#pdfacd8eb36)" style="stroke: #000000; stroke-width: 0.8; stroke-linecap: round"/>
    </g>
    <g id="patch_3">
-    <path d="M 143.7984 47.36628
-Q 148.8204 47.36628 152.836169 47.36628
-" clip-path="url(#pdab487323f)" style="fill: none; stroke: #6b7280; stroke-width: 0.9; stroke-linecap: round"/>
-    <path d="M 149.636169 45.76628
-L 152.836169 47.36628
-L 149.636169 48.96628
+    <path d="M 155.8512 47.9484
+Q 159.8688 47.9484 162.991973 47.9484
+" clip-path="url(#pdfacd8eb36)" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linecap: round"/>
+    <path d="M 159.591973 46.2484
+L 162.991973 47.9484
+L 159.591973 49.6484
 z
-" clip-path="url(#pdab487323f)" style="fill: #6b7280; stroke: #6b7280; stroke-width: 0.9; stroke-linecap: round"/>
+" clip-path="url(#pdfacd8eb36)" style="stroke: #000000; stroke-width: 0.8; stroke-linecap: round"/>
    </g>
    <g id="patch_4">
-    <path d="M 218.124 47.36628
-Q 223.146 47.36628 227.161769 47.36628
-" clip-path="url(#pdab487323f)" style="fill: none; stroke: #6b7280; stroke-width: 0.9; stroke-linecap: round"/>
-    <path d="M 223.961769 45.76628
-L 227.161769 47.36628
-L 223.961769 48.96628
+    <path d="M 228.168 47.9484
+Q 232.1856 47.9484 235.308773 47.9484
+" clip-path="url(#pdfacd8eb36)" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linecap: round"/>
+    <path d="M 231.908773 46.2484
+L 235.308773 47.9484
+L 231.908773 49.6484
 z
-" clip-path="url(#pdab487323f)" style="fill: #6b7280; stroke: #6b7280; stroke-width: 0.9; stroke-linecap: round"/>
+" clip-path="url(#pdfacd8eb36)" style="stroke: #000000; stroke-width: 0.8; stroke-linecap: round"/>
    </g>
    <g id="patch_5">
-    <path d="M 296.4672 47.36628
-Q 304.5024 47.36628 311.531369 47.36628
-" clip-path="url(#pdab487323f)" style="fill: none; stroke: #6b7280; stroke-width: 0.9; stroke-linecap: round"/>
-    <path d="M 308.331369 45.76628
-L 311.531369 47.36628
-L 308.331369 48.96628
+    <path d="M 308.52 47.9484
+Q 314.5464 47.9484 319.678373 47.9484
+" clip-path="url(#pdfacd8eb36)" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linecap: round"/>
+    <path d="M 316.278373 46.2484
+L 319.678373 47.9484
+L 316.278373 49.6484
 z
-" clip-path="url(#pdab487323f)" style="fill: #6b7280; stroke: #6b7280; stroke-width: 0.9; stroke-linecap: round"/>
+" clip-path="url(#pdfacd8eb36)" style="stroke: #000000; stroke-width: 0.8; stroke-linecap: round"/>
    </g>
    <g id="patch_6">
-    <path d="M 344.6784 64.5804
-Q 344.6784 74.1438 344.6784 82.700969
-" clip-path="url(#pdab487323f)" style="fill: none; stroke: #009e73; stroke-width: 0.9; stroke-linecap: round"/>
-    <path d="M 346.2784 79.500969
-L 344.6784 82.700969
-L 343.0784 79.500969
+    <path d="M 360.7488 74.72592
+Q 360.7488 89.86104 360.7488 104.101733
+" clip-path="url(#pdfacd8eb36)" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linecap: round"/>
+    <path d="M 362.4488 100.701733
+L 360.7488 104.101733
+L 359.0488 100.701733
 z
-" clip-path="url(#pdab487323f)" style="fill: #009e73; stroke: #009e73; stroke-width: 0.9; stroke-linecap: round"/>
+" clip-path="url(#pdfacd8eb36)" style="stroke: #000000; stroke-width: 0.8; stroke-linecap: round"/>
    </g>
    <g id="line2d_1">
-    <path d="M 320.5728 56.92968
-L 300.4848 74.1438
-" clip-path="url(#pdab487323f)" style="fill: none; stroke: #d55e00; stroke-width: 0.9; stroke-linecap: square"/>
+    <path d="M 336.6432 64.24776
+L 308.52 93.35376
+" clip-path="url(#pdfacd8eb36)" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linecap: square"/>
    </g>
    <g id="line2d_2">
-    <path d="M 300.4848 74.1438
-L 218.124 74.1438
-" clip-path="url(#pdab487323f)" style="fill: none; stroke: #d55e00; stroke-width: 0.9; stroke-linecap: square"/>
+    <path d="M 308.52 93.35376
+L 216.1152 93.35376
+" clip-path="url(#pdfacd8eb36)" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linecap: square"/>
    </g>
    <g id="patch_7">
-    <path d="M 218.124 74.1438
-Q 218.124 78.9255 218.124 82.700969
-" clip-path="url(#pdab487323f)" style="fill: none; stroke: #d55e00; stroke-width: 0.9; stroke-linecap: round"/>
-    <path d="M 219.724 79.500969
-L 218.124 82.700969
-L 216.524 79.500969
+    <path d="M 216.1152 93.35376
+Q 216.1152 99.17496 216.1152 104.101733
+" clip-path="url(#pdfacd8eb36)" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linecap: round"/>
+    <path d="M 217.8152 100.701733
+L 216.1152 104.101733
+L 214.4152 100.701733
 z
-" clip-path="url(#pdab487323f)" style="fill: #d55e00; stroke: #d55e00; stroke-width: 0.9; stroke-linecap: round"/>
+" clip-path="url(#pdfacd8eb36)" style="stroke: #000000; stroke-width: 0.8; stroke-linecap: round"/>
    </g>
    <g id="line2d_3">
-    <path d="M 218.124 108.57204
-L 218.124 121.9608
-" clip-path="url(#pdab487323f)" style="fill: none; stroke: #6b7280; stroke-width: 0.9; stroke-linecap: square"/>
+    <path d="M 216.1152 137.59488
+L 216.1152 156.22272
+" clip-path="url(#pdfacd8eb36)" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linecap: square"/>
    </g>
    <g id="line2d_4">
-    <path d="M 218.124 121.9608
-L 83.5344 121.9608
-" clip-path="url(#pdab487323f)" style="fill: none; stroke: #6b7280; stroke-width: 0.9; stroke-linecap: square"/>
+    <path d="M 216.1152 156.22272
+L 79.5168 156.22272
+" clip-path="url(#pdfacd8eb36)" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linecap: square"/>
    </g>
    <g id="patch_8">
-    <path d="M 83.5344 121.9608
-Q 83.5344 128.65518 83.5344 134.343329
-" clip-path="url(#pdab487323f)" style="fill: none; stroke: #6b7280; stroke-width: 0.9; stroke-linecap: round"/>
-    <path d="M 85.1344 131.143329
-L 83.5344 134.343329
-L 81.9344 131.143329
+    <path d="M 79.5168 156.22272
+Q 79.5168 162.04392 79.5168 166.970693
+" clip-path="url(#pdfacd8eb36)" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linecap: round"/>
+    <path d="M 81.2168 163.570693
+L 79.5168 166.970693
+L 77.8168 163.570693
 z
-" clip-path="url(#pdab487323f)" style="fill: #6b7280; stroke: #6b7280; stroke-width: 0.9; stroke-linecap: round"/>
+" clip-path="url(#pdfacd8eb36)" style="stroke: #000000; stroke-width: 0.8; stroke-linecap: round"/>
    </g>
    <g id="line2d_5">
-    <path d="M 340.6608 108.57204
-L 340.6608 125.78616
-" clip-path="url(#pdab487323f)" style="fill: none; stroke: #6b7280; stroke-width: 0.9; stroke-linecap: square"/>
-   </g>
-   <g id="line2d_6">
-    <path d="M 340.6608 125.78616
-L 107.64 125.78616
-" clip-path="url(#pdab487323f)" style="fill: none; stroke: #6b7280; stroke-width: 0.9; stroke-linecap: square"/>
+    <path d="M 340.6608 137.59488
+L 340.6608 156.22272
+L 216.1152 156.22272
+" clip-path="url(#pdfacd8eb36)" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linecap: square"/>
    </g>
    <g id="patch_9">
-    <path d="M 107.64 125.78616
-Q 107.64 130.56786 107.64 134.343329
-" clip-path="url(#pdab487323f)" style="fill: none; stroke: #6b7280; stroke-width: 0.9; stroke-linecap: round"/>
-    <path d="M 109.24 131.143329
-L 107.64 134.343329
-L 106.04 131.143329
+    <path d="M 131.7456 185.32872
+Q 141.7896 185.32872 150.939173 185.32872
+" clip-path="url(#pdfacd8eb36)" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linecap: round"/>
+    <path d="M 147.539173 183.62872
+L 150.939173 185.32872
+L 147.539173 187.02872
 z
-" clip-path="url(#pdab487323f)" style="fill: #6b7280; stroke: #6b7280; stroke-width: 0.9; stroke-linecap: round"/>
+" clip-path="url(#pdfacd8eb36)" style="stroke: #000000; stroke-width: 0.8; stroke-linecap: round"/>
    </g>
    <g id="patch_10">
-    <path d="M 139.7808 148.73832
-Q 145.8072 148.73832 150.827369 148.73832
-" clip-path="url(#pdab487323f)" style="fill: none; stroke: #6b7280; stroke-width: 0.9; stroke-linecap: round"/>
-    <path d="M 147.627369 147.13832
-L 150.827369 148.73832
-L 147.627369 150.33832
+    <path d="M 264.3264 185.32872
+Q 274.3704 185.32872 283.519973 185.32872
+" clip-path="url(#pdfacd8eb36)" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linecap: round"/>
+    <path d="M 280.119973 183.62872
+L 283.519973 185.32872
+L 280.119973 187.02872
 z
-" clip-path="url(#pdab487323f)" style="fill: #6b7280; stroke: #6b7280; stroke-width: 0.9; stroke-linecap: round"/>
+" clip-path="url(#pdfacd8eb36)" style="stroke: #000000; stroke-width: 0.8; stroke-linecap: round"/>
    </g>
    <g id="patch_11">
-    <path d="M 264.3264 148.73832
-Q 272.3616 148.73832 279.390569 148.73832
-" clip-path="url(#pdab487323f)" style="fill: none; stroke: #6b7280; stroke-width: 0.9; stroke-linecap: round"/>
-    <path d="M 276.190569 147.13832
-L 279.390569 148.73832
-L 276.190569 150.33832
+    <path d="M 11.2176 67.74048
+L 75.4992 67.74048
+L 75.4992 28.15632
+L 11.2176 28.15632
 z
-" clip-path="url(#pdab487323f)" style="fill: #6b7280; stroke: #6b7280; stroke-width: 0.9; stroke-linecap: round"/>
+" clip-path="url(#pdfacd8eb36)" style="fill: #ffffff; stroke: #000000; stroke-width: 0.9; stroke-linejoin: miter"/>
    </g>
    <g id="patch_12">
-    <path d="M 12.82464 62.285184
-L 65.85696 62.285184
-Q 70.67808 62.285184 70.67808 59.989968
-L 70.67808 34.742592
-Q 70.67808 32.447376 65.85696 32.447376
-L 12.82464 32.447376
-Q 8.00352 32.447376 8.00352 34.742592
-L 8.00352 59.989968
-Q 8.00352 62.285184 12.82464 62.285184
+    <path d="M 83.5344 67.74048
+L 155.8512 67.74048
+L 155.8512 28.15632
+L 83.5344 28.15632
 z
-" clip-path="url(#pdab487323f)" style="fill: #f3f4f6; stroke: #6b7280; stroke-linejoin: miter"/>
+" clip-path="url(#pdfacd8eb36)" style="fill: #ffffff; stroke: #000000; stroke-width: 0.9; stroke-linejoin: miter"/>
    </g>
    <g id="patch_13">
-    <path d="M 79.11504 62.285184
-L 142.19136 62.285184
-Q 147.01248 62.285184 147.01248 59.989968
-L 147.01248 34.742592
-Q 147.01248 32.447376 142.19136 32.447376
-L 79.11504 32.447376
-Q 74.29392 32.447376 74.29392 34.742592
-L 74.29392 59.989968
-Q 74.29392 62.285184 79.11504 62.285184
+    <path d="M 163.8864 67.74048
+L 228.168 67.74048
+L 228.168 28.15632
+L 163.8864 28.15632
 z
-" clip-path="url(#pdab487323f)" style="fill: #e8f1f8; stroke: #0072b2; stroke-linejoin: miter"/>
+" clip-path="url(#pdfacd8eb36)" style="fill: #ffffff; stroke: #000000; stroke-width: 0.9; stroke-linejoin: miter"/>
    </g>
    <g id="patch_14">
-    <path d="M 155.44944 62.285184
-L 216.51696 62.285184
-Q 221.33808 62.285184 221.33808 59.989968
-L 221.33808 34.742592
-Q 221.33808 32.447376 216.51696 32.447376
-L 155.44944 32.447376
-Q 150.62832 32.447376 150.62832 34.742592
-L 150.62832 59.989968
-Q 150.62832 62.285184 155.44944 62.285184
+    <path d="M 236.2032 67.74048
+L 308.52 67.74048
+L 308.52 28.15632
+L 236.2032 28.15632
 z
-" clip-path="url(#pdab487323f)" style="fill: #e8f1f8; stroke: #0072b2; stroke-linejoin: miter"/>
+" clip-path="url(#pdfacd8eb36)" style="fill: #ffffff; stroke: #000000; stroke-width: 0.9; stroke-linejoin: miter"/>
    </g>
    <g id="patch_15">
-    <path d="M 229.77504 62.285184
-L 294.86016 62.285184
-Q 299.68128 62.285184 299.68128 59.989968
-L 299.68128 34.742592
-Q 299.68128 32.447376 294.86016 32.447376
-L 229.77504 32.447376
-Q 224.95392 32.447376 224.95392 34.742592
-L 224.95392 59.989968
-Q 224.95392 62.285184 229.77504 62.285184
+    <path d="M 360.7488 21.17088
+L 400.9248 47.9484
+L 360.7488 74.72592
+L 320.5728 47.9484
 z
-" clip-path="url(#pdab487323f)" style="fill: #e8f1f8; stroke: #0072b2; stroke-linejoin: miter"/>
+" clip-path="url(#pdfacd8eb36)" style="fill: #ffffff; stroke: #000000; stroke-width: 0.9; stroke-linejoin: miter"/>
    </g>
    <g id="patch_16">
-    <path d="M 344.6784 30.15216
-L 376.8192 47.36628
-L 344.6784 64.5804
-L 312.5376 47.36628
+    <path d="M 284.4144 137.59488
+L 396.9072 137.59488
+L 396.9072 104.99616
+L 284.4144 104.99616
 z
-" clip-path="url(#pdab487323f)" style="fill: #fff4d6; stroke: #e69f00; stroke-linejoin: miter"/>
+" clip-path="url(#pdfacd8eb36)" style="fill: #ffffff; stroke: #000000; stroke-width: 0.9; stroke-linejoin: miter"/>
    </g>
    <g id="patch_17">
-    <path d="M 290.03904 110.102184
-L 391.28256 110.102184
-Q 396.10368 110.102184 396.10368 107.806968
-L 396.10368 84.472272
-Q 396.10368 82.177056 391.28256 82.177056
-L 290.03904 82.177056
-Q 285.21792 82.177056 285.21792 84.472272
-L 285.21792 107.806968
-Q 285.21792 110.102184 290.03904 110.102184
+    <path d="M 163.8864 137.59488
+L 268.344 137.59488
+L 268.344 104.99616
+L 163.8864 104.99616
 z
-" clip-path="url(#pdab487323f)" style="fill: #e5f4ee; stroke: #009e73; stroke-linejoin: miter"/>
+" clip-path="url(#pdfacd8eb36)" style="fill: #ffffff; stroke: #000000; stroke-width: 0.9; stroke-linejoin: miter"/>
    </g>
    <g id="patch_18">
-    <path d="M 169.51104 110.102184
-L 266.73696 110.102184
-Q 271.55808 110.102184 271.55808 107.806968
-L 271.55808 84.472272
-Q 271.55808 82.177056 266.73696 82.177056
-L 169.51104 82.177056
-Q 164.68992 82.177056 164.68992 84.472272
-L 164.68992 107.806968
-Q 164.68992 110.102184 169.51104 110.102184
+    <path d="M 23.2704 202.79232
+L 131.7456 202.79232
+L 131.7456 167.86512
+L 23.2704 167.86512
 z
-" clip-path="url(#pdab487323f)" style="fill: #fcece7; stroke: #d55e00; stroke-linejoin: miter"/>
+" clip-path="url(#pdfacd8eb36)" style="fill: #ffffff; stroke: #000000; stroke-width: 0.9; stroke-linejoin: miter"/>
    </g>
    <g id="patch_19">
-    <path d="M 28.89504 163.657224
-L 138.17376 163.657224
-Q 142.99488 163.657224 142.99488 161.362008
-L 142.99488 136.114632
-Q 142.99488 133.819416 138.17376 133.819416
-L 28.89504 133.819416
-Q 24.07392 133.819416 24.07392 136.114632
-L 24.07392 161.362008
-Q 24.07392 163.657224 28.89504 163.657224
+    <path d="M 151.8336 202.79232
+L 264.3264 202.79232
+L 264.3264 167.86512
+L 151.8336 167.86512
 z
-" clip-path="url(#pdab487323f)" style="fill: #e8f1f8; stroke: #0072b2; stroke-linejoin: miter"/>
+" clip-path="url(#pdfacd8eb36)" style="fill: #ffffff; stroke: #000000; stroke-width: 0.9; stroke-linejoin: miter"/>
    </g>
    <g id="patch_20">
-    <path d="M 153.44064 163.657224
-L 262.71936 163.657224
-Q 267.54048 163.657224 267.54048 161.362008
-L 267.54048 136.114632
-Q 267.54048 133.819416 262.71936 133.819416
-L 153.44064 133.819416
-Q 148.61952 133.819416 148.61952 136.114632
-L 148.61952 161.362008
-Q 148.61952 163.657224 153.44064 163.657224
+    <path d="M 284.4144 202.79232
+L 396.9072 202.79232
+L 396.9072 167.86512
+L 284.4144 167.86512
 z
-" clip-path="url(#pdab487323f)" style="fill: #f0eaf5; stroke: #8b6fa8; stroke-linejoin: miter"/>
+" clip-path="url(#pdfacd8eb36)" style="fill: #ffffff; stroke: #000000; stroke-width: 0.9; stroke-linejoin: miter"/>
    </g>
-   <g id="patch_21">
-    <path d="M 282.00384 163.657224
-L 391.28256 163.657224
-Q 396.10368 163.657224 396.10368 161.362008
-L 396.10368 136.114632
-Q 396.10368 133.819416 391.28256 133.819416
-L 282.00384 133.819416
-Q 277.18272 133.819416 277.18272 136.114632
-L 277.18272 161.362008
-Q 277.18272 163.657224 282.00384 163.657224
-z
-" clip-path="url(#pdab487323f)" style="fill: #e5f4ee; stroke: #009e73; stroke-linejoin: miter"/>
+   <g id="line2d_6">
+    <path d="M 15.2352 217.92744
+L 400.9248 217.92744
+" clip-path="url(#pdfacd8eb36)" style="fill: none; stroke: #000000; stroke-width: 0.65; stroke-linecap: square"/>
    </g>
    <g id="text_1">
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(12.156191 41.565752)">E-REDES inputs</text>
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(20.068925 49.297843)">5,334 lines</text>
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(17.008066 57.029933)">586 facilities</text>
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; font-stretch: condensed; text-anchor: middle" x="43.3584" y="43.942339" transform="rotate(-0 43.3584 43.942339)">E-REDES inputs</text>
    </g>
    <g id="text_2">
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(78.939372 41.565752)">Normalize + audit</text>
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(75.728122 49.297843)">schema • geometry</text>
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(91.172419 57.029933)">metric CRS</text>
+    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(24.086525 53.428529)">5,334 lines</text>
+    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(21.025666 61.373376)">586 facilities</text>
    </g>
    <g id="text_3">
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(156.993356 45.431797)">Endpoint–facility</text>
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(169.502028 53.163888)">matching</text>
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; font-stretch: condensed; text-anchor: middle" x="119.6928" y="43.942339" transform="rotate(-0 119.6928 43.942339)">Normalize + audit</text>
    </g>
    <g id="text_4">
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(233.330491 45.431797)">Merge + classify</text>
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(227.342209 53.163888)">1,341 circuit groups</text>
+    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(84.767722 53.428529)">schema • geometry</text>
+    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(100.212019 61.373376)">metric CRS</text>
    </g>
    <g id="text_5">
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(327.802384 45.378608)">Retention</text>
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(334.214494 53.217077)">rules?</text>
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; font-stretch: condensed" transform="translate(163.102044 45.95923)">Endpoint–facility</text>
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; font-stretch: condensed" transform="translate(177.5822 53.746008)">matching</text>
    </g>
    <g id="text_6">
-    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(300.137362 94.205137)">Retained candidates</text>
-    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(290.988144 101.937228)">358 branches + GraphML</text>
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; font-stretch: condensed; text-anchor: middle" x="272.3616" y="43.914995" transform="rotate(-0 272.3616 43.914995)">Merge + classify</text>
    </g>
    <g id="text_7">
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(169.303922 94.205137)">Downgrade/rejection ledger</text>
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(178.506188 101.937228)">983 records + reasons</text>
+    <text style="font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: middle" x="272.3616" y="57.400953" transform="rotate(-0 272.3616 57.400953)">1,341 circuit groups</text>
    </g>
    <g id="text_8">
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #009e73" x="350.7048" y="75.10014" transform="rotate(-0 350.7048 75.10014)">pass</text>
+    <text style="font-weight: 700; font-size: 7.1px; font-family: 'DejaVu Sans'; font-stretch: condensed" transform="translate(341.095667 46.067205)">Retention</text>
+    <text style="font-weight: 700; font-size: 7.1px; font-family: 'DejaVu Sans'; font-stretch: condensed" transform="translate(348.673808 53.747907)">rules?</text>
    </g>
    <g id="text_9">
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #d55e00" x="272.3616" y="71.27478" transform="rotate(-0 272.3616 71.27478)">fail closed</text>
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; font-stretch: condensed; text-anchor: middle" x="340.6608" y="118.337275" transform="rotate(-0 340.6608 118.337275)">Retained candidates</text>
    </g>
    <g id="text_10">
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(43.270728 142.937792)">Validation + sensitivity</text>
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(39.858775 150.669883)">25 checks • 216 settings</text>
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(49.821197 158.401973)">2 negative controls</text>
+    <text style="font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: middle" x="340.6608" y="129.420839" transform="rotate(-0 340.6608 129.420839)">358 branches + GraphML</text>
    </g>
    <g id="text_11">
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(172.778672 142.937792)">Provenance + reuse</text>
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(153.024453 150.669883)">manifest • schema • dictionary</text>
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(159.098047 158.401973)">licences • release boundary</text>
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; font-stretch: condensed; text-anchor: middle" x="216.1152" y="118.309931" transform="rotate(-0 216.1152 118.309931)">Disposition ledger</text>
    </g>
    <g id="text_12">
-    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(291.861247 142.910448)">PT60-Candidate v1.0.2</text>
-    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(295.157809 150.642539)">67 files + checksums</text>
-    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(298.267341 158.374629)">retained + rejected</text>
+    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(170.984341 125.448416)">983 downgraded/rejected</text>
+    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(184.290356 133.393263)">records + reasons</text>
    </g>
    <g id="text_13">
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #374151" x="208.08" y="189.879823" transform="rotate(-0 208.08 189.879823)">Candidate topology • transparent exclusions • public-source concordance • not an operational grid model</text>
+    <text style="font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start" x="366.7752" y="91.792603" transform="rotate(-0 366.7752 91.792603)">pass</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: middle" x="276.3792" y="91.326907" transform="rotate(-0 276.3792 91.326907)">fail closed</text>
+   </g>
+   <g id="text_15">
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; font-stretch: condensed; text-anchor: middle" x="77.508" y="181.993859" transform="rotate(-0 77.508 181.993859)">Validation + sensitivity</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(33.832375 189.924027)">25 checks • 216 settings</text>
+    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(43.794797 197.868874)">2 negative controls</text>
+   </g>
+   <g id="text_17">
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; font-stretch: condensed; text-anchor: middle" x="208.08" y="182.021203" transform="rotate(-0 208.08 182.021203)">Provenance + reuse</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(153.024453 189.924027)">manifest • schema • dictionary</text>
+    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(159.098047 197.868874)">licences • release boundary</text>
+   </g>
+   <g id="text_19">
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; font-stretch: condensed; text-anchor: middle" x="340.6608" y="182.021203" transform="rotate(-0 340.6608 182.021203)">PT60-Candidate v1.0.2</text>
+   </g>
+   <g id="text_20">
+    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(304.130644 189.924027)">67 files • checksums</text>
+    <text style="font-size: 7px; font-family: 'DejaVu Sans'" transform="translate(306.594862 197.868874)">retained + rejected</text>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: middle" x="208.08" y="230.802859" transform="rotate(-0 208.08 230.802859)">Candidate topology • transparent exclusions • public-source concordance • not an operational grid model</text>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="pdab487323f">
-   <rect x="7.2" y="7.2" width="401.76" height="191.268"/>
+  <clipPath id="pdfacd8eb36">
+   <rect x="7.2" y="7.2" width="401.76" height="232.848"/>
   </clipPath>
  </defs>
 </svg>
