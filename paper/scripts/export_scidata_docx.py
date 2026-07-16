@@ -321,7 +321,11 @@ def format_docx(path: Path) -> None:
         style_name = paragraph.style.name
         if style_name == "Heading 4":
             # LaTeX \paragraph headings are semantic third-level headings in
-            # this manuscript; avoid a Heading 2 -> Heading 4 accessibility jump.
+            # this manuscript and are unnumbered in the source. Pandoc's global
+            # numbering otherwise creates misleading labels such as 3.3.0.1.
+            cleaned_heading = re.sub(r"^\d+(?:\.\d+)*\s+", "", paragraph.text)
+            paragraph.clear()
+            paragraph.add_run(cleaned_heading)
             paragraph.style = document.styles["Heading 3"]
             style_name = "Heading 3"
         size = title_style_sizes.get(style_name, 10.5)
@@ -429,6 +433,7 @@ def main() -> None:
         temporary_source.name,
         "--from=latex",
         "--to=docx",
+        "--number-sections",
         "--citeproc",
         "--bibliography=references.bib",
         "--csl=../nature.csl",
