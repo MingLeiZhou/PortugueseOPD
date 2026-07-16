@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the canonical data-bearing paper figures from a frozen release.
+"""Generate all canonical paper figures from a frozen release.
 
 Every plotted value is read from the versioned public archive.  The geographic
 overview uses released coordinates but prints no facility identifiers.
@@ -21,6 +21,7 @@ os.environ.setdefault("XDG_CACHE_HOME", str(ROOT / ".cache"))
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
+from matplotlib.patches import FancyArrowPatch, FancyBboxPatch, Polygon
 import networkx as nx
 import numpy as np
 import pandas as pd
@@ -53,6 +54,7 @@ def configure_style() -> None:
             "axes.grid": False,
             "savefig.bbox": "tight",
             "svg.fonttype": "none",
+            "svg.hashsalt": "PT60-Candidate-v1.0.2",
             "pdf.fonttype": 42,
         }
     )
@@ -64,11 +66,31 @@ def panel_label(ax: plt.Axes, label: str) -> None:
 
 def save(fig: plt.Figure, stem: str) -> None:
     OUT.mkdir(parents=True, exist_ok=True)
-    fig.savefig(OUT / f"{stem}.pdf")
+    fig.patch.set_facecolor("white")
+    fig.savefig(
+        OUT / f"{stem}.pdf",
+        facecolor="white",
+        metadata={
+            "Title": stem,
+            "Creator": "PortugueseOPD figure pipeline",
+            "Producer": "Matplotlib",
+            "CreationDate": None,
+            "ModDate": None,
+        },
+    )
     svg_path = OUT / f"{stem}.svg"
-    fig.savefig(svg_path)
+    fig.savefig(
+        svg_path,
+        facecolor="white",
+        metadata={"Title": stem, "Creator": "PortugueseOPD figure pipeline", "Date": None},
+    )
     svg_path.write_text("\n".join(line.rstrip() for line in svg_path.read_text(encoding="utf-8").splitlines()) + "\n", encoding="utf-8")
-    fig.savefig(OUT / f"{stem}.png", dpi=300)
+    fig.savefig(
+        OUT / f"{stem}.png",
+        dpi=300,
+        facecolor="white",
+        metadata={"Software": "PortugueseOPD figure pipeline"},
+    )
     plt.close(fig)
 
 
@@ -78,6 +100,188 @@ def sha256(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def figure1_pipeline(core: Path, validation: Path) -> None:
+    """Render the release workflow as a data-linked Matplotlib diagram."""
+
+    summary = json.loads((core / "at_paper_logic_summary.json").read_text())
+    checks = json.loads((validation / "internal_validation_summary.json").read_text())
+    raw = int(summary["validation"]["raw_feature_count"])
+    facilities = int(summary["validation"]["facility_rows_loaded"])
+    merged = int(summary["selected_strategy"]["merged_circuits"])
+    retained = int(summary["selected_strategy"]["inter_facility_circuits"])
+    downgraded = merged - retained
+    sensitivity_rows = int(checks["frozen_counts"]["sensitivity_sweep_rows"])
+    checks_total = int(checks["checks_total"])
+
+    fig, ax = plt.subplots(figsize=(7.2, 3.45))
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+    ax.axis("off")
+
+    def box(
+        x: float,
+        y: float,
+        width: float,
+        height: float,
+        text: str,
+        *,
+        face: str,
+        edge: str,
+        weight: str = "normal",
+        fontsize: float = 7.0,
+    ) -> None:
+        patch = FancyBboxPatch(
+            (x, y),
+            width,
+            height,
+            boxstyle="round,pad=0.008,rounding_size=0.012",
+            linewidth=1.0,
+            facecolor=face,
+            edgecolor=edge,
+            zorder=2,
+        )
+        ax.add_patch(patch)
+        ax.text(
+            x + width / 2,
+            y + height / 2,
+            text,
+            ha="center",
+            va="center",
+            fontsize=fontsize,
+            fontweight=weight,
+            linespacing=1.18,
+            zorder=3,
+        )
+
+    def arrow(points: list[tuple[float, float]], color: str = COLORS["gray"]) -> None:
+        for start, end in zip(points[:-2], points[1:-1]):
+            ax.plot([start[0], end[0]], [start[1], end[1]], color=color, linewidth=0.9, zorder=1)
+        ax.add_patch(
+            FancyArrowPatch(
+                points[-2],
+                points[-1],
+                arrowstyle="-|>",
+                mutation_scale=8,
+                linewidth=0.9,
+                color=color,
+                shrinkA=0,
+                shrinkB=0,
+                zorder=1,
+            )
+        )
+
+    blue_fill = "#E8F1F8"
+    green_fill = "#E5F4EE"
+    orange_fill = "#FCECE7"
+    purple_fill = "#F0EAF5"
+    gray_fill = "#F3F4F6"
+
+    box(0.01, 0.72, 0.14, 0.14, f"E-REDES inputs\n{raw:,} lines\n{facilities:,} facilities", face=gray_fill, edge=COLORS["gray"])
+    box(
+        0.175,
+        0.72,
+        0.165,
+        0.14,
+        "Normalize + audit\nschema • geometry\nmetric CRS",
+        face=blue_fill,
+        edge=COLORS["blue"],
+        fontsize=7.0,
+    )
+    box(0.365, 0.72, 0.16, 0.14, "Endpoint–facility\nmatching", face=blue_fill, edge=COLORS["blue"])
+    box(0.55, 0.72, 0.17, 0.14, f"Merge + classify\n{merged:,} circuit groups", face=blue_fill, edge=COLORS["blue"])
+
+    diamond_center = (0.84, 0.79)
+    diamond = Polygon(
+        [
+            (diamond_center[0], 0.88),
+            (0.92, diamond_center[1]),
+            (diamond_center[0], 0.70),
+            (0.76, diamond_center[1]),
+        ],
+        closed=True,
+        facecolor="#FFF4D6",
+        edgecolor=COLORS["orange"],
+        linewidth=1.0,
+        zorder=2,
+    )
+    ax.add_patch(diamond)
+    ax.text(*diamond_center, "Retention\nrules?", ha="center", va="center", fontsize=7.0, zorder=3)
+
+    arrow([(0.15, 0.79), (0.175, 0.79)])
+    arrow([(0.34, 0.79), (0.365, 0.79)])
+    arrow([(0.525, 0.79), (0.55, 0.79)])
+    arrow([(0.72, 0.79), (0.76, 0.79)])
+
+    box(
+        0.70,
+        0.47,
+        0.26,
+        0.13,
+        f"Retained candidates\n{retained:,} branches + GraphML",
+        face=green_fill,
+        edge=COLORS["green"],
+        weight="bold",
+    )
+    box(
+        0.40,
+        0.47,
+        0.25,
+        0.13,
+        f"Downgrade/rejection ledger\n{downgraded:,} records + reasons",
+        face=orange_fill,
+        edge=COLORS["red"],
+    )
+    arrow([(0.84, 0.70), (0.84, 0.60)], COLORS["green"])
+    arrow([(0.78, 0.74), (0.73, 0.65), (0.525, 0.65), (0.525, 0.60)], COLORS["red"])
+    ax.text(0.855, 0.645, "pass", color=COLORS["green"], fontsize=7.0, ha="left")
+    ax.text(0.66, 0.665, "fail closed", color=COLORS["red"], fontsize=7.0, ha="center")
+
+    box(
+        0.05,
+        0.19,
+        0.28,
+        0.14,
+        f"Validation + sensitivity\n{checks_total} checks • {sensitivity_rows} settings\n2 negative controls",
+        face=blue_fill,
+        edge=COLORS["blue"],
+    )
+    box(
+        0.36,
+        0.19,
+        0.28,
+        0.14,
+        "Provenance + reuse\nmanifest • schema • dictionary\nlicences • release boundary",
+        face=purple_fill,
+        edge="#8B6FA8",
+        fontsize=7.0,
+    )
+    box(
+        0.68,
+        0.19,
+        0.28,
+        0.14,
+        "PT60-Candidate v1.0.2\n67 files + checksums\nretained + rejected",
+        face=green_fill,
+        edge=COLORS["green"],
+        weight="bold",
+    )
+    arrow([(0.525, 0.47), (0.525, 0.40), (0.19, 0.40), (0.19, 0.33)])
+    arrow([(0.83, 0.47), (0.83, 0.38), (0.25, 0.38), (0.25, 0.33)])
+    arrow([(0.33, 0.26), (0.36, 0.26)])
+    arrow([(0.64, 0.26), (0.68, 0.26)])
+
+    ax.text(
+        0.5,
+        0.055,
+        "Candidate topology • transparent exclusions • public-source concordance • not an operational grid model",
+        ha="center",
+        va="center",
+        fontsize=7.0,
+        color="#374151",
+    )
+    save(fig, "fig1_pipeline_overview")
 
 
 def figure2_reconstruction_funnel(core: Path) -> None:
@@ -291,36 +495,39 @@ def main() -> None:
     args = parser.parse_args()
     release_root = args.release_root.resolve()
     core = release_root / "core_topology"
+    validation = release_root / "validation"
     inputs = [
         core / "at_paper_logic_summary.json",
         core / "at_paper_logic_graph.graphml",
         core / "at_interfacility_candidate_branches.csv",
         core / "at_paper_logic_parameter_sweep.csv",
+        validation / "internal_validation_summary.json",
     ]
     missing = [str(path) for path in inputs if not path.is_file()]
     if missing:
         raise FileNotFoundError(f"Frozen figure inputs are missing: {missing}")
 
     configure_style()
+    figure1_pipeline(core, validation)
     figure2_reconstruction_funnel(core)
     figure3_topology_quality(core)
     figure4_sensitivity(core)
 
     outputs = [
         OUT / f"{stem}.{suffix}"
-        for stem in ["fig2_reconstruction_funnel", "fig3_topology_quality", "fig4_sensitivity_analysis"]
+        for stem in ["fig1_pipeline_overview", "fig2_reconstruction_funnel", "fig3_topology_quality", "fig4_sensitivity_analysis"]
         for suffix in ["pdf", "svg", "png"]
     ]
     report = {
         "release_root": str(release_root.relative_to(ROOT)),
         "inputs": [{"path": str(path.relative_to(ROOT)), "sha256": sha256(path)} for path in inputs],
         "outputs": [{"path": str(path.relative_to(ROOT)), "sha256": sha256(path)} for path in outputs],
-        "figures": ["fig2_reconstruction_funnel", "fig3_topology_quality", "fig4_sensitivity_analysis"],
+        "figures": ["fig1_pipeline_overview", "fig2_reconstruction_funnel", "fig3_topology_quality", "fig4_sensitivity_analysis"],
         "excluded_from_canonical_build": ["fig5_parameter_coverage", "fig6_dataset_architecture"],
     }
     report_path = OUT / "main_quantitative_figure_build.json"
     report_path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-    print(f"Generated 3 quantitative figures from {release_root}")
+    print(f"Generated 4 canonical figures from {release_root}")
     print(f"Wrote provenance report to {report_path}")
 
 
