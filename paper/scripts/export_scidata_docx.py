@@ -161,12 +161,19 @@ def format_docx(path: Path) -> None:
     section = document.sections[0]
     section.page_width = Inches(8.5)
     section.page_height = Inches(11)
-    section.top_margin = Inches(0.8)
-    section.bottom_margin = Inches(0.8)
+    section.top_margin = Inches(1.0)
+    section.bottom_margin = Inches(1.0)
     section.left_margin = Inches(1.0)
     section.right_margin = Inches(1.0)
-    section.header_distance = Inches(0.35)
-    section.footer_distance = Inches(0.35)
+    section.header_distance = Inches(0.5)
+    section.footer_distance = Inches(0.5)
+
+    settings = document.settings.element
+    view = ensure_child(settings, "w:view")
+    view.set(qn("w:val"), "print")
+    hidden_boundaries = settings.find(qn("w:doNotDisplayPageBoundaries"))
+    if hidden_boundaries is not None:
+        settings.remove(hidden_boundaries)
 
     # Narrative-proposal preset with named academic-manuscript overrides:
     # Times New Roman, black hierarchy, compact 1.12-line body, journal captions.
