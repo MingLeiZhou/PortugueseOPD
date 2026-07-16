@@ -20,20 +20,24 @@
     {
       "path": "data/releases/PT60-Candidate-v1.0.2/validation/internal_validation_summary.json",
       "sha256": "f9d52d5995d9e4335d281ed28b79d570697a73ab722e028e5a1f70e3661451d8"
+    },
+    {
+      "path": "data/releases/PT60-Candidate-v1.0.2/validation/pt_topology_cross_validation_summary.json",
+      "sha256": "29ae28e0962feb7cb77390092993a53bbd15d4c4403bdb805bd0d2f4b6cdca83"
     }
   ],
   "outputs": [
     {
       "path": "paper/figures/generated/fig1_pipeline_overview.pdf",
-      "sha256": "a5315fd3e4ea86b2225d4bcd6f6e2e772edd70cab76602f9fca83c10f69a2ab4"
+      "sha256": "4dd90c1a74eb318c9147d6b4a213e3290426c39be21b9c0a95b820431792f421"
     },
     {
       "path": "paper/figures/generated/fig1_pipeline_overview.svg",
-      "sha256": "8c26a514db860f8b7c325035c2a9e10d40ec5d46e4955faa677d452ad2e94b21"
+      "sha256": "da3dd8238ce7be984596d004abce4873348597250aaf163801391b95664caac9"
     },
     {
       "path": "paper/figures/generated/fig1_pipeline_overview.png",
-      "sha256": "ecb72fa62201ecd14085f4cb3e4169e6d3d293421e55de3d088c03d5aea30b0d"
+      "sha256": "798b96bf0a89d0b4ab7331947faa09d339f2c474a4172906f027081f5da4b8b3"
     },
     {
       "path": "paper/figures/generated/fig2_reconstruction_funnel.pdf",

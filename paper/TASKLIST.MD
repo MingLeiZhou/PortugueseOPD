@@ -447,6 +447,7 @@ These tasks require new evidence and materially broader claims. They are not req
 - [x] Build and extraction-validate the 67-file v1.0.2 candidate archive; all 25 internal checks and all archive checks pass.
 - [x] Move repeat-acquisition and projection-comparison results from Methods to a dedicated Technical Validation subsection.
 - [x] Regenerate Figure 1 with Matplotlib from frozen v1.0.2 JSON, using the same academic style and export pipeline as Figures 2–4.
+- [x] Place the 216-setting parameter sweep and documented configuration selection before the retention gate; route OSM-derived public evidence only into validation.
 - [x] Reconcile the Data Record archive inventory to 67 documented files and the 500 m sensitivity result to 368 retained branches.
 - [x] Confirm from the v1.0.2 spatial-control summary that corridor evidence changes from 290/358 real branches to 1/358 displaced branches.
 - [x] Freeze source commit `93c861c` and create annotated tag `pt60-candidate-v1.0.2`.

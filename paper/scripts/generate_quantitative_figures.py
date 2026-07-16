@@ -115,7 +115,7 @@ def figure1_pipeline(core: Path, validation: Path) -> None:
     sensitivity_rows = int(checks["frozen_counts"]["sensitivity_sweep_rows"])
     checks_total = int(checks["checks_total"])
 
-    fig, ax = plt.subplots(figsize=(7.2, 4.2))
+    fig, ax = plt.subplots(figsize=(7.2, 5.4))
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.axis("off")
@@ -195,25 +195,49 @@ def figure1_pipeline(core: Path, validation: Path) -> None:
             )
         )
 
-    box(0.01, 0.74, 0.16, 0.17, "E-REDES inputs", f"{raw:,} lines\n{facilities:,} facilities")
-    box(0.19, 0.74, 0.18, 0.17, "Normalize + audit", "schema • geometry\nmetric CRS")
-    box(0.39, 0.74, 0.16, 0.17, "Endpoint–facility\nmatching")
+    box(0.01, 0.82, 0.16, 0.15, "E-REDES inputs", f"{raw:,} lines\n{facilities:,} facilities")
+    box(0.20, 0.82, 0.17, 0.15, "Normalize\n+ audit", "schema • geometry\nEPSG:3763")
+    box(0.40, 0.82, 0.16, 0.15, "Endpoint–facility\nmatching")
     box(
-        0.57,
-        0.74,
+        0.59,
+        0.82,
         0.18,
-        0.17,
+        0.15,
         "Merge + classify",
         f"{merged:,} circuit groups",
     )
 
-    diamond_center = (0.88, 0.825)
+    arrow([(0.17, 0.89), (0.20, 0.89)])
+    arrow([(0.37, 0.89), (0.40, 0.89)])
+    arrow([(0.56, 0.89), (0.59, 0.89)])
+
+    box(
+        0.29,
+        0.625,
+        0.23,
+        0.155,
+        f"{sensitivity_rows}-setting sweep",
+        "documented\nselection rule",
+    )
+    box(
+        0.56,
+        0.625,
+        0.19,
+        0.155,
+        "Selected\nconfiguration",
+        "B • 100 m • 0.5 m\nvoltage/status-aware",
+    )
+
+    arrow([(0.68, 0.82), (0.68, 0.79), (0.405, 0.79), (0.405, 0.77)])
+    arrow([(0.52, 0.6975), (0.56, 0.6975)])
+
+    diamond_center = (0.875, 0.6975)
     diamond = Polygon(
         [
-            (diamond_center[0], 0.94),
+            (diamond_center[0], 0.79),
             (0.98, diamond_center[1]),
-            (diamond_center[0], 0.71),
-            (0.78, diamond_center[1]),
+            (diamond_center[0], 0.605),
+            (0.77, diamond_center[1]),
         ],
         closed=True,
         facecolor="white",
@@ -233,61 +257,67 @@ def figure1_pipeline(core: Path, validation: Path) -> None:
         linespacing=1.15,
         zorder=3,
     )
-
-    arrow([(0.17, 0.825), (0.19, 0.825)])
-    arrow([(0.37, 0.825), (0.39, 0.825)])
-    arrow([(0.55, 0.825), (0.57, 0.825)])
-    arrow([(0.75, 0.825), (0.78, 0.825)])
+    arrow([(0.75, 0.6975), (0.77, 0.6975)])
 
     box(
-        0.69,
-        0.44,
-        0.28,
+        0.71,
+        0.40,
+        0.27,
         0.14,
         "Retained candidates",
         f"{retained:,} branches + GraphML",
     )
     box(
-        0.39,
-        0.44,
+        0.42,
+        0.40,
         0.26,
         0.14,
         "Disposition ledger",
         f"{downgraded:,} downgraded/rejected\nrecords + reasons",
     )
-    arrow([(0.88, 0.71), (0.88, 0.58)])
-    arrow([(0.82, 0.755), (0.75, 0.63), (0.52, 0.63), (0.52, 0.58)])
-    ax.text(0.895, 0.645, "pass", fontsize=7.0, ha="left", va="center")
-    ax.text(0.67, 0.647, "fail closed", fontsize=7.0, ha="center", va="center")
+    arrow([(0.875, 0.605), (0.875, 0.54)])
+    arrow([(0.81, 0.64), (0.75, 0.57), (0.55, 0.57), (0.55, 0.54)])
+    ax.text(0.89, 0.57, "pass", fontsize=7.0, ha="left", va="center")
+    ax.text(0.67, 0.582, "fail closed", fontsize=7.0, ha="center", va="center")
 
     box(
-        0.04,
+        0.01,
         0.16,
-        0.27,
-        0.15,
-        "Validation + sensitivity",
-        f"{checks_total} checks • {sensitivity_rows} settings\n2 negative controls",
+        0.19,
+        0.14,
+        "OSM-derived\npublic evidence",
+        "validation only",
     )
     box(
-        0.36,
+        0.22,
         0.16,
-        0.28,
-        0.15,
+        0.22,
+        0.14,
+        "Validation + controls",
+        f"{checks_total} checks\n2 negative controls",
+    )
+    box(
+        0.47,
+        0.16,
+        0.26,
+        0.14,
         "Provenance + reuse",
-        "manifest • schema • dictionary\nlicences • release boundary",
+        "manifest • schema\nfield dictionary\nlicences • release boundary",
     )
     box(
-        0.69,
+        0.76,
         0.16,
-        0.28,
-        0.15,
-        "PT60-Candidate v1.0.2",
+        0.23,
+        0.14,
+        "PT60-Candidate\nv1.0.2",
         "67 files • checksums\nretained + rejected",
     )
-    arrow([(0.52, 0.44), (0.52, 0.36), (0.18, 0.36), (0.18, 0.31)])
-    ax.plot([0.83, 0.83, 0.52], [0.44, 0.36, 0.36], color="black", linewidth=0.8, zorder=1)
-    arrow([(0.31, 0.235), (0.36, 0.235)])
-    arrow([(0.64, 0.235), (0.69, 0.235)])
+
+    arrow([(0.55, 0.40), (0.55, 0.34), (0.33, 0.34), (0.33, 0.30)])
+    ax.plot([0.845, 0.845, 0.55, 0.55, 0.33], [0.40, 0.34, 0.34, 0.34, 0.34], color="black", linewidth=0.8, zorder=1)
+    arrow([(0.20, 0.23), (0.22, 0.23)])
+    arrow([(0.44, 0.23), (0.47, 0.23)])
+    arrow([(0.73, 0.23), (0.76, 0.23)])
 
     ax.plot([0.02, 0.98], [0.095, 0.095], color="black", linewidth=0.65)
     ax.text(
@@ -520,6 +550,7 @@ def main() -> None:
         core / "at_interfacility_candidate_branches.csv",
         core / "at_paper_logic_parameter_sweep.csv",
         validation / "internal_validation_summary.json",
+        validation / "pt_topology_cross_validation_summary.json",
     ]
     missing = [str(path) for path in inputs if not path.is_file()]
     if missing:
