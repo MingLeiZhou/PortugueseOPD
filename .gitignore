@@ -14,11 +14,57 @@ __pycache__/
 .idea/
 .vscode/
 .claude/
+.codex/
+.agents/
+.history/
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+*.swp
+*.swo
+*~
+.~lock.*#
+~$*
 
 # Credentials and local configuration
 .env
 .env.*
 !.env.example
+.envrc
+.direnv/
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+credentials.local.*
+secrets.local.*
+tokens.local.*
+service-account*.json
+
+# Personal notes, assistant sessions, and confidential review material
+codex_chat_topic_session.txt
+codex_*session*
+private/
+**/private/
+correspondence/
+**/correspondence/
+**/reviewer_private*
+**/*private_link*
+**/*review_link*.txt
+**/*account_url*.txt
+paper/TASKLIST.MD
+paper/claim_evidence_matrix.md
+paper/submission_readiness.md
+paper/SCIENTIFIC_DATA_REWRITE_GUIDE.md
+paper/analysis/
+paper/reviewer_materials/
+paper/correspondence/
 
 # Downloaded and generated data
 data/raw/*
@@ -38,12 +84,41 @@ figures/*
 logs/*
 !logs/.gitkeep
 notebooks/.ipynb_checkpoints/
+debug/
+**/debug/
+*.debug.log
 
 # Downloaded papers and source documents
 *.pdf
 
 # Draft manuscript artifacts
 paper/
+paper/ScientificData/
+paper/*_draft.docx
+paper/*_v[0-9]*.pdf
+paper/arxiv_submission*.tar.gz
+paper/figures/generated/*.psd
+paper/figures/generated/*.xcf
+
+# LaTeX and document-build intermediates
+*.aux
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.lot
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.xdv
+*.dvi
+*.ps
+missfont.log
 
 # Packaging
 build/
