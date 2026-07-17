@@ -44,7 +44,7 @@
 \maketitle
 
 \begin{abstract}
-Public distribution-network records rarely provide explicit bus--branch topology, limiting their direct reuse for power-grid modelling and geospatial network analysis. We present \dataset, a provenance-tracked candidate dataset for the Portuguese E-REDES 60~kV network layer, together with a fail-closed construction pipeline that preserves both retained and non-retained reconstruction outcomes. From 5,334 line features and 586 facility records, the selected configuration produces 1,341 classified circuit candidates: 358 retained inter-facility branches and 983 downgraded or rejected records with documented reasons. \dataset{} includes a 484-node multigraph, a 216-configuration sensitivity sweep, source manifests, machine-readable schemas, a field-level data dictionary, checksums, and branch-level public-evidence records derived from OpenStreetMap (OSM). Internal validation checks geometry, identifiers, graph--table parity, schema coverage, missingness, and archive integrity. Endpoint-name permutation and displaced-geometry controls reduce the corresponding OSM-evidence rates by 95.1\% and 99.7\%, supporting matcher selectivity while keeping topology-accuracy claims bounded. \dataset{} provides a reusable data foundation for topology-reconstruction research, provenance-aware power-network analysis, geospatial integration, sensitivity assessment, and the development of graph and tabular data interfaces. Versioned data and code are publicly available.
+Public distribution-network records rarely provide explicit bus--branch topology, limiting their direct reuse for power-grid modelling and geospatial network analysis. We present \dataset, a provenance-tracked candidate dataset for the Portuguese E-REDES 60~kV network layer, built with a fail-closed pipeline that preserves unresolved or ambiguous records with blocking reasons rather than silently promoting them. From 5,334 line features and 586 facility records, the selected configuration produces 1,341 classified circuit candidates: 358 retained inter-facility branches and 983 downgraded or rejected records (hereafter non-retained outcomes) with documented reasons. \dataset{} includes a 484-node multigraph, a 216-configuration sensitivity sweep, source manifests, machine-readable schemas, a field-level data dictionary, checksums, and branch-level public-evidence records derived from OpenStreetMap (OSM). Internal validation checks geometry, identifiers, graph--table parity, schema coverage, missingness, and archive integrity. Endpoint-name permutation and displaced-geometry controls reduce the corresponding OSM-evidence rates by 95.1\% and 99.7\%, supporting matcher selectivity. \dataset{} provides a reusable data foundation for topology-reconstruction research, provenance-aware power-network analysis, geospatial integration, sensitivity assessment, and the development of graph and tabular data interfaces. Versioned data and code are publicly available.
 \end{abstract}
 
 \noindent\textbf{Keywords:} power-grid dataset; open power-grid data; data provenance; topology reconstruction; distribution networks; geospatial network analysis; technical validation
@@ -57,7 +57,7 @@ Public distribution-network portals can support open power-grid research, geospa
 
 The release contains three closely related resource types. First, it provides a core topology layer composed of retained inter-facility branches, an all-facility multigraph, and a complete circuit-classification ledger. Second, it provides validation and provenance records, including a reconstruction-sensitivity sweep, a source manifest, public-source audits, negative controls, and branch-level triangulation outputs. Third, it provides a schema package, field-level data dictionary, join documentation, manifest, checksums, and responsible-use metadata so that the core records can be interpreted and reused without depending on the development repository.
 
-The contribution is a documented, reusable, and provenance-tracked data resource rather than a new operational power-flow model. European open-grid resources demonstrate the reuse value of transparent model construction and standardized public records \cite{Medjroubi2017,Horsch2018,Wiese2019,Xiong2025}; OSM-based reconstruction studies also show that public geometry requires explicit topology-building assumptions \cite{Rivera2019,Haklay2008}. Dataset documentation and FAIR practice motivate the release of provenance, field semantics, identifiers, and reuse constraints alongside the data \cite{Wilkinson2016,Gebru2021}. \dataset applies these principles to a Portuguese 60~kV distribution-layer reconstruction while exposing retained branches, non-retained circuit outcomes, semantic status fields, and validation boundaries in machine-readable form.
+The contribution is a documented, reusable, and provenance-tracked data resource for studying how public grid records can be converted into inspectable graph and tabular representations. European open-grid resources demonstrate the reuse value of transparent model construction and standardized public records \cite{Medjroubi2017,Horsch2018,Wiese2019,Xiong2025}; OSM-based reconstruction studies also show that public geometry requires explicit topology-building assumptions \cite{Rivera2019,Haklay2008}. Dataset documentation and FAIR practice motivate the release of provenance, field semantics, identifiers, and reuse constraints alongside the data \cite{Wilkinson2016,Gebru2021}. \dataset applies these principles to a Portuguese 60~kV distribution-layer reconstruction while exposing retained branches, non-retained outcomes, semantic status fields, and validation evidence in machine-readable form.
 
 \section{Methods}
 
@@ -132,26 +132,26 @@ Facility records are converted to circular footprints with radii of 50, 100, 250
 
 Endpoints are then clustered at 0.5, 1, 5, 10, 25, and 50~m. Union--find merging groups features into circuit candidates under geometry-only, voltage-aware, or voltage-plus-status-aware compatibility rules. Explicit conflicts block merging in the corresponding compatibility mode. Endpoint-cluster degree is then used to distinguish ordinary terminal pairs from loop, self-loop, isolated, and tap or multi-terminal patterns.
 
-Figure~\ref{fig:pipeline} shows how retained and downgraded records pass through common validation and release-contract stages.
+Figure~\ref{fig:pipeline} shows how retained and non-retained outcomes pass through common validation and release-contract stages.
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\textwidth]{fig1_pipeline_overview.pdf}
-  \caption{Fail-closed reconstruction and release workflow for \dataset. The 216-setting sweep and documented selection rule precede the selected configuration and declared inter-facility retention gate. Pass and fail-closed paths preserve retained and non-retained outcomes separately before common validation and packaging. OSM-derived public evidence enters only the validation stage and does not affect reconstruction. Counts are read from the frozen release and describe dataset construction and internal checks, not physical-topology accuracy.}
+  \caption{Fail-closed reconstruction and release workflow for \dataset. The 216-setting sweep and documented selection rule precede the selected configuration and declared inter-facility retention gate. Pass and fail-closed paths preserve retained and non-retained outcomes separately before common validation and packaging. OSM-derived public evidence enters only the validation stage. Counts are read from the frozen release and summarize dataset construction and internal checks.}
   \label{fig:pipeline}
 \end{figure}
 
 \subsection{Candidate selection}
 
-A merged group is retained as an inter-facility candidate branch only when it has exactly two terminals, both terminals match facilities without disqualifying ambiguity, and the two facilities are distinct. Outcomes failing these conditions remain available in the circuit-classification ledger as loop, self-loop, single-facility, isolated, tap or multi-terminal, ambiguous, or otherwise downgraded records.
+A merged group is retained as an inter-facility candidate branch only when it has exactly two terminals, both terminals match facilities without disqualifying ambiguity, and the two facilities are distinct. Outcomes failing these conditions remain available in the circuit-classification ledger as non-retained loop, self-loop, single-facility, isolated, tap or multi-terminal, or ambiguous records.
 
 This selection policy is intentionally conservative. It favors explicit preservation of non-retained outcomes over optimistic retention. Mixed voltage or status conflicts, suspicious spatial matches, and unresolved facility mappings are retained as audit information instead of being absorbed into a simplified final graph.
 
-For each retained branch, the archived field \code{confidence\_score} is a rule-based endpoint-proximity score
+For each retained branch, the archived rule-based endpoint-proximity \code{confidence\_score} is
 \begin{equation}
 q=\max\!\left(0,\min\!\left(1,1-0.35\frac{d_{\max}}{b}\right)\right),
 \end{equation}
-where $d_{\max}$ is the larger of the two endpoint-to-facility distances and $b$ is the facility-buffer radius, both in metres. For retained branches, $0\leq d_{\max}/b\leq1$; the theoretical score range is therefore $[0.65,1.00]$, and the observed release range is 0.6529--0.9692. The factor 0.35 is a fixed scaling convention that preserves this range for retained matches; it was not calibrated against truth labels. The value is rounded to four decimals. It is a deterministic rule score, not a probability, statistical confidence, precision estimate, or operator-validation measure. It is computed only after a circuit passes the inter-facility retention rule and does not affect merging, retention, the 216-setting selection score, or the OSM-derived evidence category.
+where $d_{\max}$ is the larger of the two endpoint-to-facility distances and $b$ is the facility-buffer radius, both in metres. For retained branches, $0\leq d_{\max}/b\leq1$; the theoretical score range is therefore $[0.65,1.00]$, and the observed release range is 0.6529--0.9692. The factor 0.35 is a fixed scaling convention that preserves this range for retained matches and is rounded to four decimals. The field is a deterministic proximity score rather than a calibrated probability. It is computed only after a circuit passes the inter-facility retention rule and does not affect merging, retention, the 216-setting selection score, or the OSM-derived evidence category.
 
 \subsection{Parameter sweep}
 
@@ -161,13 +161,13 @@ S_i=100C_i+50L_i-50A_i-100V_i-10T_i-50Q_i-500\mathbf{1}[b_i=500]-250\mathbf{1}[s
 \end{equation}
 where $C$ is the retained inter-facility count, $L$ the largest edge-induced component size, $A$ the ambiguous-circuit count, $V$ and $T$ the mixed-voltage and mixed-status counts, $Q$ the ambiguous facility-match count, $b$ the facility buffer in metres, and $s$ the endpoint snap in metres. No term is normalized or fitted to truth labels. The maximum score is selected; an exact tie is resolved by the first configuration in the declared loop order: node sets A--C, buffers 50--500~m, snap thresholds 0.5--50~m, and merge modes geometry-only, voltage-aware, then voltage-plus-status-aware.
 
-This rule selects node set B, a 100~m facility buffer, a 0.5~m endpoint snap threshold, and voltage-plus-status-aware merging ($S=32{,}350$). The weights encode a documented pipeline design preference, not a calibrated probability or externally validated optimum; all 216 rows remain available for alternative selection rules.
+This rule selects node set B, a 100~m facility buffer, a 0.5~m endpoint snap threshold, and voltage-plus-status-aware merging ($S=32{,}350$). The weights encode the documented pipeline design preferences, and all 216 rows remain available for comparison or alternative selection rules.
 
 Large-language-model assistance was used for code review, structural editing, and release-checklist support. The authors inspected the generated changes and remain responsible for the methods, numerical results, citations, release files, and claims.
 
 \subsection{Dataset generation}
 
-The selected setting converts 5,334 source line features into 1,341 circuit candidates. Of these, 358 satisfy the declared inter-facility rules and are released as retained candidate branches. The remaining 983 circuit candidates are preserved as downgraded records rather than discarded. The selected all-facility GraphML preserves isolated facilities as nodes so that graph outputs remain consistent with the declared isolate policy.
+The selected setting converts 5,334 source line features into 1,341 circuit candidates. Of these, 358 satisfy the declared inter-facility rules and are released as retained candidate branches. The remaining 983 are preserved as non-retained outcomes with explicit dispositions and reasons. The selected all-facility GraphML preserves isolated facilities as nodes so that graph outputs remain consistent with the declared isolate policy.
 
 The same workflow packages the reconstruction-sensitivity table, public-source triangulation outputs, negative controls, an independence-risk audit, internal-validation results, source manifests, schemas, and checksum-linked inventory. Electrical diagnostics and Stage~1--5 learning interfaces are excluded from the main public archive because they depend on incomplete, proxy, benchmark-only, or scenario-derived information.
 
@@ -177,11 +177,11 @@ The same workflow packages the reconstruction-sensitivity table, public-source t
 
 \dataset{} is prepared for deposition in the reserved figshare record \cite{PT60Candidate2026}. Its reserved DOI is \url{https://doi.org/10.6084/m9.figshare.32984021}. The deposited archive has SHA-256 \hashvalue{328e64adcfc6c7210ed9558793a14fdb661e5e3bab741f1d275a89e5593d1447}.
 
-The archive contains 67 documented files. It provides the retained candidate topology, the complete downgrade/rejection ledger, the GraphML multigraph, the 216-setting sensitivity record, provenance manifests, validation outputs, schemas, licensing documents, and checksum-linked inventory. Raw E-REDES downloads, raw OSM history/cache blobs, manuscript work files, optional Stage~1--5 interfaces, and non-operational electrical diagnostics are not part of the main public archive. The reasons and reproducibility consequences of these exclusions are recorded in \code{excluded\_artifacts.json}.
+The archive contains 67 documented files organized into core topology, provenance, validation, schema, inventory, and release-control layers. Together these layers connect retained branches and non-retained outcomes to their source roles, field definitions, validation results, licences, and integrity records. The public-release boundary and the reproducibility consequences of excluded artifacts are recorded in \code{excluded\_artifacts.json}.
 
 \subsection{File organization}
 
-The top-level \path{README.md}, \path{CITATION.cff}, \path{DATA_LICENSE.md}, \path{ATTRIBUTION.md}, \path{CHANGELOG.md}, and \path{LICENSE-CODE-MIT} describe citation, licensing, attribution, version history, and scope. The archive-control files \path{manifest.json}, \path{checksums.sha256}, \path{archive_validation_summary.json}, and \path{excluded_artifacts.json} identify every released file and verify package integrity. Table~\ref{tab:archive-layout} summarizes the directory-level organization.
+Table~\ref{tab:archive-layout} summarizes the directory-level organization. Root-level documentation covers citation, licensing, attribution, version history, and scope, while the manifest, checksum list, validation summary, and exclusion register provide machine-checkable release control.
 
 \begin{table}[t]
 \centering
@@ -203,23 +203,11 @@ Table~\ref{tab:composition} identifies the principal machine-readable records an
 \input{generated_tables/principal_artifacts_table.tex}
 \end{table}
 
-\paragraph{Retained candidate branches CSV.}
-The retained branch table (\path{core_topology/at_interfacility_candidate_branches.csv}) is the principal branch-level record. Its 358 rows contain generated branch and circuit identifiers, endpoint facility identifiers and labels, voltage and status fields, geometry-derived length, segment count, source-line membership, the rule-based \code{confidence\_score} defined in Methods, and explicit electrical placeholders. Fields ending in \code{\_m} and \code{\_km} use metres and kilometres, respectively. Missing electrical fields are not backfilled with model defaults.
+The retained branch table is the principal branch-level record. Its 358 rows connect generated branch and circuit identifiers to endpoint facilities, source-line membership, voltage and status fields, geometry-derived quantities, the rule-based endpoint-proximity \code{confidence\_score} defined in Methods, and explicit electrical placeholders. The companion circuit-classification ledger accounts for all 1,341 merged candidates: the same 358 retained records and 983 non-retained outcomes, each with terminal structure, ambiguity or conflict indicators, disposition, and reason. Used together, the two tables support both graph analysis and reconstruction audit.
 
-\paragraph{Circuit-classification ledger CSV.}
-The circuit-classification ledger (\path{core_topology/at_circuit_classification.csv}) contains all 1,341 merged circuit candidates, including the 358 retained records and 983 downgraded or rejected outcomes. Rows include construction-setting identifiers, terminal structure, facility membership, ambiguity and conflict indicators, source-line membership, disposition, and downgrade reason. The ledger exposes what was not retained and why.
+The selected GraphML multigraph preserves all 484 facilities, declared isolates, parallel edges, and the same \code{branch\_id} keys used by the retained branch table. The sensitivity record stores all 216 reconstruction configurations and their summaries, enabling users to compare alternative facility sets, buffers, snap thresholds, and merge modes without rerunning the full pipeline.
 
-\paragraph{Reconstruction-sensitivity CSV.}
-The sensitivity table (\path{core_topology/at_paper_logic_parameter_sweep.csv}) stores all 216 combinations of facility set, facility buffer, endpoint snap threshold, and merge mode together with the corresponding reconstruction summaries. The selected setting is identified in \path{core_topology/at_paper_logic_summary.json}.
-
-\paragraph{GraphML multigraph.}
-The GraphML file (\path{core_topology/at_paper_logic_graph.graphml}) represents the selected candidate multigraph. Nodes correspond to facilities in the selected release node set, including declared isolates; edges correspond to retained candidate branches. The \code{branch\_id} edge identifiers and facility identifiers link the GraphML to the retained branch table and facility summaries. Parallel edges are preserved.
-
-\paragraph{Validation and public-evidence records.}
-The \code{validation/} directory contains the 25 internal checks and missingness report; endpoint-name and spatial-alignment negative controls; branch-level OSM-derived concordance; a source-role audit; and a sanitized independence-risk audit. The \code{branch\_id} field links these records to the retained branch table. Evidence and independence-risk categories are audit variables, not confirmed topology labels.
-
-\paragraph{Metadata and manifests.}
-The parallel \code{provenance/reproduction\_source\_manifest.csv} and \code{.json} files record dataset identifiers, roles, access checks, and attribution metadata for 13 sources. The release-level \code{manifest.json} contains relative path, purpose, semantic role, media type, bytes, SHA-256, row/item count, dataset and schema versions, generator commit, upstream source identifiers, licence class, and public-access class for each file. \code{checksums.sha256} provides an independently checkable path--digest list.
+Validation records link the retained branches to internal checks, missingness summaries, matcher controls, OSM-derived concordance, source-role information, and independence-risk categories. Provenance records identify the 13 input sources and their roles, access checks, and attribution metadata. The release manifest and checksum list then connect these scientific records to versions, generators, media types, row counts, licences, and cryptographic digests. Exact paths and file roles are given in Table~\ref{tab:composition} and the archive README.
 
 \subsection{Schema, coordinate systems, units, and missing values}
 
@@ -229,33 +217,59 @@ The topology inputs were retrieved through Opendatasoft v2.1 GeoJSON export rout
 
 \section{Data Overview}
 
-For the selected setting, the release accounts for all 1,341 reconstructed circuit candidates: 358 are retained as inter-facility candidate branches and 983 remain in the ledger with downgrade or rejection dispositions. Figure~\ref{fig:funnel} reports the complete disposition, and Fig.~\ref{fig:topology-quality} shows geographic coverage and component structure. These figures describe deposited records rather than physical-network accuracy or completeness.
+For the selected setting, the release accounts for all 1,341 reconstructed circuit candidates: 358 are retained as inter-facility candidate branches and 983 remain as non-retained outcomes in the ledger. Figure~\ref{fig:funnel} reports the complete disposition, and Fig.~\ref{fig:topology-quality} shows geographic coverage and component structure. Together these views make aggregation, selection, and graph structure directly inspectable.
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\textwidth]{fig2_reconstruction_funnel.pdf}
-  \caption{Line-to-circuit record counts and circuit disposition for the selected reconstruction setting. Panel~a distinguishes the 74.9\% reduction in record count after aggregating 5,334 source line features into 1,341 merged circuits from the subsequent retention of 358/1,341 circuits (26.7\%). Panel~b shows the retained inter-facility class in green and the six downgraded or rejected reason classes in gray; the displayed counts reconcile as $358+983=1{,}341$. Retention denotes rule satisfaction under the documented workflow, not operator confirmation.}
+  \caption{Line-to-circuit record counts and circuit disposition for the selected reconstruction setting. Panel~a distinguishes the 74.9\% reduction in record count after aggregating 5,334 source line features into 1,341 merged circuits from the subsequent retention of 358/1,341 circuits (26.7\%). Panel~b shows the retained inter-facility class in green and the six non-retained reason classes in gray; the displayed counts reconcile as $358+983=1{,}341$.}
   \label{fig:funnel}
 \end{figure}
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\textwidth]{fig3_topology_quality.pdf}
-  \caption{Geographic distribution and component structure of the selected candidate graph. Panel a uses released EPSG:4326 coordinates without a basemap or facility labels; blue branches belong to the 53-facility largest component, gray branches to other components, green points are connected facilities, and orange crosses are isolates. Panel b ranks all 170 components on a logarithmic scale. The graph contains 484 facilities, 358 candidate branches, and 109 isolates; these are inferred records, not an operator-validated network.}
+  \caption{Geographic distribution and component structure of the selected candidate graph. Panel a uses released EPSG:4326 coordinates without a basemap or facility labels; blue branches belong to the 53-facility largest component, gray branches to other components, green points are connected facilities, and orange crosses are isolates. Panel b ranks all 170 components on a logarithmic scale. The graph contains 484 facilities, 358 candidate branches, and 109 isolates.}
   \label{fig:topology-quality}
 \end{figure}
 
+\FloatBarrier
 \section{Technical Validation}
+
+\subsection{Claim-bounded validation framework}
+
+Validation is organized around five complementary evidence layers: machine-readable integrity, ledger and graph consistency, reconstruction sensitivity, OSM-derived public concordance, and electrical-readiness metadata. Table~\ref{tab:claim-bounded-validation} states what each layer evaluates and how the resulting evidence can be used. This framework places the scope of each result before the detailed tests, helping readers distinguish reproducibility and concordance evidence from questions that require an authoritative reference network.
+
+No human-adjudicated or operator-supplied truth set was available for this release. The manuscript therefore reports measured consistency, sensitivity, concordance, and perturbation results rather than precision or recall estimates.
+
+\begin{table}[!ht]
+\centering
+\small
+\caption{Validation framework for the public-source data descriptor. Each layer contributes a defined form of reusable evidence.}
+\label{tab:claim-bounded-validation}
+\begin{tabular}{p{0.30\textwidth}p{0.31\textwidth}p{0.29\textwidth}}
+\toprule
+Validation layer & Evaluated property & Supported use \\
+\midrule
+Geometry, CRS, schema, and key checks & Machine readability and internal coherence & Reproducible loading and integration \\
+Ledger and graph/table parity & Complete accounting under declared rules & Audit of retained and non-retained outcomes \\
+216-setting sensitivity sweep & Dependence on reconstruction choices & Comparison of alternative configurations \\
+OSM-derived public evidence & Public name and corridor concordance & Branch review and evidence prioritization \\
+Electrical-readiness metadata & Availability and semantic status of required fields & Readiness filtering for downstream studies \\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier
 
 \subsection{Internal validation}
 
 The workflow applies fail-closed checks throughout acquisition, reconstruction, validation, and packaging. These checks include geometry-type and geometry-validity screening, coordinate-reference handling, endpoint completeness, facility-membership ambiguity, endpoint-cluster composition, mixed voltage or status conflicts, terminal-count classification, branch-key uniqueness, graph/table parity, schema coverage, manifest coverage, and checksum reconciliation.
 
-Archive-level validation additionally checks that all 67 released files are documented, all manifest and checksum paths resolve, all 58 machine-readable paths have dictionary coverage, and the frozen headline counts agree with the core records. These results support internal usability of the deposited records, but they do not constitute external topology or electrical validation.
+Archive-level validation additionally checks that all 67 released files are documented, all manifest and checksum paths resolve, all 58 machine-readable paths have dictionary coverage, and the frozen headline counts agree with the core records. These results establish a consistent, independently checkable package for reuse.
 
 \subsection{Structural validation}
 
-Structural validation focuses on whether the reconstructed records satisfy the declared topology-building rules. Under the selected setting, the workflow converts 5,334 line features into 1,341 merged circuit candidates, of which 358 are retained and 983 are downgraded. The downgraded outcomes comprise 496 single-facility records, 216 isolated records, 104 tap or multi-terminal records, 101 self-loops, 61 ambiguous records, and five loop records for the current snapshot. Preservation of these downgraded classes is itself a validation feature because it prevents silent loss of evidence about reconstruction uncertainty.
+Structural validation focuses on whether the reconstructed records satisfy the declared topology-building rules. Under the selected setting, the workflow converts 5,334 line features into 1,341 merged circuit candidates, of which 358 are retained and 983 are non-retained. The non-retained outcomes comprise 496 single-facility records, 216 isolated records, 104 tap or multi-terminal records, 101 self-loops, 61 ambiguous records, and five loop records for the current snapshot. Their preservation is itself a validation feature because it prevents silent loss of evidence about reconstruction uncertainty.
 
 \subsection{Acquisition and projection stability}
 \label{sec:projection-transition-audit}
@@ -264,13 +278,13 @@ The public acquisition procedure was repeated on 15 July 2026 through the E-REDE
 
 Projection stability was tested before freezing \dataset. For the 43,505 adjacent source-line segments, the legacy national-centre equirectangular implementation differed from spherical great-circle distances by 0.47\% at the median, 2.36\% at the 95th percentile, and 3.84\% at the maximum. The complete 216-configuration sweep was therefore rerun using ETRS89 / Portugal TM06 (EPSG:3763), and the final release adopts that result rather than retaining the legacy metric implementation.
 
-The selected configuration remained node set B, a 100~m facility buffer, a 0.5~m endpoint snap threshold, and voltage-plus-status-aware merging. Both builds retained 358 branches, but the equality of totals did not imply equality of records: 357 of 358 retained source-line groups (99.72\%) preserved their facility endpoint pair, the ANTAS--PARANHOS branch from the legacy build was removed, and the SÃO JOÃO DE PONTE--SENHORA DO PORTO branch entered the final release. The corresponding release-local branch identifiers and source-line membership are recorded in \path{validation/projection\_release\_transition.csv}; the summary is in \path{validation/projection\_release\_transition\_summary.json}. \dataset{} consequently contains 1,341 circuit candidates, comprising 358 retained and 983 downgraded records. This is reported as a measured projection transition, not as projection invariance.
+The selected configuration remained node set B, a 100~m facility buffer, a 0.5~m endpoint snap threshold, and voltage-plus-status-aware merging. Both builds retained 358 branches, but one source-line group changed: 357 of 358 retained groups (99.72\%) preserved their facility endpoint pair, the ANTAS--PARANHOS branch from the legacy build was removed, and the SÃO JOÃO DE PONTE--SENHORA DO PORTO branch entered the final release. The corresponding release-local branch identifiers and source-line membership are recorded in \path{validation/projection\_release\_transition.csv}; the summary is in \path{validation/projection\_release\_transition\_summary.json}. The final EPSG:3763 build contains 1,341 circuit candidates, comprising 358 retained branches and 983 non-retained outcomes.
 
 \subsection{Schema validation}
 
 The release validates that required files, columns, and machine-readable summaries exist and remain aligned across the retained branch table, full ledger, GraphML, provenance, validation, and archive-control surfaces. The schema package distinguishes identifiers, observed and derived values, provenance metadata, validation variables, and explicit missing electrical fields.
 
-For the frozen public-validation route, the internal validation export records 25 machine-readable checks across source geometry parsing, retained-branch completeness, ledger accounting, endpoint summaries, facility footprints, GraphML/table parity, sensitivity rows, and artifact hashes. All 25 checks pass for the released archive. Clean-room extraction validation reports no manifest, checksum, dictionary-coverage, or headline-count failures. The same export records 5,334 valid source geometries and zero invalid/dropped geometries; zero missing required retained-branch fields; zero missing required ledger fields; 358 retained branches; 983 downgraded or rejected records; 1,341 ledger rows; 64,008 endpoint-index rows across six snap thresholds; and 216 sensitivity rows. Two detached worktrees of the annotated release tag independently rebuilt the archive from the same frozen derived inputs and produced the identical SHA-256 digest reported in the Data Record.
+For the frozen public-validation route, the internal validation export records 25 machine-readable checks across source geometry parsing, retained-branch completeness, ledger accounting, endpoint summaries, facility footprints, GraphML/table parity, sensitivity rows, and artifact hashes. All 25 checks pass for the released archive. Clean-room extraction validation reports no manifest, checksum, dictionary-coverage, or headline-count failures. The same export records 5,334 valid source geometries and zero invalid/dropped geometries; zero missing required retained-branch fields; zero missing required ledger fields; 358 retained branches; 983 non-retained outcomes; 1,341 ledger rows; 64,008 endpoint-index rows across six snap thresholds; and 216 sensitivity rows. Two detached worktrees of the annotated release tag independently rebuilt the archive from the same frozen derived inputs and produced the identical SHA-256 digest reported in the Data Record.
 
 \subsection{Referential integrity}
 
@@ -278,72 +292,49 @@ Referential checks confirm that endpoint facility references, GraphML node and e
 
 \subsection{Graph consistency}
 
-The selected all-facility graph contains 484 facilities, 358 multiedges, 170 connected components, a largest component of size 53, 109 isolates, and 28 parallel edges. The edge-induced graph contains 375 incident facilities, while the all-facility GraphML additionally preserves selected isolates. This accounting distinction is stored explicitly because graph artifacts with different isolate policies can otherwise appear inconsistent. Graph-level summaries therefore validate the released artifact against its own declared representation rather than against an external ground-truth network.
+The selected all-facility graph contains 484 facilities, 358 multiedges, 170 connected components, a largest component of size 53, 109 isolates, and 28 parallel edges. The edge-induced graph contains 375 incident facilities, while the all-facility GraphML additionally preserves selected isolates. This accounting distinction is stored explicitly so that users can reconcile graph artifacts with different isolate policies. Graph-level summaries validate the released artifact against its declared representation.
 
 The GraphML/table parity check confirms that all 358 retained branch identifiers appear as GraphML edge identifiers, that no extra GraphML branch identifiers are present, and that every retained branch endpoint facility resolves to a GraphML node. The GraphML has 27 parallel facility pairs, 55 edge records participating in parallel pairs, and 28 extra parallel-edge records beyond one edge per facility pair. The missingness export also confirms that all retained-branch electrical fields \code{r}, \code{x}, \code{b}, thermal limits, transformer impedance, and tap settings remain explicitly marked as \status{MISSING\_NOT\_ESTIMATED}; these missing values are part of the release semantics rather than silent nulls.
 
 \subsection{Sensitivity analysis}
 
-Sensitivity analysis addresses whether the selected release point is stable under the declared reconstruction design space. The direct endpoint-to-substation baseline yields 51 merged edges and a six-node largest component, whereas the selected reconstruction yields 358 retained edges and a 53-node largest component for the current snapshot. These values describe yield and connectivity under two workflows; they are not treated as external accuracy improvements.
+Sensitivity analysis addresses whether the selected release point is stable under the declared reconstruction design space. The direct endpoint-to-substation baseline yields 51 merged edges and a six-node largest component, whereas the selected reconstruction yields 358 retained edges and a 53-node largest component for the current snapshot. These values quantify how the two workflows change retained yield and graph connectivity.
 
-Across the 216-setting sweep, increasing the facility buffer from 100~m to 500~m at a 0.5~m endpoint snap threshold raises retained branches from 358 to 368 but also increases ambiguity from 61 to 89 and reduces the largest component from 53 to 27. At 50~m endpoint snapping, only three inter-facility circuits remain for each tested buffer. Figure~\ref{fig:sensitivity} shows these trade-offs and the selected operating point. These results support the claim that reconstruction outputs are sensitive to plausible preprocessing settings rather than identifying a uniquely correct solution.
+Across the 216-setting sweep, increasing the facility buffer from 100~m to 500~m at a 0.5~m endpoint snap threshold raises retained branches from 358 to 368 but also increases ambiguity from 61 to 89 and reduces the largest component from 53 to 27. At 50~m endpoint snapping, only three inter-facility circuits remain for each tested buffer. Figure~\ref{fig:sensitivity} shows these trade-offs and the selected operating point. The complete sweep makes parameter dependence visible and supports comparison of yield, ambiguity, and connectivity across plausible preprocessing choices.
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\textwidth]{fig4_sensitivity_analysis.pdf}
-  \caption{Sensitivity of retained-branch counts, ambiguity, and graph connectivity to facility buffers and endpoint snap thresholds. The marked operating point indicates the documented selected setting for the release; it is not an externally calibrated optimum.}
+  \caption{Sensitivity of retained-branch counts, ambiguity, and graph connectivity to facility buffers and endpoint snap thresholds. The marked operating point is the setting selected by the documented scoring rule.}
   \label{fig:sensitivity}
 \end{figure}
 
 \subsection{External triangulation}
 
-The external triangulation workflow searches for OSM-derived branch-level evidence outside the selected reconstruction rule. OpenInfraMap is used only to visualize OSM infrastructure data where applicable; it is not treated as an independent second topology source \cite{OSM2026,OpenInfraMap2026}. The matcher parses 60~kV OSM \code{power=line} and \code{power=cable} voltage, operator, name, reference, circuit, and geometry fields. A name score must be at least 0.8. Strong spatial evidence requires minimum distance no greater than 250~m, median branch-to-OSM distance no greater than 500~m, and branch or OSM coverage of at least 0.5 within 500~m; weak proximity is limited to 1,000~m. An operator-tag condition requires normalized text containing \code{e redes}, but that user-contributed tag is not operator confirmation.
+The external triangulation workflow searches for OSM-derived branch-level evidence outside the selected reconstruction rule. OSM is the underlying public-evidence source; OpenInfraMap appears only as a visualization interface for the same OSM records and contributes no independent topology observations \cite{OSM2026,OpenInfraMap2026}. The matcher parses 60~kV OSM \code{power=line} and \code{power=cable} voltage, operator, name, reference, circuit, and geometry fields. A name score must be at least 0.8. Strong spatial evidence requires minimum distance no greater than 250~m, median branch-to-OSM distance no greater than 500~m, and branch or OSM coverage of at least 0.5 within 500~m; weak proximity is limited to 1,000~m. The operator-tag condition uses normalized user-contributed text containing \code{e redes} as one matching variable.
 
 \begin{table}[t]
 \centering
 \small
-\caption{OSM-derived public-evidence categories for the 358 retained candidate branches. OpenInfraMap visualizes the same underlying OSM data where used; categories are review-prioritization evidence, not truth labels. Machine category codes remain in the deposited validation table.}
+\caption{OSM-derived public-evidence categories for the 358 retained candidate branches. The categories support branch-level review prioritization; machine category codes and matching variables remain in the deposited validation table.}
 \label{tab:osm-triangulation}
 \input{generated_tables/osm_triangulation_table.tex}
 \end{table}
 
-Table~\ref{tab:osm-triangulation} gives the category counts. Among 5,551 Portuguese 60~kV OSM ways, all 358 retained branches receive a non-empty evidence category: 245 strong, 106 medium, and seven weak. The five displayed categories are mutually exclusive priority labels. The spatial negative control uses a separate cross-category corridor indicator, so its baseline is not obtained by summing whole categories in Table~\ref{tab:osm-triangulation}. Complete category coverage is a matcher output, not independent external validation. The audit inspected 2,313 historical versions of 270 matched OSM ways and classifies 266 branches as lower provenance risk, 87 as unknown independence, and five as possibly same-source. OSM and E-REDES source independence cannot be established from these histories; the audit assesses risk rather than proving independence. The archive includes sanitized evidence tables but excludes raw caches, user identifiers, changesets, and history dumps.
+Table~\ref{tab:osm-triangulation} gives the category counts. Among 5,551 Portuguese 60~kV OSM ways, all 358 retained branches receive a non-empty evidence category: 245 strong, 106 medium, and seven weak. The five displayed categories are mutually exclusive priority labels. The spatial negative control uses a separate cross-category corridor indicator, so its baseline is not obtained by summing whole categories in Table~\ref{tab:osm-triangulation}. A provenance-risk audit of 2,313 historical versions for 270 matched OSM ways classifies 266 branches as lower risk, 87 as unknown independence, and five as possibly same-source. These audit variables allow users to filter or prioritize concordance evidence according to source-independence risk. The archive provides sanitized evidence tables while omitting user identifiers, changesets, histories, and raw caches.
 
-\subsection{Claim-bounded validation strategy}
+\subsection{Matcher selectivity controls}
 
-The release has no human-adjudicated truth labels and reports no accuracy metric. Internal tests establish declared schema, classification, provenance, and graph contracts; the 216-setting sweep quantifies design sensitivity; and the OSM-derived comparison records public concordance with source caveats. Together these tests support internal consistency, sensitivity transparency, and reproducible reuse of the deposited release, not correspondence with the operator's true network.
+Two deterministic controls test matcher selectivity on all 358 branches. With geometry and branch attributes fixed, a length-stratified cyclic shift of endpoint-name pairs (seed 20260714) reduces strong name evidence from 182 to 9 branches (95.1\%). For the spatial control, corridor evidence is defined independently of the priority categories as \code{min\_distance\_m}$\leq250$~m together with either \code{branch\_coverage\_500m}$\geq0.5$ or \code{osm\_coverage\_500m}$\geq0.5$. In the undisplaced matches, this criterion is met by all 63 geometry-operator-strong records, all 50 geometry-medium records, and 177 of the 182 name-operator-strong records, giving $63+50+177=290$ branches; the partial-name and weak categories contribute zero. With names and attributes fixed, translation by $+1.75^\circ$ longitude and $+0.85^\circ$ latitude leaves all geometries valid but reduces this corridor-evidence count from 290 to 1 branch (99.7\%).
 
-The public-source comparison is evaluated at branch level but is not converted into binary ground truth. Consequently, the manuscript reports category counts and matching variables rather than precision, recall, $F_1$, or confidence intervals. Precision is not independently estimated, and national or real-network recall is not estimable because neither an authoritative branch census nor a probability sample of true Portuguese 60~kV connections is available. Table~\ref{tab:claim-bounded-validation} states the supported and excluded interpretation for each validation layer.
-
-\begin{table}[t]
-\centering
-\small
-\caption{Claim-bounded validation used in the public-source validation route. ``Supported'' refers to the stated dataset property, not to physical topology truth.}
-\label{tab:claim-bounded-validation}
-\begin{tabular}{p{0.31\textwidth}p{0.27\textwidth}p{0.31\textwidth}}
-\toprule
-Validation layer & Supported interpretation & Interpretation explicitly excluded \\
-\midrule
-Geometry, CRS, schema, and key checks & Machine-readable and internally coherent release & Correct physical connectivity \\
-Ledger and graph/table parity & Complete accounting under declared rules & Completeness of the real grid \\
-216-setting sensitivity sweep & Dependence on documented reconstruction choices & Externally optimal parameter setting \\
-OSM-derived public evidence & Public name and corridor concordance & Independent validation or statistical accuracy \\
-Electrical-readiness gates & Explicit identification of missing or diagnostic fields & AC power-flow or operational readiness \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Two deterministic controls test matcher selectivity on all 358 branches. With geometry and branch attributes fixed, a length-stratified cyclic shift of endpoint-name pairs (seed 20260714) reduces strong name evidence from 182 to 9 branches (95.1\%). For the spatial control, corridor evidence is defined independently of the priority categories as \code{min\_distance\_m}$\leq250$~m together with either \code{branch\_coverage\_500m}$\geq0.5$ or \code{osm\_coverage\_500m}$\geq0.5$. In the undisplaced matches, this criterion is met by all 63 geometry-operator-strong records, all 50 geometry-medium records, and 177 of the 182 name-operator-strong records, giving $63+50+177=290$ branches; the partial-name and weak categories contribute zero. With names and attributes fixed, translation by $+1.75^\circ$ longitude and $+0.85^\circ$ latitude leaves all geometries valid but reduces this corridor-evidence count from 290 to 1 branch (99.7\%). These controls test the name and corridor channels; they do not estimate topology accuracy.
-\subsection{Validation boundaries}
-
-Optional electrical-readiness artifacts remain diagnostic because branch parameters, transformer details, controls, measured injections, and verified boundaries are incomplete or scenario-derived. The AC power-flow extension remains outside the validated core dataset.
+Together, the two perturbation tests show that the matcher responds selectively to endpoint-name and spatial-corridor information. Their interpretation follows the validation framework in Table~\ref{tab:claim-bounded-validation}.
 
 \FloatBarrier
 \section{Usage Notes}
 
 \subsection{Intended uses}
 
-The core release is intended for topology-reconstruction studies, geospatial data integration, provenance-aware network analysis, uncertainty analysis, dataset-engineering experiments, and development of downstream graph or tabular interfaces that preserve release semantics. The retained branch table and circuit-classification ledger should be used together whenever a study depends on understanding what was retained, what was downgraded, and why.
+The core release is intended for topology-reconstruction studies, geospatial data integration, provenance-aware network analysis, uncertainty analysis, dataset-engineering experiments, and development of downstream graph or tabular interfaces that preserve release semantics. The retained branch table and circuit-classification ledger should be used together whenever a study depends on understanding what was retained, what remained non-retained, and why.
 
 \subsection{Non-intended uses}
 
