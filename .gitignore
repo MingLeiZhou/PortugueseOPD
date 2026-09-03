@@ -69,12 +69,22 @@ paper/correspondence/
 # Downloaded and generated data
 data/raw/*
 !data/raw/.gitkeep
+data/external/*
+!data/external/.gitkeep
 data/metadata/*
 !data/metadata/.gitkeep
 data/samples/
 data/benchmark_results/
 data/processed/*
 !data/processed/.gitkeep
+
+# Independent Portuguese high-voltage model runtime data
+portuguese_hv_network/data/raw/*
+!portuguese_hv_network/data/raw/.gitkeep
+portuguese_hv_network/data/manifests/*
+!portuguese_hv_network/data/manifests/.gitkeep
+portuguese_hv_network/outputs/*
+!portuguese_hv_network/outputs/.gitkeep
 
 # Generated execution artifacts
 reports/*

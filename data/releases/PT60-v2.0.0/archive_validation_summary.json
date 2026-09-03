@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "checks": {
+    "source_validation_passed": true,
+    "expected_buses": true,
+    "expected_lines": true,
+    "expected_transformers": true,
+    "full_scale_converged": true
+  },
+  "file_count": 37,
+  "manifest_record_count": 34,
+  "release_directory": "PT60-v2.0.0"
+}

@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-09-02T18:37:15+00:00",
+  "case": "FULL_SCALE_PUBLIC_DATA_CALIBRATED",
+  "timestamp_utc": "2026-01-20T19:45:00+00:00",
+  "converged": true,
+  "load_p_mw": 10268.8,
+  "generation_p_mw": 10032.2,
+  "external_balance_and_losses_mw": 497.5546669292319,
+  "losses_p_mw": 260.95466714458826,
+  "voltage_range_pu": [
+    0.9293148739202904,
+    1.0117078868164282
+  ],
+  "maximum_line_loading_percent": 94.93800748809002,
+  "maximum_transformer_loading_percent": 83.44105986536522,
+  "overloaded_line_rows": 0,
+  "overloaded_transformer_rows": 0,
+  "interpretation": "A converged, full-scale public-data-calibrated study case. Constraint violations are model diagnostics, not claims about the operator's real-time network state."
+}

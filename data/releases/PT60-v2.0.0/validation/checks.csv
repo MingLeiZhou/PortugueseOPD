@@ -1,0 +1,23 @@
+check,status,severity,measured,expected
+unique_bus_ids,PASS,ERROR,3783,3783
+unique_line_ids,PASS,ERROR,4943,4943
+line_endpoints_exist,PASS,ERROR,0,0
+transformer_endpoints_exist,PASS,ERROR,0,0
+no_line_self_loops,PASS,ERROR,0,0
+positive_line_lengths,PASS,ERROR,0,0
+declared_voltage_levels_only,PASS,ERROR,"[60, 130, 150, 220, 400]","[60, 130, 150, 220, 400]"
+line_bus_voltage_consistency,PASS,ERROR,0,0
+transformer_bus_voltage_consistency,PASS,ERROR,0,0
+load_buses_exist,PASS,ERROR,0,0
+assigned_generator_buses_exist,PASS,ERROR,0,0
+one_boundary_per_active_component,PASS,ERROR,5,>=1 (multi-interconnector enabled)
+line_geometry_source_label_complete,PASS,ERROR,1.0,1.0
+parameter_evidence_status_complete,PASS,ERROR,0,0
+osm_150kv_length_vs_ren_2025_context,PASS,WARNING,2054.1 km (81.7%),75--125% of REN contextual total 2514.0 km
+osm_220kv_length_vs_ren_2025_context,PASS,WARNING,3206.9 km (81.9%),75--125% of REN contextual total 3916.0 km
+osm_400kv_length_vs_ren_2025_context,PASS,WARNING,3579.5 km (103.3%),75--125% of REN contextual total 3465.0 km
+ac_power_flow_converged,PASS,ERROR,True,True
+scenario_voltage_range_0.90_to_1.10_pu,PASS,WARNING,0.9293--1.0117,0.90--1.10
+scenario_line_loading_at_most_100_percent,PASS,WARNING,94.93800748809002,<=100
+scenario_transformer_loading_at_most_100_percent,PASS,WARNING,83.44105986536522,<=100
+active_component_boundary_count_review,PASS,WARNING,5,<=10 desired for a nationally integrated scenario

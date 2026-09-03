@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-09-02T13:10:21+00:00",
+  "circuit_relations_audited": 1337,
+  "relations_with_repeated_line_members": 7,
+  "relations_sharing_an_exact_way_set": 67,
+  "confirmed_duplicate_relations": 2,
+  "parallel_relations_sharing_geometry": 65,
+  "physical_ways_shared_by_relations": 574,
+  "likely_cross_border_relations": 14,
+  "topological_components": 21,
+  "scenario_active_components": 1,
+  "direct_osm_transformer_units": 199,
+  "transformer_reconciliation_note": "REN totals validate aggregate voltage-pair capacity only; OSM remains the unit-level tag source."
+}

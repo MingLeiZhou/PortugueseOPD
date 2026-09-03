@@ -1,0 +1,160 @@
+{
+  "generated_at": "2026-09-02T12:37:24+00:00",
+  "project": "Portuguese-HV-Candidate",
+  "records": [
+    {
+      "source_id": "rede-at-teste",
+      "role": "E-REDES topology input",
+      "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/rede-at-teste/exports/geojson",
+      "local_path": "data/raw/eredes/rede-at-teste.geojson",
+      "bytes": 6376668,
+      "sha256": "fc03f9449b05e7a10680fb1ef33335e8fc757fbd5f07ceae28858e1c59f3431b"
+    },
+    {
+      "source_id": "rede-at-teste",
+      "role": "E-REDES topology input",
+      "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/rede-at-teste/exports/csv",
+      "local_path": "data/raw/eredes/rede-at-teste.csv",
+      "bytes": 5537167,
+      "sha256": "162de9fb341cd5f355989b42f52f15016f748e1f82563d8feb73a7ba2a20c735"
+    },
+    {
+      "source_id": "se-at_2025",
+      "role": "E-REDES topology input",
+      "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/se-at_2025/exports/geojson",
+      "local_path": "data/raw/eredes/se-at_2025.geojson",
+      "bytes": 111001,
+      "sha256": "4e682e62065b29392df4c2ee811b218a87ff00ec563380348584ad1f51164f92"
+    },
+    {
+      "source_id": "se-at_2025",
+      "role": "E-REDES topology input",
+      "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/se-at_2025/exports/csv",
+      "local_path": "data/raw/eredes/se-at_2025.csv",
+      "bytes": 42287,
+      "sha256": "42b9559e983b5fa096f8c2f49628d024ee08d00815c15d8016f8d07a6a5326c1"
+    },
+    {
+      "source_id": "pc-at_2025",
+      "role": "E-REDES topology input",
+      "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/pc-at_2025/exports/geojson",
+      "local_path": "data/raw/eredes/pc-at_2025.geojson",
+      "bytes": 20654,
+      "sha256": "24ee9d58b2f019413e66040aee797b07275055b7f10dc91aa01574ae518043f2"
+    },
+    {
+      "source_id": "pc-at_2025",
+      "role": "E-REDES topology input",
+      "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/pc-at_2025/exports/csv",
+      "local_path": "data/raw/eredes/pc-at_2025.csv",
+      "bytes": 7914,
+      "sha256": "2fa1afb80b56a831f3bcaec69ca119cb5c23efaab48b47155ccd7c0e1a0e11fc"
+    },
+    {
+      "source_id": "caracteristicas-da-rede",
+      "role": "E-REDES electrical or boundary context",
+      "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/caracteristicas-da-rede/exports/csv",
+      "local_path": "data/raw/eredes/caracteristicas-da-rede.csv",
+      "bytes": 62209,
+      "sha256": "41aa5f0074b6c6ea081ffb9ffc5766dea7dfe9e9ba893939dc4686f16ad54fb0"
+    },
+    {
+      "source_id": "capacidade-rececao-rnd",
+      "role": "E-REDES electrical or boundary context",
+      "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/capacidade-rececao-rnd/exports/csv",
+      "local_path": "data/raw/eredes/capacidade-rececao-rnd.csv",
+      "bytes": 151565,
+      "sha256": "fe53b14dbcbb94e4125abb31a5f1c666bcdaefbfd4b83bc62afc0eac4c254780"
+    },
+    {
+      "source_id": "carga-na-subestacao",
+      "role": "E-REDES electrical or boundary context",
+      "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/carga-na-subestacao/exports/csv",
+      "local_path": "data/raw/eredes/carga-na-subestacao.csv",
+      "bytes": 75262,
+      "sha256": "f16037cfa4fd4636e840f13faef601cc11bf7cefd7e86985f51912a83e1822a2"
+    },
+    {
+      "source_id": "postos-transformacao-distribuicao",
+      "role": "E-REDES electrical or boundary context",
+      "url": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/postos-transformacao-distribuicao/exports/csv",
+      "local_path": "data/raw/eredes/postos-transformacao-distribuicao.csv",
+      "bytes": 16663011,
+      "sha256": "1882e30bd05cfcd419636965bd7a7b0747b84cdc49d6fcebdcfe93c12735506e"
+    },
+    {
+      "source_id": "eredes-load-snapshot",
+      "role": "synchronised substation active-load snapshot",
+      "url": "['https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_01_a_07/exports/csv?where=datahora+%3D+date%272026-01-20T19%3A45%3A00Z%27', 'https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_08_a_10/exports/csv?where=datahora+%3D+date%272026-01-20T19%3A45%3A00Z%27', 'https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_11_a_12/exports/csv?where=datahora+%3D+date%272026-01-20T19%3A45%3A00Z%27', 'https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_13_a_15/exports/csv?where=datahora+%3D+date%272026-01-20T19%3A45%3A00Z%27', 'https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets/diagrama_carga_subestacao_16_a_18/exports/csv?where=datahora+%3D+date%272026-01-20T19%3A45%3A00Z%27']",
+      "local_path": "data/raw/eredes/load_snapshot.csv",
+      "bytes": 66768,
+      "sha256": "1e457f38e2f2767eee25fdc812b87bc21cf0e765072da32979abc2e07c826a17"
+    },
+    {
+      "source_id": "geofabrik-portugal-poly",
+      "role": "Geofabrik extraction boundary audit",
+      "url": "https://download.geofabrik.de/europe/portugal.poly",
+      "local_path": "data/raw/osm/portugal.poly",
+      "bytes": 5999,
+      "sha256": "b6eac12ed0d04d87c0371289d2f9b95365cafce0ee94fefd01b5ecc33a52e5bb"
+    },
+    {
+      "source_id": "eurostat-gisco-portugal-2024",
+      "role": "official country-boundary scope audit",
+      "url": "https://gisco-services.ec.europa.eu/distribution/v2/countries/distribution/PT-region-01m-4326-2024.geojson",
+      "local_path": "data/raw/reference/portugal_gisco_2024.geojson",
+      "bytes": 135261,
+      "sha256": "fde409780a6ea7135a28866f10e855c53b9d55abc34817cd4d3f5667a3efbe41"
+    },
+    {
+      "source_id": "ren-rnt-map-2025",
+      "role": "official RNT circuit lengths, substations, transformers, and directly connected plants",
+      "url": "https://www.ren.pt/media/jyadb40z/mapa-2025-eletricidade.pdf",
+      "local_path": "data/raw/ren/ren_rnt_map_2025.pdf",
+      "bytes": 9360801,
+      "sha256": "73f96a57695378d60beb17fddd3dac42e46f7364be31d061d14f359d07e87378"
+    },
+    {
+      "source_id": "ren-rnt-quality-2024",
+      "role": "official voltage-pair transformer capacity totals and RNT service context",
+      "url": "https://www.ren.pt/media/iu0n1ti1/relatorio-de-qualidade-de-servico-rnt-2024.pdf",
+      "local_path": "data/raw/ren/ren_rnt_quality_2024.pdf",
+      "bytes": 3224572,
+      "sha256": "975b53c0a43e452767189f2791b7c7564d5e4c06d3be6b1cd929fba5a2fafec4"
+    },
+    {
+      "source_id": "eredes-pdird-e-2020-annex-b",
+      "role": "official 60 kV conductor and nominal-current evidence for the 31-12-2025 planning table",
+      "url": "https://www.erse.pt/media/340hrot0/proposta-pdird-e-2020_anexo_b.pdf",
+      "local_path": "data/raw/eredes/pdird/pdird_e_2020_annex_b.pdf",
+      "bytes": 42724392,
+      "sha256": "9ed7bc96b42088b9fe6d593eb7847c6b2aad5e103051590dd3a19470350cb332"
+    },
+    {
+      "source_id": "eredes-pdird-2025-at-circuits-parsed",
+      "role": "parsed 31-12-2025 AT circuit/conductor/current table derived from the official PDIRD annex",
+      "url": "https://www.erse.pt/media/340hrot0/proposta-pdird-e-2020_anexo_b.pdf",
+      "local_path": "data/raw/eredes/pdird/pdird_2025_at_circuits.csv",
+      "bytes": 122671,
+      "sha256": "b9d11f88adaf4db04a4f6343a5a0b5472bf7da9d56aa9216bfb8c529eebfb1f8"
+    },
+    {
+      "source_id": "eredes-pdird-pt60-selected-matches",
+      "role": "reviewed PT60-to-PDIRD circuit-name match table derived from the official PDIRD annex",
+      "url": "https://www.erse.pt/media/340hrot0/proposta-pdird-e-2020_anexo_b.pdf",
+      "local_path": "data/raw/eredes/pdird/pdird_pt60_selected_circuit_matches.csv",
+      "bytes": 270159,
+      "sha256": "91da00a2eb6e6dd34d0e477707118c1f840dcff32dc99105c0318eaa49e5da74"
+    },
+    {
+      "source_id": "geofabrik-portugal-osm-pbf",
+      "role": "complete Portugal OSM snapshot for power ways, facilities, circuits, and line-section relations",
+      "url": "https://download.geofabrik.de/europe/portugal-latest.osm.pbf",
+      "local_path": "data/raw/osm/portugal-latest.osm.pbf",
+      "bytes": 421642962,
+      "sha256": "b62359dfab962e521766be5c9c96ad2a0f618f9a2d2023c71963777153da9a14"
+    }
+  ],
+  "api_keys_persisted": false,
+  "note": "Public page widget keys are discovered at runtime and are never written to the manifest."
+}

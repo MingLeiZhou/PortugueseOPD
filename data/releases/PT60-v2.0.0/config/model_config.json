@@ -1,0 +1,227 @@
+{
+  "model_name": "Portuguese-HV-Candidate",
+  "voltage_levels_kv": [
+    60,
+    130,
+    150,
+    220,
+    400
+  ],
+  "eredes_primary_voltage_levels_kv": [
+    60,
+    130
+  ],
+  "osm_primary_voltage_levels_kv": [
+    150,
+    220,
+    400
+  ],
+  "osm_inventory_voltage_levels_kv": [
+    60,
+    66,
+    130,
+    132,
+    150,
+    220,
+    400
+  ],
+  "endpoint_snap_m": 75.0,
+  "facility_match_m": 250.0,
+  "substation_bus_match_m": 1000.0,
+  "generation_bus_match_m": 20000.0,
+  "continental_portugal_bounds": [
+    -9.6,
+    -6.0,
+    36.8,
+    42.2
+  ],
+  "load_power_factor": 0.97,
+  "generator_dispatch_fraction": 0.35,
+  "generation_supply_share_by_active_component": 0.8,
+  "calibration_timestamp_utc": "2026-01-20T19:45:00+00:00",
+  "power_flow_scenario_scaling": 1.0,
+  "generation_dispatch_mode": "MERIT_ORDER_REGIONAL_HYDRO_CCGT",
+  "load_completion_mode": "RNT_INDUSTRIAL_PLUS_EREDES_OBSERVED",
+  "seasonal_rating_mode": "WINTER",
+  "seasonal_rating_factor": 1.15,
+  "target_cross_border_import_mw": 406.6,
+  "ren_400kv_shunt_reactors": [
+    {
+      "bus_id": "BUS:OSM:way:144396412:400",
+      "name": "Armamar (SAMM R1)",
+      "q_mvar": 150.0
+    },
+    {
+      "bus_id": "BUS:OSM:way:24636044:400",
+      "name": "Fanhões (SFN R1)",
+      "q_mvar": 150.0
+    },
+    {
+      "bus_id": "BUS:OSM:way:131715746:400",
+      "name": "Rio Maior (SRM R1)",
+      "q_mvar": 150.0
+    },
+    {
+      "bus_id": "BUS:OSM:way:751560789:400",
+      "name": "Feira (SFRA R1)",
+      "q_mvar": 150.0
+    },
+    {
+      "bus_id": "BUS:OSM:way:151061884:400",
+      "name": "Pedralva (SPDV R1)",
+      "q_mvar": 150.0
+    }
+  ],
+  "cross_border_interconnections": [
+    {
+      "bus_id": "BUS:JUNCTION:400:03798",
+      "name": "Alto Lindoso - Cartelle (Galicia)",
+      "voltage_kv": 400
+    },
+    {
+      "bus_id": "BUS:OSM:way:47911346:400",
+      "name": "Lagoaça - Aldeadávila (Douro)",
+      "voltage_kv": 400
+    },
+    {
+      "bus_id": "BUS:OSM:way:84526032:400",
+      "name": "Falagueira - Cedillo (Tejo)",
+      "voltage_kv": 400
+    },
+    {
+      "bus_id": "BUS:JUNCTION:400:03946",
+      "name": "Alqueva - Brovales/Balboa (Alentejo)",
+      "voltage_kv": 400
+    },
+    {
+      "bus_id": "BUS:JUNCTION:400:03926",
+      "name": "Tavira - Puebla de Guzmán (Algarve)",
+      "voltage_kv": 400
+    }
+  ],
+  "power_flow_pv_generator_min_nameplate_mw": 20.0,
+  "power_flow_pv_generator_min_bus_kv": 60,
+  "power_flow_enable_substation_shunts": true,
+  "power_flow_substation_target_pf": 0.98,
+  "power_flow_use_distributed_slack": false,
+  "power_flow_generator_q_limit_fraction": 0.5,
+  "power_flow_use_proxy_shunt_capacitance": true,
+  "power_flow_infer_tap_positions": true,
+  "power_flow_tap_target_band_pu": [
+    0.985,
+    1.015
+  ],
+  "power_flow_scenario_note": "Full-scale public-data-calibrated case aligned to 2026-01-20 19:45 UTC. E-REDES substation active-load observations are preserved and the difference to REN national consumption is distributed using E-REDES PTD spatial utilization weights. REN source-level generation totals are allocated to mapped public generation assets in proportion to nameplate capacity. Reactive loads, individual generator dispatch, line impedances, shunt capacitance, transformer impedances and tap positions remain evidence-ranked estimates where equipment-level observations are unavailable.",
+  "ren_2025_reference_line_km": {
+    "150": 2514.0,
+    "220": 3916.0,
+    "400": 3465.0
+  },
+  "osm_portugal_wiki_reference": {
+    "snapshot_date": "2026-07-14",
+    "url": "https://wiki.openstreetmap.org/wiki/Power_networks/Portugal",
+    "expected_line_km": {
+      "60": 9742.0,
+      "130": 38.2,
+      "150": 2513.9,
+      "220": 3916.1,
+      "400": 3465.2
+    },
+    "mapped_line_km": {
+      "60": 9613.0,
+      "130": 38.1,
+      "150": 2739.4,
+      "220": 3952.6,
+      "400": 3577.8
+    }
+  },
+  "line_parameter_defaults": {
+    "60": {
+      "r_ohm_per_km": 0.1093,
+      "x_ohm_per_km": 0.368854,
+      "c_nf_per_km": 9.2,
+      "max_i_ka": 0.606
+    },
+    "130": {
+      "r_ohm_per_km": 0.07,
+      "x_ohm_per_km": 0.33,
+      "c_nf_per_km": 9.8,
+      "max_i_ka": 0.8
+    },
+    "150": {
+      "r_ohm_per_km": 0.06,
+      "x_ohm_per_km": 0.32,
+      "c_nf_per_km": 10.0,
+      "max_i_ka": 0.85
+    },
+    "220": {
+      "r_ohm_per_km": 0.04,
+      "x_ohm_per_km": 0.285,
+      "c_nf_per_km": 11.0,
+      "max_i_ka": 1.2
+    },
+    "400": {
+      "r_ohm_per_km": 0.025,
+      "x_ohm_per_km": 0.25,
+      "c_nf_per_km": 12.0,
+      "max_i_ka": 2.0
+    }
+  },
+  "cable_parameter_multipliers": {
+    "r": 0.65,
+    "x": 0.35,
+    "c": 20.0,
+    "max_i": 0.9
+  },
+  "transformer_defaults": {
+    "400/220": {
+      "sn_mva": 450.0,
+      "vk_percent": 12.0,
+      "vkr_percent": 0.3
+    },
+    "400/150": {
+      "sn_mva": 450.0,
+      "vk_percent": 12.0,
+      "vkr_percent": 0.3
+    },
+    "400/60": {
+      "sn_mva": 170.0,
+      "vk_percent": 12.0,
+      "vkr_percent": 0.35
+    },
+    "220/150": {
+      "sn_mva": 250.0,
+      "vk_percent": 12.0,
+      "vkr_percent": 0.35
+    },
+    "150/130": {
+      "sn_mva": 140.0,
+      "vk_percent": 12.0,
+      "vkr_percent": 0.45
+    },
+    "220/60": {
+      "sn_mva": 170.0,
+      "vk_percent": 12.0,
+      "vkr_percent": 0.4
+    },
+    "150/60": {
+      "sn_mva": 170.0,
+      "vk_percent": 12.0,
+      "vkr_percent": 0.45
+    },
+    "130/60": {
+      "sn_mva": 126.0,
+      "vk_percent": 12.0,
+      "vkr_percent": 0.45
+    }
+  },
+  "ren_2024_transformer_capacity_mva": {
+    "400/220": 8100.0,
+    "400/150": 6440.0,
+    "220/150": 830.0,
+    "400/60": 5270.0,
+    "220/60": 13071.0,
+    "150/60": 6558.0,
+    "150/130": 140.0
+  }
+}

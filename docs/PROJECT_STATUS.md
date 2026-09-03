@@ -1,62 +1,50 @@
 # Project status
 
-## Research objective
+Updated: 2026-09-03
 
-PortugueseOPD studies how far publicly available E-REDES data can support a reproducible
-60 kV topology candidate and diagnostic benchmark without hiding missing electrical data.
+## Objective
 
-The intended contribution is a fail-closed pipeline and an open candidate dataset, not a
-claim that the real Portuguese operational grid has been reconstructed.
+Deliver **PT60**, a Portuguese public-record high-voltage topology and AC
+power-flow benchmark covering all modelled voltage levels greater than or equal
+to 60 kV. PT60 remains the dataset name; v2.0.0 supersedes the former 60 kV-only
+scope without claiming to reproduce an operator network.
 
-## Completed work
+## Current result
 
-- Input inventory, schema profiling, and join-key analysis.
-- Paper-style topology reconstruction using facility footprints, endpoint clustering,
-  voltage-aware union-find merging, and circuit classification.
-- Extraction of 358 reliable inter-facility AT candidate branches.
-- Portuguese and European parameter-source audit with source/confidence labels.
-- Pandapower-shaped candidate tables and fail-closed readiness gates.
-- A frozen diagnostic benchmark candidate:
-  - AC PF reference: S16 reduced backbone, 54 buses, 36 lines, 25 loads.
-  - DC OPF reference: S30 parallel-equivalent diagnostic scenario.
-- Stage 1-5 dataset packaging, graph export, task/split contracts, and framework-neutral
-  learning adapters.
-- Consumer-facing QA smoke coverage for stage-4 benchmark contracts and stage-5 adapter
-  contracts.
-- Stage-4 v2 label-support policy: grouped regression as the primary benchmark, relative
-  high-stress/high-dispatch classification as limited-support auxiliary tasks, and original
-  overload/top-dispatch classification retained as non-headline challenge tasks.
-- Leakage-safe Stage-4 baselines for four evaluable tasks using five seeds, train-only
-  preprocessing, strict entity grouping, and an explicit ban on target-derived features.
-- A proportional stratified external topology review sample covering 100 of 358 retained
-  branches. Accuracy remains `NOT_EVALUABLE` pending independent evidence and adjudication.
-- Full-model ACPF localization with leave-one-element-out and slack-depth expansion. No
-  single line or transformer removal restores convergence while preserving 95% of load;
-  low-load failure first appears when a 16-line, no-new-load depth-15 frontier is added.
-- A machine-readable reproduction source manifest and attribution-aware release gate. The
-  three topology-critical API records do not repeat an explicit license field, so the
-  manifest records the official portal-level CC BY 4.0 basis as a visible fallback.
+- Voltage levels: 60, 130, 150, 220 and 400 kV.
+- Network: 3,783 buses, 4,943 lines and 228 transformers.
+- Scenario: 10,268.8 MW full-scale load with 1,421 mapped generation candidates.
+- Connectivity: one component contains all scenario load and generation.
+- Validation: 22/22 checks pass.
+- AC power flow: full-scale case converges.
+- Screen: 0.9293--1.0117 pu voltage, 94.94% maximum line loading and 83.44%
+  maximum transformer loading.
+- Release: `data/releases/PT60-v2.0.0/` plus deterministic tar.gz archive.
 
-## Current limitations
+## Evidence coverage
 
-- Candidate topology is inferred and not operator-validated.
-- Important line parameters and actual circuit counts are incomplete or scenario-based.
-- Generator, import, and cost semantics are proxies.
-- Benchmark labels are generated from diagnostic scenarios rather than observed events.
-- Benchmark-core positive entities remain insufficient for the original overload and
-  top-dispatch classifications; row-balanced splits are plumbing-only.
-- Diagnostic baseline results demonstrate the software interface only; their labels and
-  electrical inputs remain scenario-derived or proxy-based.
-- AC OPF is outside benchmark-v1 scope.
-- A public PT60-Candidate archive and DOI have not yet been packaged; release metadata must
-  preserve E-REDES attribution, source identifiers, access dates, and modification notices.
+All line geometry is derived from direct public E-REDES or OSM records. Of 4,943
+line rows, 1,517 are partially backed by matched PDIRD circuits; the other 3,426
+use declared voltage-class parameter proxies. Transformer topology includes 199
+direct OSM transformer records and 29 evidence-labelled public-record or
+co-location inferences. All non-observed operating quantities retain explicit
+status fields.
 
-## Realistic completion target
+## Remaining limitations
 
-The project is complete when it provides:
+- no complete authoritative switching or busbar state;
+- incomplete circuit-specific impedance and shunt data;
+- incomplete unit-level transformer impedance, tap and control records;
+- reactive demand and asset-level dispatch are scenario quantities;
+- no operator state-estimator or EMS comparison;
+- OSM geometry is public evidence, not operator validation.
 
-1. a reproducible pipeline from source download to validated dataset contracts;
-2. a versioned diagnostic topology/benchmark release with explicit provenance;
-3. topology and parameter-readiness ablations;
-4. simple benchmark baselines demonstrating dataset usability;
-5. a paper that reports limitations as results rather than claiming operator-grade realism.
+The dataset is appropriate for reproducible topology integration, provenance
+research, power-flow workflows, sensitivity studies and benchmark development.
+It is not appropriate for operational or security-sensitive grid decisions.
+
+## Release work remaining outside Git
+
+The v2.0.0 archive is ready for repository deposit. Publishing it under a DOI,
+confirming the downloaded archive hash and completing any associated paper's
+author/governance declarations remain external actions.

@@ -1,0 +1,219 @@
+{
+  "dataset": "PT60",
+  "version": "v2.0.0",
+  "title": "Portuguese public-record high-voltage topology and AC power-flow benchmark dataset",
+  "generated_at_utc": "2026-09-03T13:59:54+00:00",
+  "voltage_levels_kv": [
+    60,
+    130,
+    150,
+    220,
+    400
+  ],
+  "records": [
+    {
+      "path": "ATTRIBUTION.md",
+      "bytes": 469,
+      "sha256": "1153a93d6e4c805b27a831d77ba35194d4d03ad35d67275d7752575e17bfff86",
+      "rows": null
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 632,
+      "sha256": "8b2ff1dcf267871da5c4cce14158f114f6a32fe7c63a815c8636995402a72105",
+      "rows": null
+    },
+    {
+      "path": "CITATION.cff",
+      "bytes": 610,
+      "sha256": "cb64da6ea0524ae52483ddd89dc624d8c18721ff774e830ff51fcb9ac6547c4c",
+      "rows": null
+    },
+    {
+      "path": "DATA_LICENSE.md",
+      "bytes": 798,
+      "sha256": "f4e6f1309d6b0f0b1e4bf7f9f92739e4555186356901d890b5322b6eea3ee33e",
+      "rows": null
+    },
+    {
+      "path": "LICENSE-CODE-MIT",
+      "bytes": 1083,
+      "sha256": "6142594cdc6d1c4888f7f5b45f38efde93734bf967c2bf6d3c13124403489a85",
+      "rows": null
+    },
+    {
+      "path": "README.md",
+      "bytes": 1603,
+      "sha256": "27695e37ea578713374236ef59f7f66577817e7f6f84d9ef7be2308c6f4ebbac",
+      "rows": null
+    },
+    {
+      "path": "config/model_config.json",
+      "bytes": 5659,
+      "sha256": "0db3560d26989342114e7d808c04032e6bfad6f933f3612d507f185b10e48f0d",
+      "rows": null
+    },
+    {
+      "path": "config/sources.json",
+      "bytes": 1987,
+      "sha256": "b8755d30dbe9c6b34722e886b519498e21472ca7c845bb78b51dc89495a24363",
+      "rows": null
+    },
+    {
+      "path": "model/pt60_candidate.json",
+      "bytes": 3176699,
+      "sha256": "abbdf30601c5901efe1f06cf98384bf358387ca918ad782674f4d100ea7b0422",
+      "rows": null
+    },
+    {
+      "path": "model/pt60_candidate_solved.json",
+      "bytes": 4766106,
+      "sha256": "de1d89abfb284faebc16797f4c9dcd5d39e1043aead9ab1bb5f236264fe90201",
+      "rows": null
+    },
+    {
+      "path": "power_flow/full_scale_operating_case.json",
+      "bytes": 750,
+      "sha256": "d8e642ddc27873e0a897e72ae623f97aab4aae31954caae5afe4b62b24d505c8",
+      "rows": null
+    },
+    {
+      "path": "power_flow/generator_operating_points.csv",
+      "bytes": 333861,
+      "sha256": "2a3f3dcbb8012f7a5ecaa417286ef4cd6a48b9528e3c07d41ed2e198b2b7ad58",
+      "rows": 1421
+    },
+    {
+      "path": "power_flow/line_results.csv",
+      "bytes": 9079416,
+      "sha256": "b9477ae13f6db5b5f2baefbf85daf37750d10e0ea5368b3def8adf8c82a4220b",
+      "rows": 4943
+    },
+    {
+      "path": "power_flow/load_operating_points.csv",
+      "bytes": 110825,
+      "sha256": "2e9eb2f88ec95457689373ff15ccc80392b5f95b1fa48ed174f5062dde79ac3f",
+      "rows": 401
+    },
+    {
+      "path": "power_flow/scaling_sweep.csv",
+      "bytes": 869,
+      "sha256": "f7e2362d1da2b9b28d32808844b7fe4a2ffaad83d92ce749c0100e33937d096b",
+      "rows": 5
+    },
+    {
+      "path": "power_flow/scaling_sweep_summary.json",
+      "bytes": 457,
+      "sha256": "b43456b4a1dd353d32da8526ae46bbc9006dacbb39dfc636518f0feb2de4dd84",
+      "rows": null
+    },
+    {
+      "path": "power_flow/summary.json",
+      "bytes": 1450,
+      "sha256": "bd31481e4ddd2f1694e865bc3f5b952b097a245f44cc0af6f91438d9a54ff02e",
+      "rows": null
+    },
+    {
+      "path": "power_flow/transformer_results.csv",
+      "bytes": 194500,
+      "sha256": "00b41af1cc2b39d774479c9ebd6b559f625fab464554d3ae59f0aba936022c29",
+      "rows": 228
+    },
+    {
+      "path": "provenance/source_manifest.json",
+      "bytes": 8488,
+      "sha256": "f1041f1bcd9366e68a85d350a63306b6029ae2a2c3246215874609367d460a93",
+      "rows": null
+    },
+    {
+      "path": "scenario/boundaries.csv",
+      "bytes": 601,
+      "sha256": "d5fcfec8661ea190de9d166ff7b59dd8ad5b2eed46ef585d3903fe557a02d361",
+      "rows": 5
+    },
+    {
+      "path": "scenario/generators.csv",
+      "bytes": 1020533,
+      "sha256": "2909e5aa5510c10bcfe4e5a2a842ec575ba933bd33c8d0a632f5f8e0c50c839f",
+      "rows": 1563
+    },
+    {
+      "path": "scenario/loads.csv",
+      "bytes": 92947,
+      "sha256": "45c1d7328bb59560deb61ae4ae423d2db14937ce242530d6befa618c32c88331",
+      "rows": 401
+    },
+    {
+      "path": "scenario/operating_quantity_evidence.csv",
+      "bytes": 1109,
+      "sha256": "640d4b029df7439b5fbc97f850ea053634ee4741c3cc82d7569ec48afbf9e756",
+      "rows": 11
+    },
+    {
+      "path": "topology/buses.csv",
+      "bytes": 482897,
+      "sha256": "9488b09fdf1d94777b895427518aa26c110e8e5dd0dd0120a1c4bf6eddd74e55",
+      "rows": 3783
+    },
+    {
+      "path": "topology/facilities.csv",
+      "bytes": 160536,
+      "sha256": "13b2eff3a719054fed2afa802414e728e6764b1cdd1ad8a3229044783346ee09",
+      "rows": 675
+    },
+    {
+      "path": "topology/lines.csv",
+      "bytes": 7355428,
+      "sha256": "838c63fd54f40b8cbf918c1039c74c3308b574a21fa049e77df7d339dbfa1670",
+      "rows": 4943
+    },
+    {
+      "path": "topology/transformers.csv",
+      "bytes": 109669,
+      "sha256": "8ff11ad86bcbabde0adaf91ae89e0d457982d349757012bf278583da341354b4",
+      "rows": 228
+    },
+    {
+      "path": "validation/checks.csv",
+      "bytes": 1443,
+      "sha256": "fdc0fc1a3caa19e82a4b62b24dd6440a8058a9b256d74806b624f0370570db82",
+      "rows": 22
+    },
+    {
+      "path": "validation/component_audit.csv",
+      "bytes": 2095,
+      "sha256": "de2fdabc67bcc2987729ad148c885e26f88bfbeee6d5ff7d1fb9dcae07cc808f",
+      "rows": 21
+    },
+    {
+      "path": "validation/corridor_rating_corrections.csv",
+      "bytes": 574,
+      "sha256": "d27efcae43b8d3814a22b3f7b59aea68d675a8e8eaf9b042e4d578cb629a908e",
+      "rows": 4
+    },
+    {
+      "path": "validation/evidence_audit_summary.json",
+      "bytes": 585,
+      "sha256": "08a4126a08c031921f6344738cd4585836c5a153a8694947b95a37056c5d844d",
+      "rows": null
+    },
+    {
+      "path": "validation/summary.json",
+      "bytes": 2436,
+      "sha256": "05f693c702e9d6a3accf416f5133fd8319556a356913be68c62ffdea04484897",
+      "rows": null
+    },
+    {
+      "path": "validation/transformer_capacity.csv",
+      "bytes": 1418,
+      "sha256": "3dbe7f197c80efaae1e2cf7a45b71d970f8096458458a1212fb1e2bf3894b1db",
+      "rows": 7
+    },
+    {
+      "path": "validation/voltage_coverage.csv",
+      "bytes": 1356,
+      "sha256": "0b5cb4e9da6c344bb9a859321a84339bf4f36921bfec4cf68b6a6f9bec94906d",
+      "rows": 5
+    }
+  ]
+}

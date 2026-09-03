@@ -1,0 +1,57 @@
+{
+  "generated_at": "2026-09-03T13:59:54+00:00",
+  "overall_status": "PASS",
+  "checks_passed": 22,
+  "checks_total": 22,
+  "network": {
+    "buses": 3783,
+    "lines": 4943,
+    "transformers": 228,
+    "components": 105,
+    "active_components": 1
+  },
+  "evidence": {
+    "direct_line_geometry_fraction": 1.0,
+    "proxy_or_partial_line_parameter_fraction": 1.0,
+    "line_parameter_status_counts": {
+      "VOLTAGE_CLASS_ENGINEERING_PROXY": 3426,
+      "PDIRD_CIRCUIT_PATH_MATCH_PARTIAL_SOURCE_BACKING": 1517
+    },
+    "transformer_source_status_counts": {
+      "DIRECT_OSM_TRANSFORMER_TAG": 199,
+      "RARI_BOUNDARY_NAME_AND_SPATIAL_INFERRED": 24,
+      "OSM_SUBSTATION_COLOCATION_INFERRED": 3,
+      "RARI_BOUNDARY_NAME_AND_COLOCATED_60KV_ENDPOINT_INFERRED": 2
+    },
+    "assigned_load_fraction": 1.0,
+    "scenario_connected_load_fraction": 1.0,
+    "assigned_generation_fraction": 0.909149072296865
+  },
+  "power_flow": {
+    "generated_at": "2026-09-02T18:37:09+00:00",
+    "buses": 3783,
+    "lines": 4943,
+    "transformers": 228,
+    "loads": 401,
+    "fixed_pq_generator_assets": 451,
+    "voltage_controlled_generator_buses": 150,
+    "generator_assets_assigned": 1421,
+    "scenario_boundaries": 5,
+    "topological_components": 1,
+    "power_flow_attempted": true,
+    "scenario_scaling": 1.0,
+    "line_shunt_capacitance_mode": "voltage-class proxy enabled",
+    "scenario_note": "Full-scale public-data-calibrated case aligned to 2026-01-20 19:45 UTC. E-REDES substation active-load observations are preserved and the difference to REN national consumption is distributed using E-REDES PTD spatial utilization weights. REN source-level generation totals are allocated to mapped public generation assets in proportion to nameplate capacity. Reactive loads, individual generator dispatch, line impedances, shunt capacitance, transformer impedances and tap positions remain evidence-ranked estimates where equipment-level observations are unavailable.",
+    "converged": true,
+    "vm_pu_min": 0.9293148739202904,
+    "vm_pu_max": 1.0117078868164282,
+    "line_loading_percent_max": 94.93800748809002,
+    "trafo_loading_percent_max": 83.44105986536522,
+    "total_load_p_mw": 10268.8,
+    "total_generation_p_mw": 10032.2,
+    "total_generator_q_mvar": 793.1288281733589,
+    "total_ext_grid_p_mw": 497.5546669292319,
+    "losses_p_mw": 260.95466714458826,
+    "transformers_with_inferred_non_neutral_tap": 67
+  }
+}

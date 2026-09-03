@@ -1,0 +1,9 @@
+{
+  "generated_at": "2026-09-03T14:00:14+00:00",
+  "model": "<PROJECT_ROOT>/portuguese_hv_network/outputs/model/portuguese_hv_candidate.json",
+  "scenarios": 5,
+  "converged_scenarios": 5,
+  "screening_pass_scenarios": 3,
+  "largest_tested_passing_scale": 1.0,
+  "important_scope": "The 1.00 case is the primary full-scale public-data-calibrated case; the other rows are sensitivity/stress tests. PV control and reactive limits are declared assumptions."
+}

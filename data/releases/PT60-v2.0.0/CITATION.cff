@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use PT60, cite the dataset and the PortugueseOPD software repository."
+title: "PT60: Portuguese public-record high-voltage topology and AC power-flow benchmark dataset"
+type: dataset
+authors:
+  - name: "PortugueseOPD contributors"
+version: 2.0.0
+date-released: 2026-09-03
+repository-code: "https://github.com/MingLeiZhou/PortugueseOPD"
+abstract: >-
+  A public-data-informed Portuguese high-voltage network benchmark covering
+  nominal voltages from 60 to 400 kV, with provenance-labelled topology,
+  scenario inputs, pandapower models, AC power-flow results and validation.

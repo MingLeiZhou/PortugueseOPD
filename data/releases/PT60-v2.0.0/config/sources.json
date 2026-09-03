@@ -1,0 +1,38 @@
+{
+  "eredes_page": "https://e-redes.opendatasoft.com/pages/rnd/",
+  "eredes_rari_page": "https://e-redes.opendatasoft.com/pages/caracterizacao_redes_distribuicao/",
+  "eredes_api_base": "https://e-redes.opendatasoft.com/api/explore/v2.1/catalog/datasets",
+  "eredes_geo_datasets": [
+    "rede-at-teste",
+    "se-at_2025",
+    "pc-at_2025"
+  ],
+  "eredes_context_datasets": [
+    "caracteristicas-da-rede",
+    "capacidade-rececao-rnd",
+    "carga-na-subestacao",
+    "postos-transformacao-distribuicao"
+  ],
+  "eredes_load_partitions": [
+    "diagrama_carga_subestacao_01_a_07",
+    "diagrama_carga_subestacao_08_a_10",
+    "diagrama_carga_subestacao_11_a_12",
+    "diagrama_carga_subestacao_13_a_15",
+    "diagrama_carga_subestacao_16_a_18"
+  ],
+  "overpass_endpoints": [
+    "https://overpass-api.de/api/interpreter",
+    "https://overpass.kumi.systems/api/interpreter"
+  ],
+  "geofabrik_portugal_pbf": "https://download.geofabrik.de/europe/portugal-latest.osm.pbf",
+  "geofabrik_portugal_poly": "https://download.geofabrik.de/europe/portugal.poly",
+  "gisco_portugal_boundary": "https://gisco-services.ec.europa.eu/distribution/v2/countries/distribution/PT-region-01m-4326-2024.geojson",
+  "openinframap_portugal_view": "https://openinframap.org/#6.63/41.751/-7.768",
+  "osm_portugal_power_documentation": "https://wiki.openstreetmap.org/wiki/Power_networks/Portugal",
+  "ren_context_page": "https://datahub.ren.pt/en/networks/electrical-grid/",
+  "ren_dispatch_daily_api": "https://servicebus.ren.pt/datahubapi/electricity/ElectricityProductionBreakdownDaily",
+  "ren_historical_characterisation": "https://www.ren.pt/media/4bjaxy3z/caracteriza%C3%A7%C3%A3o-da-rnt.pdf",
+  "ren_rnt_map_2025_pdf": "https://www.ren.pt/media/jyadb40z/mapa-2025-eletricidade.pdf",
+  "ren_rnt_quality_2024_pdf": "https://www.ren.pt/media/iu0n1ti1/relatorio-de-qualidade-de-servico-rnt-2024.pdf",
+  "eredes_pdird_2020_annex_b_pdf": "https://www.erse.pt/media/340hrot0/proposta-pdird-e-2020_anexo_b.pdf"
+}

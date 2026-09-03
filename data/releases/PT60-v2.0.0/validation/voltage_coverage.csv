@@ -1,0 +1,6 @@
+voltage_kv,topology_primary_source,retained_topology_corridor_km,blocked_after_clustering_km,osm_extracted_physical_corridor_km,osm_relation_circuit_km,osm_circuit_relations,osm_wiki_mapped_km_2026_07_14,osm_relation_to_wiki_ratio,osm_wiki_expected_or_operator_km,ren_2025_context_km,interpretation
+60,E-REDES,9668.445544387894,79.4074033400974,9668.656299792765,9598.05226800761,1008,9613.0,0.9984450502452523,9742.0,,E-REDES geometry is primary; OSM circuit-km is a contextual cross-check
+130,E-REDES,41.63324110926394,0.21405632281406697,50.398443698346554,37.966312428703226,1,38.1,0.996491139860977,38.2,,E-REDES geometry is primary; OSM circuit-km is a contextual cross-check
+150,OpenStreetMap,2054.118282188312,33.4754844276497,2087.593766615962,2579.3234341592606,90,2739.4,0.9415650997149961,2513.9,2514.0,OSM way geometry is primary; relation circuit-km counts shared corridors once per circuit
+220,OpenStreetMap,3206.8715740431044,45.732732411722914,3252.604306454827,3905.857467404234,125,3952.6,0.9881742314942655,3916.1,3916.0,OSM way geometry is primary; relation circuit-km counts shared corridors once per circuit
+400,OpenStreetMap,3579.530445830611,46.43678688435245,3625.9672327149638,3720.6203597964095,98,3577.8,1.0399184861636785,3465.2,3465.0,OSM way geometry is primary; relation circuit-km counts shared corridors once per circuit

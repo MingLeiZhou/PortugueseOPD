@@ -1,0 +1,22 @@
+component_id,bus_count,line_count,transformer_count,voltage_levels_kv,active_load_count,active_load_mw,assigned_generator_count,assigned_nameplate_mw,scenario_active,centroid_lon,centroid_lat,example_facilities
+0,3747,4924,228,60;130;150;220;400,794,10268.8,1421,17262.467269999997,True,-8.43040389883188,39.70202214371974,LAMAS | BUSTOS | OLIVEIRA DO BAIRRO | ALJUSTREL | MERCEANA
+1,6,5,0,150,0,0.0,0,0.0,False,-8.272278016666666,41.6079825,
+2,3,4,0,60,0,0.0,0,0.0,False,-8.849736363405576,38.512925977291864,
+3,3,2,0,220,0,0.0,0,0.0,False,-8.194113919607844,42.17466804117647,Subestación da Frieira
+4,3,2,0,220,0,0.0,0,0.0,False,-6.156082166666668,41.546852287037034,Subestación de la Central Hidroeléctrica de Castro II | Subestación de la Central Hidroeléctrica de Castro I
+5,3,3,0,220,0,0.0,0,0.0,False,-8.845234433333333,39.674696250000004,
+6,2,1,0,60,0,0.0,0,0.0,False,-8.830899390071,37.94163586860296,
+7,2,1,0,60,0,0.0,0,0.0,False,-9.25811692024168,38.769766549762835,
+8,2,1,0,400,0,0.0,0,0.0,False,-6.7688068999999995,41.026093665,Subestación de Saucelle II
+9,1,0,0,60,0,0.0,0,0.0,False,-8.82975398629511,37.101637325635046,
+10,1,0,0,150,0,0.0,0,0.0,False,-8.444721999999999,41.40488415,
+11,1,0,0,220,0,0.0,0,0.0,False,-8.95085655,39.01173788333333,
+12,1,0,0,60,0,0.0,0,0.0,False,-8.25740110103337,41.3586150531198,REGILDE
+13,1,0,0,150,0,0.0,0,0.0,False,-8.412196911111112,38.017171233333336,Subestação de Tração de Ermidas-Sado
+14,1,0,0,150,0,0.0,0,0.0,False,-8.234796922727272,41.65362290909091,Posto de Corte de Caniçada
+15,1,0,0,150,0,0.0,0,0.0,False,-8.5986961375,38.4189021125,Subestação de Tração de Monte Novo - Palma
+16,1,0,0,150,0,0.0,0,0.0,False,-8.7509470625,41.65401795,Subestação de Tração de Vila Fria
+17,1,0,0,150,0,0.0,0,0.0,False,-8.847193075,41.686762425,Posto de Corte de Viana do Castelo
+18,1,0,0,220,0,0.0,0,0.0,False,-8.338043016666667,41.1896605,Subestação de Tração de Irivo
+19,1,0,0,150,0,0.0,0,0.0,False,-7.559331275,39.8270978,Subestação Albispark
+20,1,0,0,400,0,0.0,0,0.0,False,-6.803505928571428,41.034700942857135,SE Saucelle II

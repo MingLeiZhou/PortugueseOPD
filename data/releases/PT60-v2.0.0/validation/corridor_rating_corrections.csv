@@ -1,0 +1,5 @@
+corridor,line_id,line_name,previous_parallel,released_parallel,previous_max_i_ka,released_max_i_ka,model_loading_percent,expected_parallel,expected_max_i_ka,status
+Águeda–Barrô,LINE:004061,0101L5124200,1,3,0.523,0.5623499999999999,63.19997552401616,3,0.5623499999999999,PASS
+Vilar do Paraíso–Pedroso,LINE:004111,1317L5113200,1,4,0.384,0.4416,58.23106537639751,4,0.4416,PASS
+Ribabelide–Valdigem,LINE:001534,1805L5119300,1,2,0.606,1.0741,62.911863352896845,2,1.0741,PASS
+Ribabelide–Valdigem,LINE:002386,1805L5119300,1,2,0.606,1.0741,62.94238395565203,2,1.0741,PASS
