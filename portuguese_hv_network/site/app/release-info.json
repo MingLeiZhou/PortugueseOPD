@@ -1,0 +1,168 @@
+{
+  "dataset": {
+    "version": "PT60-v2.1.0-rc2",
+    "url": "/download",
+    "filename": "PT60-v2.1.0-rc2.tar.gz",
+    "bytes": 119971769,
+    "sha256": "07727842080141300c4ddf180f82a4e7f9f66e3a444a30297d650f79a3486913",
+    "parts": [
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part00",
+        "bytes": 4194304,
+        "sha256": "3bfe2302cbcfcd39ef60364384ec7a30e05dd54594ed9ef35b9fa9df3328ef6a"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part01",
+        "bytes": 4194304,
+        "sha256": "8f35bb62f311bd22f31caf08f6416386b7f3d194d71eb06fb0d5d75438516ad4"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part02",
+        "bytes": 4194304,
+        "sha256": "f14c1744c83d1b1130fe51e083af3bcb9ffc1ae8805c38e5b02dc612860e0954"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part03",
+        "bytes": 4194304,
+        "sha256": "5d13d341a1e6e46fbae6222c44b2ac88773da346d78a08d5ec9a47333434ece4"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part04",
+        "bytes": 4194304,
+        "sha256": "23fb3161a686ff84d4d5e9cd89e0473e5e24a0a6d39a8b773af33d7b6d68d2f8"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part05",
+        "bytes": 4194304,
+        "sha256": "641dc2bbd2d829d91db77f60e35c7a93a12640b86aa667bcf2e615d864919b8f"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part06",
+        "bytes": 4194304,
+        "sha256": "005570db02e0b37f0a2d7fc75a241b2259cc04d3f712e14a394adfa59a017459"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part07",
+        "bytes": 4194304,
+        "sha256": "7a596e2f94ccb353e1fbc16dfa42795aa31473b82f4979c044099dfe17b6482c"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part08",
+        "bytes": 4194304,
+        "sha256": "d5af1f89728c1e819ed6159bd331e5b457bacae3263a6f05e6b7dd0af1585441"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part09",
+        "bytes": 4194304,
+        "sha256": "25a14315b10a9ea7bc0b38c26613564d035be23fc3f86740bad29a426be81c39"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part10",
+        "bytes": 4194304,
+        "sha256": "571720d4581b11acee0883056f3f4fc5ef685a5b92e084456fb9d9349b80dd5a"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part11",
+        "bytes": 4194304,
+        "sha256": "d221ea278870ad6355cc73cf7e4b6578351df0ba3f8d49fecd58db54e161b1e1"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part12",
+        "bytes": 4194304,
+        "sha256": "0c39d4256988810698e7424b2efeffc9a96b3077dd96bdf00dd9250982d66a1d"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part13",
+        "bytes": 4194304,
+        "sha256": "2e1d0d58d12b5c94c69f089b78a1bf6b25fdee80e7045228121683d9dea70058"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part14",
+        "bytes": 4194304,
+        "sha256": "4fbf80b6d66c184d4da4be0f7e285f823b4357a8f8e2783462fd771d29445f0b"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part15",
+        "bytes": 4194304,
+        "sha256": "22a4417e99e1e371668e5be256a8b187900f814b2c6c1270f7b47d1acd7165d3"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part16",
+        "bytes": 4194304,
+        "sha256": "743d4cc969bbe67132a4519e42c1fc63a688d09ccf832ce3b08701fdc5dd0475"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part17",
+        "bytes": 4194304,
+        "sha256": "f198175050cdfaacfea24d0217766c263ca7d147d58059d70a61f076ad712e4c"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part18",
+        "bytes": 4194304,
+        "sha256": "3c0cdcc6908e0c8be62781625c54efee86532fd27817c9def8d817b3cf3f3b54"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part19",
+        "bytes": 4194304,
+        "sha256": "de7d08fc2ca22b57179b9c04f74e536db37dcbeb0dad3f41fb14c91445a933a9"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part20",
+        "bytes": 4194304,
+        "sha256": "9745bbf290371494b0ec23b02cfd1b039ec758e4ff5a288b3d70f204fa52d29e"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part21",
+        "bytes": 4194304,
+        "sha256": "6fc1295dcd9a1e7e38eeb7498e466ae697d28a76a3f47d784463f971ca6911e7"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part22",
+        "bytes": 4194304,
+        "sha256": "903f384b89f50c0cfcf7083a92ab280fc44ca0f276cceebc2a98ab9c9ecd1e60"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part23",
+        "bytes": 4194304,
+        "sha256": "cd2b0d3d4ea103bbea2e30009345c79f3ec4ead713afcb7120e388f02271084c"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part24",
+        "bytes": 4194304,
+        "sha256": "1f2be962bbcb3faf87967cd65a7fb71f7d3e77f59f7ee1c76e5406e1acda7783"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part25",
+        "bytes": 4194304,
+        "sha256": "52897c189c348a3c486b5675622839ff4371c14945fac91e9efd8813d7ec24cc"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part26",
+        "bytes": 4194304,
+        "sha256": "b15590116d3018ebc0612253dfb4db94bb747b02f877e021eb4d6fe2fda7b34e"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part27",
+        "bytes": 4194304,
+        "sha256": "67c1c2a49938ce09559da918e34c8525f74289730c06197c631b42d24dc59bcf"
+      },
+      {
+        "path": "/downloads/PT60-v2.1.0-rc2.tar.gz.part28",
+        "bytes": 2531257,
+        "sha256": "dbc9ce490eb1caab444cb089db1f2d9cc786f6ea2f7d6d6231189fbc0c832332"
+      }
+    ]
+  },
+  "python": {
+    "name": "pt60-tools",
+    "version": "0.4.3",
+    "pypi_status": "published",
+    "wheel": "/downloads/pt60_tools-0.4.3-py3-none-any.whl"
+  },
+  "paper": {
+    "status": "Chinese manuscript",
+    "url": "/downloads/PT60-paper-cn.zip",
+    "files": 32
+  },
+  "website": "https://grid.jczw.xyz/project"
+}

@@ -13,13 +13,30 @@
   "generator_dispatch_fraction": 0.35,
   "generation_supply_share_by_active_component": 0.80,
   "calibration_timestamp_utc": "2026-01-20T19:45:00+00:00",
+  "generation_inventory_cutoff_utc": "2026-09-03T23:59:59+00:00",
   "power_flow_scenario_scaling": 1.0,
   "generation_dispatch_mode": "MERIT_ORDER_REGIONAL_HYDRO_CCGT",
-  "load_completion_mode": "RNT_INDUSTRIAL_PLUS_EREDES_OBSERVED",
+  "load_completion_mode": "EREDES_OBSERVED_PLUS_PDIRT_PDE_WEIGHTED_RNT_RESIDUAL",
   "seasonal_rating_mode": "WINTER",
   "seasonal_rating_factor": 1.15,
   "target_cross_border_import_mw": 406.6,
-  "ren_400kv_shunt_reactors": [
+  "cross_border_import_usage": "HELD_OUT_VALIDATION_ONLY_NOT_A_DISPATCH_CALIBRATION_TARGET",
+  "unmapped_generation_residual_bus_id": "BUS:OSM:way:131715746:400",
+  "unmapped_generation_residual_bus_status": "RIO_MAIOR_400KV_NATIONAL_PROXY_NOT_ASSET_LOCATION_INFERENCE",
+  "cross_border_snapshot": {
+    "timestamp_utc": "2026-01-20T19:45:00+00:00",
+    "portuguese_connection_bus_count": 6,
+    "external_boundary_bus_count": 7,
+    "physical_circuit_count": 9,
+    "transfer_capacity_limits_mw": null,
+    "transfer_capacity_status": "NOT_APPLIED_POST_SNAPSHOT_4200_3500_MW_VALUES_EXCLUDED",
+    "inventory_basis": "REN RNT map: lines in operation on 2024-12-31; REE existing Portugal-Spain interconnection inventory",
+    "inventory_urls": [
+      "https://www.ren.pt/media/jyadb40z/mapa-2025-eletricidade.pdf",
+      "https://www.ree.es/sites/default/files/11_PUBLICACIONES/Documentos/06_Interconexiones_DIGITAL.pdf"
+    ]
+  },
+  "configured_400kv_shunt_reactors": [
     {"bus_id": "BUS:OSM:way:144396412:400", "name": "Armamar (SAMM R1)", "q_mvar": 150.0},
     {"bus_id": "BUS:OSM:way:24636044:400", "name": "Fanhões (SFN R1)", "q_mvar": 150.0},
     {"bus_id": "BUS:OSM:way:131715746:400", "name": "Rio Maior (SRM R1)", "q_mvar": 150.0},
@@ -27,11 +44,23 @@
     {"bus_id": "BUS:OSM:way:151061884:400", "name": "Pedralva (SPDV R1)", "q_mvar": 150.0}
   ],
   "cross_border_interconnections": [
-    {"bus_id": "BUS:JUNCTION:400:03798", "name": "Alto Lindoso - Cartelle (Galicia)", "voltage_kv": 400},
-    {"bus_id": "BUS:OSM:way:47911346:400", "name": "Lagoaça - Aldeadávila (Douro)", "voltage_kv": 400},
-    {"bus_id": "BUS:OSM:way:84526032:400", "name": "Falagueira - Cedillo (Tejo)", "voltage_kv": 400},
-    {"bus_id": "BUS:JUNCTION:400:03946", "name": "Alqueva - Brovales/Balboa (Alentejo)", "voltage_kv": 400},
-    {"bus_id": "BUS:JUNCTION:400:03926", "name": "Tavira - Puebla de Guzmán (Algarve)", "voltage_kv": 400}
+    {"bus_id": "BUS:JUNCTION:400:03798", "name": "Alto Lindoso - Cartelle (Galicia)", "voltage_kv": 400, "circuit_count": 2},
+    {"bus_id": "BUS:OSM:way:47911346:400", "name": "Lagoaça - Aldeadávila (Douro)", "voltage_kv": 400, "circuit_count": 1},
+    {"bus_id": "BUS:OSM:way:47895778:220", "name": "Pocinho - Aldeadávila 1/2 (Douro)", "voltage_kv": 220, "circuit_count": 2},
+    {"bus_id": "BUS:OSM:relation:15715982:220", "name": "Pocinho - Saucelle (Douro)", "voltage_kv": 220, "circuit_count": 1},
+    {"bus_id": "BUS:OSM:way:84526032:400", "name": "Falagueira - Cedillo (Tejo)", "voltage_kv": 400, "circuit_count": 1},
+    {"bus_id": "BUS:JUNCTION:400:03946", "name": "Alqueva - Brovales/Balboa (Alentejo)", "voltage_kv": 400, "circuit_count": 1},
+    {"bus_id": "BUS:JUNCTION:400:03926", "name": "Tavira - Puebla de Guzmán (Algarve)", "voltage_kv": 400, "circuit_count": 1}
+  ],
+  "scenario_line_status_overrides": [
+    {
+      "name": "Ponte de Lima - Fontefría",
+      "voltage_kv": 400,
+      "in_service": false,
+      "commissioning_milestone_utc": "2026-07-02T00:00:00+00:00",
+      "status": "OUT_OF_SERVICE_AT_2026_01_20_SNAPSHOT_POST_SNAPSHOT_INTERCONNECTOR",
+      "source_url": "https://www.ren.pt/en-gb/repository/noticias/news/portugal-and-spain-have-inaugurated-the-new-400-kv-electricity-interconnector-in-the-north-a-strategic-project-for-the-european-union"
+    }
   ],
   "power_flow_pv_generator_min_nameplate_mw": 20.0,
   "power_flow_pv_generator_min_bus_kv": 60,
@@ -42,7 +71,7 @@
   "power_flow_use_proxy_shunt_capacitance": true,
   "power_flow_infer_tap_positions": true,
   "power_flow_tap_target_band_pu": [0.985, 1.015],
-  "power_flow_scenario_note": "Full-scale public-data-calibrated case aligned to 2026-01-20 19:45 UTC. E-REDES substation active-load observations are preserved and the difference to REN national consumption is distributed using E-REDES PTD spatial utilization weights. REN source-level generation totals are allocated to mapped public generation assets in proportion to nameplate capacity. Reactive loads, individual generator dispatch, line impedances, shunt capacitance, transformer impedances and tap positions remain evidence-ranked estimates where equipment-level observations are unavailable.",
+  "power_flow_scenario_note": "Full-scale public-data-informed case aligned to 2026-01-20 19:45 UTC. E-REDES substation active-load observations are preserved and the difference to REN national consumption is distributed across mapped RNT delivery points using PDIRT 2025-2034 Annex 12 winter-peak MW/Mvar weights. REN source-level generation totals are allocated subject to public asset nameplate and commissioning-date limits; any source total that exceeds mapped capacity is retained as an explicit national residual proxy. Portugal-Spain exchange is represented by one angle reference plus model-derived capacity-weighted boundary injections; observed aggregate net import is held out. Individual dispatch, many line impedances, reactive devices, transformer impedances/taps and switching states remain evidence-ranked estimates where equipment-level observations are unavailable.",
   "ren_2025_reference_line_km": {"150": 2514.0, "220": 3916.0, "400": 3465.0},
   "osm_portugal_wiki_reference": {
     "snapshot_date": "2026-07-14",
@@ -76,5 +105,17 @@
     "220/60": 13071.0,
     "150/60": 6558.0,
     "150/130": 140.0
-  }
+  },
+  "transformer_asset_overrides": [
+    {
+      "source_id": "RARI:Estoi",
+      "lv_bus": "BUS:JUNCTION:60:00059",
+      "unit_sn_mva": 126.0,
+      "parallel": 3,
+      "effective_date": "2025-12-31",
+      "status": "PUBLIC_PDIRT_2025_PLANNED_INVENTORY_WITH_COLOCATED_60KV_ENDPOINT",
+      "evidence": "ERSE PDIRT 2016-2025 Annex 6 lists Estoi with three 150/60 kV, 126 MVA transformers (378 MVA total) in the planned inventory for 31 December 2025; the 60 kV endpoint is co-located with the mapped Estoi substation.",
+      "source_url": "https://www.erse.pt/media/b1edmm30/proposta_pdirt_e_2015_anexos.pdf"
+    }
+  ]
 }

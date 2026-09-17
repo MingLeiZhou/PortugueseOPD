@@ -1,0 +1,1651 @@
+{
+  "bytes": 9787618,
+  "column_count": 91,
+  "columns": [
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "base_loading_percent",
+      "numeric": {
+        "count": 9894,
+        "max": 136.3948878317119,
+        "mean": 13.476432966886922,
+        "min": 0.0,
+        "sample_std": 13.964477243661106
+      },
+      "rows": 9894,
+      "type_counts": {
+        "number": 9894
+      }
+    },
+    {
+      "distinct": 6,
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "base_maximum_transformer_loading_percent",
+      "numeric": {
+        "count": 9894,
+        "max": 74.4381455784777,
+        "mean": 57.86949143836261,
+        "min": 20.76445473489103,
+        "sample_std": 17.75177101847179
+      },
+      "rows": 9894,
+      "type_counts": {
+        "number": 9894
+      },
+      "values": [
+        20.76445473489103,
+        57.070806022812604,
+        57.41786384400174,
+        68.02623274910428,
+        69.49944570088743,
+        74.4381455784777
+      ]
+    },
+    {
+      "distinct": 3,
+      "inferred_type": "integer",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "base_physical_circuits_over_nminus1_screen_limit",
+      "numeric": {
+        "count": 9894,
+        "max": 3.0,
+        "mean": 0.6666666666666667,
+        "min": 0.0,
+        "sample_std": 1.1055974703149372
+      },
+      "rows": 9894,
+      "type_counts": {
+        "integer": 9894
+      },
+      "values": [
+        0,
+        1,
+        3
+      ]
+    },
+    {
+      "distinct": 6,
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "base_vm_pu_max",
+      "numeric": {
+        "count": 9894,
+        "max": 1.026170287273097,
+        "mean": 1.0221844890228886,
+        "min": 1.013938040005165,
+        "sample_std": 0.004188027767180414
+      },
+      "rows": 9894,
+      "type_counts": {
+        "number": 9894
+      },
+      "values": [
+        1.013938040005165,
+        1.020243181606962,
+        1.023244103553547,
+        1.023486210706977,
+        1.026025110991589,
+        1.026170287273097
+      ]
+    },
+    {
+      "distinct": 6,
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "base_vm_pu_min",
+      "numeric": {
+        "count": 9894,
+        "max": 0.981553835300071,
+        "mean": 0.964966703893106,
+        "min": 0.943450602696758,
+        "sample_std": 0.014215468561472143
+      },
+      "rows": 9894,
+      "type_counts": {
+        "number": 9894
+      },
+      "values": [
+        0.943450602696758,
+        0.948709588480173,
+        0.968546537915586,
+        0.969177436897198,
+        0.978362222068862,
+        0.981553835300071
+      ]
+    },
+    {
+      "distinct": 4,
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "contingency_action",
+      "rows": 9894,
+      "type_counts": {
+        "string": 9894
+      },
+      "values": [
+        "DECREMENT_PARALLEL_BY_ONE",
+        "MIXED_OPEN_AND_DECREMENT",
+        "OPEN_LINE",
+        "OPEN_TRANSFORMER"
+      ]
+    },
+    {
+      "distinct": 2,
+      "inferred_type": "boolean",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "continuous_rating_exceeded",
+      "rows": 9894,
+      "type_counts": {
+        "boolean": 9894
+      },
+      "values": [
+        false,
+        true
+      ]
+    },
+    {
+      "distinct": 2,
+      "inferred_type": "boolean",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "converged",
+      "rows": 9894,
+      "type_counts": {
+        "boolean": 9894
+      },
+      "values": [
+        false,
+        true
+      ]
+    },
+    {
+      "distinct": 4,
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "corrective_generation_curtailment_mw",
+      "numeric": {
+        "count": 9894,
+        "max": 45.443110877659834,
+        "mean": 0.009683780515224482,
+        "min": 0.0,
+        "sample_std": 0.5826819507483875
+      },
+      "rows": 9894,
+      "type_counts": {
+        "number": 9894
+      },
+      "values": [
+        0.0,
+        21.56284138964065,
+        28.805372150330346,
+        45.443110877659834
+      ]
+    },
+    {
+      "distinct": 7,
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "corrective_load_transfer_mw",
+      "numeric": {
+        "count": 9894,
+        "max": 10.0,
+        "mean": 0.0038710329492621914,
+        "min": 0.0,
+        "sample_std": 0.17014176411657186
+      },
+      "rows": 9894,
+      "type_counts": {
+        "number": 9894
+      },
+      "values": [
+        0.0,
+        10.0,
+        3.04,
+        4.82,
+        5.11,
+        5.38,
+        9.95
+      ]
+    },
+    {
+      "distinct": 2,
+      "inferred_type": "boolean",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "diagnostic_thermal_violation_without_q_limits",
+      "rows": 9894,
+      "type_counts": {
+        "boolean": 9894
+      },
+      "values": [
+        false,
+        true
+      ]
+    },
+    {
+      "distinct": 1,
+      "inferred_type": "boolean",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "diagnostic_voltage_violation_without_q_limits",
+      "rows": 9894,
+      "type_counts": {
+        "boolean": 9894
+      },
+      "values": [
+        false
+      ]
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "elapsed_seconds",
+      "numeric": {
+        "count": 9894,
+        "max": 2.6626199590973556,
+        "mean": 0.11347089552056834,
+        "min": 0.085848957998678,
+        "sample_std": 0.04397239527159934
+      },
+      "rows": 9894,
+      "type_counts": {
+        "number": 9894
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "element_id",
+      "rows": 9894,
+      "type_counts": {
+        "string": 9894
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "integer",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "element_index",
+      "numeric": {
+        "count": 9894,
+        "max": 4934.0,
+        "mean": 1903.9987871437268,
+        "min": 0.0,
+        "sample_std": 1752.0625036444874
+      },
+      "rows": 9894,
+      "type_counts": {
+        "integer": 9894
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "element_indices",
+      "rows": 9894,
+      "type_counts": {
+        "string": 9894
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "element_name",
+      "rows": 9894,
+      "type_counts": {
+        "string": 9894
+      }
+    },
+    {
+      "distinct": 2,
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "element_type",
+      "rows": 9894,
+      "type_counts": {
+        "string": 9894
+      },
+      "values": [
+        "line",
+        "trafo"
+      ]
+    },
+    {
+      "distinct": 1,
+      "inferred_type": "string",
+      "missing": 9888,
+      "missing_fraction": 0.99939357,
+      "name": "error",
+      "rows": 9894,
+      "type_counts": {
+        "missing": 9888,
+        "string": 6
+      },
+      "values": [
+        "LoadflowNotConverged: Power Flow nr did not converge after 50 iterations!"
+      ]
+    },
+    {
+      "distinct": 2,
+      "inferred_type": "boolean",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "fallback_attempted",
+      "rows": 9894,
+      "type_counts": {
+        "boolean": 9894
+      },
+      "values": [
+        false,
+        true
+      ]
+    },
+    {
+      "distinct": 2,
+      "inferred_type": "boolean",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "fallback_converged",
+      "rows": 9894,
+      "type_counts": {
+        "boolean": 9894
+      },
+      "values": [
+        false,
+        true
+      ]
+    },
+    {
+      "distinct": 1,
+      "inferred_type": "string",
+      "missing": 9892,
+      "missing_fraction": 0.99979786,
+      "name": "fallback_error",
+      "rows": 9894,
+      "type_counts": {
+        "missing": 9892,
+        "string": 2
+      },
+      "values": [
+        "LoadflowNotConverged: Power Flow nr did not converge after 100 iterations!"
+      ]
+    },
+    {
+      "distinct": 7,
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "final_outcome",
+      "rows": 9894,
+      "type_counts": {
+        "string": 9894
+      },
+      "values": [
+        "ISLANDING",
+        "NON_CONVERGED",
+        "PASS",
+        "Q_LIMIT_INFEASIBLE_DIAGNOSTIC_THERMAL",
+        "THERMAL",
+        "VOLTAGE",
+        "VOLTAGE_AND_THERMAL"
+      ]
+    },
+    {
+      "distinct": 2,
+      "inferred_type": "boolean",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "final_passes_screen",
+      "rows": 9894,
+      "type_counts": {
+        "boolean": 9894
+      },
+      "values": [
+        false,
+        true
+      ]
+    },
+    {
+      "distinct": 2,
+      "inferred_type": "boolean",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "incremental_thermal_violation",
+      "rows": 9894,
+      "type_counts": {
+        "boolean": 9894
+      },
+      "values": [
+        false,
+        true
+      ]
+    },
+    {
+      "distinct": 2,
+      "inferred_type": "boolean",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "incremental_transformer_violation",
+      "rows": 9894,
+      "type_counts": {
+        "boolean": 9894
+      },
+      "values": [
+        false,
+        true
+      ]
+    },
+    {
+      "distinct": 2,
+      "inferred_type": "boolean",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "incremental_voltage_violation",
+      "rows": 9894,
+      "type_counts": {
+        "boolean": 9894
+      },
+      "values": [
+        false,
+        true
+      ]
+    },
+    {
+      "distinct": 3,
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "islanding_explanation_status",
+      "rows": 9894,
+      "type_counts": {
+        "string": 9894
+      },
+      "values": [
+        "MATERIAL_ISLANDING_UNEXPLAINED",
+        "NOT_APPLICABLE",
+        "PUBLIC_DISTRIBUTION_TRANSFER_APPLIED_RESIDUAL_UNGUARANTEED_LOAD"
+      ]
+    },
+    {
+      "distinct": 20,
+      "inferred_type": "number",
+      "missing": 2,
+      "missing_fraction": 0.00020214,
+      "name": "line_segments_over_100_percent",
+      "numeric": {
+        "count": 9892,
+        "max": 40.0,
+        "mean": 2.2262434290335653,
+        "min": 0.0,
+        "sample_std": 2.1997984118683385
+      },
+      "rows": 9894,
+      "type_counts": {
+        "missing": 2,
+        "number": 9892
+      }
+    },
+    {
+      "distinct": 20,
+      "inferred_type": "number",
+      "missing": 2,
+      "missing_fraction": 0.00020214,
+      "name": "lines_over_100_percent",
+      "numeric": {
+        "count": 9892,
+        "max": 40.0,
+        "mean": 2.2262434290335653,
+        "min": 0.0,
+        "sample_std": 2.1997984118683385
+      },
+      "rows": 9894,
+      "type_counts": {
+        "missing": 2,
+        "number": 9892
+      }
+    },
+    {
+      "distinct": 2,
+      "inferred_type": "boolean",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "material_islanding",
+      "rows": 9894,
+      "type_counts": {
+        "boolean": 9894
+      },
+      "values": [
+        false,
+        true
+      ]
+    },
+    {
+      "distinct": 4,
+      "inferred_type": "integer",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "material_unsupplied_bus_count",
+      "numeric": {
+        "count": 9894,
+        "max": 3.0,
+        "mean": 0.0719628057408533,
+        "min": 0.0,
+        "sample_std": 0.2802077326322722
+      },
+      "rows": 9894,
+      "type_counts": {
+        "integer": 9894
+      },
+      "values": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 2,
+      "missing_fraction": 0.00020214,
+      "name": "maximum_line_loading_percent",
+      "numeric": {
+        "count": 9892,
+        "max": 245.97772940088055,
+        "mean": 98.62770398464579,
+        "min": 29.627346220441147,
+        "sample_std": 31.073034057625453
+      },
+      "rows": 9894,
+      "type_counts": {
+        "missing": 2,
+        "number": 9892
+      }
+    },
+    {
+      "distinct": 3,
+      "inferred_type": "string",
+      "missing": 2,
+      "missing_fraction": 0.00020214,
+      "name": "maximum_loading_rating_evidence_tier",
+      "rows": 9894,
+      "type_counts": {
+        "missing": 2,
+        "string": 9892
+      },
+      "values": [
+        "ENGINEERING_PROXY",
+        "PUBLIC_DIRECT_OR_DERIVED",
+        "PUBLIC_PARTIAL_MATCH"
+      ]
+    },
+    {
+      "distinct": 36,
+      "inferred_type": "string",
+      "missing": 2,
+      "missing_fraction": 0.00020214,
+      "name": "maximum_loading_source_line_id",
+      "rows": 9894,
+      "type_counts": {
+        "missing": 2,
+        "string": 9892
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 2,
+      "missing_fraction": 0.00020214,
+      "name": "maximum_transformer_loading_percent",
+      "numeric": {
+        "count": 9892,
+        "max": 132.3957940507277,
+        "mean": 57.96188723292868,
+        "min": 19.299664551902136,
+        "sample_std": 17.812287599592683
+      },
+      "rows": 9894,
+      "type_counts": {
+        "missing": 2,
+        "number": 9892
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "model_element_ids",
+      "rows": 9894,
+      "type_counts": {
+        "string": 9894
+      }
+    },
+    {
+      "distinct": 8,
+      "inferred_type": "integer",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "new_physical_circuits_over_nminus1_screen_limit",
+      "numeric": {
+        "count": 9894,
+        "max": 10.0,
+        "mean": 0.021123913482918946,
+        "min": 0.0,
+        "sample_std": 0.21055372696284194
+      },
+      "rows": 9894,
+      "type_counts": {
+        "integer": 9894
+      },
+      "values": [
+        0,
+        1,
+        10,
+        2,
+        3,
+        4,
+        5,
+        8
+      ]
+    },
+    {
+      "distinct": 2,
+      "inferred_type": "boolean",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "operating_action_applied",
+      "rows": 9894,
+      "type_counts": {
+        "boolean": 9894
+      },
+      "values": [
+        false,
+        true
+      ]
+    },
+    {
+      "distinct": 25,
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "operating_action_details_json",
+      "rows": 9894,
+      "type_counts": {
+        "string": 9894
+      }
+    },
+    {
+      "distinct": 1,
+      "inferred_type": "string",
+      "missing": 9888,
+      "missing_fraction": 0.99939357,
+      "name": "operating_action_note",
+      "rows": 9894,
+      "type_counts": {
+        "missing": 9888,
+        "string": 6
+      },
+      "values": [
+        "The Malhadas wind aggregate is curtailed from 41.57 MW to 25 MW after loss of Lousã-PC Malhadas so the remaining 285 A Malhadas-Santa Luzia circuit stays below the public 110% 30-minute screen."
+      ]
+    },
+    {
+      "distinct": 1,
+      "inferred_type": "string",
+      "missing": 9876,
+      "missing_fraction": 0.99818072,
+      "name": "operating_action_source_table",
+      "rows": 9894,
+      "type_counts": {
+        "missing": 9876,
+        "string": 18
+      },
+      "values": [
+        "raw_eredes.substation_capacity"
+      ]
+    },
+    {
+      "distinct": 1,
+      "inferred_type": "string",
+      "missing": 9888,
+      "missing_fraction": 0.99939357,
+      "name": "operating_action_source_url",
+      "rows": 9894,
+      "type_counts": {
+        "missing": 9888,
+        "string": 6
+      },
+      "values": [
+        "https://www.e-redes.pt/sites/eredes/files/2022-07/PDIRD-E%202020%20proposta%20final.pdf"
+      ]
+    },
+    {
+      "distinct": 3,
+      "inferred_type": "string",
+      "missing": 9870,
+      "missing_fraction": 0.99757429,
+      "name": "operating_action_status",
+      "rows": 9894,
+      "type_counts": {
+        "missing": 9870,
+        "string": 24
+      },
+      "values": [
+        "CORRECTIVE_WIND_CURTAILMENT_TO_110_PERCENT_LINE_SCREEN",
+        "PUBLIC_2025_WINTER_DISTRIBUTION_TRANSFER_CAPABILITY",
+        "PUBLIC_2025_WINTER_SUBSTATION_NATURAL_LOAD_CALIBRATION"
+      ]
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "string",
+      "missing": 1368,
+      "missing_fraction": 0.13826562,
+      "name": "outage_plan_json",
+      "rows": 9894,
+      "type_counts": {
+        "missing": 1368,
+        "string": 8526
+      }
+    },
+    {
+      "distinct": 21,
+      "inferred_type": "integer",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "outage_row_count",
+      "numeric": {
+        "count": 9894,
+        "max": 37.0,
+        "mean": 3.1540327471194556,
+        "min": 1.0,
+        "sample_std": 2.9100406545403357
+      },
+      "rows": 9894,
+      "type_counts": {
+        "integer": 9894
+      }
+    },
+    {
+      "distinct": 7,
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "outcome",
+      "rows": 9894,
+      "type_counts": {
+        "string": 9894
+      },
+      "values": [
+        "ISLANDING",
+        "NON_CONVERGED",
+        "PASS",
+        "Q_LIMIT_INFEASIBLE_DIAGNOSTIC_THERMAL",
+        "THERMAL",
+        "VOLTAGE",
+        "VOLTAGE_AND_THERMAL"
+      ]
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "overloaded_physical_circuit_ids_json",
+      "rows": 9894,
+      "type_counts": {
+        "string": 9894
+      }
+    },
+    {
+      "distinct": 4,
+      "inferred_type": "integer",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "parallel_before_max",
+      "numeric": {
+        "count": 9894,
+        "max": 4.0,
+        "mean": 1.1843541540327518,
+        "min": 1.0,
+        "sample_std": 0.42794080072354995
+      },
+      "rows": 9894,
+      "type_counts": {
+        "integer": 9894
+      },
+      "values": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "distinct": 4,
+      "inferred_type": "integer",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "parallel_before_min",
+      "numeric": {
+        "count": 9894,
+        "max": 4.0,
+        "mean": 1.0909642207398431,
+        "min": 1.0,
+        "sample_std": 0.3099045938778493
+      },
+      "rows": 9894,
+      "type_counts": {
+        "integer": 9894
+      },
+      "values": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "distinct": 16,
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "parameter_statuses",
+      "rows": 9894,
+      "type_counts": {
+        "string": 9894
+      }
+    },
+    {
+      "distinct": 2,
+      "inferred_type": "boolean",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "passes_incremental_contingency_screen",
+      "rows": 9894,
+      "type_counts": {
+        "boolean": 9894
+      },
+      "values": [
+        false,
+        true
+      ]
+    },
+    {
+      "distinct": 2,
+      "inferred_type": "boolean",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "passes_screen",
+      "rows": 9894,
+      "type_counts": {
+        "boolean": 9894
+      },
+      "values": [
+        false,
+        true
+      ]
+    },
+    {
+      "distinct": 17,
+      "inferred_type": "number",
+      "missing": 2,
+      "missing_fraction": 0.00020214,
+      "name": "physical_circuits_over_100_at_rating_minus_20_percent",
+      "numeric": {
+        "count": 9892,
+        "max": 23.0,
+        "mean": 5.851597250303296,
+        "min": 0.0,
+        "sample_std": 4.9769882425803
+      },
+      "rows": 9894,
+      "type_counts": {
+        "missing": 2,
+        "number": 9892
+      }
+    },
+    {
+      "distinct": 9,
+      "inferred_type": "number",
+      "missing": 2,
+      "missing_fraction": 0.00020214,
+      "name": "physical_circuits_over_100_at_rating_plus_20_percent",
+      "numeric": {
+        "count": 9892,
+        "max": 11.0,
+        "mean": 0.5072786089769489,
+        "min": 0.0,
+        "sample_std": 1.13333493640066
+      },
+      "rows": 9894,
+      "type_counts": {
+        "missing": 2,
+        "number": 9892
+      },
+      "values": [
+        0.0,
+        1.0,
+        10.0,
+        11.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0
+      ]
+    },
+    {
+      "distinct": 10,
+      "inferred_type": "number",
+      "missing": 2,
+      "missing_fraction": 0.00020214,
+      "name": "physical_circuits_over_100_percent",
+      "numeric": {
+        "count": 9892,
+        "max": 12.0,
+        "mean": 1.3676708451273787,
+        "min": 0.0,
+        "sample_std": 1.4321079870070823
+      },
+      "rows": 9894,
+      "type_counts": {
+        "missing": 2,
+        "number": 9892
+      },
+      "values": [
+        0.0,
+        1.0,
+        10.0,
+        12.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0,
+        7.0
+      ]
+    },
+    {
+      "distinct": 9,
+      "inferred_type": "number",
+      "missing": 2,
+      "missing_fraction": 0.00020214,
+      "name": "physical_circuits_over_nminus1_screen_limit",
+      "numeric": {
+        "count": 9892,
+        "max": 11.0,
+        "mean": 0.6873230893651417,
+        "min": 0.0,
+        "sample_std": 1.1265084839506283
+      },
+      "rows": 9894,
+      "type_counts": {
+        "missing": 2,
+        "number": 9892
+      },
+      "values": [
+        0.0,
+        1.0,
+        10.0,
+        11.0,
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0
+      ]
+    },
+    {
+      "distinct": 4,
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "physical_identity_status",
+      "rows": 9894,
+      "type_counts": {
+        "string": 9894
+      },
+      "values": [
+        "OSM_WAY_ONLY_FRAGMENT",
+        "OTHER",
+        "SOURCE_CIRCUIT_ID",
+        "TRANSFORMER_UNIT_ID"
+      ]
+    },
+    {
+      "distinct": 2,
+      "inferred_type": "boolean",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "primary_converged",
+      "rows": 9894,
+      "type_counts": {
+        "boolean": 9894
+      },
+      "values": [
+        false,
+        true
+      ]
+    },
+    {
+      "distinct": 1,
+      "inferred_type": "string",
+      "missing": 9888,
+      "missing_fraction": 0.99939357,
+      "name": "primary_error",
+      "rows": 9894,
+      "type_counts": {
+        "missing": 9888,
+        "string": 6
+      },
+      "values": [
+        "LoadflowNotConverged: Power Flow nr did not converge after 50 iterations!"
+      ]
+    },
+    {
+      "distinct": 0,
+      "inferred_type": "missing",
+      "missing": 9894,
+      "missing_fraction": 1.0,
+      "name": "q_capability_minimum_converged_multiplier",
+      "rows": 9894,
+      "type_counts": {
+        "missing": 9894
+      },
+      "values": []
+    },
+    {
+      "distinct": 1,
+      "inferred_type": "string",
+      "missing": 6596,
+      "missing_fraction": 0.66666667,
+      "name": "q_capability_sensitivity_status",
+      "rows": 9894,
+      "type_counts": {
+        "missing": 6596,
+        "string": 3298
+      },
+      "values": [
+        "NOT_APPLICABLE"
+      ]
+    },
+    {
+      "distinct": 1,
+      "inferred_type": "string",
+      "missing": 6596,
+      "missing_fraction": 0.66666667,
+      "name": "q_capability_sensitivity_trials_json",
+      "rows": 9894,
+      "type_counts": {
+        "missing": 6596,
+        "string": 3298
+      },
+      "values": [
+        "[]"
+      ]
+    },
+    {
+      "distinct": 3,
+      "inferred_type": "integer",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "q_limit_breach_count",
+      "numeric": {
+        "count": 9894,
+        "max": 38.0,
+        "mean": 0.014554275318374785,
+        "min": 0.0,
+        "sample_std": 0.7248533164512523
+      },
+      "rows": 9894,
+      "type_counts": {
+        "integer": 9894
+      },
+      "values": [
+        0,
+        34,
+        38
+      ]
+    },
+    {
+      "distinct": 5,
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "q_limit_breaches_json",
+      "rows": 9894,
+      "type_counts": {
+        "string": 9894
+      },
+      "values": [
+        "[]",
+        "[{\"gen_index\": 133, \"name\": \"PV_GROUP:BUS:OSM:way:144573746:400\", \"bus\": 3599, \"q_mvar\": -135.60108633562987, \"min_q_mvar\": -12.125, \"max_q_mvar\": 12.125, \"excess_mvar\": 123.47608633562987}, {\"gen_index\": 156, \"name\": \"PV_GROUP:BUS:OSM:way:24636044:220\", \"bus\": 3503, \"q_mvar\": 135.30601294012956, \"min_q_mvar\": -16.305, \"max_q_mvar\": 16.305, \"excess_mvar\": 119.00101294012956}, {\"gen_index\": 112, \"name\": \"PV_GROUP:BUS:OSM:way:1322975653:400\", \"bus\": 3750, \"q_mvar\": -123.37153917994253, \"min_q_mvar\": -14.8, \"max_q_mvar\": 14.8, \"excess_mvar\": 108.57153917994253}, {\"gen_index\": 57, \"name\": \"PV_GROUP:BUS:EREDES:1308P5026000:60\", \"bus\": 755, \"q_mvar\": 96.50315150415442, \"min_q_mvar\": -13.25, \"max_q_mvar\": 13.25, \"excess_mvar\": 83.25315150415442}, {\"gen_index\": 44, \"name\": \"PV_GROUP:BUS:EREDES:1009S5002100:60\", \"bus\": 131, \"q_mvar\": 77.75836697159778, \"min_q_mvar\": -9.0, \"max_q_mvar\": 9.0, \"excess_mvar\": 68.75836697159778}, {\"gen_index\": 118, \"name\": \"PV_GROUP:BUS:OSM:way:1427738452:150\", \"bus\": 3269, \"q_mvar\": 95.66207678158362, \"min_q_mvar\": -31.0, \"max_q_mvar\": 31.0, \"excess_mvar\": 64.66207678158362}, {\"gen_index\": 58, \"name\": \"PV_GROUP:BUS:EREDES:1311S5012400:60\", \"bus\": 1145, \"q_mvar\": 74.41363852334416, \"min_q_mvar\": -11.8755, \"max_q_mvar\": 11.8755, \"excess_mvar\": 62.53813852334416}, {\"gen_index\": 140, \"name\": \"PV_GROUP:BUS:OSM:way:144711815:150\", \"bus\": 3243, \"q_mvar\": 69.4443400126215, \"min_q_mvar\": -10.0, \"max_q_mvar\": 10.0, \"excess_mvar\": 59.444340012621495}, {\"gen_index\": 129, \"name\": \"PV_GROUP:BUS:OSM:way:144545398:220\", \"bus\": 3467, \"q_mvar\": 76.22389622516806, \"min_q_mvar\": -24.0, \"max_q_mvar\": 24.0, \"excess_mvar\": 52.22389622516806}, {\"gen_index\": 9, \"name\": \"PV_GROUP:BUS:EREDES:0312S5002700:60\", \"bus\": 237, \"q_mvar\": 75.89992050470146, \"min_q_mvar\": -27.05, \"max_q_mvar\": 27.05, \"excess_mvar\": 48.84992050470146}, {\"gen_index\": 3, \"name\": \"PV_GROUP:BUS:EREDES:0105S5003900:60\", \"bus\": 581, \"q_mvar\": 59.994622382430045, \"min_q_mvar\": -12.957, \"max_q_mvar\": 12.957, \"excess_mvar\": 47.037622382430044}, {\"gen_index\": 74, \"name\": \"PV_GROUP:BUS:EREDES:1606S5011500:60\", \"bus\": 1198, \"q_mvar\": 55.60297627836783, \"min_q_mvar\": -11.1, \"max_q_mvar\": 11.1, \"excess_mvar\": 44.502976278367825}, {\"gen_index\": 84, \"name\": \"PV_GROUP:BUS:EREDES:1805S5001700:60\", \"bus\": 1053, \"q_mvar\": 56.41206041245332, \"min_q_mvar\": -12.3555, \"max_q_mvar\": 12.3555, \"excess_mvar\": 44.05656041245332}, {\"gen_index\": 138, \"name\": \"PV_GROUP:BUS:OSM:way:144601080:400\", \"bus\": 3646, \"q_mvar\": -138.33846094423618, \"min_q_mvar\": -94.32621, \"max_q_mvar\": 94.32621, \"excess_mvar\": 44.01225094423617}, {\"gen_index\": 143, \"name\": \"PV_GROUP:BUS:OSM:way:151061928:150\", \"bus\": 3266, \"q_mvar\": 93.37572662248844, \"min_q_mvar\": -55.45, \"max_q_mvar\": 55.45, \"excess_mvar\": 37.92572662248844}, {\"gen_index\": 170, \"name\": \"PV_GROUP:BUS:OSM:way:813954335:400\", \"bus\": 3736, \"q_mvar\": -49.85987724945488, \"min_q_mvar\": -22.805, \"max_q_mvar\": 22.805, \"excess_mvar\": 27.054877249454883}, {\"gen_index\": 39, \"name\": \"PV_GROUP:BUS:EREDES:0912S5008300:60\", \"bus\": 711, \"q_mvar\": 37.6979546710358, \"min_q_mvar\": -11.45, \"max_q_mvar\": 11.45, \"excess_mvar\": 26.247954671035803}, {\"gen_index\": 121, \"name\": \"PV_GROUP:BUS:OSM:way:144396420:150\", \"bus\": 3251, \"q_mvar\": 28.259114473662073, \"min_q_mvar\": -11.15, \"max_q_mvar\": 11.15, \"excess_mvar\": 17.109114473662075}, {\"gen_index\": 154, \"name\": \"PV_GROUP:BUS:OSM:way:201459319:150\", \"bus\": 3319, \"q_mvar\": 25.211098100399198, \"min_q_mvar\": -10.0, \"max_q_mvar\": 10.0, \"excess_mvar\": 15.211098100399198}, {\"gen_index\": 171, \"name\": \"PV_GROUP:BUS:OSM:way:964625644:400\", \"bus\": 3741, \"q_mvar\": -23.707953079860246, \"min_q_mvar\": -11.0, \"max_q_mvar\": 11.0, \"excess_mvar\": 12.707953079860246}]",
+        "[{\"gen_index\": 133, \"name\": \"PV_GROUP:BUS:OSM:way:144573746:400\", \"bus\": 3599, \"q_mvar\": -135.60115844206842, \"min_q_mvar\": -12.125, \"max_q_mvar\": 12.125, \"excess_mvar\": 123.47615844206842}, {\"gen_index\": 156, \"name\": \"PV_GROUP:BUS:OSM:way:24636044:220\", \"bus\": 3503, \"q_mvar\": 135.3067229368603, \"min_q_mvar\": -16.305, \"max_q_mvar\": 16.305, \"excess_mvar\": 119.00172293686029}, {\"gen_index\": 112, \"name\": \"PV_GROUP:BUS:OSM:way:1322975653:400\", \"bus\": 3750, \"q_mvar\": -123.37153935416269, \"min_q_mvar\": -14.8, \"max_q_mvar\": 14.8, \"excess_mvar\": 108.5715393541627}, {\"gen_index\": 57, \"name\": \"PV_GROUP:BUS:EREDES:1308P5026000:60\", \"bus\": 755, \"q_mvar\": 96.51381579918149, \"min_q_mvar\": -13.25, \"max_q_mvar\": 13.25, \"excess_mvar\": 83.26381579918149}, {\"gen_index\": 44, \"name\": \"PV_GROUP:BUS:EREDES:1009S5002100:60\", \"bus\": 131, \"q_mvar\": 77.75843307130312, \"min_q_mvar\": -9.0, \"max_q_mvar\": 9.0, \"excess_mvar\": 68.75843307130312}, {\"gen_index\": 118, \"name\": \"PV_GROUP:BUS:OSM:way:1427738452:150\", \"bus\": 3269, \"q_mvar\": 95.83550707248543, \"min_q_mvar\": -31.0, \"max_q_mvar\": 31.0, \"excess_mvar\": 64.83550707248543}, {\"gen_index\": 58, \"name\": \"PV_GROUP:BUS:EREDES:1311S5012400:60\", \"bus\": 1145, \"q_mvar\": 74.41502965514074, \"min_q_mvar\": -11.8755, \"max_q_mvar\": 11.8755, \"excess_mvar\": 62.53952965514074}, {\"gen_index\": 140, \"name\": \"PV_GROUP:BUS:OSM:way:144711815:150\", \"bus\": 3243, \"q_mvar\": 69.44434001969371, \"min_q_mvar\": -10.0, \"max_q_mvar\": 10.0, \"excess_mvar\": 59.44434001969371}, {\"gen_index\": 129, \"name\": \"PV_GROUP:BUS:OSM:way:144545398:220\", \"bus\": 3467, \"q_mvar\": 76.22624180832187, \"min_q_mvar\": -24.0, \"max_q_mvar\": 24.0, \"excess_mvar\": 52.22624180832187}, {\"gen_index\": 9, \"name\": \"PV_GROUP:BUS:EREDES:0312S5002700:60\", \"bus\": 237, \"q_mvar\": 75.93108391509482, \"min_q_mvar\": -27.05, \"max_q_mvar\": 27.05, \"excess_mvar\": 48.88108391509482}, {\"gen_index\": 3, \"name\": \"PV_GROUP:BUS:EREDES:0105S5003900:60\", \"bus\": 581, \"q_mvar\": 59.99469507582014, \"min_q_mvar\": -12.957, \"max_q_mvar\": 12.957, \"excess_mvar\": 47.03769507582014}, {\"gen_index\": 84, \"name\": \"PV_GROUP:BUS:EREDES:1805S5001700:60\", \"bus\": 1053, \"q_mvar\": 56.419298194182325, \"min_q_mvar\": -12.3555, \"max_q_mvar\": 12.3555, \"excess_mvar\": 44.063798194182326}, {\"gen_index\": 138, \"name\": \"PV_GROUP:BUS:OSM:way:144601080:400\", \"bus\": 3646, \"q_mvar\": -138.3383355259788, \"min_q_mvar\": -94.32621, \"max_q_mvar\": 94.32621, \"excess_mvar\": 44.0121255259788}, {\"gen_index\": 143, \"name\": \"PV_GROUP:BUS:OSM:way:151061928:150\", \"bus\": 3266, \"q_mvar\": 92.85227296342894, \"min_q_mvar\": -55.45, \"max_q_mvar\": 55.45, \"excess_mvar\": 37.40227296342894}, {\"gen_index\": 74, \"name\": \"PV_GROUP:BUS:EREDES:1606S5011500:60\", \"bus\": 1198, \"q_mvar\": 45.1197390014745, \"min_q_mvar\": -11.1, \"max_q_mvar\": 11.1, \"excess_mvar\": 34.0197390014745}, {\"gen_index\": 170, \"name\": \"PV_GROUP:BUS:OSM:way:813954335:400\", \"bus\": 3736, \"q_mvar\": -49.859988022764725, \"min_q_mvar\": -22.805, \"max_q_mvar\": 22.805, \"excess_mvar\": 27.054988022764725}, {\"gen_index\": 39, \"name\": \"PV_GROUP:BUS:EREDES:0912S5008300:60\", \"bus\": 711, \"q_mvar\": 37.697851194063844, \"min_q_mvar\": -11.45, \"max_q_mvar\": 11.45, \"excess_mvar\": 26.247851194063845}, {\"gen_index\": 121, \"name\": \"PV_GROUP:BUS:OSM:way:144396420:150\", \"bus\": 3251, \"q_mvar\": 28.259357770461484, \"min_q_mvar\": -11.15, \"max_q_mvar\": 11.15, \"excess_mvar\": 17.109357770461486}, {\"gen_index\": 154, \"name\": \"PV_GROUP:BUS:OSM:way:201459319:150\", \"bus\": 3319, \"q_mvar\": 25.21109813251799, \"min_q_mvar\": -10.0, \"max_q_mvar\": 10.0, \"excess_mvar\": 15.21109813251799}, {\"gen_index\": 171, \"name\": \"PV_GROUP:BUS:OSM:way:964625644:400\", \"bus\": 3741, \"q_mvar\": -23.71386031575757, \"min_q_mvar\": -11.0, \"max_q_mvar\": 11.0, \"excess_mvar\": 12.713860315757572}]",
+        "[{\"gen_index\": 133, \"name\": \"PV_GROUP:BUS:OSM:way:144573746:400\", \"bus\": 3599, \"q_mvar\": -143.00424478232134, \"min_q_mvar\": -12.125, \"max_q_mvar\": 12.125, \"excess_mvar\": 130.87924478232134}, {\"gen_index\": 112, \"name\": \"PV_GROUP:BUS:OSM:way:1322975653:400\", \"bus\": 3750, \"q_mvar\": -126.63630368439513, \"min_q_mvar\": -14.8, \"max_q_mvar\": 14.8, \"excess_mvar\": 111.83630368439513}, {\"gen_index\": 57, \"name\": \"PV_GROUP:BUS:EREDES:1308P5026000:60\", \"bus\": 755, \"q_mvar\": 92.10653126341302, \"min_q_mvar\": -13.25, \"max_q_mvar\": 13.25, \"excess_mvar\": 78.85653126341302}, {\"gen_index\": 138, \"name\": \"PV_GROUP:BUS:OSM:way:144601080:400\", \"bus\": 3646, \"q_mvar\": -162.42669791009797, \"min_q_mvar\": -94.32621, \"max_q_mvar\": 94.32621, \"excess_mvar\": 68.10048791009797}, {\"gen_index\": 156, \"name\": \"PV_GROUP:BUS:OSM:way:24636044:220\", \"bus\": 3503, \"q_mvar\": 83.20615346179429, \"min_q_mvar\": -16.305, \"max_q_mvar\": 16.305, \"excess_mvar\": 66.90115346179428}, {\"gen_index\": 44, \"name\": \"PV_GROUP:BUS:EREDES:1009S5002100:60\", \"bus\": 131, \"q_mvar\": 73.24393500395311, \"min_q_mvar\": -9.0, \"max_q_mvar\": 9.0, \"excess_mvar\": 64.24393500395311}, {\"gen_index\": 58, \"name\": \"PV_GROUP:BUS:EREDES:1311S5012400:60\", \"bus\": 1145, \"q_mvar\": 61.39656172783404, \"min_q_mvar\": -11.8755, \"max_q_mvar\": 11.8755, \"excess_mvar\": 49.52106172783404}, {\"gen_index\": 3, \"name\": \"PV_GROUP:BUS:EREDES:0105S5003900:60\", \"bus\": 581, \"q_mvar\": 56.7021703217198, \"min_q_mvar\": -12.957, \"max_q_mvar\": 12.957, \"excess_mvar\": 43.7451703217198}, {\"gen_index\": 9, \"name\": \"PV_GROUP:BUS:EREDES:0312S5002700:60\", \"bus\": 237, \"q_mvar\": 69.5326803677957, \"min_q_mvar\": -27.05, \"max_q_mvar\": 27.05, \"excess_mvar\": 42.48268036779571}, {\"gen_index\": 145, \"name\": \"PV_GROUP:FRADES_I_150KV_CORRECTED\", \"bus\": 3279, \"q_mvar\": 139.40058609472246, \"min_q_mvar\": -97.0, \"max_q_mvar\": 97.0, \"excess_mvar\": 42.400586094722456}, {\"gen_index\": 140, \"name\": \"PV_GROUP:BUS:OSM:way:144711815:150\", \"bus\": 3243, \"q_mvar\": 52.19936463568101, \"min_q_mvar\": -10.0, \"max_q_mvar\": 10.0, \"excess_mvar\": 42.19936463568101}, {\"gen_index\": 171, \"name\": \"PV_GROUP:BUS:OSM:way:964625644:400\", \"bus\": 3741, \"q_mvar\": -48.90656870824371, \"min_q_mvar\": -11.0, \"max_q_mvar\": 11.0, \"excess_mvar\": 37.90656870824371}, {\"gen_index\": 170, \"name\": \"PV_GROUP:BUS:OSM:way:813954335:400\", \"bus\": 3736, \"q_mvar\": -59.04107687767738, \"min_q_mvar\": -22.805, \"max_q_mvar\": 22.805, \"excess_mvar\": 36.236076877677384}, {\"gen_index\": 74, \"name\": \"PV_GROUP:BUS:EREDES:1606S5011500:60\", \"bus\": 1198, \"q_mvar\": 42.98453494686228, \"min_q_mvar\": -11.1, \"max_q_mvar\": 11.1, \"excess_mvar\": 31.88453494686228}, {\"gen_index\": 84, \"name\": \"PV_GROUP:BUS:EREDES:1805S5001700:60\", \"bus\": 1053, \"q_mvar\": 42.37118095466171, \"min_q_mvar\": -12.3555, \"max_q_mvar\": 12.3555, \"excess_mvar\": 30.01568095466171}, {\"gen_index\": 143, \"name\": \"PV_GROUP:BUS:OSM:way:151061928:150\", \"bus\": 3266, \"q_mvar\": 81.07715050340299, \"min_q_mvar\": -55.45, \"max_q_mvar\": 55.45, \"excess_mvar\": 25.627150503402987}, {\"gen_index\": 132, \"name\": \"PV_GROUP:BUS:OSM:way:144564903:400\", \"bus\": 3642, \"q_mvar\": -74.14102896035931, \"min_q_mvar\": -52.15, \"max_q_mvar\": 52.15, \"excess_mvar\": 21.99102896035931}, {\"gen_index\": 129, \"name\": \"PV_GROUP:BUS:OSM:way:144545398:220\", \"bus\": 3467, \"q_mvar\": 45.89809981441985, \"min_q_mvar\": -24.0, \"max_q_mvar\": 24.0, \"excess_mvar\": 21.89809981441985}, {\"gen_index\": 39, \"name\": \"PV_GROUP:BUS:EREDES:0912S5008300:60\", \"bus\": 711, \"q_mvar\": 32.27367775212575, \"min_q_mvar\": -11.45, \"max_q_mvar\": 11.45, \"excess_mvar\": 20.82367775212575}, {\"gen_index\": 50, \"name\": \"PV_GROUP:BUS:EREDES:1107S5167800:60\", \"bus\": 1305, \"q_mvar\": 36.58000258123985, \"min_q_mvar\": -25.51, \"max_q_mvar\": 25.51, \"excess_mvar\": 11.070002581239851}]",
+        "[{\"gen_index\": 133, \"name\": \"PV_GROUP:BUS:OSM:way:144573746:400\", \"bus\": 3599, \"q_mvar\": -143.00475483943555, \"min_q_mvar\": -12.125, \"max_q_mvar\": 12.125, \"excess_mvar\": 130.87975483943555}, {\"gen_index\": 112, \"name\": \"PV_GROUP:BUS:OSM:way:1322975653:400\", \"bus\": 3750, \"q_mvar\": -126.63630375933299, \"min_q_mvar\": -14.8, \"max_q_mvar\": 14.8, \"excess_mvar\": 111.83630375933299}, {\"gen_index\": 57, \"name\": \"PV_GROUP:BUS:EREDES:1308P5026000:60\", \"bus\": 755, \"q_mvar\": 92.10096429869898, \"min_q_mvar\": -13.25, \"max_q_mvar\": 13.25, \"excess_mvar\": 78.85096429869898}, {\"gen_index\": 138, \"name\": \"PV_GROUP:BUS:OSM:way:144601080:400\", \"bus\": 3646, \"q_mvar\": -162.42680954699256, \"min_q_mvar\": -94.32621, \"max_q_mvar\": 94.32621, \"excess_mvar\": 68.10059954699256}, {\"gen_index\": 156, \"name\": \"PV_GROUP:BUS:OSM:way:24636044:220\", \"bus\": 3503, \"q_mvar\": 83.20567135316253, \"min_q_mvar\": -16.305, \"max_q_mvar\": 16.305, \"excess_mvar\": 66.90067135316252}, {\"gen_index\": 44, \"name\": \"PV_GROUP:BUS:EREDES:1009S5002100:60\", \"bus\": 131, \"q_mvar\": 73.24387470170949, \"min_q_mvar\": -9.0, \"max_q_mvar\": 9.0, \"excess_mvar\": 64.24387470170949}, {\"gen_index\": 58, \"name\": \"PV_GROUP:BUS:EREDES:1311S5012400:60\", \"bus\": 1145, \"q_mvar\": 61.40068779322225, \"min_q_mvar\": -11.8755, \"max_q_mvar\": 11.8755, \"excess_mvar\": 49.525187793222244}, {\"gen_index\": 3, \"name\": \"PV_GROUP:BUS:EREDES:0105S5003900:60\", \"bus\": 581, \"q_mvar\": 56.702167515647965, \"min_q_mvar\": -12.957, \"max_q_mvar\": 12.957, \"excess_mvar\": 43.745167515647964}, {\"gen_index\": 74, \"name\": \"PV_GROUP:BUS:EREDES:1606S5011500:60\", \"bus\": 1198, \"q_mvar\": 53.824601778122435, \"min_q_mvar\": -11.1, \"max_q_mvar\": 11.1, \"excess_mvar\": 42.724601778122434}, {\"gen_index\": 9, \"name\": \"PV_GROUP:BUS:EREDES:0312S5002700:60\", \"bus\": 237, \"q_mvar\": 69.52866583208392, \"min_q_mvar\": -27.05, \"max_q_mvar\": 27.05, \"excess_mvar\": 42.47866583208392}, {\"gen_index\": 145, \"name\": \"PV_GROUP:FRADES_I_150KV_CORRECTED\", \"bus\": 3279, \"q_mvar\": 139.4012826503278, \"min_q_mvar\": -97.0, \"max_q_mvar\": 97.0, \"excess_mvar\": 42.4012826503278}, {\"gen_index\": 140, \"name\": \"PV_GROUP:BUS:OSM:way:144711815:150\", \"bus\": 3243, \"q_mvar\": 52.199364636367385, \"min_q_mvar\": -10.0, \"max_q_mvar\": 10.0, \"excess_mvar\": 42.199364636367385}, {\"gen_index\": 171, \"name\": \"PV_GROUP:BUS:OSM:way:964625644:400\", \"bus\": 3741, \"q_mvar\": -48.898899026992865, \"min_q_mvar\": -11.0, \"max_q_mvar\": 11.0, \"excess_mvar\": 37.898899026992865}, {\"gen_index\": 170, \"name\": \"PV_GROUP:BUS:OSM:way:813954335:400\", \"bus\": 3736, \"q_mvar\": -59.04099284805966, \"min_q_mvar\": -22.805, \"max_q_mvar\": 22.805, \"excess_mvar\": 36.23599284805966}, {\"gen_index\": 84, \"name\": \"PV_GROUP:BUS:EREDES:1805S5001700:60\", \"bus\": 1053, \"q_mvar\": 42.365006263145354, \"min_q_mvar\": -12.3555, \"max_q_mvar\": 12.3555, \"excess_mvar\": 30.009506263145354}, {\"gen_index\": 143, \"name\": \"PV_GROUP:BUS:OSM:way:151061928:150\", \"bus\": 3266, \"q_mvar\": 81.83788356339188, \"min_q_mvar\": -55.45, \"max_q_mvar\": 55.45, \"excess_mvar\": 26.38788356339188}, {\"gen_index\": 132, \"name\": \"PV_GROUP:BUS:OSM:way:144564903:400\", \"bus\": 3642, \"q_mvar\": -74.1393688018334, \"min_q_mvar\": -52.15, \"max_q_mvar\": 52.15, \"excess_mvar\": 21.9893688018334}, {\"gen_index\": 129, \"name\": \"PV_GROUP:BUS:OSM:way:144545398:220\", \"bus\": 3467, \"q_mvar\": 45.896964609755344, \"min_q_mvar\": -24.0, \"max_q_mvar\": 24.0, \"excess_mvar\": 21.896964609755344}, {\"gen_index\": 39, \"name\": \"PV_GROUP:BUS:EREDES:0912S5008300:60\", \"bus\": 711, \"q_mvar\": 32.27369509996717, \"min_q_mvar\": -11.45, \"max_q_mvar\": 11.45, \"excess_mvar\": 20.82369509996717}, {\"gen_index\": 72, \"name\": \"PV_GROUP:BUS:EREDES:1602P5020900:60\", \"bus\": 1428, \"q_mvar\": 34.32875555182767, \"min_q_mvar\": -19.400000000000002, \"max_q_mvar\": 19.400000000000002, \"excess_mvar\": 14.928755551827667}]"
+      ]
+    },
+    {
+      "distinct": 5,
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "q_limit_max_excess_mvar",
+      "numeric": {
+        "count": 9894,
+        "max": 130.87975483943555,
+        "mean": 0.05141613547599083,
+        "min": 0.0,
+        "sample_std": 2.557840677434144
+      },
+      "rows": 9894,
+      "type_counts": {
+        "number": 9894
+      },
+      "values": [
+        0.0,
+        123.47608633562989,
+        123.47615844206842,
+        130.87924478232134,
+        130.87975483943555
+      ]
+    },
+    {
+      "distinct": 2,
+      "inferred_type": "boolean",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "q_limit_sensitive",
+      "rows": 9894,
+      "type_counts": {
+        "boolean": 9894
+      },
+      "values": [
+        false,
+        true
+      ]
+    },
+    {
+      "distinct": 5,
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "q_limit_total_excess_mvar",
+      "numeric": {
+        "count": 9894,
+        "max": 1207.201539078069,
+        "mean": 0.4585044667583669,
+        "min": 0.0,
+        "sample_std": 22.837514327931807
+      },
+      "rows": 9894,
+      "type_counts": {
+        "number": 9894
+      },
+      "values": [
+        0.0,
+        1060.145945508105,
+        1079.086766839903,
+        1190.0089426812244,
+        1207.201539078069
+      ]
+    },
+    {
+      "distinct": 20,
+      "inferred_type": "integer",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "raw_topological_isolated_bus_count",
+      "numeric": {
+        "count": 9894,
+        "max": 37.0,
+        "mean": 1.4366282595512399,
+        "min": 0.0,
+        "sample_std": 2.438649133134038
+      },
+      "rows": 9894,
+      "type_counts": {
+        "integer": 9894
+      }
+    },
+    {
+      "distinct": 1,
+      "inferred_type": "boolean",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "remedial_control_attempted",
+      "rows": 9894,
+      "type_counts": {
+        "boolean": 9894
+      },
+      "values": [
+        false
+      ]
+    },
+    {
+      "distinct": 1,
+      "inferred_type": "boolean",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "remedial_control_converged",
+      "rows": 9894,
+      "type_counts": {
+        "boolean": 9894
+      },
+      "values": [
+        false
+      ]
+    },
+    {
+      "distinct": 1,
+      "inferred_type": "boolean",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "remedial_control_passed",
+      "rows": 9894,
+      "type_counts": {
+        "boolean": 9894
+      },
+      "values": [
+        false
+      ]
+    },
+    {
+      "distinct": 1,
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "remedial_control_trials_json",
+      "rows": 9894,
+      "type_counts": {
+        "string": 9894
+      },
+      "values": [
+        "[]"
+      ]
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "representative_model_id",
+      "rows": 9894,
+      "type_counts": {
+        "string": 9894
+      }
+    },
+    {
+      "distinct": 6,
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "representative_role",
+      "rows": 9894,
+      "type_counts": {
+        "string": 9894
+      },
+      "values": [
+        "MAX_NET_EXPORT",
+        "MAX_NET_IMPORT",
+        "MAX_SOLAR",
+        "MAX_WIND",
+        "MINIMUM_LOAD",
+        "PEAK_LOAD"
+      ]
+    },
+    {
+      "distinct": 3,
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "solution_status",
+      "rows": 9894,
+      "type_counts": {
+        "string": 9894
+      },
+      "values": [
+        "CONVERGED_WITHOUT_Q_LIMITS",
+        "CONVERGED_WITH_Q_LIMITS",
+        "NO_AC_SOLUTION_OBTAINED"
+      ]
+    },
+    {
+      "distinct": 6,
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "source_types",
+      "rows": 9894,
+      "type_counts": {
+        "string": 9894
+      },
+      "values": [
+        "['DIRECT_OSM_TRANSFORMER_TAG']",
+        "['E-REDES']",
+        "['OSM_SUBSTATION_COLOCATION_INFERRED']",
+        "['OpenStreetMap']",
+        "['RARI_BOUNDARY_NAME_AND_COLOCATED_60KV_ENDPOINT_INFERRED']",
+        "['RARI_BOUNDARY_NAME_AND_SPATIAL_INFERRED']"
+      ]
+    },
+    {
+      "distinct": 2,
+      "inferred_type": "boolean",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "thermal_violation",
+      "rows": 9894,
+      "type_counts": {
+        "boolean": 9894
+      },
+      "values": [
+        false,
+        true
+      ]
+    },
+    {
+      "distinct": 2,
+      "inferred_type": "boolean",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "topological_only_island",
+      "rows": 9894,
+      "type_counts": {
+        "boolean": 9894
+      },
+      "values": [
+        false,
+        true
+      ]
+    },
+    {
+      "distinct": 2,
+      "inferred_type": "number",
+      "missing": 2,
+      "missing_fraction": 0.00020214,
+      "name": "transformers_over_100_percent",
+      "numeric": {
+        "count": 9892,
+        "max": 1.0,
+        "mean": 0.00040436716538617176,
+        "min": 0.0,
+        "sample_std": 0.02010583294430335
+      },
+      "rows": 9894,
+      "type_counts": {
+        "missing": 2,
+        "number": 9892
+      },
+      "values": [
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "distinct": 10,
+      "inferred_type": "integer",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "unsupplied_active_element_count",
+      "numeric": {
+        "count": 9894,
+        "max": 10.0,
+        "mean": 0.13573883161512007,
+        "min": 0.0,
+        "sample_std": 0.5940081852656827
+      },
+      "rows": 9894,
+      "type_counts": {
+        "integer": 9894
+      },
+      "values": [
+        0,
+        1,
+        10,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    {
+      "distinct": 4,
+      "inferred_type": "integer",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "unsupplied_bus_count",
+      "numeric": {
+        "count": 9894,
+        "max": 3.0,
+        "mean": 0.0719628057408533,
+        "min": 0.0,
+        "sample_std": 0.2802077326322722
+      },
+      "rows": 9894,
+      "type_counts": {
+        "integer": 9894
+      },
+      "values": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "distinct": 10,
+      "inferred_type": "integer",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "unsupplied_connected_element_count",
+      "numeric": {
+        "count": 9894,
+        "max": 10.0,
+        "mean": 0.15575096017788537,
+        "min": 0.0,
+        "sample_std": 0.6792909124778425
+      },
+      "rows": 9894,
+      "type_counts": {
+        "integer": 9894
+      },
+      "values": [
+        0,
+        1,
+        10,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9
+      ]
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "unsupplied_generation_mw",
+      "numeric": {
+        "count": 9894,
+        "max": 629.502463177551,
+        "mean": 1.5501845830474037,
+        "min": -492.90092090557533,
+        "sample_std": 24.50807382831198
+      },
+      "rows": 9894,
+      "type_counts": {
+        "number": 9894
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "unsupplied_load_mw",
+      "numeric": {
+        "count": 9894,
+        "max": 231.97782932486876,
+        "mean": 0.33152523358039687,
+        "min": 0.0,
+        "sample_std": 4.194991990962687
+      },
+      "rows": 9894,
+      "type_counts": {
+        "number": 9894
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "unsupplied_reactive_mvar",
+      "numeric": {
+        "count": 9894,
+        "max": 6.624795161079763,
+        "mean": 0.04865560211281682,
+        "min": -0.222470293442821,
+        "sample_std": 0.3063252993496637
+      },
+      "rows": 9894,
+      "type_counts": {
+        "number": 9894
+      }
+    },
+    {
+      "distinct": 1,
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "unsupplied_storage_mw",
+      "numeric": {
+        "count": 9894,
+        "max": 0.0,
+        "mean": 0.0,
+        "min": 0.0,
+        "sample_std": 0.0
+      },
+      "rows": 9894,
+      "type_counts": {
+        "number": 9894
+      },
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 2,
+      "missing_fraction": 0.00020214,
+      "name": "vm_pu_max",
+      "numeric": {
+        "count": 9892,
+        "max": 1.0393816776765754,
+        "mean": 1.022174842011775,
+        "min": 1.008672112214495,
+        "sample_std": 0.004226983561901522
+      },
+      "rows": 9894,
+      "type_counts": {
+        "missing": 2,
+        "number": 9892
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 2,
+      "missing_fraction": 0.00020214,
+      "name": "vm_pu_min",
+      "numeric": {
+        "count": 9892,
+        "max": 0.9824321974921176,
+        "mean": 0.9646184600754083,
+        "min": 0.6302892426909721,
+        "sample_std": 0.01544283474718062
+      },
+      "rows": 9894,
+      "type_counts": {
+        "missing": 2,
+        "number": 9892
+      }
+    },
+    {
+      "distinct": 5,
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "voltage_kv",
+      "numeric": {
+        "count": 9894,
+        "max": 400.0,
+        "mean": 136.2401455427539,
+        "min": 60.0,
+        "sample_std": 116.13269188366993
+      },
+      "rows": 9894,
+      "type_counts": {
+        "number": 9894
+      },
+      "values": [
+        130.0,
+        150.0,
+        220.0,
+        400.0,
+        60.0
+      ]
+    },
+    {
+      "distinct": 2,
+      "inferred_type": "boolean",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "voltage_violation",
+      "rows": 9894,
+      "type_counts": {
+        "boolean": 9894
+      },
+      "values": [
+        false,
+        true
+      ]
+    }
+  ],
+  "format": "csv",
+  "path": "/Users/jumiray/Projects/PortugueseOPD/portuguese_hv_network/outputs/annual_nminus1_panel_v2/annual_nminus1_panel.csv",
+  "row_count": 9894,
+  "sha256": "9a99b5af1c34fc7e4bd1989af37c1d0cbf1081c1a9f4ef8a36b727575449fd5a"
+}

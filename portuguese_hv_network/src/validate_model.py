@@ -6,7 +6,7 @@ import json
 import networkx as nx
 import pandas as pd
 
-from common import POWER_FLOW, PROJECT, TABLES, VALIDATION, ensure_dirs, read_json, utc_now, write_json
+from common import POWER_FLOW, PROJECT, RAW, TABLES, VALIDATION, ensure_dirs, read_json, utc_now, write_json
 
 
 def check(checks: list[dict[str, object]], name: str, passed: bool, measured: object, expected: object, severity: str = "ERROR") -> None:
@@ -42,6 +42,25 @@ def main() -> None:
     check(checks, "load_buses_exist", set(loads["bus_id"].astype(str)) <= bus_ids, len(set(loads["bus_id"].astype(str)) - bus_ids), 0)
     assigned_gen = generators[generators["bus_id"].fillna("").astype(str) != ""]
     check(checks, "assigned_generator_buses_exist", set(assigned_gen["bus_id"].astype(str)) <= bus_ids, len(set(assigned_gen["bus_id"].astype(str)) - bus_ids), 0)
+    negative_dispatch = assigned_gen["p_mw"].lt(-1e-9)
+    capacity_violations = assigned_gen["p_mw"].gt(assigned_gen["nameplate_mw"].fillna(0.0) + 1e-8)
+    check(checks, "generator_dispatch_nonnegative", not bool(negative_dispatch.any()), int(negative_dispatch.sum()), 0)
+    check(checks, "generator_dispatch_at_most_nameplate", not bool(capacity_violations.any()), int(capacity_violations.sum()), 0)
+    dispatch_audit_path = TABLES / "generation_dispatch_audit.csv"
+    residual_path = TABLES / "generation_unmapped_residuals.csv"
+    dispatch_audit = pd.read_csv(dispatch_audit_path) if dispatch_audit_path.exists() else pd.DataFrame()
+    generation_residuals = pd.read_csv(residual_path) if residual_path.exists() else pd.DataFrame()
+    audit_error = float(
+        (dispatch_audit["ren_target_mw"] - dispatch_audit["mapped_asset_input_mw"] - dispatch_audit["unmapped_residual_mw"]).abs().max()
+    ) if not dispatch_audit.empty else float("inf")
+    check(checks, "generation_dispatch_audit_reconciles_ren_source_totals", audit_error <= 1e-6, audit_error, "<=1e-6 MW")
+    expected_residuals = dispatch_audit.loc[dispatch_audit["unmapped_residual_mw"].gt(1e-9)] if not dispatch_audit.empty else dispatch_audit
+    residuals_explicit = (
+        len(generation_residuals) == len(expected_residuals)
+        and (generation_residuals["residual_status"].eq("UNMAPPED_NATIONAL_RESIDUAL_PROXY").all() if len(generation_residuals) else True)
+        and bool(config.get("unmapped_generation_residual_bus_id"))
+    )
+    check(checks, "unmapped_generation_residuals_explicit", residuals_explicit, len(generation_residuals), len(expected_residuals))
     graph = nx.Graph()
     graph.add_nodes_from(bus_ids)
     active_lines = lines[lines["in_service"].astype(str).str.lower().isin({"true", "1"})] if "in_service" in lines else lines
@@ -59,6 +78,25 @@ def main() -> None:
     expected_boundaries_desc = f">={active_components} (multi-interconnector enabled)" if has_multi_interconnectors else f"{active_components}"
     boundary_condition = (len(boundaries) >= active_components) if has_multi_interconnectors else (len(boundaries) == active_components)
     check(checks, "one_boundary_per_active_component", boundary_condition, len(boundaries), expected_boundaries_desc)
+    cross_border_snapshot = config.get("cross_border_snapshot", {})
+    if has_multi_interconnectors and cross_border_snapshot:
+        expected_bus_count = int(cross_border_snapshot["external_boundary_bus_count"])
+        expected_circuit_count = int(cross_border_snapshot["physical_circuit_count"])
+        configured_bus_ids = [str(item["bus_id"]) for item in config["cross_border_interconnections"]]
+        configured_circuits = sum(int(item.get("circuit_count", 1)) for item in config["cross_border_interconnections"])
+        check(checks, "cross_border_external_bus_count", len(boundaries) == expected_bus_count, len(boundaries), expected_bus_count)
+        check(checks, "cross_border_boundary_bus_ids_unique", len(configured_bus_ids) == len(set(configured_bus_ids)), len(set(configured_bus_ids)), len(configured_bus_ids))
+        check(checks, "cross_border_physical_circuit_count", configured_circuits == expected_circuit_count, configured_circuits, expected_circuit_count)
+        check(checks, "cross_border_boundary_bus_ids_exist", set(configured_bus_ids) <= bus_ids, len(set(configured_bus_ids) - bus_ids), 0)
+        check(checks, "cross_border_transfer_capacity_not_backfilled", cross_border_snapshot.get("transfer_capacity_limits_mw") is None, cross_border_snapshot.get("transfer_capacity_limits_mw"), None)
+    for override in config.get("scenario_line_status_overrides", []):
+        selected = lines[
+            lines["name"].fillna("").astype(str).eq(str(override["name"]))
+            & lines["voltage_kv"].astype(int).eq(int(override["voltage_kv"]))
+        ]
+        expected_status = bool(override["in_service"])
+        actual_ok = not selected.empty and bool((selected["in_service"].astype(str).str.lower().isin({"true", "1"}) == expected_status).all())
+        check(checks, f"scenario_line_status_override_{override['name']}_{override['voltage_kv']}kv", actual_ok, f"{len(selected)} rows; in_service={sorted(selected['in_service'].astype(str).unique())}", expected_status)
     direct_line_fraction = float(lines["source_status"].isin(["DIRECT_EREDES", "DIRECT_OSM", "DIRECT_OSM_RELATION_CONTEXT"]).mean()) if len(lines) else 0.0
     proxy_parameter_fraction = float(lines["parameter_status"].astype(str).str.contains("PROXY|PARTIAL", regex=True).mean()) if len(lines) else 0.0
     check(checks, "line_geometry_source_label_complete", direct_line_fraction == 1.0, direct_line_fraction, 1.0)
@@ -95,6 +133,8 @@ def main() -> None:
             "assigned_load_fraction": len(loads) / max(1, len(loads) + len(pd.read_csv(TABLES / "loads_unmatched.csv"))),
             "scenario_connected_load_fraction": len(scenario_loads) / max(1, len(loads)),
             "assigned_generation_fraction": len(assigned_gen) / max(1, len(generators)),
+            "generator_capacity_violation_count": int(capacity_violations.sum()),
+            "unmapped_generation_residual_mw": float(generation_residuals["unmapped_residual_mw"].sum()) if not generation_residuals.empty else 0.0,
         },
         "power_flow": power_flow,
     }

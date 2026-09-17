@@ -318,7 +318,7 @@ def main() -> None:
         "losses_p_mw": pf["losses_p_mw"],
         "scenario_sweep": scenario_sweep.where(pd.notna(scenario_sweep), None).to_dict("records"),
         "validation_status": validation["overall_status"],
-        "important_scope": "Full-scale public-data-calibrated study case at the declared timestamp. Asset-level dispatch, reactive power, unobserved equipment parameters and displayed branch flows remain evidence-ranked estimates or solved values rather than operator telemetry.",
+        "important_scope": "Full-scale public-data-informed study case at the declared timestamp with observed net import held out. Asset-level dispatch, reactive power, unobserved equipment parameters and displayed branch flows remain evidence-ranked estimates or solved values rather than operator telemetry.",
     }
     write_json(WEB_DATA / "summary.json", summary)
     print(json.dumps(summary, indent=2))

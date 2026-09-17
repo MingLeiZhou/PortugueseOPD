@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "tools_version": "0.1.0",
+  "release": "v2.1.0-rc2",
+  "archive_sha256": "07727842080141300c4ddf180f82a4e7f9f66e3a444a30297d650f79a3486913",
+  "release_integrity": {
+    "status": "PASS",
+    "files": 1884,
+    "failures": [],
+    "version": "v2.1.0-rc2"
+  },
+  "single_public_case_matches_frozen_example": true,
+  "single_archived_case_matches_frozen_summary": true,
+  "pilot_case_variant_pairs": 22,
+  "pilot_max_absolute_metric_difference": 0,
+  "viewer_device_fields_checked": 1008,
+  "viewer_summary_tolerance": 1e-10,
+  "scope": "Dataset tools and AC-PF replay; OPF and ML are future phases",
+  "unit_tests_passed": 6,
+  "archive_import_payload_verification": "PASS",
+  "wheel_installed_outside_checkout": "PASS",
+  "wheel_sha256": "3dffe898d8176f0d23d27541b8c2b61c615b5d40d6020041790b39bac433e0ba",
+  "custom_result_template_and_ids": "PASS",
+  "browser_checked": [
+    "initial topology render",
+    "winter season selection",
+    "capacity allocation selection",
+    "paired difference view",
+    "device search and provenance",
+    "custom solved case loaded with expected 0.9331–1.0209 p.u. and 96.10% maximum loading"
+  ],
+  "github_actions": "Configuration added; remote workflow not run"
+}

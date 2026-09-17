@@ -51,6 +51,7 @@ def main() -> None:
     missing = [str(path) for path in required if not path.exists()]
     if missing:
         raise FileNotFoundError("Missing inputs; run without --skip-download: " + ", ".join(missing))
+    run("extract_pdirt_annex12.py")
     for script in ("build_topology.py", "build_transformers.py", "add_demand_generation.py", "assign_parameters.py"):
         run(script)
     run("audit_grid_coverage.py")
@@ -62,6 +63,9 @@ def main() -> None:
         run("validate_powerflow_scenarios.py")
         run("validate_corridor_rating_corrections.py")
         run("export_web_map_data.py")
+        if (PROJECT / "outputs" / "temporal_validation" / "multi_snapshot_comparison.json").exists():
+            run("assess_public_benchmark_gaps.py")
+            run("export_web_snapshot_data.py")
 
 
 if __name__ == "__main__":

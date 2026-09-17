@@ -8,11 +8,15 @@
   "scripts": {
     "dev": "vinext dev",
     "prepare:maplibre-worker": "cp node_modules/maplibre-gl/dist/maplibre-gl-worker.mjs public/maplibre-gl-worker.mjs && cp node_modules/maplibre-gl/dist/maplibre-gl-shared.mjs public/maplibre-gl-shared.mjs",
-    "build": "npm run prepare:maplibre-worker && vinext build",
+    "build": "npm run check:pt60-data && npm run prepare:maplibre-worker && vinext build && node scripts/stage-worker.mjs",
     "deploy:cloudflare": "npm run build && wrangler deploy --config wrangler.direct.jsonc",
     "start": "wrangler dev --config dist/server/wrangler.json",
     "lint": "oxlint",
-    "format": "oxfmt"
+    "format": "oxfmt",
+    "check:pt60-data": "node scripts/check-pt60-data.mjs",
+    "render:database-architecture": "node scripts/render-database-architecture.mjs",
+    "render:static-grid-schema": "node scripts/render-database-architecture.mjs ../../docs/figures/pt60-static-grid-schema.mmd ../../docs/figures/pt60-static-grid-schema.svg",
+    "test:pt60": "node --experimental-strip-types --test tests/pt60-data.test.mjs"
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",
@@ -46,6 +50,7 @@
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.2",
     "@vitejs/plugin-rsc": "0.5.26",
+    "beautiful-mermaid": "^1.1.3",
     "oxfmt": "0.61.0",
     "oxlint": "1.76.0",
     "oxlint-tsgolint": "7.0.2001",

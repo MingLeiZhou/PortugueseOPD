@@ -1,0 +1,60 @@
+{
+  "dataset": {
+    "version": "v2.1.0-rc2",
+    "payload_files": 1884,
+    "status": "PASS",
+    "archive_sha256": "07727842080141300c4ddf180f82a4e7f9f66e3a444a30297d650f79a3486913"
+  },
+  "python": {
+    "version": "0.4.1",
+    "core_and_archived_tests_passed": 10,
+    "wheel_and_sdist_twine_check": "PASS",
+    "independent_wheel_install": "PASS",
+    "replay_case": "PT60_2025_SUMMER_WEEK_JUL07_13_H000",
+    "replay_converged": true,
+    "replay_metric_absolute_differences": {
+      "model_losses_percent_of_load": 0.0,
+      "model_transformer_losses_mw": 0.0,
+      "model_rnt_line_losses_mw": 0.0,
+      "loss_percent_error_vs_ren_rnt_monthly": 0.0,
+      "maximum_transformer_loading_percent": 0.0,
+      "model_total_pt60_losses_mw": 0.0,
+      "model_total_pt60_losses_percent_of_load": 0.0,
+      "model_losses_mw": 0.0,
+      "model_rnt_scope_losses_mw": 0.0,
+      "model_rnd_at_line_losses_mw": 0.0,
+      "rnt_scope_loss_percent_error_vs_ren_rnt_monthly": 0.0,
+      "maximum_line_loading_percent": 0.0,
+      "model_rnt_scope_losses_percent_of_load": 0.0,
+      "ren_rnt_monthly_loss_percent": 0.0
+    },
+    "pypi_status": "published",
+    "prior_publication_confirmed": "TopoStateGrid 1.1.2 exists on PyPI; local project /Users/jumiray/Projects/GridGraphKit.",
+    "pypi_url": "https://pypi.org/project/pt60-tools/0.4.1/",
+    "pypi_independent_install": "PASS"
+  },
+  "website": {
+    "data_tests_passed": 4,
+    "typescript": "PASS",
+    "changed_components_lint": "PASS",
+    "production_build": "PASS",
+    "deployment": "PASS",
+    "dataset_stream_parts": 29,
+    "dataset_stream_part_max_bytes": 4194304,
+    "cloudflare_version": "ca62d888-fa11-417b-9690-eea379635d07",
+    "full_online_download_sha256": "07727842080141300c4ddf180f82a4e7f9f66e3a444a30297d650f79a3486913",
+    "online_payload_verify": {
+      "status": "PASS",
+      "files": 1884,
+      "cases": 336
+    },
+    "online_pip_wheel": "PASS",
+    "online_paper_zip": "PASS, final manuscript",
+    "version_041_links": "PASS"
+  },
+  "paper": {
+    "canonical": "paper/PT60_SCIENTIFIC_DATA_CN_READER_FIRST_DRAFT.md",
+    "download_files": 22,
+    "historical_manuscripts_archived": 45
+  }
+}

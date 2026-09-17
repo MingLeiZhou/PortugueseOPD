@@ -1,0 +1,27 @@
+graph LR
+  MODEL["grid.network_models<br/>model_id · version · voltage_levels"]
+
+  subgraph grid [grid：静态电网模型]
+    FAC["grid.facilities<br/>facility_id · type · name · voltage_kv"]
+    BUS["grid.buses<br/>bus_id · facility_id · voltage_kv"]
+    LINE["grid.lines<br/>line_id · from_bus · to_bus<br/>R/X/C · rating · in_service"]
+    TRAFO["grid.transformers<br/>transformer_id · hv_bus · lv_bus<br/>sn_mva · vk · tap"]
+    GEN["grid.generators<br/>generator_id · bus_id<br/>technology · nameplate_mw"]
+    LOAD["grid.load_points<br/>load_id · bus_id · facility_code"]
+    INTER["grid.interconnectors<br/>component_index · bus_id<br/>voltage_kv · name"]
+  end
+
+  subgraph geo [geo：空间几何]
+    FGEOM["geo.facility_geometries<br/>facility_id · lon · lat · CRS"]
+    LGEOM["geo.line_geometries<br/>line_id · geometry_json · CRS"]
+  end
+
+  MODEL -->|model_id| FAC
+  FAC -->|facility_id| BUS
+  FAC -->|1:1| FGEOM
+  BUS -->|from_bus / to_bus| LINE
+  BUS -->|hv_bus / lv_bus| TRAFO
+  BUS -->|bus_id| GEN
+  BUS -->|bus_id| LOAD
+  BUS -->|bus_id| INTER
+  LINE -->|1:1| LGEOM

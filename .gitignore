@@ -1,6 +1,7 @@
 # Python
 .venv/
 .deps/
+.uv-cache/
 __pycache__/
 *.py[cod]
 *.egg-info/
@@ -83,8 +84,17 @@ portuguese_hv_network/data/raw/*
 !portuguese_hv_network/data/raw/.gitkeep
 portuguese_hv_network/data/manifests/*
 !portuguese_hv_network/data/manifests/.gitkeep
+portuguese_hv_network/data/evidence/
 portuguese_hv_network/outputs/*
 !portuguese_hv_network/outputs/.gitkeep
+
+# Website dependencies, generated payloads, downloads and build output
+**/node_modules/
+**/.next/
+**/dist/
+*.tsbuildinfo
+portuguese_hv_network/site/public/data/
+portuguese_hv_network/site/public/downloads/
 
 # Generated execution artifacts
 reports/*
@@ -93,6 +103,7 @@ figures/*
 !figures/.gitkeep
 logs/*
 !logs/.gitkeep
+/output/
 notebooks/.ipynb_checkpoints/
 debug/
 **/debug/
@@ -101,8 +112,23 @@ debug/
 # Downloaded papers and source documents
 *.pdf
 
-# Draft manuscript artifacts
-paper/
+# Manuscript workspace: track only the canonical source, its reproducible
+# scientific-figure generator, provenance manifest and publication figures.
+# Historical drafts, downloaded papers and document-build output remain local.
+paper/*
+!paper/PT60_Sep16.MD
+!paper/figure_manifest.csv
+!paper/scripts/
+paper/scripts/*
+!paper/scripts/generate_pt60_scientific_figures.py
+!paper/scripts/pt60-paper.mplstyle
+!paper/figures/
+paper/figures/*
+!paper/figures/scientific/
+!paper/figures/scientific/**
+# Matplotlib SVG maps can contain millions of path coordinates. Keep PDF as
+# the publication vector format and PNG for repository/Markdown previews.
+paper/figures/scientific/*.svg
 paper/ScientificData/
 paper/*_draft.docx
 paper/*_v[0-9]*.pdf
@@ -133,3 +159,12 @@ missfont.log
 # Packaging
 build/
 dist/
+
+# Dataset release candidates and distributable archives are generated locally.
+# The compact, frozen PT60-v2.0.0 directory remains version-controlled.
+data/releases/*.tar.gz
+data/releases/PT60-v*-rc*/
+data/releases/PT60-v*-rc*-validation.json
+
+# Historical author drafts remain local-only
+/archive/

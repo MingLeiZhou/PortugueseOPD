@@ -1,111 +1,97 @@
 # PT60
 
-**PT60: Portuguese public-record high-voltage topology and AC power-flow benchmark dataset**
+**Public observations → reusable AC power-flow cases → a verifiable dataset and toolchain.**
 
-中文名称：**《基于葡萄牙公共电网记录构建的高压拓扑与交流潮流基准数据集》**。
+PT60 connects Portuguese public network, asset and operating records into
+reproducible AC power-flow cases for the 60, 130, 150, 220 and 400 kV network.
+The retained network contains 3,783 buses, 4,943 lines and 228 transformers.
+The temporal database contains 31,492 consecutive 15-minute operating cases
+from 1 May 2025 through 24 March 2026, together with archived inputs,
+power-flow results, validation records and spatial-allocation comparisons.
 
-PT60 is a provenance-labelled research dataset and reproducible pipeline for the
-Portuguese electricity network at nominal voltages **greater than or equal to
-60 kV**. The name PT60 is retained as the dataset identity; from v2.0.0 onward,
-it covers 60, 130, 150, 220 and 400 kV rather than only the original 60 kV
-candidate layer.
+## Start here
 
-## Current release: PT60 v2.0.0
+[Download the dataset](https://grid.jczw.xyz/download) ·
+[Read the paper and supporting material](https://grid.jczw.xyz/downloads/PT60-paper-cn.zip) ·
+[Explore the network](https://grid.jczw.xyz/) ·
+[Use the Python tools](https://grid.jczw.xyz/downloads/usage-cn.md)
 
-The validated public-data-informed benchmark contains:
+## Four deliverables
 
-- 3,783 buses, 4,943 lines and 228 transformers;
-- 60, 130, 150, 220 and 400 kV topology;
-- 401 load rows representing 10,268.8 MW at the calibrated timestamp;
-- 1,421 mapped public generation candidates;
-- source, evidence and parameter-status fields for topology and electrical data;
-- unsolved and solved pandapower networks;
-- a full-scale AC power-flow case and a 50--120% scaling sweep;
-- 22/22 automated structural, evidence and scenario checks passing.
+| Deliverable | Canonical entry |
+| --- | --- |
+| Dataset | [PT60 v2.1.0-rc2 download](https://grid.jczw.xyz/download), including source attribution, manifest and file hashes |
+| Python package | [pt60-tools on PyPI](https://pypi.org/project/pt60-tools/); import `pt60`, command `pt60` |
+| Website | [Project and downloads](https://grid.jczw.xyz/project), [interactive map](https://grid.jczw.xyz/) |
+| Paper | [Chinese manuscript and supporting material](https://grid.jczw.xyz/downloads/PT60-paper-cn.zip); canonical local source: `paper/PT60_Sep16.MD` |
 
-The full-scale case converges with 0.9293--1.0117 pu bus voltage, 94.94% maximum
-line loading and 83.44% maximum transformer loading under the declared research
-assumptions. These values demonstrate benchmark consistency; they are not
-operator-validated Portuguese operating measurements.
+The dataset is a release candidate; permanent repository deposit and DOI are
+pending. The paper is a manuscript, not a published article. The Python package is published on [PyPI](https://pypi.org/project/pt60-tools/).
 
-The ready-to-deposit archive is `data/releases/PT60-v2.0.0.tar.gz`. The former
-60 kV-only PT60-Candidate v1.0.2 dataset remains citable at
-[doi:10.6084/m9.figshare.32984021](https://doi.org/10.6084/m9.figshare.32984021).
+## Install and load
 
-## Repository layout
-
-- `portuguese_hv_network/src/`: canonical acquisition, integration, modelling,
-  validation and export pipeline.
-- `portuguese_hv_network/config/`: source registry and explicit model assumptions.
-- `portuguese_hv_network/site/`: interactive MapLibre explorer; generated map
-  payloads are excluded from Git.
-- `src/build_pt60_hv_release.py`: builds and validates the PT60 v2 release archive.
-- `data/releases/PT60-v2.0.0/`: versioned, deposit-ready dataset.
-- `src/`: retained v1 pipeline and historical diagnostic utilities.
-- `docs/`: project status, repository structure and QA guidance.
-- `temp/`: ignored local archive for superseded experiments and temporary files.
-
-Downloaded inputs and full runtime outputs are intentionally excluded from Git.
-The versioned release contains the compact benchmark products needed for reuse.
-Paper drafts are local-only and are not part of the software repository.
-
-## Reproduce the benchmark
-
-Python 3.12 is the reference environment.
+Use Python 3.13 in a virtual environment:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r portuguese_hv_network/requirements.txt
-python portuguese_hv_network/src/run_pipeline.py
+python -m pip install pt60-tools==0.4.3
+pt60 fetch https://grid.jczw.xyz/download --output work/PT60-v2.1.0-rc2 --sha256 07727842080141300c4ddf180f82a4e7f9f66e3a444a30297d650f79a3486913
+export PT60_DATA="$PWD/work/PT60-v2.1.0-rc2"
+pt60 verify
+pt60 info
+pt60 view
 ```
 
-Reuse already downloaded inputs and the relation-preserving OSM extraction:
+The browser opens at `http://127.0.0.1:8050`. The local viewer works without
+external map services. The hosted map uses the same dataset and stable IDs.
+
+```python
+from pt60 import Dataset
+
+data = Dataset("work/PT60-v2.1.0-rc2")
+case = data.cases("SUMMER")[0]
+inputs = data.load_input(case["case_id"])
+results = data.results(case["case_id"])
+```
+
+## Build and reproduce cases
+
+Install solver dependencies only when calculating new results:
 
 ```bash
-python portuguese_hv_network/src/run_pipeline.py \
-  --skip-download --skip-osm-extract
+python -m pip install "pt60-tools[solve]==0.4.3"
+pt60 init --output work/my-input
+# Edit the generated input files.
+pt60 solve --input work/my-input --output work/my-result
+pt60 replay --case PT60_2025_SUMMER_WEEK_JUL07_13_H000 --output work/replayed-case
+pt60 view --result-dir work/my-result
 ```
 
-Build the deposit archive after a successful pipeline run:
+`pt60 batch --full --spatial --output work/reproduction` reproduces the full
+seasonal experiment and its controls. Outputs must be outside the frozen
+release. See [the usage guide](https://grid.jczw.xyz/downloads/usage-cn.md) for fields and API.
+The core installation requires NumPy, without PyTorch or GridSFM.
 
-```bash
-python src/build_pt60_hv_release.py
-```
+## Development and provenance
 
-## Interactive explorer
+`pt60/` is the installable package; `portuguese_hv_network/src/` builds the
+underlying network; `portuguese_hv_network/site/` serves the website; `paper/`
+contains the current manuscript and figure sources. Install from this checkout
+with `python -m pip install -e '.[solve,test]'` and run
+`python -m pytest tests/test_pt60_tools.py`.
 
-```bash
-cd portuguese_hv_network/site
-npm install
-npm run dev
-```
+The acquisition pipeline compiles the static network from source records.
+The distributed toolchain starts from that compiled network and archived
+observations to reproduce cases. Source roles, inferred quantities and model
+assumptions are retained in the dataset. Convergence demonstrates numerical
+consistency; it does not establish agreement with an operator state estimate.
 
-The pipeline generates the browser payload automatically. The explorer exposes
-voltage filters, topology provenance, parameter status, line loading, bus
-voltage and equipment details.
+The compact `data/releases/PT60-v2.0.0/` release is frozen for provenance.
+Release candidates, archives and large web-download payloads are generated
+locally and are not committed. Exploratory OPF and neural work is retained in
+`experiments/opf_neural/` and local `output/opf/`, outside the core package and paper.
 
-## Evidence and claim boundary
+## License
 
-PT60 combines E-REDES public records, a fingerprinted OpenStreetMap Portugal
-extract, REN public system context, ERSE/PDIRD planning records, Eurostat GISCO
-boundaries and related public sources. Raw downloads are not redistributed in
-the repository; their URLs, hashes, sizes and roles are recorded in the source
-manifest.
-
-The topology is a public-data-informed candidate network. Actual switch states,
-complete circuit-specific R/X/C, unit-level transformer impedances and controls,
-synchronized reactive demand, generator dispatch and an operator state-estimator
-reference are not fully public. Missing quantities remain explicitly labelled as
-partly source-backed, inferred or scenario assumptions.
-
-Do not use PT60 as an operator network snapshot or for operational switching,
-protection, contingency, emergency, asset-condition or infrastructure-targeting
-decisions.
-
-## Licensing
-
-The MIT license applies to source code only. Dataset records retain the terms of
-their source providers, including E-REDES CC BY 4.0 and OpenStreetMap ODbL
-obligations. Read [DATA_LICENSE.md](DATA_LICENSE.md) and the release-level
-attribution files before redistribution.
+Source code is MIT licensed. Data retain source-specific terms, including
+E-REDES CC BY 4.0 and OpenStreetMap ODbL obligations. See
+[dataset attribution](https://grid.jczw.xyz/downloads/ATTRIBUTION.md) and the dataset's license files.

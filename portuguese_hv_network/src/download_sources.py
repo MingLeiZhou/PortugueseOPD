@@ -196,6 +196,61 @@ def download_geofabrik_osm(session: requests.Session, sources: dict[str, object]
     ]
 
 
+def download_dgeg_generation(session: requests.Session, sources: dict[str, object], overwrite: bool) -> list[dict[str, object]]:
+    """Download the official DGEG georeferenced generation layers.
+
+    ArcGIS limits a response to 2,000 features, so the wind-turbine layer must
+    be paged and reassembled into one deterministic GeoJSON feature collection.
+    """
+    records: list[dict[str, object]] = []
+    for layer, url_value in dict(sources.get("dgeg_generation_layers", {})).items():
+        url = str(url_value)
+        path = RAW / "dgeg" / f"generation_{layer}.geojson"
+        if not path.exists() or overwrite:
+            features: list[dict[str, object]] = []
+            offset = 0
+            while True:
+                response = request(
+                    session,
+                    "GET",
+                    url,
+                    params={
+                        "where": "1=1",
+                        "outFields": "*",
+                        "returnGeometry": "true",
+                        "outSR": "4326",
+                        "resultOffset": offset,
+                        "resultRecordCount": 2000,
+                        "f": "geojson",
+                    },
+                )
+                payload = response.json()
+                batch = list(payload.get("features", []))
+                features.extend(batch)
+                offset += len(batch)
+                if len(batch) < 2000:
+                    break
+            write_json(
+                path,
+                {
+                    "type": "FeatureCollection",
+                    "name": f"DGEG_{layer}",
+                    "source_url": url,
+                    "downloaded_at": utc_now(),
+                    "features": features,
+                },
+            )
+        records.append(
+            trace(
+                path,
+                f"dgeg-generation-{str(layer).lower()}",
+                url,
+                "official DGEG licensed-generation asset geometry and capacity evidence",
+            )
+        )
+    return records
+
+
 def download_reference_sources(session: requests.Session, sources: dict[str, object], overwrite: bool) -> list[dict[str, object]]:
     specifications = [
         ("geofabrik-portugal-poly", "geofabrik_portugal_poly", RAW / "osm" / "portugal.poly", "Geofabrik extraction boundary audit"),
@@ -235,6 +290,7 @@ def main() -> None:
     session = requests.Session()
     records = download_eredes(session, sources, args.overwrite)
     records += select_and_download_load_snapshot(session, sources, args.overwrite, args.timestamp)
+    records += download_dgeg_generation(session, sources, args.overwrite)
     records += download_reference_sources(session, sources, args.overwrite)
     if not args.skip_osm:
         records += (

@@ -1,0 +1,37 @@
+figure.dpi: 150
+figure.constrained_layout.use: True
+savefig.dpi: 300
+savefig.bbox: tight
+savefig.pad_inches: 0.04
+savefig.transparent: False
+
+font.family: serif
+font.serif: STIXGeneral, DejaVu Serif
+font.size: 8
+mathtext.fontset: stix
+
+axes.labelsize: 8
+axes.titlesize: 8
+axes.titleweight: normal
+axes.linewidth: 0.7
+axes.grid: False
+axes.spines.top: False
+axes.spines.right: False
+axes.unicode_minus: True
+
+xtick.labelsize: 7
+ytick.labelsize: 7
+xtick.major.width: 0.7
+ytick.major.width: 0.7
+xtick.major.size: 2.8
+ytick.major.size: 2.8
+
+legend.fontsize: 7
+legend.frameon: False
+lines.linewidth: 1.1
+lines.markersize: 3.8
+patch.linewidth: 0.7
+
+pdf.fonttype: 42
+ps.fonttype: 42
+svg.fonttype: none

@@ -1,0 +1,12 @@
+include README.md LICENSE pyproject.toml
+recursive-include pt60 *.py *.html
+prune tests
+include tests/test_pt60_tools.py
+prune experiments
+prune benchmarks
+prune data
+prune paper
+prune output
+prune portuguese_hv_network
+exclude tests/test_pt60_opf.py
+global-exclude __pycache__ *.py[cod] .DS_Store

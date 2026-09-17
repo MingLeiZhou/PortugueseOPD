@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pt60-tools"
+version = "0.4.3"
+description = "Load, inspect and reproduce the PT60 Portuguese AC power-flow dataset"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = ["power-flow", "Portugal", "open-data", "reproducibility"]
+classifiers = ["Programming Language :: Python :: 3.13", "Intended Audience :: Science/Research"]
+requires-python = ">=3.13"
+dependencies = ["numpy>=2,<3"]
+
+[project.optional-dependencies]
+solve = ["pandapower==3.5.2", "pandas>=2.2,<3", "pyarrow>=20,<26", "duckdb>=1.5,<2", "geopandas>=1,<2", "matplotlib>=3.9,<4", "networkx>=3.4,<4", "requests>=2.32,<3", "scikit-learn>=1.5,<2", "osmium>=4.3,<5", "simbench==1.6.2", "tqdm>=4.66,<5"]
+test = ["pytest>=8,<10"]
+dev = ["build>=1.2,<2", "pytest>=8,<10", "twine>=6,<7"]
+
+[project.scripts]
+pt60 = "pt60.cli:main"
+
+[tool.setuptools]
+packages = ["pt60"]
+
+[tool.setuptools.package-data]
+pt60 = ["viewer.html"]
+
+[tool.pytest.ini_options]
+pythonpath = [".", "src", "portuguese_hv_network/src"]
+testpaths = ["tests", "portuguese_hv_network/tests", "portuguese_hv_network/src"]
+
+[project.urls]
+Homepage = "https://grid.jczw.xyz/project"
+Repository = "https://github.com/MingLeiZhou/PortugueseOPD"
+Documentation = "https://grid.jczw.xyz/project#python"
+Dataset = "https://grid.jczw.xyz/download"
+Paper = "https://grid.jczw.xyz/downloads/PT60-paper-cn.zip"
+Map = "https://grid.jczw.xyz/"
+"Usage guide" = "https://grid.jczw.xyz/downloads/usage-cn.md"

@@ -59,6 +59,7 @@ def add_candidate(
             "tap_step_percent": 1.25, "tap_pos": 0, "source_status": status, "source_id": source_id,
             "evidence": evidence, "match_distance_m": match_distance_m,
             "parameter_status": "OSM_NAMEPLATE_MVA_WITH_PROXY_IMPEDANCE" if sn_mva is not None else "VOLTAGE_PAIR_PROXY",
+            "parallel": 1,
         }
     )
 
@@ -200,7 +201,7 @@ def main() -> None:
     for pair, target_mva in config.get("ren_2024_transformer_capacity_mva", {}).items():
         hv_kv, lv_kv = map(int, pair.split("/"))
         indices = [index for index, row in enumerate(rows) if int(row["hv_kv"]) == hv_kv and int(row["lv_kv"]) == lv_kv]
-        before = sum(float(rows[index]["sn_mva"]) for index in indices)
+        before = sum(float(rows[index]["sn_mva"]) * int(rows[index].get("parallel", 1)) for index in indices)
         factor = float(target_mva) / before if before > 0 else 1.0
         for index in indices:
             rows[index]["pre_calibration_sn_mva"] = rows[index]["sn_mva"]
@@ -211,16 +212,52 @@ def main() -> None:
         capacity_ledger.append({
             "voltage_pair": pair, "transformer_rows": len(indices), "pre_calibration_mva": before,
             "ren_target_mva": float(target_mva), "calibration_factor": factor,
-            "post_calibration_mva": sum(float(rows[index]["sn_mva"]) for index in indices),
+            "post_calibration_mva": sum(
+                float(rows[index]["sn_mva"]) * int(rows[index].get("parallel", 1)) for index in indices
+            ),
             "source": "REN RNT Quality of Service Report 2024, Table I",
+        })
+    override_ledger: list[dict[str, Any]] = []
+    bus_ids = set(buses["bus_id"].astype(str))
+    for override in config.get("transformer_asset_overrides", []):
+        source_id = str(override["source_id"])
+        matches = [index for index, row in enumerate(rows) if str(row.get("source_id")) == source_id]
+        if len(matches) != 1:
+            raise ValueError(f"Transformer override {source_id} matched {len(matches)} rows; expected exactly one")
+        index = matches[0]
+        lv_bus = str(override.get("lv_bus", rows[index]["lv_bus"]))
+        if lv_bus not in bus_ids:
+            raise ValueError(f"Transformer override {source_id} references unknown bus {lv_bus}")
+        before = dict(rows[index])
+        rows[index]["lv_bus"] = lv_bus
+        rows[index]["sn_mva"] = float(override["unit_sn_mva"])
+        rows[index]["parallel"] = int(override["parallel"])
+        rows[index]["parameter_status"] = str(override["status"])
+        rows[index]["evidence"] = str(override["evidence"])
+        rows[index]["asset_override_source_url"] = str(override["source_url"])
+        rows[index]["asset_override_effective_date"] = str(override["effective_date"])
+        override_ledger.append({
+            "transformer_id": rows[index]["transformer_id"],
+            "source_id": source_id,
+            "before_lv_bus": before["lv_bus"],
+            "after_lv_bus": lv_bus,
+            "before_unit_sn_mva": before["sn_mva"],
+            "after_unit_sn_mva": rows[index]["sn_mva"],
+            "before_parallel": before.get("parallel", 1),
+            "after_parallel": rows[index]["parallel"],
+            "total_capacity_mva": rows[index]["sn_mva"] * rows[index]["parallel"],
+            "status": rows[index]["parameter_status"],
+            "source_url": rows[index]["asset_override_source_url"],
         })
     pd.DataFrame(rows).to_csv(TABLES / "transformers_topology.csv", index=False)
     ledger.to_csv(TABLES / "rari_boundary_matching.csv", index=False)
     pd.DataFrame(capacity_ledger).to_csv(TABLES / "transformer_capacity_calibration.csv", index=False)
+    pd.DataFrame(override_ledger).to_csv(TABLES / "transformer_asset_overrides.csv", index=False)
     summary = {
         "generated_at": utc_now(), "transformers": len(rows),
         "status_counts": pd.Series([row["source_status"] for row in rows]).value_counts().to_dict(),
         "rari_boundary_status_counts": ledger["status"].value_counts().to_dict(),
+        "asset_overrides": len(override_ledger),
     }
     write_json(TABLES / "transformer_summary.json", summary)
     print(json.dumps(summary, ensure_ascii=False, indent=2))

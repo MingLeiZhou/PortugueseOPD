@@ -1,0 +1,135 @@
+{
+  "tool_version": "0.3.0",
+  "python_tests_passed": 10,
+  "typescript": "PASS",
+  "production_build": "PASS",
+  "release_payload_verified_files": 1884,
+  "opf_cases_passed": 7,
+  "roundtrip": {
+    "max_p_balance_residual_mw": 2.3886619086565804e-09,
+    "max_q_balance_residual_mvar": 1.2637386122005372e-08,
+    "max_voltage_violation_pu": 0.0,
+    "max_generator_p_violation_mw": 0.0,
+    "max_generator_q_violation_mvar": 0.0,
+    "max_branch_s_violation_mva": 0.0,
+    "max_angle_violation_degree": 0.0,
+    "objective": 470084.6076220133,
+    "feasible": true,
+    "seconds": 65.85943491687067,
+    "reference_objective": 470084.6076220475,
+    "objective_relative_difference": 7.268456869720925e-14,
+    "initialization": "FLAT_ANGLES_MIDPOINT_BOUNDS_NO_SOLUTION_LABELS",
+    "roundtrip_pass": true
+  },
+  "neural_correction": {
+    "max_p_balance_residual_mw": 2.3886619086565804e-09,
+    "max_q_balance_residual_mvar": 1.2637386122005372e-08,
+    "max_voltage_violation_pu": 0.0,
+    "max_generator_p_violation_mw": 0.0,
+    "max_generator_q_violation_mvar": 0.0,
+    "max_branch_s_violation_mva": 0.0,
+    "max_angle_violation_degree": 0.0,
+    "objective": 470084.6076220133,
+    "feasible": true,
+    "seconds": 69.9329627500847,
+    "reference_objective": 470084.6076220475,
+    "objective_relative_difference": 7.268456869720925e-14,
+    "initialization": "NEURAL_PREDICTION_BOUNDED_INITIAL_GUESS",
+    "fallback_to_cold_start": true,
+    "roundtrip_pass": true
+  },
+  "training": {
+    "mode": "PT60_PILOT_FINETUNE",
+    "source_splits": {
+      "train": [
+        "c3c6e71d657351738727ebd5c9643d1b8f9d12888f40b277e2e8c0506a6f5057"
+      ],
+      "validation": [
+        "6eed4c8edfcbc407725f51200f8cee52d8f9cde76de8b80c8451b52b41c0f853"
+      ],
+      "test": [
+        "8b0ef5cdb03ed588da606a844cba5ed5d7a029c236c4ce23881047bae185cfa3"
+      ]
+    },
+    "epochs": 20,
+    "lr": 1e-05,
+    "selected_epoch": 19,
+    "selection": "minimum validation loss; test excluded from selection",
+    "training_seconds": 280.13951770798303,
+    "checkpoint_sha256": "6ef0fb60f5faf0444346e3047749a7abcae98c1f775c7f8ed523de64d87f26b7",
+    "graph_counts": {
+      "train": 5,
+      "validation": 1,
+      "test": 1
+    },
+    "test": [
+      {
+        "graph_sha256": "66d3721e6351f4a47ae6376e24f86cb80bab40fb17e5c7f90fbcf7c90eefd803",
+        "pretrained": {
+          "max_p_balance_residual_mw": 20010.913542020007,
+          "max_q_balance_residual_mvar": 185526.15322832557,
+          "max_voltage_violation_pu": 0.0,
+          "max_generator_p_violation_mw": 3.1928016142046545e-06,
+          "max_generator_q_violation_mvar": 7.629294543676224e-06,
+          "max_branch_s_violation_mva": 131546.61768872262,
+          "max_angle_violation_degree": 0.0,
+          "objective": 113753.34611237563,
+          "feasible": false,
+          "voltage_mae_pu": 0.0445544915592639,
+          "generator_p_mae_mw": 56.58071318355277,
+          "generator_q_mae_mvar": 37.94565051628432,
+          "reference_objective": 392360.9875716897,
+          "seconds": 0.7397769999224693,
+          "predicted_feasibility_probability": 2.4928628605813685e-10,
+          "checkpoint_sha256": "f8a4396122e603e8303afdebe3b093819c0f64dac0878394aed0bd63205fd831",
+          "graph_sha256": "66d3721e6351f4a47ae6376e24f86cb80bab40fb17e5c7f90fbcf7c90eefd803",
+          "mode": "ZERO_SHOT_PRETRAINED_GRIDSFM",
+          "device": "cpu",
+          "objective_relative_error": 0.7100798761457106
+        },
+        "finetuned": {
+          "max_p_balance_residual_mw": 13533.985406062684,
+          "max_q_balance_residual_mvar": 163341.65020692963,
+          "max_voltage_violation_pu": 0.0,
+          "max_generator_p_violation_mw": 5.91268076277629e-06,
+          "max_generator_q_violation_mvar": 1.5963507991045844e-06,
+          "max_branch_s_violation_mva": 106997.68999310644,
+          "max_angle_violation_degree": 0.0,
+          "objective": 396784.5422401293,
+          "feasible": false,
+          "voltage_mae_pu": 0.017777548771760736,
+          "generator_p_mae_mw": 41.99299282297112,
+          "generator_q_mae_mvar": 27.45420716306164,
+          "reference_objective": 392360.9875716897,
+          "seconds": 0.727599292062223,
+          "predicted_feasibility_probability": 0.0018903275486081839,
+          "checkpoint_sha256": "6ef0fb60f5faf0444346e3047749a7abcae98c1f775c7f8ed523de64d87f26b7",
+          "graph_sha256": "66d3721e6351f4a47ae6376e24f86cb80bab40fb17e5c7f90fbcf7c90eefd803",
+          "mode": "PT60_FINETUNED_GRIDSFM",
+          "device": "cpu",
+          "objective_relative_error": 0.011274195979108058
+        }
+      }
+    ]
+  },
+  "source_archive": {
+    "name": "pt60-code-0.3.0.zip",
+    "sha256": "c5012b7c649f6f25b8cc29da18aa1ae242cacd3966939d4e0983208ca2e4d712",
+    "bytes": 203193
+  },
+  "visual_browser_qa": "NOT_RUN",
+  "upstream_regularization_diagnostic": {
+    "total_branches": 5001,
+    "excluded_by_upstream_abs_x_le_0_01_filter": 2656,
+    "below_upstream_z_squared_floor_1e_6": 494,
+    "interpretation": "Upstream learning physics regularization is not an exact physical feasibility certificate for PT60; use independent unmodified-admittance audit."
+  },
+  "installed_wheel_smoke": "PASS",
+  "deployment": {
+    "url": "https://grid.jczw.xyz/optimization",
+    "cloudflare_version": "463a131a-9253-47fe-a25a-a39840be95fc",
+    "http_status": 200,
+    "verified_online_cases": 7,
+    "verified_online_epochs": 20
+  }
+}

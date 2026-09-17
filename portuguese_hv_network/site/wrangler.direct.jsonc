@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "portugal-hv-grid-explorer",
-  "main": "dist/server/index.js",
+  "main": "dist/server/worker.js",
   "compatibility_date": "2026-05-15",
   "compatibility_flags": ["nodejs_compat"],
   "no_bundle": true,
@@ -9,7 +9,8 @@
     { "type": "ESModule", "globs": ["**/*.js", "**/*.mjs"] }
   ],
   "assets": {
-    "directory": "dist/client"
+    "directory": "dist/client",
+    "binding": "ASSETS"
   },
   "routes": [
     { "pattern": "grid.jczw.xyz", "custom_domain": true }

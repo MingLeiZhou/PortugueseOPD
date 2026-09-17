@@ -1,0 +1,77 @@
+graph TB
+  subgraph sources [公开数据来源]
+    EREDES[E-REDES<br/>线路・变电站・15分钟负荷]
+    OSM[Geofabrik / OpenStreetMap<br/>电力设施与线路几何]
+    DGEG[DGEG<br/>发电设施与装机容量]
+    REN[REN / ERSE<br/>输电网・调度・规划文档]
+    REF[GISCO / Open-Meteo<br/>国界与天气]
+  end
+
+  subgraph evidence [不可变证据层]
+    FILES[(raw_static/<br/>27个原始文件・SHA-256)]
+    CATALOG[provenance.raw_files<br/>URL・许可・路径・校验值]
+  end
+
+  subgraph raw [按来源独立的原始数据表]
+    RER[(raw_eredes.*<br/>10表・82,023条)]
+    ROSM[(raw_osm.power_elements<br/>639,833条)]
+    RDGEG[(raw_dgeg.*<br/>5表・3,853条)]
+    RREF[(raw_reference.*<br/>葡萄牙边界)]
+    RDOC[(raw_documents.*<br/>REN・ERSE・E-REDES文档)]
+  end
+
+  subgraph model [融合后的静态电网模型 PT60-v2.0.0]
+    FAC[grid.facilities<br/>675个电力设施]
+    BUS[grid.buses<br/>3,783个母线]
+    LINE[grid.lines + geo.line_geometries<br/>4,943条线路]
+    TRAFO[grid.transformers<br/>228台变压器]
+    GEN[grid.generators<br/>1,190个发电设施]
+  end
+
+  subgraph temporal [动态运行与场景层]
+    TS[(15分钟运行数据<br/>负荷・发电・天气・RNT平衡)]
+    CASE[scenario.*<br/>负荷・发电・边界运行点]
+    PF[results.*<br/>母线电压・线路负载・潮流结果]
+  end
+
+  TRACE[provenance.raw_record_locator<br/>原始记录定位与证据等级]
+  OUTPUT[风险分析与机器学习<br/>预测・筛查・可复现实验]
+
+  EREDES --> FILES
+  OSM --> FILES
+  DGEG --> FILES
+  REN --> FILES
+  REF --> FILES
+  FILES --> CATALOG
+  FILES --> RER
+  FILES --> ROSM
+  FILES --> RDGEG
+  FILES --> RREF
+  FILES --> RDOC
+  RER --> FAC
+  RER --> LINE
+  ROSM --> FAC
+  ROSM --> LINE
+  ROSM --> TRAFO
+  RDGEG --> GEN
+  RREF --> FAC
+  FAC --> BUS
+  BUS --> LINE
+  BUS --> TRAFO
+  BUS --> GEN
+  BUS --> CASE
+  TS --> CASE
+  CASE --> PF
+  LINE --> PF
+  TRAFO --> PF
+  GEN --> PF
+  CATALOG -.-> TRACE
+  RER -.-> TRACE
+  ROSM -.-> TRACE
+  RDGEG -.-> TRACE
+  TRACE -.-> LINE
+  TRACE -.-> TRAFO
+  TRACE -.-> FAC
+  TRACE -.-> GEN
+  PF --> OUTPUT
+  TS --> OUTPUT

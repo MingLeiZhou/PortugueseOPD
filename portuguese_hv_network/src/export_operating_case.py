@@ -22,7 +22,9 @@ def main() -> None:
     line_output["flow_result_status"] = "AC_POWER_FLOW_SOLUTION_NOT_MEASURED_TELEMETRY"
     line_output["thermal_limit_status"] = line_output["max_i_status"].map({
         "DIRECT_PDIRD_MINIMUM_SUMMER_NOMINAL_CURRENT": "SOURCE_BACKED_STATIC_SUMMER_NOMINAL_CURRENT",
+        "DIRECT_PDIRD_MINIMUM_WINTER_NOMINAL_CURRENT": "SOURCE_BACKED_STATIC_WINTER_NOMINAL_CURRENT",
         "DIRECT_PUBLIC_CORRIDOR_SUMMER_NOMINAL_CURRENT": "SOURCE_BACKED_STATIC_CORRIDOR_SUMMER_NOMINAL_CURRENT",
+        "DIRECT_PUBLIC_CORRIDOR_WINTER_NOMINAL_CURRENT": "SOURCE_BACKED_STATIC_CORRIDOR_WINTER_NOMINAL_CURRENT",
         "ENGINEERING_PROXY": "VOLTAGE_CLASS_STATIC_RATING_PROXY",
     }).fillna("UNDOCUMENTED_STATIC_RATING_PROXY")
     line_output["overloaded_in_case"] = line_output["loading_percent"].fillna(0.0) > 100.0
@@ -53,7 +55,7 @@ def main() -> None:
         {"quantity": "line_r_ohm_per_km", "observed_or_source_backed_rows": int((lines.r_status != "ENGINEERING_PROXY").sum()), "estimated_rows": int((lines.r_status == "ENGINEERING_PROXY").sum()), "interpretation": "PDIRD conductor-derived where matched; otherwise voltage/asset-class proxy"},
         {"quantity": "line_x_ohm_per_km", "observed_or_source_backed_rows": 0, "estimated_rows": len(lines), "interpretation": "Engineering proxy; no equipment-level public reactance series"},
         {"quantity": "line_c_nf_per_km", "observed_or_source_backed_rows": 0, "estimated_rows": len(lines), "interpretation": "Engineering proxy; no equipment-level public capacitance series"},
-        {"quantity": "line_thermal_limit", "observed_or_source_backed_rows": int(lines.max_i_status.isin(["DIRECT_PDIRD_MINIMUM_SUMMER_NOMINAL_CURRENT", "DIRECT_PUBLIC_CORRIDOR_SUMMER_NOMINAL_CURRENT"]).sum()), "estimated_rows": int((~lines.max_i_status.isin(["DIRECT_PDIRD_MINIMUM_SUMMER_NOMINAL_CURRENT", "DIRECT_PUBLIC_CORRIDOR_SUMMER_NOMINAL_CURRENT"])).sum()), "interpretation": "Static summer nominal current where PDIRD/RARI-backed; not real-time dynamic line rating"},
+        {"quantity": "line_thermal_limit", "observed_or_source_backed_rows": int(lines.max_i_status.isin(["DIRECT_PDIRD_MINIMUM_SUMMER_NOMINAL_CURRENT", "DIRECT_PDIRD_MINIMUM_WINTER_NOMINAL_CURRENT", "DIRECT_PUBLIC_CORRIDOR_SUMMER_NOMINAL_CURRENT", "DIRECT_PUBLIC_CORRIDOR_WINTER_NOMINAL_CURRENT"]).sum()), "estimated_rows": int((~lines.max_i_status.isin(["DIRECT_PDIRD_MINIMUM_SUMMER_NOMINAL_CURRENT", "DIRECT_PDIRD_MINIMUM_WINTER_NOMINAL_CURRENT", "DIRECT_PUBLIC_CORRIDOR_SUMMER_NOMINAL_CURRENT", "DIRECT_PUBLIC_CORRIDOR_WINTER_NOMINAL_CURRENT"])).sum()), "interpretation": "Static seasonal nominal current where PDIRD/RARI-backed; not real-time dynamic line rating"},
         {"quantity": "line_service_state", "observed_or_source_backed_rows": int(lines.operational_status.isin(["Em exploração", "Desligado/Reserva"]).sum()), "estimated_rows": int((~lines.operational_status.isin(["Em exploração", "Desligado/Reserva"])).sum()), "interpretation": "E-REDES asset status or explicit steady-state assumption; not individual breaker telemetry"},
         {"quantity": "generator_p_mw", "observed_or_source_backed_rows": 0, "estimated_rows": int(summary["generator_assets_assigned"]), "interpretation": "REN source totals are observed; allocation to public assets is proportional to nameplate"},
         {"quantity": "generator_q_mvar", "observed_or_source_backed_rows": 0, "estimated_rows": int(summary["generator_assets_assigned"]), "interpretation": "Solved PV-bus response or fixed-PQ assumption; not unit telemetry"},
@@ -67,7 +69,7 @@ def main() -> None:
 
     report = {
         "generated_at": utc_now(),
-        "case": "FULL_SCALE_PUBLIC_DATA_CALIBRATED",
+        "case": "FULL_SCALE_PUBLIC_DATA_INFORMED_HELDOUT_IMPORT",
         "timestamp_utc": config["calibration_timestamp_utc"],
         "converged": True,
         "load_p_mw": summary["total_load_p_mw"],
@@ -79,7 +81,7 @@ def main() -> None:
         "maximum_transformer_loading_percent": summary["trafo_loading_percent_max"],
         "overloaded_line_rows": int(line_output["overloaded_in_case"].sum()),
         "overloaded_transformer_rows": int((transformer_output.loading_percent > 100.0).sum()),
-        "interpretation": "A converged, full-scale public-data-calibrated study case. Constraint violations are model diagnostics, not claims about the operator's real-time network state.",
+        "interpretation": "A converged, full-scale public-data-informed study case with observed net import held out. Constraint violations are model diagnostics, not claims about the operator's real-time network state.",
     }
     write_json(POWER_FLOW / "full_scale_operating_case.json", report)
     print(json.dumps(report, ensure_ascii=False, indent=2))

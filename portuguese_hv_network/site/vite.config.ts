@@ -50,9 +50,11 @@ export default defineConfig(async () => {
     // can leave Vite pointing at a stale optimized-dependency filename after a
     // dev-server restart.
     optimizeDeps: { exclude: ['maplibre-gl'] },
-    server: isCodexSeatbeltSandbox
-      ? { watch: { useFsEvents: false, usePolling: true } }
-      : undefined,
+    server: { watch: {
+      // Static exports are replaced as a complete directory, not hot modules.
+      ignored: ['**/public/data/**', '**/dist/**', '**/.wrangler/**'],
+      ...(isCodexSeatbeltSandbox ? { useFsEvents: false, usePolling: true } : {}),
+    } },
     plugins: [
       vinext(),
       sites(),

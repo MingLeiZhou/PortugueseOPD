@@ -1,0 +1,31 @@
+{
+  "tool_version": "0.2.0",
+  "scope": "Local integration with existing Cloudflare Web source; no remote deployment or Git push",
+  "python_tests": {
+    "passed": 7
+  },
+  "web_data_tests": {
+    "passed": 4,
+    "frozen_result_sets": 1008,
+    "custom_result_sets": 1
+  },
+  "typescript": "PASS",
+  "production_build": "PASS",
+  "browser_visual_testing": "NOT_RUN",
+  "release_payload": {
+    "verified_files": 1884,
+    "status": "PASS"
+  },
+  "code_archive": {
+    "file": "pt60-web-integration-0.2.0.zip",
+    "bytes": 169406,
+    "sha256": "13c46952baa79662c95d5f6a8092ae952a2978a4717893ecaaa8a9189d3417b8"
+  },
+  "code_files": 39,
+  "local_http_check": {
+    "root": 200,
+    "custom_result": 200,
+    "server": "stopped after verification"
+  },
+  "installed_wheel_export_help": "PASS"
+}

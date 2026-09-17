@@ -1,0 +1,21 @@
+{
+  "benchmark_target": "Versioned reproducible public-data AC benchmark for the Portuguese >=60 kV network",
+  "not_a_claim": "Transmission-system-operator control-room digital twin",
+  "items": [
+    {"id": "eredes_capacity_join", "category": "ACTIONABLE", "release_role": "REQUIRED", "criterion": "No mapped E-REDES load facility lacks its annual capacity reference"},
+    {"id": "generator_nameplate", "category": "ACTIONABLE", "release_role": "REQUIRED", "criterion": "Every mapped generator satisfies 0 <= P <= available nameplate"},
+    {"id": "generator_inventory_coverage", "category": "ACTIONABLE", "release_role": "REQUIRED", "criterion": "Each material public generation category is reconciled to an official aggregate and discrepancies remain explicit"},
+    {"id": "hotspot_line_parameters", "category": "ACTIONABLE", "release_role": "REQUIRED_FOR_OVERLOAD_CLAIMS", "criterion": "Any repeated overload corridor is source-backed or labeled as parameter-sensitive"},
+    {"id": "storage_spatial_allocation", "category": "ACTIONABLE", "release_role": "SENSITIVITY_REQUIRED", "criterion": "Aggregate storage accounting is exact and spatial allocation is labeled or tested by sensitivity"},
+    {"id": "rnt_loss_scope", "category": "ACTIONABLE", "release_role": "QUANTIFY_NOT_CALIBRATE_BLINDLY", "criterion": "RNT/RND/transformer scopes are separated and the monthly-vs-snapshot mismatch is reported"},
+    {"id": "independent_cross_border_total", "category": "ACTIONABLE", "release_role": "DESIRABLE", "criterion": "REE or ENTSO-E aggregate exchange is available independently of REN"},
+    {"id": "september_synchronous_load", "category": "ACTIONABLE", "release_role": "DESIRABLE", "criterion": "Use synchronous E-REDES load or label the scenario as a prior-year seasonal proxy"},
+    {"id": "pdirt_unmapped_deliveries", "category": "ACTIONABLE", "release_role": "BOUNDED_RESIDUAL_ALLOWED", "criterion": "Named delivery points are mapped where public evidence exists; aggregate future clients remain residual"},
+    {"id": "realtime_switching", "category": "OUT_OF_SCOPE", "release_role": "NOT_A_BLOCKER", "criterion": "No claim of real-time breaker, disconnector, or busbar state"},
+    {"id": "operator_state_estimate", "category": "OUT_OF_SCOPE", "release_role": "NOT_A_BLOCKER", "criterion": "No claim that solved voltages or angles reproduce SCADA/PMU state estimates"},
+    {"id": "protection_and_remedial_actions", "category": "OUT_OF_SCOPE", "release_role": "NOT_A_BLOCKER", "criterion": "Protection, reserve, AGC, and remedial-action settings are excluded"},
+    {"id": "dynamic_line_rating", "category": "OUT_OF_SCOPE", "release_role": "NOT_A_BLOCKER", "criterion": "Static ratings are used; weather is context rather than conductor-level DLR"},
+    {"id": "realtime_taps_and_reactive_switching", "category": "OUT_OF_SCOPE", "release_role": "NOT_A_BLOCKER", "criterion": "Transformer taps and reactive-device switching are evidence-ranked assumptions"},
+    {"id": "per_circuit_interconnector_telemetry", "category": "OUT_OF_SCOPE", "release_role": "NOT_A_BLOCKER", "criterion": "Individual corridor flows are model outputs, not observed telemetry"}
+  ]
+}

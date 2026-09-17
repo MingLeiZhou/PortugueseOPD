@@ -1,0 +1,230 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1421.0111428571429 1853.6000000000001" width="1421.0111428571429" height="1853.6000000000001" style="--bg:#ffffff;--fg:#1f2328;--line:#d1d9e0;--accent:#0969da;--muted:#59636e;background:var(--bg)">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto%20Sans%20SC:wght@400;500;600;700&amp;display=swap');
+  text { font-family: 'Noto Sans SC', system-ui, sans-serif; }
+  svg {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="7" refY="2.5" orient="auto">
+    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="arrowhead-start" markerWidth="8" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse">
+    <polygon points="8 0, 0 2.5, 8 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+<g class="subgraph" data-id="sources" data-label="公开数据来源">
+  <rect x="165.03101190476184" y="36" width="1115.937" height="113.80000000000001" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="165.03101190476184" y="36" width="1115.937" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="177.03101190476184" y="50" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">公开数据来源</text>
+</g>
+<g class="subgraph" data-id="evidence" data-label="不可变证据层">
+  <rect x="503.36341666666675" y="219.8" width="356.6477857142857" height="241.60000000000002" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="503.36341666666675" y="219.8" width="356.6477857142857" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="515.3634166666668" y="233.8" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">不可变证据层</text>
+</g>
+<g class="subgraph" data-id="raw" data-label="按来源独立的原始数据表">
+  <rect x="36" y="531.4000000000001" width="979.5929999999998" height="127.80000000000001" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="36" y="531.4000000000001" width="979.5929999999998" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="48" y="545.4000000000001" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">按来源独立的原始数据表</text>
+</g>
+<g class="subgraph" data-id="model" data-label="融合后的静态电网模型 PT60-v2.0.0">
+  <rect x="605.3977428571429" y="893" width="606.8484" height="385.40000000000003" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="605.3977428571429" y="893" width="606.8484" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="617.3977428571429" y="907" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">融合后的静态电网模型 PT60-v2.0.0</text>
+</g>
+<g class="subgraph" data-id="temporal" data-label="动态运行与场景层">
+  <rect x="828.0091428571429" y="1348.4" width="557.002" height="351.40000000000003" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="828.0091428571429" y="1348.4" width="557.002" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="840.0091428571429" y="1362.4" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">动态运行与场景层</text>
+</g>
+<polyline class="edge" data-from="EREDES" data-to="FILES" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1157.2960119047618,133.8 1157.2960119047618,198.8 618.5139166666667,198.8 618.5139166666667,263.8" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="OSM" data-to="FILES" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="917.3620119047617,133.8 917.3620119047617,198.8 618.5139166666667,198.8 618.5139166666667,263.8" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="DGEG" data-to="FILES" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="460.4650119047618,133.8 460.4650119047618,198.8 618.5139166666667,198.8 618.5139166666667,263.8" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="REN" data-to="FILES" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="682.6150119047619,133.8 682.6150119047619,198.8 618.5139166666667,198.8 618.5139166666667,263.8" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="REF" data-to="FILES" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="260.91551190476184,133.8 260.91551190476184,198.8 618.5139166666667,198.8 618.5139166666667,263.8" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="FILES" data-to="RER" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="618.5139166666667,331.6 618.5139166666667,361.6 120.399,361.6 120.399,575.4000000000001" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="FILES" data-to="ROSM" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="618.5139166666667,331.6 618.5139166666667,361.6 318.096,361.6 318.096,575.4000000000001" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="FILES" data-to="RDGEG" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="618.5139166666667,331.6 618.5139166666667,361.6 763.137,361.6 763.137,575.4000000000001" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="FILES" data-to="RREF" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="618.5139166666667,331.6 618.5139166666667,361.6 928.9709999999999,361.6 928.9709999999999,575.4000000000001" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="FILES" data-to="RDOC" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="618.5139166666667,331.6 618.5139166666667,361.6 557.6595,361.6 557.6595,575.4000000000001" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="RER" data-to="FAC" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="120.399,643.2 120.399,814.1 1033.5827428571429,814.1 1033.5827428571429,985" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="RER" data-to="LINE" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="120.399,643.2 120.399,925.9 734.997742857143,925.9 734.997742857143,1208.6" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="ROSM" data-to="FAC" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="318.096,643.2 318.096,814.1 1033.5827428571429,814.1 1033.5827428571429,985" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="ROSM" data-to="LINE" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="318.096,643.2 318.096,925.9 734.997742857143,925.9 734.997742857143,1208.6" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="ROSM" data-to="TRAFO" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="298.6364,643.2 298.6363999999999,737.2 561.5850999999999,737.2 561.5850999999999,839 744.7177428571429,839 744.7177428571429,1174.6000000000001 917.0202428571429,1174.6000000000001 917.0202428571429,1208.6000000000001" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="RDGEG" data-to="GEN" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="784.2076666666667,643.2 784.2076666666667,689.2 1152.3353928571428,689.2 1152.3353928571428,875 1153.8353928571428,875 1153.835392857143,973 1161.3056428571429,973 1161.3056428571429,1208.6000000000001" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="RREF" data-to="FAC" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="928.9709999999999,643.2 928.9709999999999,814.1 1033.5827428571429,814.1 1033.5827428571429,985" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="BUS" data-to="CASE" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1033.5827428571429,1150.6 1033.5827428571429,1179.6 1013.8801428571429,1179.6 1013.8801428571429,1518.2" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="LINE" data-to="PF" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="734.997742857143,1262.3999999999999 734.997742857143,1601 968.724142857143,1601 968.724142857143,1630" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="TRAFO" data-to="PF" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="953.4427428571429,1262.3999999999999 953.4427428571429,1601 968.724142857143,1601 968.724142857143,1630" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="GEN" data-to="PF" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1126.365142857143,1262.3999999999999 1126.365142857143,1601 968.724142857143,1601 968.724142857143,1630" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="CATALOG" data-to="TRACE" data-style="dotted" data-arrow-start="false" data-arrow-end="true" points="735.5982023809524,445.40000000000003 735.5982023809524,708.2 851.7473428571429,708.2 851.7473428571429,773.2" fill="none" stroke="var(--_line)" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="RER" data-to="TRACE" data-style="dotted" data-arrow-start="false" data-arrow-end="true" points="120.399,643.2 120.399,708.2 851.7473428571429,708.2 851.7473428571429,773.2" fill="none" stroke="var(--_line)" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="ROSM" data-to="TRACE" data-style="dotted" data-arrow-start="false" data-arrow-end="true" points="318.096,643.2 318.096,708.2 851.7473428571429,708.2 851.7473428571429,773.2" fill="none" stroke="var(--_line)" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="RDGEG" data-to="TRACE" data-style="dotted" data-arrow-start="false" data-arrow-end="true" points="763.137,643.2 763.137,708.2 851.7473428571429,708.2 851.7473428571429,773.2" fill="none" stroke="var(--_line)" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="TRACE" data-to="LINE" data-style="dotted" data-arrow-start="false" data-arrow-end="true" points="851.7473428571429,827 851.7473428571429,881 734.997742857143,881 734.997742857143,1208.6" fill="none" stroke="var(--_line)" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="TRACE" data-to="TRAFO" data-style="dotted" data-arrow-start="false" data-arrow-end="true" points="851.7473428571429,827 851.7473428571429,881 953.4427428571429,881 953.4427428571429,1208.6" fill="none" stroke="var(--_line)" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="TRACE" data-to="FAC" data-style="dotted" data-arrow-start="false" data-arrow-end="true" points="851.7473428571429,827 851.7473428571429,881 1033.5827428571429,881 1033.5827428571429,985" fill="none" stroke="var(--_line)" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="TRACE" data-to="GEN" data-style="dotted" data-arrow-start="false" data-arrow-end="true" points="851.7473428571429,827 851.7473428571429,881 1126.365142857143,881 1126.365142857143,1208.6" fill="none" stroke="var(--_line)" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="PF" data-to="OUTPUT" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="968.724142857143,1683.8000000000002 968.724142857143,1751.8000000000002 1154.4519666666665,1751.8000000000002 1154.4519666666665,1763.8000000000002" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="TS" data-to="OUTPUT" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1253.1881428571428,1460.2 1253.1881428571428,1489.2 1188.6136333333332,1489.2 1188.6136333333332,1763.8000000000002" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="FILES" data-to="CATALOG" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="618.5139166666667,331.6 618.5139166666667,361.6 735.5982023809524,361.6 735.5982023809524,391.6" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="FAC" data-to="BUS" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1033.5827428571429,1038.8 1033.5827428571429,1096.8" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="BUS" data-to="LINE" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1033.5827428571429,1150.6 1033.5827428571429,1179.6 734.997742857143,1179.6 734.997742857143,1208.6" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="BUS" data-to="TRAFO" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1033.5827428571429,1150.6 1033.5827428571429,1179.6 953.4427428571429,1179.6 953.4427428571429,1208.6" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="BUS" data-to="GEN" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1033.5827428571429,1150.6 1033.5827428571429,1179.6 1126.365142857143,1179.6 1126.365142857143,1208.6" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="TS" data-to="CASE" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1253.1881428571428,1460.2 1253.1881428571428,1489.2 1013.8801428571429,1489.2 1013.8801428571429,1518.2" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="CASE" data-to="PF" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1013.8801428571429,1572 1013.8801428571429,1601 968.724142857143,1601 968.724142857143,1630" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<g class="node" data-id="TRACE" data-label="provenance.raw_record_locator
+原始记录定位与证据等级" data-shape="rectangle">
+  <rect x="732.9603428571429" y="773.2" width="237.57399999999996" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="851.7473428571429" y="800.1" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="851.7473428571429" dy="-3.9000000000000012">provenance.raw_record_locator</tspan><tspan x="851.7473428571429" dy="16.900000000000002">原始记录定位与证据等级</tspan></text>
+</g>
+<g class="node" data-id="OUTPUT" data-label="风险分析与机器学习
+预测・筛查・可复现实验" data-shape="rectangle">
+  <rect x="1086.1286333333333" y="1763.8000000000002" width="204.96999999999997" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1188.6136333333332" y="1790.7000000000003" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="1188.6136333333332" dy="-3.9000000000000012">风险分析与机器学习</tspan><tspan x="1188.6136333333332" dy="16.900000000000002">预测・筛查・可复现实验</tspan></text>
+</g>
+<g class="node" data-id="EREDES" data-label="E-REDES
+线路・变电站・15分钟负荷" data-shape="rectangle">
+  <rect x="1049.6240119047618" y="80" width="215.34399999999997" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1157.2960119047618" y="106.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="1157.2960119047618" dy="-3.9000000000000012">E-REDES</tspan><tspan x="1157.2960119047618" dy="16.900000000000002">线路・变电站・15分钟负荷</tspan></text>
+</g>
+<g class="node" data-id="OSM" data-label="Geofabrik / OpenStreetMap
+电力设施与线路几何" data-shape="rectangle">
+  <rect x="817.1000119047618" y="80" width="200.52399999999997" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="917.3620119047617" y="106.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="917.3620119047617" dy="-3.9000000000000012">Geofabrik / OpenStreetMap</tspan><tspan x="917.3620119047617" dy="16.900000000000002">电力设施与线路几何</tspan></text>
+</g>
+<g class="node" data-id="DGEG" data-label="DGEG
+发电设施与装机容量" data-shape="rectangle">
+  <rect x="372.80001190476185" y="80" width="175.32999999999998" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="460.4650119047618" y="106.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="460.4650119047618" dy="-3.9000000000000012">DGEG</tspan><tspan x="460.4650119047618" dy="16.900000000000002">发电设施与装机容量</tspan></text>
+</g>
+<g class="node" data-id="REN" data-label="REN / ERSE
+输电网・调度・规划文档" data-shape="rectangle">
+  <rect x="580.1300119047619" y="80" width="204.96999999999997" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="682.6150119047619" y="106.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="682.6150119047619" dy="-3.9000000000000012">REN / ERSE</tspan><tspan x="682.6150119047619" dy="16.900000000000002">输电网・调度・规划文档</tspan></text>
+</g>
+<g class="node" data-id="REF" data-label="GISCO / Open-Meteo
+国界与天气" data-shape="rectangle">
+  <rect x="181.03101190476184" y="80" width="159.769" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="260.91551190476184" y="106.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="260.91551190476184" dy="-3.9000000000000012">GISCO / Open-Meteo</tspan><tspan x="260.91551190476184" dy="16.900000000000002">国界与天气</tspan></text>
+</g>
+<g class="node" data-id="FILES" data-label="raw_static/
+27个原始文件・SHA-256" data-shape="cylinder">
+  <rect x="519.3634166666667" y="270.8" width="198.30099999999996" height="53.80000000000001" fill="var(--_node-fill)" stroke="none" />
+  <line x1="519.3634166666667" y1="270.8" x2="519.3634166666667" y2="324.6" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <line x1="717.6644166666666" y1="270.8" x2="717.6644166666666" y2="324.6" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <ellipse cx="618.5139166666667" cy="324.6" rx="99.15049999999998" ry="7" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <ellipse cx="618.5139166666667" cy="270.8" rx="99.15049999999998" ry="7" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="618.5139166666667" y="297.70000000000005" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="618.5139166666667" dy="-3.9000000000000012">raw_static/</tspan><tspan x="618.5139166666667" dy="16.900000000000002">27个原始文件・SHA-256</tspan></text>
+</g>
+<g class="node" data-id="CATALOG" data-label="provenance.raw_files
+URL・许可・路径・校验值" data-shape="rectangle">
+  <rect x="627.1852023809524" y="391.6" width="216.826" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="735.5982023809524" y="418.5" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="735.5982023809524" dy="-3.9000000000000012">provenance.raw_files</tspan><tspan x="735.5982023809524" dy="16.900000000000002">URL・许可・路径・校验值</tspan></text>
+</g>
+<g class="node" data-id="RER" data-label="raw_eredes.*
+10表・82,023条" data-shape="cylinder">
+  <rect x="52" y="582.4000000000001" width="136.798" height="53.80000000000001" fill="var(--_node-fill)" stroke="none" />
+  <line x1="52" y1="582.4000000000001" x2="52" y2="636.2" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <line x1="188.798" y1="582.4000000000001" x2="188.798" y2="636.2" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <ellipse cx="120.399" cy="636.2" rx="68.399" ry="7" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <ellipse cx="120.399" cy="582.4000000000001" rx="68.399" ry="7" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="120.399" y="609.3000000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="120.399" dy="-3.9000000000000012">raw_eredes.*</tspan><tspan x="120.399" dy="16.900000000000002">10表・82,023条</tspan></text>
+</g>
+<g class="node" data-id="ROSM" data-label="raw_osm.power_elements
+639,833条" data-shape="cylinder">
+  <rect x="220.798" y="582.4000000000001" width="194.59599999999995" height="53.80000000000001" fill="var(--_node-fill)" stroke="none" />
+  <line x1="220.798" y1="582.4000000000001" x2="220.798" y2="636.2" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <line x1="415.39399999999995" y1="582.4000000000001" x2="415.39399999999995" y2="636.2" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <ellipse cx="318.096" cy="636.2" rx="97.29799999999997" ry="7" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <ellipse cx="318.096" cy="582.4000000000001" rx="97.29799999999997" ry="7" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="318.096" y="609.3000000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="318.096" dy="-3.9000000000000012">raw_osm.power_elements</tspan><tspan x="318.096" dy="16.900000000000002">639,833条</tspan></text>
+</g>
+<g class="node" data-id="RDGEG" data-label="raw_dgeg.*
+5表・3,853条" data-shape="cylinder">
+  <rect x="699.925" y="582.4000000000001" width="126.424" height="53.80000000000001" fill="var(--_node-fill)" stroke="none" />
+  <line x1="699.925" y1="582.4000000000001" x2="699.925" y2="636.2" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <line x1="826.3489999999999" y1="582.4000000000001" x2="826.3489999999999" y2="636.2" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <ellipse cx="763.137" cy="636.2" rx="63.212" ry="7" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <ellipse cx="763.137" cy="582.4000000000001" rx="63.212" ry="7" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="763.137" y="609.3000000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="763.137" dy="-3.9000000000000012">raw_dgeg.*</tspan><tspan x="763.137" dy="16.900000000000002">5表・3,853条</tspan></text>
+</g>
+<g class="node" data-id="RREF" data-label="raw_reference.*
+葡萄牙边界" data-shape="cylinder">
+  <rect x="858.3489999999999" y="582.4000000000001" width="141.244" height="53.80000000000001" fill="var(--_node-fill)" stroke="none" />
+  <line x1="858.3489999999999" y1="582.4000000000001" x2="858.3489999999999" y2="636.2" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <line x1="999.593" y1="582.4000000000001" x2="999.593" y2="636.2" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <ellipse cx="928.9709999999999" cy="636.2" rx="70.622" ry="7" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <ellipse cx="928.9709999999999" cy="582.4000000000001" rx="70.622" ry="7" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="928.9709999999999" y="609.3000000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="928.9709999999999" dy="-3.9000000000000012">raw_reference.*</tspan><tspan x="928.9709999999999" dy="16.900000000000002">葡萄牙边界</tspan></text>
+</g>
+<g class="node" data-id="RDOC" data-label="raw_documents.*
+REN・ERSE・E-REDES文档" data-shape="cylinder">
+  <rect x="447.39399999999995" y="582.4000000000001" width="220.53099999999995" height="53.80000000000001" fill="var(--_node-fill)" stroke="none" />
+  <line x1="447.39399999999995" y1="582.4000000000001" x2="447.39399999999995" y2="636.2" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <line x1="667.925" y1="582.4000000000001" x2="667.925" y2="636.2" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <ellipse cx="557.6595" cy="636.2" rx="110.26549999999997" ry="7" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <ellipse cx="557.6595" cy="582.4000000000001" rx="110.26549999999997" ry="7" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="557.6595" y="609.3000000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="557.6595" dy="-3.9000000000000012">raw_documents.*</tspan><tspan x="557.6595" dy="16.900000000000002">REN・ERSE・E-REDES文档</tspan></text>
+</g>
+<g class="node" data-id="FAC" data-label="grid.facilities
+675个电力设施" data-shape="rectangle">
+  <rect x="964.4427428571429" y="985" width="138.28" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1033.5827428571429" y="1011.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="1033.5827428571429" dy="-3.9000000000000012">grid.facilities</tspan><tspan x="1033.5827428571429" dy="16.900000000000002">675个电力设施</tspan></text>
+</g>
+<g class="node" data-id="BUS" data-label="grid.buses
+3,783个母线" data-shape="rectangle">
+  <rect x="974.0757428571428" y="1096.8" width="119.01400000000001" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1033.5827428571429" y="1123.7" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="1033.5827428571429" dy="-3.9000000000000012">grid.buses</tspan><tspan x="1033.5827428571429" dy="16.900000000000002">3,783个母线</tspan></text>
+</g>
+<g class="node" data-id="LINE" data-label="grid.lines + geo.line_geometries
+4,943条线路" data-shape="rectangle">
+  <rect x="621.3977428571429" y="1208.6" width="227.19999999999996" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="734.997742857143" y="1235.5" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="734.997742857143" dy="-3.9000000000000012">grid.lines + geo.line_geometries</tspan><tspan x="734.997742857143" dy="16.900000000000002">4,943条线路</tspan></text>
+</g>
+<g class="node" data-id="TRAFO" data-label="grid.transformers
+228台变压器" data-shape="rectangle">
+  <rect x="880.5977428571429" y="1208.6" width="145.69" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="953.4427428571429" y="1235.5" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="953.4427428571429" dy="-3.9000000000000012">grid.transformers</tspan><tspan x="953.4427428571429" dy="16.900000000000002">228台变压器</tspan></text>
+</g>
+<g class="node" data-id="GEN" data-label="grid.generators
+1,190个发电设施" data-shape="rectangle">
+  <rect x="1056.4841428571428" y="1208.6" width="139.762" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1126.365142857143" y="1235.5" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="1126.365142857143" dy="-3.9000000000000012">grid.generators</tspan><tspan x="1126.365142857143" dy="16.900000000000002">1,190个发电设施</tspan></text>
+</g>
+<g class="node" data-id="TS" data-label="15分钟运行数据
+负荷・发电・天气・RNT平衡" data-shape="cylinder">
+  <rect x="1137.365142857143" y="1399.4" width="231.64599999999996" height="53.80000000000001" fill="var(--_node-fill)" stroke="none" />
+  <line x1="1137.365142857143" y1="1399.4" x2="1137.365142857143" y2="1453.2" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <line x1="1369.0111428571429" y1="1399.4" x2="1369.0111428571429" y2="1453.2" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <ellipse cx="1253.1881428571428" cy="1453.2" rx="115.82299999999998" ry="7" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <ellipse cx="1253.1881428571428" cy="1399.4" rx="115.82299999999998" ry="7" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1253.1881428571428" y="1426.3000000000002" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="1253.1881428571428" dy="-3.9000000000000012">15分钟运行数据</tspan><tspan x="1253.1881428571428" dy="16.900000000000002">负荷・发电・天气・RNT平衡</tspan></text>
+</g>
+<g class="node" data-id="CASE" data-label="scenario.*
+负荷・发电・边界运行点" data-shape="rectangle">
+  <rect x="911.3951428571429" y="1518.2" width="204.96999999999997" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1013.8801428571429" y="1545.1000000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="1013.8801428571429" dy="-3.9000000000000012">scenario.*</tspan><tspan x="1013.8801428571429" dy="16.900000000000002">负荷・发电・边界运行点</tspan></text>
+</g>
+<g class="node" data-id="PF" data-label="results.*
+母线电压・线路负载・潮流结果" data-shape="rectangle">
+  <rect x="844.0091428571429" y="1630" width="249.42999999999998" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="968.724142857143" y="1656.9" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="968.724142857143" dy="-3.9000000000000012">results.*</tspan><tspan x="968.724142857143" dy="16.900000000000002">母线电压・线路负载・潮流结果</tspan></text>
+</g>
+</svg>

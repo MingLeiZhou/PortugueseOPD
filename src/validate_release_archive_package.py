@@ -5,10 +5,12 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import tarfile
 import tempfile
 from pathlib import Path
 from typing import Any
+from urllib.parse import unquote
 
 import pandas as pd
 
@@ -74,6 +76,309 @@ def safe_extract(tar: tarfile.TarFile, destination: Path) -> None:
     tar.extractall(destination, filter="data")
 
 
+def validate_v2_extracted(root: Path, manifest: dict[str, Any], archive_sha256: str, archive_path: Path) -> dict[str, Any]:
+    """Validate the PT60 >=60 kV v2 package contract."""
+    records = manifest.get("records", [])
+    documented = {str(record.get("path", "")) for record in records}
+    actual = {str(path.relative_to(root)) for path in root.rglob("*") if path.is_file()}
+    allowed_support = {"manifest.json", "checksums.sha256", "archive_validation_summary.json"}
+    required = {
+        "README.md", "CITATION.cff", "DATA_LICENSE.md", "ATTRIBUTION.md",
+        "PUBLIC_MODEL_INTERFACE.md", "manifest.json", "checksums.sha256",
+        "config/model_config.json", "config/sources.json",
+        "config/public_input_schema.json", "config/public_benchmark_scope.json",
+        "topology/buses.csv", "topology/lines.csv", "topology/transformers.csv",
+        "scenario/loads.csv", "scenario/generators.csv",
+        "model/pt60_candidate.json", "model/pt60_candidate_solved.json",
+        "power_flow/summary.json", "validation/summary.json",
+        "validation/temporal/multi_snapshot_comparison.csv",
+        "validation/temporal/public_benchmark_gap_status.json",
+    }
+
+
+def validate_review_candidate_extracted(
+    root: Path,
+    manifest: dict[str, Any],
+    archive_sha256: str,
+    archive_path: Path,
+) -> dict[str, Any]:
+    """Validate the reader-facing v2.1 release candidate and replay contract."""
+    records = manifest.get("files", [])
+    documented = {str(record.get("path", "")) for record in records}
+    actual = {str(path.relative_to(root)) for path in root.rglob("*") if path.is_file()}
+    allowed_support = {"manifest.json", "checksums.sha256"}
+    required = {
+        "README.md",
+        "VERSION.json",
+        "DATA_LICENSE.md",
+        "ATTRIBUTION.md",
+        "LICENSE",
+        "PUBLIC_MODEL_INTERFACE.md",
+        "requirements.txt",
+        "manifest.json",
+        "checksums.sha256",
+        "config/model_config.json",
+        "config/sources.json",
+        "config/public_input_schema.json",
+        "config/public_benchmark_scope.json",
+        "topology/buses.csv",
+        "topology/lines.csv",
+        "topology/transformers.csv",
+        "scenario/loads.csv",
+        "scenario/generators.csv",
+        "scenario/boundaries.csv",
+        "model/model_template.json",
+        "model/PT60_2026W_JAN20_solved.json",
+        "model/january_input.json",
+        "model/summary.json",
+        "validation/seasonal_week_validation.csv",
+        "validation/static_control_reference_week.csv",
+        "validation/diagnostic_results.csv",
+        "validation/experiment_manifest.json",
+        "validation/solver_execution_manifest.json",
+        "reproduction/portuguese_hv_network/outputs/temporal_validation/review_revision/installed_capacity_comparison.csv",
+        "examples/public_case/scenario.json",
+        "examples/public_case/loads.csv",
+        "examples/public_case/provenance.json",
+        "paper/PT60_SCIENTIFIC_DATA_CN_READER_FIRST_DRAFT.md",
+        "paper/PT60_DATA_DOCUMENTATION_CN.md",
+        "paper/PT60_VALIDATION_SUPPLEMENT_CN.md",
+        "paper/scripts/run_seasonal_validation.py",
+        "paper/scripts/replay_archived_validation_case.py",
+        "paper/scripts/replay_pt60_january.py",
+        "paper/figure_manifest_pt60_reader.csv",
+    }
+    missing_required = sorted(required - actual)
+    documented_missing = sorted(documented - actual)
+    undocumented = sorted(actual - documented - allowed_support)
+    malformed_records = [
+        str(row.get("path", "<missing>"))
+        for row in records
+        if not {"path", "bytes", "sha256"}.issubset(row)
+    ]
+    hash_mismatches = [
+        str(row["path"])
+        for row in records
+        if (root / str(row.get("path", ""))).exists()
+        and sha256(root / str(row["path"])) != row.get("sha256")
+    ]
+
+    checksum_mismatches: list[str] = []
+    checksum_missing: list[str] = []
+    checksum_paths: set[str] = set()
+    for line in (root / "checksums.sha256").read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        digest, rel = line.split(maxsplit=1)
+        checksum_paths.add(rel)
+        path = root / rel
+        if not path.exists():
+            checksum_missing.append(rel)
+        elif sha256(path) != digest:
+            checksum_mismatches.append(rel)
+    checksum_undocumented = sorted((actual - {"checksums.sha256", "manifest.json"}) - checksum_paths)
+
+    csv_read_errors: list[str] = []
+    for rel in sorted(path for path in actual if path.endswith(".csv")):
+        try:
+            pd.read_csv(root / rel, nrows=2)
+        except Exception as exc:
+            csv_read_errors.append(f"{rel}:{type(exc).__name__}")
+
+    markdown_broken_links: list[str] = []
+    for page in sorted(path for path in root.rglob("*.md") if "reproduction" not in path.parts):
+        for target in re.findall(r"\]\(([^)]+)\)", page.read_text(encoding="utf-8")):
+            target = unquote(target.split("#")[0]).strip("<>")
+            if not target or "://" in target or target.startswith("/"):
+                continue
+            if not (page.parent / target).resolve().exists():
+                markdown_broken_links.append(f"{page.relative_to(root)} -> {target}")
+
+    figure_source_errors: list[str] = []
+    figure_manifest = root / "paper/figure_manifest_pt60_reader.csv"
+    if figure_manifest.exists():
+        for row in pd.read_csv(figure_manifest).to_dict("records"):
+            for key in ("output_file", "source_data"):
+                rel = str(row[key])
+                path = root / rel
+                if not path.exists():
+                    figure_source_errors.append(f"missing:{rel}")
+                elif key == "source_data" and sha256(path) != str(row["source_sha256"]):
+                    figure_source_errors.append(f"hash:{rel}")
+    source_manifest = root / "paper/figures/pt60_review/source_manifest.json"
+    if source_manifest.exists():
+        for row in json.loads(source_manifest.read_text(encoding="utf-8")).get("sources", []):
+            path = root / str(row["path"])
+            if not path.exists():
+                figure_source_errors.append(f"missing:{row['path']}")
+            elif sha256(path) != str(row["sha256"]):
+                figure_source_errors.append(f"hash:{row['path']}")
+
+    stale_reader_artifacts = sorted(
+        path
+        for path in actual
+        if any(
+            token in path
+            for token in (
+                "PT60_REVIEW_REVISION_SUPPLEMENT_CN.md",
+                "installed_capacity_revised.csv",
+                "pt60_figure_table_metrics.py",
+                "paper/figures/pt60_main/",
+                "paper/figures/pt60_seasonal/",
+                "requirements-reference.txt",
+                "validation/model_revised.json",
+                "validation/generators_revised.csv",
+                "validation/clean_replay",
+                "validation/fixed_q_reference_week.csv",
+                "provenance/installed_capacity_2026-03.json",
+                "provenance/installed_capacity_2026-08.json",
+            )
+        )
+    )
+
+    input_paths = sorted((root / "validation/inputs").glob("*.json"))
+    main_results = pd.read_csv(root / "validation/seasonal_week_validation.csv") if (root / "validation/seasonal_week_validation.csv").exists() else pd.DataFrame()
+    diagnostics = pd.read_csv(root / "validation/diagnostic_results.csv") if (root / "validation/diagnostic_results.csv").exists() else pd.DataFrame()
+    static_control = pd.read_csv(root / "validation/static_control_reference_week.csv") if (root / "validation/static_control_reference_week.csv").exists() else pd.DataFrame()
+    generators = pd.read_csv(root / "scenario/generators.csv", keep_default_na=False) if (root / "scenario/generators.csv").exists() else pd.DataFrame()
+    requirements_text = (root / "requirements.txt").read_text(encoding="utf-8") if (root / "requirements.txt").exists() else ""
+    january_input = json.loads((root / "model/january_input.json").read_text(encoding="utf-8")) if (root / "model/january_input.json").exists() else {}
+    january_summary = json.loads((root / "model/summary.json").read_text(encoding="utf-8")) if (root / "model/summary.json").exists() else {}
+    example_provenance = json.loads((root / "examples/public_case/provenance.json").read_text(encoding="utf-8")) if (root / "examples/public_case/provenance.json").exists() else {}
+    experiment_manifest = json.loads((root / "validation/experiment_manifest.json").read_text(encoding="utf-8")) if (root / "validation/experiment_manifest.json").exists() else {}
+    solver_manifest = json.loads((root / "validation/solver_execution_manifest.json").read_text(encoding="utf-8")) if (root / "validation/solver_execution_manifest.json").exists() else {}
+    january_input_path = root / "model/january_input.json"
+    capacity_comparison = pd.read_csv(root / "validation/installed_capacity_comparison.csv") if (root / "validation/installed_capacity_comparison.csv").exists() else pd.DataFrame()
+    historical_capacity = pd.read_csv(root / "validation/historical_capacity_coverage.csv") if (root / "validation/historical_capacity_coverage.csv").exists() else pd.DataFrame()
+    interface_text = (root / "PUBLIC_MODEL_INTERFACE.md").read_text(encoding="utf-8") if (root / "PUBLIC_MODEL_INTERFACE.md").exists() else ""
+    count_checks = {
+        "buses": len(pd.read_csv(root / "topology/buses.csv")) == 3783 if (root / "topology/buses.csv").exists() else False,
+        "lines": len(pd.read_csv(root / "topology/lines.csv")) == 4943 if (root / "topology/lines.csv").exists() else False,
+        "transformers": len(pd.read_csv(root / "topology/transformers.csv")) == 228 if (root / "topology/transformers.csv").exists() else False,
+        "mapped_assets": int(generators["bus_id"].ne("").sum()) == 1041 if "bus_id" in generators else False,
+        "hourly_inputs": len(input_paths) == 336,
+        "primary_summaries": len(main_results) == 336 and bool(main_results.get("converged", pd.Series(dtype=bool)).all()),
+        "static_control_reference": len(static_control) == 336 and bool(static_control.get("converged", pd.Series(dtype=bool)).all()),
+        "diagnostic_summaries": len(diagnostics) == 16 and ("variant" in diagnostics) and bool(diagnostics["variant"].ne("AC_REVISED").all()),
+        "generator_nulls_normalized": "original_bus_id" in generators and not bool(generators["original_bus_id"].str.lower().isin({"nan", "none", "null"}).any()),
+        "portable_declared_requirements": (
+            bool(requirements_text.strip())
+            and "@ file:" not in requirements_text
+            and "file://" not in requirements_text
+            and all(
+                dependency in requirements_text.lower()
+                for dependency in ("geopandas", "matplotlib", "pillow", "shapely")
+            )
+        ),
+        "january_example_role": january_input.get("case", {}).get("analysis_role") == "REUSE_EXAMPLE_WITHIN_WINTER_WEEK" and january_summary.get("analysis_role") == "REUSE_EXAMPLE_WITHIN_WINTER_WEEK",
+        "example_provenance": example_provenance.get("source") == "model/january_input.json" and january_input_path.exists() and example_provenance.get("sha256") == sha256(january_input_path),
+        "solver_manifest_matches_experiment": bool(experiment_manifest) and experiment_manifest == solver_manifest,
+        "capacity_records_match_validation_windows": set(capacity_comparison.get("官方基准月", pd.Series(dtype=str)).astype(str)) == {"2025-07", "2026-01"} and set(historical_capacity.get("timestamp_utc", pd.Series(dtype=str)).astype(str)) == {"2025-07-07", "2026-01-20"},
+        "public_interface_uses_release_paths": "model/model_template.json" in interface_text and "scenario/generators.csv" in interface_text and "model_revised.json" not in interface_text and "generators_revised.csv" not in interface_text,
+    }
+
+    failures = {
+        "missing_required": missing_required,
+        "documented_missing": documented_missing,
+        "undocumented_files": undocumented,
+        "malformed_manifest_records": malformed_records,
+        "manifest_hash_mismatches": hash_mismatches,
+        "checksum_mismatches": checksum_mismatches,
+        "checksum_missing_paths": checksum_missing,
+        "checksum_undocumented": checksum_undocumented,
+        "csv_read_errors": csv_read_errors,
+        "markdown_broken_links": markdown_broken_links,
+        "figure_source_errors": figure_source_errors,
+        "stale_reader_artifacts": stale_reader_artifacts,
+        "failed_count_checks": [key for key, ok in count_checks.items() if not ok],
+    }
+    try:
+        archive_path_text = str(archive_path.relative_to(config.ROOT_DIR))
+    except ValueError:
+        archive_path_text = archive_path.name
+    return {
+        "generated_at": utc_now(),
+        "validation_mode": "pt60_v2_1_reader_candidate_clean_room_tarball_extraction",
+        "archive_path": archive_path_text,
+        "archive_sha256": archive_sha256,
+        "extracted_root_name": root.name,
+        "manifest_records": len(records),
+        "file_count": len(actual),
+        "machine_readable_paths": len([path for path in actual if Path(path).suffix in {".csv", ".json"}]),
+        "dictionary_paths": 0,
+        "dictionary_field_records": 0,
+        "headline_count_checks": count_checks,
+        "failures": failures,
+        "status": "PASS" if not any(failures.values()) else "FAIL",
+    }
+    missing_required = sorted(required - actual)
+    documented_missing = sorted(documented - actual)
+    undocumented = sorted(actual - documented - allowed_support)
+    malformed_records = [
+        str(row.get("path", "<missing>")) for row in records
+        if not {"path", "bytes", "sha256", "rows"}.issubset(row)
+    ]
+    hash_mismatches = [
+        str(row["path"]) for row in records
+        if (root / str(row["path"])).exists()
+        and sha256(root / str(row["path"])) != row.get("sha256")
+    ]
+    checksum_mismatches: list[str] = []
+    checksum_missing: list[str] = []
+    checksum_paths: set[str] = set()
+    for line in (root / "checksums.sha256").read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        digest, rel = line.split(maxsplit=1)
+        checksum_paths.add(rel)
+        path = root / rel
+        if not path.exists():
+            checksum_missing.append(rel)
+        elif sha256(path) != digest:
+            checksum_mismatches.append(rel)
+    checksum_undocumented = sorted((actual - {"checksums.sha256"}) - checksum_paths)
+    csv_read_errors: list[str] = []
+    for rel in sorted(path for path in actual if path.endswith(".csv")):
+        try:
+            pd.read_csv(root / rel, nrows=2)
+        except Exception as exc:
+            csv_read_errors.append(f"{rel}:{type(exc).__name__}")
+    failures = {
+        "missing_required": missing_required,
+        "documented_missing": documented_missing,
+        "undocumented_files": undocumented,
+        "malformed_manifest_records": malformed_records,
+        "manifest_hash_mismatches": hash_mismatches,
+        "checksum_mismatches": checksum_mismatches,
+        "checksum_missing_paths": checksum_missing,
+        "checksum_undocumented": checksum_undocumented,
+        "csv_read_errors": csv_read_errors,
+    }
+    try:
+        archive_path_text = str(archive_path.relative_to(config.ROOT_DIR))
+    except ValueError:
+        archive_path_text = archive_path.name
+    return {
+        "generated_at": utc_now(),
+        "validation_mode": "pt60_v2_package_clean_room_tarball_extraction",
+        "archive_path": archive_path_text,
+        "archive_sha256": archive_sha256,
+        "extracted_root_name": root.name,
+        "manifest_records": len(records),
+        "file_count": len(actual),
+        "machine_readable_paths": len([path for path in actual if Path(path).suffix in {".csv", ".json"}]),
+        "dictionary_paths": 0,
+        "dictionary_field_records": 0,
+        "headline_count_checks": {
+            "buses": len(pd.read_csv(root / "topology/buses.csv")) == 3783,
+            "lines": len(pd.read_csv(root / "topology/lines.csv")) == 4943,
+            "transformers": len(pd.read_csv(root / "topology/transformers.csv")) == 228,
+        },
+        "failures": failures,
+        "status": "PASS" if not any(failures.values()) else "FAIL",
+    }
+
+
 def validate_extracted(root: Path, archive_sha256: str, archive_path: Path) -> dict[str, Any]:
     try:
         archive_path_text = str(archive_path.relative_to(config.ROOT_DIR))
@@ -85,6 +390,10 @@ def validate_extracted(root: Path, archive_sha256: str, archive_path: Path) -> d
     headline_path = root / "inventory" / "headline_counts.json"
 
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    if manifest.get("dataset") == "PT60" and manifest.get("version") == "v2.1.0-rc1" and "files" in manifest:
+        return validate_review_candidate_extracted(root, manifest, archive_sha256, archive_path)
+    if manifest.get("dataset") == "PT60" and manifest.get("version") == "v2.0.0":
+        return validate_v2_extracted(root, manifest, archive_sha256, archive_path)
     records = manifest.get("records", [])
     documented = {record["path"] for record in records}
     actual = {str(path.relative_to(root)) for path in root.rglob("*") if path.is_file()}

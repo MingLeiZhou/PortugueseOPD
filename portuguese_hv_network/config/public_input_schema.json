@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grid.jczw.xyz/schema/pt60-public-input-v1.json",
+  "title": "PT60 normalized public operating scenario",
+  "type": "object",
+  "required": ["schema_version", "case_id", "timestamp_utc", "national", "sources"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "case_id": {"type": "string", "minLength": 1},
+    "timestamp_utc": {"type": "string", "format": "date-time"},
+    "load_profile_timestamp_utc": {"type": "string", "format": "date-time"},
+    "load_profile_mode": {"enum": ["SUPPLIED_PUBLIC_DATA", "SUPPLIED_PUBLIC_DATA_SEASONAL_PROXY"]},
+    "rating_factor_relative_to_static_summer": {"type": "number", "exclusiveMinimum": 0},
+    "new_interconnector_in_service": {"type": "boolean"},
+    "rnt_loss_benchmark_date": {"type": "string", "format": "date"},
+    "national": {
+      "type": "object",
+      "required": ["consumption_mw", "consumption_plus_storage_mw", "pumping_mw", "battery_consumption_mw", "import_mw", "export_mw", "generation_by_source_mw", "rnt_monthly_loss_percent"],
+      "properties": {
+        "consumption_mw": {"type": "number", "minimum": 0},
+        "consumption_plus_storage_mw": {"type": "number", "minimum": 0},
+        "pumping_mw": {"type": "number", "minimum": 0},
+        "battery_consumption_mw": {"type": "number", "minimum": 0},
+        "import_mw": {"type": "number", "minimum": 0},
+        "export_mw": {"type": "number", "minimum": 0},
+        "rnt_monthly_loss_percent": {"type": "number", "minimum": 0},
+        "generation_by_source_mw": {"type": "object", "additionalProperties": {"type": "number", "minimum": 0}}
+      }
+    },
+    "weather": {"type": "object"},
+    "independent_cross_border": {
+      "type": "object",
+      "required": ["net_import_mw", "source_url"],
+      "properties": {
+        "net_import_mw": {"type": "number"},
+        "source": {"type": "string"},
+        "source_url": {"type": "string"}
+      }
+    },
+    "sources": {
+      "type": "object",
+      "required": ["national_balance", "substation_load"],
+      "additionalProperties": {"type": "string"}
+    }
+  }
+}

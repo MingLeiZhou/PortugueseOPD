@@ -1,0 +1,877 @@
+{
+  "bytes": 20372036,
+  "column_count": 47,
+  "columns": [
+    {
+      "distinct": ">=50",
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "case_id",
+      "rows": 31492,
+      "type_counts": {
+        "string": 31492
+      }
+    },
+    {
+      "distinct": 1,
+      "inferred_type": "boolean",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "converged",
+      "rows": 31492,
+      "type_counts": {
+        "boolean": 31492
+      },
+      "values": [
+        true
+      ]
+    },
+    {
+      "distinct": 2,
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "external_alignment_status",
+      "rows": 31492,
+      "type_counts": {
+        "string": 31492
+      },
+      "values": [
+        "AMBIGUOUS_DST_FOLD",
+        "UNIQUE"
+      ]
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 104,
+      "missing_fraction": 0.00330243,
+      "name": "external_at_mw",
+      "numeric": {
+        "count": 31388,
+        "max": 975.980492,
+        "mean": 791.5900609158411,
+        "min": 470.1315019999999,
+        "sample_std": 82.97753785501799
+      },
+      "rows": 31492,
+      "type_counts": {
+        "missing": 104,
+        "number": 31388
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 104,
+      "missing_fraction": 0.00330243,
+      "name": "external_balance_gap_mw",
+      "numeric": {
+        "count": 31388,
+        "max": 897.5089034560015,
+        "mean": 20.16788443223875,
+        "min": -100.73539991600046,
+        "sample_std": 82.90566208993579
+      },
+      "rows": 31492,
+      "type_counts": {
+        "missing": 104,
+        "number": 31388
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 104,
+      "missing_fraction": 0.00330243,
+      "name": "external_bt_mw",
+      "numeric": {
+        "count": 31388,
+        "max": 6929.392886328,
+        "mean": 3218.689386627137,
+        "min": 1156.413316288,
+        "sample_std": 965.9105768048148
+      },
+      "rows": 31492,
+      "type_counts": {
+        "missing": 104,
+        "number": 31388
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 8,
+      "missing_fraction": 0.00025403,
+      "name": "external_cogeneration_mw",
+      "numeric": {
+        "count": 31484,
+        "max": 338.126,
+        "mean": 235.87011491551155,
+        "min": 109.731,
+        "sample_std": 43.67363951529784
+      },
+      "rows": 31492,
+      "type_counts": {
+        "missing": 8,
+        "number": 31484
+      }
+    },
+    {
+      "distinct": 1,
+      "inferred_type": "number",
+      "missing": 104,
+      "missing_fraction": 0.00330243,
+      "name": "external_consumption_source_rows",
+      "numeric": {
+        "count": 31388,
+        "max": 1.0,
+        "mean": 1.0,
+        "min": 1.0,
+        "sample_std": 0.0
+      },
+      "rows": 31492,
+      "type_counts": {
+        "missing": 104,
+        "number": 31388
+      },
+      "values": [
+        1.0
+      ]
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 8,
+      "missing_fraction": 0.00025403,
+      "name": "external_dgm_mw",
+      "numeric": {
+        "count": 31484,
+        "max": 8635.592,
+        "mean": 4136.136146741147,
+        "min": -397.664,
+        "sample_std": 1412.3092023723254
+      },
+      "rows": 31492,
+      "type_counts": {
+        "missing": 8,
+        "number": 31484
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 8,
+      "missing_fraction": 0.00025403,
+      "name": "external_distribution_injection_mw",
+      "numeric": {
+        "count": 31484,
+        "max": 5327.5263159999995,
+        "mean": 2038.7439458232723,
+        "min": 425.278488,
+        "sample_std": 1112.745849712717
+      },
+      "rows": 31492,
+      "type_counts": {
+        "missing": 8,
+        "number": 31484
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 8,
+      "missing_fraction": 0.00025403,
+      "name": "external_hydro_mw",
+      "numeric": {
+        "count": 31484,
+        "max": 204.262,
+        "mean": 86.9732754097312,
+        "min": 1.508,
+        "sample_std": 68.98186829092073
+      },
+      "rows": 31492,
+      "type_counts": {
+        "missing": 8,
+        "number": 31484
+      }
+    },
+    {
+      "distinct": 12,
+      "inferred_type": "number",
+      "missing": 8,
+      "missing_fraction": 0.00025403,
+      "name": "external_injection_identity_error_mw",
+      "numeric": {
+        "count": 31484,
+        "max": 9.094947017729282e-13,
+        "mean": -4.4053469070121873e-16,
+        "min": -1.8189894035458565e-12,
+        "sample_std": 3.3642840857704003e-14
+      },
+      "rows": 31492,
+      "type_counts": {
+        "missing": 8,
+        "number": 31484
+      },
+      "values": [
+        -1.1368683772161605e-13,
+        -1.8189894035458565e-12,
+        -2.273736754432321e-13,
+        -4.547473508864641e-13,
+        -5.684341886080803e-14,
+        -9.094947017729282e-13,
+        0.0,
+        1.1368683772161605e-13,
+        2.273736754432321e-13,
+        4.547473508864641e-13,
+        5.684341886080803e-14,
+        9.094947017729282e-13
+      ]
+    },
+    {
+      "distinct": 1,
+      "inferred_type": "number",
+      "missing": 8,
+      "missing_fraction": 0.00025403,
+      "name": "external_injection_source_rows",
+      "numeric": {
+        "count": 31484,
+        "max": 1.0,
+        "mean": 1.0,
+        "min": 1.0,
+        "sample_std": 0.0
+      },
+      "rows": 31492,
+      "type_counts": {
+        "missing": 8,
+        "number": 31484
+      },
+      "values": [
+        1.0
+      ]
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 104,
+      "missing_fraction": 0.00330243,
+      "name": "external_load_mw",
+      "numeric": {
+        "count": 31388,
+        "max": 10276.81395698,
+        "mean": 6155.081448570303,
+        "min": 3656.311946488,
+        "sample_std": 1190.5581502716955
+      },
+      "rows": 31492,
+      "type_counts": {
+        "missing": 104,
+        "number": 31388
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 104,
+      "missing_fraction": 0.00330243,
+      "name": "external_mat_mw",
+      "numeric": {
+        "count": 31388,
+        "max": 439.3618496,
+        "mean": 288.5809125207983,
+        "min": 105.17646,
+        "sample_std": 71.05376358781035
+      },
+      "rows": 31492,
+      "type_counts": {
+        "missing": 104,
+        "number": 31388
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 104,
+      "missing_fraction": 0.00330243,
+      "name": "external_mt_mw",
+      "numeric": {
+        "count": 31388,
+        "max": 3053.976162,
+        "mean": 1856.2210885065394,
+        "min": 878.1828384,
+        "sample_std": 481.9240862163928
+      },
+      "rows": 31492,
+      "type_counts": {
+        "missing": 104,
+        "number": 31388
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 8,
+      "missing_fraction": 0.00025403,
+      "name": "external_other_mw",
+      "numeric": {
+        "count": 31484,
+        "max": 422.64970399999993,
+        "mean": 183.72381090928673,
+        "min": 43.993,
+        "sample_std": 51.43635327831633
+      },
+      "rows": 31492,
+      "type_counts": {
+        "missing": 8,
+        "number": 31484
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 8,
+      "missing_fraction": 0.00025403,
+      "name": "external_pre_mw",
+      "numeric": {
+        "count": 31484,
+        "max": 5327.5263159999995,
+        "mean": 2038.7439458232723,
+        "min": 425.278488,
+        "sample_std": 1112.745849712717
+      },
+      "rows": 31492,
+      "type_counts": {
+        "missing": 8,
+        "number": 31484
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 8,
+      "missing_fraction": 0.00025403,
+      "name": "external_production_mw",
+      "numeric": {
+        "count": 31484,
+        "max": 10276.814,
+        "mean": 6174.880092564482,
+        "min": 3818.476468,
+        "sample_std": 1182.091954376058
+      },
+      "rows": 31492,
+      "type_counts": {
+        "missing": 8,
+        "number": 31484
+      }
+    },
+    {
+      "distinct": 1,
+      "inferred_type": "number",
+      "missing": 8,
+      "missing_fraction": 0.00025403,
+      "name": "external_production_source_rows",
+      "numeric": {
+        "count": 31484,
+        "max": 1.0,
+        "mean": 1.0,
+        "min": 1.0,
+        "sample_std": 0.0
+      },
+      "rows": 31492,
+      "type_counts": {
+        "missing": 8,
+        "number": 31484
+      },
+      "values": [
+        1.0
+      ]
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 8,
+      "missing_fraction": 0.00025403,
+      "name": "external_solar_mw",
+      "numeric": {
+        "count": 31484,
+        "max": 154.573,
+        "mean": 32.8976917481898,
+        "min": 0.0,
+        "sample_std": 46.21393573419021
+      },
+      "rows": 31492,
+      "type_counts": {
+        "missing": 8,
+        "number": 31484
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 8,
+      "missing_fraction": 0.00025403,
+      "name": "external_wind_mw",
+      "numeric": {
+        "count": 31484,
+        "max": 4667.665,
+        "mean": 1499.2790528405494,
+        "min": 2.738,
+        "sample_std": 1115.7718397746805
+      },
+      "rows": 31492,
+      "type_counts": {
+        "missing": 8,
+        "number": 31484
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "local_date",
+      "rows": 31492,
+      "type_counts": {
+        "string": 31492
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "local_time",
+      "rows": 31492,
+      "type_counts": {
+        "string": 31492
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "maximum_line_loading_percent",
+      "numeric": {
+        "count": 31492,
+        "max": 152.6979783387925,
+        "mean": 83.82938384514057,
+        "min": 38.69606532140949,
+        "sample_std": 20.681874679661814
+      },
+      "rows": 31492,
+      "type_counts": {
+        "number": 31492
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "maximum_transformer_loading_percent",
+      "numeric": {
+        "count": 31492,
+        "max": 95.030368958789,
+        "mean": 48.67859098490274,
+        "min": 26.34883090009861,
+        "sample_std": 11.07561885232539
+      },
+      "rows": 31492,
+      "type_counts": {
+        "number": 31492
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "integer",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "minute_of_day",
+      "numeric": {
+        "count": 31492,
+        "max": 1425.0,
+        "mean": 712.4199796773761,
+        "min": 0.0,
+        "sample_std": 415.71051666410176
+      },
+      "rows": 31492,
+      "type_counts": {
+        "integer": 31492
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "model_ac_balance_closure_mw",
+      "numeric": {
+        "count": 31492,
+        "max": 1.0908820513577666e-08,
+        "mean": -1.771320562844485e-06,
+        "min": -4.709482408316035e-05,
+        "sample_std": 3.3873427845678906e-06
+      },
+      "rows": 31492,
+      "type_counts": {
+        "number": 31492
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "model_losses_mw",
+      "numeric": {
+        "count": 31492,
+        "max": 328.37177800658986,
+        "mean": 97.590631371755,
+        "min": 24.46213197548495,
+        "sample_std": 41.44581512588776
+      },
+      "rows": 31492,
+      "type_counts": {
+        "number": 31492
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "model_losses_percent_of_load",
+      "numeric": {
+        "count": 31492,
+        "max": 3.3254873034463697,
+        "mean": 1.410572795626588,
+        "min": 0.4481183876111498,
+        "sample_std": 0.42248702512992026
+      },
+      "rows": 31492,
+      "type_counts": {
+        "number": 31492
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "model_net_import_mw",
+      "numeric": {
+        "count": 31492,
+        "max": 4851.8231038738,
+        "mean": 1160.1335166828774,
+        "min": -3716.889103957502,
+        "sample_std": 1496.1936649403528
+      },
+      "rows": 31492,
+      "type_counts": {
+        "number": 31492
+      }
+    },
+    {
+      "distinct": 11,
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "month",
+      "rows": 31492,
+      "type_counts": {
+        "string": 31492
+      },
+      "values": [
+        "2025-05",
+        "2025-06",
+        "2025-07",
+        "2025-08",
+        "2025-09",
+        "2025-10",
+        "2025-11",
+        "2025-12",
+        "2026-01",
+        "2026-02",
+        "2026-03"
+      ]
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "observed_generation_total_mw",
+      "numeric": {
+        "count": 31492,
+        "max": 12206.7,
+        "mean": 5689.2379620221,
+        "min": 1696.9,
+        "sample_std": 1700.485920516884
+      },
+      "rows": 31492,
+      "type_counts": {
+        "number": 31492
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "observed_load_mw",
+      "numeric": {
+        "count": 31492,
+        "max": 11329.2,
+        "mean": 6751.780849104547,
+        "min": 3835.4,
+        "sample_std": 1280.211888901189
+      },
+      "rows": 31492,
+      "type_counts": {
+        "number": 31492
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "observed_net_import_mw",
+      "numeric": {
+        "count": 31492,
+        "max": 4727.3,
+        "mean": 1074.719706592146,
+        "min": -3893.1,
+        "sample_std": 1506.6454498062833
+      },
+      "rows": 31492,
+      "type_counts": {
+        "number": 31492
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "ren_battery_consumption_mw",
+      "numeric": {
+        "count": 31492,
+        "max": 18.2,
+        "mean": 1.408160802743556,
+        "min": 0.0,
+        "sample_std": 3.406440292510798
+      },
+      "rows": 31492,
+      "type_counts": {
+        "number": 31492
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "ren_consumption_mw",
+      "numeric": {
+        "count": 31492,
+        "max": 10267.8,
+        "mean": 6175.0472627969075,
+        "min": 3832.2,
+        "sample_std": 1179.2037164653282
+      },
+      "rows": 31492,
+      "type_counts": {
+        "number": 31492
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "ren_hydro_mw",
+      "numeric": {
+        "count": 31492,
+        "max": 7113.3,
+        "mean": 2059.561174266474,
+        "min": 7.5,
+        "sample_std": 1577.4679380447958
+      },
+      "rows": 31492,
+      "type_counts": {
+        "number": 31492
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "ren_input_balance_residual_mw",
+      "numeric": {
+        "count": 31492,
+        "max": 410.8000000000002,
+        "mean": 12.176819509716827,
+        "min": -14.100000000000364,
+        "sample_std": 11.993120372746782
+      },
+      "rows": 31492,
+      "type_counts": {
+        "number": 31492
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "ren_pumping_mw",
+      "numeric": {
+        "count": 31492,
+        "max": 2958.9,
+        "mean": 575.3254255048946,
+        "min": 0.0,
+        "sample_std": 720.2634830110784
+      },
+      "rows": 31492,
+      "type_counts": {
+        "number": 31492
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "ren_solar_mw",
+      "numeric": {
+        "count": 31492,
+        "max": 3307.9,
+        "mean": 697.7788930522079,
+        "min": 0.0,
+        "sample_std": 965.5091567117034
+      },
+      "rows": 31492,
+      "type_counts": {
+        "number": 31492
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "ren_storage_load_mw",
+      "numeric": {
+        "count": 31492,
+        "max": 2964.2000000000003,
+        "mean": 576.7335863076315,
+        "min": 0.0,
+        "sample_std": 721.8075073517557
+      },
+      "rows": 31492,
+      "type_counts": {
+        "number": 31492
+      }
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "number",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "ren_wind_mw",
+      "numeric": {
+        "count": 31492,
+        "max": 4875.8,
+        "mean": 1583.3491553410458,
+        "min": 2.9,
+        "sample_std": 1169.0723758227946
+      },
+      "rows": 31492,
+      "type_counts": {
+        "number": 31492
+      }
+    },
+    {
+      "distinct": 11,
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "source_database",
+      "rows": 31492,
+      "type_counts": {
+        "string": 31492
+      },
+      "values": [
+        "/Volumes/Transcend/PT60_public_data_2025-05-01_2026-03-24/monthly_models/2025-05/pt60_models_2025-05.compact.duckdb",
+        "/Volumes/Transcend/PT60_public_data_2025-05-01_2026-03-24/monthly_models/2025-06/pt60_models_2025-06.compact.duckdb",
+        "/Volumes/Transcend/PT60_public_data_2025-05-01_2026-03-24/monthly_models/2025-07/pt60_models_2025-07.compact.duckdb",
+        "/Volumes/Transcend/PT60_public_data_2025-05-01_2026-03-24/monthly_models/2025-08/pt60_models_2025-08.compact.duckdb",
+        "/Volumes/Transcend/PT60_public_data_2025-05-01_2026-03-24/monthly_models/2025-09/pt60_models_2025-09.compact.duckdb",
+        "/Volumes/Transcend/PT60_public_data_2025-05-01_2026-03-24/monthly_models/2025-10/pt60_models_2025-10.compact.duckdb",
+        "/Volumes/Transcend/PT60_public_data_2025-05-01_2026-03-24/monthly_models/2025-11/pt60_models_2025-11.compact.duckdb",
+        "/Volumes/Transcend/PT60_public_data_2025-05-01_2026-03-24/monthly_models/2025-12/pt60_models_2025-12.compact.duckdb",
+        "/Volumes/Transcend/PT60_public_data_2025-05-01_2026-03-24/monthly_models/2026-01/pt60_models_2026-01.compact.duckdb",
+        "/Volumes/Transcend/PT60_public_data_2025-05-01_2026-03-24/monthly_models/2026-02/pt60_models_2026-02.compact.duckdb",
+        "/Volumes/Transcend/PT60_public_data_2025-05-01_2026-03-24/monthly_models/2026-03/pt60_models_2026-03.compact.duckdb"
+      ]
+    },
+    {
+      "distinct": 11,
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "source_month",
+      "rows": 31492,
+      "type_counts": {
+        "string": 31492
+      },
+      "values": [
+        "2025-05",
+        "2025-06",
+        "2025-07",
+        "2025-08",
+        "2025-09",
+        "2025-10",
+        "2025-11",
+        "2025-12",
+        "2026-01",
+        "2026-02",
+        "2026-03"
+      ]
+    },
+    {
+      "distinct": 1,
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "status",
+      "rows": 31492,
+      "type_counts": {
+        "string": 31492
+      },
+      "values": [
+        "COMPLETE"
+      ]
+    },
+    {
+      "distinct": ">=50",
+      "inferred_type": "string",
+      "missing": 0,
+      "missing_fraction": 0.0,
+      "name": "timestamp_utc",
+      "rows": 31492,
+      "type_counts": {
+        "string": 31492
+      }
+    }
+  ],
+  "format": "csv",
+  "path": "/Users/jumiray/Projects/PortugueseOPD/portuguese_hv_network/outputs/validation_experiments/scope_matched_validation_timeseries.csv",
+  "row_count": 31492,
+  "sha256": "0f85b926214788d015bc8be1feeffd241ace0c2ed03c1623cc3b8bb9279024f4"
+}

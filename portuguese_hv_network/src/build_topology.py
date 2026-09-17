@@ -294,7 +294,13 @@ def load_osm(allowed: set[int], primary: set[int]) -> tuple[list[dict[str, Any]]
                         "source": "OpenStreetMap",
                         "source_status": "DIRECT_OSM_RELATION_CONTEXT" if inherited else "DIRECT_OSM",
                         "voltage_kv": voltage,
-                        "asset_type": "cable" if tags.get("power") == "cable" else "overhead",
+                        "asset_type": (
+                            "busbar"
+                            if tags.get("line") == "busbar"
+                            else "cable"
+                            if tags.get("power") == "cable"
+                            else "overhead"
+                        ),
                         "operational_status": tags.get("construction", tags.get("status", "")) or relation_value(contexts, "status"),
                         "name": tags.get("name", tags.get("ref", "")) or relation_value(contexts, "name") or relation_value(contexts, "ref"),
                         "operator": tags.get("operator", "") or relation_value(contexts, "operator"),
@@ -302,7 +308,15 @@ def load_osm(allowed: set[int], primary: set[int]) -> tuple[list[dict[str, Any]]
                         "osm_way_id": int(element.get("id")),
                         "osm_circuit_ids": ";".join(map(str, circuit_ids)),
                         "osm_line_section_ids": ";".join(map(str, section_ids)),
-                        "relation_identity_status": "CIRCUIT_AND_LINE_SECTION" if circuit_ids and section_ids else "LINE_SECTION_ONLY" if section_ids else "WAY_ONLY",
+                        "relation_identity_status": (
+                            "STATION_BUSBAR"
+                            if tags.get("line") == "busbar"
+                            else "CIRCUIT_AND_LINE_SECTION"
+                            if circuit_ids and section_ids
+                            else "LINE_SECTION_ONLY"
+                            if section_ids
+                            else "WAY_ONLY"
+                        ),
                         "coords": part,
                         "length_km": polyline_length_km(part),
                     }
@@ -442,6 +456,107 @@ def attach_facilities(
     return buses, cluster_to_bus
 
 
+def apply_lanheses_pi_topology(
+    buses: list[dict[str, Any]], output_lines: list[dict[str, Any]]
+) -> list[dict[str, Any]]:
+    """Preserve the two electrical cut points of the Lanheses PI connection.
+
+    The public E-REDES geometry contains two nearly coincident branches between
+    Lanheses and the former Deocriste--Feitosa alignment.  Generic endpoint
+    clustering merges both branch ends and leaves the old line continuous,
+    producing a T connection.  PDIRD-E describes Lanheses as a ``ligacao em
+    PI``: one branch belongs to Deocriste--Lanheses and the other to
+    Lanheses--Feitosa.  Duplicate the geometry-only junctions of the second
+    branch so the two protected sections remain electrically distinct.
+    """
+    trunk_code = "1609L5148400"
+    pi_code = "1609L5148401"
+    branch_sources = sorted({
+        str(row.get("source_line_id", "")).split(":")[1]
+        for row in output_lines
+        if row.get("name") == pi_code and str(row.get("source_line_id", "")).startswith("EREDES:")
+    })
+    if len(branch_sources) != 2:
+        return buses
+
+    deocriste_bus = "BUS:EREDES:1609P5024200:60"
+    feitosa_bus = "BUS:EREDES:1607S5006400:60"
+    lanheses_bus = "BUS:EREDES:1609S5025600:60"
+    trunk_rows = [row for row in output_lines if row.get("name") == trunk_code]
+    branch_rows = [row for row in output_lines if row.get("name") == pi_code]
+    trunk_buses = {str(row[side]) for row in trunk_rows for side in ("from_bus", "to_bus")}
+    branch_buses = {str(row[side]) for row in branch_rows for side in ("from_bus", "to_bus")}
+    tap_candidates = sorted(
+        bus for bus in trunk_buses & branch_buses if bus.startswith("BUS:JUNCTION:60:")
+    )
+    if len(tap_candidates) != 1:
+        return buses
+    tap_bus = tap_candidates[0]
+
+    # The two raw features trace the two close physical legs.  Keep the first
+    # on the Deocriste side and give the second its own junction chain.
+    second_source = branch_sources[1]
+    second_rows = [
+        row for row in branch_rows
+        if str(row.get("source_line_id", "")).startswith(f"EREDES:{second_source}:")
+    ]
+    split_bus_ids = sorted({
+        str(row[side])
+        for row in second_rows for side in ("from_bus", "to_bus")
+        if str(row[side]).startswith("BUS:JUNCTION:60:")
+    })
+    bus_by_id = {str(row["bus_id"]): row for row in buses}
+    split_map: dict[str, str] = {}
+    for old_bus_id in split_bus_ids:
+        if old_bus_id not in bus_by_id:
+            continue
+        new_bus_id = f"{old_bus_id}:PI_FEITOSA"
+        split_map[old_bus_id] = new_bus_id
+        if new_bus_id not in bus_by_id:
+            new_row = dict(bus_by_id[old_bus_id])
+            new_row.update({
+                "bus_id": new_bus_id,
+                "source_status": "PUBLIC_LANHESES_PI_TOPOLOGY_SPLIT",
+            })
+            buses.append(new_row)
+            bus_by_id[new_bus_id] = new_row
+
+    for row in second_rows:
+        for side in ("from_bus", "to_bus"):
+            row[side] = split_map.get(str(row[side]), row[side])
+
+    # Move only the Feitosa-side end of the old alignment to the second cut
+    # point.  The Deocriste side remains connected to the first PI branch.
+    for row in trunk_rows:
+        endpoints = {str(row["from_bus"]), str(row["to_bus"])}
+        if feitosa_bus in endpoints and tap_bus in endpoints:
+            for side in ("from_bus", "to_bus"):
+                if str(row[side]) == tap_bus:
+                    row[side] = split_map[tap_bus]
+
+    graph = nx.Graph()
+    for row in trunk_rows:
+        graph.add_edge(str(row["from_bus"]), str(row["to_bus"]), line_id=str(row["line_id"]))
+    deocriste_path = set(nx.shortest_path(graph, deocriste_bus, tap_bus)) if nx.has_path(graph, deocriste_bus, tap_bus) else set()
+    feitosa_tap = split_map[tap_bus]
+    feitosa_path = set(nx.shortest_path(graph, feitosa_bus, feitosa_tap)) if nx.has_path(graph, feitosa_bus, feitosa_tap) else set()
+    first_source = branch_sources[0]
+    for row in output_lines:
+        source_id = str(row.get("source_line_id", ""))
+        endpoints = {str(row.get("from_bus", "")), str(row.get("to_bus", ""))}
+        if row.get("name") == pi_code and source_id.startswith(f"EREDES:{first_source}:"):
+            row["contingency_circuit_id"] = "LN60_DEOCRISTE_LANHESES"
+        elif row.get("name") == pi_code and source_id.startswith(f"EREDES:{second_source}:"):
+            row["contingency_circuit_id"] = "LN60_LANHESES_FEITOSA"
+        elif row.get("name") == trunk_code and endpoints <= deocriste_path:
+            row["contingency_circuit_id"] = "LN60_DEOCRISTE_LANHESES"
+        elif row.get("name") == trunk_code and endpoints <= feitosa_path:
+            row["contingency_circuit_id"] = "LN60_LANHESES_FEITOSA"
+        else:
+            row.setdefault("contingency_circuit_id", "")
+    return buses
+
+
 def main() -> None:
     ensure_dirs()
     config = read_json(PROJECT / "config" / "model_config.json")
@@ -470,6 +585,7 @@ def main() -> None:
             blocked.append(record)
         else:
             output_lines.append(record)
+    buses = apply_lanheses_pi_topology(buses, output_lines)
     pd.DataFrame(buses).drop_duplicates("bus_id").to_csv(TABLES / "buses.csv", index=False)
     pd.DataFrame(output_lines).to_csv(TABLES / "lines_topology.csv", index=False)
     pd.DataFrame(blocked).to_csv(TABLES / "lines_blocked.csv", index=False)

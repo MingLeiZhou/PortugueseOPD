@@ -1,0 +1,21 @@
+name: PT60 tools
+
+on:
+  push:
+    paths: ['pt60/**', 'pyproject.toml', 'MANIFEST.in', 'tests/test_pt60*.py', '.github/workflows/pt60-tools.yml']
+  pull_request:
+    paths: ['pt60/**', 'pyproject.toml', 'MANIFEST.in', 'tests/test_pt60*.py', '.github/workflows/pt60-tools.yml']
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+      - run: python -m pip install '.[dev]'
+      - run: python -m pytest tests/test_pt60_tools.py -q
+      - run: python -m build
+      - run: python -m twine check dist/*

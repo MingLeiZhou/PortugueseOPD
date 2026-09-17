@@ -51,6 +51,43 @@ def cross_border_boundary_buses(lines: pd.DataFrame) -> set[str]:
     return candidates
 
 
+def regularize_cross_border_boundary(
+    net: pp.pandapowerNet, config: dict[str, object], preliminary_net_import_mw: float
+) -> dict[str, object]:
+    """Convert equal-angle multi-slack buses to one reference plus fixed equivalents."""
+    circuits_by_bus = {
+        str(row["bus_id"]): int(row.get("circuit_count", 1))
+        for row in config.get("cross_border_interconnections", [])
+    }
+    records = []
+    for index, row in net.ext_grid.iterrows():
+        bus = int(row["bus"])
+        bus_id = str(net.bus.loc[bus, "bus_id"])
+        records.append({
+            "index": int(index), "bus": bus, "bus_id": bus_id, "name": str(row["name"]),
+            "weight": float(net.bus.loc[bus, "vn_kv"]) * circuits_by_bus.get(bus_id, 1),
+        })
+    if len(records) <= 1:
+        return {"boundary_mode": "SINGLE_REFERENCE_ALREADY_PRESENT"}
+    total_weight = sum(float(row["weight"]) for row in records)
+    reference = max(records, key=lambda row: (float(row["weight"]), row["bus_id"]))
+    for row in records:
+        if row["index"] == reference["index"]:
+            continue
+        p_mw = preliminary_net_import_mw * float(row["weight"]) / total_weight
+        index = pp.create_sgen(net, row["bus"], p_mw=p_mw, q_mvar=0.0,
+                               name=f"BOUNDARY_EQ:{row['name']}", type="cross_border_aggregate_equivalent")
+        net.sgen.loc[index, "source_status"] = "MODEL_DERIVED_TOTAL_CAPACITY_WEIGHTED_BOUNDARY_EQUIVALENT"
+    net.ext_grid.drop(index=[row["index"] for row in records if row["index"] != reference["index"]], inplace=True)
+    net.ext_grid.loc[reference["index"], "source_status"] = "SINGLE_ANGLE_REFERENCE_FOR_AGGREGATE_BOUNDARY_EQUIVALENT"
+    return {
+        "boundary_mode": "SINGLE_REFERENCE_PLUS_MODEL_DERIVED_CAPACITY_WEIGHTED_INJECTIONS",
+        "boundary_reference_bus_id": reference["bus_id"],
+        "preliminary_equal_angle_net_import_mw": preliminary_net_import_mw,
+        "boundary_observation_used_as_input": False,
+    }
+
+
 def infer_discrete_tap_positions(net: pp.pandapowerNet, target_low: float, target_high: float, distributed_slack: bool = False) -> pd.DataFrame:
     """Apply a declared steady-state OLTC proxy and retain an audit ledger."""
     initial = net.trafo["tap_pos"].copy()
@@ -91,6 +128,10 @@ def build(run_power_flow: bool) -> tuple[pp.pandapowerNet, dict[str, object]]:
     transformers = read_optional(TABLES / "transformers_topology.csv", ["transformer_id", "hv_bus", "lv_bus"])
     loads = read_optional(TABLES / "loads.csv", ["load_id", "bus_id", "p_mw", "q_mvar"])
     generators = read_optional(TABLES / "generators.csv", ["generator_id", "bus_id", "p_mw", "q_mvar"])
+    generation_residuals = read_optional(
+        TABLES / "generation_unmapped_residuals.csv",
+        ["generation_source", "ren_target_mw", "mapped_asset_input_mw", "unmapped_residual_mw", "residual_status"],
+    )
     net = pp.create_empty_network(name=str(config["model_name"]), sn_mva=100.0, f_hz=50.0)
     bus_index: dict[str, int] = {}
     for row in buses.to_dict("records"):
@@ -118,8 +159,12 @@ def build(run_power_flow: bool) -> tuple[pp.pandapowerNet, dict[str, object]]:
             pfe_kw=float(row["pfe_kw"]), i0_percent=float(row["i0_percent"]), shift_degree=float(row["shift_degree"]), name=str(row["transformer_id"]),
             tap_side=str(row["tap_side"]), tap_neutral=int(row["tap_neutral"]), tap_min=int(row["tap_min"]),
             tap_max=int(row["tap_max"]), tap_step_percent=float(row["tap_step_percent"]), tap_pos=int(row["tap_pos"]),
+            parallel=int(row.get("parallel", 1)),
         )
-        for column in ("transformer_id", "source_status", "source_id", "parameter_status"):
+        for column in (
+            "transformer_id", "source_status", "source_id", "parameter_status",
+            "asset_override_source_url", "asset_override_effective_date",
+        ):
             net.trafo.loc[index, column] = row.get(column, "")
     scenario_loads = loads[
         loads["in_service_scenario"].astype(str).str.lower().isin({"true", "1"})
@@ -149,24 +194,15 @@ def build(run_power_flow: bool) -> tuple[pp.pandapowerNet, dict[str, object]]:
                         name=f"SHUNT:{bus_id_str}", in_service=True,
                     )
                     net.shunt.loc[s_idx, "source_status"] = "ERSE_TARGET_POWER_FACTOR_SUBSTATION_COMPENSATION"
-    for reactor in config.get("ren_400kv_shunt_reactors", []):
+    for reactor in config.get("configured_400kv_shunt_reactors", []):
         bus_id_str = str(reactor["bus_id"])
         if bus_id_str in bus_index:
             r_idx = pp.create_shunt(
                 net, bus_index[bus_id_str], q_mvar=float(reactor["q_mvar"]), p_mw=0.0,
                 name=f"REACTOR:{reactor['name']}", in_service=True,
             )
-            net.shunt.loc[r_idx, "source_status"] = "REN_OFFICIAL_400KV_SHUNT_REACTOR"
-    target_import = float(config.get("target_cross_border_import_mw", 0.0))
+            net.shunt.loc[r_idx, "source_status"] = "CONFIGURED_400KV_SHUNT_REACTOR_PROXY"
     assigned_generators = generators[generators["bus_id"].fillna("").astype(str) != ""].copy() if not generators.empty else generators
-    if target_import > 0 and not scenario_loads.empty and not assigned_generators.empty:
-        total_load_target = float(scenario_loads["p_mw"].sum())
-        est_losses = 170.0
-        target_domestic_gen = max(0.0, total_load_target + est_losses - target_import)
-        current_gen_p = float(assigned_generators["p_mw"].sum())
-        if current_gen_p > 0:
-            scale_factor = target_domestic_gen / current_gen_p
-            assigned_generators["p_mw"] = assigned_generators["p_mw"] * scale_factor
     pv_mask = assigned_generators.get("voltage_control_mode", pd.Series(index=assigned_generators.index, dtype=str)).eq("PV_VOLTAGE_CONTROL_SCENARIO")
     pq_generators = assigned_generators[~pv_mask]
     pv_generators = assigned_generators[pv_mask]
@@ -194,6 +230,28 @@ def build(run_power_flow: bool) -> tuple[pp.pandapowerNet, dict[str, object]]:
         net.gen.loc[index, "dispatch_status"] = "SCENARIO_PV_VOLTAGE_CONTROL_WITH_ASSUMED_Q_LIMITS"
         net.gen.loc[index, "nameplate_mw"] = nameplate_mw
         net.gen.loc[index, "source_asset_count"] = len(group)
+    residual_bus_id = str(config.get("unmapped_generation_residual_bus_id", "BUS:OSM:way:131715746:400"))
+    if not generation_residuals.empty and float(generation_residuals["unmapped_residual_mw"].sum()) > 1e-9:
+        if residual_bus_id not in bus_index:
+            raise KeyError(f"Configured unmapped-generation residual bus does not exist: {residual_bus_id}")
+        for residual in generation_residuals.to_dict("records"):
+            residual_mw = float(residual.get("unmapped_residual_mw", 0.0))
+            if residual_mw <= 1e-9:
+                continue
+            source_name = str(residual["generation_source"])
+            index = pp.create_sgen(
+                net,
+                bus_index[residual_bus_id],
+                p_mw=residual_mw,
+                q_mvar=0.0,
+                scaling=scenario_scaling,
+                name=f"UNMAPPED_RESIDUAL:{source_name}",
+                type="unmapped_generation_residual",
+            )
+            net.sgen.loc[index, "source_status"] = "UNMAPPED_NATIONAL_RESIDUAL_PROXY"
+            net.sgen.loc[index, "dispatch_status"] = "REN_SOURCE_TOTAL_MINUS_MAPPED_NAMEPLATE_CAPACITY"
+            net.sgen.loc[index, "nameplate_mw"] = float("nan")
+            net.sgen.loc[index, "generation_source"] = source_name
     graph = topology_graph(buses, lines, transformers)
     main_component = max(nx.connected_components(graph), key=len)
     for b_idx in net.bus.index:
@@ -210,16 +268,19 @@ def build(run_power_flow: bool) -> tuple[pp.pandapowerNet, dict[str, object]]:
         for idx, interconn in enumerate(cb_interconnections):
             b_id = str(interconn["bus_id"])
             if b_id in bus_index:
+                boundary_basis = "PHYSICAL_CROSS_BORDER_EXTERNAL_BUS"
                 g_idx = pp.create_ext_grid(
                     net, bus_index[b_id], vm_pu=1.0, va_degree=0.0,
                     name=f"EXT_GRID:{interconn.get('name', b_id)}"
                 )
-                net.ext_grid.loc[g_idx, "source_status"] = "PHYSICAL_400KV_CROSS_BORDER_INTERCONNECTOR"
+                net.ext_grid.loc[g_idx, "source_status"] = boundary_basis
                 boundary_rows.append({
                     "component_index": 0, "bus_id": b_id,
                     "voltage_kv": interconn.get("voltage_kv", 400),
                     "interconnector_name": interconn.get("name", ""),
-                    "boundary_basis": "PHYSICAL_400KV_CROSS_BORDER_INTERCONNECTOR"
+                    "circuit_count": interconn.get("circuit_count", 1),
+                    "snapshot_timestamp_utc": config.get("cross_border_snapshot", {}).get("timestamp_utc", ""),
+                    "boundary_basis": boundary_basis,
                 })
     else:
         for component_index, component in enumerate(nx.connected_components(graph)):
@@ -245,6 +306,8 @@ def build(run_power_flow: bool) -> tuple[pp.pandapowerNet, dict[str, object]]:
         "generated_at": utc_now(), "buses": len(net.bus), "lines": len(net.line), "transformers": len(net.trafo),
         "loads": len(net.load), "fixed_pq_generator_assets": len(net.sgen), "voltage_controlled_generator_buses": len(net.gen),
         "generator_assets_assigned": len(assigned_generators), "scenario_boundaries": len(net.ext_grid),
+        "unmapped_generation_residual_rows": int(generation_residuals["unmapped_residual_mw"].gt(1e-9).sum()) if not generation_residuals.empty else 0,
+        "unmapped_generation_residual_mw": float(generation_residuals["unmapped_residual_mw"].sum()) if not generation_residuals.empty else 0.0,
         "topological_components": 1 if net.bus.in_service.all() == False else nx.number_connected_components(graph),
         "power_flow_attempted": run_power_flow,
         "scenario_scaling": scenario_scaling,
@@ -254,21 +317,30 @@ def build(run_power_flow: bool) -> tuple[pp.pandapowerNet, dict[str, object]]:
     if run_power_flow:
         try:
             pp.runpp(net, algorithm="nr", init="dc", calculate_voltage_angles=True, max_iteration=50, tolerance_mva=1e-6, enforce_q_lims=True, numba=False, distributed_slack=use_dist_slack)
+            preliminary_net_import_mw = float(net.res_ext_grid.p_mw.sum())
+            boundary_summary = regularize_cross_border_boundary(net, config, preliminary_net_import_mw)
+            pp.runpp(net, algorithm="nr", init="results", calculate_voltage_angles=True, max_iteration=50, tolerance_mva=1e-6, enforce_q_lims=True, numba=False, distributed_slack=use_dist_slack)
             tap_ledger = pd.DataFrame()
             if bool(config.get("power_flow_infer_tap_positions", False)) and len(net.trafo):
                 target_low, target_high = map(float, config.get("power_flow_tap_target_band_pu", [0.985, 1.015]))
                 tap_ledger = infer_discrete_tap_positions(net, target_low, target_high, distributed_slack=use_dist_slack)
                 tap_ledger.to_csv(POWER_FLOW / "inferred_transformer_tap_positions.csv", index=True)
+            boundary_sgen_mask = net.sgen.get("type", pd.Series(index=net.sgen.index, dtype=object)).eq("cross_border_aggregate_equivalent")
+            physical_sgen_mw = float(net.res_sgen.loc[~boundary_sgen_mask, "p_mw"].sum()) if len(net.res_sgen) else 0.0
+            boundary_equivalent_mw = float(net.res_sgen.loc[boundary_sgen_mask, "p_mw"].sum()) if len(net.res_sgen) else 0.0
             summary.update(
                 {
+                    **boundary_summary,
                     "converged": bool(net.converged),
                     "vm_pu_min": float(net.res_bus.vm_pu.min()), "vm_pu_max": float(net.res_bus.vm_pu.max()),
                     "line_loading_percent_max": float(net.res_line.loading_percent.max()) if len(net.res_line) else 0.0,
                     "trafo_loading_percent_max": float(net.res_trafo.loading_percent.max()) if len(net.res_trafo) else 0.0,
                     "total_load_p_mw": float(net.res_load.p_mw.sum()),
-                    "total_generation_p_mw": (float(net.res_sgen.p_mw.sum()) if len(net.res_sgen) else 0.0) + (float(net.res_gen.p_mw.sum()) if len(net.res_gen) else 0.0),
+                    "total_generation_p_mw": physical_sgen_mw + (float(net.res_gen.p_mw.sum()) if len(net.res_gen) else 0.0),
                     "total_generator_q_mvar": float(net.res_gen.q_mvar.sum()) if len(net.res_gen) else 0.0,
-                    "total_ext_grid_p_mw": float(net.res_ext_grid.p_mw.sum()), "losses_p_mw": float(net.res_line.pl_mw.sum()) + (float(net.res_trafo.pl_mw.sum()) if len(net.res_trafo) else 0.0),
+                    "total_ext_grid_p_mw": float(net.res_ext_grid.p_mw.sum()) + boundary_equivalent_mw,
+                    "boundary_equivalent_fixed_injection_mw": boundary_equivalent_mw,
+                    "losses_p_mw": float(net.res_line.pl_mw.sum()) + (float(net.res_trafo.pl_mw.sum()) if len(net.res_trafo) else 0.0),
                     "transformers_with_inferred_non_neutral_tap": int((net.trafo.tap_pos != net.trafo.tap_neutral).sum()),
                 }
             )
@@ -297,6 +369,23 @@ def build(run_power_flow: bool) -> tuple[pp.pandapowerNet, dict[str, object]]:
                     "bus_id": bus_id, "p_mw": float(row["p_mw"]) * scenario_scaling,
                     "q_mvar": q_mvar, "p_status": row.get("dispatch_status", ""),
                     "q_status": q_status, "operating_point_status": "PUBLIC_TOTAL_CALIBRATED_SCENARIO_NOT_UNIT_TELEMETRY",
+                })
+            for residual in generation_residuals.to_dict("records"):
+                residual_mw = float(residual.get("unmapped_residual_mw", 0.0))
+                if residual_mw <= 1e-9:
+                    continue
+                source_name = str(residual["generation_source"])
+                generator_operating_rows.append({
+                    "generator_id": f"UNMAPPED_RESIDUAL:{source_name}",
+                    "source_id": "REN_SOURCE_TOTAL_RESIDUAL",
+                    "name": f"Unmapped {source_name} residual",
+                    "generation_source": source_name,
+                    "bus_id": residual_bus_id,
+                    "p_mw": residual_mw * scenario_scaling,
+                    "q_mvar": 0.0,
+                    "p_status": "UNMAPPED_NATIONAL_RESIDUAL_PROXY",
+                    "q_status": "ZERO_REACTIVE_POWER_PROXY",
+                    "operating_point_status": "AGGREGATE_RESIDUAL_NOT_A_PHYSICAL_GENERATOR",
                 })
             pd.DataFrame(generator_operating_rows).to_csv(POWER_FLOW / "generator_operating_points.csv", index=False)
             pp.to_json(net, MODEL / "portuguese_hv_candidate_solved.json")
