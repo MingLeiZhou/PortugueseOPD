@@ -2,7 +2,7 @@
 
 # Abstract
 
-Publicly accessible power-system data are commonly fragmented across network structure, equipment attributes, and operating records, which limits their direct use in continuous power-flow analysis and method comparison. We present SimPT60, a research dataset reconstructed from multiple public sources for the continental Portuguese 60--400 kV grid and the Portugal--Spain interconnection boundary. SimPT60 organizes the static network, operating time series, and alternating-current power-flow results in a unified data framework. It provides continuous 15-minute operating cases, source-level provenance, and validation products for assessing model consistency. The dataset supports time-series power-flow studies, scenario comparison, relative-risk screening, and testing of grid-analysis algorithms. Its research utility is demonstrated using E-REDES public datasets that were withheld from nodal-power construction, parameter-sensitivity experiments, and single-element (N−1) contingency screening. SimPT60 is a public-data-derived research model and has not been validated as an operator network model at equipment level.
+Publicly accessible power-system data are commonly fragmented across network structure, equipment attributes, and operating records, which limits their direct use in continuous power-flow analysis and method comparison. We present SimPT60, a research dataset reconstructed from multiple public sources for the continental Portuguese 60--400 kV grid and the Portugal--Spain interconnection boundary. SimPT60 organizes the static network, operating time series, and alternating-current (AC) power-flow results in a unified data framework. It provides continuous 15-minute operating cases, source-level provenance, and validation products for assessing model consistency. The dataset supports time-series power-flow studies, scenario comparison, relative-risk screening, and testing of grid-analysis algorithms. Its research utility is demonstrated using E-REDES public datasets that were withheld from nodal-power construction, parameter-sensitivity experiments, and single-element (N−1) contingency screening. SimPT60 is a public-data-derived research model and has not been validated as an operator network model at equipment level.
 
 **Keywords:** power-system dataset; Portugal; public data; grid reconstruction; power flow; time series; provenance; cross-source validation
 
@@ -15,7 +15,7 @@ Several public resources already provide reusable grid models and benchmark data
 
 ## Motivation
 
-Portugal's National Energy and Climate Plan identifies renewable generation, storage, electrification, and cross-border interconnection as central elements of the energy transition [@DGEGPNEC2030Revision2024]. These developments alter the scale and spatial distribution of generation and demand and therefore affect line flows, bus voltages, and system risk. Studying the time-varying behavior of the Portuguese grid consequently requires a data foundation that represents both network structure and continuous operating conditions.
+Portugal's National Energy and Climate Plan identifies renewable generation, storage, electrification, and cross-border interconnection as central elements of the energy transition [@DGEGPNEC2030Revision2024]. These developments alter the scale and spatial distribution of generation and demand and therefore affect line flows, bus voltages, and system risk. Studying the time-varying behaviour of the Portuguese grid consequently requires a data foundation that represents both network structure and continuous operating conditions.
 
 The relevant public records are distributed across E-REDES, Redes Energéticas Nacionais (REN), the Direção-Geral de Energia e Geologia (DGEG), the Entidade Reguladora dos Serviços Energéticos (ERSE), and open geospatial platforms [@EREDESRND2026; @RENDataHub2026; @DGEGGeo2026; @ERSEPDIRT2024; @OSM2026]. Their spatial coverage, temporal resolution, identifiers, and field definitions differ. Using them in a common power-flow model requires topology reconstruction, completion of electrical parameters, asset-to-bus mapping, temporal alignment, and allocation of aggregate power to nodes.
 
@@ -27,21 +27,7 @@ This study develops a traceable, computationally usable Portuguese high-voltage 
 
 SimPT60 reconstructs the continental Portuguese high-voltage grid from multiple public sources. It covers the 60, 130, 150, 220, and 400 kV networks and retains the boundary nodes required to represent Portugal--Spain interconnections. Raw sources, the static network, time-series inputs, power-flow results, and validation records are stored in linked layers so that users can trace key fields to their source and processing rule.
 
-The main contribution is a versioned data product that links a traceable public-data reconstruction of the continental Portuguese 60--400 kV grid to 31,492 consecutive and reproducible 15-minute AC power-flow states. Raw records, derived objects, and validation results remain separate but connected. Table 1 summarizes the scope, principal products, and interpretation boundaries; the Limitations subsection states the limitations.
-
-**Table 1—Scope and data products of SimPT60.**
-
-| Dimension | Scope or product | Interpretation boundary |
-| --- | --- | --- |
-| Geography | Continental Portugal and Portugal--Spain boundary endpoints | Excludes islands and distribution networks below 60 kV |
-| Voltage | 60, 130, 150, 220, and 400 kV | Reconstructed from multiple public sources |
-| Time | 2025-05-01 to 2026-03-24; 15 min | Europe/Lisbon civil days; aligned in Coordinated Universal Time (UTC) |
-| Static network | Buses, lines, transformers, assets, and geometry | Public connection evidence and engineering proxies coexist |
-| Operating cases | 31,492 steady-state AC power-flow cases | Computed model states, not equipment telemetry |
-| Distribution and provenance | Main database, 11 monthly databases, raw-record locators, and source hashes | Source licensing and release snapshots are managed separately |
-| Validation and scenario records | External temporal/spatial comparisons, perturbation tests, and sampled N−1 screening | Aggregate consistency does not establish equipment-level truth |
-
-**Table note.** The Background & Summary, Methods, and Data Records sections define the scope, construction rules, and data products.
+The main contribution is a versioned data product that connects a traceable public-data reconstruction of the continental Portuguese 60--400 kV grid with 31,492 consecutive, reproducible 15-minute AC power-flow states. The geographic scope includes continental Portugal and the Portugal--Spain boundary but excludes the islands and distribution networks below 60 kV. Linked database layers preserve the raw records, static network, operating inputs, solved states, provenance, and validation results. The computed states are research-model outputs rather than equipment telemetry, and their appropriate interpretation is defined in the Limitations and Usage Notes sections.
 
 The following sections describe construction of the resource, the released records, and the checks used to establish technical quality. Reuse guidance and interpretation boundaries are provided in Usage Notes.
 
@@ -54,35 +40,38 @@ SimPT60 was constructed in five stages: archiving and standardizing public recor
 
 ### Scope and sources
 
-The geographic, voltage, and temporal scope is given in Table 1. Network geometry is drawn mainly from the E-REDES 60/130 kV network and the OpenStreetMap (OSM)/Geofabrik 150/220/400 kV network [@GeofabrikPortugal2026]. DGEG and Agência Portuguesa do Ambiente (APA) records supplement generation, storage, and connection evidence [@DGEGGeo2026; @APA3403; @APAPPA421; @APAPPA407]. REN provides national 15-minute operating series, whereas E-REDES provides substation energy. The *Plano de Desenvolvimento e Investimento da Rede de Transporte* (PDIRT) and *Plano de Desenvolvimento e Investimento da Rede Nacional de Distribuição* (PDIRD) provide delivery-point profiles and selected equipment parameters [@EREDESRND2026; @OSM2026; @RENDataHub2026; @ERSEPDIRT2024]. The European Commission's Geographical Information System (GISCO) supplies the continental boundary [@GISCO2024]; REN and Red Eléctrica de España (REE) records support transmission and interconnection checks. OpenInfraMap, which derives from OSM, is used only for display checks and is not treated as independent evidence [@OpenInfraMap2026].
+The dataset covers the 60, 130, 150, 220, and 400 kV networks from 1 May 2025 to 24 March 2026 at 15-minute resolution. Network geometry is drawn mainly from the E-REDES 60/130 kV network and the OpenStreetMap (OSM)/Geofabrik 150/220/400 kV network [@GeofabrikPortugal2026]. DGEG and Agência Portuguesa do Ambiente (APA) records supplement generation, storage, and connection evidence [@DGEGGeo2026; @APA3403; @APAPPA421; @APAPPA407]. REN provides national 15-minute operating series, whereas E-REDES provides substation energy. The *Plano de Desenvolvimento e Investimento da Rede de Transporte* (PDIRT) and *Plano de Desenvolvimento e Investimento da Rede Nacional de Distribuição* (PDIRD) provide delivery-point profiles and selected equipment parameters [@EREDESRND2026; @OSM2026; @RENDataHub2026; @ERSEPDIRT2024]. The European Commission's Geographical Information System (GISCO) supplies the continental boundary [@GISCO2024]; REN and Red Eléctrica de España (REE) records support transmission and interconnection checks. OpenInfraMap, which derives from OSM, is used only for display checks and is not treated as independent evidence [@OpenInfraMap2026].
 
-Table 2 summarizes the source scope and modelling role. The common study window is determined by synchronized E-REDES and REN series. Static-source versions, case dates, and historical availability are recorded separately; the common window is not interpreted as the observation date of every device.
+Table 1 combines each source's coverage, modelling role, and temporal treatment. The common study window is determined by synchronized E-REDES and REN series. Static-source versions, case dates, and historical availability are recorded separately; the common window is not interpreted as the observation date of every device.
 
-**Table 2—Public data sources, coverage, and modelling roles.**
+\Needspace{8\baselineskip}
 
-| Publisher / product | Spatial or temporal coverage | Principal content | Role in this study |
+**Table 1—Public sources, modelling roles, and temporal treatment.**
+
+| Publisher / product | Coverage and principal content | Modelling role | Version or case treatment |
 | --- | --- | --- | --- |
-| E-REDES / RND high-voltage network (AT in the source portal) | Continental 60/130 kV; archived snapshot | Lines, facilities, codes, and geometry | Network construction |
-| OSM / Geofabrik | Continental Portugal and Spain boundary; archived snapshot | 150/220/400 kV facilities and circuits | Network and asset construction |
-| DGEG; APA; project notices | Generation, storage, and connection records | Location, technology, capacity, and commissioning evidence | Asset completion and evidence |
-| REN / Data Hub | 15 min in common window; 15 series | Demand, generation, storage, imports, and exports | Inputs and withheld comparison |
-| E-REDES / substation energy | 397 stations; 15 min | Facility code, interval-end timestamp, and kWh | Direct nodal load |
-| ERSE / PDIRT; PDIRD | Planning and equipment inventories | Delivery-point profiles, circuits, and ratings | Residual weights and parameter evidence |
-| REN / REE | Transmission system and interconnection | Circuit, length, and capacity aggregates | Inventory, calibration, and context |
-| GISCO | Continental Portugal | National boundary geometry | Spatial clipping and cartography |
-| E-REDES auxiliary statistics | 14 datasets; multiple resolutions | National, municipal, injection, and seasonal load statistics | External comparison; excluded from nodal construction |
+| E-REDES / *Rede Nacional de Distribuição* (RND) high-voltage network (*alta tensão*, AT, in the source portal) | Continental 60/130 kV lines, facilities, codes, and geometry | Static-network construction | Archived snapshot; frozen state where historical device status is absent |
+| OSM / Geofabrik | Continental Portugal and Spanish boundary; 150/220/400 kV facilities and circuits | Static-network and asset construction | Archived snapshot; frozen state where contemporaneous switching records are unavailable |
+| DGEG, APA, and project notices | Generation, storage, location, capacity, and commissioning evidence | Asset completion and field-level evidence | Known dates gate 366 assets; 824 undated assets are treated as available and flagged |
+| REN / Data Hub | 15 national series at 15-minute resolution | Demand, generation, storage, and withheld exchange comparison | Synchronized common window; imports and exports are not enforced as boundary inputs |
+| E-REDES / substation energy | 397 stations; facility code, interval-end timestamp, and kWh | Direct nodal load | Synchronized common window; timestamps shifted to interval start |
+| ERSE / PDIRT and PDIRD | Planning profiles, circuit inventories, and selected ratings | Residual-load weights and parameter evidence | Evidence applies only to the stated field and equipment; no real-time status inference |
+| REN / REE | Transmission and interconnection inventories, lengths, and capacity aggregates | Inventory, calibration, and context | Historical maps check corridor names; unavailable switching histories are not reconstructed [@REE2012] |
+| GISCO | Continental Portuguese boundary geometry | Spatial clipping and cartography | Archived geographic reference |
+| E-REDES auxiliary statistics | 14 national, municipal, injection, and seasonal-load datasets | External comparison | Excluded from nodal-power construction |
+| New Minho--Galicia interconnection | REE announcement dated 2 July 2026 | Post-window inventory check | Disabled in every study case |
 
-**Table note.** The common modelling window is 2025-05-01 to 2026-03-24. Source entry points, archived versions, and file fingerprints are listed in the data documentation and release manifest.
+**Table note.** The common modelling window is 1 May 2025 to 24 March 2026. Source entry points, archived versions, effective dates, and file fingerprints are listed in the data documentation and release manifest. In N1-3787, a planning inventory supports the capacity and voltage pair of the Estoi transformer representation; simultaneous availability and identical parameters remain modelling assumptions [@REN2015Estoi].
 
 ### Archiving and standardization
 
-Raw files are archived immutably by source together with the source URL, download time, file size, and SHA-256 hash; processing reads the raw layer without modifying it. Coordinates are stored in World Geodetic System 1984 (WGS 84) and transformed to the Portuguese national projection for distance calculations. Voltage, power, energy, and distance are standardized to kV, MW/Mvar, kWh, and km. E-REDES 15-minute energy is converted to interval-average power according to Equation (1):
+Raw files are archived immutably by source together with the source Uniform Resource Locator (URL), download time, file size, and SHA-256 hash; processing reads the raw layer without modifying it. Coordinates are stored in World Geodetic System 1984 (WGS 84) and transformed to the Portuguese national projection for distance calculations. Voltage, power, energy, and distance are standardized to kV, MW/Mvar, kWh, and km. E-REDES 15-minute energy is converted to interval-average power according to Equation (1):
 
 \[
 P_{\mathrm{MW}}=\frac{E_{\mathrm{kWh}}}{250}. \tag{1}\label{eq:energy-to-power}
 \]
 
-Both Europe/Lisbon local time and UTC are retained. Stable identifiers are derived from source equipment codes, and every derived object retains source keys and processing status. Table 5 summarizes the principal transformations; the released data dictionary maps each source field to its standardized meaning, transformation, join key, and missing-data rule.
+Both Europe/Lisbon local time and Coordinated Universal Time (UTC) are retained. Stable identifiers are derived from source equipment codes, and every derived object retains source keys and processing status. Table 3 summarizes the principal transformations; the released data dictionary maps each source field to its standardized meaning, transformation, join key, and missing-data rule.
 
 ## Static network reconstruction
 
@@ -108,13 +97,9 @@ Line parameters comprise \(r\), \(x\), \(c\), and \(I_{\max}\). Each 60 kV branc
 
 Post-construction checks cover equipment keys, endpoints, positive length, voltage consistency, connected components, and the Portugal--Spain boundary inventory. Lengths at 150, 220, and 400 kV are compared with REN statistics. Parameter completeness means that the model is computationally usable; it does not mean that all parameters are operator measurements.
 
-Figure 1 illustrates the connection decisions, and Table 3 lists thresholds and unmatched-record handling.
+Table 2 consolidates these connection decisions, including same-voltage endpoint clustering, the distinction between geometric crossings and shared nodes, preservation of series and parallel-circuit identity, and cross-voltage links supported by explicit equipment, colocated facilities, or RARI boundary evidence.
 
-![Figure 1](figures_final/fig01_network_reconstruction.png)
-
-**Figure 1—Connection rules used in static-network reconstruction.** (a) Same-voltage endpoint clustering and facility matching; (b) distinction between geometric crossings and explicit shared nodes; (c) preservation of series segments and parallel-circuit identity; and (d) cross-voltage connection from explicit equipment, colocated facilities, and RARI boundary evidence. The diagrams are abstract electrical schematics rather than geographic device locations. Distance thresholds and fallback rules are listed in Table 3.
-
-**Table 3—Topology rules and thresholds.**
+**Table 2—Topology rules and thresholds.**
 
 | Object / step | Rule or threshold | Constraint / unmatched handling |
 | --- | --- | --- |
@@ -134,19 +119,7 @@ Figure 1 illustrates the connection decisions, and Table 3 lists thresholds and 
 
 ### Evidence applicability and historical availability
 
-Static-source dates and operating-case dates are versioned separately. Only assets with an explicit commissioning date are switched by time. Ordinary lines, transformers, and interconnections retain the frozen static state when contemporaneous status records are unavailable. Project documents support only the stated equipment and fields and are not used to infer historical switching states. Cross-section scaling of conductor resistance and transfer to other conductor families remain engineering assumptions. Document pages, equipment identifiers, and field-level judgements are stored in `citation_evidence_ledger.csv`; Table 4 summarizes temporal handling.
-
-**Table 4—Source versions, validity dates, and case treatment.**
-
-| Object | Date or status evidence | Case treatment and limitation |
-| --- | --- | --- |
-| Ordinary lines and transformers | Historical status absent for most individual devices | Frozen static state; not a complete historical replay |
-| New Minho--Galicia interconnection | REE announcement dated 2026-07-02 | Disabled in every study case |
-| Other Portugal--Spain interconnections | Maintenance and switching histories unavailable | Fixed boundary equivalent; historical maps used only to check corridor names [@REE2012] |
-| Generation and storage | 366 dated and 824 undated assets | Known dates gate availability; unknown dates are treated as available and flagged |
-| PDIRT/PDIRD and project evidence | Planning inventories, seasonal profiles, or project records | Parameter, weight, and connection evidence; no inference of real-time commissioning |
-
-**Table note.** In N1-3787, the capacity and voltage pair of the three Estoi parallel equivalents are supported by a planning inventory, but simultaneous availability and identical parameters remain model assumptions [@REN2015Estoi].
+Static-source dates and operating-case dates are versioned separately, as summarized in Table 1. Only assets with an explicit commissioning date are switched by time. Ordinary lines, transformers, and interconnections retain the frozen static state when contemporaneous status records are unavailable. Project documents support only the stated equipment and fields and are not used to infer historical switching states. Cross-section scaling of conductor resistance and transfer to other conductor families remain engineering assumptions. Document pages, equipment identifiers, and field-level judgements are stored in `citation_evidence_ledger.csv`.
 
 ## Asset mapping and time-series alignment
 
@@ -181,9 +154,9 @@ The profile provides only spatial weights and does not change the 15-minute reso
 
 REN generation by technology is distributed among mapped and commissioned assets of the same technology under \(0\le P_{g,t}\le P_g^{\mathrm{nameplate}}\). Hydro and natural gas use deterministic capacity-priority allocation, while other technologies use available-capacity shares. Generation beyond mapped capacity is injected at a designated 400 kV proxy bus as `UNMAPPED_NATIONAL_RESIDUAL_PROXY`; it must not be interpreted as the location of an omitted plant.
 
-REN imports and exports are aligned to the common calendar but withheld from boundary-power enforcement. Before solution, the pipeline checks timestamps, required series, mapping completeness, load and generation conservation, and capacity limits. Table 5 summarizes the executable mapping and conservation rules. The associated source, bus-assignment, availability, observed-load, residual-load, reactive-power, boundary, and conservation fields are retained in the equipment tables and each case-level audit bundle.
+REN imports and exports are aligned to the common calendar but withheld from boundary-power enforcement. Before solution, the pipeline checks timestamps, required series, mapping completeness, load and generation conservation, and capacity limits. Table 3 summarizes the executable mapping and conservation rules. The associated source, bus-assignment, availability, observed-load, residual-load, reactive-power, boundary, and conservation fields are retained in the equipment tables and each case-level audit bundle.
 
-**Table 5—Asset mapping and time-series transformation rules.**
+**Table 3—Asset mapping and time-series transformation rules.**
 
 | Process | Rule | Audit or conservative treatment |
 | --- | --- | --- |
@@ -216,13 +189,13 @@ where the static network \(G\) and parameters \(\theta\) are shared, while opera
 
 Each case updates load, generation, equipment availability, seasonal ratings, and boundary equivalents. An initial boundary solution determines model net exchange. One angular reference is then retained, and the other boundary nodes receive fixed active-power equivalents distributed by public voltage and circuit count. Contemporaneous REN exchange is used only for post-solution comparison.
 
-AC power flow uses the pandapower Newton--Raphson implementation with DC initialization [@Thurner2018]. The principal workflow enforces reactive-power limits, resolves once after boundary reconstruction, and performs a bounded tap search. Table 6 lists seasonal ratings, PV/PQ rules, compensation, reactors, boundary weights, and numerical settings. These common settings are computational proxies rather than operator control policies.
+AC power flow uses the pandapower Newton--Raphson implementation with direct-current (DC) initialization [@Thurner2018]. The principal workflow enforces reactive-power limits, resolves once after boundary reconstruction, and performs a bounded tap search. Table 4 lists seasonal ratings, PV and constant-power (PQ) rules, compensation, reactors, boundary weights, and numerical settings. These common settings are computational proxies rather than operator control policies.
 
 ### Monthly execution
 
 Cases are processed in parallel by civil month. Workers read inputs and solve cases independently, whereas the parent process writes summaries, state arrays, and audit bundles in one transaction. Re-runs skip complete cases and retry failed cases. A month is complete only when expected cases, completed cases, state arrays, and audit bundles agree.
 
-**Table 6—Case and solver settings.**
+**Table 4—Case and solver settings.**
 
 | Item | Value or rule | Status |
 | --- | --- | --- |
@@ -244,7 +217,7 @@ Cases are processed in parallel by civil month. Workers read inputs and solve ca
 
 The main DuckDB stores sources in `raw_eredes`, `raw_dgeg`, `raw_osm`, `raw_reference`, `raw_documents`, and `raw_eredes_aux`. The `grid` and `geo` schemas store the static network and geometry, `scenario` stores asset operating points, `main` stores the common calendar and operating series, and `provenance` stores file- and entity-level lineage.
 
-Each month has a separate result database. `monthly_model.cases` stores one row per timestamp with status, summary metrics, and complete result JSON. `bus_order`, `line_order`, and `state_arrays` store bus voltage and line-loading arrays in fixed equipment order. `audit_bundles` preserve load, generation, boundary, hotspot, and loss records. Views expand arrays to equipment-long tables. The static model is copied once per monthly database rather than repeated for every case.
+Each month has a separate result database. `monthly_model.cases` stores one row per timestamp with status, summary metrics, and a complete JavaScript Object Notation (JSON) result. `bus_order`, `line_order`, and `state_arrays` store bus voltage and line-loading arrays in fixed equipment order. `audit_bundles` preserve load, generation, boundary, hotspot, and loss records. Views expand arrays to equipment-long tables. The static model is copied once per monthly database rather than repeated for every case.
 
 Source records include URL, archive path, file size, and SHA-256. `table_lineage`, `raw_record_locator`, and `entity_evidence` provide table-, record-, and evidence-level traceability. Each monthly `run_manifest` records input fingerprints and case counts. The released data dictionary provides the complete data-layer, grain, field-type, constraint, and join-key inventory.
 
@@ -271,11 +244,11 @@ The static network contains 675 facilities, 3,783 buses, 4,943 lines, 228 transf
 
 Equipment tables retain `source`, `source_status`, `parameter_status`, and mapping-rule fields. Users can build the complete pandapower network, select only devices above an evidence threshold, or identify components whose parameters were derived from public records or engineering proxies.
 
-Figure 2 shows the geographic network and one archived operating state. Projection and cartography use GeoPandas [@GeoPandas2026].
+Figure 1 shows the geographic network and one archived operating state. Projection and cartography use GeoPandas [@GeoPandas2026].
 
-![Figure 2](figures_final/fig02_geographic_network_state.png)
+![Figure 1](figures_final/fig01_geographic_network_state.png)
 
-**Figure 2—Geographic network and solved state at the annual peak.** (a) The 60--400 kV network containing 3,783 buses and 4,943 lines; (b) line loading; and (c) bus voltage. All panels use EPSG:3763 with the same scale and extent, retain original line geometry and Portugal--Spain boundary endpoints, and show a 100 km scale bar. The operating state is the archived annual-peak model at 2026-01-15 12:15 UTC (load 11,329.2 MW), joined by stable equipment identifiers. Missing solved states remain grey and are not imputed. The loading scale retains values above 100%. Values are modelled power flows, not telemetry.
+**Figure 1—Geographic network and solved state at the annual peak.** (a) The 60--400 kV network containing 3,783 buses and 4,943 lines; (b) line loading; and (c) bus voltage. All panels use EPSG:3763 with the same scale and extent, retain original line geometry and Portugal--Spain boundary endpoints, and show a 100 km scale bar. The operating state is the archived annual-peak model at 2026-01-15 12:15 UTC (load 11,329.2 MW), joined by stable equipment identifiers. Missing solved states remain grey and are not imputed. The loading scale retains values above 100%. Values are simulated power flows rather than measurements.
 
 ## Time-series data
 
@@ -303,15 +276,15 @@ The paper freezes release **SimPT60-2026.09.21-r1**. The 31,492 historical cases
 
 # Data Overview
 
-Figure 3 shows interval availability, the peak-load week, and monthly case completeness.
+Figure 2 shows interval availability, the peak-load week, and monthly case completeness.
 
-![Figure 3](figures_final/fig03_temporal_coverage.png)
+![Figure 2](figures_final/fig02_temporal_coverage.png)
 
-**Figure 3—Temporal coverage and case completeness.** (a) Daily fractions of available model cases, paired national-consumption observations, and paired wind observations. Denominators follow Lisbon civil days and daylight saving time; missing data are shown without interpolation. (b) The complete civil week containing maximum system load, with total electric load, generation, and REN net import. (c) Completed and converged 15-minute cases by month, totaling 31,492. The common window is 2025-05-01 to 2026-03-24; October contains the repeated daylight-saving hour, and March is partial through day 24.
+**Figure 2—Temporal coverage and case completeness.** (a) Daily fractions of available model cases, paired national-consumption observations, and paired wind observations. Denominators follow Lisbon civil days and daylight saving time; missing data are shown without interpolation. (b) The complete civil week containing maximum system load, with total electric load, generation, and REN net import. (c) Completed and converged 15-minute cases by month, totaling 31,492. The common window is 2025-05-01 to 2026-03-24; October contains the repeated daylight-saving hour, and March is partial through day 24.
 
-Table 7 summarizes the principal static, time-series, validation, and application objects.
+Table 5 summarizes the principal static, time-series, validation, and application objects.
 
-**Table 7—Principal dataset statistics.**
+**Table 5—Principal dataset statistics.**
 
 | Category | Object | Count | Basis |
 | --- | --- | ---: | --- |
@@ -341,7 +314,7 @@ No contemporaneous operator network model or branch-level state estimate was ava
 
 ## Validation design and evidence levels
 
-Validation has three layers. Public structural records and sensitivity tests evaluate the network representation. E-REDES products withheld from nodal-power construction evaluate aggregate temporal and spatial behavior. Case completeness, convergence, and power balance evaluate internal computational consistency. Comparisons are paired by common timestamp or region without interpolation or removal of anomalous months. Ninety-five-percent confidence intervals use clustered resampling by civil day or spatial entity.
+Validation has three layers. Public structural records and sensitivity tests evaluate the network representation. E-REDES products withheld from nodal-power construction evaluate aggregate temporal and spatial behaviour. Case completeness, convergence, and power balance evaluate internal computational consistency. Comparisons are paired by common timestamp or region without interpolation or removal of anomalous months. Ninety-five-percent confidence intervals use clustered resampling by civil day or spatial entity.
 
 The evidence layers answer different questions. REN and E-REDES demand and generation products do not share identical accounting boundaries, and municipal or substation statistics are not line-flow truth. The target is therefore research-level plausibility and usability rather than equipment-level accuracy.
 
@@ -349,15 +322,15 @@ The evidence layers answer different questions. REN and E-REDES demand and gener
 
 The full static network contains 3,783 buses, 4,943 lines, and 228 transformers. A single connected component contains 3,664 active buses and 4,787 active lines. The simple-graph cycle rank is 501; median and 95th-percentile node degrees are 2 and 4. Model-to-public-background route-km ratios at 60, 130, 150, 220, and 400 kV are 0.992, 1.090, 0.817, 0.819, and 1.033. REN aggregates provide the 150/220/400 kV backgrounds. The 60/130 kV comparisons use non-independent OSM context and cannot be interpreted as accuracy. The 130 kV ratio is based on only seven model lines and is descriptive only.
 
-Line parameters are a principal uncertainty. Of 4,240 60 kV lines, 1,517 have partial support from PDIRD circuit paths and 2,723 use voltage-class engineering proxies. At 130--400 kV, every line is classified as proxy at the line-level `parameter_status`. This overall classification differs from field-level support, which Figure 4 reports separately.
+Line parameters are a principal uncertainty. Of 4,240 60 kV lines, 1,517 have partial support from PDIRD circuit paths and 2,723 use voltage-class engineering proxies. At 130--400 kV, every line is classified as proxy at the line-level `parameter_status`. This overall classification differs from field-level support, which Figure 3 reports separately.
 
 The 11 compact monthly databases contain 31,492 completed and converged 15-minute cases. The mean absolute AC closure residual across generation, boundary exchange, load, and loss is \(1.77\times10^{-6}\) MW, showing numerical agreement among released states and audit quantities.
 
-![Figure 4](figures_final/fig04_network_parameter_evidence.png)
+![Figure 3](figures_final/fig03_network_parameter_evidence.png)
 
-**Figure 4—Structural coverage and field-level parameter evidence.** (a) Model route-km divided by public background length for each voltage class; the dashed line marks unity. Grey circles use non-independent OSM context and blue squares use REN background. Route-km and circuit length have different definitions, so the ratio is not an accuracy measure. (b) Field-level separation of project-based resistance transfer (orange; engineering assumption) and source-backed ratings (green); cells show proportions. Grey denotes wholly proxy fields. The 35.8% resistance support is not direct observation and must not be assigned the same evidence level as ratings. Reactance and capacitance are proxies throughout. The 130 kV result contains seven lines and is descriptive only. Table 8 reports line-level evidence counts.
+**Figure 3—Structural coverage and field-level parameter evidence.** (a) Model route-km divided by public background length for each voltage class; the dashed line marks unity. Grey circles use non-independent OSM context and blue squares use REN background. Route-km and circuit length have different definitions, so the ratio is not an accuracy measure. (b) Field-level separation of project-based resistance transfer (orange; engineering assumption) and source-backed ratings (green); cells show proportions. Grey denotes wholly proxy fields. The 35.8% resistance support is not direct observation and must not be assigned the same evidence level as ratings. Reactance and capacitance are proxies throughout. The 130 kV result contains seven lines and is descriptive only. Table 6 reports line-level evidence counts.
 
-**Table 8—Network structure, parameter evidence, and computational completeness.**
+**Table 6—Network structure, parameter evidence, and computational completeness.**
 
 | kV | Buses | Lines | Route-km | Background km | Ratio | Line-level parameter evidence |
 | ---: | ---: | ---: | ---: | ---: | ---: | --- |
@@ -367,27 +340,29 @@ The 11 compact monthly databases contain 31,492 completed and converged 15-minut
 | 220 | 214 | 294 | 3,206.9 | 3,916.0 | 0.819 | 294 proxy |
 | 400 | 193 | 246 | 3,579.5 | 3,465.0 | 1.033 | 246 proxy |
 
-**Table note.** The 130 kV sample contains seven lines. Background length is non-independent OSM context at 60/130 kV and REN aggregate length at 150/220/400 kV. Route-km and circuit length differ, so ratios are not accuracy. The active network is one connected component with simple-graph cycle rank 501, median degree 2, and 95th-percentile degree 4. All 31,492 cases completed and converged; interval-weighted AC closure MAE is \(1.77\times10^{-6}\) MW. Partial line-level support does not mean that every field is observed; all \(x\) and \(c\) values are proxies.
+**Table note.** The 130 kV sample contains seven lines. Background length is non-independent OSM context at 60/130 kV and REN aggregate length at 150/220/400 kV. Route-km and circuit length differ, so ratios are not accuracy. The active network is one connected component with simple-graph cycle rank 501, median degree 2, and 95th-percentile degree 4. All 31,492 cases completed and converged; interval-weighted AC closure mean absolute error (MAE) is \(1.77\times10^{-6}\) MW. Partial line-level support does not mean that every field is observed; all \(x\) and \(c\) values are proxies.
 
 ## Parameter and spatial-allocation sensitivity
 
 Sensitivity experiments perturb line \(R/X\), capacitance, current ratings, transformer capacity and impedance, and the spatial allocation of load, generation, and boundary exchange at 22 representative times. After shared baselines are removed, 264 cases remain and all converge. The minimum Spearman correlation is 0.998 for line-impedance perturbations and 0.993 for transformer perturbations. Current-rating assumptions change maximum loading by as much as 34.48 percentage points. System-wide rankings remain comparatively stable under spatial alternatives, but allocating residual load by transformer capacity reduces the Top-20 Jaccard index to 0.429. Specific hotspots are consequently more assumption-dependent than the global ranking.
 
-Figure 5 summarizes ranking, hotspot-set, and maximum-loading responses. Across the 12 configurations evaluated at each time, 74 of 4,943 lines enter the Top 20 at least once, 56 reach an inclusion frequency of at least 0.8 at one or more times, and the largest frequency across all 264 experiments is 207/264 (78.4%); no line remains in the Top 20 at every time and configuration. A separate 242-case operating-proxy ablation changes reactive-power limits, PV targets, load compensation, shunt reactors, and tap control at the same 22 times. All cases converge. Halving reactive-power limits produces the largest minimum-voltage change (0.02845 p.u.) and a 1.419-percentage-point maximum-line-loading change; active ratio-tap voltage control produces the largest maximum-transformer-loading change (4.305 percentage points). The complete paired results and configuration identifiers are released as machine-readable CSV.
+Figure 4 summarizes ranking, hotspot-set, and maximum-loading responses. Across the 12 configurations evaluated at each time, 74 of 4,943 lines enter the Top 20 at least once, 56 reach an inclusion frequency of at least 0.8 at one or more times, and the largest frequency across all 264 experiments is 207/264 (78.4%); no line remains in the Top 20 at every time and configuration. A separate 242-case operating-proxy ablation changes reactive-power limits, PV targets, load compensation, shunt reactors, and tap control at the same 22 times. All cases converge. Halving reactive-power limits produces the largest minimum-voltage change (0.02845 p.u.) and a 1.419-percentage-point maximum-line-loading change; active ratio-tap voltage control produces the largest maximum-transformer-loading change (4.305 percentage points). The complete paired results and configuration identifiers are released as machine-readable comma-separated value (CSV) files.
 
-![Figure 5](figures_final/fig05_parameter_spatial_sensitivity.png)
+![Figure 4](figures_final/fig04_parameter_spatial_sensitivity.png)
 
-**Figure 5—Sensitivity to parameters and spatial allocation.** (a) Spearman correlation of line-loading ranks; (b) Top-20 Jaccard index; and (c) absolute change in maximum loading. Markers denote medians over 22 operating states and lines extend to the least favorable result. The 154 parameter cases and 132 spatial cases share 22 baselines.
+**Figure 4—Sensitivity to parameters and spatial allocation.** (a) Spearman correlation of line-loading ranks; (b) Top-20 Jaccard index; and (c) absolute change in maximum loading. Markers denote medians over 22 operating states and lines extend to the least favorable result. The 154 parameter cases and 132 spatial cases share 22 baselines.
 
 ## External temporal agreement
 
-National demand comparison contains 31,388 paired intervals. The ratio of mean SimPT60 consumption to public E-REDES consumption is 1.003, with a day-block bootstrap 95% confidence interval of [1.002, 1.005]. Fifteen-minute Pearson correlation is 0.997 [0.996, 0.999], and mean absolute error (MAE) is 30.9 MW. Across 327 paired daily means, Pearson correlation is 0.995 and normalized root-mean-square error (RMSE) is 0.013. October 2025 contains E-REDES missingness and local deviations, but the month is retained [@EREDESNationalConsumption].
+National demand comparison contains 31,388 paired intervals. The ratio of mean SimPT60 consumption to public E-REDES consumption is 1.003, with a day-block bootstrap 95% confidence interval of [1.002, 1.005]. Fifteen-minute Pearson correlation is 0.997 [0.996, 0.999], and MAE is 30.9 MW. Across 327 paired daily means, Pearson correlation is 0.995 and normalized root-mean-square error (RMSE) is 0.013. October 2025 contains E-REDES missingness and local deviations, but the month is retained [@EREDESNationalConsumption].
 
 Wind comparison contains 31,484 paired intervals. The mean ratio between SimPT60 and E-REDES distribution-grid wind injection is 1.056 [1.055, 1.058], and Pearson correlation is 0.9998 [0.9997, 0.9998]. Daily-mean correlation is also 0.9998. Photovoltaic correlation is 0.982, but mean national photovoltaic production in SimPT60 is approximately 21.2 times distribution-grid injection. Hydro correlation is 0.536. The latter comparisons span different accounting scopes and are not absolute-scale validation [@EREDESDistributionInjection; @EREDESNationalProduction].
 
-![Figure 6](figures_final/fig07_temporal_validation.png)
+Figure 5 presents the paired temporal comparisons, interval densities, and normalized daily consumption profiles.
 
-**Figure 6—External temporal validation of aggregate inputs.** (a--b) Paired daily means for national consumption and wind; (c--d) density of the corresponding 31,388 and 31,484 15-minute pairs, with a shared logarithmic count scale, one-to-one line, and Pearson \(r\); and (e) consumption profiles grouped by Lisbon local time and normalized by each series' daily mean. Comparisons exclude only intervals missing a required field and use no anomaly deletion, smoothing, or interpolation. Consumption excludes pumping and battery charging and differs from total electric load in the cases. Wind compares national production with distribution-grid injection across different scopes. The figure validates aggregate inputs, not nodal allocation or branch flow. Table 9 gives bootstrap intervals.
+![Figure 5](figures_final/fig05_temporal_validation.png)
+
+**Figure 5—External temporal validation of aggregate inputs.** (a--b) Paired daily means for national consumption and wind; (c--d) density of the corresponding 31,388 and 31,484 15-minute pairs, with a shared logarithmic count scale, one-to-one line, and Pearson \(r\); and (e) consumption profiles grouped by Lisbon local time and normalized by each series' daily mean. Comparisons exclude only intervals missing a required field and use no anomaly deletion, smoothing, or interpolation. Consumption excludes pumping and battery charging and differs from total electric load in the cases. Wind compares national production with distribution-grid injection across different scopes. The figure validates aggregate inputs, not nodal allocation or branch flow. Table 7 gives bootstrap intervals.
 
 ## External spatial agreement
 
@@ -395,42 +370,44 @@ At municipal level, E-REDES monthly billed consumption is the reference [@EREDES
 
 Municipality comparisons use the municipality containing each substation as a proxy for its service area and therefore provide weak spatial evidence. Seasonal substation loads come from the E-REDES capacity and loading product [@EREDESSubstationCapacity]. They test facility ranking and scale, but share the same operator as the 15-minute load data and are not fully independent nodal truth.
 
-![Figure 7](figures_final/fig08_spatial_validation.png)
+Figure 6 displays both spatial comparisons and their cluster-bootstrap uncertainty.
 
-**Figure 7—Spatial agreement at municipality and substation levels.** (a) 2,183 municipality-month load-share pairs; (b) 792 seasonal substation-peak pairs. Axes have equal scale and dashed one-to-one lines. Labels report Spearman correlation and archived 1,000-replicate cluster-bootstrap 95% intervals using 199 municipality and 397 substation clusters; bands are not regression intervals. Municipality assignment is a weak service-area proxy, and cross-product evidence from the same operator is not fully independent nodal truth.
+![Figure 6](figures_final/fig06_spatial_validation.png)
 
-**Table 9—Summary of cross-source validation.**
-
-| Validation target | Samples or independent blocks | Result (95% CI) | Evidence level |
-| --- | ---: | --- | --- |
-| National consumption | 31,388 intervals / 327 days | Mean ratio 1.003 [1.002, 1.005]; \(r=0.997\) [0.996, 0.999] | REN--E-REDES consumption; reference includes losses |
-| Wind | 31,484 intervals / 328 days | Mean ratio 1.056 [1.055, 1.058]; \(r=0.9998\) [0.9997, 0.9998] | REN--E-REDES distribution-injection corroboration |
-| Photovoltaic temporal variation | 31,484 intervals / 328 days | \(r=0.982\) [0.979, 0.984]; absolute scale not comparable | National production versus distribution injection |
-| Municipal load share | 2,183 pairs / 199 municipalities | \(\rho=0.881\) [0.841, 0.910] | Same operator across datasets; weak spatial proxy |
-| Seasonal substation peak | 792 pairs / 397 stations | \(\rho=0.957\) [0.946, 0.967] | Same operator across datasets |
-| AC power closure | 31,492 cases | MAE \(1.77\times10^{-6}\) MW | Internal physical consistency |
+**Figure 6—Spatial agreement at municipality and substation levels.** (a) 2,183 municipality-month load-share pairs; (b) 792 seasonal substation-peak pairs. Axes have equal scale and dashed one-to-one lines. Labels report Spearman correlation and archived 1,000-replicate cluster-bootstrap 95% intervals using 199 municipality and 397 substation clusters; bands are not regression intervals. Municipality assignment is a weak service-area proxy, and cross-product evidence from the same operator is not fully independent nodal truth.
 
 ### Station-held-out spatial reconstruction test
 
-A station-held-out experiment divides 394 matched stations into five deterministic folds. At 22 times, it compares global capacity share, five geographically nearest stations, and five nearest stations along the reconstructed network, yielding 8,541 observation pairs. Neighbor predictions use inverse-distance weights; network distance uses in-service line length and a small positive transformer-edge length. Confidence intervals are obtained by a 1,000-replicate station-cluster bootstrap using fixed fold assignments. Table 10 shows that network-neighbor MAE is approximately 9.9% below global capacity share, but is not lower than geographic-neighbor MAE and has an overlapping confidence interval. Reconstructed connectivity therefore contains useful proximity information but does not independently recover precise nodal demand. Fold assignments, pair-level predictions, and recomputation code are included in the released validation package.
+A station-held-out experiment divides 394 matched stations into five deterministic folds. At 22 times, it compares global capacity share, five geographically nearest stations, and five nearest stations along the reconstructed network, yielding 8,541 observation pairs. Neighbor predictions use inverse-distance weights; network distance uses in-service line length and a small positive transformer-edge length. Confidence intervals are obtained by a 1,000-replicate station-cluster bootstrap using fixed fold assignments. Table 7 shows that network-neighbor MAE is approximately 9.9% below global capacity share, but is not lower than geographic-neighbor MAE and has an overlapping confidence interval. Reconstructed connectivity therefore contains useful proximity information but does not independently recover precise nodal demand. Fold assignments, pair-level predictions, and recomputation code are included in the released validation package.
 
-**Table 10—Station-held-out spatial-allocation results.**
+Table 7 consolidates the cross-source comparisons and the three held-out allocation methods; error measures include MAE, RMSE, and weighted absolute percentage error (WAPE).
 
-| Method | Stations / observation pairs | MAE (MW), 95% confidence interval | RMSE (MW) | Weighted absolute percentage error (WAPE) |
-| --- | ---: | --- | ---: | ---: |
-| Capacity share | 394 / 8,541 | 4.729 [4.412, 5.063] | 6.357 | 38.4% |
-| Five geographic neighbors | 394 / 8,541 | 4.249 [3.972, 4.544] | 5.675 | 34.5% |
-| Five network-path neighbors | 394 / 8,541 | 4.262 [3.971, 4.545] | 5.702 | 34.6% |
+\Needspace{8\baselineskip}
+
+**Table 7—External validation and station-held-out reconstruction results.**
+
+| Validation target or method | Samples or independent blocks | Result (95% confidence interval) | Evidence or interpretation |
+| --- | ---: | --- | --- |
+| National consumption | 31,388 intervals / 327 days | Mean ratio 1.003 [1.002, 1.005]; $r=0.997$ [0.996, 0.999] | REN--E-REDES comparison; reference includes losses |
+| Wind | 31,484 intervals / 328 days | Mean ratio 1.056 [1.055, 1.058]; $r=0.9998$ [0.9997, 0.9998] | National production versus distribution injection |
+| Photovoltaic temporal variation | 31,484 intervals / 328 days | $r=0.982$ [0.979, 0.984]; absolute scale not comparable | National production versus distribution injection |
+| Municipal load share | 2,183 pairs / 199 municipalities | $\rho=0.881$ [0.841, 0.910] | Same operator across datasets; weak spatial proxy |
+| Seasonal substation peak | 792 pairs / 397 stations | $\rho=0.957$ [0.946, 0.967] | Same operator across datasets |
+| AC power closure | 31,492 cases | MAE $1.77\times10^{-6}$ MW | Internal physical consistency |
+| Held-out capacity share | 394 stations / 8,541 pairs | MAE 4.729 MW [4.412, 5.063]; RMSE 6.357 MW; WAPE 38.4% | Baseline spatial allocation |
+| Held-out geographic neighbors | 394 stations / 8,541 pairs | MAE 4.249 MW [3.972, 4.544]; RMSE 5.675 MW; WAPE 34.5% | Five nearest stations; inverse-distance weights |
+| Held-out network-path neighbors | 394 stations / 8,541 pairs | MAE 4.262 MW [3.971, 4.545]; RMSE 5.702 MW; WAPE 34.6% | Five nearest stations along the reconstructed network |
+
 
 ## Generation scope and quantified dependence on spatial proxies
 
 Directly observed load accounts for 67.93--74.93% of monthly consumption; the remaining 25.07--32.07% is allocated with PDIRT reference profiles. National generation proxies account for only 0.010--0.063% of monthly generation, but this national average hides small technology classes. In May 2025, proxy shares reach 90.58% for batteries and 11.07% for other thermal generation. Aggregate balance therefore does not establish reliable local asset location.
 
-All non-rounding generation proxies are injected at one 400 kV receiving bus, which represents a model balancing location only. Figure 8 shows consumption residuals, technology-level generation proxies, and their spatial distribution by latitude band. Monthly values for eight technologies, interval flags, and bus-level details are released as CSV.
+All non-rounding generation proxies are injected at one 400 kV receiving bus, which represents a model balancing location only. Figure 7 shows consumption residuals, technology-level generation proxies, and their spatial distribution by latitude band. Monthly values for eight technologies, interval flags, and bus-level details are released as CSV.
 
-![Figure 8](figures_final/fig10_proxy_provenance.png)
+![Figure 7](figures_final/fig07_proxy_provenance.png)
 
-**Figure 8—Temporal and spatial distribution of observed and proxy power.** (a) Observed consumption and the PDIRT-allocated residual; (b) technology-level proxy shares for batteries and other thermal generation; and (c) load-residual share by latitude band of receiving buses. Panels use different denominators. Regions denote allocation locations in the model, not the true locations of missing assets.
+**Figure 7—Temporal and spatial distribution of observed and proxy power.** (a) Observed consumption and the PDIRT-allocated residual; (b) technology-level proxy shares for batteries and other thermal generation; and (c) load-residual share by latitude band of receiving buses. Panels use different denominators. Regions denote allocation locations in the model, not the true locations of missing assets.
 
 ## Limitations
 
@@ -440,7 +417,9 @@ Validation supports aggregate temporal agreement, plausible spatial ranking, and
 
 The release is designed for reproducible time-series power-flow studies, relative scenario comparison, and method testing. Users should select the model variant explicitly: CORE-3783 is the static network used by the 31,492 archived operating cases and their validation products, whereas N1-3787 is restricted to the sampled contingency panel. The main and monthly DuckDB files join through stable model, equipment, case, and UTC timestamp identifiers. Principal evidence and mapping fields include `source_id`, `bus_id`, `bus_assignment_rule`, `available_from_utc`, `source_status`, and field-level parameter status; case-level inputs and results join through `case_id`, `timestamp_utc`, `bus_order`, and `line_order`.
 
-The released power-flow states are computed research-model outputs rather than telemetry or an operator state estimate. Branch loading, bus voltage, and contingency results should therefore be interpreted comparatively and together with `parameter_status`, `source_status`, allocation-audit fields, and the stated screening thresholds. In the contingency panel, the incremental flag requires principal-solution convergence, no material island, and no new voltage or thermal violation relative to the corresponding N−0 state. It does not identify every worsening of a pre-existing violation, so absolute post-contingency voltage and loading values must remain the primary screening outputs.
+The released power-flow states are simulations derived from public data. Branch loading, bus voltage, and contingency results should be interpreted comparatively and together with `parameter_status`, `source_status`, allocation-audit fields, and the stated screening thresholds. In the contingency panel, the incremental flag requires principal-solution convergence, no material island, and no new voltage or thermal violation relative to the corresponding N−0 state. It does not identify every worsening of a pre-existing violation, so absolute post-contingency voltage and loading values must remain the primary screening outputs.
+
+Together, the linked records address the data gap identified in the Background & Summary by joining a traceable 60--400 kV network, continuous operating inputs, and reproducible solved states in one versioned resource. External comparisons support aggregate temporal agreement and spatial ranking; held-out tests show the additional but limited value of reconstructed network proximity; the sensitivity results identify which branch-loading and voltage conclusions depend on engineering assumptions; and the sampled N−1 records provide transparent risk-screening cases. These findings support comparative research and method evaluation while defining the boundary beyond which operator data are required.
 
 # Data Availability
 
