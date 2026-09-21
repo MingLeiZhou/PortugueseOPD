@@ -1336,6 +1336,23 @@ def run_case(
     if case.get("disable_load_compensation", False):
         mask = net.shunt.name.fillna("").str.startswith("SHUNT:")
         net.shunt.loc[mask, "in_service"] = False
+    # Explicit, default-neutral operational-proxy ablations. Preserve physical
+    # injections and Q-limit enforcement; never substitute a diagnostic solve.
+    q_scale = float(case.get("q_limit_scale", 1.0))
+    if q_scale <= 0:
+        raise ValueError("q_limit_scale must be positive")
+    net.gen.loc[:, ["min_q_mvar", "max_q_mvar"]] *= q_scale
+    if "pv_voltage_target_pu" in case:
+        # Slack buses retain their prescribed voltage: conflicting controls at
+        # the same bus are invalid rather than a meaningful PV sensitivity.
+        pv_only = ~net.gen.bus.isin(net.ext_grid.loc[net.ext_grid.in_service, "bus"])
+        net.gen.loc[pv_only, "vm_pu"] = float(case["pv_voltage_target_pu"])
+    if case.get("disable_proxy_reactors", False):
+        net.shunt.loc[net.shunt.q_mvar.gt(0), "in_service"] = False
+    if case.get("enable_ratio_tap_model", False):
+        net.trafo.loc[:, "tap_changer_type"] = "Ratio"
+    if case.get("disable_tap_control", False):
+        net.trafo.loc[:, "tap_pos"] = net.trafo.tap_neutral
     if not math.isclose(
         float(allocation["total_modeled_generation_mw"]),
         float(observation["generation_total_mw"]),
@@ -1356,7 +1373,8 @@ def run_case(
         str(case.get("boundary_allocation_mode", "VOLTAGE_X_CIRCUITS")),
     )
     pp.runpp(net, algorithm="nr", init="results", calculate_voltage_angles=True, max_iteration=50, tolerance_mva=1e-6, enforce_q_lims=True, numba=False)
-    infer_discrete_tap_positions(net, 0.985, 1.015)
+    if not case.get("disable_tap_control", False):
+        infer_discrete_tap_positions(net, 0.985, 1.015)
     boundary_sgen_mask = net.sgen.get("type", pd.Series(index=net.sgen.index, dtype=object)).eq("cross_border_aggregate_equivalent")
     boundary_injections = pd.concat([
         net.res_ext_grid["p_mw"].astype(float),

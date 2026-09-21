@@ -1,0 +1,27 @@
+{
+  "figure": 2,
+  "stem": "fig02_geographic_network_state",
+  "dpi": 600,
+  "width_inches": 7.2,
+  "height_inches": 5.8,
+  "source_files": [
+    "paper/figures/pt60_review/portugal_gisco_2024.geojson",
+    "portuguese_hv_network/outputs/annual_nminus1_panel_v2/models/PT60_ANNUAL_PEAK_LOAD_20260115_1215_+0000_solved.json",
+    "portuguese_hv_network/site/public/data/pt60/buses.geojson",
+    "portuguese_hv_network/site/public/data/pt60/lines.geojson"
+  ],
+  "sha256": {
+    "paper/figures/pt60_review/portugal_gisco_2024.geojson": "fde409780a6ea7135a28866f10e855c53b9d55abc34817cd4d3f5667a3efbe41",
+    "portuguese_hv_network/outputs/annual_nminus1_panel_v2/models/PT60_ANNUAL_PEAK_LOAD_20260115_1215_+0000_solved.json": "9c9fe5aeae87b320e1ab4f8972472438c49bcf30bf6277a753bbee0f117ebb08",
+    "portuguese_hv_network/site/public/data/pt60/buses.geojson": "498c19b8d32c59bdac3e0c4adb564ea03b78ab7014f1da704c049486aa7cf2de",
+    "portuguese_hv_network/site/public/data/pt60/lines.geojson": "ae69786af3fbf698541ced85139ae54db7bcecad094787dd01d6f846984380fe"
+  },
+  "notes": {
+    "crs": "EPSG:3763",
+    "buses": 3783,
+    "lines": 4943,
+    "missing_line_states": 121,
+    "missing_bus_states": 119,
+    "load_mw": 11329.199999999999
+  }
+}

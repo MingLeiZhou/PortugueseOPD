@@ -1,0 +1,21 @@
+{
+  "figure": 3,
+  "stem": "fig03_temporal_coverage",
+  "dpi": 600,
+  "width_inches": 7.2,
+  "height_inches": 5.0,
+  "source_files": [
+    "portuguese_hv_network/outputs/validation_experiments/scope_matched_validation_timeseries.csv"
+  ],
+  "sha256": {
+    "portuguese_hv_network/outputs/validation_experiments/scope_matched_validation_timeseries.csv": "0f85b926214788d015bc8be1feeffd241ace0c2ed03c1623cc3b8bb9279024f4"
+  },
+  "notes": {
+    "case_count": 31492,
+    "local_daily_denominators": [
+      96.0,
+      100.0
+    ],
+    "no_interpolation": true
+  }
+}

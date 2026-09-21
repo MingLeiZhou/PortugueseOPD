@@ -1,0 +1,22 @@
+{
+  "figure": 10,
+  "stem": "fig10_targeted_nminus1",
+  "dpi": 600,
+  "width_inches": 7.2,
+  "height_inches": 3.8,
+  "source_files": [
+    "portuguese_hv_network/outputs/application_example/nminus1_remedial_v15/nminus1_results.csv"
+  ],
+  "sha256": {
+    "portuguese_hv_network/outputs/application_example/nminus1_remedial_v15/nminus1_results.csv": "315ce28f399549dfe82e1b033f24fb870258bf90628c9443a1547d93fec3f4f9"
+  },
+  "notes": {
+    "outcomes": {
+      "PASS": 66,
+      "Q_LIMIT_INFEASIBLE_DIAGNOSTIC_THERMAL": 3,
+      "ISLANDING": 1
+    },
+    "primary_converged": 67,
+    "threshold_reference": "100% continuous; 110% only applicable 60 kV screen; outcome from archived flags"
+  }
+}

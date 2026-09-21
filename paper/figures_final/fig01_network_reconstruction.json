@@ -1,0 +1,16 @@
+{
+  "figure": 1,
+  "stem": "fig01_network_reconstruction",
+  "dpi": 600,
+  "width_inches": 7.2,
+  "height_inches": 4.1,
+  "source_files": [
+    "portuguese_hv_network/config/model_config.json"
+  ],
+  "sha256": {
+    "portuguese_hv_network/config/model_config.json": "ab43a30736f8fbec5000fdf1c2726c3bc22b81b40e336d8bebf89466f56fbe6e"
+  },
+  "notes": {
+    "type": "abstract method schematic; coordinates have no geographic meaning"
+  }
+}

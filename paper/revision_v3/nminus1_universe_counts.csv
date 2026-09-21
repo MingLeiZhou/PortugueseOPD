@@ -1,0 +1,7 @@
+role,bus_rows,line_rows,line_out_of_service,active_busbar_excluded,active_nonbusbar_missing_result,eligible_line_rows,zero_current_rows_retained,line_outage_groups,source_circuit_groups,osm_fragment_groups,line_parallel_decrement_groups,trafo_rows,trafo_out_of_service,trafo_missing_result,trafo_outage_groups,trafo_parallel_groups,equivalent_trafo_units,total_outages,set_sha256
+MAX_NET_EXPORT,3787,4943,156,2,14,4771,0,1421,1356,58,282,228,0,0,228,1,230,1649,d9edd18f63382b16f967a090661b35fbc462e17fea565631ba3554724af44ce8
+MAX_NET_IMPORT,3787,4943,156,2,14,4771,0,1421,1356,58,282,228,0,0,228,1,230,1649,d9edd18f63382b16f967a090661b35fbc462e17fea565631ba3554724af44ce8
+MAX_SOLAR,3787,4943,156,2,14,4771,0,1421,1356,58,282,228,0,0,228,1,230,1649,d9edd18f63382b16f967a090661b35fbc462e17fea565631ba3554724af44ce8
+MAX_WIND,3787,4943,156,2,14,4771,0,1421,1356,58,282,228,0,0,228,1,230,1649,d9edd18f63382b16f967a090661b35fbc462e17fea565631ba3554724af44ce8
+MINIMUM_LOAD,3787,4943,156,2,14,4771,0,1421,1356,58,282,228,0,0,228,1,230,1649,d9edd18f63382b16f967a090661b35fbc462e17fea565631ba3554724af44ce8
+PEAK_LOAD,3787,4943,156,2,14,4771,0,1421,1356,58,282,228,0,0,228,1,230,1649,d9edd18f63382b16f967a090661b35fbc462e17fea565631ba3554724af44ce8

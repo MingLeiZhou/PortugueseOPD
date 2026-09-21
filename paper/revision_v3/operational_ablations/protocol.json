@@ -1,0 +1,335 @@
+{
+  "variants": {
+    "BASELINE": {},
+    "Q_HALF": {
+      "q_limit_scale": 0.5
+    },
+    "Q_150_PERCENT": {
+      "q_limit_scale": 1.5
+    },
+    "PV_099": {
+      "pv_voltage_target_pu": 0.99
+    },
+    "PV_101": {
+      "pv_voltage_target_pu": 1.01
+    },
+    "NO_LOAD_COMPENSATION": {
+      "disable_load_compensation": true
+    },
+    "NO_REACTORS": {
+      "disable_proxy_reactors": true
+    },
+    "FIXED_NEUTRAL_TAPS": {
+      "disable_tap_control": true
+    },
+    "NO_COMPENSATION_FIXED_TAPS": {
+      "disable_load_compensation": true,
+      "disable_proxy_reactors": true,
+      "disable_tap_control": true
+    },
+    "RATIO_TAP_CONTROL": {
+      "enable_ratio_tap_model": true
+    },
+    "RATIO_TAP_FIXED_NEUTRAL": {
+      "enable_ratio_tap_model": true,
+      "disable_tap_control": true
+    }
+  },
+  "intervals": [
+    {
+      "local_date": "2025-05-03",
+      "source_index": 53,
+      "timestamp_local": "2025-05-03T13:15:00+01:00",
+      "timestamp_utc": "2025-05-03T12:15:00+00:00",
+      "eredes_source_date": "2025-05-03",
+      "eredes_source_hour": "13:30",
+      "eredes_alignment_status": "UNIQUE",
+      "case_id": "PT60_VAL_20250503_1315_+0100",
+      "selection_role": "MONTHLY_MAX_WIND_PLUS_SOLAR",
+      "selection_load_mw": 6715.0,
+      "selection_wind_solar_mw": 5046.9
+    },
+    {
+      "local_date": "2025-05-29",
+      "source_index": 49,
+      "timestamp_local": "2025-05-29T12:15:00+01:00",
+      "timestamp_utc": "2025-05-29T11:15:00+00:00",
+      "eredes_source_date": "2025-05-29",
+      "eredes_source_hour": "12:30",
+      "eredes_alignment_status": "UNIQUE",
+      "case_id": "PT60_VAL_20250529_1215_+0100",
+      "selection_role": "MONTHLY_MAX_SYSTEM_LOAD",
+      "selection_load_mw": 8737.3,
+      "selection_wind_solar_mw": 3553.5
+    },
+    {
+      "local_date": "2025-06-20",
+      "source_index": 46,
+      "timestamp_local": "2025-06-20T11:30:00+01:00",
+      "timestamp_utc": "2025-06-20T10:30:00+00:00",
+      "eredes_source_date": "2025-06-20",
+      "eredes_source_hour": "11:45",
+      "eredes_alignment_status": "UNIQUE",
+      "case_id": "PT60_VAL_20250620_1130_+0100",
+      "selection_role": "MONTHLY_MAX_SYSTEM_LOAD",
+      "selection_load_mw": 9279.3,
+      "selection_wind_solar_mw": 4276.5
+    },
+    {
+      "local_date": "2025-06-24",
+      "source_index": 51,
+      "timestamp_local": "2025-06-24T12:45:00+01:00",
+      "timestamp_utc": "2025-06-24T11:45:00+00:00",
+      "eredes_source_date": "2025-06-24",
+      "eredes_source_hour": "13:00",
+      "eredes_alignment_status": "UNIQUE",
+      "case_id": "PT60_VAL_20250624_1245_+0100",
+      "selection_role": "MONTHLY_MAX_WIND_PLUS_SOLAR",
+      "selection_load_mw": 8657.8,
+      "selection_wind_solar_mw": 4503.299999999999
+    },
+    {
+      "local_date": "2025-07-07",
+      "source_index": 64,
+      "timestamp_local": "2025-07-07T16:00:00+01:00",
+      "timestamp_utc": "2025-07-07T15:00:00+00:00",
+      "eredes_source_date": "2025-07-07",
+      "eredes_source_hour": "16:15",
+      "eredes_alignment_status": "UNIQUE",
+      "case_id": "PT60_VAL_20250707_1600_+0100",
+      "selection_role": "MONTHLY_MAX_SYSTEM_LOAD",
+      "selection_load_mw": 9202.3,
+      "selection_wind_solar_mw": 3685.2
+    },
+    {
+      "local_date": "2025-07-18",
+      "source_index": 61,
+      "timestamp_local": "2025-07-18T15:15:00+01:00",
+      "timestamp_utc": "2025-07-18T14:15:00+00:00",
+      "eredes_source_date": "2025-07-18",
+      "eredes_source_hour": "15:30",
+      "eredes_alignment_status": "UNIQUE",
+      "case_id": "PT60_VAL_20250718_1515_+0100",
+      "selection_role": "MONTHLY_MAX_WIND_PLUS_SOLAR",
+      "selection_load_mw": 7826.9,
+      "selection_wind_solar_mw": 5972.0
+    },
+    {
+      "local_date": "2025-08-01",
+      "source_index": 68,
+      "timestamp_local": "2025-08-01T17:00:00+01:00",
+      "timestamp_utc": "2025-08-01T16:00:00+00:00",
+      "eredes_source_date": "2025-08-01",
+      "eredes_source_hour": "17:15",
+      "eredes_alignment_status": "UNIQUE",
+      "case_id": "PT60_VAL_20250801_1700_+0100",
+      "selection_role": "MONTHLY_MAX_SYSTEM_LOAD",
+      "selection_load_mw": 8725.5,
+      "selection_wind_solar_mw": 3109.8
+    },
+    {
+      "local_date": "2025-08-19",
+      "source_index": 69,
+      "timestamp_local": "2025-08-19T17:15:00+01:00",
+      "timestamp_utc": "2025-08-19T16:15:00+00:00",
+      "eredes_source_date": "2025-08-19",
+      "eredes_source_hour": "17:30",
+      "eredes_alignment_status": "UNIQUE",
+      "case_id": "PT60_VAL_20250819_1715_+0100",
+      "selection_role": "MONTHLY_MAX_WIND_PLUS_SOLAR",
+      "selection_load_mw": 6981.8,
+      "selection_wind_solar_mw": 5557.7
+    },
+    {
+      "local_date": "2025-09-10",
+      "source_index": 46,
+      "timestamp_local": "2025-09-10T11:30:00+01:00",
+      "timestamp_utc": "2025-09-10T10:30:00+00:00",
+      "eredes_source_date": "2025-09-10",
+      "eredes_source_hour": "11:45",
+      "eredes_alignment_status": "UNIQUE",
+      "case_id": "PT60_VAL_20250910_1130_+0100",
+      "selection_role": "MONTHLY_MAX_SYSTEM_LOAD",
+      "selection_load_mw": 9284.4,
+      "selection_wind_solar_mw": 4091.7
+    },
+    {
+      "local_date": "2025-09-21",
+      "source_index": 59,
+      "timestamp_local": "2025-09-21T14:45:00+01:00",
+      "timestamp_utc": "2025-09-21T13:45:00+00:00",
+      "eredes_source_date": "2025-09-21",
+      "eredes_source_hour": "15:00",
+      "eredes_alignment_status": "UNIQUE",
+      "case_id": "PT60_VAL_20250921_1445_+0100",
+      "selection_role": "MONTHLY_MAX_WIND_PLUS_SOLAR",
+      "selection_load_mw": 7207.6,
+      "selection_wind_solar_mw": 5807.1
+    },
+    {
+      "local_date": "2025-10-22",
+      "source_index": 49,
+      "timestamp_local": "2025-10-22T12:15:00+01:00",
+      "timestamp_utc": "2025-10-22T11:15:00+00:00",
+      "eredes_source_date": "2025-10-22",
+      "eredes_source_hour": "12:30",
+      "eredes_alignment_status": "UNIQUE",
+      "case_id": "PT60_VAL_20251022_1215_+0100",
+      "selection_role": "MONTHLY_MAX_WIND_PLUS_SOLAR",
+      "selection_load_mw": 9042.3,
+      "selection_wind_solar_mw": 5073.799999999999
+    },
+    {
+      "local_date": "2025-10-31",
+      "source_index": 42,
+      "timestamp_local": "2025-10-31T10:30:00+00:00",
+      "timestamp_utc": "2025-10-31T10:30:00+00:00",
+      "eredes_source_date": "2025-10-31",
+      "eredes_source_hour": "10:45",
+      "eredes_alignment_status": "UNIQUE",
+      "case_id": "PT60_VAL_20251031_1030_+0000",
+      "selection_role": "MONTHLY_MAX_SYSTEM_LOAD",
+      "selection_load_mw": 9432.4,
+      "selection_wind_solar_mw": 4793.8
+    },
+    {
+      "local_date": "2025-11-11",
+      "source_index": 51,
+      "timestamp_local": "2025-11-11T12:45:00+00:00",
+      "timestamp_utc": "2025-11-11T12:45:00+00:00",
+      "eredes_source_date": "2025-11-11",
+      "eredes_source_hour": "13:00",
+      "eredes_alignment_status": "UNIQUE",
+      "case_id": "PT60_VAL_20251111_1245_+0000",
+      "selection_role": "MONTHLY_MAX_WIND_PLUS_SOLAR",
+      "selection_load_mw": 9057.2,
+      "selection_wind_solar_mw": 5674.2
+    },
+    {
+      "local_date": "2025-11-21",
+      "source_index": 38,
+      "timestamp_local": "2025-11-21T09:30:00+00:00",
+      "timestamp_utc": "2025-11-21T09:30:00+00:00",
+      "eredes_source_date": "2025-11-21",
+      "eredes_source_hour": "09:45",
+      "eredes_alignment_status": "UNIQUE",
+      "case_id": "PT60_VAL_20251121_0930_+0000",
+      "selection_role": "MONTHLY_MAX_SYSTEM_LOAD",
+      "selection_load_mw": 9825.6,
+      "selection_wind_solar_mw": 4251.6
+    },
+    {
+      "local_date": "2025-12-09",
+      "source_index": 47,
+      "timestamp_local": "2025-12-09T11:45:00+00:00",
+      "timestamp_utc": "2025-12-09T11:45:00+00:00",
+      "eredes_source_date": "2025-12-09",
+      "eredes_source_hour": "12:00",
+      "eredes_alignment_status": "UNIQUE",
+      "case_id": "PT60_VAL_20251209_1145_+0000",
+      "selection_role": "MONTHLY_MAX_SYSTEM_LOAD",
+      "selection_load_mw": 9926.6,
+      "selection_wind_solar_mw": 3975.8999999999996
+    },
+    {
+      "local_date": "2025-12-16",
+      "source_index": 52,
+      "timestamp_local": "2025-12-16T13:00:00+00:00",
+      "timestamp_utc": "2025-12-16T13:00:00+00:00",
+      "eredes_source_date": "2025-12-16",
+      "eredes_source_hour": "13:15",
+      "eredes_alignment_status": "UNIQUE",
+      "case_id": "PT60_VAL_20251216_1300_+0000",
+      "selection_role": "MONTHLY_MAX_WIND_PLUS_SOLAR",
+      "selection_load_mw": 7768.2,
+      "selection_wind_solar_mw": 5906.0
+    },
+    {
+      "local_date": "2026-01-15",
+      "source_index": 49,
+      "timestamp_local": "2026-01-15T12:15:00+00:00",
+      "timestamp_utc": "2026-01-15T12:15:00+00:00",
+      "eredes_source_date": "2026-01-15",
+      "eredes_source_hour": "12:30",
+      "eredes_alignment_status": "UNIQUE",
+      "case_id": "PT60_VAL_20260115_1215_+0000",
+      "selection_role": "MONTHLY_MAX_SYSTEM_LOAD",
+      "selection_load_mw": 11329.2,
+      "selection_wind_solar_mw": 4268.8
+    },
+    {
+      "local_date": "2026-01-27",
+      "source_index": 52,
+      "timestamp_local": "2026-01-27T13:00:00+00:00",
+      "timestamp_utc": "2026-01-27T13:00:00+00:00",
+      "eredes_source_date": "2026-01-27",
+      "eredes_source_hour": "13:15",
+      "eredes_alignment_status": "UNIQUE",
+      "case_id": "PT60_VAL_20260127_1300_+0000",
+      "selection_role": "MONTHLY_MAX_WIND_PLUS_SOLAR",
+      "selection_load_mw": 8680.3,
+      "selection_wind_solar_mw": 5682.200000000001
+    },
+    {
+      "local_date": "2026-02-13",
+      "source_index": 54,
+      "timestamp_local": "2026-02-13T13:30:00+00:00",
+      "timestamp_utc": "2026-02-13T13:30:00+00:00",
+      "eredes_source_date": "2026-02-13",
+      "eredes_source_hour": "13:45",
+      "eredes_alignment_status": "UNIQUE",
+      "case_id": "PT60_VAL_20260213_1330_+0000",
+      "selection_role": "MONTHLY_MAX_WIND_PLUS_SOLAR",
+      "selection_load_mw": 8483.9,
+      "selection_wind_solar_mw": 5513.0
+    },
+    {
+      "local_date": "2026-02-18",
+      "source_index": 47,
+      "timestamp_local": "2026-02-18T11:45:00+00:00",
+      "timestamp_utc": "2026-02-18T11:45:00+00:00",
+      "eredes_source_date": "2026-02-18",
+      "eredes_source_hour": "12:00",
+      "eredes_alignment_status": "UNIQUE",
+      "case_id": "PT60_VAL_20260218_1145_+0000",
+      "selection_role": "MONTHLY_MAX_SYSTEM_LOAD",
+      "selection_load_mw": 10109.6,
+      "selection_wind_solar_mw": 4529.4
+    },
+    {
+      "local_date": "2026-03-11",
+      "source_index": 42,
+      "timestamp_local": "2026-03-11T10:30:00+00:00",
+      "timestamp_utc": "2026-03-11T10:30:00+00:00",
+      "eredes_source_date": "2026-03-11",
+      "eredes_source_hour": "10:45",
+      "eredes_alignment_status": "UNIQUE",
+      "case_id": "PT60_VAL_20260311_1030_+0000",
+      "selection_role": "MONTHLY_MAX_SYSTEM_LOAD",
+      "selection_load_mw": 9583.2,
+      "selection_wind_solar_mw": 2767.2000000000003
+    },
+    {
+      "local_date": "2026-03-17",
+      "source_index": 47,
+      "timestamp_local": "2026-03-17T11:45:00+00:00",
+      "timestamp_utc": "2026-03-17T11:45:00+00:00",
+      "eredes_source_date": "2026-03-17",
+      "eredes_source_hour": "12:00",
+      "eredes_alignment_status": "UNIQUE",
+      "case_id": "PT60_VAL_20260317_1145_+0000",
+      "selection_role": "MONTHLY_MAX_WIND_PLUS_SOLAR",
+      "selection_load_mw": 8286.4,
+      "selection_wind_solar_mw": 4837.6
+    }
+  ],
+  "failed_cases": "retained; no unconstrained-Q fallback",
+  "thresholds": {
+    "voltage_pu": [
+      0.9,
+      1.1
+    ],
+    "line_percent": 100,
+    "trafo_percent": 120
+  }
+}

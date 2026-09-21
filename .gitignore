@@ -117,15 +117,36 @@ debug/
 # Historical drafts, downloaded papers and document-build output remain local.
 paper/*
 !paper/PT60_Sep16.MD
+!paper/PT60_Sep16_SUPPLEMENTARY_TABLES.md
+!paper/PT60_Sep16_FIGURE_TABLE_AUDIT.md
 !paper/figure_manifest.csv
 !paper/scripts/
 paper/scripts/*
 !paper/scripts/generate_pt60_scientific_figures.py
+!paper/scripts/rebuild_sep16_figures.py
+!paper/scripts/complete_sep16_manuscript.py
+!paper/scripts/validate_sep16_artifacts.py
+!paper/scripts/export_pt60_pdf.py
+!paper/scripts/export_sep16_review.py
 !paper/scripts/pt60-paper.mplstyle
 !paper/figures/
 paper/figures/*
 !paper/figures/scientific/
 !paper/figures/scientific/**
+!paper/figures/sep16/
+!paper/figures/sep16/**
+!paper/tables/
+paper/tables/*
+!paper/tables/sep16/
+!paper/tables/sep16/**
+!paper/figure_audit_report.md
+!paper/figures_final/
+!paper/figures_final/**
+!paper/figures_original/
+!paper/figures_original/**
+!paper/scripts/figures/
+!paper/scripts/figures/**
+paper/scripts/figures/__pycache__/
 # Matplotlib SVG maps can contain millions of path coordinates. Keep PDF as
 # the publication vector format and PNG for repository/Markdown previews.
 paper/figures/scientific/*.svg

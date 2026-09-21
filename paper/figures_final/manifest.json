@@ -1,0 +1,438 @@
+[
+  {
+    "figure": 1,
+    "stem": "fig01_network_reconstruction",
+    "dpi": 600,
+    "width_inches": 7.2,
+    "height_inches": 4.1,
+    "source_files": [
+      "portuguese_hv_network/config/model_config.json"
+    ],
+    "sha256": {
+      "portuguese_hv_network/config/model_config.json": "ab43a30736f8fbec5000fdf1c2726c3bc22b81b40e336d8bebf89466f56fbe6e"
+    },
+    "notes": {
+      "type": "abstract method schematic; coordinates have no geographic meaning"
+    },
+    "output_sha256": {
+      "pdf": "bbe07c52357d887b2f7f3b1ab31ecf1bc8f558e469534c771f68ece21eea0552",
+      "svg": "9b2cc0f2d515ec14b88d7d3c9964c2b1e32567ee2077d75cca11e42912a8488c",
+      "png": "b005e4320a61eccec7643da79cd51ef078797d05a637e84fc76ad9a115847374"
+    }
+  },
+  {
+    "figure": 2,
+    "stem": "fig02_geographic_network_state",
+    "dpi": 600,
+    "width_inches": 7.2,
+    "height_inches": 5.8,
+    "source_files": [
+      "paper/figures/pt60_review/portugal_gisco_2024.geojson",
+      "portuguese_hv_network/outputs/annual_nminus1_panel_v2/models/PT60_ANNUAL_PEAK_LOAD_20260115_1215_+0000_solved.json",
+      "portuguese_hv_network/site/public/data/pt60/buses.geojson",
+      "portuguese_hv_network/site/public/data/pt60/lines.geojson"
+    ],
+    "sha256": {
+      "paper/figures/pt60_review/portugal_gisco_2024.geojson": "fde409780a6ea7135a28866f10e855c53b9d55abc34817cd4d3f5667a3efbe41",
+      "portuguese_hv_network/outputs/annual_nminus1_panel_v2/models/PT60_ANNUAL_PEAK_LOAD_20260115_1215_+0000_solved.json": "9c9fe5aeae87b320e1ab4f8972472438c49bcf30bf6277a753bbee0f117ebb08",
+      "portuguese_hv_network/site/public/data/pt60/buses.geojson": "498c19b8d32c59bdac3e0c4adb564ea03b78ab7014f1da704c049486aa7cf2de",
+      "portuguese_hv_network/site/public/data/pt60/lines.geojson": "ae69786af3fbf698541ced85139ae54db7bcecad094787dd01d6f846984380fe"
+    },
+    "notes": {
+      "crs": "EPSG:3763",
+      "buses": 3783,
+      "lines": 4943,
+      "missing_line_states": 121,
+      "missing_bus_states": 119,
+      "load_mw": 11329.199999999999
+    },
+    "output_sha256": {
+      "pdf": "466a7b9891440cb443b422f4b424b0227a6c4ff980a9d9136e58080087d1ca90",
+      "svg": "33a943fdf5f6e8e29f5e17bb9d91af9270b45ca0c81fdceaceb61710dbc0e091",
+      "png": "d7154116d74be72fcdca290e3f11cf69b97cc12facfece292df7e764b9d77435"
+    }
+  },
+  {
+    "figure": 3,
+    "stem": "fig03_temporal_coverage",
+    "dpi": 600,
+    "width_inches": 7.2,
+    "height_inches": 5.0,
+    "source_files": [
+      "portuguese_hv_network/outputs/validation_experiments/scope_matched_validation_timeseries.csv"
+    ],
+    "sha256": {
+      "portuguese_hv_network/outputs/validation_experiments/scope_matched_validation_timeseries.csv": "0f85b926214788d015bc8be1feeffd241ace0c2ed03c1623cc3b8bb9279024f4"
+    },
+    "notes": {
+      "case_count": 31492,
+      "local_daily_denominators": [
+        96.0,
+        100.0
+      ],
+      "no_interpolation": true
+    },
+    "output_sha256": {
+      "pdf": "da521ead0d7e496e0407525a918a5c5280e3d6dbcfb81d36cacfe6750ad12206",
+      "svg": "796b6fb5dd65ad1b780e3ac4c276c6969554d5a451f81cdc8879c69b6bf8cb6b",
+      "png": "1bc4b6481380d1df7bfa19c8fe5016ffbab4269af85079a0c13509af004ae4b5"
+    }
+  },
+  {
+    "figure": 4,
+    "stem": "fig04_network_parameter_evidence",
+    "dpi": 600,
+    "width_inches": 7.2,
+    "height_inches": 3.0,
+    "source_files": [
+      "portuguese_hv_network/outputs/validation_experiments/parameter_evidence_by_voltage.csv",
+      "portuguese_hv_network/outputs/validation_experiments/topology_coverage_by_voltage.csv"
+    ],
+    "sha256": {
+      "portuguese_hv_network/outputs/validation_experiments/parameter_evidence_by_voltage.csv": "16cba7c99146ade44cd092d0f1e1968b64f99eb0e014c6b7f6fe24cc9cf14633",
+      "portuguese_hv_network/outputs/validation_experiments/topology_coverage_by_voltage.csv": "aaab16b14e56afb63d5a113d54f27b52594bfd84eb535a255934d244e60d12c3"
+    },
+    "notes": {
+      "public_support_percent": [
+        [
+          35.77830188679245,
+          0.0,
+          0.0,
+          36.32075471698113
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          7.051282051282051
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          2.0325203252032518
+        ]
+      ],
+      "support_definition": "DIRECT_* or CONDUCTOR_DERIVED_*; remainder engineering proxy"
+    },
+    "output_sha256": {
+      "pdf": "9050c87c18d223a014ebde9fbc2a50c510c3d7486732b306f98ae26a6cc1f4af",
+      "svg": "1cb72ce908115dc002a180581b8336703ea5ec58e07f821b2734c21877b6fe25",
+      "png": "3baa474a4283792f9fa87cde52a8a634ae9f783e5ea3b5cdc045a6591643e692"
+    }
+  },
+  {
+    "figure": 5,
+    "stem": "fig05_parameter_spatial_sensitivity",
+    "dpi": 600,
+    "width_inches": 7.2,
+    "height_inches": 4.3,
+    "source_files": [
+      "portuguese_hv_network/outputs/validation_experiments/parameter_scenarios.json",
+      "portuguese_hv_network/outputs/validation_experiments/sensitivity_summary.csv"
+    ],
+    "sha256": {
+      "portuguese_hv_network/outputs/validation_experiments/parameter_scenarios.json": "ee894a31eea70f8de57fec33f39ed6b474f8022c33e0d89e070d12fede0fd1b5",
+      "portuguese_hv_network/outputs/validation_experiments/sensitivity_summary.csv": "8df048f5db010f60327e84f2e500a217ff904d4d34b6bf969883457bf17e2970"
+    },
+    "notes": {
+      "summary": "dot=median; segment=median to worst; not confidence interval",
+      "unique_cases": 264
+    },
+    "output_sha256": {
+      "pdf": "e5fa2af8ee7819045d7c4dfda8250eb3c36c87b4ae7ebc3114073e566738992a",
+      "svg": "560d00f850fa21aee03f4248239c1660aa7db9dec914ce2d6e02be522330d122",
+      "png": "64b39bad5703310afb5c7407f4b461f491c25ec01027da93b6f260a41067d125"
+    }
+  },
+  {
+    "figure": 6,
+    "stem": "fig06_temporal_validation",
+    "dpi": 600,
+    "width_inches": 7.2,
+    "height_inches": 7.0,
+    "source_files": [
+      "portuguese_hv_network/outputs/validation_experiments/scope_matched_validation_timeseries.csv",
+      "portuguese_hv_network/outputs/validation_experiments/validation_confidence_intervals.csv"
+    ],
+    "sha256": {
+      "portuguese_hv_network/outputs/validation_experiments/scope_matched_validation_timeseries.csv": "0f85b926214788d015bc8be1feeffd241ace0c2ed03c1623cc3b8bb9279024f4",
+      "portuguese_hv_network/outputs/validation_experiments/validation_confidence_intervals.csv": "c68a834d7513f03a60528847354de4e291cc6083ba7759740cfdddc7135b4452"
+    },
+    "notes": {
+      "paired_counts": {
+        "consumption": 31388,
+        "wind": 31484
+      },
+      "density_norm": "shared logarithmic count scale",
+      "no_interpolation": true
+    },
+    "output_sha256": {
+      "pdf": "e65fa709787526340cff9baaefdd061c0e26a621e847b9d3b06d23a642fb6f88",
+      "svg": "5e8052039333896e47b14e75b8124ddcf166754284c7650ba675472e8cc7a9c7",
+      "png": "85486ce04ccf2a9650016d6b1026edf5581f99aed38e8a502945e2d437611167"
+    }
+  },
+  {
+    "figure": 7,
+    "stem": "fig07_spatial_validation",
+    "dpi": 600,
+    "width_inches": 7.2,
+    "height_inches": 3.65,
+    "source_files": [
+      "portuguese_hv_network/outputs/external_evidence_validation/municipality_comparison.csv",
+      "portuguese_hv_network/outputs/external_evidence_validation/substation_comparison.csv",
+      "portuguese_hv_network/outputs/validation_experiments/validation_confidence_intervals.csv"
+    ],
+    "sha256": {
+      "portuguese_hv_network/outputs/external_evidence_validation/municipality_comparison.csv": "148c84dabb8783e2d3af2a018f4e484afa0df2bac7e3708fd24cdaf67d2fe4d6",
+      "portuguese_hv_network/outputs/external_evidence_validation/substation_comparison.csv": "f7e4db2aa54b930e40c15c675dc67ba2c46b721e5a892c318247256b66727c3b",
+      "portuguese_hv_network/outputs/validation_experiments/validation_confidence_intervals.csv": "c68a834d7513f03a60528847354de4e291cc6083ba7759740cfdddc7135b4452"
+    },
+    "notes": {
+      "confidence_intervals": "archived 1000-replicate cluster bootstrap; not recomputed"
+    },
+    "output_sha256": {
+      "pdf": "4d000e154dae287fba7cdf07eee3aa38f2581dcbac1831dc5eb53987309eb161",
+      "svg": "c5abd31f2db6d5dad4bdf13103344217882a69a4046e7b1c75ad7cb81234993f",
+      "png": "2d9adefae57e4dfc9de7495ebcd01bc46e2333fb24f78b015e64365419078ec7"
+    }
+  },
+  {
+    "figure": 8,
+    "stem": "fig08_generation_balance_scope",
+    "dpi": 600,
+    "width_inches": 7.2,
+    "height_inches": 4.95,
+    "source_files": [
+      "portuguese_hv_network/outputs/validation_experiments/scope_matched_validation_timeseries.csv"
+    ],
+    "sha256": {
+      "portuguese_hv_network/outputs/validation_experiments/scope_matched_validation_timeseries.csv": "0f85b926214788d015bc8be1feeffd241ace0c2ed03c1623cc3b8bb9279024f4"
+    },
+    "notes": {
+      "ecdf": {
+        "model_ac_balance_closure_mw": {
+          "n": 31492,
+          "exact_zero_count": 0,
+          "mean_absolute_mw": 1.7722945520413326e-06
+        },
+        "ren_input_balance_residual_mw": {
+          "n": 31492,
+          "exact_zero_count": 1,
+          "mean_absolute_mw": 12.183729201066937
+        },
+        "external_balance_gap_mw": {
+          "n": 31388,
+          "exact_zero_count": 0,
+          "mean_absolute_mw": 21.501122277923788
+        }
+      },
+      "zero_handling": "exact zeros remain in denominator; no epsilon or fabricated coordinates"
+    },
+    "output_sha256": {
+      "pdf": "fc178c740042063794a2cb1dac5d72e4f47c55fc669f7fb20beeed9cbbcbf140",
+      "svg": "3a9ccef276db787361df4994a5e325fc0f6893f82c0c19c715f4093f94b71130",
+      "png": "c2fcdb497dd5735414413e1928a30a3555a3bdc09f51d8d0c6a801a202a52a0a"
+    }
+  },
+  {
+    "figure": 9,
+    "stem": "fig09_grid_stress",
+    "dpi": 600,
+    "width_inches": 7.2,
+    "height_inches": 3.15,
+    "source_files": [
+      "portuguese_hv_network/outputs/application_example/application_sweep.csv"
+    ],
+    "sha256": {
+      "portuguese_hv_network/outputs/application_example/application_sweep.csv": "0ae907a29c7638e6940a3bb6ace6e4d65f2a6235fdb086e2474405b1f75dd18c"
+    },
+    "notes": {
+      "solves": 5,
+      "intervals": "none; deterministic response connecting sampled scales"
+    },
+    "output_sha256": {
+      "pdf": "2f8a03b04b4c70e1cc3e9421040a7f13e2c8aff783d2e9b2274c7aa215fb1073",
+      "svg": "74da3a427b0645a34e705d98cd6272e43a9941b6a5922ded32adcdf500985f7e",
+      "png": "cb59565e1a9ffd58b86d4cdec729973c0f5d8b513a04d800c9894cda8ba13271"
+    }
+  },
+  {
+    "figure": 10,
+    "stem": "fig10_targeted_nminus1",
+    "dpi": 600,
+    "width_inches": 7.2,
+    "height_inches": 3.8,
+    "source_files": [
+      "portuguese_hv_network/outputs/application_example/nminus1_remedial_v15/nminus1_results.csv"
+    ],
+    "sha256": {
+      "portuguese_hv_network/outputs/application_example/nminus1_remedial_v15/nminus1_results.csv": "315ce28f399549dfe82e1b033f24fb870258bf90628c9443a1547d93fec3f4f9"
+    },
+    "notes": {
+      "outcomes": {
+        "PASS": 66,
+        "Q_LIMIT_INFEASIBLE_DIAGNOSTIC_THERMAL": 3,
+        "ISLANDING": 1
+      },
+      "primary_converged": 67,
+      "threshold_reference": "100% continuous; 110% only applicable 60 kV screen; outcome from archived flags"
+    },
+    "output_sha256": {
+      "pdf": "41773b64fa5181542aa0015c4c274ebbfab4ff69cfcc793d76b570b14cf36d2e",
+      "svg": "3bd2e460461ee53ffd52d403662f1192e112e0e85334203768321c1fdda9f13d",
+      "png": "8b4e06de35452eb898c67f45884463576bf9ec72fcf40a33527c407485e83898"
+    }
+  },
+  {
+    "figure": 11,
+    "stem": "fig11_annual_nminus1",
+    "dpi": 600,
+    "width_inches": 7.2,
+    "height_inches": 8.3,
+    "source_files": [
+      "portuguese_hv_network/outputs/annual_nminus1_panel_v2/annual_nminus1_panel.csv"
+    ],
+    "sha256": {
+      "portuguese_hv_network/outputs/annual_nminus1_panel_v2/annual_nminus1_panel.csv": "9a99b5af1c34fc7e4bd1989af37c1d0cbf1081c1a9f4ef8a36b727575449fd5a"
+    },
+    "notes": {
+      "count": 9894,
+      "primary_converged": 9888,
+      "absolute_pass": 6048,
+      "incremental_pass": 9064,
+      "screening_counts": [
+        [
+          1527,
+          0,
+          122
+        ],
+        [
+          1455,
+          0,
+          194
+        ],
+        [
+          1526,
+          0,
+          123
+        ],
+        [
+          0,
+          1502,
+          147
+        ],
+        [
+          1538,
+          0,
+          111
+        ],
+        [
+          2,
+          1514,
+          133
+        ]
+      ],
+      "failure_indicators": [
+        [
+          114,
+          102,
+          109,
+          115,
+          110,
+          110
+        ],
+        [
+          7,
+          92,
+          12,
+          29,
+          1,
+          22
+        ],
+        [
+          1,
+          2,
+          4,
+          4,
+          0,
+          2
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          2,
+          0,
+          3
+        ]
+      ],
+      "matrices": {
+        "c": {
+          "element_ids": [
+            "EREDES:circuit:1804L5115500:60",
+            "OSM:circuit:20176749:400",
+            "EREDES:circuit:1006L5624400:60",
+            "EREDES:circuit:0606L5135600:60",
+            "EREDES:circuit:0912L5131300:60"
+          ],
+          "roles": [
+            "MAX_NET_EXPORT",
+            "MAX_NET_IMPORT",
+            "MAX_SOLAR",
+            "MAX_WIND",
+            "MINIMUM_LOAD",
+            "PEAK_LOAD"
+          ],
+          "selection": "largest per-element maximum across roles",
+          "missing_cells": 2
+        },
+        "d": {
+          "element_ids": [
+            "OSM:circuit:20176762:400",
+            "OSM:circuit:20176682:220",
+            "OSM:circuit:20176574:220",
+            "EREDES:circuit:1106L5639500:60",
+            "EREDES:circuit:1106L5615800:60"
+          ],
+          "roles": [
+            "MAX_NET_EXPORT",
+            "MAX_NET_IMPORT",
+            "MAX_SOLAR",
+            "MAX_WIND",
+            "MINIMUM_LOAD",
+            "PEAK_LOAD"
+          ],
+          "selection": "largest per-element maximum across roles",
+          "missing_cells": 0
+        }
+      }
+    },
+    "output_sha256": {
+      "pdf": "3fe9af572d547d7223e2e25cd084b7306ded5e16666daf6de98301a4604a076b",
+      "svg": "acf9107681ba78d876cdac34c174776f696bd64b68a870f7936fadc786dc5860",
+      "png": "e7c4638d8e97cae7509cb990be65b367dbbf0bd62f88098882bb285fdf444bcb"
+    }
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "portuguese_hv_network/config/model_config.json": "ab43a30736f8fbec5000fdf1c2726c3bc22b81b40e336d8bebf89466f56fbe6e",
+  "paper/figures/pt60_review/portugal_gisco_2024.geojson": "fde409780a6ea7135a28866f10e855c53b9d55abc34817cd4d3f5667a3efbe41",
+  "portuguese_hv_network/outputs/annual_nminus1_panel_v2/models/PT60_ANNUAL_PEAK_LOAD_20260115_1215_+0000_solved.json": "9c9fe5aeae87b320e1ab4f8972472438c49bcf30bf6277a753bbee0f117ebb08",
+  "portuguese_hv_network/site/public/data/pt60/buses.geojson": "498c19b8d32c59bdac3e0c4adb564ea03b78ab7014f1da704c049486aa7cf2de",
+  "portuguese_hv_network/site/public/data/pt60/lines.geojson": "ae69786af3fbf698541ced85139ae54db7bcecad094787dd01d6f846984380fe",
+  "portuguese_hv_network/outputs/validation_experiments/scope_matched_validation_timeseries.csv": "0f85b926214788d015bc8be1feeffd241ace0c2ed03c1623cc3b8bb9279024f4",
+  "portuguese_hv_network/outputs/validation_experiments/parameter_evidence_by_voltage.csv": "16cba7c99146ade44cd092d0f1e1968b64f99eb0e014c6b7f6fe24cc9cf14633",
+  "portuguese_hv_network/outputs/validation_experiments/topology_coverage_by_voltage.csv": "aaab16b14e56afb63d5a113d54f27b52594bfd84eb535a255934d244e60d12c3",
+  "portuguese_hv_network/outputs/validation_experiments/parameter_scenarios.json": "ee894a31eea70f8de57fec33f39ed6b474f8022c33e0d89e070d12fede0fd1b5",
+  "portuguese_hv_network/outputs/validation_experiments/sensitivity_summary.csv": "8df048f5db010f60327e84f2e500a217ff904d4d34b6bf969883457bf17e2970",
+  "portuguese_hv_network/outputs/external_evidence_validation/municipality_comparison.csv": "148c84dabb8783e2d3af2a018f4e484afa0df2bac7e3708fd24cdaf67d2fe4d6",
+  "portuguese_hv_network/outputs/external_evidence_validation/substation_comparison.csv": "f7e4db2aa54b930e40c15c675dc67ba2c46b721e5a892c318247256b66727c3b",
+  "portuguese_hv_network/outputs/validation_experiments/validation_confidence_intervals.csv": "c68a834d7513f03a60528847354de4e291cc6083ba7759740cfdddc7135b4452",
+  "portuguese_hv_network/outputs/application_example/application_sweep.csv": "0ae907a29c7638e6940a3bb6ace6e4d65f2a6235fdb086e2474405b1f75dd18c",
+  "portuguese_hv_network/outputs/application_example/nminus1_remedial_v15/nminus1_results.csv": "315ce28f399549dfe82e1b033f24fb870258bf90628c9443a1547d93fec3f4f9",
+  "portuguese_hv_network/outputs/annual_nminus1_panel_v2/annual_nminus1_panel.csv": "9a99b5af1c34fc7e4bd1989af37c1d0cbf1081c1a9f4ef8a36b727575449fd5a",
+  "portuguese_hv_network/outputs/validation_experiments/sensitivity_case_results.csv": "f062a1111715c22939e6c5c390f1389b6913088f31b9ae3f8e8024e99a81279c"
+}

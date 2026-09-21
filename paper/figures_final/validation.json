@@ -1,0 +1,526 @@
+{
+  "checks": [
+    {
+      "check": "11 sequential figure references",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "11 sequential captions",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Every table row preserved verbatim",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Every figure cross-reference resolves",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "No old figure image paths",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Locked source: portuguese_hv_network/config/model_config.json",
+      "passed": true,
+      "details": "VERSION / SNAPSHOT CONFLICT if changed"
+    },
+    {
+      "check": "Locked source: paper/figures/pt60_review/portugal_gisco_2024.geojson",
+      "passed": true,
+      "details": "VERSION / SNAPSHOT CONFLICT if changed"
+    },
+    {
+      "check": "Locked source: portuguese_hv_network/outputs/annual_nminus1_panel_v2/models/PT60_ANNUAL_PEAK_LOAD_20260115_1215_+0000_solved.json",
+      "passed": true,
+      "details": "VERSION / SNAPSHOT CONFLICT if changed"
+    },
+    {
+      "check": "Locked source: portuguese_hv_network/site/public/data/pt60/buses.geojson",
+      "passed": true,
+      "details": "VERSION / SNAPSHOT CONFLICT if changed"
+    },
+    {
+      "check": "Locked source: portuguese_hv_network/site/public/data/pt60/lines.geojson",
+      "passed": true,
+      "details": "VERSION / SNAPSHOT CONFLICT if changed"
+    },
+    {
+      "check": "Locked source: portuguese_hv_network/outputs/validation_experiments/scope_matched_validation_timeseries.csv",
+      "passed": true,
+      "details": "VERSION / SNAPSHOT CONFLICT if changed"
+    },
+    {
+      "check": "Locked source: portuguese_hv_network/outputs/validation_experiments/parameter_evidence_by_voltage.csv",
+      "passed": true,
+      "details": "VERSION / SNAPSHOT CONFLICT if changed"
+    },
+    {
+      "check": "Locked source: portuguese_hv_network/outputs/validation_experiments/topology_coverage_by_voltage.csv",
+      "passed": true,
+      "details": "VERSION / SNAPSHOT CONFLICT if changed"
+    },
+    {
+      "check": "Locked source: portuguese_hv_network/outputs/validation_experiments/parameter_scenarios.json",
+      "passed": true,
+      "details": "VERSION / SNAPSHOT CONFLICT if changed"
+    },
+    {
+      "check": "Locked source: portuguese_hv_network/outputs/validation_experiments/sensitivity_summary.csv",
+      "passed": true,
+      "details": "VERSION / SNAPSHOT CONFLICT if changed"
+    },
+    {
+      "check": "Locked source: portuguese_hv_network/outputs/external_evidence_validation/municipality_comparison.csv",
+      "passed": true,
+      "details": "VERSION / SNAPSHOT CONFLICT if changed"
+    },
+    {
+      "check": "Locked source: portuguese_hv_network/outputs/external_evidence_validation/substation_comparison.csv",
+      "passed": true,
+      "details": "VERSION / SNAPSHOT CONFLICT if changed"
+    },
+    {
+      "check": "Locked source: portuguese_hv_network/outputs/validation_experiments/validation_confidence_intervals.csv",
+      "passed": true,
+      "details": "VERSION / SNAPSHOT CONFLICT if changed"
+    },
+    {
+      "check": "Locked source: portuguese_hv_network/outputs/application_example/application_sweep.csv",
+      "passed": true,
+      "details": "VERSION / SNAPSHOT CONFLICT if changed"
+    },
+    {
+      "check": "Locked source: portuguese_hv_network/outputs/application_example/nminus1_remedial_v15/nminus1_results.csv",
+      "passed": true,
+      "details": "VERSION / SNAPSHOT CONFLICT if changed"
+    },
+    {
+      "check": "Locked source: portuguese_hv_network/outputs/annual_nminus1_panel_v2/annual_nminus1_panel.csv",
+      "passed": true,
+      "details": "VERSION / SNAPSHOT CONFLICT if changed"
+    },
+    {
+      "check": "Locked source: portuguese_hv_network/outputs/validation_experiments/sensitivity_case_results.csv",
+      "passed": true,
+      "details": "VERSION / SNAPSHOT CONFLICT if changed"
+    },
+    {
+      "check": "15 sequential main tables",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "No figure/table placeholders",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Four supplementary tables",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 1: three formats",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 1: 600 dpi",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 1: one vector page",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 2: three formats",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 2: 600 dpi",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 2: one vector page",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 3: three formats",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 3: 600 dpi",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 3: one vector page",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 4: three formats",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 4: 600 dpi",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 4: one vector page",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 5: three formats",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 5: 600 dpi",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 5: one vector page",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 6: three formats",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 6: 600 dpi",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 6: one vector page",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 7: three formats",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 7: 600 dpi",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 7: one vector page",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 8: three formats",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 8: 600 dpi",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 8: one vector page",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 9: three formats",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 9: 600 dpi",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 9: one vector page",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 10: three formats",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 10: 600 dpi",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 10: one vector page",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 11: three formats",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 11: 600 dpi",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 11: one vector page",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "No text outside individual PDF page bounds",
+      "passed": true,
+      "details": []
+    },
+    {
+      "check": "31,492 unique complete and converged cases",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "ren_consumption_mw: paired sample count",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "ren_wind_mw: paired sample count",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "AC closure MAE rounds to 1.77e-6 MW",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Frozen snapshot: 3,783 buses / 4,943 lines",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Sensitivity alternatives: 242 + 22 common baseline",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Five spatial alternatives = 110 + 22 baseline",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Sensitivity summary recomputed: PARAM_IMPEDANCE_HIGH",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Sensitivity summary recomputed: PARAM_IMPEDANCE_LOW",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Sensitivity summary recomputed: PARAM_RATING_HIGH",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Sensitivity summary recomputed: PARAM_RATING_LOW",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Sensitivity summary recomputed: PARAM_TRANSFORMER_CONSERVATIVE",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Sensitivity summary recomputed: PARAM_TRANSFORMER_OPTIMISTIC",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Sensitivity summary recomputed: SPATIAL_BOUNDARY_UNIFORM",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Sensitivity summary recomputed: SPATIAL_BOUNDARY_VOLTAGE",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Sensitivity summary recomputed: SPATIAL_GENERATION_CAPACITY",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Sensitivity summary recomputed: SPATIAL_LOAD_CAPACITY",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Sensitivity summary recomputed: SPATIAL_LOAD_UNIFORM",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Table 12: s=0.9",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Table 12: s=1.0",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Table 12: s=1.05",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Table 12: s=1.1",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Table 12: s=1.15",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Table 13: 70 / 67 primary / 66 pass / 3 diagnostic / 1 island",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Table 15: 9894 / 9888 / 6048 / 9064 / 660",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Table 15 snapshot: MAX_NET_EXPORT",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Table 15 snapshot: MAX_NET_IMPORT",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Table 15 snapshot: MAX_SOLAR",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Table 15 snapshot: MAX_WIND",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Table 15 snapshot: MINIMUM_LOAD",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Table 15 snapshot: PEAK_LOAD",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 1: source binding",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 2: source binding",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 3: source binding",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 4: source binding",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 5: source binding",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 6: source binding",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 7: source binding",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 8: source binding",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 9: source binding",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 10: source binding",
+      "passed": true,
+      "details": ""
+    },
+    {
+      "check": "Figure 11: source binding",
+      "passed": true,
+      "details": ""
+    }
+  ],
+  "paired_metrics": {
+    "ren_consumption_mw": {
+      "n": 31388,
+      "r": 0.99744394618934,
+      "mean_ratio": 1.003370947200416
+    },
+    "ren_wind_mw": {
+      "n": 31484,
+      "r": 0.9997685763896096,
+      "mean_ratio": 1.0561659736693518
+    }
+  },
+  "figure_count": 11,
+  "main_tables": 15,
+  "supplementary_tables": 4,
+  "source_version_caveat": "Paper archived topology has 3783 buses; current mutable main database has 3787. Archived results retained.",
+  "scope": "Validates archived results and rendering, does not rerun AC simulations or recreate bootstrap confidence intervals."
+}

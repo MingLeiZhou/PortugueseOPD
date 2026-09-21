@@ -1,0 +1,52 @@
+{
+  "figure": 4,
+  "stem": "fig04_network_parameter_evidence",
+  "dpi": 600,
+  "width_inches": 7.2,
+  "height_inches": 3.35,
+  "source_files": [
+    "portuguese_hv_network/outputs/validation_experiments/parameter_evidence_by_voltage.csv",
+    "portuguese_hv_network/outputs/validation_experiments/topology_coverage_by_voltage.csv"
+  ],
+  "sha256": {
+    "portuguese_hv_network/outputs/validation_experiments/parameter_evidence_by_voltage.csv": "16cba7c99146ade44cd092d0f1e1968b64f99eb0e014c6b7f6fe24cc9cf14633",
+    "portuguese_hv_network/outputs/validation_experiments/topology_coverage_by_voltage.csv": "aaab16b14e56afb63d5a113d54f27b52594bfd84eb535a255934d244e60d12c3"
+  },
+  "notes": {
+    "evidence_share_percent": [
+      [
+        35.77830188679245,
+        0.0,
+        0.0,
+        36.32075471698113
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        7.051282051282051
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        2.0325203252032518
+      ]
+    ],
+    "support_definition": "R: project-transfer engineering assumption; Imax: direct/source-backed rating; no direct R/X/C observations",
+    "reviewed_evidence_overlay": "paper/revision_v3/resistance_evidence_overlay.csv",
+    "130kv_caveat": "n=7; descriptive only"
+  }
+}

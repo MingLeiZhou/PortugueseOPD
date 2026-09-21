@@ -1,0 +1,20 @@
+{
+  "figure": 7,
+  "stem": "fig07_spatial_validation",
+  "dpi": 600,
+  "width_inches": 7.2,
+  "height_inches": 3.65,
+  "source_files": [
+    "portuguese_hv_network/outputs/external_evidence_validation/municipality_comparison.csv",
+    "portuguese_hv_network/outputs/external_evidence_validation/substation_comparison.csv",
+    "portuguese_hv_network/outputs/validation_experiments/validation_confidence_intervals.csv"
+  ],
+  "sha256": {
+    "portuguese_hv_network/outputs/external_evidence_validation/municipality_comparison.csv": "148c84dabb8783e2d3af2a018f4e484afa0df2bac7e3708fd24cdaf67d2fe4d6",
+    "portuguese_hv_network/outputs/external_evidence_validation/substation_comparison.csv": "f7e4db2aa54b930e40c15c675dc67ba2c46b721e5a892c318247256b66727c3b",
+    "portuguese_hv_network/outputs/validation_experiments/validation_confidence_intervals.csv": "c68a834d7513f03a60528847354de4e291cc6083ba7759740cfdddc7135b4452"
+  },
+  "notes": {
+    "confidence_intervals": "archived 1000-replicate cluster bootstrap; not recomputed"
+  }
+}

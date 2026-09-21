@@ -1,0 +1,16 @@
+{
+  "folds": 5,
+  "seed_string": "SimPT60-20260921:",
+  "fold_rule": "first 8 hex SHA256 modulo 5 of seed_string+station_code",
+  "times": 22,
+  "k": 5,
+  "weight": "1/max(distance_km,0.1)",
+  "trafo_route_length_km": 0.001,
+  "capacity_source": "2025 installed MVA; maximum across reported seasons",
+  "excluded_features": [
+    "held-out station load at every timestamp",
+    "seasonal peak load",
+    "national held-out totals"
+  ],
+  "scope": "stress test of spatial imputability and reconstructed route proximity; not independent AC-flow or PDIRT allocation validation"
+}

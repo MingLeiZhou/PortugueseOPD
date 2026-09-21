@@ -1,0 +1,17 @@
+{
+  "figure": 9,
+  "stem": "fig09_grid_stress",
+  "dpi": 600,
+  "width_inches": 7.2,
+  "height_inches": 3.15,
+  "source_files": [
+    "portuguese_hv_network/outputs/application_example/application_sweep.csv"
+  ],
+  "sha256": {
+    "portuguese_hv_network/outputs/application_example/application_sweep.csv": "0ae907a29c7638e6940a3bb6ace6e4d65f2a6235fdb086e2474405b1f75dd18c"
+  },
+  "notes": {
+    "solves": 5,
+    "intervals": "none; deterministic response connecting sampled scales"
+  }
+}

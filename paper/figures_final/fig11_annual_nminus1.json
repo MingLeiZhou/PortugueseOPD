@@ -1,0 +1,133 @@
+{
+  "figure": 11,
+  "stem": "fig11_annual_nminus1",
+  "dpi": 600,
+  "width_inches": 7.2,
+  "height_inches": 8.3,
+  "source_files": [
+    "portuguese_hv_network/outputs/annual_nminus1_panel_v2/annual_nminus1_panel.csv"
+  ],
+  "sha256": {
+    "portuguese_hv_network/outputs/annual_nminus1_panel_v2/annual_nminus1_panel.csv": "9a99b5af1c34fc7e4bd1989af37c1d0cbf1081c1a9f4ef8a36b727575449fd5a"
+  },
+  "notes": {
+    "count": 9894,
+    "primary_converged": 9888,
+    "absolute_pass": 6048,
+    "incremental_pass": 9064,
+    "screening_counts": [
+      [
+        1527,
+        0,
+        122
+      ],
+      [
+        1455,
+        0,
+        194
+      ],
+      [
+        1526,
+        0,
+        123
+      ],
+      [
+        0,
+        1502,
+        147
+      ],
+      [
+        1538,
+        0,
+        111
+      ],
+      [
+        2,
+        1514,
+        133
+      ]
+    ],
+    "failure_indicators": [
+      [
+        114,
+        102,
+        109,
+        115,
+        110,
+        110
+      ],
+      [
+        7,
+        92,
+        12,
+        29,
+        1,
+        22
+      ],
+      [
+        1,
+        2,
+        4,
+        4,
+        0,
+        2
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        2,
+        0,
+        3
+      ]
+    ],
+    "matrices": {
+      "c": {
+        "element_ids": [
+          "EREDES:circuit:1804L5115500:60",
+          "OSM:circuit:20176749:400",
+          "EREDES:circuit:1006L5624400:60",
+          "EREDES:circuit:0606L5135600:60",
+          "EREDES:circuit:0912L5131300:60"
+        ],
+        "roles": [
+          "MAX_NET_EXPORT",
+          "MAX_NET_IMPORT",
+          "MAX_SOLAR",
+          "MAX_WIND",
+          "MINIMUM_LOAD",
+          "PEAK_LOAD"
+        ],
+        "selection": "largest per-element maximum across roles",
+        "missing_cells": 2
+      },
+      "d": {
+        "element_ids": [
+          "OSM:circuit:20176762:400",
+          "OSM:circuit:20176682:220",
+          "OSM:circuit:20176574:220",
+          "EREDES:circuit:1106L5639500:60",
+          "EREDES:circuit:1106L5615800:60"
+        ],
+        "roles": [
+          "MAX_NET_EXPORT",
+          "MAX_NET_IMPORT",
+          "MAX_SOLAR",
+          "MAX_WIND",
+          "MINIMUM_LOAD",
+          "PEAK_LOAD"
+        ],
+        "selection": "largest per-element maximum across roles",
+        "missing_cells": 0
+      }
+    }
+  }
+}

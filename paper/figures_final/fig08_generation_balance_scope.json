@@ -1,0 +1,33 @@
+{
+  "figure": 8,
+  "stem": "fig08_generation_balance_scope",
+  "dpi": 600,
+  "width_inches": 7.2,
+  "height_inches": 4.95,
+  "source_files": [
+    "portuguese_hv_network/outputs/validation_experiments/scope_matched_validation_timeseries.csv"
+  ],
+  "sha256": {
+    "portuguese_hv_network/outputs/validation_experiments/scope_matched_validation_timeseries.csv": "0f85b926214788d015bc8be1feeffd241ace0c2ed03c1623cc3b8bb9279024f4"
+  },
+  "notes": {
+    "ecdf": {
+      "model_ac_balance_closure_mw": {
+        "n": 31492,
+        "exact_zero_count": 0,
+        "mean_absolute_mw": 1.7722945520413326e-06
+      },
+      "ren_input_balance_residual_mw": {
+        "n": 31492,
+        "exact_zero_count": 1,
+        "mean_absolute_mw": 12.183729201066937
+      },
+      "external_balance_gap_mw": {
+        "n": 31388,
+        "exact_zero_count": 0,
+        "mean_absolute_mw": 21.501122277923788
+      }
+    },
+    "zero_handling": "exact zeros remain in denominator; no epsilon or fabricated coordinates"
+  }
+}

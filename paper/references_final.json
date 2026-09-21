@@ -1,0 +1,683 @@
+[
+  {
+    "URL": "https://www.dgeg.gov.pt/media/54fldci3/pnec2030_para_aprov_ar.pdf",
+    "author": [
+      {
+        "literal": "DGEG"
+      }
+    ],
+    "id": "DGEGPNEC2030Revision2024",
+    "issued": {
+      "date-parts": [
+        [
+          2024
+        ]
+      ]
+    },
+    "note": "Document cover dated 1 October 2024; accessed 2026-09-21.",
+    "publisher": "DGEG",
+    "title": "Portugal: Plano Nacional Energia e Clima 2021–2030, atualização/revisão",
+    "type": "report"
+  },
+  {
+    "URL": "https://www.dgeg.gov.pt/pt/servicos-online/setor-energetico/",
+    "author": [
+      {
+        "literal": "DGEG"
+      }
+    ],
+    "id": "DGEGGeo2026",
+    "note": "Dynamic source; publication date not stated. Input vintage is fixed by the project archive, not by this access date. Geographic inputs: DGEG ArcGIS services CH, CE, CS, CC and CT; e.g. https://servergeo.dgeg.gov.pt/arcgis/rest/services/Visualizadores/CE/MapServer/0 .",
+    "publisher": "Official geographic data portal",
+    "title": "Informação Geográfica de Energia Elétrica",
+    "type": "",
+    "accessed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          21
+        ]
+      ]
+    }
+  },
+  {
+    "URL": "https://www.erse.pt/media/340hrot0/proposta-pdird-e-2020_anexo_b.pdf",
+    "author": [
+      {
+        "literal": "E-REDES"
+      },
+      {
+        "literal": "Entidade Reguladora dos Serviços Energéticos"
+      }
+    ],
+    "id": "EREDESPDIRD2020AnnexB",
+    "issued": {
+      "date-parts": [
+        [
+          2020
+        ]
+      ]
+    },
+    "publisher": "ERSE",
+    "title": "PDIRD-E 2020, Anexo B",
+    "type": "report",
+    "note": "July version. Local archived PDF checked; PDF pages 93–95 contain the cited northern circuits. Planning inventory, not contemporaneous telemetry."
+  },
+  {
+    "id": "EREDESSubstationCapacity",
+    "type": "dataset",
+    "author": [
+      {
+        "literal": "E-REDES"
+      }
+    ],
+    "title": "Carga na subestação",
+    "publisher": "E-REDES Open Data Portal",
+    "URL": "https://e-redes.opendatasoft.com/explore/dataset/carga-na-subestacao/",
+    "accessed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          21
+        ]
+      ]
+    },
+    "note": "Publication date not stated; the study uses the archived input snapshot."
+  },
+  {
+    "id": "EREDESNationalConsumption",
+    "type": "dataset",
+    "author": [
+      {
+        "literal": "E-REDES"
+      }
+    ],
+    "title": "Consumo total nacional",
+    "publisher": "E-REDES Open Data Portal",
+    "URL": "https://e-redes.opendatasoft.com/explore/dataset/consumo-total-nacional/",
+    "accessed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          21
+        ]
+      ]
+    },
+    "note": "Publication date not stated; the study uses the archived input snapshot."
+  },
+  {
+    "id": "EREDESDistributionInjection",
+    "type": "dataset",
+    "author": [
+      {
+        "literal": "E-REDES"
+      }
+    ],
+    "title": "Energia injetada na rede de distribuição",
+    "publisher": "E-REDES Open Data Portal",
+    "URL": "https://e-redes.opendatasoft.com/explore/dataset/energia-injetada-na-rede-de-distribuicao/",
+    "accessed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          21
+        ]
+      ]
+    },
+    "note": "Publication date not stated; the study uses the archived input snapshot."
+  },
+  {
+    "id": "EREDESNationalProduction",
+    "type": "dataset",
+    "author": [
+      {
+        "literal": "E-REDES"
+      }
+    ],
+    "title": "Energia produzida total nacional",
+    "publisher": "E-REDES Open Data Portal",
+    "URL": "https://e-redes.opendatasoft.com/explore/dataset/energia-produzida-total-nacional/",
+    "accessed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          21
+        ]
+      ]
+    },
+    "note": "Publication date not stated; the study uses the archived input snapshot."
+  },
+  {
+    "id": "EREDESMunicipalityConsumption",
+    "type": "dataset",
+    "author": [
+      {
+        "literal": "E-REDES"
+      }
+    ],
+    "title": "Monthly consumption by municipality",
+    "publisher": "E-REDES Open Data Portal",
+    "URL": "https://e-redes.opendatasoft.com/explore/dataset/3-consumos-faturados-por-municipio-ultimos-10-anos/",
+    "accessed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          21
+        ]
+      ]
+    },
+    "note": "Publication date not stated; the study uses the archived input snapshot."
+  },
+  {
+    "URL": "https://e-redes.opendatasoft.com/pages/rnd/",
+    "author": [
+      {
+        "literal": "E-REDES"
+      }
+    ],
+    "id": "EREDESRND2026",
+    "note": "Dynamic source; publication date not stated. Input vintage is fixed by the project archive, not by this access date.",
+    "publisher": "Open data portal",
+    "title": "Rede Nacional de Distribuição: Dados da Rede AT e Cargas de Subestação",
+    "type": "",
+    "accessed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          21
+        ]
+      ]
+    }
+  },
+  {
+    "URL": "https://gisco-services.ec.europa.eu/distribution/v2/countries/",
+    "author": [
+      {
+        "literal": "Eurostat GISCO"
+      }
+    ],
+    "id": "GISCO2024",
+    "issued": {
+      "date-parts": [
+        [
+          2024
+        ]
+      ]
+    },
+    "note": "Accessed 2026-09-03",
+    "publisher": "Geospatial dataset",
+    "title": "Countries 2024: Portugal Boundary, 1:1 Million, EPSG:4326",
+    "type": "",
+    "accessed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          21
+        ]
+      ]
+    }
+  },
+  {
+    "id": "GeoPandas2026",
+    "type": "article-journal",
+    "author": [
+      {
+        "family": "Fleischmann",
+        "given": "Martin"
+      },
+      {
+        "family": "Van den Bossche",
+        "given": "Joris"
+      },
+      {
+        "family": "Jordahl",
+        "given": "Kelsey"
+      },
+      {
+        "family": "Richards",
+        "given": "Matthew John"
+      },
+      {
+        "family": "McBride",
+        "given": "James"
+      },
+      {
+        "family": "Wasserman",
+        "given": "Jacob"
+      },
+      {
+        "family": "Ward",
+        "given": "Brendan"
+      },
+      {
+        "family": "Wolf",
+        "given": "Levi John"
+      }
+    ],
+    "title": "GeoPandas: Fundamental Data Structures for Vector Spatial Data in Python",
+    "container-title": "Computers, Environment and Urban Systems",
+    "volume": "130",
+    "page": "102495",
+    "issued": {
+      "date-parts": [
+        [
+          2026
+        ]
+      ]
+    },
+    "DOI": "10.1016/j.compenvurbsys.2026.102495",
+    "URL": "https://doi.org/10.1016/j.compenvurbsys.2026.102495",
+    "note": "Metadata verified against the official GeoPandas CITATION.md on 2026-09-21; no package version is inferred from this citation."
+  },
+  {
+    "URL": "https://download.geofabrik.de/europe/portugal.html",
+    "author": [
+      {
+        "literal": "Geofabrik GmbH"
+      }
+    ],
+    "id": "GeofabrikPortugal2026",
+    "note": "Dynamic source; publication date not stated. Input vintage is fixed by the project archive, not by this access date.",
+    "publisher": "Geospatial data extract",
+    "title": "OpenStreetMap Data Extract for Portugal",
+    "type": "",
+    "accessed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          21
+        ]
+      ]
+    }
+  },
+  {
+    "DOI": "10.1016/j.esr.2018.08.012",
+    "author": [
+      {
+        "family": "Hörsch",
+        "given": "Jonas"
+      },
+      {
+        "family": "Hofmann",
+        "given": "Fabian"
+      },
+      {
+        "family": "Schlachtberger",
+        "given": "David"
+      },
+      {
+        "family": "Brown",
+        "given": "Tom"
+      }
+    ],
+    "container-title": "Energy Strategy Reviews",
+    "id": "Horsch2018",
+    "issued": {
+      "date-parts": [
+        [
+          2018
+        ]
+      ]
+    },
+    "page": "207-215",
+    "title": "PyPSA-Eur: An Open Optimisation Model of the European Transmission System",
+    "title-short": "PyPSA-Eur",
+    "type": "article-journal",
+    "volume": "22"
+  },
+  {
+    "DOI": "10.3390/en13123290",
+    "author": [
+      {
+        "family": "Meinecke",
+        "given": "Steffen"
+      },
+      {
+        "family": "Sarajlić",
+        "given": "Džanan"
+      },
+      {
+        "family": "Drauz",
+        "given": "Simon Ruben"
+      },
+      {
+        "family": "Klettke",
+        "given": "Annika"
+      },
+      {
+        "family": "Lauven",
+        "given": "Lars-Peter"
+      },
+      {
+        "family": "Rehtanz",
+        "given": "Christian"
+      },
+      {
+        "family": "Moser",
+        "given": "Albert"
+      },
+      {
+        "family": "Braun",
+        "given": "Martin"
+      }
+    ],
+    "container-title": "Energies",
+    "id": "Meinecke2020",
+    "issue": "12",
+    "issued": {
+      "date-parts": [
+        [
+          2020
+        ]
+      ]
+    },
+    "page": "3290",
+    "title": "SimBench—A Benchmark Dataset of Electric Power Systems to Compare Innovative Solutions Based on Power Flow Analysis",
+    "type": "article-journal",
+    "volume": "13"
+  },
+  {
+    "URL": "https://openinframap.org/about",
+    "author": [
+      {
+        "literal": "OpenInfraMap contributors"
+      }
+    ],
+    "id": "OpenInfraMap2026",
+    "note": "Dynamic source; publication date not stated. Input vintage is fixed by the project archive, not by this access date.",
+    "publisher": "Web map of infrastructure data derived from OpenStreetMap",
+    "title": "OpenInfraMap",
+    "type": "",
+    "accessed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          21
+        ]
+      ]
+    }
+  },
+  {
+    "URL": "https://www.openstreetmap.org/copyright",
+    "author": [
+      {
+        "literal": "OpenStreetMap contributors"
+      }
+    ],
+    "id": "OSM2026",
+    "note": "Dynamic source; publication date not stated. Input vintage is fixed by the project archive, not by this access date.",
+    "publisher": "Collaborative geospatial database",
+    "title": "OpenStreetMap",
+    "type": "",
+    "accessed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          21
+        ]
+      ]
+    }
+  },
+  {
+    "URL": "https://www.erse.pt/media/lx5n5kao/pdirt-2025-2034-proposta-inicial-vol-i-anexos-1-a-16.pdf",
+    "author": [
+      {
+        "literal": "REN"
+      }
+    ],
+    "id": "ERSEPDIRT2024",
+    "issued": {
+      "date-parts": [
+        [
+          2024
+        ]
+      ]
+    },
+    "publisher": "ERSE (public consultation archive)",
+    "title": "PDIRT 2025–2034, Proposta Inicial, Volume I, Anexos 1 a 16",
+    "type": "report",
+    "note": "Initial proposal, December 2024. Local archived annexes checked; ERSE is the archive host."
+  },
+  {
+    "URL": "https://datahub.ren.pt/en/networks/electrical-grid/",
+    "author": [
+      {
+        "literal": "REN"
+      }
+    ],
+    "id": "RENDataHub2026",
+    "note": "Dynamic source; publication date not stated. Input vintage is fixed by the project archive, not by this access date. Time-series endpoint: https://servicebus.ren.pt/datahubapi/electricity/ElectricityProductionBreakdownDaily .",
+    "publisher": "Official data portal",
+    "title": "Electrical Grid Data Hub",
+    "type": "",
+    "accessed": {
+      "date-parts": [
+        [
+          2026,
+          9,
+          21
+        ]
+      ]
+    }
+  },
+  {
+    "DOI": "10.1109/TPWRS.2018.2829021",
+    "author": [
+      {
+        "family": "Thurner",
+        "given": "Leon"
+      },
+      {
+        "family": "Scheidler",
+        "given": "Alexander"
+      },
+      {
+        "family": "Schäfer",
+        "given": "Florian"
+      },
+      {
+        "family": "Menke",
+        "given": "Jan-Hendrik"
+      },
+      {
+        "family": "Dollichon",
+        "given": "Julian"
+      },
+      {
+        "family": "Meier",
+        "given": "Friederike"
+      },
+      {
+        "family": "Meinecke",
+        "given": "Steffen"
+      },
+      {
+        "family": "Braun",
+        "given": "Martin"
+      }
+    ],
+    "container-title": "IEEE Transactions on Power Systems",
+    "id": "Thurner2018",
+    "issue": "6",
+    "issued": {
+      "date-parts": [
+        [
+          2018
+        ]
+      ]
+    },
+    "page": "6510-6521",
+    "title": "pandapower—An Open-Source Python Tool for Convenient Modeling, Analysis, and Optimization of Electric Power Systems",
+    "type": "article-journal",
+    "volume": "33"
+  },
+  {
+    "DOI": "10.1038/s41597-025-04550-7",
+    "author": [
+      {
+        "family": "Xiong",
+        "given": "Bobby"
+      },
+      {
+        "family": "Fioriti",
+        "given": "Davide"
+      },
+      {
+        "family": "Neumann",
+        "given": "Fabian"
+      },
+      {
+        "family": "Riepin",
+        "given": "Iegor"
+      },
+      {
+        "family": "Brown",
+        "given": "Tom"
+      }
+    ],
+    "container-title": "Scientific Data",
+    "id": "Xiong2025",
+    "issue": "1",
+    "issued": {
+      "date-parts": [
+        [
+          2025
+        ]
+      ]
+    },
+    "page": "277",
+    "title": "Modelling the High-Voltage Grid Using Open Data for Europe and Beyond",
+    "type": "article-journal",
+    "volume": "12"
+  },
+  {
+    "id": "APA3403",
+    "type": "report",
+    "title": "Sobreequipamento do Parque Eólico de Trancoso: Parecer da Comissão de Avaliação, AIA 3403",
+    "URL": "https://siaia.apambiente.pt/AIADOC/AIA3403/parecerca_3403202192134944.pdf",
+    "author": [
+      {
+        "literal": "APA"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2021
+        ]
+      ]
+    },
+    "note": ". July; PDF p. 5."
+  },
+  {
+    "id": "APAPPA421",
+    "type": "webpage",
+    "title": "PPA 421: Sub-Parque Eólico de Sernancelhe e ligação a Moimenta",
+    "URL": "https://siaia.apambiente.pt/PosAvaliacao/DetalhesPosAvaliacao/421",
+    "author": [
+      {
+        "literal": "APA"
+      }
+    ],
+    "note": ". AIA 2009; project-name and operation-date fields; archived 2026-09-21."
+  },
+  {
+    "id": "APAPPA407",
+    "type": "webpage",
+    "title": "PPA 407: Ligação do Douro Sul à Subestação de Armamar e Subestação de Moimenta",
+    "URL": "https://siaia.apambiente.pt/PosAvaliacao/DetalhesPosAvaliacao/407",
+    "author": [
+      {
+        "literal": "APA"
+      }
+    ],
+    "note": ". AIA 2009; archived 2026-09-21."
+  },
+  {
+    "id": "DGEGCasal2025",
+    "type": "webpage",
+    "title": "Visita técnica a unidade de armazenamento de Casal da Cortiça, 18 de junho",
+    "URL": "https://www.dgeg.gov.pt/pt/areas-setoriais/energia/energia-eletrica/atividades-eventos/",
+    "author": [
+      {
+        "literal": "DGEG"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2025
+        ]
+      ]
+    },
+    "note": ". Project announcement; archived 2026-09-21."
+  },
+  {
+    "id": "REE2012",
+    "type": "report",
+    "title": "Interconexiones eléctricas: un paso para el mercado único de la energía en Europa",
+    "URL": "https://www.ree.es/sites/default/files/jgk4byy3ukct.pdf",
+    "author": [
+      {
+        "literal": "Red Eléctrica de España"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2012
+        ]
+      ]
+    },
+    "note": ". September; PDF p. 10."
+  },
+  {
+    "id": "Tocha2019",
+    "type": "report",
+    "title": "Memória Descritiva e Justificativa: Linha a 60 kV PE Tocha II–Tocha",
+    "URL": "https://siaia.apambiente.pt/AIADOC/AIA3274/projeto%20linha%20eletrica%20pe%20tocha%20ii2019729153214.pdf",
+    "author": [
+      {
+        "literal": "EDP Distribuição"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2019
+        ]
+      ]
+    },
+    "note": ". 19 February; process 2800-19C007374; PDF pp. 3, 5."
+  },
+  {
+    "id": "REN2015Estoi",
+    "type": "report",
+    "title": "PDIRT 2016–2025, Anexo 6: Equipamento em serviço previsto em finais de 2016, 2018, 2020 e 2025",
+    "URL": "https://www.erse.pt/media/b1edmm30/proposta_pdirt_e_2015_anexos.pdf",
+    "author": [
+      {
+        "literal": "REN"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2015
+        ]
+      ]
+    },
+    "note": ". Proposal archive; PDF pp. 50, 52, 54, 56. Year follows archive label, not a newly inferred issue date."
+  }
+]

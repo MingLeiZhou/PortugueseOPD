@@ -1,0 +1,19 @@
+{
+  "figure": 5,
+  "stem": "fig05_parameter_spatial_sensitivity",
+  "dpi": 600,
+  "width_inches": 7.2,
+  "height_inches": 4.3,
+  "source_files": [
+    "portuguese_hv_network/outputs/validation_experiments/parameter_scenarios.json",
+    "portuguese_hv_network/outputs/validation_experiments/sensitivity_summary.csv"
+  ],
+  "sha256": {
+    "portuguese_hv_network/outputs/validation_experiments/parameter_scenarios.json": "ee894a31eea70f8de57fec33f39ed6b474f8022c33e0d89e070d12fede0fd1b5",
+    "portuguese_hv_network/outputs/validation_experiments/sensitivity_summary.csv": "8df048f5db010f60327e84f2e500a217ff904d4d34b6bf969883457bf17e2970"
+  },
+  "notes": {
+    "summary": "dot=median; segment=median to worst; not confidence interval",
+    "unique_cases": 264
+  }
+}
