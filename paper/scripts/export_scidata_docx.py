@@ -20,7 +20,7 @@ from docx.shared import Inches, Pt, RGBColor, Twips
 
 PAPER = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT = PAPER / "SimPT60_submission_en.docx"
-TITLE = "SimPT60: A Traceable Time-Series Power-Flow Dataset for Portugal's High-Voltage Grid"
+TITLE = "A traceable time-series power-flow dataset for Portugal's high-voltage grid"
 FONT = "Times New Roman"
 CONTENT_WIDTH_DXA = 9360
 
