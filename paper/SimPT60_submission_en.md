@@ -48,18 +48,18 @@ Table 1 combines each source's coverage, modelling role, and temporal treatment.
 
 **Table 1—Public sources, modelling roles, and temporal treatment.**
 
-| Source | Data | Role | Time basis |
-| --- | --- | --- | --- |
-| E-REDES RND (AT) | 60/130 kV grid | Network | Snapshot |
-| OSM / Geofabrik | 150/220/400 kV grid | Network, assets | Snapshot |
-| DGEG / APA / projects | Assets, capacity, dates | Assets, evidence | Asset date |
-| REN Data Hub | 15 series; 15 min | Dispatch, reference | Common window |
-| E-REDES station energy | 397 stations; kWh | Direct load | Common window |
-| PDIRT / PDIRD | Profiles, circuits, ratings | Weights, parameters | Planning |
-| REN / REE | Length, capacity, interties | Check, calibration | Inventory |
-| GISCO | National boundary | Cartography | Snapshot |
-| E-REDES auxiliary | 14 products | Validation | Withheld |
-| Minho--Galicia | Notice: 2 July 2026 | Inventory | Post-window; off |
+| Source | Scope | Resolution | Inputs | Use | Time basis |
+| --- | --- | --- | --- | --- | --- |
+| E-REDES RND (AT) | 60/130 kV | Static | Lines, facilities | Network | Snapshot |
+| OSM / Geofabrik | 150/220/400 kV | Static | Lines, facilities | Network | Snapshot |
+| DGEG / APA / projects | National | Asset | Capacity, dates | Assets, evidence | Asset date |
+| REN Data Hub | National | 15 min | 15 series | Dispatch, reference | Common window |
+| E-REDES station energy | 397 stations | 15 min | kWh | Direct load | Common window |
+| PDIRT / PDIRD | Planning | Static/profile | Circuits, ratings | Weights, parameters | Planning |
+| REN / REE | Transmission | Inventory | Length, capacity, interties | Check, calibration | Inventory |
+| GISCO | Continental | Spatial | Boundary | Cartography | Snapshot |
+| E-REDES auxiliary | National/local | Mixed | 14 products | Validation | Withheld |
+| Minho--Galicia | Intertie | Notice | 2 July 2026 | Inventory | Post-window; off |
 
 **Table note.** The common window is 1 May 2025 to 24 March 2026. Proxy denotes an engineering assumption. For Estoi, voltage and capacity are source-backed; equal parameters and joint availability are Proxy [@REN2015Estoi].
 
@@ -101,19 +101,19 @@ Table 2 consolidates these connection decisions, including same-voltage endpoint
 
 **Table 2—Topology rules and thresholds.**
 
-| Object | Criterion | Outcome |
-| --- | --- | --- |
-| Coordinates | EPSG:3763 | WGS 84 retained |
-| Endpoints | Same kV; \(\leq 75\) m | Derived cluster |
-| Facilities | Same kV; \(\leq 250\) m | Direct / Derived |
-| Normalization | Same name; mobile \(\leq 250\) m | Derived; logged |
-| OSM split | Endpoint / shared node | Crossing ignored |
-| Circuit | Relation; parallel retained | Physical-circuit N−1 |
-| Explicit transformer | Both buses \(\leq 1\) km | Direct |
-| Colocated transformer | Adjacent kV; same station | Derived |
-| RARI boundary | Name \(\leq 5\) km | Endpoint \(\leq 1\) km |
-| PDIRD path | Shortest; ratio 0.65--1.60 | Partial / Proxy |
-| Invalid branch | Loop; length \(\leq 0\); conflict | Blocked |
+| Object | Relation | Voltage | Limit 1 | Limit 2 | Action | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| Coordinates | EPSG:3763 | — | Projected | — | Retain WGS 84 | Direct |
+| Endpoints | Endpoint cluster | Same kV | \(\leq 75\) m | — | Create cluster | Derived |
+| Facilities | Nearest facility | Same kV | \(\leq 250\) m | — | Assign / create bus | Direct / Derived |
+| Normalization | Same name; mobile | Same kV | \(\leq 250\) m | — | Merge; log | Derived |
+| OSM split | Endpoint / shared node | — | — | — | Ignore crossing | Rule |
+| Circuit | `circuit` / `line_section` | — | — | — | Retain parallels | Physical N−1 |
+| Explicit transformer | High-/low-side buses | Adjacent kV | Both \(\leq 1\) km | — | Connect | Direct |
+| Colocated transformer | Same station | Adjacent kV | Colocated | — | Connect | Derived |
+| RARI boundary | Station name | HV to 60 kV | Name \(\leq 5\) km | Endpoint \(\leq 1\) km | Connect boundary | Direct / Derived |
+| PDIRD path | Shortest path | 60 kV | Ratio 0.65--1.60 | — | Accept / proxy | Partial / Proxy |
+| Invalid branch | Loop / conflict | Inconsistent | Length \(\leq 0\) | — | Block | Blocked |
 
 **Table note.** Direct = published link; Derived = deterministic reconstruction; Proxy = engineering substitution; Blocked = excluded. Distances are planar.
 
@@ -158,20 +158,20 @@ REN imports and exports are aligned to the common calendar but withheld from bou
 
 **Table 3—Asset mapping and time-series transformation rules.**
 
-| Process | Key rule | Status |
-| --- | --- | --- |
-| Asset deduplication | \(\leq 3\) km; capacity match | Derived; logged |
-| Bus mapping | Evidence → voltage → nearest; \(\leq 20\) km | Direct / Derived |
-| Missing voltage | \(\geq 100\) MW → \(\geq 150\) kV; else \(\geq 60\) kV | Derived |
-| Commissioning | Date after case: off; missing: on | Known / Unknown |
-| Time labels | E-REDES end −15 min | UTC start |
-| DST / missing | 92 / 96 / 100 intervals | Mean duplicate; no fill |
-| Energy | \(P_{\mathrm{MW}}=E_{\mathrm{kWh}}/250\) | Derived |
-| Load | Observed + PDIRT residual | Direct / Proxy |
-| Storage load | Capacity share | Derived |
-| Generation | Technology, date, nameplate | Derived |
-| Unmapped generation | 400 kV proxy bus | Proxy |
-| Cross-border | Post-solution comparison | Withheld |
+| Process | Input | Priority / rule | Limit | Output | Status |
+| --- | --- | --- | --- | --- | --- |
+| Asset deduplication | Plant records | Distance + capacity | \(\leq 3\) km | Merged asset | Derived; logged |
+| Bus mapping | Connection, voltage, location | Evidence → voltage → nearest | \(\leq 20\) km | Bus assignment | Direct / Derived |
+| Missing voltage | Capacity | \(\geq 100\) MW → \(\geq 150\) kV | Else \(\geq 60\) kV | Search set | Derived |
+| Commissioning | Date | After case → off | Missing → on | Availability | Known / Unknown |
+| Time labels | E-REDES interval end | Shift −15 min | — | UTC start | Derived |
+| DST / missing | Local labels | Duplicate → mean | 92 / 96 / 100 | Interval flag | No fill |
+| Energy | kWh | Divide by 250 | 15 min | MW | Derived |
+| Load | Station + REN | Observed + residual | — | Nodal load | Direct / Proxy |
+| Storage load | Capacity | Proportional share | — | Nodal load | Derived |
+| Generation | Technology, date, nameplate | Mapped + commissioned | Nameplate | Nodal generation | Derived |
+| Unmapped generation | Residual | One proxy bus | 400 kV | Proxy injection | Proxy |
+| Cross-border | REN exchange | Post-solution only | — | Comparison | Withheld |
 
 **Table note.** `timestamp_utc` is the stored field; `interval_start_utc` denotes its meaning. Proxy locations are non-physical.
 
@@ -197,17 +197,17 @@ Cases are processed in parallel by civil month. Workers read inputs and solve ca
 
 **Table 4—Case and solver settings.**
 
-| Item | Setting | Status |
-| --- | --- | --- |
-| Rating | May--Sep: 1.00; Mar--Apr, Oct--Nov: 1.10; Dec--Feb: 1.15 | Proxy |
-| PV eligibility | Non-battery; \(\geq 20\) MW; \(\geq 60\) kV | Proxy |
-| PV / Q | 1.0 p.u.; ±0.50 Mvar/MW | Proxy |
-| Compensation | Power factor 0.98; \(\leq 15\) Mvar/bus | Proxy |
-| Reactors | 5 × 150 Mvar; 400 kV | Proxy |
-| Boundary | 1 angle reference; voltage × circuits | Derived |
-| Solver | NR/DC; Q limits; 50 iterations; \(10^{-6}\) MVA | Solver |
-| Taps | High side; ±8 × 1.25%; 16 rounds; 0.985--1.015 p.u. | Proxy |
-| Screening | 0.90--1.10 p.u.; 100% loading | Screen |
+| Item | Scope | Target / base | Limit / range | Steps / rule | Status |
+| --- | --- | --- | --- | --- | --- |
+| Rating | Lines | May--Sep 1.00 | Dec--Feb 1.15 | Mar--Apr, Oct--Nov 1.10 | Proxy |
+| PV eligibility | Non-battery generation | \(\geq 20\) MW | \(\geq 60\) kV | PV mode | Proxy |
+| PV / Q | PV generation | 1.0 p.u. | ±0.50 Mvar/MW | Q limits | Proxy |
+| Compensation | Loads | Power factor 0.98 | \(\leq 15\) Mvar/bus | Per bus | Proxy |
+| Reactors | 400 kV buses | 150 Mvar | 5 units | Shunt | Proxy |
+| Boundary | Boundary nodes | 1 angle reference | — | Voltage × circuits | Derived |
+| Solver | AC power flow | NR / DC start | \(10^{-6}\) MVA | Q limits; 50 iterations | Solver |
+| Taps | High-side transformer | 0.985--1.015 p.u. | ±8 × 1.25% | 16 rounds | Proxy |
+| Screening | Buses / branches | 0.90--1.10 p.u. | 100% loading | Retain violations | Screen |
 
 **Table note.** Multipliers are relative to the summer rating. Settings are frozen in `model_config.json`.
 
@@ -286,24 +286,25 @@ Table 5 summarizes the principal static, time-series, validation, and applicatio
 
 **Table 5—Principal dataset statistics.**
 
-| Group | Object | Count |
-| --- | --- | ---: |
-| Static | Facilities | 675 |
-| Static | Buses | 3,783 |
-| Static | Lines | 4,943 |
-| Static | Transformers | 228 |
-| Static | Generation / storage | 1,190 |
-| Static | Loads | 468 |
-| Static | Border endpoints | 7 |
-| Active | Buses / lines | 3,664 / 4,787 |
-| Series | Days / intervals | 328 / 31,492 |
-| Series | Station energy | 397 / 12,360,502 |
-| Series | REN series | 15 / 472,380 |
-| Context | Weather | 3 / 23,616 |
-| Context | Monthly balance | 11 / 660 |
-| Validation | Auxiliary products | 14 / 2,239,064 |
-| Cases | Monthly files / cases | 11 / 31,492 |
-| N−1 | Times / cases | 6 / 9,894 |
+| Group | Object | Entity count | Record / case count | Cadence / grouping | Variant |
+| --- | --- | ---: | ---: | --- | --- |
+| Static | Facilities | 675 | — | Snapshot | CORE-3783 |
+| Static | Buses | 3,783 | — | Snapshot | CORE-3783 |
+| Static | Lines | 4,943 | — | Snapshot | CORE-3783 |
+| Static | Transformers | 228 | — | Snapshot | CORE-3783 |
+| Static | Generation / storage | 1,190 | — | Snapshot | CORE-3783 |
+| Static | Loads | 468 | — | Snapshot | CORE-3783 |
+| Static | Border endpoints | 7 | — | Snapshot | CORE-3783 |
+| Active | Buses | 3,664 | — | Connected | CORE-3783 |
+| Active | Lines | 4,787 | — | Connected | CORE-3783 |
+| Series | Calendar | 328 days | 31,492 intervals | 15 min | CORE-3783 |
+| Series | Station energy | 397 stations | 12,360,502 | 15 min | Input |
+| Series | REN series | 15 series | 472,380 | 15 min | Input |
+| Context | Weather | 3 locations | 23,616 | Hourly | Input |
+| Context | Monthly balance | 11 periods | 660 | Monthly | Input |
+| Validation | Auxiliary products | 14 products | 2,239,064 | Mixed | Withheld |
+| Cases | Monthly databases | 11 files | 31,492 | 15 min | CORE-3783 |
+| N−1 | Sampled times | 6 | 9,894 | 1,649/time | N1-3787 |
 
 **Table note.** CORE-3783 counts apply except to the N−1 row, which uses N1-3787 and 1,649 outage groups per time.
 
@@ -332,13 +333,13 @@ The 11 compact monthly databases contain 31,492 completed and converged 15-minut
 
 **Table 6—Network structure, parameter evidence, and computational completeness.**
 
-| kV | Buses | Lines | Route-km | Reference km | Ratio | Evidence |
-| ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| 60 | 3,236 | 4,240 | 9,668.4 | 9,742.0 | 0.992 | Partial 1,517; Proxy 2,723 |
-| 130 | 8 | 7 | 41.6 | 38.2 | 1.090 | Proxy 7 |
-| 150 | 132 | 156 | 2,054.1 | 2,514.0 | 0.817 | Proxy 156 |
-| 220 | 214 | 294 | 3,206.9 | 3,916.0 | 0.819 | Proxy 294 |
-| 400 | 193 | 246 | 3,579.5 | 3,465.0 | 1.033 | Proxy 246 |
+| kV | Buses | Lines | Route-km | Reference km | Ratio | Partial | Proxy |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 60 | 3,236 | 4,240 | 9,668.4 | 9,742.0 | 0.992 | 1,517 | 2,723 |
+| 130 | 8 | 7 | 41.6 | 38.2 | 1.090 | 0 | 7 |
+| 150 | 132 | 156 | 2,054.1 | 2,514.0 | 0.817 | 0 | 156 |
+| 220 | 214 | 294 | 3,206.9 | 3,916.0 | 0.819 | 0 | 294 |
+| 400 | 193 | 246 | 3,579.5 | 3,465.0 | 1.033 | 0 | 246 |
 
 **Table note.** The 130 kV sample has seven lines. References are OSM at 60/130 kV and REN aggregates at 150--400 kV; route-km is not circuit length. Partial is line-level; all \(x\) and \(c\) values are Proxy.
 
@@ -386,19 +387,21 @@ Table 7 consolidates the cross-source comparisons and the three held-out allocat
 
 **Table 7—External validation and station-held-out reconstruction results.**
 
-| Target / method | n / blocks | Metric | Estimate [95% interval] |
-| --- | ---: | --- | --- |
-| Consumption | 31,388 / 327 d | Ratio; \(r\) | 1.003 [1.002, 1.005]; 0.997 [0.996, 0.999] |
-| Wind | 31,484 / 328 d | Ratio; \(r\) | 1.056 [1.055, 1.058]; 0.9998 [0.9997, 0.9998] |
-| PV variation | 31,484 / 328 d | \(r\) | 0.982 [0.979, 0.984] |
-| Municipal share | 2,183 / 199 | \(\rho\) | 0.881 [0.841, 0.910] |
-| Substation peak | 792 / 397 | \(\rho\) | 0.957 [0.946, 0.967] |
-| AC closure | 31,492 | MAE, MW | \(1.77\times10^{-6}\) |
-| Capacity share | 394 / 8,541 | MAE, MW | 4.729 [4.412, 5.063] |
-| Geographic neighbors | 394 / 8,541 | MAE, MW | 4.249 [3.972, 4.544] |
-| Network neighbors | 394 / 8,541 | MAE, MW | 4.262 [3.971, 4.545] |
+| Target / method | n | Blocks | Metric | Estimate | 95% low | 95% high |
+| --- | ---: | --- | --- | ---: | ---: | ---: |
+| Demand mean | 31,388 | 327 days | Ratio | 1.003 | 1.002 | 1.005 |
+| Demand interval | 31,388 | 327 days | \(r\) | 0.997 | 0.996 | 0.999 |
+| Wind mean | 31,484 | 328 days | Ratio | 1.056 | 1.055 | 1.058 |
+| Wind interval | 31,484 | 328 days | \(r\) | 0.9998 | 0.9997 | 0.9998 |
+| PV variation | 31,484 | 328 days | \(r\) | 0.982 | 0.979 | 0.984 |
+| Municipal share | 2,183 | 199 municipalities | \(\rho\) | 0.881 | 0.841 | 0.910 |
+| Substation peak | 792 | 397 stations | \(\rho\) | 0.957 | 0.946 | 0.967 |
+| AC closure | 31,492 | — | MAE (MW) | \(1.77\times10^{-6}\) | — | — |
+| Capacity share | 8,541 | 394 stations | MAE (MW) | 4.729 | 4.412 | 5.063 |
+| Geographic neighbors | 8,541 | 394 stations | MAE (MW) | 4.249 | 3.972 | 4.544 |
+| Network neighbors | 8,541 | 394 stations | MAE (MW) | 4.262 | 3.971 | 4.545 |
 
-**Table note.** \(n\) is the number of paired observations; d denotes day blocks. Other blocks are municipalities or stations.
+**Table note.** \(n\) is the number of paired observations. Confidence intervals use day, municipality, or station blocks as shown; AC closure is deterministic.
 
 
 ## Generation scope and quantified dependence on spatial proxies
