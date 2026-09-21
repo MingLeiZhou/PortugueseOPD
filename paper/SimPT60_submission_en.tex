@@ -3,10 +3,9 @@
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 \documentclass[
-  10pt,
-]{article}
+  10pt]{article}
 \usepackage{xcolor}
-\usepackage[margin=20mm]{geometry}
+\usepackage[margin=19mm]{geometry}
 \usepackage{amsmath,amssymb}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
 \usepackage{iftex}
@@ -22,8 +21,7 @@
 \usepackage{lmodern}
 \ifPDFTeX\else
   % xetex/luatex font selection
-    \setmainfont[]{Times New Roman}
-    \setmonofont[]{Menlo}
+    \setmainfont[]{TeX Gyre Termes}
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -66,66 +64,75 @@
 % Set default figure placement to htbp
 \def\fps@figure{htbp}
 \makeatother
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  % set entry spacing
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[L]{\small\textcolor[gray]{0.4}{SimPT60: Time-Series Power-Flow Dataset}}
-\fancyhead[R]{\small\textcolor[gray]{0.4}{September 2026}}
-\fancyfoot[C]{\small\thepage}
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\footrulewidth}{0pt}
-
-\usepackage{setspace}
-\setstretch{1.16}
-\setlength{\emergencystretch}{3em}
-\setlength{\parskip}{0.4em plus 0.1em minus 0.1em}
-\setlength{\parindent}{0pt}
-% Native XeTeX line breaking works without a separate xeCJK installation.
-\XeTeXlinebreaklocale "zh"
-\XeTeXlinebreakskip = 0pt plus 1pt
-% Use the page-builder-aware package, including at a natural page break.
-\usepackage{needspace}
-\newcommand{\PTneedspace}[1]{\Needspace{#1}}
-
-\usepackage{titlesec}
-\titleformat{\section}{\Large\bfseries}{\thesection}{0.8em}{}
-\titleformat{\subsection}{\large\bfseries}{\thesubsection}{0.8em}{}
-\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{0.8em}{}
-\titlespacing*{\section}{0pt}{14pt plus 2pt minus 2pt}{6pt plus 1pt minus 1pt}
-\titlespacing*{\subsection}{0pt}{10pt plus 2pt minus 2pt}{4pt plus 1pt minus 1pt}
-\titlespacing*{\subsubsection}{0pt}{8pt plus 1pt minus 1pt}{3pt plus 1pt minus 1pt}
-
 \usepackage{booktabs}
+\usepackage{longtable}
 \usepackage{array}
-\usepackage{colortbl}
-
-% Ensure inline graphics are centered
-\let\origpandocbounded\pandocbounded
-\renewcommand*\pandocbounded[1]{%
-  \begin{center}%
-  \origpandocbounded{#1}%
-  \end{center}%
-}
+\usepackage{microtype}
+\usepackage{setspace}
+\setstretch{1.12}
+\setlength{\emergencystretch}{3em}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.45em}
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\AtBeginEnvironment{longtable}{\small}
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
-  pdftitle={SimPT60: A Traceable Time-Series Power-Flow Dataset for Portugal's High-Voltage Grid},
+  pdftitle={A traceable time-series power-flow dataset for Portugal's high-voltage grid},
+  pdfkeywords={power-system dataset; Portugal; public data; grid
+reconstruction; power flow; time series; provenance; cross-source
+validation},
   colorlinks=true,
-  linkcolor={blue},
+  linkcolor={Maroon},
   filecolor={Maroon},
   citecolor={Blue},
-  urlcolor={blue},
+  urlcolor={Blue},
   pdfcreator={LaTeX via pandoc}}
 
-\title{SimPT60: A Traceable Time-Series Power-Flow Dataset for
-Portugal's High-Voltage Grid}
+\title{A traceable time-series power-flow dataset for Portugal's
+high-voltage grid}
 \author{}
-\date{September 2026}
+\date{}
 
 \begin{document}
 \maketitle
@@ -143,46 +150,38 @@ products for assessing model consistency. The dataset supports
 time-series power-flow studies, scenario comparison, relative-risk
 screening, and testing of grid-analysis algorithms. Its research utility
 is demonstrated using E-REDES public datasets that were withheld from
-nodal-power construction, parameter-sensitivity experiments, and N−1
-contingency screening. SimPT60 is a public-data-derived research model
-and has not been validated as an operator network model at equipment
-level.
-
-\textbf{Keywords:} power-system dataset; Portugal; public data; grid
-reconstruction; power flow; time series; provenance; cross-source
-validation
+nodal-power construction, parameter-sensitivity experiments, and
+single-element (N−1) contingency screening. SimPT60 is a
+public-data-derived research model and has not been validated as an
+operator network model at equipment level.
 \end{abstract}
 
-\section{1. Introduction}\label{introduction}
+\section{Background \& Summary}\label{background-summary}
 
 Power-flow simulation underpins many studies of grid operation,
 planning, and risk, and requires data that describe network topology,
-equipment attributes, and operating conditions
-(\hyperref[ref-Thurner2018]{Thurner et al., 2018}). As research moves
-from individual snapshots to time-series analysis, a static network must
-also be linked to continuous load, generation, and other operating
-records (\hyperref[ref-Horsch2018]{Hörsch et al., 2018};
-\hyperref[ref-Meinecke2020]{Meinecke et al., 2020}).
+equipment attributes, and operating conditions\textsuperscript{1}. As
+research moves from individual snapshots to time-series analysis, a
+static network must also be linked to continuous load, generation, and
+other operating records\textsuperscript{2,3}.
 
 Several public resources already provide reusable grid models and
 benchmark datasets. PyPSA-Eur supplies a transmission-network model for
-European energy-system optimization and operational studies
-(\hyperref[ref-Horsch2018]{Hörsch et al., 2018}). Recent open-data
-reconstruction work has expanded the geographic representation of the
-European high-voltage grid (\hyperref[ref-Xiong2025]{Xiong et al.,
-2025}). SimBench provides representative networks across several voltage
-levels together with annual load and generation profiles
-(\hyperref[ref-Meinecke2020]{Meinecke et al., 2020}). These resources
-support system optimization, network reconstruction, and method
-comparison, respectively, and provide an important basis for open
-power-system research.
+European energy-system optimization and operational
+studies\textsuperscript{2}. Recent open-data reconstruction work has
+expanded the geographic representation of the European high-voltage
+grid\textsuperscript{4}. SimBench provides representative networks
+across several voltage levels together with annual load and generation
+profiles\textsuperscript{3}. These resources support system
+optimization, network reconstruction, and method comparison,
+respectively, and provide an important basis for open power-system
+research.
 
-\subsection{1.1 Motivation}\label{motivation}
+\subsection{Motivation}\label{motivation}
 
 Portugal's National Energy and Climate Plan identifies renewable
 generation, storage, electrification, and cross-border interconnection
-as central elements of the energy transition
-(\hyperref[ref-DGEGPNEC2030Revision2024]{DGEG, 2024}). These
+as central elements of the energy transition\textsuperscript{5}. These
 developments alter the scale and spatial distribution of generation and
 demand and therefore affect line flows, bus voltages, and system risk.
 Studying the time-varying behavior of the Portuguese grid consequently
@@ -192,33 +191,29 @@ continuous operating conditions.
 The relevant public records are distributed across E-REDES, Redes
 Energéticas Nacionais (REN), the Direção-Geral de Energia e Geologia
 (DGEG), the Entidade Reguladora dos Serviços Energéticos (ERSE), and
-open geospatial platforms (\hyperref[ref-EREDESRND2026]{E-REDES,
-n.d.-f}; \hyperref[ref-RENDataHub2026]{REN, n.d.};
-\hyperref[ref-DGEGGeo2026]{DGEG, n.d.};
-\hyperref[ref-ERSEPDIRT2024]{REN, 2024};
-\hyperref[ref-OSM2026]{OpenStreetMap contributors, n.d.}). Their spatial
+open geospatial platforms\textsuperscript{6--10}. Their spatial
 coverage, temporal resolution, identifiers, and field definitions
 differ. Using them in a common power-flow model requires topology
 reconstruction, completion of electrical parameters, asset-to-bus
 mapping, temporal alignment, and allocation of aggregate power to nodes.
 
 Existing resources also have different modelling objectives and scopes.
-European-scale models primarily address cross-regional system studies
-(\hyperref[ref-Horsch2018]{Hörsch et al., 2018}); open high-voltage
-reconstructions focus mainly on AC networks at 220 kV and above
-(\hyperref[ref-Xiong2025]{Xiong et al., 2025}); and representative
-benchmarks do not describe the geographic Portuguese grid
-(\hyperref[ref-Meinecke2020]{Meinecke et al., 2020}). A public research
-resource that combines the continental Portuguese 60--400 kV network,
-15-minute operating time series, solvable power-flow cases, and explicit
-provenance has therefore remained unavailable.
+European-scale models primarily address cross-regional system
+studies\textsuperscript{2}; open high-voltage reconstructions focus
+mainly on AC networks at 220 kV and above\textsuperscript{4}; and
+representative benchmarks do not describe the geographic Portuguese
+grid\textsuperscript{3}. A public research resource that combines the
+continental Portuguese 60--400 kV network, 15-minute operating time
+series, solvable power-flow cases, and explicit provenance has therefore
+remained unavailable.
 
 This study develops a traceable, computationally usable Portuguese
 high-voltage grid dataset with continuous time-indexed cases for
 power-flow analysis, grid-risk screening, scenario comparison, and
 method testing.
 
-\subsection{1.2 Introducing SimPT60}\label{introducing-simpt60}
+\subsection{Dataset scope and
+contribution}\label{dataset-scope-and-contribution}
 
 SimPT60 reconstructs the continental Portuguese high-voltage grid from
 multiple public sources. It covers the 60, 130, 150, 220, and 400 kV
@@ -233,9 +228,8 @@ public-data reconstruction of the continental Portuguese 60--400 kV grid
 to 31,492 consecutive and reproducible 15-minute AC power-flow states.
 Raw records, derived objects, and validation results remain separate but
 connected. Table 1 summarizes the scope, principal products, and
-interpretation boundaries; Section 4.7 states the limitations.
-
-\PTneedspace{288pt}
+interpretation boundaries; the Limitations subsection states the
+limitations.
 
 \textbf{Table 1---Scope and data products of SimPT60.}
 
@@ -273,16 +267,16 @@ perturbation tests, stress scenarios, and N−1 & Aggregate consistency
 does not establish equipment-level truth \\
 \end{longtable}
 
-\textbf{Table note.} Sections 1--3 define the scope, construction rules,
-and data products.
+\textbf{Table note.} The Background \& Summary, Methods, and Data
+Records sections define the scope, construction rules, and data
+products.
 
-The remainder of the paper is organized as follows. Section 2 describes
-the source data and construction method. Section 3 presents the static
-network, time series, and power-flow cases. Section 4 reports validation
-results, Section 5 provides application examples, and Section 6
-concludes the paper.
+The following sections describe construction of the resource, the
+released records, and the checks used to establish technical quality.
+Reuse guidance and interpretation boundaries are provided in Usage
+Notes.
 
-\section{2. Methodology}\label{methodology}
+\section{Methods}\label{methods}
 
 SimPT60 was constructed in five stages: archiving and standardizing
 public records; reconstructing the 60--400 kV static network; mapping
@@ -290,38 +284,33 @@ assets and operating records to a common 15-minute calendar; generating
 and solving one AC power-flow case per interval; and storing the results
 in linked layers with explicit quality controls.
 
-\subsection{2.1 Public Data Scope and
-Standardization}\label{public-data-scope-and-standardization}
+\subsection{Public data scope and
+standardization}\label{public-data-scope-and-standardization}
 
-\subsubsection{2.1.1 Scope and Sources}\label{scope-and-sources}
+\subsubsection{Scope and sources}\label{scope-and-sources}
 
 The geographic, voltage, and temporal scope is given in Table 1. Network
 geometry is drawn mainly from the E-REDES 60/130 kV network and the
-OpenStreetMap (OSM)/Geofabrik 150/220/400 kV network
-(\hyperref[ref-GeofabrikPortugal2026]{Geofabrik GmbH, n.d.}). DGEG and
-APA records supplement generation, storage, and connection evidence
-(\hyperref[ref-DGEGGeo2026]{DGEG, n.d.}; \hyperref[ref-APA3403]{APA,
-2021}; \hyperref[ref-APAPPA421]{APA, n.d.-a};
-\hyperref[ref-APAPPA407]{APA, n.d.-b}). REN provides national 15-minute
-operating series, whereas E-REDES provides substation energy. PDIRT and
-PDIRD documents provide delivery-point profiles and selected equipment
-parameters (\hyperref[ref-EREDESRND2026]{E-REDES, n.d.-f};
-\hyperref[ref-OSM2026]{OpenStreetMap contributors, n.d.};
-\hyperref[ref-RENDataHub2026]{REN, n.d.};
-\hyperref[ref-ERSEPDIRT2024]{REN, 2024}). GISCO supplies the continental
-boundary (\hyperref[ref-GISCO2024]{Eurostat GISCO, 2024}); REN and REE
-records support transmission and interconnection checks. OpenInfraMap,
-which derives from OSM, is used only for display checks and is not
-treated as independent evidence
-(\hyperref[ref-OpenInfraMap2026]{OpenInfraMap contributors, n.d.}).
+OpenStreetMap (OSM)/Geofabrik 150/220/400 kV
+network\textsuperscript{11}. DGEG and Agência Portuguesa do Ambiente
+(APA) records supplement generation, storage, and connection
+evidence\textsuperscript{8,12--14}. REN provides national 15-minute
+operating series, whereas E-REDES provides substation energy. The
+\emph{Plano de Desenvolvimento e Investimento da Rede de Transporte}
+(PDIRT) and \emph{Plano de Desenvolvimento e Investimento da Rede
+Nacional de Distribuição} (PDIRD) provide delivery-point profiles and
+selected equipment parameters\textsuperscript{6,7,9,10}. The European
+Commission's Geographical Information System (GISCO) supplies the
+continental boundary\textsuperscript{15}; REN and Red Eléctrica de
+España (REE) records support transmission and interconnection checks.
+OpenInfraMap, which derives from OSM, is used only for display checks
+and is not treated as independent evidence\textsuperscript{16}.
 
 Table 2 summarizes the source scope and modelling role. The common study
 window is determined by synchronized E-REDES and REN series.
 Static-source versions, case dates, and historical availability are
 recorded separately; the common window is not interpreted as the
 observation date of every device.
-
-\PTneedspace{342pt}
 
 \textbf{Table 2---Public data sources, coverage, and modelling roles.}
 
@@ -374,8 +363,8 @@ comparison; excluded from nodal construction \\
 2026-03-24. Source entry points, archived versions, and file
 fingerprints are listed in the data documentation and release manifest.
 
-\subsubsection{2.1.2 Archiving and
-Standardization}\label{archiving-and-standardization}
+\subsubsection{Archiving and
+standardization}\label{archiving-and-standardization}
 
 Raw files are archived immutably by source together with the source URL,
 download time, file size, and SHA-256 hash; processing reads the raw
@@ -394,8 +383,8 @@ are derived from source equipment codes, and every derived object
 retains source keys and processing status. Supplementary Table S1 maps
 raw source fields to standardized semantics.
 
-\subsection{2.2 Static Network
-Reconstruction}\label{static-network-reconstruction}
+\subsection{Static network
+reconstruction}\label{static-network-reconstruction}
 
 The static network is represented by Equation (2):
 
@@ -409,7 +398,7 @@ consistency, and constrained spatial matching. This hierarchy prevents
 geographic proximity or line crossings from being interpreted directly
 as electrical connectivity.
 
-\subsubsection{2.2.1 Buses and Lines}\label{buses-and-lines}
+\subsubsection{Buses and lines}\label{buses-and-lines}
 
 E-REDES is preferred for 60/130 kV lines, whereas OSM supplies most
 150/220/400 kV lines and facilities; the latter are checked against REN
@@ -422,13 +411,13 @@ EPSG:3763 coordinates. Different voltage levels are never merged. Each
 endpoint cluster is assigned to a same-voltage facility within 250 m;
 otherwise, a derived connection bus is created. OSM ways are split only
 at way endpoints or explicit shared nodes, so geometric crossings do not
-create connections. The OSM \texttt{\small circuit} and
-\texttt{\small line\_\allowbreak{}section} relations restore circuit
-identity. Parallel circuits are retained, while self-loops and
-non-positive-length branches are blocked and recorded.
+create connections. The OSM \texttt{circuit} and \texttt{line\_section}
+relations restore circuit identity. Parallel circuits are retained,
+while self-loops and non-positive-length branches are blocked and
+recorded.
 
-\subsubsection{2.2.2 Transformers and
-Parameters}\label{transformers-and-parameters}
+\subsubsection{Transformers and
+parameters}\label{transformers-and-parameters}
 
 Transformers are created from three evidence classes. Explicit OSM
 transformers are matched to high- and low-voltage buses within 1 km.
@@ -436,24 +425,22 @@ Adjacent voltage levels in the same OSM substation produce colocated
 transformers. RARI (Regulamento do Acesso às Redes e às Interligações do
 Setor Elétrico) boundary names are matched to facilities within 5 km,
 with a fallback to a 60 kV endpoint within 1 km of the high-voltage
-station. Public \texttt{\small rating} values take precedence; remaining
+station. Public \texttt{rating} values take precedence; remaining
 capacities and impedances use voltage-pair proxies. A voltage-pair
 capacity is scaled upward when its aggregate falls below the
-corresponding REN total, and the calibration factor is retained
-(\hyperref[ref-RENDataHub2026]{REN, n.d.}).
+corresponding REN total, and the calibration factor is
+retained\textsuperscript{7}.
 
 Line parameters comprise \(r\), \(x\), \(c\), and \(I_{\max}\). Each 60
 kV branch is matched to a public PDIRD circuit inventory by a
 length-weighted shortest path, accepted only when the model-to-source
-length ratio lies between 0.65 and 1.60
-(\hyperref[ref-EREDESPDIRD2020AnnexB]{E-REDES and ERSE, 2020}).
-Remaining lines use voltage-class defaults and cable correction factors.
-Each parameter is labelled as directly published, derived from public
+length ratio lies between 0.65 and 1.60\textsuperscript{17}. Remaining
+lines use voltage-class defaults and cable correction factors. Each
+parameter is labelled as directly published, derived from public
 documentation, aggregate-calibrated, or an engineering proxy. Some
 resistance support is transferred from conductor parameters reported in
-project documentation (\hyperref[ref-Tocha2019]{EDP Distribuição,
-2019}); this transfer remains an engineering assumption rather than a
-direct line measurement.
+project documentation\textsuperscript{18}; this transfer remains an
+engineering assumption rather than a direct line measurement.
 
 Post-construction checks cover equipment keys, endpoints, positive
 length, voltage consistency, connected components, and the
@@ -461,8 +448,6 @@ Portugal--Spain boundary inventory. Lengths at 150, 220, and 400 kV are
 compared with REN statistics. Parameter completeness means that the
 model is computationally usable; it does not mean that all parameters
 are operator measurements.
-
-\PTneedspace{448.5pt}
 
 Figure 1 illustrates the connection decisions, and Table 3 lists
 thresholds and unmatched-record handling.
@@ -477,8 +462,6 @@ identity; and (d) cross-voltage connection from explicit equipment,
 colocated facilities, and RARI boundary evidence. The diagrams are
 abstract electrical schematics rather than geographic device locations.
 Distance thresholds and fallback rules are listed in Table 3.
-
-\PTneedspace{396pt}
 
 \textbf{Table 3---Topology rules and thresholds.}
 
@@ -509,9 +492,9 @@ mobile facilities within 250 m of permanent stations & Retain merge
 records \\
 OSM splitting & Way endpoints or explicit shared nodes & Geometric
 crossings do not create connections \\
-Circuit identity & \texttt{\small circuit} /
-\texttt{\small line\_\allowbreak{}section}; parallel circuits retained &
-N−1 removes series model segments by physical circuit \\
+Circuit identity & \texttt{circuit} / \texttt{line\_section}; parallel
+circuits retained & N−1 removes series model segments by physical
+circuit \\
 Explicit transformer & Match high- and low-voltage buses within 1 km &
 Preserve voltage-level consistency \\
 Colocated transformer & Adjacent voltage levels in one OSM station &
@@ -524,14 +507,14 @@ Blocking checks & Self-loop, non-positive length, endpoint or voltage
 conflict & Record and block invalid branches \\
 \end{longtable}
 
-\textbf{Table note.} Rules are defined in Section 2.2 and
-\texttt{\small model\_\allowbreak{}config.\allowbreak{}json}. All
-distances are projected planar distances. They are reconstruction rules,
-not operator accuracy guarantees. Default electrical parameters and
-coverage rules are reported in Supplementary Table S2.
+\textbf{Table note.} Rules are defined in the Static network
+reconstruction subsection and \texttt{model\_config.json}. All distances
+are projected planar distances. They are reconstruction rules, not
+operator accuracy guarantees. Default electrical parameters and coverage
+rules are reported in Supplementary Table S2.
 
-\subsubsection{2.2.3 Evidence Applicability and Historical
-Availability}\label{evidence-applicability-and-historical-availability}
+\subsubsection{Evidence applicability and historical
+availability}\label{evidence-applicability-and-historical-availability}
 
 Static-source dates and operating-case dates are versioned separately.
 Only assets with an explicit commissioning date are switched by time.
@@ -542,10 +525,8 @@ not used to infer historical switching states. Cross-section scaling of
 conductor resistance and transfer to other conductor families remain
 engineering assumptions. Document pages, equipment identifiers, and
 field-level judgements are stored in
-\texttt{\small citation\_\allowbreak{}evidence\_\allowbreak{}ledger.\allowbreak{}csv};
-Table 4 summarizes temporal handling.
-
-\PTneedspace{234pt}
+\texttt{citation\_evidence\_ledger.csv}; Table 4 summarizes temporal
+handling.
 
 \textbf{Table 4---Source versions, validity dates, and case treatment.}
 
@@ -572,7 +553,7 @@ New Minho--Galicia interconnection & REE announcement dated 2026-07-02 &
 Disabled in every study case \\
 Other Portugal--Spain interconnections & Maintenance and switching
 histories unavailable & Fixed boundary equivalent; historical maps used
-only to check corridor names (\hyperref[ref-REE2012]{REE, 2012}) \\
+only to check corridor names\textsuperscript{19} \\
 Generation and storage & 366 dated and 824 undated assets & Known dates
 gate availability; unknown dates are treated as available and flagged \\
 PDIRT/PDIRD and project evidence & Planning inventories, seasonal
@@ -583,31 +564,30 @@ evidence; no inference of real-time commissioning \\
 \textbf{Table note.} In N1-3787, the capacity and voltage pair of the
 three Estoi parallel equivalents are supported by a planning inventory,
 but simultaneous availability and identical parameters remain model
-assumptions (\hyperref[ref-REN2015Estoi]{REN, 2015}).
+assumptions\textsuperscript{20}.
 
-\subsection{2.3 Asset Mapping and Time-Series
-Alignment}\label{asset-mapping-and-time-series-alignment}
+\subsection{Asset mapping and time-series
+alignment}\label{asset-mapping-and-time-series-alignment}
 
-\subsubsection{2.3.1 Asset Mapping and
-Calendar}\label{asset-mapping-and-calendar}
+\subsubsection{Asset mapping and
+calendar}\label{asset-mapping-and-calendar}
 
 The generation and storage inventory combines OSM, DGEG, and project
 evidence. Plant and generator representations within 3 km and with
 consistent capacity are merged. DGEG wind records replace incomplete OSM
-wind capacities, and non-duplicate DGEG photovoltaic records supplement
-OSM. Mapping priority is public connection evidence, declared voltage,
-and then constrained spatial proximity. An asset without declared
-voltage and with capacity of at least 100 MW searches only buses at 150
-kV and above; smaller assets search buses at 60 kV and above. The
-maximum distance is 20 km. Assets beyond this distance remain in the
-inventory but are not injected. Assets commissioned after a case date
-are unavailable; missing dates are treated as available and explicitly
-flagged.
+wind capacities, and non-duplicate DGEG photovoltaic (PV) records
+supplement OSM. Mapping priority is public connection evidence, declared
+voltage, and then constrained spatial proximity. An asset without
+declared voltage and with capacity of at least 100 MW searches only
+buses at 150 kV and above; smaller assets search buses at 60 kV and
+above. The maximum distance is 20 km. Assets beyond this distance remain
+in the inventory but are not injected. Assets commissioned after a case
+date are unavailable; missing dates are treated as available and
+explicitly flagged.
 
-The common calendar uses
-\texttt{\small interval\_\allowbreak{}start\_\allowbreak{}utc} as its
-logical key. REN timestamps denote interval starts, whereas E-REDES
-timestamps denote interval ends, as formalized in Equation (3):
+The common calendar uses \texttt{interval\_start\_utc} as its logical
+key. REN timestamps denote interval starts, whereas E-REDES timestamps
+denote interval ends, as formalized in Equation (3):
 
 \[
 t_{\mathrm{E\text{-}REDES}}=t_{\mathrm{REN}}+15\ \mathrm{min}. \tag{3}\label{eq:time-alignment}
@@ -619,8 +599,8 @@ intra-day sequence numbers distinguish the repeated hour. E-REDES has no
 fold marker, so duplicate station timestamps are averaged and flagged as
 ambiguous. Missing intervals are not interpolated.
 
-\subsubsection{2.3.2 Load, Generation, and
-Storage}\label{load-generation-and-storage}
+\subsubsection{Load, generation, and
+storage}\label{load-generation-and-storage}
 
 E-REDES energy is mapped to buses by facility code and converted to
 nodal load. Equation (4) defines the unobserved national residual:
@@ -631,7 +611,7 @@ R_t=P^{\mathrm{REN}}_{\mathrm{consumption},t}-\sum_j P^{\mathrm{EREDES}}_{j,t}. 
 
 Equation (5) assigns the residual to mapped delivery points using the
 PDIRT public reference profile from the same season and closest
-national-load condition (\hyperref[ref-ERSEPDIRT2024]{REN, 2024}):
+national-load condition\textsuperscript{9}:
 
 \[
 w_{j,t}=\frac{P^{\mathrm{PDIRT}}_{j,r(t)}}{\sum_{k\in\mathcal{M}}P^{\mathrm{PDIRT}}_{k,r(t)}},\qquad
@@ -644,7 +624,7 @@ reactive power is not observed; residual load retains the PDIRT \(Q/P\)
 relationship. Pumping and battery charging are distributed by mapped
 storage capacity, with any remainder assigned to an explicit national
 proxy. Nodal electric load must sum to REN
-\texttt{\small Consumption + Storage} within 0.11 MW.
+\texttt{Consumption\ +\ Storage} within 0.11 MW.
 
 REN generation by technology is distributed among mapped and
 commissioned assets of the same technology under
@@ -652,8 +632,8 @@ commissioned assets of the same technology under
 deterministic capacity-priority allocation, while other technologies use
 available-capacity shares. Generation beyond mapped capacity is injected
 at a designated 400 kV proxy bus as
-\texttt{\small UNMAPPED\_\allowbreak{}NATIONAL\_\allowbreak{}RESIDUAL\_\allowbreak{}PROXY};
-it must not be interpreted as the location of an omitted plant.
+\texttt{UNMAPPED\_NATIONAL\_RESIDUAL\_PROXY}; it must not be interpreted
+as the location of an omitted plant.
 
 REN imports and exports are aligned to the common calendar but withheld
 from boundary-power enforcement. Before solution, the pipeline checks
@@ -661,8 +641,6 @@ timestamps, required series, mapping completeness, load and generation
 conservation, and capacity limits. Table 5 summarizes the executable
 mapping and conservation rules; Supplementary Table S3 lists the
 associated audit fields.
-
-\PTneedspace{423pt}
 
 \textbf{Table 5---Asset mapping and time-series transformation rules.}
 
@@ -714,14 +692,11 @@ Initial model solution determines boundary injections \\
 \end{longtable}
 
 \textbf{Table note.} The physical fields are named
-\texttt{\small timestamp\_\allowbreak{}utc} in the calendar and monthly
-databases;
-\texttt{\small interval\_\allowbreak{}start\_\allowbreak{}utc} describes
-their temporal semantics.
+\texttt{timestamp\_utc} in the calendar and monthly databases;
+\texttt{interval\_start\_utc} describes their temporal semantics.
 
-\subsection{2.4 Time-Indexed Case Generation and Alternating-Current
-Power
-Flow}\label{time-indexed-case-generation-and-alternating-current-power-flow}
+\subsection{Time-indexed case generation and alternating-current power
+flow}\label{time-indexed-case-generation-and-alternating-current-power-flow}
 
 Each 15-minute interval defines the steady-state case in Equation (6):
 
@@ -732,11 +707,12 @@ C_t=(G,\theta,X_t,S_t,U_t,B_t), \tag{6}\label{eq:case-definition}
 where the static network \(G\) and parameters \(\theta\) are shared,
 while operating inputs \(X_t\), device status \(S_t\), controls \(U_t\),
 and boundary equivalent \(B_t\) vary with time. The principal dataset
-contains one case per interval; sensitivity and application experiments
-in Sections 4 and 5 use separately selected representative times.
+contains one case per interval; sensitivity experiments use separately
+selected representative times; worked applications are documented in
+Supplementary Note S5.
 
-\subsubsection{2.4.1 Case Assembly and
-Solution}\label{case-assembly-and-solution}
+\subsubsection{Case assembly and
+solution}\label{case-assembly-and-solution}
 
 Each case updates load, generation, equipment availability, seasonal
 ratings, and boundary equivalents. An initial boundary solution
@@ -746,22 +722,20 @@ distributed by public voltage and circuit count. Contemporaneous REN
 exchange is used only for post-solution comparison.
 
 AC power flow uses the pandapower Newton--Raphson implementation with DC
-initialization (\hyperref[ref-Thurner2018]{Thurner et al., 2018}). The
-principal workflow enforces reactive-power limits, resolves once after
-boundary reconstruction, and performs a bounded tap search. Table 6
-lists seasonal ratings, PV/PQ rules, compensation, reactors, boundary
-weights, and numerical settings. These common settings are computational
-proxies rather than operator control policies.
+initialization\textsuperscript{1}. The principal workflow enforces
+reactive-power limits, resolves once after boundary reconstruction, and
+performs a bounded tap search. Table 6 lists seasonal ratings, PV/PQ
+rules, compensation, reactors, boundary weights, and numerical settings.
+These common settings are computational proxies rather than operator
+control policies.
 
-\subsubsection{2.4.2 Monthly Execution}\label{monthly-execution}
+\subsubsection{Monthly execution}\label{monthly-execution}
 
 Cases are processed in parallel by civil month. Workers read inputs and
 solve cases independently, whereas the parent process writes summaries,
 state arrays, and audit bundles in one transaction. Re-runs skip
 complete cases and retry failed cases. A month is complete only when
 expected cases, completed cases, state arrays, and audit bundles agree.
-
-\PTneedspace{342pt}
 
 \textbf{Table 6---Case and solver settings.}
 
@@ -784,7 +758,7 @@ Status
 Seasonal line rating & May--Sep ×1.00; Mar--Apr and Oct--Nov ×1.10;
 Dec--Feb ×1.15 & Engineering proxy relative to summer base \\
 PV threshold & Non-battery; installed capacity ≥20 MW and voltage ≥60 kV
-& Remaining generation is PQ \\
+& Remaining generation uses constant active and reactive power (PQ) \\
 PV voltage / reactive power & 1.0 p.u.; ±0.50 × installed MW in Mvar &
 Uniform proxy \\
 Load compensation & Target pf=0.98; maximum 15 Mvar per bus &
@@ -802,51 +776,39 @@ retained; N−1 criteria defined separately \\
 \end{longtable}
 
 \textbf{Table note.} Settings come from the frozen
-\texttt{\small model\_\allowbreak{}config.\allowbreak{}json} and monthly
-execution code.
+\texttt{model\_config.json} and monthly execution code.
 
-\subsection{2.5 Layered Storage, Provenance, and Quality
-Control}\label{layered-storage-provenance-and-quality-control}
+\subsection{Layered storage, provenance, and quality
+control}\label{layered-storage-provenance-and-quality-control}
 
-\subsubsection{2.5.1 Database and
-Provenance}\label{database-and-provenance}
+\subsubsection{Database and provenance}\label{database-and-provenance}
 
-The main DuckDB stores sources in
-\texttt{\small raw\_\allowbreak{}eredes},
-\texttt{\small raw\_\allowbreak{}dgeg},
-\texttt{\small raw\_\allowbreak{}osm},
-\texttt{\small raw\_\allowbreak{}reference},
-\texttt{\small raw\_\allowbreak{}documents}, and
-\texttt{\small raw\_\allowbreak{}eredes\_\allowbreak{}aux}. The
-\texttt{\small grid} and \texttt{\small geo} schemas store the static
-network and geometry, \texttt{\small scenario} stores asset operating
-points, \texttt{\small main} stores the common calendar and operating
-series, and \texttt{\small provenance} stores file- and entity-level
-lineage.
+The main DuckDB stores sources in \texttt{raw\_eredes},
+\texttt{raw\_dgeg}, \texttt{raw\_osm}, \texttt{raw\_reference},
+\texttt{raw\_documents}, and \texttt{raw\_eredes\_aux}. The
+\texttt{grid} and \texttt{geo} schemas store the static network and
+geometry, \texttt{scenario} stores asset operating points, \texttt{main}
+stores the common calendar and operating series, and \texttt{provenance}
+stores file- and entity-level lineage.
 
-Each month has a separate result database.
-\texttt{\small monthly\_\allowbreak{}model.\allowbreak{}cases} stores
-one row per timestamp with status, summary metrics, and complete result
-JSON. \texttt{\small bus\_\allowbreak{}order},
-\texttt{\small line\_\allowbreak{}order}, and
-\texttt{\small state\_\allowbreak{}arrays} store bus voltage and
-line-loading arrays in fixed equipment order.
-\texttt{\small audit\_\allowbreak{}bundles} preserve load, generation,
-boundary, hotspot, and loss records. Views expand arrays to
+Each month has a separate result database. \texttt{monthly\_model.cases}
+stores one row per timestamp with status, summary metrics, and complete
+result JSON. \texttt{bus\_order}, \texttt{line\_order}, and
+\texttt{state\_arrays} store bus voltage and line-loading arrays in
+fixed equipment order. \texttt{audit\_bundles} preserve load,
+generation, boundary, hotspot, and loss records. Views expand arrays to
 equipment-long tables. The static model is copied once per monthly
 database rather than repeated for every case.
 
 Source records include URL, archive path, file size, and SHA-256.
-\texttt{\small table\_\allowbreak{}lineage},
-\texttt{\small raw\_\allowbreak{}record\_\allowbreak{}locator}, and
-\texttt{\small entity\_\allowbreak{}evidence} provide table-, record-,
-and evidence-level traceability. Each monthly
-\texttt{\small run\_\allowbreak{}manifest} records input fingerprints
-and case counts. Supplementary Table S5 provides the complete
-data-layer, grain, and join-key inventory.
+\texttt{table\_lineage}, \texttt{raw\_record\_locator}, and
+\texttt{entity\_evidence} provide table-, record-, and evidence-level
+traceability. Each monthly \texttt{run\_manifest} records input
+fingerprints and case counts. Supplementary Table S5 provides the
+complete data-layer, grain, and join-key inventory.
 
-\subsubsection{2.5.2 Quality Control and
-Recovery}\label{quality-control-and-recovery}
+\subsubsection{Quality control and
+recovery}\label{quality-control-and-recovery}
 
 Quality control has four levels. Static checks cover keys, endpoints,
 voltage, length, connectivity, and the boundary inventory. Time-series
@@ -871,43 +833,35 @@ record. Before formal monthly release, source and copy counts for
 completed cases, arrays, and audit bundles must match. Supplementary
 Table S4 lists thresholds, failure behavior, and record locations.
 
-\section{3. Overview of the SimPT60
-Dataset}\label{overview-of-the-simpt60-dataset}
+\section{Data Records}\label{data-records}
 
 SimPT60 comprises one main database and 11 monthly power-flow result
 databases. The main database contains the static network, common time
 series, source records, and validation observations. Monthly databases
-contain the 15-minute cases and their solved states. The current static
-model version is \texttt{\small PT60-v2.\allowbreak{}0.\allowbreak{}0}.
+contain the 15-minute cases and their solved states. The frozen release
+distinguishes the CORE-3783 and N1-3787 model variants and records their
+permitted uses.
 
-\subsection{3.1 Static Network Data}\label{static-network-data}
+\subsection{Static network data}\label{static-network-data}
 
 The static network contains 675 facilities, 3,783 buses, 4,943 lines,
 228 transformers, 1,190 generation or storage units, 468 load points,
-and seven Portugal--Spain boundary endpoints.
-\texttt{\small grid.\allowbreak{}buses},
-\texttt{\small grid.\allowbreak{}lines}, and
-\texttt{\small grid.\allowbreak{}transformers} provide connectivity and
-electrical parameters; \texttt{\small grid.\allowbreak{}generators},
-\texttt{\small grid.\allowbreak{}load\_\allowbreak{}points}, and
-\texttt{\small grid.\allowbreak{}interconnectors} link assets to buses.
-Line and facility geometry is stored separately in
-\texttt{\small geo.\allowbreak{}line\_\allowbreak{}geometries} and
-\texttt{\small geo.\allowbreak{}facility\_\allowbreak{}geometries} to
+and seven Portugal--Spain boundary endpoints. \texttt{grid.buses},
+\texttt{grid.lines}, and \texttt{grid.transformers} provide connectivity
+and electrical parameters; \texttt{grid.generators},
+\texttt{grid.load\_points}, and \texttt{grid.interconnectors} link
+assets to buses. Line and facility geometry is stored separately in
+\texttt{geo.line\_geometries} and \texttt{geo.facility\_geometries} to
 avoid duplicating spatial objects in electrical tables.
 
-Equipment tables retain \texttt{\small source},
-\texttt{\small source\_\allowbreak{}status},
-\texttt{\small parameter\_\allowbreak{}status}, and mapping-rule fields.
-Users can build the complete pandapower network, select only devices
-above an evidence threshold, or identify components whose parameters
-were derived from public records or engineering proxies.
-
-\PTneedspace{594.3pt}
+Equipment tables retain \texttt{source}, \texttt{source\_status},
+\texttt{parameter\_status}, and mapping-rule fields. Users can build the
+complete pandapower network, select only devices above an evidence
+threshold, or identify components whose parameters were derived from
+public records or engineering proxies.
 
 Figure 2 shows the geographic network and one archived operating state.
-Projection and cartography use GeoPandas
-(\hyperref[ref-GeoPandas2026]{Fleischmann et al., 2026}).
+Projection and cartography use GeoPandas\textsuperscript{21}.
 
 \pandocbounded{\includegraphics[keepaspectratio]{figures_final/fig02_geographic_network_state.pdf}}
 
@@ -921,34 +875,33 @@ UTC (load 11,329.2 MW), joined by stable equipment identifiers. Missing
 solved states remain grey and are not imputed. The loading scale retains
 values above 100\%. Values are modelled power flows, not telemetry.
 
-\subsection{3.2 Time-Series Data}\label{time-series-data}
+\subsection{Time-series data}\label{time-series-data}
 
-\texttt{\small main.\allowbreak{}interval\_\allowbreak{}calendar} is the
-common index for all time series. It covers 328 civil days from
-2025-05-01 to 2026-03-24 and contains 31,492 local 15-minute intervals.
-Interval counts follow Europe/Lisbon daylight-saving transitions and
-therefore need not equal the number of days multiplied by 96.
+\texttt{main.interval\_calendar} is the common index for all time
+series. It covers 328 civil days from 2025-05-01 to 2026-03-24 and
+contains 31,492 local 15-minute intervals. Interval counts follow
+Europe/Lisbon daylight-saving transitions and therefore need not equal
+the number of days multiplied by 96.
 
-\texttt{\small main.\allowbreak{}eredes\_\allowbreak{}load} contains
-12,360,502 load records for 397 substations. Raw records extend to
-2026-03-25, but the joint modelling window ends on 2026-03-24.
-\texttt{\small main.\allowbreak{}ren\_\allowbreak{}dispatch} contains
-472,380 records across 15 national operating series for load, generation
-by technology, storage, and cross-border exchange.
-\texttt{\small main.\allowbreak{}weather\_\allowbreak{}hourly} holds
-23,616 hourly records for Lisbon, Porto, and Faro;
-\texttt{\small main.\allowbreak{}ren\_\allowbreak{}rnt\_\allowbreak{}balance}
-contains 660 monthly balance records over 11 reporting periods.
+\texttt{main.eredes\_load} contains 12,360,502 load records for 397
+substations. Raw records extend to 2026-03-25, but the joint modelling
+window ends on 2026-03-24. \texttt{main.ren\_dispatch} contains 472,380
+records across 15 national operating series for load, generation by
+technology, storage, and cross-border exchange.
+\texttt{main.weather\_hourly} holds 23,616 hourly records for Lisbon,
+Porto, and Faro; \texttt{main.ren\_rnt\_balance} contains 660 monthly
+balance records over 11 reporting periods.
 
 The database also archives 14 E-REDES auxiliary datasets with 2,239,064
 records. They cover national and municipal consumption, contracted
 power, production, distribution-grid injection, distributed
 self-consumption, seasonal substation loading, power quality, and
 continuity of supply. These tables are excluded from nodal-power
-construction and serve as withheld public observations in Section 4.
+construction and serve as withheld public observations in Technical
+Validation.
 
-\subsection{3.3 Time-Indexed Power-Flow
-Cases}\label{time-indexed-power-flow-cases}
+\subsection{Time-indexed power-flow
+cases}\label{time-indexed-power-flow-cases}
 
 Interval results are partitioned by civil month to limit file size and
 support selective download. Eleven compact monthly databases map
@@ -959,31 +912,51 @@ time ends, whereas March 2026 covers only the first 24 days and contains
 2,304 intervals.
 
 Each case retains summary values, equipment-state arrays, and an
-allocation audit bundle. Fixed \texttt{\small bus\_\allowbreak{}order}
-and \texttt{\small line\_\allowbreak{}order} tables expand state arrays
-to equipment-long form; the static device order is stored once per
-month. Supplementary Table S5 lists fields and joins.
+allocation audit bundle. Fixed \texttt{bus\_order} and
+\texttt{line\_order} tables expand state arrays to equipment-long form;
+the static device order is stored once per month. Supplementary Table S5
+lists fields and joins.
 
-The main database also contains the N−1 application results from Section
-5.
-\texttt{\small scenario.\allowbreak{}annual\_\allowbreak{}nminus1\_\allowbreak{}snapshots}
-records six representative times,
-\texttt{\small scenario.\allowbreak{}annual\_\allowbreak{}nminus1\_\allowbreak{}results}
-stores 9,894 contingency-level results, and
-\texttt{\small scenario.\allowbreak{}annual\_\allowbreak{}nminus1\_\allowbreak{}overloads}
-stores post-contingency overloaded circuits.
-\texttt{\small scenario.\allowbreak{}nminus1\_\allowbreak{}control\_\allowbreak{}policy}
-and
-\texttt{\small provenance.\allowbreak{}annual\_\allowbreak{}nminus1\_\allowbreak{}runs}
-record control-search bounds and experiment provenance. These
-application tables remain separate from the continuous 15-minute cases
-so that sampled security screening is not mistaken for continuous
-operating observation.
+The main database also contains the N−1 application results described in
+Supplementary Note S5. Dedicated scenario tables record six
+representative times, 9,894 contingency-level results, post-contingency
+overloads, control-search bounds, and run provenance. These tables
+remain separate from the continuous 15-minute cases so that sampled
+security screening is not mistaken for continuous operating observation.
 
-\subsection{3.4 Dataset Coverage and
-Composition}\label{dataset-coverage-and-composition}
+\subsection{File organization and
+distribution}\label{file-organization-and-distribution}
 
-\PTneedspace{540.7pt}
+The frozen release comprises the analysis-ready main database, 11
+monthly result databases, source and provenance records, and validation
+and application results. Stable model identifiers join the static
+network to the common calendar in the main database. Case identifiers
+and fixed equipment order join summaries, state arrays, and audit
+bundles in the monthly databases. Raw files are distributed when
+licensing permits; otherwise, the release provides source metadata and
+download scripts. \texttt{release.json}, \texttt{SHA256SUMS}, and the
+release README define file hashes, the environment, and reproduction
+entry points.
+
+\subsection{Frozen release and model-version
+reconciliation}\label{frozen-release-and-model-version-reconciliation}
+
+The paper freezes release \textbf{SimPT60-2026.09.21-r1}. The 31,492
+historical cases and the main technical validation use CORE-3783: 3,783
+buses, 4,943 lines, and 228 transformer rows. The contingency examples
+in Supplementary Note S5 use N1-3787. That variant adds four colocated
+connection nodes to correct the Lanheses--Feitosa topology while
+retaining 4,943 line rows and 228 transformer rows. The single Estoi
+transformer row represents three parallel 126 MVA units rather than one
+equivalent unit; consequently, N1-3787 contains 230 equivalent
+transformer units but still 228 transformer rows and 228 transformer
+outage groups. An Estoi unit outage is represented by decreasing the
+row's parallel count from three to two. Results from the two variants
+cannot be interchanged and attributed to one model. Supplementary Note
+S2 lists the required differences; the release manifest records
+field-level differences and hashes.
+
+\section{Data Overview}\label{data-overview}
 
 Figure 3 shows interval availability, the peak-load week, and monthly
 case completeness.
@@ -1002,8 +975,6 @@ daylight-saving hour, and March is partial through day 24.
 
 Table 7 summarizes the principal static, time-series, validation, and
 application objects.
-
-\PTneedspace{531pt}
 
 \textbf{Table 7---Principal dataset statistics.}
 
@@ -1053,39 +1024,11 @@ per time \\
 \end{longtable}
 
 \textbf{Table note.} Counts describe the released CORE-3783 variant. N−1
-uses N1-3787. Section 3.6 and Supplementary Note S2 define their
-object-level differences, section applicability, and fixed hashes.
+uses N1-3787. The Frozen release and model-version reconciliation
+subsection and Supplementary Note S2 define their object-level
+differences, section applicability, and fixed hashes.
 
-\subsection{3.5 File Organization and
-Distribution}\label{file-organization-and-distribution}
-
-The frozen release comprises the analysis-ready main database, 11
-monthly result databases, source and provenance records, and validation
-and application results. Stable model identifiers join the static
-network to the common calendar in the main database. Case identifiers
-and fixed equipment order join summaries, state arrays, and audit
-bundles in the monthly databases. Raw files are distributed when
-licensing permits; otherwise, the release provides source metadata and
-download scripts. \texttt{\small release.\allowbreak{}json},
-\texttt{\small SHA256SUMS}, and the release README define file hashes,
-the environment, and reproduction entry points.
-
-\subsection{3.6 Frozen Release and Model-Version
-Reconciliation}\label{frozen-release-and-model-version-reconciliation}
-
-The paper freezes release \textbf{SimPT60-2026.09.21-r1}. The 31,492
-historical cases and validation in Sections 3--4 use CORE-3783: 3,783
-buses, 4,943 lines, and 228 transformers. The Section 5.2 N−1
-demonstration uses N1-3787. In that variant, four colocated connection
-nodes correct the Lanheses--Feitosa topology, and one merged Estoi
-transformer object is separated into three parallel equivalent units.
-The transformer table therefore contains 230 rows, although the three
-Estoi units form one symmetric contingency group. Results from the two
-variants cannot be interchanged and attributed to one model.
-Supplementary Note S2 lists the required differences; the release
-manifest records field-level differences and hashes.
-
-\section{4. Validation}\label{validation}
+\section{Technical Validation}\label{technical-validation}
 
 No contemporaneous operator network model or branch-level state estimate
 was available at the spatial extent of SimPT60. Validation therefore
@@ -1094,8 +1037,8 @@ plausibility and usability through network structure, computational
 consistency, sensitivity to modelling assumptions, and comparison with
 public observations.
 
-\subsection{4.1 Validation Design and Evidence
-Levels}\label{validation-design-and-evidence-levels}
+\subsection{Validation design and evidence
+levels}\label{validation-design-and-evidence-levels}
 
 Validation has three layers. Public structural records and sensitivity
 tests evaluate the network representation. E-REDES products withheld
@@ -1112,8 +1055,8 @@ and municipal or substation statistics are not line-flow truth. The
 target is therefore research-level plausibility and usability rather
 than equipment-level accuracy.
 
-\subsection{4.2 Structural and Computational
-Consistency}\label{structural-and-computational-consistency}
+\subsection{Structural and computational
+consistency}\label{structural-and-computational-consistency}
 
 The full static network contains 3,783 buses, 4,943 lines, and 228
 transformers. A single connected component contains 3,664 active buses
@@ -1128,18 +1071,15 @@ seven model lines and is descriptive only.
 Line parameters are a principal uncertainty. Of 4,240 60 kV lines, 1,517
 have partial support from PDIRD circuit paths and 2,723 use
 voltage-class engineering proxies. At 130--400 kV, every line is
-classified as proxy at the line-level
-\texttt{\small parameter\_\allowbreak{}status}. This overall
-classification differs from field-level support, which Figure 4 reports
-separately.
+classified as proxy at the line-level \texttt{parameter\_status}. This
+overall classification differs from field-level support, which Figure 4
+reports separately.
 
 The 11 compact monthly databases contain 31,492 completed and converged
 15-minute cases. The mean absolute AC closure residual across
 generation, boundary exchange, load, and loss is \(1.77\times10^{-6}\)
 MW, showing numerical agreement among released states and audit
 quantities.
-
-\PTneedspace{462.3pt}
 
 \pandocbounded{\includegraphics[keepaspectratio]{figures_final/fig04_network_parameter_evidence.pdf}}
 
@@ -1156,8 +1096,6 @@ not be assigned the same evidence level as ratings. Reactance and
 capacitance are proxies throughout. The 130 kV result contains seven
 lines and is descriptive only. Table 8 reports line-level evidence
 counts.
-
-\PTneedspace{234pt}
 
 \textbf{Table 8---Network structure, parameter evidence, and
 computational completeness.}
@@ -1208,8 +1146,8 @@ closure MAE is \(1.77\times10^{-6}\) MW. Partial line-level support does
 not mean that every field is observed; all \(x\) and \(c\) values are
 proxies.
 
-\subsection{4.3 Parameter and Spatial-Allocation
-Sensitivity}\label{parameter-and-spatial-allocation-sensitivity}
+\subsection{Parameter and spatial-allocation
+sensitivity}\label{parameter-and-spatial-allocation-sensitivity}
 
 Sensitivity experiments perturb line \(R/X\), capacitance, current
 ratings, transformer capacity and impedance, and the spatial allocation
@@ -1222,8 +1160,6 @@ points. System-wide rankings remain comparatively stable under spatial
 alternatives, but allocating residual load by transformer capacity
 reduces the Top-20 Jaccard index to 0.429. Specific hotspots are
 consequently more assumption-dependent than the global ranking.
-
-\PTneedspace{429.9pt}
 
 Figure 5 summarizes ranking, hotspot-set, and maximum-loading responses.
 Supplementary Table S6 contains all paired results. Hotspot persistence
@@ -1241,17 +1177,17 @@ medians over 22 operating states and lines extend to the least favorable
 result. The 154 parameter cases and 132 spatial cases share 22
 baselines.
 
-\subsection{4.4 External Temporal
-Agreement}\label{external-temporal-agreement}
+\subsection{External temporal
+agreement}\label{external-temporal-agreement}
 
 National demand comparison contains 31,388 paired intervals. The ratio
 of mean SimPT60 consumption to public E-REDES consumption is 1.003, with
 a day-block bootstrap 95\% confidence interval of {[}1.002, 1.005{]}.
-Fifteen-minute Pearson correlation is 0.997 {[}0.996, 0.999{]}, and MAE
-is 30.9 MW. Across 327 paired daily means, Pearson correlation is 0.995
-and normalized RMSE is 0.013. October 2025 contains E-REDES missingness
-and local deviations, but the month is retained
-(\hyperref[ref-EREDESNationalConsumption]{E-REDES, n.d.-b}).
+Fifteen-minute Pearson correlation is 0.997 {[}0.996, 0.999{]}, and mean
+absolute error (MAE) is 30.9 MW. Across 327 paired daily means, Pearson
+correlation is 0.995 and normalized root-mean-square error (RMSE) is
+0.013. October 2025 contains E-REDES missingness and local deviations,
+but the month is retained\textsuperscript{22}.
 
 Wind comparison contains 31,484 paired intervals. The mean ratio between
 SimPT60 and E-REDES distribution-grid wind injection is 1.056 {[}1.055,
@@ -1260,11 +1196,7 @@ Daily-mean correlation is also 0.9998. Photovoltaic correlation is
 0.982, but mean national photovoltaic production in SimPT60 is
 approximately 21.2 times distribution-grid injection. Hydro correlation
 is 0.536. The latter comparisons span different accounting scopes and
-are not absolute-scale validation
-(\hyperref[ref-EREDESDistributionInjection]{E-REDES, n.d.-c};
-\hyperref[ref-EREDESNationalProduction]{E-REDES, n.d.-d}).
-
-\PTneedspace{680.0pt}
+are not absolute-scale validation\textsuperscript{23,24}.
 
 \pandocbounded{\includegraphics[keepaspectratio]{figures_final/fig07_temporal_validation.pdf}}
 
@@ -1281,27 +1213,23 @@ distribution-grid injection across different scopes. The figure
 validates aggregate inputs, not nodal allocation or branch flow. Table 9
 gives bootstrap intervals.
 
-\subsection{4.5 External Spatial
-Agreement}\label{external-spatial-agreement}
+\subsection{External spatial
+agreement}\label{external-spatial-agreement}
 
-At municipal level, E-REDES monthly billed consumption is the reference
-(\hyperref[ref-EREDESMunicipalityConsumption]{E-REDES, n.d.-e}). The
-2,183 municipality-month pairs yield a Spearman correlation of 0.881,
-with a 95\% confidence interval of {[}0.841, 0.910{]} from 199
-municipality clusters; they cover 94.8\% of contemporaneous billed
-energy. At substation level, 792 seasonal pairs yield a Spearman
-correlation of 0.957 {[}0.946, 0.967{]} over 397 station clusters, a
-mean ratio of 1.044, and MAE of 2.45 MW.
+At municipal level, E-REDES monthly billed consumption is the
+reference\textsuperscript{25}. The 2,183 municipality-month pairs yield
+a Spearman correlation of 0.881, with a 95\% confidence interval of
+{[}0.841, 0.910{]} from 199 municipality clusters; they cover 94.8\% of
+contemporaneous billed energy. At substation level, 792 seasonal pairs
+yield a Spearman correlation of 0.957 {[}0.946, 0.967{]} over 397
+station clusters, a mean ratio of 1.044, and MAE of 2.45 MW.
 
 Municipality comparisons use the municipality containing each substation
 as a proxy for its service area and therefore provide weak spatial
 evidence. Seasonal substation loads come from the E-REDES capacity and
-loading product (\hyperref[ref-EREDESSubstationCapacity]{E-REDES,
-n.d.-a}). They test facility ranking and scale, but share the same
-operator as the 15-minute load data and are not fully independent nodal
-truth.
-
-\PTneedspace{434.3pt}
+loading product\textsuperscript{26}. They test facility ranking and
+scale, but share the same operator as the 15-minute load data and are
+not fully independent nodal truth.
 
 \pandocbounded{\includegraphics[keepaspectratio]{figures_final/fig08_spatial_validation.pdf}}
 
@@ -1313,8 +1241,6 @@ cluster-bootstrap 95\% intervals using 199 municipality and 397
 substation clusters; bands are not regression intervals. Municipality
 assignment is a weak service-area proxy, and cross-product evidence from
 the same operator is not fully independent nodal truth.
-
-\PTneedspace{261pt}
 
 \textbf{Table 9---Summary of cross-source validation.}
 
@@ -1355,8 +1281,8 @@ AC power closure & 31,492 cases & MAE \(1.77\times10^{-6}\) MW &
 Internal physical consistency \\
 \end{longtable}
 
-\subsubsection{4.5.1 Station-Held-Out Spatial Reconstruction
-Test}\label{station-held-out-spatial-reconstruction-test}
+\subsubsection{Station-held-out spatial reconstruction
+test}\label{station-held-out-spatial-reconstruction-test}
 
 A station-held-out experiment divides 394 matched stations into five
 deterministic folds. At 22 times, it compares global capacity share,
@@ -1368,8 +1294,6 @@ overlapping confidence interval. Reconstructed connectivity therefore
 contains useful proximity information but does not independently recover
 precise nodal demand. Supplementary Note S3 specifies folds, distance
 weights, and bootstrap procedures.
-
-\PTneedspace{180pt}
 
 \textbf{Table 10---Station-held-out spatial-allocation results.}
 
@@ -1385,11 +1309,11 @@ Method
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 Stations / observation pairs
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-MAE (MW), 95\% CI
+MAE (MW), 95\% confidence interval
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 RMSE (MW)
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-WAPE
+Weighted absolute percentage error (WAPE)
 \end{minipage} \\
 \midrule\noalign{}
 \endhead
@@ -1403,8 +1327,8 @@ Five network-path neighbors & 394 / 8,541 & 4.262 {[}3.971, 4.545{]} &
 5.702 & 34.6\% \\
 \end{longtable}
 
-\subsection{4.6 Generation Scope and Quantified Dependence on Spatial
-Proxies}\label{generation-scope-and-quantified-dependence-on-spatial-proxies}
+\subsection{Generation scope and quantified dependence on spatial
+proxies}\label{generation-scope-and-quantified-dependence-on-spatial-proxies}
 
 Directly observed load accounts for 67.93--74.93\% of monthly
 consumption; the remaining 25.07--32.07\% is allocated with PDIRT
@@ -1413,8 +1337,6 @@ reference profiles. National generation proxies account for only
 small technology classes. In May 2025, proxy shares reach 90.58\% for
 batteries and 11.07\% for other thermal generation. Aggregate balance
 therefore does not establish reliable local asset location.
-
-\PTneedspace{680.0pt}
 
 All non-rounding generation proxies are injected at one 400 kV receiving
 bus, which represents a model balancing location only. Figure 8 shows
@@ -1431,7 +1353,7 @@ generation; and (c) load-residual share by latitude band of receiving
 buses. Panels use different denominators. Regions denote allocation
 locations in the model, not the true locations of missing assets.
 
-\subsection{4.7 Limitations}\label{limitations}
+\subsection{Limitations}\label{limitations}
 
 Validation supports aggregate temporal agreement, plausible spatial
 ranking, and numerical self-consistency. Parameter and allocation
@@ -1445,352 +1367,232 @@ and method testing. Real-time dispatch, protection settings, and formal
 compliance assessment require contemporaneous operator-approved models
 and operating records.
 
-\section{5. Application}\label{application}
+\section{Usage Notes}\label{usage-notes}
 
-Two compact experiments demonstrate deterministic scenario comparison
-and batch contingency computation. They illustrate model use and are
-neither operational forecasts nor formal compliance assessments.
+The release is designed for reproducible time-series power-flow studies,
+relative scenario comparison, and method testing. Users should select
+the model variant explicitly: CORE-3783 is the static network used by
+the 31,492 archived operating cases and their validation products,
+whereas N1-3787 is restricted to the corrected contingency examples. The
+main and monthly DuckDB files can be joined through stable model,
+equipment, case, and UTC timestamp identifiers; Supplementary Tables S3
+and S5 list the principal evidence and join fields.
 
-\subsection{5.1 Deterministic Grid-Stress
-Scenario}\label{deterministic-grid-stress-scenario}
-
-\PTneedspace{336.9pt}
-
-Starting from 2026-01-20 19:45 UTC, nodal load, generation by
-technology, and boundary exchange are scaled jointly from 0.90 to 1.15
-and solved independently. All five scenarios converge. Maximum line
-loading is 96.10\% at baseline, reaches 100.50\% with three overloaded
-lines at 1.05, and reaches 109.41\% at 1.15. Minimum voltage remains
-above 0.90 p.u. Figure 9 shows loading and voltage responses; exact
-scenario results are released as CSV.
-
-\pandocbounded{\includegraphics[keepaspectratio]{figures_final/fig11_grid_stress.pdf}}
-
-\textbf{Figure 9---Deterministic grid-stress response.} (a) Maximum line
-and transformer loading; (b) minimum and maximum bus voltage. Dashed
-lines mark 100\% line loading and the 0.90--1.10 p.u. screening band.
-Connecting lines guide the eye only.
-
-\subsection{5.2 Representative-Time Full-Element N−1
-Demonstration}\label{representative-time-full-element-n1-demonstration}
-
-Six times are selected in advance from the continuous series: maximum
-and minimum load, maximum wind, maximum photovoltaic generation, maximum
-net import, and maximum net export. The same 1,649 contingencies are
-used at each time in N1-3787: 1,421 line-circuit groups and 228
-transformer groups. Series model segments are removed together, while
-one unit is removed from a parallel equivalent. Supplementary Table S8
-specifies selection and exclusion rules.
-
-\PTneedspace{680.0pt}
-
-The six times produce 9,894 cases, of which 9,888 converge under the
-principal solution. Absolute screening passes 6,048 cases, and 9,064
-cases have neither a new violation relative to N−0 nor a material
-island. The latter is an auxiliary diagnostic; it does not identify
-every worsening of a pre-existing violation and does not replace
-absolute criteria. Figure 10 and Table 11 report the results; complete
-membership and case-level outputs are preserved in the repository.
-
-\pandocbounded{\includegraphics[keepaspectratio]{figures_final/fig12_annual_nminus1.pdf}}
-
-\textbf{Figure 10---Full-element N−1 screening at representative times.}
-(a) Absolute and incremental diagnostics; (b) material islands, new
-violations, and principal-solution failures; (c--d) elements associated
-with the highest post-contingency line loading and largest disconnected
-load. Supplementary Note S4 defines the complete criteria and quantifies
-worsening of pre-existing violations.
-
-\PTneedspace{288pt}
-
-\textbf{Table 11---Full-element N−1 results at six representative
-times.}
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1304}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1739}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1739}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1739}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1739}}
-  >{\raggedleft\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1739}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Snapshot
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-Cases
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-Principal solution converged
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-Absolute screen passed
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-No new violation and no material island
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-Material island
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Maximum net export & 1,649 & 1,649 & 1,527 & 1,527 & 114 \\
-Maximum net import & 1,649 & 1,648 & 1,455 & 1,455 & 102 \\
-Maximum photovoltaic & 1,649 & 1,649 & 1,526 & 1,526 & 109 \\
-Maximum wind & 1,649 & 1,647 & 0 & 1,502 & 115 \\
-Minimum load & 1,649 & 1,649 & 1,538 & 1,538 & 110 \\
-Maximum load & 1,649 & 1,646 & 2 & 1,516 & 110 \\
-Total & 9,894 & 9,888 & 6,048 & 9,064 & 660 \\
-\end{longtable}
-
-\textbf{Table note.} Absolute pass, no-new-violation/no-material-island,
-and material-island columns are computed separately and are not mutually
-exclusive and exhaustive classes. At maximum net export, eight
-additional non-islanding cases have new violations: seven line-thermal
-and one voltage violation. Together with 1,527 no-new-violation cases
-and 114 material islands, they account for all 1,649 cases.
-
-These applications support relative scenarios and diagnostic contingency
-screening. Equipment-level interpretation remains limited by the
-parameter, status, and control evidence summarized in Section 4.7.
-
-\section{6. Conclusions}\label{conclusions}
-
-SimPT60 links a public-data reconstruction of the continental Portuguese
-60--400 kV network to 31,492 consecutive 15-minute AC power-flow states
-in one traceable, versioned product. CORE-3783 contains 3,783 buses,
-4,943 lines, and 228 transformer objects, connected to source records,
-allocation rules, and solution outputs by stable identifiers.
-
-Validation supports aggregate spatiotemporal agreement and numerical
-self-consistency. National load and wind correlations are approximately
-0.997 and 0.9998. Spearman correlations for municipal and substation
-spatial rankings are 0.881 and 0.957. The station-held-out experiment
-shows that network proximity improves on global capacity allocation but
-not on geographic proximity. System-wide rankings are generally stable
-under parameter and allocation perturbations, whereas individual
-hotspots and absolute loading remain sensitive to proxy assumptions.
-
-The grid-stress scenarios and 9,894 N−1 cases at six representative
-times demonstrate support for scenario analysis and batch contingency
-computation. These results compare model states and identify elements
-for further investigation; they do not constitute security
-certification.
-
-SimPT60 is a public-data-derived research dataset. It is not an operator
-internal model, state estimate, or digital twin. Equipment-level
-validation will require contemporaneous device status, generator P--Q
-capability, switching configuration, and post-contingency actions.
+The released power-flow states are computed research-model outputs
+rather than telemetry or an operator state estimate. Branch loading, bus
+voltage, and contingency results should therefore be interpreted
+comparatively and together with \texttt{parameter\_status},
+\texttt{source\_status}, allocation-audit fields, and the stated
+screening thresholds. Supplementary Notes S4--S5 provide the contingency
+definitions, detailed diagnostics, and worked stress-scenario and N−1
+examples.
 
 \section{Data Availability}\label{data-availability}
 
-The frozen \textbf{SimPT60-2026.09.21-r1} release is available from the
+The frozen \textbf{SimPT60-2026.09.21-r1} dataset
+release\textsuperscript{27} is available from the
 \href{https://github.com/MingLeiZhou/PortugueseOPD/releases/tag/SimPT60-2026.09.21-r1}{project's
 versioned GitHub release}. It contains the reproducibility core, 11
 compressed monthly result databases, the monthly manifest,
-\texttt{\small release.\allowbreak{}json}, and
-\texttt{\small SHA256SUMS}. Raw third-party files are redistributed only
-when their licences permit; otherwise, the release retains source URLs,
-archived metadata, file sizes, fingerprints, and retrieval instructions.
-The release manifest identifies the CORE-3783 and N1-3787 model variants
-and their permitted uses.
+\texttt{release.json}, and \texttt{SHA256SUMS}. Raw third-party files
+are redistributed only when their licences permit; otherwise, the
+release retains source URLs, archived metadata, file sizes,
+fingerprints, and retrieval instructions. The release manifest
+identifies the CORE-3783 and N1-3787 model variants and their permitted
+uses.
 
 \section{Code Availability}\label{code-availability}
 
 Reproduction code, the locked Python environment, and the minimal replay
-commands are included in the same
+commands are included in the
 \href{https://github.com/MingLeiZhou/PortugueseOPD/releases/tag/SimPT60-2026.09.21-r1}{SimPT60-2026.09.21-r1
 release}. The immutable tag fixes the release state, while
-\texttt{\small release.\allowbreak{}json} and
-\texttt{\small CODE\_\allowbreak{}VERSION.\allowbreak{}json} record the
+\texttt{release.json} and \texttt{CODE\_VERSION.json} record the
 implementation commit and the limitation that the original historical
 monthly runs did not store a code commit. The replay workflow verifies
 selected released cases at a tolerance of \(10^{-5}\) in the units of
 each compared field.
 
-\section{References}\label{references}
+\section*{References}\label{bibliography}
+\addcontentsline{toc}{section}{References}
 
-\phantomsection\label{ref-APA3403}
+\phantomsection\label{refs}
+\begin{CSLReferences}{0}{0}
+\bibitem[\citeproctext]{ref-Thurner2018}
+\CSLLeftMargin{1. }%
+\CSLRightInline{Thurner, L. \emph{et al.}
+\href{https://doi.org/10.1109/TPWRS.2018.2829021}{Pandapower---an
+{Open-Source} {Python} {Tool} for {Convenient} {Modeling,} {Analysis,}
+and {Optimization} of {Electric} {Power} {Systems}}. \emph{IEEE
+Transactions on Power Systems} \textbf{33}, 6510--6521 (2018).}
 
-APA (2021).
-\href{https://siaia.apambiente.pt/AIADOC/AIA3403/parecerca_3403202192134944.pdf}{Sobreequipamento
-do Parque Eólico de Trancoso: Parecer da Comissão de Avaliação, AIA
-3403}. July; PDF p.~5.
+\bibitem[\citeproctext]{ref-Horsch2018}
+\CSLLeftMargin{2. }%
+\CSLRightInline{Hörsch, J., Hofmann, F., Schlachtberger, D. \& Brown, T.
+\href{https://doi.org/10.1016/j.esr.2018.08.012}{PyPSA-eur: {An} {Open}
+{Optimisation} {Model} of the {European} {Transmission} {System}}.
+\emph{Energy Strategy Reviews} \textbf{22}, 207--215 (2018).}
 
-\phantomsection\label{ref-APAPPA421}
+\bibitem[\citeproctext]{ref-Meinecke2020}
+\CSLLeftMargin{3. }%
+\CSLRightInline{Meinecke, S. \emph{et al.}
+\href{https://doi.org/10.3390/en13123290}{SimBench---a {Benchmark}
+{Dataset} of {Electric} {Power} {Systems} to {Compare} {Innovative}
+{Solutions} {Based} on {Power} {Flow} {Analysis}}. \emph{Energies}
+\textbf{13}, 3290 (2020).}
 
-APA (n.d.-a).
-\href{https://siaia.apambiente.pt/PosAvaliacao/DetalhesPosAvaliacao/421}{PPA
-421: Sub-Parque Eólico de Sernancelhe e ligação a Moimenta}. AIA 2009;
-project-name and operation-date fields; archived 2026-09-21.
+\bibitem[\citeproctext]{ref-Xiong2025}
+\CSLLeftMargin{4. }%
+\CSLRightInline{Xiong, B., Fioriti, D., Neumann, F., Riepin, I. \&
+Brown, T. \href{https://doi.org/10.1038/s41597-025-04550-7}{Modelling
+the {High-Voltage} {Grid} {Using} {Open} {Data} for {Europe} and
+{Beyond}}. \emph{Scientific Data} \textbf{12}, 277 (2025).}
 
-\phantomsection\label{ref-APAPPA407}
+\bibitem[\citeproctext]{ref-DGEGPNEC2030Revision2024}
+\CSLLeftMargin{5. }%
+\CSLRightInline{DGEG. \emph{Portugal: {Plano} {Nacional} {Energia} e
+{Clima} 2021--2030, Atualização/Revisão}.
+\url{https://www.dgeg.gov.pt/media/54fldci3/pnec2030_para_aprov_ar.pdf}
+(2024).}
 
-APA (n.d.-b).
-\href{https://siaia.apambiente.pt/PosAvaliacao/DetalhesPosAvaliacao/407}{PPA
-407: Ligação do Douro Sul à Subestação de Armamar e Subestação de
-Moimenta}. AIA 2009; archived 2026-09-21.
+\bibitem[\citeproctext]{ref-EREDESRND2026}
+\CSLLeftMargin{6. }%
+\CSLRightInline{E-REDES.
+\href{https://e-redes.opendatasoft.com/pages/rnd/}{Rede {Nacional} de
+{Distribuição:} {Dados} da {Rede} {AT} e {Cargas} de {Subestação}}.}
 
-\phantomsection\label{ref-DGEGPNEC2030Revision2024}
-
-DGEG (2024).
-\href{https://www.dgeg.gov.pt/media/54fldci3/pnec2030_para_aprov_ar.pdf}{Portugal:
-Plano Nacional Energia e Clima 2021--2030, atualização/revisão}. DGEG.
-
-\phantomsection\label{ref-DGEGGeo2026}
-
-DGEG (n.d.).
-\href{https://www.dgeg.gov.pt/pt/servicos-online/setor-energetico/}{Informação
-Geográfica de Energia Elétrica}. Official geographic data portal.
-Accessed 2026-09-21.
-
-\phantomsection\label{ref-Tocha2019}
-
-EDP Distribuição (2019).
-\href{https://siaia.apambiente.pt/AIADOC/AIA3274/projeto\%20linha\%20eletrica\%20pe\%20tocha\%20ii2019729153214.pdf}{Memória
-Descritiva e Justificativa: Linha a 60 kV PE Tocha II--Tocha}. 19
-February; process 2800-19C007374; PDF pp.~3, 5.
-
-\phantomsection\label{ref-EREDESPDIRD2020AnnexB}
-
-E-REDES; Entidade Reguladora dos Serviços Energéticos (2020).
-\href{https://www.erse.pt/media/340hrot0/proposta-pdird-e-2020_anexo_b.pdf}{PDIRD-E
-2020, Anexo B}. ERSE. July version; northern circuit records: PDF
-pp.~93--95.
-
-\phantomsection\label{ref-EREDESSubstationCapacity}
-
-E-REDES (n.d.-a).
-\href{https://e-redes.opendatasoft.com/explore/dataset/carga-na-subestacao/}{Carga
-na subestação}. E-REDES Open Data Portal. Accessed 2026-09-21.
-
-\phantomsection\label{ref-EREDESNationalConsumption}
-
-E-REDES (n.d.-b).
-\href{https://e-redes.opendatasoft.com/explore/dataset/consumo-total-nacional/}{Consumo
-total nacional}. E-REDES Open Data Portal. Accessed 2026-09-21.
-
-\phantomsection\label{ref-EREDESDistributionInjection}
-
-E-REDES (n.d.-c).
-\href{https://e-redes.opendatasoft.com/explore/dataset/energia-injetada-na-rede-de-distribuicao/}{Energia
-injetada na rede de distribuição}. E-REDES Open Data Portal. Accessed
-2026-09-21.
-
-\phantomsection\label{ref-EREDESNationalProduction}
-
-E-REDES (n.d.-d).
-\href{https://e-redes.opendatasoft.com/explore/dataset/energia-produzida-total-nacional/}{Energia
-produzida total nacional}. E-REDES Open Data Portal. Accessed
-2026-09-21.
-
-\phantomsection\label{ref-EREDESMunicipalityConsumption}
-
-E-REDES (n.d.-e).
-\href{https://e-redes.opendatasoft.com/explore/dataset/3-consumos-faturados-por-municipio-ultimos-10-anos/}{Monthly
-consumption by municipality}. E-REDES Open Data Portal. Accessed
-2026-09-21.
-
-\phantomsection\label{ref-EREDESRND2026}
-
-E-REDES (n.d.-f).
-\href{https://e-redes.opendatasoft.com/pages/rnd/}{Rede Nacional de
-Distribuição: Dados da Rede AT e Cargas de Subestação}. Open data
-portal. Accessed 2026-09-21.
-
-\phantomsection\label{ref-GISCO2024}
-
-Eurostat GISCO (2024).
-\href{https://gisco-services.ec.europa.eu/distribution/v2/countries/}{Countries
-2024: Portugal Boundary, 1:1 Million, EPSG:4326}. Geospatial dataset.
-Accessed 2026-09-21.
-
-\phantomsection\label{ref-GeoPandas2026}
-
-Fleischmann, Martin; Van den Bossche, Joris; Jordahl, Kelsey; Richards,
-Matthew John; McBride, James; Wasserman, Jacob; Ward, Brendan; Wolf,
-Levi John (2026).
-\href{https://doi.org/10.1016/j.compenvurbsys.2026.102495}{GeoPandas:
-Fundamental Data Structures for Vector Spatial Data in Python}.
-\emph{Computers, Environment and Urban Systems}, 130, 102495.
-Author/year/DOI verified against the official GeoPandas CITATION.md and
-Crossref on 2026-09-21; assigned issue December 2026, not asserted as
-the online publication date.
-
-\phantomsection\label{ref-GeofabrikPortugal2026}
-
-Geofabrik GmbH (n.d.).
-\href{https://download.geofabrik.de/europe/portugal.html}{OpenStreetMap
-Data Extract for Portugal}. Geospatial data extract. Accessed
-2026-09-21.
-
-\phantomsection\label{ref-Horsch2018}
-
-Hörsch, Jonas; Hofmann, Fabian; Schlachtberger, David; Brown, Tom
-(2018). \href{https://doi.org/10.1016/j.esr.2018.08.012}{PyPSA-Eur: An
-Open Optimisation Model of the European Transmission System}.
-\emph{Energy Strategy Reviews}, 22, 207-215.
-
-\phantomsection\label{ref-Meinecke2020}
-
-Meinecke, Steffen; Sarajlić, Džanan; Drauz, Simon Ruben; Klettke,
-Annika; Lauven, Lars-Peter; Rehtanz, Christian; Moser, Albert; Braun,
-Martin (2020). \href{https://doi.org/10.3390/en13123290}{SimBench---A
-Benchmark Dataset of Electric Power Systems to Compare Innovative
-Solutions Based on Power Flow Analysis}. \emph{Energies}, 13(12), 3290.
-
-\phantomsection\label{ref-OpenInfraMap2026}
-
-OpenInfraMap contributors (n.d.).
-\href{https://openinframap.org/about}{OpenInfraMap}. Web map of
-infrastructure data derived from OpenStreetMap. Accessed 2026-09-21.
-
-\phantomsection\label{ref-OSM2026}
-
-OpenStreetMap contributors (n.d.).
-\href{https://www.openstreetmap.org/copyright}{OpenStreetMap}.
-Collaborative geospatial database. Accessed 2026-09-21.
-
-\phantomsection\label{ref-REE2012}
-
-Red Eléctrica de España (2012).
-\href{https://www.ree.es/sites/default/files/jgk4byy3ukct.pdf}{Interconexiones
-eléctricas: un paso para el mercado único de la energía en Europa}.
-September; PDF p.~10.
-
-\phantomsection\label{ref-REN2015Estoi}
-
-REN (2015).
-\href{https://www.erse.pt/media/b1edmm30/proposta_pdirt_e_2015_anexos.pdf}{PDIRT
-2016--2025, Anexo 6: Equipamento em serviço previsto em finais de 2016,
-2018, 2020 e 2025}. Proposal archive; PDF pp.~50, 52, 54, 56. Year
-follows archive label, not a newly inferred issue date.
-
-\phantomsection\label{ref-ERSEPDIRT2024}
-
-REN (2024).
-\href{https://www.erse.pt/media/lx5n5kao/pdirt-2025-2034-proposta-inicial-vol-i-anexos-1-a-16.pdf}{PDIRT
-2025--2034, Proposta Inicial, Volume I, Anexos 1 a 16}. ERSE (public
-consultation archive). December 2024 proposal; archived by ERSE.
-
-\phantomsection\label{ref-RENDataHub2026}
-
-REN (n.d.).
+\bibitem[\citeproctext]{ref-RENDataHub2026}
+\CSLLeftMargin{7. }%
+\CSLRightInline{REN.
 \href{https://datahub.ren.pt/en/networks/electrical-grid/}{Electrical
-Grid Data Hub}. Official data portal. Accessed 2026-09-21.
+{Grid} {Data} {Hub}}.}
 
-\phantomsection\label{ref-Thurner2018}
+\bibitem[\citeproctext]{ref-DGEGGeo2026}
+\CSLLeftMargin{8. }%
+\CSLRightInline{DGEG.
+\href{https://www.dgeg.gov.pt/pt/servicos-online/setor-energetico/}{Informação
+{Geográfica} de {Energia} {Elétrica}}.}
 
-Thurner, Leon; Scheidler, Alexander; Schäfer, Florian; Menke,
-Jan-Hendrik; Dollichon, Julian; Meier, Friederike; Meinecke, Steffen;
-Braun, Martin (2018).
-\href{https://doi.org/10.1109/TPWRS.2018.2829021}{pandapower---An
-Open-Source Python Tool for Convenient Modeling, Analysis, and
-Optimization of Electric Power Systems}. \emph{IEEE Transactions on
-Power Systems}, 33(6), 6510-6521.
+\bibitem[\citeproctext]{ref-ERSEPDIRT2024}
+\CSLLeftMargin{9. }%
+\CSLRightInline{REN. \emph{PDIRT 2025--2034, {Proposta} {Inicial,}
+{Volume} {I,} {Anexos} 1 a 16}.
+\url{https://www.erse.pt/media/lx5n5kao/pdirt-2025-2034-proposta-inicial-vol-i-anexos-1-a-16.pdf}
+(2024).}
 
-\phantomsection\label{ref-Xiong2025}
+\bibitem[\citeproctext]{ref-OSM2026}
+\CSLLeftMargin{10. }%
+\CSLRightInline{OpenStreetMap contributors.
+\href{https://www.openstreetmap.org/copyright}{OpenStreetMap}.}
 
-Xiong, Bobby; Fioriti, Davide; Neumann, Fabian; Riepin, Iegor; Brown,
-Tom (2025). \href{https://doi.org/10.1038/s41597-025-04550-7}{Modelling
-the High-Voltage Grid Using Open Data for Europe and Beyond}.
-\emph{Scientific Data}, 12(1), 277.
+\bibitem[\citeproctext]{ref-GeofabrikPortugal2026}
+\CSLLeftMargin{11. }%
+\CSLRightInline{Geofabrik GmbH.
+\href{https://download.geofabrik.de/europe/portugal.html}{OpenStreetMap
+{Data} {Extract} for {Portugal}}.}
+
+\bibitem[\citeproctext]{ref-APA3403}
+\CSLLeftMargin{12. }%
+\CSLRightInline{APA.
+\href{https://siaia.apambiente.pt/AIADOC/AIA3403/parecerca_3403202192134944.pdf}{Sobreequipamento
+do parque eólico de trancoso: Parecer da comissão de avaliação, AIA
+3403}. (2021).}
+
+\bibitem[\citeproctext]{ref-APAPPA421}
+\CSLLeftMargin{13. }%
+\CSLRightInline{APA.
+\href{https://siaia.apambiente.pt/PosAvaliacao/DetalhesPosAvaliacao/421}{PPA
+421: Sub-parque eólico de sernancelhe e ligação a moimenta}.}
+
+\bibitem[\citeproctext]{ref-APAPPA407}
+\CSLLeftMargin{14. }%
+\CSLRightInline{APA.
+\href{https://siaia.apambiente.pt/PosAvaliacao/DetalhesPosAvaliacao/407}{PPA
+407: Ligação do douro sul à subestação de armamar e subestação de
+moimenta}.}
+
+\bibitem[\citeproctext]{ref-GISCO2024}
+\CSLLeftMargin{15. }%
+\CSLRightInline{Eurostat GISCO.
+\href{https://gisco-services.ec.europa.eu/distribution/v2/countries/}{Countries
+2024: {Portugal} {Boundary,} 1:1 {Million,} {EPSG:4326}}. (2024).}
+
+\bibitem[\citeproctext]{ref-OpenInfraMap2026}
+\CSLLeftMargin{16. }%
+\CSLRightInline{OpenInfraMap contributors.
+\href{https://openinframap.org/about}{OpenInfraMap}.}
+
+\bibitem[\citeproctext]{ref-EREDESPDIRD2020AnnexB}
+\CSLLeftMargin{17. }%
+\CSLRightInline{E-REDES \& Entidade Reguladora dos Serviços Energéticos.
+\emph{PDIRD-e 2020, {Anexo} {B}}.
+\url{https://www.erse.pt/media/340hrot0/proposta-pdird-e-2020_anexo_b.pdf}
+(2020).}
+
+\bibitem[\citeproctext]{ref-Tocha2019}
+\CSLLeftMargin{18. }%
+\CSLRightInline{EDP Distribuição.
+\href{https://siaia.apambiente.pt/AIADOC/AIA3274/projeto\%20linha\%20eletrica\%20pe\%20tocha\%20ii2019729153214.pdf}{Memória
+descritiva e justificativa: Linha a 60 kV PE tocha II--tocha}. (2019).}
+
+\bibitem[\citeproctext]{ref-REE2012}
+\CSLLeftMargin{19. }%
+\CSLRightInline{Red Eléctrica de España (REE).
+\href{https://www.ree.es/sites/default/files/jgk4byy3ukct.pdf}{Interconexiones
+eléctricas: Un paso para el mercado único de la energía en europa}.
+(2012).}
+
+\bibitem[\citeproctext]{ref-REN2015Estoi}
+\CSLLeftMargin{20. }%
+\CSLRightInline{REN.
+\href{https://www.erse.pt/media/b1edmm30/proposta_pdirt_e_2015_anexos.pdf}{PDIRT
+2016--2025, anexo 6: Equipamento em serviço previsto em finais de 2016,
+2018, 2020 e 2025}. (2015).}
+
+\bibitem[\citeproctext]{ref-GeoPandas2026}
+\CSLLeftMargin{21. }%
+\CSLRightInline{Fleischmann, M. \emph{et al.}
+\href{https://doi.org/10.1016/j.compenvurbsys.2026.102495}{GeoPandas:
+{Fundamental} {Data} {Structures} for {Vector} {Spatial} {Data} in
+{Python}}. \emph{Computers, Environment and Urban Systems} \textbf{130},
+102495 (2026).}
+
+\bibitem[\citeproctext]{ref-EREDESNationalConsumption}
+\CSLLeftMargin{22. }%
+\CSLRightInline{E-REDES.
+\href{https://e-redes.opendatasoft.com/explore/dataset/consumo-total-nacional/}{Consumo
+total nacional}. E-REDES Open Data Portal.}
+
+\bibitem[\citeproctext]{ref-EREDESDistributionInjection}
+\CSLLeftMargin{23. }%
+\CSLRightInline{E-REDES.
+\href{https://e-redes.opendatasoft.com/explore/dataset/energia-injetada-na-rede-de-distribuicao/}{Energia
+injetada na rede de distribuição}. E-REDES Open Data Portal.}
+
+\bibitem[\citeproctext]{ref-EREDESNationalProduction}
+\CSLLeftMargin{24. }%
+\CSLRightInline{E-REDES.
+\href{https://e-redes.opendatasoft.com/explore/dataset/energia-produzida-total-nacional/}{Energia
+produzida total nacional}. E-REDES Open Data Portal.}
+
+\bibitem[\citeproctext]{ref-EREDESMunicipalityConsumption}
+\CSLLeftMargin{25. }%
+\CSLRightInline{E-REDES.
+\href{https://e-redes.opendatasoft.com/explore/dataset/3-consumos-faturados-por-municipio-ultimos-10-anos/}{Monthly
+consumption by municipality}. E-REDES Open Data Portal.}
+
+\bibitem[\citeproctext]{ref-EREDESSubstationCapacity}
+\CSLLeftMargin{26. }%
+\CSLRightInline{E-REDES.
+\href{https://e-redes.opendatasoft.com/explore/dataset/carga-na-subestacao/}{Carga
+na subestação}. E-REDES Open Data Portal.}
+
+\bibitem[\citeproctext]{ref-SimPT60Release2026}
+\CSLLeftMargin{27. }%
+\CSLRightInline{\href{https://github.com/MingLeiZhou/PortugueseOPD/releases/tag/SimPT60-2026.09.21-r1}{SimPT60
+2026.09.21 r1: Portuguese high-voltage network and time-series
+power-flow data}. GitHub (2026).}
+
+\end{CSLReferences}
 
 \end{document}
