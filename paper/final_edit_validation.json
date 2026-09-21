@@ -1,9 +1,14 @@
 {
-  "passed": 67,
-  "total": 67,
+  "passed": 70,
+  "total": 70,
   "checks": [
     {
       "check": "Canonical and mirror manuscripts are byte-identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Exactly one References section",
       "passed": true,
       "detail": null
     },
@@ -118,13 +123,31 @@
         "figures_final/fig03_temporal_coverage.png",
         "figures_final/fig04_network_parameter_evidence.png",
         "figures_final/fig05_parameter_spatial_sensitivity.png",
-        "revision_v3/figures/figR3_hotspot_persistence.png",
-        "figures_final/fig06_temporal_validation.png",
-        "figures_final/fig07_spatial_validation.png",
-        "figures_final/fig08_generation_balance_scope.png",
-        "revision_v3/figures/figR1_proxy_provenance.png",
-        "figures_final/fig09_grid_stress.png",
-        "figures_final/fig11_annual_nminus1.png"
+        "figures_final/fig06_hotspot_persistence.png",
+        "figures_final/fig07_temporal_validation.png",
+        "figures_final/fig08_spatial_validation.png",
+        "figures_final/fig09_generation_balance_scope.png",
+        "figures_final/fig10_proxy_provenance.png",
+        "figures_final/fig11_grid_stress.png",
+        "figures_final/fig12_annual_nminus1.png"
+      ]
+    },
+    {
+      "check": "Main figure paths follow current figure numbering",
+      "passed": true,
+      "detail": [
+        "figures_final/fig01_network_reconstruction.png",
+        "figures_final/fig02_geographic_network_state.png",
+        "figures_final/fig03_temporal_coverage.png",
+        "figures_final/fig04_network_parameter_evidence.png",
+        "figures_final/fig05_parameter_spatial_sensitivity.png",
+        "figures_final/fig06_hotspot_persistence.png",
+        "figures_final/fig07_temporal_validation.png",
+        "figures_final/fig08_spatial_validation.png",
+        "figures_final/fig09_generation_balance_scope.png",
+        "figures_final/fig10_proxy_provenance.png",
+        "figures_final/fig11_grid_stress.png",
+        "figures_final/fig12_annual_nminus1.png"
       ]
     },
     {
@@ -153,37 +176,37 @@
       "detail": null
     },
     {
-      "check": "Image exists: revision_v3/figures/figR3_hotspot_persistence.png",
+      "check": "Image exists: figures_final/fig06_hotspot_persistence.png",
       "passed": true,
       "detail": null
     },
     {
-      "check": "Image exists: figures_final/fig06_temporal_validation.png",
+      "check": "Image exists: figures_final/fig07_temporal_validation.png",
       "passed": true,
       "detail": null
     },
     {
-      "check": "Image exists: figures_final/fig07_spatial_validation.png",
+      "check": "Image exists: figures_final/fig08_spatial_validation.png",
       "passed": true,
       "detail": null
     },
     {
-      "check": "Image exists: figures_final/fig08_generation_balance_scope.png",
+      "check": "Image exists: figures_final/fig09_generation_balance_scope.png",
       "passed": true,
       "detail": null
     },
     {
-      "check": "Image exists: revision_v3/figures/figR1_proxy_provenance.png",
+      "check": "Image exists: figures_final/fig10_proxy_provenance.png",
       "passed": true,
       "detail": null
     },
     {
-      "check": "Image exists: figures_final/fig09_grid_stress.png",
+      "check": "Image exists: figures_final/fig11_grid_stress.png",
       "passed": true,
       "detail": null
     },
     {
-      "check": "Image exists: figures_final/fig11_annual_nminus1.png",
+      "check": "Image exists: figures_final/fig12_annual_nminus1.png",
       "passed": true,
       "detail": null
     },
@@ -435,6 +458,14 @@
       "check": "Annual N−1: six states × 1,649",
       "passed": true,
       "detail": null
+    },
+    {
+      "check": "Maximum-net-export residual eight cases are seven thermal and one voltage",
+      "passed": true,
+      "detail": {
+        "THERMAL": 7,
+        "VOLTAGE": 1
+      }
     },
     {
       "check": "Municipality: archived sample and Spearman",

@@ -32,6 +32,7 @@ def prose_reference(text, label):
 
 
 check("Canonical and mirror manuscripts are byte-identical", source == edited)
+check("Exactly one References section", len(re.findall(r"^# References$", edited, re.M)) == 1)
 check("No legacy display-math delimiters", "$$" not in body)
 check("Keywords use an ASCII colon", "**Keywords:**" in body and "**Keywords：**" not in body)
 
@@ -45,6 +46,17 @@ for kind, count in [("Figure", 12), ("Table", 17)]:
 
 images = re.findall(r"!\[[^\]]*\]\(([^)]+)\)", body)
 check("Twelve main figure assets are linked", len(images) == 12, images)
+expected_images = [
+    f"figures_final/fig{i:02d}_{name}.png"
+    for i, name in enumerate([
+        "network_reconstruction", "geographic_network_state", "temporal_coverage",
+        "network_parameter_evidence", "parameter_spatial_sensitivity",
+        "hotspot_persistence", "temporal_validation", "spatial_validation",
+        "generation_balance_scope", "proxy_provenance", "grid_stress",
+        "annual_nminus1",
+    ], start=1)
+]
+check("Main figure paths follow current figure numbering", images == expected_images, images)
 for link in images:
     check("Image exists: " + link, (PAPER / link).is_file())
 
@@ -109,6 +121,14 @@ panel = pd.read_csv(OUTPUTS / "annual_nminus1_panel_v2/annual_nminus1_panel.csv"
 metrics = {"cases": len(panel), "primary": int(panel.primary_converged.sum()), "absolute": int(panel.passes_screen.sum()), "incremental": int(panel.passes_incremental_contingency_screen.sum())}
 check("Annual N−1: 9,894 / 9,888 / 6,048 / 9,064", metrics == {"cases": 9894, "primary": 9888, "absolute": 6048, "incremental": 9064}, metrics)
 check("Annual N−1: six states × 1,649", len(panel.representative_role.unique()) == 6 and panel.groupby("representative_role").size().eq(1649).all())
+net_export = panel.loc[panel.representative_role.eq("MAX_NET_EXPORT")]
+net_export_other = net_export.loc[~net_export.passes_incremental_contingency_screen & ~net_export.material_islanding]
+check(
+    "Maximum-net-export residual eight cases are seven thermal and one voltage",
+    len(net_export_other) == 8
+    and net_export_other.outcome.value_counts().to_dict() == {"THERMAL": 7, "VOLTAGE": 1},
+    net_export_other.outcome.value_counts().to_dict(),
+)
 for label, filename, left, right, expected_n, expected_r in [
     ("Municipality", "municipality_comparison.csv", "pt60_share_within_matched", "billed_share_within_matched", 2183, .881),
     ("Substation", "substation_comparison.csv", "pt60_observed_peak_mw", "reference_natural_load_mw", 792, .957),
