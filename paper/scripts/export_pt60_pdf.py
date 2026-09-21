@@ -180,14 +180,14 @@ def export_pdf():
         return f'![]({vector})' if (PAPER_DIR / vector).exists() else match.group(0)
     clean_content = re.sub(r'!\[\]\(([^)]+\.png)\)', vector_image, clean_content)
     # Reserve the rendered figure plus its caption so neither is orphaned.
-    import pymupdf
+    from pypdf import PdfReader
     def reserve_figure(match):
         path = PAPER_DIR / match.group(2)
         if path.suffix != '.pdf':
             return match.group(0)
-        with pymupdf.open(path) as figure_pdf:
-            rect = figure_pdf[0].rect
-            height = 482 * rect.height / rect.width
+        figure_pdf = PdfReader(path)
+        box = figure_pdf.pages[0].mediabox
+        height = 482 * float(box.height) / float(box.width)
         caption_lines = max(2, (len(match.group(3)) + 74) // 75)
         needed = min(680, height + caption_lines * 16 + 62)
         return f'\\PTneedspace{{{needed:.1f}pt}}\n\n' + match.group(0)
@@ -258,13 +258,16 @@ def export_pdf():
 
     print(f"PDF generated successfully at {TARGET_PDF}!")
 
-    import pymupdf
+    from pypdf import PdfReader
 
-    doc = pymupdf.open(str(TARGET_PDF))
-    print(f"Total pages: {len(doc)}")
+    doc = PdfReader(str(TARGET_PDF))
+    print(f"Total pages: {len(doc.pages)}")
     print(f"File size: {TARGET_PDF.stat().st_size / (1024 * 1024):.2f} MB")
 
-    caption_count = sum(len(re.findall(r'Figure \d+(?:——|—)', p.get_text())) for p in doc)
+    caption_count = sum(
+        len(re.findall(r'Figure \d+(?:——|—)', page.extract_text() or ''))
+        for page in doc.pages
+    )
     print(f"Figure captions verified in PDF: {caption_count} (vector figures may contain raster sublayers)")
 
     if tmp_md.exists():

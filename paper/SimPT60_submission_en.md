@@ -56,7 +56,7 @@ SimPT60 was constructed in five stages: archiving and standardizing public recor
 
 ### 2.1.1 Scope and Sources
 
-The geographic, voltage, and temporal scope is given in Table 1. Network geometry is drawn mainly from the E-REDES 60/130 kV network and the OSM/Geofabrik 150/220/400 kV network ([Geofabrik GmbH, n.d.](#ref-GeofabrikPortugal2026)). DGEG and APA records supplement generation, storage, and connection evidence ([DGEG, n.d.](#ref-DGEGGeo2026); [APA, 2021](#ref-APA3403); [APA, n.d.-a](#ref-APAPPA421); [APA, n.d.-b](#ref-APAPPA407)). REN provides national 15-minute operating series, whereas E-REDES provides substation energy. PDIRT and PDIRD documents provide delivery-point profiles and selected equipment parameters ([E-REDES, n.d.-f](#ref-EREDESRND2026); [OpenStreetMap contributors, n.d.](#ref-OSM2026); [REN, n.d.](#ref-RENDataHub2026); [REN, 2024](#ref-ERSEPDIRT2024)). GISCO supplies the continental boundary ([Eurostat GISCO, 2024](#ref-GISCO2024)); REN and REE records support transmission and interconnection checks. OpenInfraMap, which derives from OSM, is used only for display checks and is not treated as independent evidence ([OpenInfraMap contributors, n.d.](#ref-OpenInfraMap2026)).
+The geographic, voltage, and temporal scope is given in Table 1. Network geometry is drawn mainly from the E-REDES 60/130 kV network and the OpenStreetMap (OSM)/Geofabrik 150/220/400 kV network ([Geofabrik GmbH, n.d.](#ref-GeofabrikPortugal2026)). DGEG and APA records supplement generation, storage, and connection evidence ([DGEG, n.d.](#ref-DGEGGeo2026); [APA, 2021](#ref-APA3403); [APA, n.d.-a](#ref-APAPPA421); [APA, n.d.-b](#ref-APAPPA407)). REN provides national 15-minute operating series, whereas E-REDES provides substation energy. PDIRT and PDIRD documents provide delivery-point profiles and selected equipment parameters ([E-REDES, n.d.-f](#ref-EREDESRND2026); [OpenStreetMap contributors, n.d.](#ref-OSM2026); [REN, n.d.](#ref-RENDataHub2026); [REN, 2024](#ref-ERSEPDIRT2024)). GISCO supplies the continental boundary ([Eurostat GISCO, 2024](#ref-GISCO2024)); REN and REE records support transmission and interconnection checks. OpenInfraMap, which derives from OSM, is used only for display checks and is not treated as independent evidence ([OpenInfraMap contributors, n.d.](#ref-OpenInfraMap2026)).
 
 Table 2 summarizes the source scope and modelling role. The common study window is determined by synchronized E-REDES and REN series. Static-source versions, case dates, and historical availability are recorded separately; the common window is not interpreted as the observation date of every device.
 
@@ -64,7 +64,7 @@ Table 2 summarizes the source scope and modelling role. The common study window 
 
 | Publisher / product | Spatial or temporal coverage | Principal content | Role in this study |
 | --- | --- | --- | --- |
-| E-REDES / RND AT | Continental 60/130 kV; archived snapshot | Lines, facilities, codes, and geometry | Network construction |
+| E-REDES / RND high-voltage network (AT in the source portal) | Continental 60/130 kV; archived snapshot | Lines, facilities, codes, and geometry | Network construction |
 | OSM / Geofabrik | Continental Portugal and Spain boundary; archived snapshot | 150/220/400 kV facilities and circuits | Network and asset construction |
 | DGEG; APA; project notices | Generation, storage, and connection records | Location, technology, capacity, and commissioning evidence | Asset completion and evidence |
 | REN / Data Hub | 15 min in common window; 15 series | Demand, generation, storage, imports, and exports | Inputs and withheld comparison |
@@ -78,20 +78,20 @@ Table 2 summarizes the source scope and modelling role. The common study window 
 
 ### 2.1.2 Archiving and Standardization
 
-Raw files are archived immutably by source together with the source URL, download time, file size, and SHA-256 hash; processing reads the raw layer without modifying it. Coordinates are stored in World Geodetic System 1984 (WGS 84) and transformed to the Portuguese national projection for distance calculations. Voltage, power, energy, and distance are standardized to kV, MW/Mvar, kWh, and km. E-REDES 15-minute energy is converted to interval-average power as
+Raw files are archived immutably by source together with the source URL, download time, file size, and SHA-256 hash; processing reads the raw layer without modifying it. Coordinates are stored in World Geodetic System 1984 (WGS 84) and transformed to the Portuguese national projection for distance calculations. Voltage, power, energy, and distance are standardized to kV, MW/Mvar, kWh, and km. E-REDES 15-minute energy is converted to interval-average power according to Equation (1):
 
 \[
-P_{\mathrm{MW}}=\frac{E_{\mathrm{kWh}}}{250}.
+P_{\mathrm{MW}}=\frac{E_{\mathrm{kWh}}}{250}. \tag{1}\label{eq:energy-to-power}
 \]
 
 Both Europe/Lisbon local time and UTC are retained. Stable identifiers are derived from source equipment codes, and every derived object retains source keys and processing status. Supplementary Table S1 maps raw source fields to standardized semantics.
 
 ## 2.2 Static Network Reconstruction
 
-The static network is represented as
+The static network is represented by Equation (2):
 
 \[
-G=(B,L,T),
+G=(B,L,T), \tag{2}\label{eq:static-network}
 \]
 
 where \(B\), \(L\), and \(T\) denote buses, lines, and transformers. Connections are established in the order source relationship, voltage consistency, and constrained spatial matching. This hierarchy prevents geographic proximity or line crossings from being interpreted directly as electrical connectivity.
@@ -156,27 +156,27 @@ Static-source dates and operating-case dates are versioned separately. Only asse
 
 The generation and storage inventory combines OSM, DGEG, and project evidence. Plant and generator representations within 3 km and with consistent capacity are merged. DGEG wind records replace incomplete OSM wind capacities, and non-duplicate DGEG photovoltaic records supplement OSM. Mapping priority is public connection evidence, declared voltage, and then constrained spatial proximity. An asset without declared voltage and with capacity of at least 100 MW searches only buses at 150 kV and above; smaller assets search buses at 60 kV and above. The maximum distance is 20 km. Assets beyond this distance remain in the inventory but are not injected. Assets commissioned after a case date are unavailable; missing dates are treated as available and explicitly flagged.
 
-The common calendar uses `interval_start_utc` as its logical key. REN timestamps denote interval starts, whereas E-REDES timestamps denote interval ends:
+The common calendar uses `interval_start_utc` as its logical key. REN timestamps denote interval starts, whereas E-REDES timestamps denote interval ends, as formalized in Equation (3):
 
 \[
-t_{\mathrm{E\text{-}REDES}}=t_{\mathrm{REN}}+15\ \mathrm{min}.
+t_{\mathrm{E\text{-}REDES}}=t_{\mathrm{REN}}+15\ \mathrm{min}. \tag{3}\label{eq:time-alignment}
 \]
 
 Calendar days follow Europe/Lisbon civil time, giving 92 and 100 intervals on the spring and autumn daylight-saving transitions. REN intra-day sequence numbers distinguish the repeated hour. E-REDES has no fold marker, so duplicate station timestamps are averaged and flagged as ambiguous. Missing intervals are not interpolated.
 
 ### 2.3.2 Load, Generation, and Storage
 
-E-REDES energy is mapped to buses by facility code and converted to nodal load. The unobserved national residual is
+E-REDES energy is mapped to buses by facility code and converted to nodal load. Equation (4) defines the unobserved national residual:
 
 \[
-R_t=P^{\mathrm{REN}}_{\mathrm{consumption},t}-\sum_j P^{\mathrm{EREDES}}_{j,t}.
+R_t=P^{\mathrm{REN}}_{\mathrm{consumption},t}-\sum_j P^{\mathrm{EREDES}}_{j,t}. \tag{4}\label{eq:national-residual}
 \]
 
-The residual is assigned to mapped delivery points using the PDIRT public reference profile from the same season and closest national-load condition ([REN, 2024](#ref-ERSEPDIRT2024)):
+Equation (5) assigns the residual to mapped delivery points using the PDIRT public reference profile from the same season and closest national-load condition ([REN, 2024](#ref-ERSEPDIRT2024)):
 
 \[
 w_{j,t}=\frac{P^{\mathrm{PDIRT}}_{j,r(t)}}{\sum_{k\in\mathcal{M}}P^{\mathrm{PDIRT}}_{k,r(t)}},\qquad
-P^{\mathrm{res}}_{j,t}=w_{j,t}R_t.
+P^{\mathrm{res}}_{j,t}=w_{j,t}R_t. \tag{5}\label{eq:residual-allocation}
 \]
 
 The profile provides only spatial weights and does not change the 15-minute resolution. E-REDES load uses a 0.97 power factor where reactive power is not observed; residual load retains the PDIRT \(Q/P\) relationship. Pumping and battery charging are distributed by mapped storage capacity, with any remainder assigned to an explicit national proxy. Nodal electric load must sum to REN `Consumption + Storage` within 0.11 MW.
@@ -206,10 +206,10 @@ REN imports and exports are aligned to the common calendar but withheld from bou
 
 ## 2.4 Time-Indexed Case Generation and Alternating-Current Power Flow
 
-Each 15-minute interval defines a steady-state case
+Each 15-minute interval defines the steady-state case in Equation (6):
 
 \[
-C_t=(G,\theta,X_t,S_t,U_t,B_t),
+C_t=(G,\theta,X_t,S_t,U_t,B_t), \tag{6}\label{eq:case-definition}
 \]
 
 where the static network \(G\) and parameters \(\theta\) are shared, while operating inputs \(X_t\), device status \(S_t\), controls \(U_t\), and boundary equivalent \(B_t\) vary with time. The principal dataset contains one case per interval; sensitivity and application experiments in Sections 4 and 5 use separately selected representative times.
@@ -252,10 +252,10 @@ Source records include URL, archive path, file size, and SHA-256. `table_lineage
 
 ### 2.5.2 Quality Control and Recovery
 
-Quality control has four levels. Static checks cover keys, endpoints, voltage, length, connectivity, and the boundary inventory. Time-series checks cover temporal alignment, source completeness, load and generation conservation, and capacity limits. Solver checks cover convergence, voltage, loading, and active-power balance,
+Quality control has four levels. Static checks cover keys, endpoints, voltage, length, connectivity, and the boundary inventory. Time-series checks cover temporal alignment, source completeness, load and generation conservation, and capacity limits. Solver checks cover convergence, voltage, loading, and the active-power-balance residual in Equation (7):
 
 \[
-\varepsilon_t=P_t^{\mathrm{gen}}+P_t^{\mathrm{model,net}}-P_t^{\mathrm{load}}-P_t^{\mathrm{loss}}.
+\varepsilon_t=P_t^{\mathrm{gen}}+P_t^{\mathrm{model,net}}-P_t^{\mathrm{load}}-P_t^{\mathrm{loss}}. \tag{7}\label{eq:power-balance}
 \]
 
 External checks use E-REDES national, municipal, substation, production, and injection statistics that were excluded from nodal construction, together with REN exchange and monthly loss reports. The 0.90--1.10 p.u. voltage band and 100% loading threshold are screening criteria; violating cases remain in the release.
@@ -485,6 +485,16 @@ Validation supports aggregate spatiotemporal agreement and numerical self-consis
 The grid-stress scenarios and 9,894 N−1 cases at six representative times demonstrate support for scenario analysis and batch contingency computation. These results compare model states and identify elements for further investigation; they do not constitute security certification.
 
 SimPT60 is a public-data-derived research dataset. It is not an operator internal model, state estimate, or digital twin. Equipment-level validation will require contemporaneous device status, generator P--Q capability, switching configuration, and post-contingency actions.
+
+------
+
+# Data Availability
+
+The frozen **SimPT60-2026.09.21-r1** release is available from the [project's versioned GitHub release](https://github.com/MingLeiZhou/PortugueseOPD/releases/tag/SimPT60-2026.09.21-r1). It contains the reproducibility core, 11 compressed monthly result databases, the monthly manifest, `release.json`, and `SHA256SUMS`. Raw third-party files are redistributed only when their licences permit; otherwise, the release retains source URLs, archived metadata, file sizes, fingerprints, and retrieval instructions. The release manifest identifies the CORE-3783 and N1-3787 model variants and their permitted uses.
+
+# Code Availability
+
+Reproduction code, the locked Python environment, and the minimal replay commands are included in the same [SimPT60-2026.09.21-r1 release](https://github.com/MingLeiZhou/PortugueseOPD/releases/tag/SimPT60-2026.09.21-r1). The immutable tag fixes the release state, while `release.json` and `CODE_VERSION.json` record the implementation commit and the limitation that the original historical monthly runs did not store a code commit. The replay workflow verifies selected released cases at a tolerance of \(10^{-5}\) in the units of each compared field.
 
 ------
 

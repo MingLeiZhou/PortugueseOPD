@@ -297,7 +297,7 @@ Standardization}\label{public-data-scope-and-standardization}
 
 The geographic, voltage, and temporal scope is given in Table 1. Network
 geometry is drawn mainly from the E-REDES 60/130 kV network and the
-OSM/Geofabrik 150/220/400 kV network
+OpenStreetMap (OSM)/Geofabrik 150/220/400 kV network
 (\hyperref[ref-GeofabrikPortugal2026]{Geofabrik GmbH, n.d.}). DGEG and
 APA records supplement generation, storage, and connection evidence
 (\hyperref[ref-DGEGGeo2026]{DGEG, n.d.}; \hyperref[ref-APA3403]{APA,
@@ -344,8 +344,9 @@ Role in this study
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-E-REDES / RND AT & Continental 60/130 kV; archived snapshot & Lines,
-facilities, codes, and geometry & Network construction \\
+E-REDES / RND high-voltage network (AT in the source portal) &
+Continental 60/130 kV; archived snapshot & Lines, facilities, codes, and
+geometry & Network construction \\
 OSM / Geofabrik & Continental Portugal and Spain boundary; archived
 snapshot & 150/220/400 kV facilities and circuits & Network and asset
 construction \\
@@ -382,10 +383,10 @@ layer without modifying it. Coordinates are stored in World Geodetic
 System 1984 (WGS 84) and transformed to the Portuguese national
 projection for distance calculations. Voltage, power, energy, and
 distance are standardized to kV, MW/Mvar, kWh, and km. E-REDES 15-minute
-energy is converted to interval-average power as
+energy is converted to interval-average power according to Equation (1):
 
 \[
-P_{\mathrm{MW}}=\frac{E_{\mathrm{kWh}}}{250}.
+P_{\mathrm{MW}}=\frac{E_{\mathrm{kWh}}}{250}. \tag{1}\label{eq:energy-to-power}
 \]
 
 Both Europe/Lisbon local time and UTC are retained. Stable identifiers
@@ -396,10 +397,10 @@ raw source fields to standardized semantics.
 \subsection{2.2 Static Network
 Reconstruction}\label{static-network-reconstruction}
 
-The static network is represented as
+The static network is represented by Equation (2):
 
 \[
-G=(B,L,T),
+G=(B,L,T), \tag{2}\label{eq:static-network}
 \]
 
 where \(B\), \(L\), and \(T\) denote buses, lines, and transformers.
@@ -606,10 +607,10 @@ flagged.
 The common calendar uses
 \texttt{\small interval\_\allowbreak{}start\_\allowbreak{}utc} as its
 logical key. REN timestamps denote interval starts, whereas E-REDES
-timestamps denote interval ends:
+timestamps denote interval ends, as formalized in Equation (3):
 
 \[
-t_{\mathrm{E\text{-}REDES}}=t_{\mathrm{REN}}+15\ \mathrm{min}.
+t_{\mathrm{E\text{-}REDES}}=t_{\mathrm{REN}}+15\ \mathrm{min}. \tag{3}\label{eq:time-alignment}
 \]
 
 Calendar days follow Europe/Lisbon civil time, giving 92 and 100
@@ -622,19 +623,19 @@ ambiguous. Missing intervals are not interpolated.
 Storage}\label{load-generation-and-storage}
 
 E-REDES energy is mapped to buses by facility code and converted to
-nodal load. The unobserved national residual is
+nodal load. Equation (4) defines the unobserved national residual:
 
 \[
-R_t=P^{\mathrm{REN}}_{\mathrm{consumption},t}-\sum_j P^{\mathrm{EREDES}}_{j,t}.
+R_t=P^{\mathrm{REN}}_{\mathrm{consumption},t}-\sum_j P^{\mathrm{EREDES}}_{j,t}. \tag{4}\label{eq:national-residual}
 \]
 
-The residual is assigned to mapped delivery points using the PDIRT
-public reference profile from the same season and closest national-load
-condition (\hyperref[ref-ERSEPDIRT2024]{REN, 2024}):
+Equation (5) assigns the residual to mapped delivery points using the
+PDIRT public reference profile from the same season and closest
+national-load condition (\hyperref[ref-ERSEPDIRT2024]{REN, 2024}):
 
 \[
 w_{j,t}=\frac{P^{\mathrm{PDIRT}}_{j,r(t)}}{\sum_{k\in\mathcal{M}}P^{\mathrm{PDIRT}}_{k,r(t)}},\qquad
-P^{\mathrm{res}}_{j,t}=w_{j,t}R_t.
+P^{\mathrm{res}}_{j,t}=w_{j,t}R_t. \tag{5}\label{eq:residual-allocation}
 \]
 
 The profile provides only spatial weights and does not change the
@@ -722,10 +723,10 @@ their temporal semantics.
 Power
 Flow}\label{time-indexed-case-generation-and-alternating-current-power-flow}
 
-Each 15-minute interval defines a steady-state case
+Each 15-minute interval defines the steady-state case in Equation (6):
 
 \[
-C_t=(G,\theta,X_t,S_t,U_t,B_t),
+C_t=(G,\theta,X_t,S_t,U_t,B_t), \tag{6}\label{eq:case-definition}
 \]
 
 where the static network \(G\) and parameters \(\theta\) are shared,
@@ -851,10 +852,11 @@ Quality control has four levels. Static checks cover keys, endpoints,
 voltage, length, connectivity, and the boundary inventory. Time-series
 checks cover temporal alignment, source completeness, load and
 generation conservation, and capacity limits. Solver checks cover
-convergence, voltage, loading, and active-power balance,
+convergence, voltage, loading, and the active-power-balance residual in
+Equation (7):
 
 \[
-\varepsilon_t=P_t^{\mathrm{gen}}+P_t^{\mathrm{model,net}}-P_t^{\mathrm{load}}-P_t^{\mathrm{loss}}.
+\varepsilon_t=P_t^{\mathrm{gen}}+P_t^{\mathrm{model,net}}-P_t^{\mathrm{load}}-P_t^{\mathrm{loss}}. \tag{7}\label{eq:power-balance}
 \]
 
 External checks use E-REDES national, municipal, substation, production,
@@ -1576,6 +1578,32 @@ SimPT60 is a public-data-derived research dataset. It is not an operator
 internal model, state estimate, or digital twin. Equipment-level
 validation will require contemporaneous device status, generator P--Q
 capability, switching configuration, and post-contingency actions.
+
+\section{Data Availability}\label{data-availability}
+
+The frozen \textbf{SimPT60-2026.09.21-r1} release is available from the
+\href{https://github.com/MingLeiZhou/PortugueseOPD/releases/tag/SimPT60-2026.09.21-r1}{project's
+versioned GitHub release}. It contains the reproducibility core, 11
+compressed monthly result databases, the monthly manifest,
+\texttt{\small release.\allowbreak{}json}, and
+\texttt{\small SHA256SUMS}. Raw third-party files are redistributed only
+when their licences permit; otherwise, the release retains source URLs,
+archived metadata, file sizes, fingerprints, and retrieval instructions.
+The release manifest identifies the CORE-3783 and N1-3787 model variants
+and their permitted uses.
+
+\section{Code Availability}\label{code-availability}
+
+Reproduction code, the locked Python environment, and the minimal replay
+commands are included in the same
+\href{https://github.com/MingLeiZhou/PortugueseOPD/releases/tag/SimPT60-2026.09.21-r1}{SimPT60-2026.09.21-r1
+release}. The immutable tag fixes the release state, while
+\texttt{\small release.\allowbreak{}json} and
+\texttt{\small CODE\_\allowbreak{}VERSION.\allowbreak{}json} record the
+implementation commit and the limitation that the original historical
+monthly runs did not store a code commit. The replay workflow verifies
+selected released cases at a tolerance of \(10^{-5}\) in the units of
+each compared field.
 
 \section{References}\label{references}
 
