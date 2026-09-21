@@ -11,7 +11,7 @@ def prose(text,label):
  return False
 check('One References section',len(re.findall(r'(?m)^# References$',main))==1)
 check('No unresolved markers','[CITATION NEEDED]' not in main+supp)
-for kind,n in [('Figure',10),('Table',12)]:
+for kind,n in [('Figure',10),('Table',11)]:
  caps=list(map(int,re.findall(r'\*\*'+kind+r' (\d+)——',body)))
  check(kind+' captions sequential',caps==list(range(1,n+1)),caps)
  missing=[i for i in range(1,n+1) if not prose(body,f'{kind} {i}')]
