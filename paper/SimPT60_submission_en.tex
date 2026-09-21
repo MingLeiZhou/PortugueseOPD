@@ -159,19 +159,19 @@ operator network model at equipment level.
 
 Power-flow simulation underpins many studies of grid operation,
 planning, and risk, and requires data that describe network topology,
-equipment attributes, and operating conditions\textsuperscript{1}. As
-research moves from individual snapshots to time-series analysis, a
-static network must also be linked to continuous load, generation, and
-other operating records\textsuperscript{2,3}.
+equipment attributes, and operating conditions. As research moves from
+individual snapshots to time-series analysis, a static network must also
+be linked to continuous load, generation, and other operating
+records\textsuperscript{1,2}.
 
 Several public resources already provide reusable grid models and
 benchmark datasets. PyPSA-Eur supplies a transmission-network model for
 European energy-system optimization and operational
-studies\textsuperscript{2}. Recent open-data reconstruction work has
+studies\textsuperscript{1}. Recent open-data reconstruction work has
 expanded the geographic representation of the European high-voltage
-grid\textsuperscript{4}. SimBench provides representative networks
+grid\textsuperscript{3}. SimBench provides representative networks
 across several voltage levels together with annual load and generation
-profiles\textsuperscript{3}. These resources support system
+profiles\textsuperscript{2}. These resources support system
 optimization, network reconstruction, and method comparison,
 respectively, and provide an important basis for open power-system
 research.
@@ -180,7 +180,7 @@ research.
 
 Portugal's National Energy and Climate Plan identifies renewable
 generation, storage, electrification, and cross-border interconnection
-as central elements of the energy transition\textsuperscript{5}. These
+as central elements of the energy transition\textsuperscript{4}. These
 developments alter the scale and spatial distribution of generation and
 demand and therefore affect line flows, bus voltages, and system risk.
 Studying the time-varying behaviour of the Portuguese grid consequently
@@ -190,18 +190,18 @@ continuous operating conditions.
 The relevant public records are distributed across E-REDES, Redes
 Energéticas Nacionais (REN), the Direção-Geral de Energia e Geologia
 (DGEG), the Entidade Reguladora dos Serviços Energéticos (ERSE), and
-open geospatial platforms\textsuperscript{6--10}. Their spatial
-coverage, temporal resolution, identifiers, and field definitions
-differ. Using them in a common power-flow model requires topology
-reconstruction, completion of electrical parameters, asset-to-bus
-mapping, temporal alignment, and allocation of aggregate power to nodes.
+open geospatial platforms\textsuperscript{5--9}. Their spatial coverage,
+temporal resolution, identifiers, and field definitions differ. Using
+them in a common power-flow model requires topology reconstruction,
+completion of electrical parameters, asset-to-bus mapping, temporal
+alignment, and allocation of aggregate power to nodes.
 
 Existing resources also have different modelling objectives and scopes.
 European-scale models primarily address cross-regional system
-studies\textsuperscript{2}; open high-voltage reconstructions focus
-mainly on AC networks at 220 kV and above\textsuperscript{4}; and
+studies\textsuperscript{1}; open high-voltage reconstructions focus
+mainly on AC networks at 220 kV and above\textsuperscript{3}; and
 representative benchmarks do not describe the geographic Portuguese
-grid\textsuperscript{3}. A public research resource that combines the
+grid\textsuperscript{2}. A public research resource that combines the
 continental Portuguese 60--400 kV network, 15-minute operating time
 series, solvable power-flow cases, and explicit provenance has therefore
 remained unavailable.
@@ -258,17 +258,18 @@ the national distribution grid the \emph{Rede Nacional de Distribuição}
 (RND) and labels high voltage as \emph{alta tensão} (AT). Network
 geometry is drawn mainly from the E-REDES 60/130 kV network and the
 OpenStreetMap (OSM)/Geofabrik 150/220/400 kV
-network\textsuperscript{11}. DGEG and Agência Portuguesa do Ambiente
+network\textsuperscript{10}. DGEG and Agência Portuguesa do Ambiente
 (APA) records supplement generation, storage, and connection
-evidence\textsuperscript{8,12--14}. REN provides national 15-minute
+evidence\textsuperscript{7,11--13}. REN provides national 15-minute
 operating series, whereas E-REDES provides substation energy. The
 \emph{Plano de Desenvolvimento e Investimento da Rede de Transporte}
-(PDIRT) and \emph{Plano de Desenvolvimento e Investimento da Rede
-Nacional de Distribuição} (PDIRD) provide delivery-point profiles and
-selected equipment parameters\textsuperscript{6,7,9,10}. The European
-Commission's Geographical Information System (GISCO) supplies the
-continental boundary\textsuperscript{15}; REN and Red Eléctrica de
-España (REE) records support transmission and interconnection
+(PDIRT) supplies delivery-point reference profiles\textsuperscript{8};
+the \emph{Plano de Desenvolvimento e Investimento da Rede Nacional de
+Distribuição} (PDIRD) supplies distribution-circuit inventory and
+parameter evidence\textsuperscript{14}. The European Commission's
+Geographical Information System (GISCO) supplies the continental
+boundary\textsuperscript{15}; REN and Red Eléctrica de España (REE)
+records support transmission and interconnection
 checks\textsuperscript{16}. OpenInfraMap, which derives from OSM, is
 used only for display checks and is not treated as independent
 evidence\textsuperscript{17}.
@@ -353,10 +354,9 @@ P_{\mathrm{MW}}=\frac{E_{\mathrm{kWh}}}{250}. \tag{1}\label{eq:energy-to-power}
 
 Both Europe/Lisbon local time and Coordinated Universal Time (UTC) are
 retained. Stable identifiers are derived from source equipment codes,
-and every derived object retains source keys and processing status.
-Table 3 summarizes the principal transformations; the released data
-dictionary maps each source field to its standardized meaning,
-transformation, join key, and missing-data rule.
+and every derived object retains source keys and processing status. The
+released data dictionary maps each source field to its standardized
+meaning, transformation, join key, and missing-data rule.
 
 \subsection{Static network
 reconstruction}\label{static-network-reconstruction}
@@ -404,17 +404,17 @@ station. Public \texttt{rating} values take precedence; remaining
 capacities and impedances use voltage-pair proxies. A voltage-pair
 capacity is scaled upward when its aggregate falls below the
 corresponding REN total, and the calibration factor is
-retained\textsuperscript{7}.
+retained\textsuperscript{6}.
 
 Line parameters comprise \(r\), \(x\), \(c\), and \(I_{\max}\). Each 60
 kV branch is matched to a public PDIRD circuit inventory by a
 length-weighted shortest path, accepted only when the model-to-source
-length ratio lies between 0.65 and 1.60\textsuperscript{19}. Remaining
+length ratio lies between 0.65 and 1.60\textsuperscript{14}. Remaining
 lines use voltage-class defaults and cable correction factors. Each
 parameter is labelled as directly published, derived from public
 documentation, aggregate-calibrated, or an engineering proxy. Some
 resistance support is transferred from conductor parameters reported in
-project documentation\textsuperscript{20}; this transfer remains an
+project documentation\textsuperscript{19}; this transfer remains an
 engineering assumption rather than a direct line measurement.
 
 Post-construction checks cover equipment keys, endpoints, positive
@@ -548,7 +548,7 @@ R_t=P^{\mathrm{REN}}_{\mathrm{consumption},t}-\sum_j P^{\mathrm{EREDES}}_{j,t}. 
 
 Equation (5) assigns the residual to mapped delivery points using the
 PDIRT public reference profile from the same season and closest
-national-load condition\textsuperscript{9}:
+national-load condition\textsuperscript{8}:
 
 \[
 w_{j,t}=\frac{P^{\mathrm{PDIRT}}_{j,r(t)}}{\sum_{k\in\mathcal{M}}P^{\mathrm{PDIRT}}_{k,r(t)}},\qquad
@@ -664,7 +664,7 @@ distributed by public voltage and circuit count. Contemporaneous REN
 exchange is used only for post-solution comparison.
 
 AC power flow uses the pandapower Newton--Raphson (NR) implementation
-with direct-current (DC) initialization\textsuperscript{1}. The
+with direct-current (DC) initialization\textsuperscript{20}. The
 principal workflow enforces reactive-power limits, resolves once after
 boundary reconstruction, and performs a bounded tap search. Generators
 outside the PV rule remain constant active and reactive power (PQ).
@@ -1029,9 +1029,9 @@ seven model lines and is descriptive only.
 Line parameters are a principal uncertainty. Of 4,240 60 kV lines, 1,517
 have partial support from PDIRD circuit paths and 2,723 use
 voltage-class engineering proxies. At 130--400 kV, every line is
-classified as proxy at the line-level \texttt{parameter\_status}. This
-overall classification differs from field-level support, which Figure 3
-reports separately.
+classified as proxy at the line-level \texttt{parameter\_status}. Table
+6 gives these line-level counts alongside network structure and
+route-length comparisons; Figure 3 separately shows field-level support.
 
 The 11 compact monthly databases contain 31,492 completed and converged
 15-minute cases. The mean absolute AC closure residual across
@@ -1052,8 +1052,7 @@ ratings (green); cells show proportions. Grey denotes wholly proxy
 fields. The 35.8\% resistance support is not direct observation and must
 not be assigned the same evidence level as ratings. Reactance and
 capacitance are proxies throughout. The 130 kV result contains seven
-lines and is descriptive only. Table 6 reports line-level evidence
-counts.
+lines and is descriptive only.
 
 \textbf{Table 6---Network structure, parameter evidence, and
 computational completeness.}
@@ -1177,8 +1176,7 @@ required field and use no anomaly deletion, smoothing, or interpolation.
 Consumption excludes pumping and battery charging and differs from total
 electric load in the cases. Wind compares national production with
 distribution-grid injection across different scopes. The figure
-validates aggregate inputs, not nodal allocation or branch flow. Table 7
-gives bootstrap intervals.
+validates aggregate inputs, not nodal allocation or branch flow.
 
 \subsection{External spatial
 agreement}\label{external-spatial-agreement}
@@ -1401,23 +1399,15 @@ each compared field.
 
 \phantomsection\label{refs}
 \begin{CSLReferences}{0}{0}
-\bibitem[\citeproctext]{ref-Thurner2018}
-\CSLLeftMargin{1. }%
-\CSLRightInline{Thurner, L. \emph{et al.}
-\href{https://doi.org/10.1109/TPWRS.2018.2829021}{Pandapower---an
-{Open-Source} {Python} {Tool} for {Convenient} {Modeling,} {Analysis,}
-and {Optimization} of {Electric} {Power} {Systems}}. \emph{IEEE
-Transactions on Power Systems} \textbf{33}, 6510--6521 (2018).}
-
 \bibitem[\citeproctext]{ref-Horsch2018}
-\CSLLeftMargin{2. }%
+\CSLLeftMargin{1. }%
 \CSLRightInline{Hörsch, J., Hofmann, F., Schlachtberger, D. \& Brown, T.
 \href{https://doi.org/10.1016/j.esr.2018.08.012}{PyPSA-eur: {An} {Open}
 {Optimisation} {Model} of the {European} {Transmission} {System}}.
 \emph{Energy Strategy Reviews} \textbf{22}, 207--215 (2018).}
 
 \bibitem[\citeproctext]{ref-Meinecke2020}
-\CSLLeftMargin{3. }%
+\CSLLeftMargin{2. }%
 \CSLRightInline{Meinecke, S. \emph{et al.}
 \href{https://doi.org/10.3390/en13123290}{SimBench---a {Benchmark}
 {Dataset} of {Electric} {Power} {Systems} to {Compare} {Innovative}
@@ -1425,74 +1415,81 @@ Transactions on Power Systems} \textbf{33}, 6510--6521 (2018).}
 \textbf{13}, 3290 (2020).}
 
 \bibitem[\citeproctext]{ref-Xiong2025}
-\CSLLeftMargin{4. }%
+\CSLLeftMargin{3. }%
 \CSLRightInline{Xiong, B., Fioriti, D., Neumann, F., Riepin, I. \&
 Brown, T. \href{https://doi.org/10.1038/s41597-025-04550-7}{Modelling
 the {High-Voltage} {Grid} {Using} {Open} {Data} for {Europe} and
 {Beyond}}. \emph{Scientific Data} \textbf{12}, 277 (2025).}
 
 \bibitem[\citeproctext]{ref-DGEGPNEC2030Revision2024}
-\CSLLeftMargin{5. }%
+\CSLLeftMargin{4. }%
 \CSLRightInline{DGEG. \emph{Portugal: {Plano} {Nacional} {Energia} e
 {Clima} 2021--2030, Atualização/Revisão}.
 \url{https://www.dgeg.gov.pt/media/54fldci3/pnec2030_para_aprov_ar.pdf}
 (2024).}
 
 \bibitem[\citeproctext]{ref-EREDESRND2026}
-\CSLLeftMargin{6. }%
+\CSLLeftMargin{5. }%
 \CSLRightInline{E-REDES.
 \href{https://e-redes.opendatasoft.com/pages/rnd/}{Rede {Nacional} de
 {Distribuição:} {Dados} da {Rede} {AT} e {Cargas} de {Subestação}}.}
 
 \bibitem[\citeproctext]{ref-RENDataHub2026}
-\CSLLeftMargin{7. }%
+\CSLLeftMargin{6. }%
 \CSLRightInline{REN.
 \href{https://datahub.ren.pt/en/networks/electrical-grid/}{Electrical
 {Grid} {Data} {Hub}}.}
 
 \bibitem[\citeproctext]{ref-DGEGGeo2026}
-\CSLLeftMargin{8. }%
+\CSLLeftMargin{7. }%
 \CSLRightInline{DGEG.
 \href{https://www.dgeg.gov.pt/pt/servicos-online/setor-energetico/}{Informação
 {Geográfica} de {Energia} {Elétrica}}.}
 
 \bibitem[\citeproctext]{ref-ERSEPDIRT2024}
-\CSLLeftMargin{9. }%
+\CSLLeftMargin{8. }%
 \CSLRightInline{REN. \emph{PDIRT 2025--2034, {Proposta} {Inicial,}
 {Volume} {I,} {Anexos} 1 a 16}.
 \url{https://www.erse.pt/media/lx5n5kao/pdirt-2025-2034-proposta-inicial-vol-i-anexos-1-a-16.pdf}
 (2024).}
 
 \bibitem[\citeproctext]{ref-OSM2026}
-\CSLLeftMargin{10. }%
+\CSLLeftMargin{9. }%
 \CSLRightInline{OpenStreetMap contributors.
 \href{https://www.openstreetmap.org/copyright}{OpenStreetMap}.}
 
 \bibitem[\citeproctext]{ref-GeofabrikPortugal2026}
-\CSLLeftMargin{11. }%
+\CSLLeftMargin{10. }%
 \CSLRightInline{Geofabrik GmbH.
 \href{https://download.geofabrik.de/europe/portugal.html}{OpenStreetMap
 {Data} {Extract} for {Portugal}}.}
 
 \bibitem[\citeproctext]{ref-APA3403}
-\CSLLeftMargin{12. }%
+\CSLLeftMargin{11. }%
 \CSLRightInline{APA.
 \href{https://siaia.apambiente.pt/AIADOC/AIA3403/parecerca_3403202192134944.pdf}{Sobreequipamento
 do parque eólico de trancoso: Parecer da comissão de avaliação, AIA
 3403}. (2021).}
 
 \bibitem[\citeproctext]{ref-APAPPA421}
-\CSLLeftMargin{13. }%
+\CSLLeftMargin{12. }%
 \CSLRightInline{APA.
 \href{https://siaia.apambiente.pt/PosAvaliacao/DetalhesPosAvaliacao/421}{PPA
 421: Sub-parque eólico de sernancelhe e ligação a moimenta}.}
 
 \bibitem[\citeproctext]{ref-APAPPA407}
-\CSLLeftMargin{14. }%
+\CSLLeftMargin{13. }%
 \CSLRightInline{APA.
 \href{https://siaia.apambiente.pt/PosAvaliacao/DetalhesPosAvaliacao/407}{PPA
 407: Ligação do douro sul à subestação de armamar e subestação de
 moimenta}.}
+
+\bibitem[\citeproctext]{ref-EREDESPDIRD2020AnnexB}
+\CSLLeftMargin{14. }%
+\CSLRightInline{E-REDES \& Entidade Reguladora dos Serviços Energéticos.
+\emph{PDIRD-e 2020, {Anexo} {B}}.
+\url{https://www.erse.pt/media/340hrot0/proposta-pdird-e-2020_anexo_b.pdf}
+(2020).}
 
 \bibitem[\citeproctext]{ref-GISCO2024}
 \CSLLeftMargin{15. }%
@@ -1519,18 +1516,19 @@ eléctricas: Un paso para el mercado único de la energía en europa}.
 2016--2025, anexo 6: Equipamento em serviço previsto em finais de 2016,
 2018, 2020 e 2025}. (2015).}
 
-\bibitem[\citeproctext]{ref-EREDESPDIRD2020AnnexB}
-\CSLLeftMargin{19. }%
-\CSLRightInline{E-REDES \& Entidade Reguladora dos Serviços Energéticos.
-\emph{PDIRD-e 2020, {Anexo} {B}}.
-\url{https://www.erse.pt/media/340hrot0/proposta-pdird-e-2020_anexo_b.pdf}
-(2020).}
-
 \bibitem[\citeproctext]{ref-Tocha2019}
-\CSLLeftMargin{20. }%
+\CSLLeftMargin{19. }%
 \CSLRightInline{EDP Distribuição.
 \href{https://siaia.apambiente.pt/AIADOC/AIA3274/projeto\%20linha\%20eletrica\%20pe\%20tocha\%20ii2019729153214.pdf}{Memória
 descritiva e justificativa: Linha a 60 kV PE tocha II--tocha}. (2019).}
+
+\bibitem[\citeproctext]{ref-Thurner2018}
+\CSLLeftMargin{20. }%
+\CSLRightInline{Thurner, L. \emph{et al.}
+\href{https://doi.org/10.1109/TPWRS.2018.2829021}{Pandapower---an
+{Open-Source} {Python} {Tool} for {Convenient} {Modeling,} {Analysis,}
+and {Optimization} of {Electric} {Power} {Systems}}. \emph{IEEE
+Transactions on Power Systems} \textbf{33}, 6510--6521 (2018).}
 
 \bibitem[\citeproctext]{ref-GeoPandas2026}
 \CSLLeftMargin{21. }%
