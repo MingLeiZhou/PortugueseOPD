@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the Scientific Data manuscript and supplementary PDF from Markdown.
+"""Build the self-contained Scientific Data manuscript from Markdown.
 
 The generated main TeX contains the numbered Nature-style bibliography directly,
 so it has no runtime dependency on a separate BibTeX/Biber file.
@@ -16,13 +16,10 @@ from pathlib import Path
 
 PAPER = Path(__file__).resolve().parents[1]
 MAIN_MD = PAPER / "SimPT60_submission_en.md"
-SUPP_MD = PAPER / "SimPT60_supplement_en.md"
 BIB = PAPER / "references_final.bib"
 CSL = PAPER / "nature.csl"
 MAIN_TEX = PAPER / "SimPT60_submission_en.tex"
 MAIN_PDF = PAPER / "SimPT60_submission_en.pdf"
-SUPP_TEX = PAPER / "SimPT60_supplement_en.tex"
-SUPP_PDF = PAPER / "SimPT60_supplement_en.pdf"
 PANDOC = shutil.which("pandoc") or "/opt/homebrew/bin/pandoc"
 XELATEX = shutil.which("xelatex") or "/usr/local/texlive/2025basic/bin/universal-darwin/xelatex"
 
@@ -69,14 +66,6 @@ def prepare_main() -> str:
     return yaml + body
 
 
-def prepare_supplement() -> str:
-    text = SUPP_MD.read_text(encoding="utf-8")
-    title = text.splitlines()[0].removeprefix("# ").strip()
-    body = re.sub(r"^# .*\n+", "", text, count=1)
-    body = vectorize_images(body)
-    return f'---\ntitle: "{title}"\n---\n\n{body}'
-
-
 def pandoc_tex(source: Path, target: Path, *, citations: bool) -> None:
     args = [
         PANDOC,
@@ -93,8 +82,6 @@ def pandoc_tex(source: Path, target: Path, *, citations: bool) -> None:
         "classoption=10pt",
         "-V",
         "geometry:margin=19mm",
-        "-V",
-        "mainfont=TeX Gyre Termes",
         "-V",
         "colorlinks=false",
         "--include-in-header",
@@ -149,17 +136,11 @@ def main() -> None:
     with tempfile.TemporaryDirectory(prefix="simpt60-scidata-") as tmp:
         tmpdir = Path(tmp)
         main_prepared = tmpdir / "main.md"
-        supp_prepared = tmpdir / "supp.md"
         main_prepared.write_text(prepare_main(), encoding="utf-8")
-        supp_prepared.write_text(prepare_supplement(), encoding="utf-8")
         pandoc_tex(main_prepared, MAIN_TEX, citations=True)
-        pandoc_tex(supp_prepared, SUPP_TEX, citations=False)
         compile_tex(MAIN_TEX, MAIN_PDF, tmpdir / "main-build")
-        compile_tex(SUPP_TEX, SUPP_PDF, tmpdir / "supp-build")
     print(MAIN_TEX)
     print(MAIN_PDF)
-    print(SUPP_TEX)
-    print(SUPP_PDF)
 
 
 if __name__ == "__main__":

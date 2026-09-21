@@ -39,7 +39,7 @@ The main contribution is a versioned data product that links a traceable public-
 | Static network | Buses, lines, transformers, assets, and geometry | Public connection evidence and engineering proxies coexist |
 | Operating cases | 31,492 steady-state AC power-flow cases | Computed model states, not equipment telemetry |
 | Distribution and provenance | Main database, 11 monthly databases, raw-record locators, and source hashes | Source licensing and release snapshots are managed separately |
-| Validation and application | External temporal/spatial comparisons, perturbation tests, stress scenarios, and N−1 | Aggregate consistency does not establish equipment-level truth |
+| Validation and scenario records | External temporal/spatial comparisons, perturbation tests, and sampled N−1 screening | Aggregate consistency does not establish equipment-level truth |
 
 **Table note.** The Background & Summary, Methods, and Data Records sections define the scope, construction rules, and data products.
 
@@ -82,7 +82,7 @@ Raw files are archived immutably by source together with the source URL, downloa
 P_{\mathrm{MW}}=\frac{E_{\mathrm{kWh}}}{250}. \tag{1}\label{eq:energy-to-power}
 \]
 
-Both Europe/Lisbon local time and UTC are retained. Stable identifiers are derived from source equipment codes, and every derived object retains source keys and processing status. Supplementary Table S1 maps raw source fields to standardized semantics.
+Both Europe/Lisbon local time and UTC are retained. Stable identifiers are derived from source equipment codes, and every derived object retains source keys and processing status. Table 5 summarizes the principal transformations; the released data dictionary maps each source field to its standardized meaning, transformation, join key, and missing-data rule.
 
 ## Static network reconstruction
 
@@ -130,7 +130,7 @@ Figure 1 illustrates the connection decisions, and Table 3 lists thresholds and 
 | PDIRD parameter path | Length-weighted shortest path; model/source length 0.65--1.60 | Use voltage-class proxy when rejected |
 | Blocking checks | Self-loop, non-positive length, endpoint or voltage conflict | Record and block invalid branches |
 
-**Table note.** Rules are defined in the Static network reconstruction subsection and `model_config.json`. All distances are projected planar distances. They are reconstruction rules, not operator accuracy guarantees. Default electrical parameters and coverage rules are reported in Supplementary Table S2.
+**Table note.** Rules are defined in the Static network reconstruction subsection and the frozen `model_config.json`. All distances are projected planar distances. They are reconstruction rules, not operator accuracy guarantees. The configuration file records voltage-class defaults, cable factors, transformer proxies, and seasonal rating factors; equipment tables retain the field-level evidence status and any source-backed override.
 
 ### Evidence applicability and historical availability
 
@@ -181,7 +181,7 @@ The profile provides only spatial weights and does not change the 15-minute reso
 
 REN generation by technology is distributed among mapped and commissioned assets of the same technology under \(0\le P_{g,t}\le P_g^{\mathrm{nameplate}}\). Hydro and natural gas use deterministic capacity-priority allocation, while other technologies use available-capacity shares. Generation beyond mapped capacity is injected at a designated 400 kV proxy bus as `UNMAPPED_NATIONAL_RESIDUAL_PROXY`; it must not be interpreted as the location of an omitted plant.
 
-REN imports and exports are aligned to the common calendar but withheld from boundary-power enforcement. Before solution, the pipeline checks timestamps, required series, mapping completeness, load and generation conservation, and capacity limits. Table 5 summarizes the executable mapping and conservation rules; Supplementary Table S3 lists the associated audit fields.
+REN imports and exports are aligned to the common calendar but withheld from boundary-power enforcement. Before solution, the pipeline checks timestamps, required series, mapping completeness, load and generation conservation, and capacity limits. Table 5 summarizes the executable mapping and conservation rules. The associated source, bus-assignment, availability, observed-load, residual-load, reactive-power, boundary, and conservation fields are retained in the equipment tables and each case-level audit bundle.
 
 **Table 5—Asset mapping and time-series transformation rules.**
 
@@ -189,7 +189,7 @@ REN imports and exports are aligned to the common calendar but withheld from bou
 | --- | --- | --- |
 | Asset deduplication | Merge plant/generator records within 3 km and with consistent capacity | Preserve hierarchical deduplication status |
 | Bus mapping | Public connection, declared voltage, then constrained nearest bus | Maximum 20 km; retain but do not inject out-of-range assets |
-| Asset without declared voltage | Capacity ≥100 MW searches ≥150 kV; otherwise ≥60 kV | Spatial proximity is not treated as connection truth |
+| Asset without declared voltage | Capacity \(\geq100\) MW searches \(\geq150\) kV; otherwise \(\geq60\) kV | Spatial proximity is not treated as connection truth |
 | Commissioning status | Disable when commissioning date is later than the case | Treat unknown dates as available and flag them |
 | Time labels | REN start; E-REDES end shifted by −15 min | Common key is UTC interval start |
 | Daylight saving / missing data | Lisbon civil days contain 92, 96, or 100 intervals | Average and flag repeated E-REDES station labels; no interpolation |
@@ -210,7 +210,7 @@ Each 15-minute interval defines the steady-state case in Equation (6):
 C_t=(G,\theta,X_t,S_t,U_t,B_t), \tag{6}\label{eq:case-definition}
 \]
 
-where the static network \(G\) and parameters \(\theta\) are shared, while operating inputs \(X_t\), device status \(S_t\), controls \(U_t\), and boundary equivalent \(B_t\) vary with time. The principal dataset contains one case per interval; sensitivity experiments use separately selected representative times; worked applications are documented in Supplementary Note S5.
+where the static network \(G\) and parameters \(\theta\) are shared, while operating inputs \(X_t\), device status \(S_t\), controls \(U_t\), and boundary equivalent \(B_t\) vary with time. The principal dataset contains one case per interval, while sensitivity and contingency records use separately selected representative times and are stored in distinct scenario tables.
 
 ### Case assembly and solution
 
@@ -227,7 +227,7 @@ Cases are processed in parallel by civil month. Workers read inputs and solve ca
 | Item | Value or rule | Status |
 | --- | --- | --- |
 | Seasonal line rating | May--Sep ×1.00; Mar--Apr and Oct--Nov ×1.10; Dec--Feb ×1.15 | Engineering proxy relative to summer base |
-| PV threshold | Non-battery; installed capacity ≥20 MW and voltage ≥60 kV | Remaining generation uses constant active and reactive power (PQ) |
+| PV threshold | Non-battery; installed capacity \(\geq20\) MW and voltage \(\geq60\) kV | Remaining generation uses constant active and reactive power (PQ) |
 | PV voltage / reactive power | 1.0 p.u.; ±0.50 × installed MW in Mvar | Uniform proxy |
 | Load compensation | Target pf=0.98; maximum 15 Mvar per bus | Engineering proxy |
 | Shunt reactors | 5 × 150 Mvar at 400 kV | Explicitly flagged proxy equipment |
@@ -246,7 +246,7 @@ The main DuckDB stores sources in `raw_eredes`, `raw_dgeg`, `raw_osm`, `raw_refe
 
 Each month has a separate result database. `monthly_model.cases` stores one row per timestamp with status, summary metrics, and complete result JSON. `bus_order`, `line_order`, and `state_arrays` store bus voltage and line-loading arrays in fixed equipment order. `audit_bundles` preserve load, generation, boundary, hotspot, and loss records. Views expand arrays to equipment-long tables. The static model is copied once per monthly database rather than repeated for every case.
 
-Source records include URL, archive path, file size, and SHA-256. `table_lineage`, `raw_record_locator`, and `entity_evidence` provide table-, record-, and evidence-level traceability. Each monthly `run_manifest` records input fingerprints and case counts. Supplementary Table S5 provides the complete data-layer, grain, and join-key inventory.
+Source records include URL, archive path, file size, and SHA-256. `table_lineage`, `raw_record_locator`, and `entity_evidence` provide table-, record-, and evidence-level traceability. Each monthly `run_manifest` records input fingerprints and case counts. The released data dictionary provides the complete data-layer, grain, field-type, constraint, and join-key inventory.
 
 ### Quality control and recovery
 
@@ -258,7 +258,7 @@ Quality control has four levels. Static checks cover keys, endpoints, voltage, l
 
 External checks use E-REDES national, municipal, substation, production, and injection statistics that were excluded from nodal construction, together with REN exchange and monthly loss reports. The 0.90--1.10 p.u. voltage band and 100% loading threshold are screening criteria; violating cases remain in the release.
 
-A case summary, state arrays, and audit bundle are committed in one transaction. Any failure rolls back the full case and retains an error record. Before formal monthly release, source and copy counts for completed cases, arrays, and audit bundles must match. Supplementary Table S4 lists thresholds, failure behavior, and record locations.
+A case summary, state arrays, and audit bundle are committed in one transaction. Any failure rolls back the full case and retains an error record. Before formal monthly release, expected intervals, completed cases, state arrays, and audit bundles must have matching counts; a failed check prevents the month from being marked complete. Thresholds, failure states, and record locations are preserved in the released configuration, case tables, audit bundles, and run manifests.
 
 
 # Data Records
@@ -289,17 +289,17 @@ The database also archives 14 E-REDES auxiliary datasets with 2,239,064 records.
 
 Interval results are partitioned by civil month to limit file size and support selective download. Eleven compact monthly databases map one-to-one to the common calendar and contain 31,492 cases. Every case in the present release completed AC power flow and is marked as converged. October 2025 contains 2,980 intervals because daylight saving time ends, whereas March 2026 covers only the first 24 days and contains 2,304 intervals.
 
-Each case retains summary values, equipment-state arrays, and an allocation audit bundle. Fixed `bus_order` and `line_order` tables expand state arrays to equipment-long form; the static device order is stored once per month. Supplementary Table S5 lists fields and joins.
+Each case retains summary values, equipment-state arrays, and an allocation audit bundle. Fixed `bus_order` and `line_order` tables expand state arrays to equipment-long form; the static device order is stored once per month. The released data dictionary lists all fields and joins.
 
-The main database also contains the N−1 application results described in Supplementary Note S5. Dedicated scenario tables record six representative times, 9,894 contingency-level results, post-contingency overloads, control-search bounds, and run provenance. These tables remain separate from the continuous 15-minute cases so that sampled security screening is not mistaken for continuous operating observation.
+The main database also contains a sampled N−1 screening panel at six preselected operating times: maximum and minimum load, maximum wind, maximum photovoltaic generation, maximum net import, and maximum net export. The same 1,649 outage groups are used at every time, comprising 1,421 line-circuit groups and 228 transformer groups, for 9,894 contingency-level records. Line eligibility excludes 156 out-of-service rows, two station busbars, and 14 rows without a finite base-case result; the latter category is distinct from zero current and from out-of-service status. Dedicated scenario tables store membership, post-contingency overloads, islands, solution status, control-search bounds, and run provenance. These sampled records remain separate from the continuous 15-minute cases.
 
 ## File organization and distribution
 
-The frozen release comprises the analysis-ready main database, 11 monthly result databases, source and provenance records, and validation and application results. Stable model identifiers join the static network to the common calendar in the main database. Case identifiers and fixed equipment order join summaries, state arrays, and audit bundles in the monthly databases. Raw files are distributed when licensing permits; otherwise, the release provides source metadata and download scripts. `release.json`, `SHA256SUMS`, and the release README define file hashes, the environment, and reproduction entry points.
+The frozen release comprises the analysis-ready main database, 11 monthly result databases, source and provenance records, validation products, and scenario records. Stable model identifiers join the static network to the common calendar in the main database. Case identifiers and fixed equipment order join summaries, state arrays, and audit bundles in the monthly databases. Raw files are distributed when licensing permits; otherwise, the release provides source metadata and download scripts. `release.json`, `SHA256SUMS`, and the release README define file hashes, the environment, and reproduction entry points.
 
 ## Frozen release and model-version reconciliation
 
-The paper freezes release **SimPT60-2026.09.21-r1**. The 31,492 historical cases and the main technical validation use CORE-3783: 3,783 buses, 4,943 lines, and 228 transformer rows. The contingency examples in Supplementary Note S5 use N1-3787. That variant adds four colocated connection nodes to correct the Lanheses--Feitosa topology while retaining 4,943 line rows and 228 transformer rows. The single Estoi transformer row represents three parallel 126 MVA units rather than one equivalent unit; consequently, N1-3787 contains 230 equivalent transformer units but still 228 transformer rows and 228 transformer outage groups. An Estoi unit outage is represented by decreasing the row's parallel count from three to two. Results from the two variants cannot be interchanged and attributed to one model. Supplementary Note S2 lists the required differences; the release manifest records field-level differences and hashes.
+The paper freezes release **SimPT60-2026.09.21-r1**. The 31,492 historical cases and the main technical validation use CORE-3783: 3,783 buses, 4,943 lines, and 228 transformer rows. The sampled contingency panel uses N1-3787. That variant adds four colocated connection nodes to correct the Lanheses--Feitosa topology while retaining 4,943 line rows and 228 transformer rows. The single Estoi transformer row represents three parallel 126 MVA units rather than one equivalent unit; consequently, N1-3787 contains 230 equivalent transformer units but still 228 transformer rows and 228 transformer outage groups. An Estoi unit outage is represented by decreasing the row's parallel count from three to two. Results from the two variants cannot be interchanged and attributed to one model. The release manifest and `model_field_diff.csv` record the field-level differences, hashes, environment, and replay commands.
 
 # Data Overview
 
@@ -330,9 +330,9 @@ Table 7 summarizes the principal static, time-series, validation, and applicatio
 | Context | REN monthly balance | 11 periods / 660 records | Monthly |
 | Validation | E-REDES auxiliary products | 14 types / 2,239,064 records | Multiple temporal resolutions |
 | Power flow | Compact monthly databases / cases | 11 / 31,492 | Completed and converged |
-| Application | Full-element N−1 | 6 times / 9,894 cases | 1,649 elements per time |
+| Scenario records | Sampled full-element N−1 | 6 times / 9,894 cases | 1,649 outage groups per time |
 
-**Table note.** Counts describe the released CORE-3783 variant. N−1 uses N1-3787. The Frozen release and model-version reconciliation subsection and Supplementary Note S2 define their object-level differences, section applicability, and fixed hashes.
+**Table note.** Counts describe the released CORE-3783 variant. N−1 uses N1-3787. The Frozen release and model-version reconciliation subsection defines their object-level differences, section applicability, and fixed hashes.
 
 
 # Technical Validation
@@ -373,7 +373,7 @@ The 11 compact monthly databases contain 31,492 completed and converged 15-minut
 
 Sensitivity experiments perturb line \(R/X\), capacitance, current ratings, transformer capacity and impedance, and the spatial allocation of load, generation, and boundary exchange at 22 representative times. After shared baselines are removed, 264 cases remain and all converge. The minimum Spearman correlation is 0.998 for line-impedance perturbations and 0.993 for transformer perturbations. Current-rating assumptions change maximum loading by as much as 34.48 percentage points. System-wide rankings remain comparatively stable under spatial alternatives, but allocating residual load by transformer capacity reduces the Top-20 Jaccard index to 0.429. Specific hotspots are consequently more assumption-dependent than the global ranking.
 
-Figure 5 summarizes ranking, hotspot-set, and maximum-loading responses. Supplementary Table S6 contains all paired results. Hotspot persistence shows that no line remains in the Top 20 across every annual time and configuration (Supplementary Figure S1). Supplementary Table S7 reports ablations of reactive-power limits, PV targets, compensation, reactors, and tap control.
+Figure 5 summarizes ranking, hotspot-set, and maximum-loading responses. Across the 12 configurations evaluated at each time, 74 of 4,943 lines enter the Top 20 at least once, 56 reach an inclusion frequency of at least 0.8 at one or more times, and the largest frequency across all 264 experiments is 207/264 (78.4%); no line remains in the Top 20 at every time and configuration. A separate 242-case operating-proxy ablation changes reactive-power limits, PV targets, load compensation, shunt reactors, and tap control at the same 22 times. All cases converge. Halving reactive-power limits produces the largest minimum-voltage change (0.02845 p.u.) and a 1.419-percentage-point maximum-line-loading change; active ratio-tap voltage control produces the largest maximum-transformer-loading change (4.305 percentage points). The complete paired results and configuration identifiers are released as machine-readable CSV.
 
 ![Figure 5](figures_final/fig05_parameter_spatial_sensitivity.png)
 
@@ -412,7 +412,7 @@ Municipality comparisons use the municipality containing each substation as a pr
 
 ### Station-held-out spatial reconstruction test
 
-A station-held-out experiment divides 394 matched stations into five deterministic folds. At 22 times, it compares global capacity share, five geographically nearest stations, and five nearest stations along the reconstructed network, yielding 8,541 observation pairs. Table 10 shows that network-neighbor MAE is approximately 9.9% below global capacity share, but is not lower than geographic-neighbor MAE and has an overlapping confidence interval. Reconstructed connectivity therefore contains useful proximity information but does not independently recover precise nodal demand. Supplementary Note S3 specifies folds, distance weights, and bootstrap procedures.
+A station-held-out experiment divides 394 matched stations into five deterministic folds. At 22 times, it compares global capacity share, five geographically nearest stations, and five nearest stations along the reconstructed network, yielding 8,541 observation pairs. Neighbor predictions use inverse-distance weights; network distance uses in-service line length and a small positive transformer-edge length. Confidence intervals are obtained by a 1,000-replicate station-cluster bootstrap using fixed fold assignments. Table 10 shows that network-neighbor MAE is approximately 9.9% below global capacity share, but is not lower than geographic-neighbor MAE and has an overlapping confidence interval. Reconstructed connectivity therefore contains useful proximity information but does not independently recover precise nodal demand. Fold assignments, pair-level predictions, and recomputation code are included in the released validation package.
 
 **Table 10—Station-held-out spatial-allocation results.**
 
@@ -438,9 +438,9 @@ Validation supports aggregate temporal agreement, plausible spatial ranking, and
 
 # Usage Notes
 
-The release is designed for reproducible time-series power-flow studies, relative scenario comparison, and method testing. Users should select the model variant explicitly: CORE-3783 is the static network used by the 31,492 archived operating cases and their validation products, whereas N1-3787 is restricted to the corrected contingency examples. The main and monthly DuckDB files can be joined through stable model, equipment, case, and UTC timestamp identifiers; Supplementary Tables S3 and S5 list the principal evidence and join fields.
+The release is designed for reproducible time-series power-flow studies, relative scenario comparison, and method testing. Users should select the model variant explicitly: CORE-3783 is the static network used by the 31,492 archived operating cases and their validation products, whereas N1-3787 is restricted to the sampled contingency panel. The main and monthly DuckDB files join through stable model, equipment, case, and UTC timestamp identifiers. Principal evidence and mapping fields include `source_id`, `bus_id`, `bus_assignment_rule`, `available_from_utc`, `source_status`, and field-level parameter status; case-level inputs and results join through `case_id`, `timestamp_utc`, `bus_order`, and `line_order`.
 
-The released power-flow states are computed research-model outputs rather than telemetry or an operator state estimate. Branch loading, bus voltage, and contingency results should therefore be interpreted comparatively and together with `parameter_status`, `source_status`, allocation-audit fields, and the stated screening thresholds. Supplementary Notes S4--S5 provide the contingency definitions, detailed diagnostics, and worked stress-scenario and N−1 examples.
+The released power-flow states are computed research-model outputs rather than telemetry or an operator state estimate. Branch loading, bus voltage, and contingency results should therefore be interpreted comparatively and together with `parameter_status`, `source_status`, allocation-audit fields, and the stated screening thresholds. In the contingency panel, the incremental flag requires principal-solution convergence, no material island, and no new voltage or thermal violation relative to the corresponding N−0 state. It does not identify every worsening of a pre-existing violation, so absolute post-contingency voltage and loading values must remain the primary screening outputs.
 
 # Data Availability
 
