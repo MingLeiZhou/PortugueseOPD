@@ -40,7 +40,7 @@ SimPT60 was constructed in five stages: archiving and standardizing public recor
 
 ### Scope and sources
 
-The dataset covers the 60, 130, 150, 220, and 400 kV networks from 1 May 2025 to 24 March 2026 at 15-minute resolution. Network geometry is drawn mainly from the E-REDES 60/130 kV network and the OpenStreetMap (OSM)/Geofabrik 150/220/400 kV network [@GeofabrikPortugal2026]. DGEG and Agência Portuguesa do Ambiente (APA) records supplement generation, storage, and connection evidence [@DGEGGeo2026; @APA3403; @APAPPA421; @APAPPA407]. REN provides national 15-minute operating series, whereas E-REDES provides substation energy. The *Plano de Desenvolvimento e Investimento da Rede de Transporte* (PDIRT) and *Plano de Desenvolvimento e Investimento da Rede Nacional de Distribuição* (PDIRD) provide delivery-point profiles and selected equipment parameters [@EREDESRND2026; @OSM2026; @RENDataHub2026; @ERSEPDIRT2024]. The European Commission's Geographical Information System (GISCO) supplies the continental boundary [@GISCO2024]; REN and Red Eléctrica de España (REE) records support transmission and interconnection checks. OpenInfraMap, which derives from OSM, is used only for display checks and is not treated as independent evidence [@OpenInfraMap2026].
+The dataset covers the 60, 130, 150, 220, and 400 kV networks from 1 May 2025 to 24 March 2026 at 15-minute resolution. The E-REDES portal calls the national distribution grid the *Rede Nacional de Distribuição* (RND) and labels high voltage as *alta tensão* (AT). Network geometry is drawn mainly from the E-REDES 60/130 kV network and the OpenStreetMap (OSM)/Geofabrik 150/220/400 kV network [@GeofabrikPortugal2026]. DGEG and Agência Portuguesa do Ambiente (APA) records supplement generation, storage, and connection evidence [@DGEGGeo2026; @APA3403; @APAPPA421; @APAPPA407]. REN provides national 15-minute operating series, whereas E-REDES provides substation energy. The *Plano de Desenvolvimento e Investimento da Rede de Transporte* (PDIRT) and *Plano de Desenvolvimento e Investimento da Rede Nacional de Distribuição* (PDIRD) provide delivery-point profiles and selected equipment parameters [@EREDESRND2026; @OSM2026; @RENDataHub2026; @ERSEPDIRT2024]. The European Commission's Geographical Information System (GISCO) supplies the continental boundary [@GISCO2024]; REN and Red Eléctrica de España (REE) records support transmission and interconnection checks [@REE2012]. OpenInfraMap, which derives from OSM, is used only for display checks and is not treated as independent evidence [@OpenInfraMap2026].
 
 Table 1 combines each source's coverage, modelling role, and temporal treatment. The common study window is determined by synchronized E-REDES and REN series. Static-source versions, case dates, and historical availability are recorded separately; the common window is not interpreted as the observation date of every device.
 
@@ -48,20 +48,20 @@ Table 1 combines each source's coverage, modelling role, and temporal treatment.
 
 **Table 1—Public sources, modelling roles, and temporal treatment.**
 
-| Publisher / product | Coverage and principal content | Modelling role | Version or case treatment |
+| Source | Data | Role | Time basis |
 | --- | --- | --- | --- |
-| E-REDES / *Rede Nacional de Distribuição* (RND) high-voltage network (*alta tensão*, AT, in the source portal) | Continental 60/130 kV lines, facilities, codes, and geometry | Static-network construction | Archived snapshot; frozen state where historical device status is absent |
-| OSM / Geofabrik | Continental Portugal and Spanish boundary; 150/220/400 kV facilities and circuits | Static-network and asset construction | Archived snapshot; frozen state where contemporaneous switching records are unavailable |
-| DGEG, APA, and project notices | Generation, storage, location, capacity, and commissioning evidence | Asset completion and field-level evidence | Known dates gate 366 assets; 824 undated assets are treated as available and flagged |
-| REN / Data Hub | 15 national series at 15-minute resolution | Demand, generation, storage, and withheld exchange comparison | Synchronized common window; imports and exports are not enforced as boundary inputs |
-| E-REDES / substation energy | 397 stations; facility code, interval-end timestamp, and kWh | Direct nodal load | Synchronized common window; timestamps shifted to interval start |
-| ERSE / PDIRT and PDIRD | Planning profiles, circuit inventories, and selected ratings | Residual-load weights and parameter evidence | Evidence applies only to the stated field and equipment; no real-time status inference |
-| REN / REE | Transmission and interconnection inventories, lengths, and capacity aggregates | Inventory, calibration, and context | Historical maps check corridor names; unavailable switching histories are not reconstructed [@REE2012] |
-| GISCO | Continental Portuguese boundary geometry | Spatial clipping and cartography | Archived geographic reference |
-| E-REDES auxiliary statistics | 14 national, municipal, injection, and seasonal-load datasets | External comparison | Excluded from nodal-power construction |
-| New Minho--Galicia interconnection | REE announcement dated 2 July 2026 | Post-window inventory check | Disabled in every study case |
+| E-REDES RND (AT) | 60/130 kV grid | Network | Snapshot |
+| OSM / Geofabrik | 150/220/400 kV grid | Network, assets | Snapshot |
+| DGEG / APA / projects | Assets, capacity, dates | Assets, evidence | Asset date |
+| REN Data Hub | 15 series; 15 min | Dispatch, reference | Common window |
+| E-REDES station energy | 397 stations; kWh | Direct load | Common window |
+| PDIRT / PDIRD | Profiles, circuits, ratings | Weights, parameters | Planning |
+| REN / REE | Length, capacity, interties | Check, calibration | Inventory |
+| GISCO | National boundary | Cartography | Snapshot |
+| E-REDES auxiliary | 14 products | Validation | Withheld |
+| Minho--Galicia | Notice: 2 July 2026 | Inventory | Post-window; off |
 
-**Table note.** The common modelling window is 1 May 2025 to 24 March 2026. Source entry points, archived versions, effective dates, and file fingerprints are listed in the data documentation and release manifest. In N1-3787, a planning inventory supports the capacity and voltage pair of the Estoi transformer representation; simultaneous availability and identical parameters remain modelling assumptions [@REN2015Estoi].
+**Table note.** The common window is 1 May 2025 to 24 March 2026. Proxy denotes an engineering assumption. For Estoi, voltage and capacity are source-backed; equal parameters and joint availability are Proxy [@REN2015Estoi].
 
 ### Archiving and standardization
 
@@ -101,25 +101,25 @@ Table 2 consolidates these connection decisions, including same-voltage endpoint
 
 **Table 2—Topology rules and thresholds.**
 
-| Object / step | Rule or threshold | Constraint / unmatched handling |
+| Object | Criterion | Outcome |
 | --- | --- | --- |
-| Distance coordinates | EPSG:3763; metres | Longitude and latitude stored in WGS 84 |
-| Endpoint clustering | 75 m within the same voltage | Different voltages are not merged |
-| Facility assignment | Same-voltage facility within 250 m | Create a derived connection bus if unmatched |
-| Facility normalization | Duplicate or colocated same-name facilities; mobile facilities within 250 m of permanent stations | Retain merge records |
-| OSM splitting | Way endpoints or explicit shared nodes | Geometric crossings do not create connections |
-| Circuit identity | `circuit` / `line_section`; parallel circuits retained | N−1 removes series model segments by physical circuit |
-| Explicit transformer | Match high- and low-voltage buses within 1 km | Preserve voltage-level consistency |
-| Colocated transformer | Adjacent voltage levels in one OSM station | Derived connection with evidence level retained |
-| RARI boundary | Name-to-facility match within 5 km | May fall back to a 60 kV endpoint within 1 km of the high-voltage station |
-| PDIRD parameter path | Length-weighted shortest path; model/source length 0.65--1.60 | Use voltage-class proxy when rejected |
-| Blocking checks | Self-loop, non-positive length, endpoint or voltage conflict | Record and block invalid branches |
+| Coordinates | EPSG:3763 | WGS 84 retained |
+| Endpoints | Same kV; \(\leq 75\) m | Derived cluster |
+| Facilities | Same kV; \(\leq 250\) m | Direct / Derived |
+| Normalization | Same name; mobile \(\leq 250\) m | Derived; logged |
+| OSM split | Endpoint / shared node | Crossing ignored |
+| Circuit | Relation; parallel retained | Physical-circuit N−1 |
+| Explicit transformer | Both buses \(\leq 1\) km | Direct |
+| Colocated transformer | Adjacent kV; same station | Derived |
+| RARI boundary | Name \(\leq 5\) km | Endpoint \(\leq 1\) km |
+| PDIRD path | Shortest; ratio 0.65--1.60 | Partial / Proxy |
+| Invalid branch | Loop; length \(\leq 0\); conflict | Blocked |
 
-**Table note.** Rules are defined in the Static network reconstruction subsection and the frozen `model_config.json`. All distances are projected planar distances. They are reconstruction rules, not operator accuracy guarantees. The configuration file records voltage-class defaults, cable factors, transformer proxies, and seasonal rating factors; equipment tables retain the field-level evidence status and any source-backed override.
+**Table note.** Direct = published link; Derived = deterministic reconstruction; Proxy = engineering substitution; Blocked = excluded. Distances are planar.
 
 ### Evidence applicability and historical availability
 
-Static-source dates and operating-case dates are versioned separately, as summarized in Table 1. Only assets with an explicit commissioning date are switched by time. Ordinary lines, transformers, and interconnections retain the frozen static state when contemporaneous status records are unavailable. Project documents support only the stated equipment and fields and are not used to infer historical switching states. Cross-section scaling of conductor resistance and transfer to other conductor families remain engineering assumptions. Document pages, equipment identifiers, and field-level judgements are stored in `citation_evidence_ledger.csv`.
+Static-source dates and operating-case dates are versioned separately, as summarized in Table 1. Commissioning dates are known for 366 assets and absent for 824. Only known dates switch availability by case; undated assets remain available and flagged. Ordinary lines, transformers, and interconnections retain the frozen static state when contemporaneous status records are unavailable. Project documents support only the stated equipment and fields and are not used to infer historical switching states. Cross-section scaling of conductor resistance and transfer to other conductor families remain engineering assumptions. Document pages, equipment identifiers, and field-level judgements are stored in `citation_evidence_ledger.csv`.
 
 ## Asset mapping and time-series alignment
 
@@ -158,22 +158,22 @@ REN imports and exports are aligned to the common calendar but withheld from bou
 
 **Table 3—Asset mapping and time-series transformation rules.**
 
-| Process | Rule | Audit or conservative treatment |
+| Process | Key rule | Status |
 | --- | --- | --- |
-| Asset deduplication | Merge plant/generator records within 3 km and with consistent capacity | Preserve hierarchical deduplication status |
-| Bus mapping | Public connection, declared voltage, then constrained nearest bus | Maximum 20 km; retain but do not inject out-of-range assets |
-| Asset without declared voltage | Capacity \(\geq100\) MW searches \(\geq150\) kV; otherwise \(\geq60\) kV | Spatial proximity is not treated as connection truth |
-| Commissioning status | Disable when commissioning date is later than the case | Treat unknown dates as available and flag them |
-| Time labels | REN start; E-REDES end shifted by −15 min | Common key is UTC interval start |
-| Daylight saving / missing data | Lisbon civil days contain 92, 96, or 100 intervals | Average and flag repeated E-REDES station labels; no interpolation |
-| Energy to power | \(P(\mathrm{MW})=E(\mathrm{kWh})/250\) | Interval-average power over 15 min |
-| Direct load and residual | E-REDES observations plus PDIRT-weighted REN consumption residual | pf=0.97 when Q is missing; retain residual Q/P |
-| Pumping and battery charging | Positive values are electric load; distribute by mapped storage capacity | Total load returns to Consumption + Storage |
-| Generation allocation | Same technology, mapped, commissioned, and nameplate-constrained | Hydro/gas use capacity priority; others use capacity share |
-| Unmapped generation residual | Explicit national proxy-bus injection | Must not be interpreted as a physical omitted-plant location |
-| Cross-border exchange | REN imports/exports used only after solution | Initial model solution determines boundary injections |
+| Asset deduplication | \(\leq 3\) km; capacity match | Derived; logged |
+| Bus mapping | Evidence → voltage → nearest; \(\leq 20\) km | Direct / Derived |
+| Missing voltage | \(\geq 100\) MW → \(\geq 150\) kV; else \(\geq 60\) kV | Derived |
+| Commissioning | Date after case: off; missing: on | Known / Unknown |
+| Time labels | E-REDES end −15 min | UTC start |
+| DST / missing | 92 / 96 / 100 intervals | Mean duplicate; no fill |
+| Energy | \(P_{\mathrm{MW}}=E_{\mathrm{kWh}}/250\) | Derived |
+| Load | Observed + PDIRT residual | Direct / Proxy |
+| Storage load | Capacity share | Derived |
+| Generation | Technology, date, nameplate | Derived |
+| Unmapped generation | 400 kV proxy bus | Proxy |
+| Cross-border | Post-solution comparison | Withheld |
 
-**Table note.** The physical fields are named `timestamp_utc` in the calendar and monthly databases; `interval_start_utc` describes their temporal semantics.
+**Table note.** `timestamp_utc` is the stored field; `interval_start_utc` denotes its meaning. Proxy locations are non-physical.
 
 ## Time-indexed case generation and alternating-current power flow
 
@@ -189,7 +189,7 @@ where the static network \(G\) and parameters \(\theta\) are shared, while opera
 
 Each case updates load, generation, equipment availability, seasonal ratings, and boundary equivalents. An initial boundary solution determines model net exchange. One angular reference is then retained, and the other boundary nodes receive fixed active-power equivalents distributed by public voltage and circuit count. Contemporaneous REN exchange is used only for post-solution comparison.
 
-AC power flow uses the pandapower Newton--Raphson implementation with direct-current (DC) initialization [@Thurner2018]. The principal workflow enforces reactive-power limits, resolves once after boundary reconstruction, and performs a bounded tap search. Table 4 lists seasonal ratings, PV and constant-power (PQ) rules, compensation, reactors, boundary weights, and numerical settings. These common settings are computational proxies rather than operator control policies.
+AC power flow uses the pandapower Newton--Raphson (NR) implementation with direct-current (DC) initialization [@Thurner2018]. The principal workflow enforces reactive-power limits, resolves once after boundary reconstruction, and performs a bounded tap search. Generators outside the PV rule remain constant active and reactive power (PQ). Table 4 lists seasonal ratings, PV/PQ rules, compensation, reactors, boundary weights, and numerical settings. These common settings are computational proxies rather than operator control policies.
 
 ### Monthly execution
 
@@ -197,19 +197,19 @@ Cases are processed in parallel by civil month. Workers read inputs and solve ca
 
 **Table 4—Case and solver settings.**
 
-| Item | Value or rule | Status |
+| Item | Setting | Status |
 | --- | --- | --- |
-| Seasonal line rating | May--Sep ×1.00; Mar--Apr and Oct--Nov ×1.10; Dec--Feb ×1.15 | Engineering proxy relative to summer base |
-| PV threshold | Non-battery; installed capacity \(\geq20\) MW and voltage \(\geq60\) kV | Remaining generation uses constant active and reactive power (PQ) |
-| PV voltage / reactive power | 1.0 p.u.; ±0.50 × installed MW in Mvar | Uniform proxy |
-| Load compensation | Target pf=0.98; maximum 15 Mvar per bus | Engineering proxy |
-| Shunt reactors | 5 × 150 Mvar at 400 kV | Explicitly flagged proxy equipment |
-| Boundary | One angle reference; other nodes weighted by voltage × circuit count | Not calibrated to measured REN exchange |
-| AC algorithm | Newton--Raphson; DC initialization; enforce Q limits | Maximum 50 iterations; tolerance \(10^{-6}\) MVA |
-| Transformer taps | High-voltage side ±8 steps; 1.25% per step; maximum 16 rounds | Target 0.985--1.015 p.u. |
-| General screening | Voltage 0.90--1.10 p.u.; loading 100% | Violations retained; N−1 criteria defined separately |
+| Rating | May--Sep: 1.00; Mar--Apr, Oct--Nov: 1.10; Dec--Feb: 1.15 | Proxy |
+| PV eligibility | Non-battery; \(\geq 20\) MW; \(\geq 60\) kV | Proxy |
+| PV / Q | 1.0 p.u.; ±0.50 Mvar/MW | Proxy |
+| Compensation | Power factor 0.98; \(\leq 15\) Mvar/bus | Proxy |
+| Reactors | 5 × 150 Mvar; 400 kV | Proxy |
+| Boundary | 1 angle reference; voltage × circuits | Derived |
+| Solver | NR/DC; Q limits; 50 iterations; \(10^{-6}\) MVA | Solver |
+| Taps | High side; ±8 × 1.25%; 16 rounds; 0.985--1.015 p.u. | Proxy |
+| Screening | 0.90--1.10 p.u.; 100% loading | Screen |
 
-**Table note.** Settings come from the frozen `model_config.json` and monthly execution code.
+**Table note.** Multipliers are relative to the summer rating. Settings are frozen in `model_config.json`.
 
 ## Layered storage, provenance, and quality control
 
@@ -286,26 +286,26 @@ Table 5 summarizes the principal static, time-series, validation, and applicatio
 
 **Table 5—Principal dataset statistics.**
 
-| Category | Object | Count | Basis |
-| --- | --- | ---: | --- |
-| Static | Facilities | 675 | Archived model inventory |
-| Static | Buses | 3,783 | 2026-09-16 topology-validation snapshot |
-| Static | Lines | 4,943 | Voltage-level coverage table |
-| Static | Transformers | 228 | Topology-validation snapshot |
-| Static | Generation / storage units | 1,190 | Asset inventory |
-| Static | Load points | 468 | Load inventory |
-| Static | Portugal--Spain boundary endpoints | 7 | Interconnection inventory |
-| Active network | Buses / lines | 3,664 / 4,787 | Connectivity statistics |
-| Time series | Common dates / intervals | 328 days / 31,492 | Common calendar |
-| Time series | Substation energy | 397 stations / 12,360,502 records | Raw records through 2026-03-25 |
-| Time series | REN national series | 15 types / 472,380 records | 15 min |
-| Context | Weather | 3 locations / 23,616 records | Hourly |
-| Context | REN monthly balance | 11 periods / 660 records | Monthly |
-| Validation | E-REDES auxiliary products | 14 types / 2,239,064 records | Multiple temporal resolutions |
-| Power flow | Compact monthly databases / cases | 11 / 31,492 | Completed and converged |
-| Scenario records | Sampled full-element N−1 | 6 times / 9,894 cases | 1,649 outage groups per time |
+| Group | Object | Count |
+| --- | --- | ---: |
+| Static | Facilities | 675 |
+| Static | Buses | 3,783 |
+| Static | Lines | 4,943 |
+| Static | Transformers | 228 |
+| Static | Generation / storage | 1,190 |
+| Static | Loads | 468 |
+| Static | Border endpoints | 7 |
+| Active | Buses / lines | 3,664 / 4,787 |
+| Series | Days / intervals | 328 / 31,492 |
+| Series | Station energy | 397 / 12,360,502 |
+| Series | REN series | 15 / 472,380 |
+| Context | Weather | 3 / 23,616 |
+| Context | Monthly balance | 11 / 660 |
+| Validation | Auxiliary products | 14 / 2,239,064 |
+| Cases | Monthly files / cases | 11 / 31,492 |
+| N−1 | Times / cases | 6 / 9,894 |
 
-**Table note.** Counts describe the released CORE-3783 variant. N−1 uses N1-3787. The Frozen release and model-version reconciliation subsection defines their object-level differences, section applicability, and fixed hashes.
+**Table note.** CORE-3783 counts apply except to the N−1 row, which uses N1-3787 and 1,649 outage groups per time.
 
 
 # Technical Validation
@@ -332,15 +332,15 @@ The 11 compact monthly databases contain 31,492 completed and converged 15-minut
 
 **Table 6—Network structure, parameter evidence, and computational completeness.**
 
-| kV | Buses | Lines | Route-km | Background km | Ratio | Line-level parameter evidence |
+| kV | Buses | Lines | Route-km | Reference km | Ratio | Evidence |
 | ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| 60 | 3,236 | 4,240 | 9,668.4 | 9,742.0 | 0.992 | 1,517 partial / 2,723 proxy |
-| 130 | 8 | 7 | 41.6 | 38.2 | 1.090 | 7 proxy |
-| 150 | 132 | 156 | 2,054.1 | 2,514.0 | 0.817 | 156 proxy |
-| 220 | 214 | 294 | 3,206.9 | 3,916.0 | 0.819 | 294 proxy |
-| 400 | 193 | 246 | 3,579.5 | 3,465.0 | 1.033 | 246 proxy |
+| 60 | 3,236 | 4,240 | 9,668.4 | 9,742.0 | 0.992 | Partial 1,517; Proxy 2,723 |
+| 130 | 8 | 7 | 41.6 | 38.2 | 1.090 | Proxy 7 |
+| 150 | 132 | 156 | 2,054.1 | 2,514.0 | 0.817 | Proxy 156 |
+| 220 | 214 | 294 | 3,206.9 | 3,916.0 | 0.819 | Proxy 294 |
+| 400 | 193 | 246 | 3,579.5 | 3,465.0 | 1.033 | Proxy 246 |
 
-**Table note.** The 130 kV sample contains seven lines. Background length is non-independent OSM context at 60/130 kV and REN aggregate length at 150/220/400 kV. Route-km and circuit length differ, so ratios are not accuracy. The active network is one connected component with simple-graph cycle rank 501, median degree 2, and 95th-percentile degree 4. All 31,492 cases completed and converged; interval-weighted AC closure mean absolute error (MAE) is \(1.77\times10^{-6}\) MW. Partial line-level support does not mean that every field is observed; all \(x\) and \(c\) values are proxies.
+**Table note.** The 130 kV sample has seven lines. References are OSM at 60/130 kV and REN aggregates at 150--400 kV; route-km is not circuit length. Partial is line-level; all \(x\) and \(c\) values are Proxy.
 
 ## Parameter and spatial-allocation sensitivity
 
@@ -354,7 +354,7 @@ Figure 4 summarizes ranking, hotspot-set, and maximum-loading responses. Across 
 
 ## External temporal agreement
 
-National demand comparison contains 31,388 paired intervals. The ratio of mean SimPT60 consumption to public E-REDES consumption is 1.003, with a day-block bootstrap 95% confidence interval of [1.002, 1.005]. Fifteen-minute Pearson correlation is 0.997 [0.996, 0.999], and MAE is 30.9 MW. Across 327 paired daily means, Pearson correlation is 0.995 and normalized root-mean-square error (RMSE) is 0.013. October 2025 contains E-REDES missingness and local deviations, but the month is retained [@EREDESNationalConsumption].
+National demand comparison contains 31,388 paired intervals. The E-REDES reference includes losses. The ratio of mean SimPT60 consumption to public E-REDES consumption is 1.003, with a day-block bootstrap 95% confidence interval of [1.002, 1.005]. Fifteen-minute Pearson correlation is 0.997 [0.996, 0.999], and mean absolute error (MAE) is 30.9 MW. Across 327 paired daily means, Pearson correlation is 0.995 and normalized root-mean-square error (RMSE) is 0.013. October 2025 contains E-REDES missingness and local deviations, but the month is retained [@EREDESNationalConsumption].
 
 Wind comparison contains 31,484 paired intervals. The mean ratio between SimPT60 and E-REDES distribution-grid wind injection is 1.056 [1.055, 1.058], and Pearson correlation is 0.9998 [0.9997, 0.9998]. Daily-mean correlation is also 0.9998. Photovoltaic correlation is 0.982, but mean national photovoltaic production in SimPT60 is approximately 21.2 times distribution-grid injection. Hydro correlation is 0.536. The latter comparisons span different accounting scopes and are not absolute-scale validation [@EREDESDistributionInjection; @EREDESNationalProduction].
 
@@ -378,25 +378,27 @@ Figure 6 displays both spatial comparisons and their cluster-bootstrap uncertain
 
 ### Station-held-out spatial reconstruction test
 
-A station-held-out experiment divides 394 matched stations into five deterministic folds. At 22 times, it compares global capacity share, five geographically nearest stations, and five nearest stations along the reconstructed network, yielding 8,541 observation pairs. Neighbor predictions use inverse-distance weights; network distance uses in-service line length and a small positive transformer-edge length. Confidence intervals are obtained by a 1,000-replicate station-cluster bootstrap using fixed fold assignments. Table 7 shows that network-neighbor MAE is approximately 9.9% below global capacity share, but is not lower than geographic-neighbor MAE and has an overlapping confidence interval. Reconstructed connectivity therefore contains useful proximity information but does not independently recover precise nodal demand. Fold assignments, pair-level predictions, and recomputation code are included in the released validation package.
+A station-held-out experiment divides 394 matched stations into five deterministic folds. At 22 times, it compares global capacity share, five geographically nearest stations, and five nearest stations along the reconstructed network, yielding 8,541 observation pairs. Neighbor predictions use inverse-distance weights; network distance uses in-service line length and a small positive transformer-edge length. Confidence intervals are obtained by a 1,000-replicate station-cluster bootstrap using fixed fold assignments. Table 7 shows that network-neighbor MAE is approximately 9.9% below global capacity share, but is not lower than geographic-neighbor MAE and has an overlapping confidence interval. Reconstructed connectivity therefore contains useful proximity information but does not independently recover precise nodal demand. Capacity-share, geographic-neighbor, and network-neighbor RMSE values are 6.357, 5.675, and 5.702 MW, respectively; the corresponding weighted absolute percentage error (WAPE) values are 38.4%, 34.5%, and 34.6%. Fold assignments, pair-level predictions, and recomputation code are included in the released validation package.
 
-Table 7 consolidates the cross-source comparisons and the three held-out allocation methods; error measures include MAE, RMSE, and weighted absolute percentage error (WAPE).
+Table 7 consolidates the cross-source comparisons and the three held-out allocation methods.
 
 \Needspace{8\baselineskip}
 
 **Table 7—External validation and station-held-out reconstruction results.**
 
-| Validation target or method | Samples or independent blocks | Result (95% confidence interval) | Evidence or interpretation |
+| Target / method | n / blocks | Metric | Estimate [95% interval] |
 | --- | ---: | --- | --- |
-| National consumption | 31,388 intervals / 327 days | Mean ratio 1.003 [1.002, 1.005]; $r=0.997$ [0.996, 0.999] | REN--E-REDES comparison; reference includes losses |
-| Wind | 31,484 intervals / 328 days | Mean ratio 1.056 [1.055, 1.058]; $r=0.9998$ [0.9997, 0.9998] | National production versus distribution injection |
-| Photovoltaic temporal variation | 31,484 intervals / 328 days | $r=0.982$ [0.979, 0.984]; absolute scale not comparable | National production versus distribution injection |
-| Municipal load share | 2,183 pairs / 199 municipalities | $\rho=0.881$ [0.841, 0.910] | Same operator across datasets; weak spatial proxy |
-| Seasonal substation peak | 792 pairs / 397 stations | $\rho=0.957$ [0.946, 0.967] | Same operator across datasets |
-| AC power closure | 31,492 cases | MAE $1.77\times10^{-6}$ MW | Internal physical consistency |
-| Held-out capacity share | 394 stations / 8,541 pairs | MAE 4.729 MW [4.412, 5.063]; RMSE 6.357 MW; WAPE 38.4% | Baseline spatial allocation |
-| Held-out geographic neighbors | 394 stations / 8,541 pairs | MAE 4.249 MW [3.972, 4.544]; RMSE 5.675 MW; WAPE 34.5% | Five nearest stations; inverse-distance weights |
-| Held-out network-path neighbors | 394 stations / 8,541 pairs | MAE 4.262 MW [3.971, 4.545]; RMSE 5.702 MW; WAPE 34.6% | Five nearest stations along the reconstructed network |
+| Consumption | 31,388 / 327 d | Ratio; \(r\) | 1.003 [1.002, 1.005]; 0.997 [0.996, 0.999] |
+| Wind | 31,484 / 328 d | Ratio; \(r\) | 1.056 [1.055, 1.058]; 0.9998 [0.9997, 0.9998] |
+| PV variation | 31,484 / 328 d | \(r\) | 0.982 [0.979, 0.984] |
+| Municipal share | 2,183 / 199 | \(\rho\) | 0.881 [0.841, 0.910] |
+| Substation peak | 792 / 397 | \(\rho\) | 0.957 [0.946, 0.967] |
+| AC closure | 31,492 | MAE, MW | \(1.77\times10^{-6}\) |
+| Capacity share | 394 / 8,541 | MAE, MW | 4.729 [4.412, 5.063] |
+| Geographic neighbors | 394 / 8,541 | MAE, MW | 4.249 [3.972, 4.544] |
+| Network neighbors | 394 / 8,541 | MAE, MW | 4.262 [3.971, 4.545] |
+
+**Table note.** \(n\) is the number of paired observations; d denotes day blocks. Other blocks are municipalities or stations.
 
 
 ## Generation scope and quantified dependence on spatial proxies

@@ -547,10 +547,11 @@ def format_docx(path: Path) -> None:
                     paragraph.paragraph_format.space_after = Pt(2)
                     paragraph.paragraph_format.line_spacing = 1.0
                     paragraph.paragraph_format.widow_control = True
-                    if column_index == 1 and len(row.cells) >= 3:
-                        paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
-                    else:
-                        paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
+                    # LibreOffice can crop the leading characters of centred
+                    # text when an autofit column is narrowed during PDF
+                    # rendering. Left alignment keeps every value visible and
+                    # is consistent with the compact submission tables.
+                    paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
                     for run in paragraph.runs:
                         set_run_font(run, FONT, 8.0, bold=(row_index == 0))
 
@@ -631,6 +632,54 @@ def prepare_latex(source: str) -> str:
     for macro in ("path", "hashvalue"):
         pattern = re.compile(rf"\\{macro}\{{([^{{}}]+)\}}")
         source = pattern.sub(lambda match: rf"\texttt{{{escape_texttt(match.group(1))}}}", source)
+
+    # Pandoc's LaTeX reader drops leading numbers and inline mathematics from
+    # longtable cells that use proportional p{...} column specifications.
+    # Column widths are assigned later in Word, so simplify those declarations
+    # and express compact table mathematics as Unicode/plain text for DOCX.
+    def table_math(match: re.Match[str]) -> str:
+        value = match.group(1)
+        replacements = {
+            r"\leq": "≤",
+            r"\geq": "≥",
+            r"\times": "×",
+            r"\rho": "ρ",
+        }
+        for old, new in replacements.items():
+            value = value.replace(old, new)
+        value = re.sub(r"\\mathrm\{([^{}]+)\}", r"\1", value)
+        value = value.replace("^{-6}", "⁻⁶")
+        value = re.sub(r"_\{([^{}]+)\}", r"_\1", value)
+        return value.replace("{", "").replace("}", "")
+
+    rebuilt: list[str] = []
+    cursor = 0
+    for match in re.finditer(r"\\begin\{longtable\}.*?\\end\{longtable\}", source, flags=re.DOTALL):
+        rebuilt.append(source[cursor : match.start()])
+        table_source = match.group(0)
+        top_rule = table_source.find(r"\toprule")
+        declaration = table_source[:top_rule]
+        column_count = declaration.count(r"\arraybackslash}p{")
+        if column_count:
+            table_source = (
+                r"\begin{longtable}[]{@{}" + "l" * column_count + "@{}}\n" + table_source[top_rule:]
+            )
+            table_source = re.sub(
+                r"\\begin\{minipage\}\[b\]\{\\linewidth\}\\ragged(?:right|left)\s*",
+                "",
+                table_source,
+            )
+            table_source = table_source.replace(r"\end{minipage}", "")
+        table_source = re.sub(r"\\\((.*?)\\\)", table_math, table_source, flags=re.DOTALL)
+        table_source = re.sub(
+            r"(?m)^(\d[\d,./-]*)\s*&",
+            lambda row: rf"\mbox{{{row.group(1)}}} &",
+            table_source,
+        )
+        rebuilt.append(table_source)
+        cursor = match.end()
+    rebuilt.append(source[cursor:])
+    source = "".join(rebuilt)
     return source
 
 
