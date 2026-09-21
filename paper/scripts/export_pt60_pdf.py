@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[2]
 PAPER_DIR = ROOT / "paper"
 SOURCE_MD = PAPER_DIR / "PT60_Sep16.MD"
 TARGET_PDF = PAPER_DIR / "PT60_Sep16.pdf"
+SUPPLEMENT_MD = PAPER_DIR / "PT60_Sep16_SUPPLEMENTARY_TABLES.md"
 PANDOC_BIN = "/opt/homebrew/bin/pandoc"
 XELATEX_BIN = "/usr/local/texlive/2025basic/bin/universal-darwin/xelatex"
 
@@ -121,15 +122,15 @@ def export_pdf():
     source_content = SOURCE_MD.read_text(encoding="utf-8")
 
     clean_content = preprocess_markdown(source_content)
-    supplement = PAPER_DIR / 'PT60_Sep16_SUPPLEMENTARY_TABLES.md'
+    supplement = SUPPLEMENT_MD
     if supplement.exists():
         clean_content += '\n\n\\clearpage\n\n' + supplement.read_text(encoding='utf-8')
     # Explicit Markdown anchors must survive the LaTeX writer, including
     # author-year bibliography links and the appended supplementary tables.
     clean_content = re.sub(r'<a id="([^"]+)"></a>',
         lambda m: '\\phantomsection\\label{' + m.group(1) + '}', clean_content)
-    clean_content = clean_content.replace('PT60_Sep16_SUPPLEMENTARY_TABLES.md#', '#')
-    clean_content = clean_content.replace('[正文](PT60_Sep16.MD)', '正文')
+    clean_content = clean_content.replace(supplement.name + '#', '#')
+    clean_content = re.sub(r'\[([^\]]+)\]\([^)]*\.md\)', r'\1', clean_content)
     clean_content = clean_content.replace('1.77 × 10⁻⁶ MW', '$1.77\\times10^{-6}$ MW')
     clean_content = clean_content.replace('10⁻⁶', '$10^{-6}$')
     clean_content = re.sub(r'match_distance_m；\s*capacity_calibration_factor',
@@ -254,7 +255,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source', type=Path, default=SOURCE_MD)
     parser.add_argument('--output', type=Path, default=TARGET_PDF)
+    parser.add_argument('--supplement', type=Path, default=SUPPLEMENT_MD)
     args = parser.parse_args()
     SOURCE_MD = args.source.resolve()
     TARGET_PDF = args.output.resolve()
+    SUPPLEMENT_MD = args.supplement.resolve()
     export_pdf()

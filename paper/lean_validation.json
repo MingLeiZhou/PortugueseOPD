@@ -1,0 +1,234 @@
+{
+  "passed": 35,
+  "total": 35,
+  "checks": [
+    {
+      "check": "One References section",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "No unresolved markers",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Figure captions sequential",
+      "passed": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "check": "Figure prose references",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Table captions sequential",
+      "passed": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "check": "Table prose references",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Ten main figures",
+      "passed": true,
+      "detail": [
+        "figures_final/fig01_network_reconstruction.png",
+        "figures_final/fig02_geographic_network_state.png",
+        "figures_final/fig03_temporal_coverage.png",
+        "figures_final/fig04_network_parameter_evidence.png",
+        "figures_final/fig05_parameter_spatial_sensitivity.png",
+        "figures_final/fig07_temporal_validation.png",
+        "figures_final/fig08_spatial_validation.png",
+        "figures_final/fig10_proxy_provenance.png",
+        "figures_final/fig11_grid_stress.png",
+        "figures_final/fig12_annual_nminus1.png"
+      ]
+    },
+    {
+      "check": "Main image exists: figures_final/fig01_network_reconstruction.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Main image exists: figures_final/fig02_geographic_network_state.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Main image exists: figures_final/fig03_temporal_coverage.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Main image exists: figures_final/fig04_network_parameter_evidence.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Main image exists: figures_final/fig05_parameter_spatial_sensitivity.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Main image exists: figures_final/fig07_temporal_validation.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Main image exists: figures_final/fig08_spatial_validation.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Main image exists: figures_final/fig10_proxy_provenance.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Main image exists: figures_final/fig11_grid_stress.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Main image exists: figures_final/fig12_annual_nminus1.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Supplement tables S1-S9",
+      "passed": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "check": "Supplement figures S1-S2",
+      "passed": true,
+      "detail": [
+        1,
+        2
+      ]
+    },
+    {
+      "check": "Supplement image exists: figures_final/fig06_hotspot_persistence.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Supplement image exists: figures_final/fig10_targeted_nminus1.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Supplement links resolve",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Citations and bibliography agree",
+      "passed": true,
+      "detail": {
+        "refs": 26,
+        "cited": 26,
+        "uncited": [],
+        "missing": []
+      }
+    },
+    {
+      "check": "No duplicate main N-1 figure in supplement",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "No duplicate main N-1 table in supplement",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Core value retained: 31,492",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Core value retained: 3,783",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Core value retained: 4,943",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Core value retained: 228",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Core value retained: 0.997",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Core value retained: 0.9998",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Core value retained: 9,894",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Core value retained: 9,888",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Core value retained: 6,048",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Core value retained: 9,064",
+      "passed": true,
+      "detail": null
+    }
+  ]
+}
