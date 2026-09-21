@@ -7,7 +7,7 @@
 
 外部比较使用未参与节点功率构建的 E-REDES 辅助数据产品，检验聚合时间变化和空间分布。全国负荷在 31,388 个配对区间上的 Pearson 系数为 0.997；六个代表时点的全元件 N−1（单一元件故障）实验完成 9,894 个案例，其中 9,888 个在既定无功边界下收敛。这些结果支持数据集的聚合时空一致性和计算可用性，为时序潮流、相对风险筛查及情景分析提供数据基础，但不构成设备级准确性验证。
 
-**Keywords：** power system dataset; Portugal; public data; grid reconstruction; power flow; time series; provenance; cross-source validation
+**Keywords:** power system dataset; Portugal; public data; grid reconstruction; power flow; time series; provenance; cross-source validation
 
 ------
 
@@ -29,7 +29,7 @@
 | 来源追踪 | 数据源、版本和构建工作流 | 文档、网络代码、剖面标识 | 原始文件哈希、稳定对象 ID、案例审计包 |
 | 用途边界 | 欧洲系统规划；不覆盖葡萄牙 60 kV 配网 | 可比性基准；不表示葡萄牙真实地理 | 聚合一致性与代理筛查；不等于设备遥测 |
 
-比较依据原论文及官方文档：PyPSA-Eur ([Hörsch et al., 2018](#ref-Horsch2018); [官方说明](https://pypsa-eur.readthedocs.io/en/latest/))；SimBench ([Meinecke et al., 2020](#ref-Meinecke2020); [文档 v1.0.0](https://simbench.de/wp-content/uploads/2020/01/simbench_documentation_en_1.0.0.pdf))。官方网页核对日期为 2026-09-21；本表比较用途与数据组织，不作“首次”或完整性排名。
+**表注。** 比较依据原论文及官方文档：PyPSA-Eur ([Hörsch et al., 2018](#ref-Horsch2018); [官方说明](https://pypsa-eur.readthedocs.io/en/latest/))；SimBench ([Meinecke et al., 2020](#ref-Meinecke2020); [文档 v1.0.0](https://simbench.de/wp-content/uploads/2020/01/simbench_documentation_en_1.0.0.pdf))。官方网页核对日期为 2026-09-21；本表比较用途与数据组织，不作“首次”或完整性排名。
 
 ## 1.1 Motivation
 
@@ -43,7 +43,7 @@
 
 为弥补上述缺口，本文提出 SimPT60，一个基于多源公开数据重建的葡萄牙大陆高压电网数据集。建模范围覆盖 60、130、150、220 和 400 kV 网络，并保留表示葡西互联所需的边界节点。数据库分层存储原始来源、静态网络、时序输入、潮流结果和验证记录，使用者可以追踪关键字段的来源和处理规则。
 
-SimPT60 的核心贡献是把葡萄牙大陆 60–400 kV 的可追溯公开数据网络，与 31,492 个连续、可复算的 15 分钟交流潮流状态连接在同一版本化数据产品中。原始记录、派生对象及验证结果分层保存，支持回溯关键字段的证据；其适用边界集中见第 4.7 节。
+SimPT60 的核心贡献是把葡萄牙大陆 60–400 kV 的可追溯公开数据网络，与 31,492 个连续、可复算的 15 分钟交流潮流状态连接在同一版本化数据产品中。原始记录、派生对象及验证结果分层保存，支持回溯关键字段的证据；其适用边界集中见第 4.7 节。数据集的覆盖范围、核心数据产品与解释边界汇总于 Table 2。
 
 
 **Table 2——SimPT60 的范围与数据产品。**
@@ -186,7 +186,7 @@ Estoi 的三台 126 MVA、150/60 kV 设备可在 REN PDIRT 2016–2025 规划附
 | 发电/储能 | 冻结 1,190 行清单 | 366 行有日期、824 行缺失 | 已知日期门控；未知按可用并标记 |
 | Casal da Cortiça 电池储能系统（Battery Energy Storage System, BESS） | DGEG 2025-06-18 项目记录 | 仅确认 2025 年 6 月接网 | 6 月 1 日为月初代理；12 MVA→12 MW 假设功率因数 1 |
 
-新互联投运日依据 [REE 官方公告](https://www.ree.es/es/sala-de-prensa/actualidad/nota-de-prensa-interconexiones/2026/07/espana-y-portugal-inauguran-la-nueva-interconexion)。完整字段、规则与版本见 `source_availability_matrix.csv`。BESS 的确切日和实际功率因数未公开，其不确定性最多影响该 12 MW 资产的空间分配及 6 月上旬可用性，不改变强制守恒的全国发电总量。
+**表注。** 新互联投运日依据 [REE 官方公告](https://www.ree.es/es/sala-de-prensa/actualidad/nota-de-prensa-interconexiones/2026/07/espana-y-portugal-inauguran-la-nueva-interconexion)。完整字段、规则与版本见 `source_availability_matrix.csv`。BESS 的确切日和实际功率因数未公开，其不确定性最多影响该 12 MW 资产的空间分配及 6 月上旬可用性，不改变强制守恒的全国发电总量。
 
 ## 2.3 Asset Mapping and Time-Series Alignment
 
@@ -316,7 +316,7 @@ P^{\mathrm{eq}}_{i,t}=
 
 每个月使用独立结果库。`monthly_model.cases` 每时点一行，保存状态、时间、摘要指标和完整结果 JSON；`bus_order`、`line_order` 与 `state_arrays` 以固定设备顺序保存母线电压和线路负载率数组；`audit_bundles` 保存负荷、发电、边界、热点和损耗记录。展开视图可将数组恢复为设备长表。静态模型在月库中只复制一次，而不是随每个案例重复保存。
 
-来源记录包含 URL、归档路径、文件大小和 SHA-256；`table_lineage`、`raw_record_locator` 和 `entity_evidence` 分别提供表级、记录级和证据级追踪。月度 `run_manifest` 保存输入文件指纹和案例计数。
+来源记录包含 URL、归档路径、文件大小和 SHA-256；`table_lineage`、`raw_record_locator` 和 `entity_evidence` 分别提供表级、记录级和证据级追踪。月度 `run_manifest` 保存输入文件指纹和案例计数。数据库分层、粒度与关联字段的完整清单详见补充材料 [Table S5](PT60_Sep16_SUPPLEMENTARY_TABLES.md#supplementary-table-s5)。
 
 ### 2.5.2 Quality Control and Recovery
 
@@ -332,8 +332,6 @@ P_t^{\mathrm{gen}}+P_t^{\mathrm{model,net}}
 
 一个案例的摘要、数组和审计包在同一事务内提交，失败则整体回滚并保留错误记录。月度正式发布前，来源和副本的完成案例数、数组数和审计包数必须一致。上述事务与清单机制支持结果恢复及来源追踪。
 
-
-数据库分层、粒度与关联字段的完整清单移至补充材料 [Table S5](PT60_Sep16_SUPPLEMENTARY_TABLES.md#supplementary-table-s5)。
 
 质量控制阈值、失败行为和记录位置详见补充材料 [Table S4](PT60_Sep16_SUPPLEMENTARY_TABLES.md#supplementary-table-s4)。
 
@@ -368,7 +366,7 @@ SimPT60 由一个主数据库和 11 个按月组织的潮流结果库组成。�
 
 逐区间结果按自然月拆分，以限制单个文件大小并支持选择性下载。11 个紧凑月库与统一日历一一对应，共包含 31,492 个案例；当前版本中全部案例完成交流潮流计算并标记为收敛。2025 年 10 月因夏令时结束含 2,980 个区间，2026 年 3 月仅覆盖前 24 天，含 2,304 个区间。
 
-每个案例保存摘要、设备状态数组及分配审计包，字段和关联方式见补充材料 Table S5。状态数组通过固定的 `bus_order` 和 `line_order` 恢复为设备长表；静态设备顺序每月只保存一次。
+每个案例保存摘要、设备状态数组及分配审计包，字段和关联方式见补充材料 [Table S5](PT60_Sep16_SUPPLEMENTARY_TABLES.md#supplementary-table-s5)。状态数组通过固定的 `bus_order` 和 `line_order` 恢复为设备长表；静态设备顺序每月只保存一次。
 
 主数据库还保存第 5 节的 N−1 应用结果。`scenario.annual_nminus1_snapshots` 记录六个代表时点，`scenario.annual_nminus1_results` 保存 9,894 条故障级结果，`scenario.annual_nminus1_overloads` 保存事故后越限回路明细；`scenario.nminus1_control_policy` 与 `provenance.annual_nminus1_runs` 分别记录控制搜索边界和实验来源。这些应用表与连续 15 分钟潮流案例分开，避免将抽样安全筛查误解为全时段运行观测。
 
@@ -431,11 +429,11 @@ SimPT60 由一个主数据库和 11 个按月组织的潮流结果库组成。�
 
 ## 3.6 Frozen Release and Model-Version Reconciliation
 
-论文以 **SimPT60-2026.09.21-r1** 作为唯一发布快照；发布包固定核心输入、11 个不可变月库、论文、环境清单和校验文件。文件级哈希、代码提交、锁定环境及最小复现命令集中列于补充材料 Note S2 和机器可读的 `release.json`，正文只保留影响结果解释的模型差异。
+论文以 **SimPT60-2026.09.21-r1** 作为唯一发布快照；发布包固定核心输入、11 个不可变月库、论文、环境清单和校验文件。文件级哈希、代码提交、锁定环境及最小复现命令集中列于补充材料 [Note S2](PT60_Sep16_SUPPLEMENTARY_TABLES.md#supplementary-note-s2) 和机器可读的 `release.json`，正文只保留影响结果解释的模型差异。
 
 CORE-3783 是 31,492 个历史案例使用的核心模型，包含 3,783 个母线、4,943 条线路和 228 个变压器对象。第 5.4 节的 N−1 演示使用 N1-3787：四个新增行是 Lanheses–Feitosa 拓扑拆分产生的同址连接节点，五条线路的八个端点字段随之改接，线路数量不变。N1-3787 还将 Estoi 的一个 378 MVA 合并对象拆为三个并联的 126 MVA 等值单位，使变压器表由 228 行增至 230 行；三个对称单位仍作为一个变压器故障组。
 
-两种变体分别服务于历史案例复现和修正后的故障分析，不能互换后宣称结果仍来自同一快照。逐字段差异、版本哈希及离线复现证据见补充材料 Note S2。
+两种变体分别服务于历史案例复现和修正后的故障分析，不能互换后宣称结果仍来自同一快照。逐字段差异、版本哈希及离线复现证据见补充材料 [Note S2](PT60_Sep16_SUPPLEMENTARY_TABLES.md#supplementary-note-s2)。
 
 
 # 4. Validation
@@ -514,13 +512,13 @@ CORE-3783 是 31,492 个历史案例使用的核心模型，包含 3,783 个母�
 
 **表注。** 每个方案 22 个时点。参数组含基准为 154 个，空间组含同一基准为 132 个；去除重复基准后合计 264 个，全部收敛。损耗率定义为网损 / 模型负荷，其变化单位是百分点（pp），并非网损 MW 的相对变化。R/X 与 C 反向扰动，见 parameter_scenarios.json；数值来源 sensitivity_summary.csv。
 
-运行代理消融使用相同的 22 个时点检验无功限值、PV 目标、负荷补偿、电抗器和分接控制；完整协议、242 个有效运行及响应幅度移至补充材料 Note S3 和 Table S6。
+运行代理消融使用相同的 22 个时点检验无功限值、PV 目标、负荷补偿、电抗器和分接控制；完整协议、242 个有效运行及响应幅度移至补充材料 [Note S3](PT60_Sep16_SUPPLEMENTARY_TABLES.md#supplementary-note-s3) 和 [Table S6](PT60_Sep16_SUPPLEMENTARY_TABLES.md#supplementary-table-s6)。
 
 ### 4.3.1 Persistence of Ranked Hotspots
 
 对原 264 个扰动结果重新计算每行线路进入 Top-20 的频率。每时点 12 种配置（基线及 11 种扰动）分别排名；并列值按稳定线路 ID 排序。定义 f(i,t)=入选次数/该时点成功配置数，f≥0.8 为“该时点持续热点”，0<f<0.8 为“依赖假设的热点”；未入选为 0。跨时点总频率另报，避免把季节变化误当参数不稳定。
 
-4,943 条线路中 74 条至少入选一次；其中 56 条在至少一个时点达到持续热点阈值，18 条从未达到。最高的跨实验入选率为 207/264=78.4%（LINE:004925 与 LINE:000799），因此不能声称存在跨全年所有时点均稳定的热点集合。Top-20 Jaccard 最低 0.429 仍是重要限制；全网 Spearman 较高不能替代热点成员的稳定性证据。完整逐线路、逐时点频率和原入选成员表随发布提供。
+4,943 条线路中 74 条至少入选一次；其中 56 条在至少一个时点达到持续热点阈值，18 条从未达到。最高的跨实验入选率为 207/264=78.4%（LINE:004925 与 LINE:000799），因此不能声称存在跨全年所有时点均稳定的热点集合。Top-20 Jaccard 最低 0.429 仍是重要限制；全网 Spearman 较高不能替代热点成员的稳定性证据。完整逐线路、逐时点频率和原入选成员表随发布提供；前 20 条热点线路在不同假设下的入选频率见 Figure 6。
 
 ![Figure 6](revision_v3/figures/figR3_hotspot_persistence.png)
 
@@ -611,7 +609,7 @@ CORE-3783 是 31,492 个历史案例使用的核心模型，包含 3,783 个母�
 
 预先固定“消费残差 ≥50%”及“能源类别代理 ≥10%”作为标记阈值，完整时间清单在 CSV 中保留。2026 年 3 月有 59 个时点的消费残差超过 50%，最高为 52.88%；全国总发电代理无时点达到 10%，但类别级高代理时段明显存在。地域统计使用明确纬度分带：北部 ≥40.5°N、中部 38.5°–40.5°N、南部 <38.5°N，不冒称行政区域。南部月残差占比为 29.35%–42.69%，北部 24.57%–30.46%，中部 24.68%–31.86%。71 个接收母线在至少一个月的本地消费中代理占比达到 50%；完整母线表提供 ID，避免仅报告全国平均。
 
-所有非舍入的全国发电代理均注入 `BUS:OSM:way:131715746:400`，位于上述中部纬度带。这个位置只是模型接收点，不是未映射电厂真实分布的证据；附近线路热点需连同这一集中注入假设解释。逐月八能源类型表、逐区间功率、区域/母线份额和高代理时段均可复算。
+所有非舍入的全国发电代理均注入 `BUS:OSM:way:131715746:400`，位于上述中部纬度带。这个位置只是模型接收点，不是未映射电厂真实分布的证据；附近线路热点需连同这一集中注入假设解释。逐月八能源类型表、逐区间功率、区域/母线份额和高代理时段均可复算，观测与代理功率的时间和空间分布见 Figure 10。
 
 ![Figure 10](revision_v3/figures/figR1_proxy_provenance.png)
 
@@ -637,9 +635,9 @@ CORE-3783 是 31,492 个历史案例使用的核心模型，包含 3,783 个母�
 
 应用案例选取 2026 年 1 月 20 日 19:45 UTC 的公开输入断面作为基准。该断面的模型负荷为 10,268.8 MW。为保持注入与用电结构不变，实验将节点负荷、分能源发电和跨境交换同时乘以比例系数
 
-$$
+\[
 s\in\{0.90,1.00,1.05,1.10,1.15\},
-$$
+\]
 
 并对每个情景独立执行交流潮流。这里的统一缩放只用于检验既定网络在不同系统压力下的响应，不代表对未来负荷、发电结构或交换计划的预测。五个情景均使用相同拓扑、季节额定值和节点分配规则，因此差异仅来自输入规模。
 
@@ -669,7 +667,7 @@ $$
 
 ## 5.4 Representative-Time Full-Element N−1 Demonstration
 
-为展示数据集的故障分析可计算性，本文从连续时序中预先选取最大/最低负荷、最大风电、最大光伏、最大净进口和最大净出口六个代表时点，并在每个时点对同一组候选元件执行交流 N−1。串联模型分段按回路共同退出，并联线路或变压器每次只退出一个等值单位；六个时点使用完全相同的 1,649 个故障组。故障集合的构成见 Table 16，完整排除清单和分组规则见补充材料 Table S9。
+为展示数据集的故障分析可计算性，本文从连续时序中预先选取最大/最低负荷、最大风电、最大光伏、最大净进口和最大净出口六个代表时点，并在每个时点对同一组候选元件执行交流 N−1。串联模型分段按回路共同退出，并联线路或变压器每次只退出一个等值单位；六个时点使用完全相同的 1,649 个故障组。故障集合的构成见 Table 16，完整排除清单和分组规则见补充材料 [Table S9](PT60_Sep16_SUPPLEMENTARY_TABLES.md#supplementary-table-s9)。
 
 **Table 16——六个代表时点共同使用的 N−1 故障集合。**
 
@@ -684,7 +682,7 @@ $$
 
 ![Figure 12](figures_final/fig11_annual_nminus1.png)
 
-**Figure 12——代表时点全元件 N−1 筛查。** (a) 绝对通过、仅通过相对 N−0 增量诊断及其余案例；(b) 实质孤岛、新增线路热违规、新增电压违规、新增变压器违规及主解失败计数；(c–d) 最高事故后线路负载率和最大失供负荷对应的停运元件。NA 表示无主潮流收敛值；ER 表示 E-REDES 来源前缀，OSM 表示 OpenStreetMap。完整设备值与判据见补充材料 Note S5。
+**Figure 12——代表时点全元件 N−1 筛查。** (a) 绝对通过、仅通过相对 N−0 增量诊断及其余案例；(b) 实质孤岛、新增线路热违规、新增电压违规、新增变压器违规及主解失败计数；(c–d) 最高事故后线路负载率和最大失供负荷对应的停运元件。NA 表示无主潮流收敛值；ER 表示 E-REDES 来源前缀，OSM 表示 OpenStreetMap。完整设备值与判据见补充材料 [Note S5](PT60_Sep16_SUPPLEMENTARY_TABLES.md#supplementary-note-s5)。
 
 **Table 17——六个代表时点的全元件 N−1 结果。**
 
@@ -698,7 +696,7 @@ $$
 | 最大负荷 | 1,649 | 1,646 | 2 | 1,516 | 110 |
 | 合计 | 9,894 | 9,888 | 6,048 | 9,064 | 660 |
 
-该基础面板展示同一模型和故障集合在不同运行状态下的响应。定向北部回路审计、事故后控制搜索、Godigana 转供代理、运行代理消融及既有越限恶化公式均属于诊断扩展，完整保留在补充材料 Notes S3–S5。
+该基础面板展示同一模型和故障集合在不同运行状态下的响应。定向北部回路审计、事故后控制搜索、Godigana 转供代理、运行代理消融及既有越限恶化公式均属于诊断扩展，完整保留在补充材料 [Notes S3–S5](PT60_Sep16_SUPPLEMENTARY_TABLES.md#supplementary-note-s3)。
 
 ## 5.5 Interpretation
 
@@ -716,19 +714,39 @@ SimPT60 的核心贡献是在同一可追溯、版本化的数据产品中连接
 
 SimPT60 是公开数据重建的研究数据集；其证据边界集中见第 4.7 节。后续改进应优先补充同期设备状态、机组 P–Q 能力、开关配置和事故后措施，并据此开展设备级验证。
 
-------
-
 整站留出实验显示连接邻近性优于容量比例但未胜过地理距离；热点成员也会随参数和空间假设变化。补充材料进一步记录运行代理、事故后控制和既有越限判据的诊断结果。
 
+------
+
 # References
+
+<a id="ref-APA3403"></a>
+
+APA (2021). [Sobreequipamento do Parque Eólico de Trancoso: Parecer da Comissão de Avaliação, AIA 3403](https://siaia.apambiente.pt/AIADOC/AIA3403/parecerca_3403202192134944.pdf). July; PDF p. 5.
+
+<a id="ref-APAPPA421"></a>
+
+APA (n.d.-a). [PPA 421: Sub-Parque Eólico de Sernancelhe e ligação a Moimenta](https://siaia.apambiente.pt/PosAvaliacao/DetalhesPosAvaliacao/421). AIA 2009; project-name and operation-date fields; archived 2026-09-21.
+
+<a id="ref-APAPPA407"></a>
+
+APA (n.d.-b). [PPA 407: Ligação do Douro Sul à Subestação de Armamar e Subestação de Moimenta](https://siaia.apambiente.pt/PosAvaliacao/DetalhesPosAvaliacao/407). AIA 2009; archived 2026-09-21.
 
 <a id="ref-DGEGPNEC2030Revision2024"></a>
 
 DGEG (2024). [Portugal: Plano Nacional Energia e Clima 2021–2030, atualização/revisão](https://www.dgeg.gov.pt/media/54fldci3/pnec2030_para_aprov_ar.pdf). DGEG.
 
+<a id="ref-DGEGCasal2025"></a>
+
+DGEG (2025). [Visita técnica a unidade de armazenamento de Casal da Cortiça, 18 de junho](https://www.dgeg.gov.pt/pt/areas-setoriais/energia/energia-eletrica/atividades-eventos/). Project announcement; archived 2026-09-21.
+
 <a id="ref-DGEGGeo2026"></a>
 
 DGEG (n.d.). [Informação Geográfica de Energia Elétrica](https://www.dgeg.gov.pt/pt/servicos-online/setor-energetico/). Official geographic data portal. Accessed 2026-09-21.
+
+<a id="ref-Tocha2019"></a>
+
+EDP Distribuição (2019). [Memória Descritiva e Justificativa: Linha a 60 kV PE Tocha II–Tocha](https://siaia.apambiente.pt/AIADOC/AIA3274/projeto%20linha%20eletrica%20pe%20tocha%20ii2019729153214.pdf). 19 February; process 2800-19C007374; PDF pp. 3, 5.
 
 <a id="ref-EREDESPDIRD2020AnnexB"></a>
 
@@ -786,6 +804,14 @@ OpenInfraMap contributors (n.d.). [OpenInfraMap](https://openinframap.org/about)
 
 OpenStreetMap contributors (n.d.). [OpenStreetMap](https://www.openstreetmap.org/copyright). Collaborative geospatial database. Accessed 2026-09-21.
 
+<a id="ref-REE2012"></a>
+
+Red Eléctrica de España (2012). [Interconexiones eléctricas: un paso para el mercado único de la energía en Europa](https://www.ree.es/sites/default/files/jgk4byy3ukct.pdf). September; PDF p. 10.
+
+<a id="ref-REN2015Estoi"></a>
+
+REN (2015). [PDIRT 2016–2025, Anexo 6: Equipamento em serviço previsto em finais de 2016, 2018, 2020 e 2025](https://www.erse.pt/media/b1edmm30/proposta_pdirt_e_2015_anexos.pdf). Proposal archive; PDF pp. 50, 52, 54, 56. Year follows archive label, not a newly inferred issue date.
+
 <a id="ref-ERSEPDIRT2024"></a>
 
 REN (2024). [PDIRT 2025–2034, Proposta Inicial, Volume I, Anexos 1 a 16](https://www.erse.pt/media/lx5n5kao/pdirt-2025-2034-proposta-inicial-vol-i-anexos-1-a-16.pdf). ERSE (public consultation archive). December 2024 proposal; archived by ERSE.
@@ -801,38 +827,3 @@ Thurner, Leon; Scheidler, Alexander; Schäfer, Florian; Menke, Jan-Hendrik; Doll
 <a id="ref-Xiong2025"></a>
 
 Xiong, Bobby; Fioriti, Davide; Neumann, Fabian; Riepin, Iegor; Brown, Tom (2025). [Modelling the High-Voltage Grid Using Open Data for Europe and Beyond](https://doi.org/10.1038/s41597-025-04550-7). *Scientific Data*, 12(1), 277.
-
-
-<a id="ref-APA3403"></a>
-
-APA (2021). [Sobreequipamento do Parque Eólico de Trancoso: Parecer da Comissão de Avaliação, AIA 3403](https://siaia.apambiente.pt/AIADOC/AIA3403/parecerca_3403202192134944.pdf). July; PDF p. 5.
-
-
-<a id="ref-APAPPA421"></a>
-
-APA (n.d.-a). [PPA 421: Sub-Parque Eólico de Sernancelhe e ligação a Moimenta](https://siaia.apambiente.pt/PosAvaliacao/DetalhesPosAvaliacao/421). AIA 2009; project-name and operation-date fields; archived 2026-09-21.
-
-
-<a id="ref-APAPPA407"></a>
-
-APA (n.d.-b). [PPA 407: Ligação do Douro Sul à Subestação de Armamar e Subestação de Moimenta](https://siaia.apambiente.pt/PosAvaliacao/DetalhesPosAvaliacao/407). AIA 2009; archived 2026-09-21.
-
-
-<a id="ref-DGEGCasal2025"></a>
-
-DGEG (2025). [Visita técnica a unidade de armazenamento de Casal da Cortiça, 18 de junho](https://www.dgeg.gov.pt/pt/areas-setoriais/energia/energia-eletrica/atividades-eventos/). Project announcement; archived 2026-09-21.
-
-
-<a id="ref-REE2012"></a>
-
-Red Eléctrica de España (2012). [Interconexiones eléctricas: un paso para el mercado único de la energía en Europa](https://www.ree.es/sites/default/files/jgk4byy3ukct.pdf). September; PDF p. 10.
-
-
-<a id="ref-Tocha2019"></a>
-
-EDP Distribuição (2019). [Memória Descritiva e Justificativa: Linha a 60 kV PE Tocha II–Tocha](https://siaia.apambiente.pt/AIADOC/AIA3274/projeto%20linha%20eletrica%20pe%20tocha%20ii2019729153214.pdf). 19 February; process 2800-19C007374; PDF pp. 3, 5.
-
-
-<a id="ref-REN2015Estoi"></a>
-
-REN (2015). [PDIRT 2016–2025, Anexo 6: Equipamento em serviço previsto em finais de 2016, 2018, 2020 e 2025](https://www.erse.pt/media/b1edmm30/proposta_pdirt_e_2015_anexos.pdf). Proposal archive; PDF pp. 50, 52, 54, 56. Year follows archive label, not a newly inferred issue date.

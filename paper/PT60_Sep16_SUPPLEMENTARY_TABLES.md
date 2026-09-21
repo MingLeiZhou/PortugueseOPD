@@ -94,6 +94,8 @@
 
 # Supplementary Notes and Extended Analyses
 
+<a id="supplementary-note-s1"></a>
+
 ## Supplementary Note S1 — Database Schema
 
 <a id="supplementary-table-s5"></a>
@@ -123,6 +125,8 @@
 
 
 
+<a id="supplementary-note-s2"></a>
+
 ## Supplementary Note S2 — Frozen Release and Model-Version Reconciliation
 
 论文唯一发布标识为 **SimPT60-2026.09.21-r1**，固定入口为 [GitHub Release](https://github.com/MingLeiZhou/PortugueseOPD/releases/tag/SimPT60-2026.09.21-r1)。发布由一个复现核心包、11 个不可变月库压缩文件、论文 PDF、`release.json` 和 `SHA256SUMS` 共同构成。`release.json` 给出完整代码提交号、环境、输入与输出哈希；月库清单同时保存压缩前后的 SHA-256、案例数和原 run manifest，避免只有压缩包名称而不能验证内容。代码提交是本次复现与审计实现的提交，不冒充未保存的原始计算提交；原计算使用的模型和发电资产文件则由原 run manifest 的哈希固定。环境完整锁定于 `requirements-lock.txt`，本次校验使用 Python 3.13 与 pandapower 3.5.2。
@@ -145,6 +149,8 @@ python3.13 -m venv .venv
 
 
 
+
+<a id="supplementary-note-s3"></a>
 
 ## Supplementary Note S3 — Operational-Proxy Ablations
 
@@ -177,6 +183,8 @@ python3.13 -m venv .venv
 
 
 
+<a id="supplementary-note-s4"></a>
+
 ## Supplementary Note S4 — Targeted N−1 Audit and Post-Contingency Controls
 
 为检验 SimPT60 对单一元件故障的计算能力，本文首先在第 5.2 节的基准断面上执行定向交流 N−1 筛查。故障集包含正常状态负载率较高的 50 个唯一物理线路回路和 20 台在运变压器。属于同一物理回路的串联模型分段同时停运；模型行表示多回线路时仅退出一回，并联变压器仅退出一台。筛查采用 0.90–1.10 p.u. 电压范围、60 kV 线路 110% 短时阈值、缺少公开事故额定值的高压线路 100% 保守阈值，以及变压器 120% 短时阈值。上述阈值用于本研究的代理筛查，不作为运营商事故定额或合规标准。
@@ -208,7 +216,7 @@ python3.13 -m venv .venv
 
 三个案例均可在部分控制组合或扩大代理无功范围后获得数值解，但没有一个同时满足电压和热约束。Deocriste–Lanheses、Lanheses–Feitosa 和 Cerveira–Valença 分别至少需要将当前代理无功范围扩大至 4.0、3.0 和 1.5 倍才开始收敛。当无功范围扩大到足以恢复可接受电压时，最高线路负载率仍分别约为 175.4%、154.9% 和 128.3%。因此，放宽无功代理边界不足以消除这些模型异常。有功空间分配、实际开关状态、缺失并行路径及 60 kV 网络等值方式仍是未辨识因素，当前实验不能区分各因素的贡献。
 
-三个北部回路在离散无功范围倍数下的首次收敛点、电压合格点和残余热越限见 Table S8。
+三个北部回路在离散无功范围倍数下的首次收敛点、电压合格点和残余热越限见 [Table S8](#supplementary-table-s8)。
 
 <a id="supplementary-table-s8"></a>
 
@@ -227,6 +235,8 @@ Godigana 案例依据公开容量记录中的 10 MW 保证容量，设定 10 MW 
 
 
 \newpage
+
+<a id="supplementary-note-s5"></a>
 
 ## Supplementary Note S5 — Detailed Full-Element N−1 Definitions and Diagnostics
 

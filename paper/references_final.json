@@ -1,5 +1,48 @@
 [
   {
+    "id": "APA3403",
+    "type": "report",
+    "title": "Sobreequipamento do Parque Eólico de Trancoso: Parecer da Comissão de Avaliação, AIA 3403",
+    "URL": "https://siaia.apambiente.pt/AIADOC/AIA3403/parecerca_3403202192134944.pdf",
+    "author": [
+      {
+        "literal": "APA"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2021
+        ]
+      ]
+    },
+    "note": ". July; PDF p. 5."
+  },
+  {
+    "id": "APAPPA421",
+    "type": "webpage",
+    "title": "PPA 421: Sub-Parque Eólico de Sernancelhe e ligação a Moimenta",
+    "URL": "https://siaia.apambiente.pt/PosAvaliacao/DetalhesPosAvaliacao/421",
+    "author": [
+      {
+        "literal": "APA"
+      }
+    ],
+    "note": ". AIA 2009; project-name and operation-date fields; archived 2026-09-21."
+  },
+  {
+    "id": "APAPPA407",
+    "type": "webpage",
+    "title": "PPA 407: Ligação do Douro Sul à Subestação de Armamar e Subestação de Moimenta",
+    "URL": "https://siaia.apambiente.pt/PosAvaliacao/DetalhesPosAvaliacao/407",
+    "author": [
+      {
+        "literal": "APA"
+      }
+    ],
+    "note": ". AIA 2009; archived 2026-09-21."
+  },
+  {
     "URL": "https://www.dgeg.gov.pt/media/54fldci3/pnec2030_para_aprov_ar.pdf",
     "author": [
       {
@@ -18,6 +61,25 @@
     "publisher": "DGEG",
     "title": "Portugal: Plano Nacional Energia e Clima 2021–2030, atualização/revisão",
     "type": "report"
+  },
+  {
+    "id": "DGEGCasal2025",
+    "type": "webpage",
+    "title": "Visita técnica a unidade de armazenamento de Casal da Cortiça, 18 de junho",
+    "URL": "https://www.dgeg.gov.pt/pt/areas-setoriais/energia/energia-eletrica/atividades-eventos/",
+    "author": [
+      {
+        "literal": "DGEG"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2025
+        ]
+      ]
+    },
+    "note": ". Project announcement; archived 2026-09-21."
   },
   {
     "URL": "https://www.dgeg.gov.pt/pt/servicos-online/setor-energetico/",
@@ -40,6 +102,25 @@
         ]
       ]
     }
+  },
+  {
+    "id": "Tocha2019",
+    "type": "report",
+    "title": "Memória Descritiva e Justificativa: Linha a 60 kV PE Tocha II–Tocha",
+    "URL": "https://siaia.apambiente.pt/AIADOC/AIA3274/projeto%20linha%20eletrica%20pe%20tocha%20ii2019729153214.pdf",
+    "author": [
+      {
+        "literal": "EDP Distribuição"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2019
+        ]
+      ]
+    },
+    "note": ". 19 February; process 2800-19C007374; PDF pp. 3, 5."
   },
   {
     "URL": "https://www.erse.pt/media/340hrot0/proposta-pdird-e-2020_anexo_b.pdf",
@@ -430,6 +511,44 @@
     }
   },
   {
+    "id": "REE2012",
+    "type": "report",
+    "title": "Interconexiones eléctricas: un paso para el mercado único de la energía en Europa",
+    "URL": "https://www.ree.es/sites/default/files/jgk4byy3ukct.pdf",
+    "author": [
+      {
+        "literal": "Red Eléctrica de España"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2012
+        ]
+      ]
+    },
+    "note": ". September; PDF p. 10."
+  },
+  {
+    "id": "REN2015Estoi",
+    "type": "report",
+    "title": "PDIRT 2016–2025, Anexo 6: Equipamento em serviço previsto em finais de 2016, 2018, 2020 e 2025",
+    "URL": "https://www.erse.pt/media/b1edmm30/proposta_pdirt_e_2015_anexos.pdf",
+    "author": [
+      {
+        "literal": "REN"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2015
+        ]
+      ]
+    },
+    "note": ". Proposal archive; PDF pp. 50, 52, 54, 56. Year follows archive label, not a newly inferred issue date."
+  },
+  {
     "URL": "https://www.erse.pt/media/lx5n5kao/pdirt-2025-2034-proposta-inicial-vol-i-anexos-1-a-16.pdf",
     "author": [
       {
@@ -560,124 +679,5 @@
     "title": "Modelling the High-Voltage Grid Using Open Data for Europe and Beyond",
     "type": "article-journal",
     "volume": "12"
-  },
-  {
-    "id": "APA3403",
-    "type": "report",
-    "title": "Sobreequipamento do Parque Eólico de Trancoso: Parecer da Comissão de Avaliação, AIA 3403",
-    "URL": "https://siaia.apambiente.pt/AIADOC/AIA3403/parecerca_3403202192134944.pdf",
-    "author": [
-      {
-        "literal": "APA"
-      }
-    ],
-    "issued": {
-      "date-parts": [
-        [
-          2021
-        ]
-      ]
-    },
-    "note": ". July; PDF p. 5."
-  },
-  {
-    "id": "APAPPA421",
-    "type": "webpage",
-    "title": "PPA 421: Sub-Parque Eólico de Sernancelhe e ligação a Moimenta",
-    "URL": "https://siaia.apambiente.pt/PosAvaliacao/DetalhesPosAvaliacao/421",
-    "author": [
-      {
-        "literal": "APA"
-      }
-    ],
-    "note": ". AIA 2009; project-name and operation-date fields; archived 2026-09-21."
-  },
-  {
-    "id": "APAPPA407",
-    "type": "webpage",
-    "title": "PPA 407: Ligação do Douro Sul à Subestação de Armamar e Subestação de Moimenta",
-    "URL": "https://siaia.apambiente.pt/PosAvaliacao/DetalhesPosAvaliacao/407",
-    "author": [
-      {
-        "literal": "APA"
-      }
-    ],
-    "note": ". AIA 2009; archived 2026-09-21."
-  },
-  {
-    "id": "DGEGCasal2025",
-    "type": "webpage",
-    "title": "Visita técnica a unidade de armazenamento de Casal da Cortiça, 18 de junho",
-    "URL": "https://www.dgeg.gov.pt/pt/areas-setoriais/energia/energia-eletrica/atividades-eventos/",
-    "author": [
-      {
-        "literal": "DGEG"
-      }
-    ],
-    "issued": {
-      "date-parts": [
-        [
-          2025
-        ]
-      ]
-    },
-    "note": ". Project announcement; archived 2026-09-21."
-  },
-  {
-    "id": "REE2012",
-    "type": "report",
-    "title": "Interconexiones eléctricas: un paso para el mercado único de la energía en Europa",
-    "URL": "https://www.ree.es/sites/default/files/jgk4byy3ukct.pdf",
-    "author": [
-      {
-        "literal": "Red Eléctrica de España"
-      }
-    ],
-    "issued": {
-      "date-parts": [
-        [
-          2012
-        ]
-      ]
-    },
-    "note": ". September; PDF p. 10."
-  },
-  {
-    "id": "Tocha2019",
-    "type": "report",
-    "title": "Memória Descritiva e Justificativa: Linha a 60 kV PE Tocha II–Tocha",
-    "URL": "https://siaia.apambiente.pt/AIADOC/AIA3274/projeto%20linha%20eletrica%20pe%20tocha%20ii2019729153214.pdf",
-    "author": [
-      {
-        "literal": "EDP Distribuição"
-      }
-    ],
-    "issued": {
-      "date-parts": [
-        [
-          2019
-        ]
-      ]
-    },
-    "note": ". 19 February; process 2800-19C007374; PDF pp. 3, 5."
-  },
-  {
-    "id": "REN2015Estoi",
-    "type": "report",
-    "title": "PDIRT 2016–2025, Anexo 6: Equipamento em serviço previsto em finais de 2016, 2018, 2020 e 2025",
-    "URL": "https://www.erse.pt/media/b1edmm30/proposta_pdirt_e_2015_anexos.pdf",
-    "author": [
-      {
-        "literal": "REN"
-      }
-    ],
-    "issued": {
-      "date-parts": [
-        [
-          2015
-        ]
-      ]
-    },
-    "note": ". Proposal archive; PDF pp. 50, 52, 54, 56. Year follows archive label, not a newly inferred issue date."
   }
 ]

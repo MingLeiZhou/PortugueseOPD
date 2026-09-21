@@ -1,0 +1,542 @@
+{
+  "passed": 67,
+  "total": 67,
+  "checks": [
+    {
+      "check": "Canonical and mirror manuscripts are byte-identical",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "No legacy display-math delimiters",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Keywords use an ASCII colon",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Figure captions sequential",
+      "passed": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "check": "Figure references resolve",
+      "passed": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "check": "Figure captions have prose introductions",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Table captions sequential",
+      "passed": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ]
+    },
+    {
+      "check": "Table references resolve",
+      "passed": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ]
+    },
+    {
+      "check": "Table captions have prose introductions",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Twelve main figure assets are linked",
+      "passed": true,
+      "detail": [
+        "figures_final/fig01_network_reconstruction.png",
+        "figures_final/fig02_geographic_network_state.png",
+        "figures_final/fig03_temporal_coverage.png",
+        "figures_final/fig04_network_parameter_evidence.png",
+        "figures_final/fig05_parameter_spatial_sensitivity.png",
+        "revision_v3/figures/figR3_hotspot_persistence.png",
+        "figures_final/fig06_temporal_validation.png",
+        "figures_final/fig07_spatial_validation.png",
+        "figures_final/fig08_generation_balance_scope.png",
+        "revision_v3/figures/figR1_proxy_provenance.png",
+        "figures_final/fig09_grid_stress.png",
+        "figures_final/fig11_annual_nminus1.png"
+      ]
+    },
+    {
+      "check": "Image exists: figures_final/fig01_network_reconstruction.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image exists: figures_final/fig02_geographic_network_state.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image exists: figures_final/fig03_temporal_coverage.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image exists: figures_final/fig04_network_parameter_evidence.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image exists: figures_final/fig05_parameter_spatial_sensitivity.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image exists: revision_v3/figures/figR3_hotspot_persistence.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image exists: figures_final/fig06_temporal_validation.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image exists: figures_final/fig07_spatial_validation.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image exists: figures_final/fig08_generation_balance_scope.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image exists: revision_v3/figures/figR1_proxy_provenance.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image exists: figures_final/fig09_grid_stress.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Image exists: figures_final/fig11_annual_nminus1.png",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Supplementary table captions S1–S11 are sequential",
+      "passed": true,
+      "detail": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "check": "Supplementary figure captions S1–S3 are sequential",
+      "passed": true,
+      "detail": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "check": "Supplementary tables have prose references",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Supplementary figures have prose references",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "All linked supplementary anchors resolve",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Supplementary Note anchors S1–S5 exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Supplementary table anchors S1–S11 exist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Explicit single-section references resolve",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "Main section structure is 1–6",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "All citations and reference anchors agree",
+      "passed": true,
+      "detail": {
+        "cited": 27,
+        "json": 27,
+        "markdown": 27
+      }
+    },
+    {
+      "check": "Reference order agrees across Markdown, JSON, and BibTeX",
+      "passed": true,
+      "detail": {
+        "markdown": [
+          "APA3403",
+          "APAPPA421",
+          "APAPPA407",
+          "DGEGPNEC2030Revision2024",
+          "DGEGCasal2025",
+          "DGEGGeo2026",
+          "Tocha2019",
+          "EREDESPDIRD2020AnnexB",
+          "EREDESSubstationCapacity",
+          "EREDESNationalConsumption",
+          "EREDESDistributionInjection",
+          "EREDESNationalProduction",
+          "EREDESMunicipalityConsumption",
+          "EREDESRND2026",
+          "GISCO2024",
+          "GeoPandas2026",
+          "GeofabrikPortugal2026",
+          "Horsch2018",
+          "Meinecke2020",
+          "OpenInfraMap2026",
+          "OSM2026",
+          "REE2012",
+          "REN2015Estoi",
+          "ERSEPDIRT2024",
+          "RENDataHub2026",
+          "Thurner2018",
+          "Xiong2025"
+        ],
+        "json": [
+          "APA3403",
+          "APAPPA421",
+          "APAPPA407",
+          "DGEGPNEC2030Revision2024",
+          "DGEGCasal2025",
+          "DGEGGeo2026",
+          "Tocha2019",
+          "EREDESPDIRD2020AnnexB",
+          "EREDESSubstationCapacity",
+          "EREDESNationalConsumption",
+          "EREDESDistributionInjection",
+          "EREDESNationalProduction",
+          "EREDESMunicipalityConsumption",
+          "EREDESRND2026",
+          "GISCO2024",
+          "GeoPandas2026",
+          "GeofabrikPortugal2026",
+          "Horsch2018",
+          "Meinecke2020",
+          "OpenInfraMap2026",
+          "OSM2026",
+          "REE2012",
+          "REN2015Estoi",
+          "ERSEPDIRT2024",
+          "RENDataHub2026",
+          "Thurner2018",
+          "Xiong2025"
+        ],
+        "bib": [
+          "APA3403",
+          "APAPPA421",
+          "APAPPA407",
+          "DGEGPNEC2030Revision2024",
+          "DGEGCasal2025",
+          "DGEGGeo2026",
+          "Tocha2019",
+          "EREDESPDIRD2020AnnexB",
+          "EREDESSubstationCapacity",
+          "EREDESNationalConsumption",
+          "EREDESDistributionInjection",
+          "EREDESNationalProduction",
+          "EREDESMunicipalityConsumption",
+          "EREDESRND2026",
+          "GISCO2024",
+          "GeoPandas2026",
+          "GeofabrikPortugal2026",
+          "Horsch2018",
+          "Meinecke2020",
+          "OpenInfraMap2026",
+          "OSM2026",
+          "REE2012",
+          "REN2015Estoi",
+          "ERSEPDIRT2024",
+          "RENDataHub2026",
+          "Thurner2018",
+          "Xiong2025"
+        ]
+      }
+    },
+    {
+      "check": "No duplicate final reference keys",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "No duplicate final DOIs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "No unresolved citation markers",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Conclusion separator occurs only after conclusion prose",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Conclusions contain no orphan bullets",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Conclusions retain core dataset and validation values",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Archived AC cases: 31,492, all converged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Archived time window",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Load: 31,388 pairs and rounded r=0.997",
+      "passed": true,
+      "detail": {
+        "pairs": 31388,
+        "r": 0.99744394618934
+      }
+    },
+    {
+      "check": "Wind: 31,484 pairs and rounded r=0.9998",
+      "passed": true,
+      "detail": {
+        "pairs": 31484,
+        "r": 0.9997685763896096
+      }
+    },
+    {
+      "check": "AC closure MAE rounds to 1.77e-6 MW",
+      "passed": true,
+      "detail": 1.7722945520413326e-06
+    },
+    {
+      "check": "Archived topology: 3,783 buses and 228 transformers",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Archived voltage coverage: 4,943 lines",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Annual N−1: 9,894 / 9,888 / 6,048 / 9,064",
+      "passed": true,
+      "detail": {
+        "cases": 9894,
+        "primary": 9888,
+        "absolute": 6048,
+        "incremental": 9064
+      }
+    },
+    {
+      "check": "Annual N−1: six states × 1,649",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Municipality: archived sample and Spearman",
+      "passed": true,
+      "detail": {
+        "pairs": 2183,
+        "rho": 0.8805770052505252
+      }
+    },
+    {
+      "check": "Substation: archived sample and Spearman",
+      "passed": true,
+      "detail": {
+        "pairs": 792,
+        "rho": 0.9573949819535404
+      }
+    },
+    {
+      "check": "Archived figure input SHA-256: portuguese_hv_network/config/model_config.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Archived figure input SHA-256: paper/figures/pt60_review/portugal_gisco_2024.geojson",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Archived figure input SHA-256: portuguese_hv_network/outputs/annual_nminus1_panel_v2/models/PT60_ANNUAL_PEAK_LOAD_20260115_1215_+0000_solved.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Archived figure input SHA-256: portuguese_hv_network/site/public/data/pt60/buses.geojson",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Archived figure input SHA-256: portuguese_hv_network/site/public/data/pt60/lines.geojson",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Archived figure input SHA-256: portuguese_hv_network/outputs/validation_experiments/scope_matched_validation_timeseries.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Archived figure input SHA-256: portuguese_hv_network/outputs/validation_experiments/parameter_evidence_by_voltage.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Archived figure input SHA-256: portuguese_hv_network/outputs/validation_experiments/topology_coverage_by_voltage.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Archived figure input SHA-256: portuguese_hv_network/outputs/validation_experiments/parameter_scenarios.json",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Archived figure input SHA-256: portuguese_hv_network/outputs/validation_experiments/sensitivity_summary.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Archived figure input SHA-256: portuguese_hv_network/outputs/external_evidence_validation/municipality_comparison.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Archived figure input SHA-256: portuguese_hv_network/outputs/external_evidence_validation/substation_comparison.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Archived figure input SHA-256: portuguese_hv_network/outputs/validation_experiments/validation_confidence_intervals.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Archived figure input SHA-256: portuguese_hv_network/outputs/application_example/application_sweep.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Archived figure input SHA-256: portuguese_hv_network/outputs/application_example/nminus1_remedial_v15/nminus1_results.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Archived figure input SHA-256: portuguese_hv_network/outputs/annual_nminus1_panel_v2/annual_nminus1_panel.csv",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Archived figure input SHA-256: portuguese_hv_network/outputs/validation_experiments/sensitivity_case_results.csv",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "unresolved": []
+}
