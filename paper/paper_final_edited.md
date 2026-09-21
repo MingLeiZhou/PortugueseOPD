@@ -1,4 +1,4 @@
-# SimPT60—A Traceable Public-Data-Derived Dataset of the Portuguese High-Voltage Power System with Time-Indexed Power-Flow Cases
+# SimPT60: A Traceable Time-Series Power-Flow Dataset for Portugal’s High-Voltage Grid
 
 
 # Abstract

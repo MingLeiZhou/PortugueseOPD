@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[2]
 PAPER_DIR = ROOT / "paper"
 SOURCE_MD = PAPER_DIR / "PT60_Sep16.MD"
 TARGET_PDF = PAPER_DIR / "PT60_Sep16.pdf"
+TARGET_TEX = None
 SUPPLEMENT_MD = PAPER_DIR / "PT60_Sep16_SUPPLEMENTARY_TABLES.md"
 INCLUDE_SUPPLEMENT = True
 PANDOC_BIN = "/opt/homebrew/bin/pandoc"
@@ -32,9 +33,9 @@ def preprocess_markdown(content: str) -> str:
     content = re.sub(r"^\s*五段式主线：\s*\n\s*>.*?\n\s*", "", content, flags=re.DOTALL)
 
     # 2. Extract title
-    title_match = re.search(r"^#\s+SimPT60—(.*)$", content, re.MULTILINE)
-    title = "SimPT60: " + title_match.group(1).strip() if title_match else "SimPT60"
-    content = re.sub(r"^#\s+SimPT60—.*?\n+", "", content, flags=re.MULTILINE)
+    title_match = re.search(r"^#\s+(SimPT60(?::|—).*)$", content, re.MULTILINE)
+    title = title_match.group(1).replace("—", ": ", 1).strip() if title_match else "SimPT60"
+    content = re.sub(r"^#\s+SimPT60(?::|—).*?\n+", "", content, flags=re.MULTILINE)
 
     # 3. Extract Abstract and Keywords
     abstract_pattern = r"^#\s+Abstract\s*\n+(.*?)(?=\n+------|\n+#\s+1\.|\n+1\.)"
@@ -79,7 +80,7 @@ def build_latex_header() -> str:
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\small\textcolor[gray]{0.4}{SimPT60: Dataset of the Portuguese High-Voltage Power System}}
+\fancyhead[L]{\small\textcolor[gray]{0.4}{SimPT60: Time-Series Power-Flow Dataset}}
 \fancyhead[R]{\small\textcolor[gray]{0.4}{September 2026}}
 \fancyfoot[C]{\small\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
@@ -87,6 +88,7 @@ def build_latex_header() -> str:
 
 \usepackage{setspace}
 \setstretch{1.16}
+\setlength{\emergencystretch}{3em}
 \setlength{\parskip}{0.4em plus 0.1em minus 0.1em}
 \setlength{\parindent}{0pt}
 % Native XeTeX line breaking works without a separate xeCJK installation.
@@ -201,8 +203,8 @@ def export_pdf():
     tmp_md.write_text(clean_content, encoding="utf-8")
     tmp_tex_header.write_text(build_latex_header(), encoding="utf-8")
 
-    print("Compiling PDF with Pandoc + XeLaTeX...")
-    cmd = [
+    main_font = "Songti SC" if re.search(r'[\u3400-\u9fff]', source_content) else "Times New Roman"
+    common_args = [
         PANDOC_BIN,
         str(tmp_md),
         "-f",
@@ -210,7 +212,7 @@ def export_pdf():
         "-V",
         "geometry:margin=20mm",
         "-V",
-        "mainfont=Songti SC",
+        f"mainfont={main_font}",
         "-V",
         "fontsize=10pt",
         "-V",
@@ -225,6 +227,22 @@ def export_pdf():
         str(tmp_tex_header),
         "--resource-path",
         f"{PAPER_DIR}:{ROOT}",
+    ]
+
+    if TARGET_TEX is not None:
+        TARGET_TEX.parent.mkdir(parents=True, exist_ok=True)
+        tex_cmd = common_args + ["--standalone", "-t", "latex", "-o", str(TARGET_TEX)]
+        tex_result = subprocess.run(tex_cmd, capture_output=True, text=True)
+        (scratch / 'tex_export.log').write_text(tex_result.stdout + '\n' + tex_result.stderr)
+        if tex_result.returncode != 0:
+            print("Standalone TeX export failed!")
+            print("STDOUT:", tex_result.stdout)
+            print("STDERR:", tex_result.stderr)
+            sys.exit(1)
+        print(f"Standalone TeX generated at {TARGET_TEX}!")
+
+    print("Compiling PDF with Pandoc + XeLaTeX...")
+    cmd = common_args + [
         f"--pdf-engine={XELATEX_BIN}",
         "-o",
         str(TARGET_PDF),
@@ -246,7 +264,7 @@ def export_pdf():
     print(f"Total pages: {len(doc)}")
     print(f"File size: {TARGET_PDF.stat().st_size / (1024 * 1024):.2f} MB")
 
-    caption_count = sum(len(re.findall(r'Figure \d+——', p.get_text())) for p in doc)
+    caption_count = sum(len(re.findall(r'Figure \d+(?:——|—)', p.get_text())) for p in doc)
     print(f"Figure captions verified in PDF: {caption_count} (vector figures may contain raster sublayers)")
 
     if tmp_md.exists():
@@ -260,11 +278,14 @@ if __name__ == "__main__":
     parser.add_argument('--source', type=Path, default=SOURCE_MD)
     parser.add_argument('--output', type=Path, default=TARGET_PDF)
     parser.add_argument('--supplement', type=Path, default=SUPPLEMENT_MD)
+    parser.add_argument('--tex-output', type=Path,
+                        help='Also write a standalone LaTeX manuscript generated from the prepared Markdown')
     parser.add_argument('--no-supplement', action='store_true',
                         help='Export the main manuscript and references without appended supplementary material')
     args = parser.parse_args()
     SOURCE_MD = args.source.resolve()
     TARGET_PDF = args.output.resolve()
+    TARGET_TEX = args.tex_output.resolve() if args.tex_output else None
     SUPPLEMENT_MD = args.supplement.resolve()
     INCLUDE_SUPPLEMENT = not args.no_supplement
     export_pdf()
