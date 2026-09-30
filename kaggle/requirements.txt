@@ -1,0 +1,8 @@
+duckdb==1.5.5
+matplotlib==3.11.0
+networkx==3.6.1
+numpy==2.3.5
+pandapower==3.5.2
+pandas==2.3.3
+pyarrow==25.0.1
+scipy==1.16.3

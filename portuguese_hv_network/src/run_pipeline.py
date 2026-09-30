@@ -52,7 +52,7 @@ def main() -> None:
     if missing:
         raise FileNotFoundError("Missing inputs; run without --skip-download: " + ", ".join(missing))
     run("extract_pdirt_annex12.py")
-    for script in ("build_topology.py", "build_transformers.py", "add_demand_generation.py", "assign_parameters.py"):
+    for script in ("build_topology.py", "build_transformers.py", "add_demand_generation.py", "assign_parameters.py", "apply_static_model_corrections.py"):
         run(script)
     run("audit_grid_coverage.py")
     run("audit_circuits_components.py")

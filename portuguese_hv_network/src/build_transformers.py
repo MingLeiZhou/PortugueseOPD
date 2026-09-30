@@ -190,6 +190,131 @@ def rari_boundary_ledger(buses: pd.DataFrame, rows: list[dict[str, Any]], seen: 
     return pd.DataFrame(ledger)
 
 
+# ---------------------------------------------------------------------------
+# REN Annex D reconciliation (2026-09-29)
+# REN "Caracterização da RNT" (31 Dec 2025) Annex D lists every RNT power
+# transformer with nameplate MVA and R/X.  At the 71 RNT substations the unit
+# set is replaced by that list; decommissioned or not-yet-commissioned sites
+# are removed; other units are kept and labelled as non-RNT assets.
+# ---------------------------------------------------------------------------
+import math
+import re
+import unicodedata
+
+REN_ANNEX_D_FILE = RAW / "ren" / "ren_transformers_2025-12-31.csv"
+REN_STATION_CODES_FILE = PROJECT / "config" / "ren_substation_codes.csv"
+REN_EXCLUDED_FACILITIES = {
+    "centraltermoelectricadesines": "DECOMMISSIONED_SINES_COAL_PLANT",
+    "pontedelima": "NOT_COMMISSIONED_IN_MODEL_WINDOW_2026_07",
+    "chaves": "NO_RNT_150KV_AT_CHAVES_LINE_EXCLUDED_RENB_004",
+}
+
+
+def station_key(value: object) -> str:
+    text = unicodedata.normalize("NFKD", str(value)).encode("ascii", "ignore").decode().lower()
+    text = re.sub(r"subestacao (da |de |do |dos |das )?", "", text)
+    text = re.sub(r"\(.*?\)", "", text)
+    return re.sub(r"[^a-z]", "", text)
+
+
+def unit_mva(value: str) -> float:
+    match = re.match(r"^(\d+)x(\d+(?:[.,]\d+)?)$", str(value).strip())
+    return int(match.group(1)) * float(match.group(2).replace(",", ".")) if match else float(str(value).replace(",", "."))
+
+
+def apply_ren_annex_d(rows: list[dict[str, Any]], buses: pd.DataFrame) -> tuple[list[dict[str, Any]], pd.DataFrame, bool]:
+    if not REN_ANNEX_D_FILE.exists() or not REN_STATION_CODES_FILE.exists():
+        return rows, pd.DataFrame(), False
+    ren = pd.read_csv(REN_ANNEX_D_FILE, sep=";", dtype=str)
+    codes = pd.read_csv(REN_STATION_CODES_FILE, dtype=str)
+    code_key = {code: station_key(name) for code, name in zip(codes["code"], codes["name"])}
+    ren["station"] = ren["code"].map(code_key)
+    ren["sn_mva"] = ren["mva"].map(unit_mva)
+    bus_station = {str(b): station_key(f) for b, f in zip(buses["bus_id"], buses["facility_name"].fillna(""))}
+    ren_stations = set(ren["station"])
+    ledger: list[dict[str, Any]] = []
+    removed: set[int] = set()
+    new_rows: list[dict[str, Any]] = []
+
+    def pair_of(row: dict[str, Any]) -> str:
+        return f"{int(row['hv_kv'])}/{int(row['lv_kv'])}"
+
+    for index, row in enumerate(rows):
+        station = bus_station.get(str(row["hv_bus"]), "")
+        if station in REN_EXCLUDED_FACILITIES:
+            removed.add(index)
+            ledger.append({"station": station, "voltage_pair": pair_of(row), "action": "REMOVED_" + REN_EXCLUDED_FACILITIES[station],
+                           "model_units_before": 1, "model_mva_before": float(row["sn_mva"]) * int(row.get("parallel", 1) or 1),
+                           "ren_units": 0, "ren_mva": 0.0, "source_id": row.get("source_id", "")})
+    for (station, pair), units in ren.groupby(["station", "kv"], sort=False):
+        hv_kv, lv_kv = (int(round(float(v))) for v in pair.split("/"))
+        existing = [i for i, row in enumerate(rows) if i not in removed and bus_station.get(str(row["hv_bus"]), "") == station and pair_of(row) == f"{hv_kv}/{lv_kv}"]
+        bus_pairs: list[tuple[str, str]] = []
+        for i in sorted(existing, key=lambda i: rows[i]["source_status"] != "DIRECT_OSM_TRANSFORMER_TAG"):
+            candidate = (str(rows[i]["hv_bus"]), str(rows[i]["lv_bus"]))
+            if candidate not in bus_pairs:
+                bus_pairs.append(candidate)
+        action = "REPLACED_BY_REN_ANNEX_D"
+        if not bus_pairs:
+            at_station = buses[buses["facility_name"].fillna("").map(station_key) == station]
+            hv = at_station[at_station["voltage_kv"] == hv_kv]
+            lv = at_station[at_station["voltage_kv"] == lv_kv]
+            if not hv.empty and not lv.empty:
+                # a same-name facility elsewhere in the country is not this station: keep only LV buses within 1 km
+                hv0 = hv.iloc[0]
+                lv = lv[lv.apply(lambda b: haversine_m((float(hv0["lon"]), float(hv0["lat"])), (float(b["lon"]), float(b["lat"]))), axis=1) <= 1000.0]
+            if not hv.empty and lv.empty and lv_kv == 60:
+                hv_row = hv.iloc[0]
+                sixty = buses[buses["voltage_kv"] == 60].copy()
+                sixty["d"] = sixty.apply(lambda b: haversine_m((float(hv_row["lon"]), float(hv_row["lat"])), (float(b["lon"]), float(b["lat"]))), axis=1)
+                lv = sixty[sixty["d"] <= 1000.0].sort_values("d")
+            if hv.empty or lv.empty:
+                ledger.append({"station": station, "voltage_pair": pair, "action": "UNRESOLVED_NO_MODEL_BUSES", "model_units_before": 0,
+                               "model_mva_before": 0.0, "ren_units": len(units), "ren_mva": float(units["sn_mva"].sum()), "source_id": ""})
+                continue
+            bus_pairs = [(str(hv.iloc[0]["bus_id"]), str(lv.iloc[0]["bus_id"]))]
+            action = "CREATED_FROM_REN_ANNEX_D"
+        template = dict(rows[existing[0]]) if existing else None
+        before_mva = sum(float(rows[i]["sn_mva"]) * int(rows[i].get("parallel", 1) or 1) for i in existing)
+        removed.update(existing)
+        for k, unit in enumerate(units.to_dict("records")):
+            hv_bus, lv_bus = bus_pairs[k % len(bus_pairs)]
+            sn = float(unit["sn_mva"])
+            r_pu = float("0." + unit["r_pu_1e4"]) if unit.get("r_pu_1e4") not in (None, "", "nan") else 0.003
+            x_pu = float("0." + unit["x_pu_1e4"]) if unit.get("x_pu_1e4") not in (None, "", "nan") else 0.12
+            record = dict(template) if template else {
+                "pfe_kw": 0.0, "i0_percent": 0.0, "shift_degree": 0.0, "tap_side": "hv", "tap_neutral": 0,
+                "tap_min": -8, "tap_max": 8, "tap_step_percent": 1.25, "tap_pos": 0, "match_distance_m": 0.0,
+            }
+            record.update({
+                "hv_bus": hv_bus, "lv_bus": lv_bus, "hv_kv": hv_kv, "lv_kv": lv_kv, "sn_mva": sn,
+                "vk_percent": round(math.hypot(r_pu, x_pu) * 100.0, 4), "vkr_percent": round(max(r_pu, 1e-4) * 100.0, 4),
+                "source_status": "REN_ANNEX_D_UNIT", "source_id": f"REN:{unit['code']}:{unit['unit']}:{pair}",
+                "evidence": f"REN Caracterização da RNT 31-12-2025 Annex D; {unit['code']} {unit['unit']} {pair} {unit['mva']} MVA; entry {unit.get('year', '')}; {unit.get('station_assignment', '')}",
+                "parameter_status": "REN_ANNEX_D_NAMEPLATE_AND_IMPEDANCE_OWN_BASE", "parallel": 1,
+                "pre_calibration_sn_mva": sn, "capacity_calibration_factor": 1.0,
+            })
+            new_rows.append(record)
+        ledger.append({"station": station, "voltage_pair": pair, "action": action, "model_units_before": len(existing),
+                       "model_mva_before": before_mva, "ren_units": len(units), "ren_mva": float(units["sn_mva"].sum()),
+                       "source_id": ";".join(str(rows[i].get("source_id", "")) for i in existing)})
+    for index, row in enumerate(rows):
+        if index in removed:
+            continue
+        station = bus_station.get(str(row["hv_bus"]), "")
+        if station in ren_stations:
+            removed.add(index)
+            ledger.append({"station": station, "voltage_pair": pair_of(row), "action": "REMOVED_PAIR_NOT_IN_REN_ANNEX_D",
+                           "model_units_before": 1, "model_mva_before": float(row["sn_mva"]) * int(row.get("parallel", 1) or 1),
+                           "ren_units": 0, "ren_mva": 0.0, "source_id": row.get("source_id", "")})
+        else:
+            row["parameter_status"] = f"{row['parameter_status']}+NON_RNT_OR_UNLISTED_ASSET"
+    kept = [row for index, row in enumerate(rows) if index not in removed] + new_rows
+    for number, row in enumerate(kept):
+        row["transformer_id"] = f"TRAFO:{number:05d}"
+    return kept, pd.DataFrame(ledger), True
+
+
 def main() -> None:
     ensure_dirs()
     config = read_json(PROJECT / "config" / "model_config.json")
@@ -197,8 +322,9 @@ def main() -> None:
     rows, seen = osm_transformers(buses, config)
     add_colocated_substations(rows, seen, buses, config)
     ledger = rari_boundary_ledger(buses, rows, seen, config)
+    rows, annex_d_ledger, annex_d_applied = apply_ren_annex_d(rows, buses)
     capacity_ledger: list[dict[str, Any]] = []
-    for pair, target_mva in config.get("ren_2024_transformer_capacity_mva", {}).items():
+    for pair, target_mva in ({} if annex_d_applied else config.get("ren_2024_transformer_capacity_mva", {})).items():
         hv_kv, lv_kv = map(int, pair.split("/"))
         indices = [index for index, row in enumerate(rows) if int(row["hv_kv"]) == hv_kv and int(row["lv_kv"]) == lv_kv]
         before = sum(float(rows[index]["sn_mva"]) * int(rows[index].get("parallel", 1)) for index in indices)
@@ -222,6 +348,9 @@ def main() -> None:
     for override in config.get("transformer_asset_overrides", []):
         source_id = str(override["source_id"])
         matches = [index for index, row in enumerate(rows) if str(row.get("source_id")) == source_id]
+        if annex_d_applied and not matches:
+            override_ledger.append({"source_id": source_id, "status": "SKIPPED_SUPERSEDED_BY_REN_ANNEX_D"})
+            continue
         if len(matches) != 1:
             raise ValueError(f"Transformer override {source_id} matched {len(matches)} rows; expected exactly one")
         index = matches[0]
@@ -252,12 +381,16 @@ def main() -> None:
     pd.DataFrame(rows).to_csv(TABLES / "transformers_topology.csv", index=False)
     ledger.to_csv(TABLES / "rari_boundary_matching.csv", index=False)
     pd.DataFrame(capacity_ledger).to_csv(TABLES / "transformer_capacity_calibration.csv", index=False)
+    annex_d_ledger.to_csv(TABLES / "ren_annex_d_transformer_reconciliation.csv", index=False)
     pd.DataFrame(override_ledger).to_csv(TABLES / "transformer_asset_overrides.csv", index=False)
     summary = {
         "generated_at": utc_now(), "transformers": len(rows),
         "status_counts": pd.Series([row["source_status"] for row in rows]).value_counts().to_dict(),
         "rari_boundary_status_counts": ledger["status"].value_counts().to_dict(),
         "asset_overrides": len(override_ledger),
+        "ren_annex_d_applied": annex_d_applied,
+        "ren_annex_d_actions": annex_d_ledger["action"].value_counts().to_dict() if not annex_d_ledger.empty else {},
+        "mva_by_voltage_pair": pd.DataFrame(rows).assign(mva=lambda d: d["sn_mva"] * d["parallel"].fillna(1)).assign(pair=lambda d: d["hv_kv"].astype(int).astype(str) + "/" + d["lv_kv"].astype(int).astype(str)).groupby("pair")["mva"].sum().round(1).to_dict(),
     }
     write_json(TABLES / "transformer_summary.json", summary)
     print(json.dumps(summary, ensure_ascii=False, indent=2))

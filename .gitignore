@@ -186,6 +186,25 @@ dist/
 data/releases/*.tar.gz
 data/releases/PT60-v*-rc*/
 data/releases/PT60-v*-rc*-validation.json
+data/releases/SimPT60-*/
+data/releases/SimPT60-*-validation.json
 
 # Historical author drafts remain local-only
 /archive/
+
+# Local-only: working copies, logs, AI-assistant notes, personal ops scripts, releases (published on Zenodo)
+/work/
+/tmp
+/temp
+/CLAUDE.md
+/Claude outputs/
+/OFFLOADED_TO_SD.md
+/tools/
+*.log
+kaggle/_preview*.png
+data/releases/SimPT-Power-*/
+data/releases/SimPT-Power-*.WITHDRAWN.md
+scripts/offload_to_sd.sh
+scripts/run_mv_urban_cable_v2_national.sh
+scripts/hpc_smoke_validate.py
+docs/*_2026-09-*_CN.md
