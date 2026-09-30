@@ -1,0 +1,9 @@
+{
+  "title": "SimPT-Power: Portugal 0.4-400 kV grid simulation",
+  "id": "YOUR_KAGGLE_USERNAME/simpt-power",
+  "subtitle": "Public-data simulation database of mainland Portugal, release SimPT-Power-2026.09.30-r2",
+  "description": "Uncompressed companion subset (Parquet + pandapower JSON) of the frozen release SimPT-Power-2026.09.30-r2. HV core CORE-3787-REN (3,787 buses, 4,926 lines, 219 transformers) with 31,492 solved 15-minute AC power-flow snapshots (May 2025 - Mar 2026); MV root slices, inferred urban cables and MV customer estimate; 72,434 secondary substations and the geographic LV network LV-GEO-A (5.7 M segments); public observation tables. A simulation database built from public data, not the operator's network or a digital twin. The reference release and all 11 monthly HV databases are archived on Zenodo (DOI: 10.5281/zenodo.23067065) - please cite it. Licences follow the sources: E-REDES open data CC BY 4.0, OpenStreetMap-derived layers ODbL.",
+  "isPrivate": true,
+  "licenses": [{"name": "ODbL-1.0"}],
+  "keywords": ["energy", "electricity", "graph", "time series analysis", "europe"]
+}

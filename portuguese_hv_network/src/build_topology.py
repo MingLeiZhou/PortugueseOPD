@@ -6,6 +6,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
 
+import networkx as nx
 import numpy as np
 import pandas as pd
 from scipy.spatial import cKDTree
@@ -240,6 +241,58 @@ def duplicate_circuit_canonical_ids(data: dict[str, Any]) -> dict[int, int]:
     return mapping
 
 
+def per_voltage_circuits(raw_circuits: object, declared_voltage: object, voltage_kv: int) -> tuple[str, str]:
+    """Split an OSM way-level circuit count between the voltage slots it carries.
+
+    OSM tags a shared tower line as e.g. ``voltage=150000;400000 circuits=2``:
+    one circuit per listed voltage.  A slot of ``0`` marks an unstrung or
+    de-energised circuit (``voltage=0;400000``).  Without this split every
+    voltage row of the way inherited the full way-level count, double-counting
+    circuits on mixed-voltage towers (REN Annex B check, 2026-09-29).
+    """
+    text = str(raw_circuits or "").strip()
+    try:
+        total = int(float(text))
+    except ValueError:
+        return text, "NO_CIRCUIT_TAG"
+    slots = [value.strip() for value in str(declared_voltage or "").split(";") if value.strip()]
+    if len(slots) <= 1:
+        return str(total), "SINGLE_VOLTAGE_SLOT"
+    def slot_kv(value: str) -> int:
+        try:
+            return int(round(float(value) / 1000.0))
+        except ValueError:
+            return -1
+    matching = sum(1 for value in slots if slot_kv(value) == int(voltage_kv))
+    matching = max(matching, 1)
+    share = total * matching / len(slots)
+    circuits = max(1, int(share))
+    status = "SPLIT_BY_VOLTAGE_SLOTS" if share == int(share) else "SPLIT_BY_VOLTAGE_SLOTS_ROUNDED_DOWN"
+    if any(slot_kv(value) == 0 for value in slots):
+        status += "_ZERO_SLOT_UNUSED"
+    return str(circuits), status
+
+
+def load_ren_line_corrections() -> list[dict[str, Any]]:
+    path = PROJECT / "config" / "ren_line_corrections.csv"
+    if not path.exists():
+        return []
+    return pd.read_csv(path, dtype=str).fillna("").to_dict("records")
+
+
+def match_ren_correction(record: dict[str, Any], corrections: list[dict[str, Any]]) -> dict[str, Any] | None:
+    for correction in corrections:
+        if correction["voltage_kv"] and int(correction["voltage_kv"]) != int(record["voltage_kv"]):
+            continue
+        if correction["match_type"] == "name" and str(record.get("name", "")).strip() == correction["match_value"].strip():
+            return correction
+        if correction["match_type"] == "osm_way_id":
+            way = record.get("osm_way_id")
+            if way not in (None, "") and str(int(float(way))) == correction["match_value"].strip():
+                return correction
+    return None
+
+
 def load_osm(allowed: set[int], primary: set[int]) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
     source_path = RAW / "osm" / "portugal_power_osm.json"
     if not source_path.exists():
@@ -282,6 +335,8 @@ def load_osm(allowed: set[int], primary: set[int]) -> tuple[list[dict[str, Any]]
         circuit_ids = sorted({canonical_circuit.get(int(context["circuit_id"]), int(context["circuit_id"])) for context in contexts if context.get("circuit_id")})
         section_ids = sorted({int(context["line_section_id"]) for context in contexts if context.get("line_section_id")})
         inherited = bool(contexts) and not tags.get("voltage")
+        raw_circuits = tags.get("circuits", "") or relation_value(contexts, "circuits") or (str(len(circuit_ids)) if circuit_ids else "")
+        declared_voltage = tags.get("voltage") or relation_value(contexts, "voltage")
         for voltage in voltages:
             breaks = sorted({0, len(node_ids) - 1} | {index for index, node_id in enumerate(node_ids) if shared_nodes[voltage][node_id] > 1})
             for part_index, (start, end) in enumerate(zip(breaks, breaks[1:])):
@@ -304,7 +359,9 @@ def load_osm(allowed: set[int], primary: set[int]) -> tuple[list[dict[str, Any]]
                         "operational_status": tags.get("construction", tags.get("status", "")) or relation_value(contexts, "status"),
                         "name": tags.get("name", tags.get("ref", "")) or relation_value(contexts, "name") or relation_value(contexts, "ref"),
                         "operator": tags.get("operator", "") or relation_value(contexts, "operator"),
-                        "circuits": tags.get("circuits", "") or relation_value(contexts, "circuits") or (str(len(circuit_ids)) if circuit_ids else ""),
+                        "circuits": per_voltage_circuits(raw_circuits, declared_voltage, voltage)[0],
+                        "circuits_osm_tag": raw_circuits,
+                        "circuit_split_status": per_voltage_circuits(raw_circuits, declared_voltage, voltage)[1],
                         "osm_way_id": int(element.get("id")),
                         "osm_circuit_ids": ";".join(map(str, circuit_ids)),
                         "osm_line_section_ids": ";".join(map(str, section_ids)),
@@ -570,6 +627,8 @@ def main() -> None:
     buses, cluster_to_bus = attach_facilities(clusters, facilities, float(config["facility_match_m"]))
     output_lines: list[dict[str, Any]] = []
     blocked: list[dict[str, Any]] = []
+    ren_corrections = load_ren_line_corrections()
+    correction_ledger: list[dict[str, Any]] = []
     for index, row in enumerate(lines):
         from_bus = cluster_to_bus[endpoint_assignment[(index, "from")]]
         to_bus = cluster_to_bus[endpoint_assignment[(index, "to")]]
@@ -580,22 +639,32 @@ def main() -> None:
                 "geometry_json": json.dumps(row["coords"], separators=(",", ":")),
             }
         )
+        correction = match_ren_correction(record, ren_corrections) if row.get("source") == "OpenStreetMap" else None
         if from_bus == to_bus or float(row["length_km"]) <= 0:
             record["blocking_reason"] = "SELF_LOOP_AFTER_ENDPOINT_CLUSTERING"
             blocked.append(record)
+        elif correction and correction["action"] == "exclude":
+            record["blocking_reason"] = f"REN_ANNEX_B_CORRECTION:{correction['correction_id']}:{correction['reason_code']}"
+            blocked.append(record)
+            correction_ledger.append({**{f"correction_{k}" if k in ("voltage_kv", "value") else k: v for k, v in correction.items()}, "line_id": record["line_id"], "source_line_id": record["source_line_id"], "voltage_kv": record["voltage_kv"], "name": record.get("name", ""), "osm_way_id": record.get("osm_way_id", ""), "length_km": record["length_km"], "circuits": record.get("circuits", "")})
         else:
+            if correction and correction["action"] == "set_circuits":
+                correction_ledger.append({**{f"correction_{k}" if k in ("voltage_kv", "value") else k: v for k, v in correction.items()}, "line_id": record["line_id"], "source_line_id": record["source_line_id"], "voltage_kv": record["voltage_kv"], "name": record.get("name", ""), "osm_way_id": record.get("osm_way_id", ""), "length_km": record["length_km"], "circuits_before": record.get("circuits", "")})
+                record["circuits"] = str(correction["value"])
+                record["circuit_split_status"] = f"REN_ANNEX_B_CORRECTION:{correction['correction_id']}"
             output_lines.append(record)
     buses = apply_lanheses_pi_topology(buses, output_lines)
     pd.DataFrame(buses).drop_duplicates("bus_id").to_csv(TABLES / "buses.csv", index=False)
     pd.DataFrame(output_lines).to_csv(TABLES / "lines_topology.csv", index=False)
     pd.DataFrame(blocked).to_csv(TABLES / "lines_blocked.csv", index=False)
+    pd.DataFrame(correction_ledger).to_csv(TABLES / "ren_line_corrections_applied.csv", index=False)
     pd.DataFrame(facilities).to_csv(TABLES / "facilities.csv", index=False)
     facility_ledger.to_csv(TABLES / "facility_canonicalization_ledger.csv", index=False)
     write_json(RAW / "osm" / "transformer_elements.json", osm_transformers)
     write_json(RAW / "osm" / "generation_elements.json", osm_generation)
     summary = {
         "generated_at": utc_now(), "line_inputs": len(lines), "lines_retained": len(output_lines),
-        "lines_blocked": len(blocked), "buses": len({row["bus_id"] for row in buses}),
+        "lines_blocked": len(blocked), "ren_annex_b_corrections_applied": len(correction_ledger), "buses": len({row["bus_id"] for row in buses}),
         "facilities": len(facilities), "canonicalized_eredes_facilities": len(facility_ledger),
         "voltage_counts": pd.Series([row["voltage_kv"] for row in output_lines]).value_counts().sort_index().to_dict(),
         "relation_identity_counts": pd.Series([row.get("relation_identity_status", "NOT_APPLICABLE") for row in output_lines]).value_counts().to_dict(),

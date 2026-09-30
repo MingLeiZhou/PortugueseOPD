@@ -23,10 +23,39 @@ power-flow results, validation records and spatial-allocation comparisons.
 | Dataset | [PT60 v2.1.0-rc2 download](https://grid.jczw.xyz/download), including source attribution, manifest and file hashes |
 | Python package | [pt60-tools on PyPI](https://pypi.org/project/pt60-tools/); import `pt60`, command `pt60` |
 | Website | [Project and downloads](https://grid.jczw.xyz/project), [interactive map](https://grid.jczw.xyz/) |
-| Paper | [Chinese manuscript and supporting material](https://grid.jczw.xyz/downloads/PT60-paper-cn.zip); canonical local source: `paper/PT60_Sep16.MD` |
+| Paper | Data paper in preparation |
 
 The dataset is a release candidate; permanent repository deposit and DOI are
 pending. The paper is a manuscript, not a published article. The Python package is published on [PyPI](https://pypi.org/project/pt60-tools/).
+
+## SimPT-Power: multi-voltage extension (0.4-400 kV)
+
+The main line of work extends the 60-400 kV core to a public-data-based
+**multi-voltage simulation database of mainland Portugal (0.4-400 kV)**.
+
+- **Data release:** [SimPT-Power-2026.09.30-r3 on Zenodo](https://doi.org/10.5281/zenodo.23067065)
+  (all versions: [10.5281/zenodo.23067064](https://doi.org/10.5281/zenodo.23067064)).
+  HV core CORE-3787-REN (3,787 buses, 4,926 lines, 219 transformers, reconciled with
+  the REN RNT characterisation of 31-12-2025) with 31,492 solved 15-minute AC
+  power-flow snapshots (May 2025 - March 2026); 617 MV root slices with inferred
+  urban cable networks and an MV customer estimate; 72,434 secondary substations
+  with four-wire LV feeders and the geographic LV network LV-GEO-A.
+- **Notebooks:** [`kaggle/`](kaggle/) - quick start and HV power flow (peak-snapshot
+  re-solve, loading map, N-1 example) on the uncompressed open bundle.
+- **Code:** HV core `portuguese_hv_network/src/` (`run_pipeline.py`,
+  `run_ren_reconciliation.py`, `run_monthly_15min.py`); MV/LV layers and release
+  tooling `src/` (`build_simpt_power_release.py`, `build_public_release.py`,
+  `build_open_bundle.py`); run scripts `scripts/`. Large inputs are expected under
+  `data/external/` (for example a link to the external drive holding
+  `PT60_public_data_2025-05-01_2026-03-24`).
+
+SimPT-Power is a simulation database, not an operator network model or a digital
+twin: convergence demonstrates numerical consistency only; root-specific
+medium-voltage results are not a synchronous nationwide snapshot; public,
+inferred and simulated values are labelled separately, and operator ground truth
+(conductor assignment, feeder boundaries and switch states, phase assignment,
+protection settings, earthing parameters, customer metering) is not available
+from public sources.
 
 ## Install and load
 
