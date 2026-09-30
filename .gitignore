@@ -208,3 +208,12 @@ scripts/offload_to_sd.sh
 scripts/run_mv_urban_cable_v2_national.sh
 scripts/hpc_smoke_validate.py
 docs/*_2026-09-*_CN.md
+# Manuscripts, rendered papers, audit reports and process logs are kept out of the public repository
+/paper/
+/output/
+/reports/
+docs/*_LOG.md
+docs/PT60_EIGHT_REVIEW_ITEMS_*.md
+docs/CLEANUP_MANIFEST.md
+docs/PT60_SEASONAL_VALIDATION_TASKS.md
+docs/PROJECT_STATUS.md

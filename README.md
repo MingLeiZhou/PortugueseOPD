@@ -103,8 +103,9 @@ The core installation requires NumPy, without PyTorch or GridSFM.
 ## Development and provenance
 
 `pt60/` is the installable package; `portuguese_hv_network/src/` builds the
-underlying network; `portuguese_hv_network/site/` serves the website; `paper/`
-contains the current manuscript and figure sources. Install from this checkout
+underlying network; `src/` builds the medium- and low-voltage layers and the
+SimPT-Power releases; `kaggle/` holds example notebooks;
+`portuguese_hv_network/site/` serves the website. Install from this checkout
 with `python -m pip install -e '.[solve,test]'` and run
 `python -m pytest tests/test_pt60_tools.py`.
 
