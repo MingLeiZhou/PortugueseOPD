@@ -1,14 +1,33 @@
 cff-version: 1.2.0
-message: "If you use PT60, cite the dataset and this software repository."
-title: "PortugueseOPD: pipeline for the PT60 high-voltage topology and AC power-flow benchmark"
+message: "If you use this software, cite it and the SimPT-Power data release."
+title: "PortugueseOPD: build, validation and release code for SimPT-Power, a public-data multi-voltage (0.4-400 kV) simulation database of mainland Portugal"
 type: software
 authors:
-  - name: "PortugueseOPD contributors"
-version: 2.0.0
-date-released: 2026-09-03
+  - family-names: Zhou
+    given-names: Minglei
+    affiliation: University of Minho
+version: simpt-power-2026.10.03-r3.1
+date-released: 2026-10-03
 license: MIT
 repository-code: "https://github.com/MingLeiZhou/PortugueseOPD"
 abstract: >-
-  Reproducible acquisition, integration, validation and packaging software for
-  PT60, a public-data-informed Portuguese high-voltage network benchmark covering
-  nominal voltages from 60 to 400 kV and a declared AC power-flow scenario.
+  Acquisition, network-building, power-flow, validation and release code for
+  SimPT-Power: the 60-400 kV core CORE-3787-REN with 31,492 solved 15-minute AC
+  power-flow snapshots, medium-voltage root slices, secondary substations,
+  four-wire and geographic low-voltage networks, and the frozen and public
+  release tooling, plus example notebooks.
+keywords:
+  - power systems
+  - power flow
+  - distribution network
+  - pandapower
+  - open data
+  - Portugal
+references:
+  - type: dataset
+    title: "SimPT-Power: a public-data multi-voltage (0.4-400 kV) power-system simulation database of mainland Portugal"
+    authors:
+      - family-names: Zhou
+        given-names: Minglei
+    doi: 10.5281/zenodo.23067064
+    url: "https://doi.org/10.5281/zenodo.23067064"
