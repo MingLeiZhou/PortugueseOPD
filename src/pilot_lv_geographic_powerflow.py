@@ -9,7 +9,7 @@ Cable scenarios for the geographic trees:
 Mutual 4x4 terms = LV_4WIRE_PROXY_V1; transformer = positive-sequence series impedance (root-peak design Sn).
 Loads: root-peak PTD load (ptd_snapshot of the published four-wire batch), pf 0.97, public phase shares,
 spread over customer points (buildings at poles / street nodes) proportional to building counts."""
-import json, math, sys, time
+import json, math, re, sys, time
 from collections import defaultdict, deque
 from pathlib import Path
 import duckdb, numpy as np, pandas as pd
@@ -18,7 +18,7 @@ from scipy.sparse import coo_matrix
 from scipy.sparse.csgraph import minimum_spanning_tree, dijkstra, connected_components
 
 ROOT = Path(__file__).resolve().parents[1]
-DB = ROOT / "output/all_voltage/all_voltage_staging.duckdb"
+DB = Path(__import__("os").environ.get("LV_DB", ROOT / "output/all_voltage/all_voltage_staging.duckdb"))
 POLES = ROOT / "output/feasibility/lv_poles_national.csv"
 import os
 OSMDIR = Path(os.environ.get("LV_OSM_DIR", ROOT / "output/all_voltage/mv_customer_pilot"))
@@ -45,6 +45,16 @@ def zmat(r, x, mutual):
     z = mutual.copy(); np.fill_diagonal(z, complex(r, x)); return z
 
 
+def neutral_r(designation, r):
+    """r3.1: neutral resistance scaled by the phase/neutral cross-section ratio (e.g. LXAV 3x185+95 -> r*185/95)."""
+    m = re.search(r"(\d+)\s*[x\u00d7]\s*(\d+(?:\.\d+)?)\s*\+\s*(\d+(?:\.\d+)?)", str(designation))
+    return r * float(m.group(2)) / float(m.group(3)) if m else r
+
+
+def zmat4(r, x, mutual, designation):
+    z = zmat(r, x, mutual); z[3, 3] = complex(neutral_r(designation, r), x); return z
+
+
 def sweep(parent, length, loads, z, zt, bond, order, par=None):
     """Radial ABCN sweep. parent[k] (root=-1), length[k] km of branch parent->k, loads[k] 3 complex VA."""
     n = len(parent); V = np.tile(SRC, (n, 1)); children = defaultdict(list)
@@ -58,7 +68,7 @@ def sweep(parent, length, loads, z, zt, bond, order, par=None):
         for k in reversed(order[1:]): Ib[parent[k]] += Ib[k]
         tot = Ib[order[0]]
         Vn = V.copy(); Vn[order[0], :3] = SRC[:3] - zt * tot[:3]; Vn[order[0], 3] = bond * (-tot[:3].sum())
-        for k in order[1:]: Vn[k] = Vn[parent[k]] - z @ Ib[k] * length[k] / (1 if par is None else par[k])
+        for k in order[1:]: Vn[k] = Vn[parent[k]] - (z[k] if z.ndim == 3 else z) @ Ib[k] * length[k] / (1 if par is None else par[k])
         ch = np.max(np.abs(Vn - V)); V = Vn
         if ch < 1e-6:
             return (V, Ib), it
@@ -204,7 +214,7 @@ def run(cc):
         if nn == 1: continue
         wsum = sum(weight)
         if wsum == 0: weight = [0.0] + [1.0] * (nn - 1); wsum = nn - 1
-        S_ptd = (pmw - pv + 1j * qmv) * 1e6
+        S_ptd = (pmw + 1j * qmv) * 1e6   # r3.1: load_p_mw is already the station-derived net load (PV included); r3 subtracted PV twice
         loads = np.array([[S_ptd * wk / wsum * sh[ph] for ph in range(3)] for wk in weight], complex)
         order = [0]; ch = defaultdict(list)
         for k in range(1, nn): ch[parent[k]].append(k)
@@ -218,7 +228,13 @@ def run(cc):
                "overhead_km": round(oh_km, 3), "street_km": round(ug_km, 3), "pole_ext_km": round(ext_km, 3), "drops_km": round(float(length[[k for k in range(nn) if kind[k] == 'drop']].sum()), 3),
                "design_cable": dz.cable_designation, "compact_feeders": int(dz.feeder_count), "compact_section_km": float(dz.section_length_km)}
         # design refinement (standard cable): parallel cables where ampacity or 0.9 p.u. is violated (max 4 in parallel)
-        cab, r, x, imax = STD[typ]; par = np.ones(nn); z = zmat(r, x, mut); refined = None
+        # r3.1: per-branch cable class (pole/ext = overhead, street = by PTD type, service drop = class of the line it hangs on)
+        cls = [typ] * nn
+        for k in order[1:]:
+            kk = kind[k]
+            cls[k] = "overhead" if kk in ("pole", "ext") else (typ if kk == "street" else (cls[parent[k]] if parent[k] > 0 else typ))
+        ZB = np.stack([zmat4(STD[c][1], STD[c][2], mut, STD[c][0]) for c in cls]); IMAX = np.array([STD[c][3] for c in cls])
+        par = np.ones(nn); z = ZB; imax = IMAX; refined = None
         for rep in range(12):
             sol, it = sweep(parent, length, loads, z, zt, bond, order, par)
             if sol is None:
@@ -240,19 +256,22 @@ def run(cc):
             rec["geo_refined_status"] = "DIVERGED"
         else:
             V, Ib = refined; vpu = np.abs(V[:, :3] - V[:, 3:4]) / VLN
-            ld = float(np.max(np.abs(Ib[1:, :3]).max(1) / (imax * par[1:])) * 100) if nn > 1 else 0
+            ld = float(np.max(np.abs(Ib[1:, :3]).max(1) / (IMAX[1:] * par[1:])) * 100) if nn > 1 else 0
             rec.update({"geo_refined_status": "OK", "geo_refined_vmin": float(vpu.min()), "geo_refined_vmax": float(vpu.max()), "geo_refined_loading_pct": ld,
                         "geo_refined_parallel_km": float((length * (par - 1)).sum()), "geo_refined_max_parallel": int(par.max())})
         if WRITE_SEG:
             C = np.array(coords); lon = C[:, 0] / kx; lat = C[:, 1] / ky
             for k in range(1, nn):
-                kk = kind[k]; cls = "overhead" if kk in ("pole", "ext") or (kk == "street" and typ == "overhead") else ("underground" if kk == "street" else "service_drop")
-                segs.append((code, k, int(parent[k]), kk, cls, STD[cls][0] if cls in STD else None, float(length[k]), int(par[k]),
-                             round(float(lon[parent[k]]), 6), round(float(lat[parent[k]]), 6), round(float(lon[k]), 6), round(float(lat[k]), 6), float(weight[k])))
-        for name, (cab, r, x, imax) in {"design": (dz.cable_designation, dz.r, dz.x, dz.imax), "standard": STD[typ]}.items():
-            sol, it = sweep(parent, length, loads, zmat(r, x, mut), zt, bond, order)
+                kk = kind[k]; c = cls[k]; cab_k, r_k, x_k, i_k = STD[c]
+                segs.append((code, k, int(parent[k]), kk, "service_drop" if kk == "drop" else c, cab_k, float(length[k]), int(par[k]),
+                             round(float(lon[parent[k]]), 6), round(float(lat[parent[k]]), 6), round(float(lon[k]), 6), round(float(lat[k]), 6), float(weight[k]),
+                             r_k, x_k, neutral_r(cab_k, r_k), i_k))
+        for name, (cab, zz, im) in {"design": (dz.cable_designation, zmat4(dz.r, dz.x, mut, dz.cable_designation), np.full(nn, float(dz.imax))),
+                                    "standard": ("PER_BRANCH_STANDARD", ZB, IMAX)}.items():
+            sol, it = sweep(parent, length, loads, zz, zt, bond, order)
             if sol is None: rec.update({f"geo_{name}_status": "DIVERGED"}); continue
-            vmin, vmax, imx, ld = result(*sol, parent, order, imax)
+            Vs, Ibs = sol; vp = np.abs(Vs[:, :3] - Vs[:, 3:4]) / VLN
+            vmin, vmax = float(vp.min()), float(vp.max()); ld = float(np.max(np.abs(Ibs[1:, :3]).max(1) / im[1:]) * 100) if nn > 1 else 0.0
             rec.update({f"geo_{name}_status": "OK", f"geo_{name}_vmin": vmin, f"geo_{name}_vmax": vmax, f"geo_{name}_loading_pct": ld, f"geo_{name}_cable": cab})
         # compact design with the same solver: feeder_count identical 2-section feeders, half load each section
         fcount = int(dz.feeder_count); L = float(dz.section_length_km)
@@ -267,7 +286,8 @@ def run(cc):
     if WRITE_SEG:
         sd = OUT.parent / "segments"; sd.mkdir(parents=True, exist_ok=True)
         sg = pd.DataFrame(segs, columns=["ptd_code", "node", "parent_node", "segment_kind", "cable_class", "standard_cable", "length_km",
-                                         "refined_parallel", "lon_from", "lat_from", "lon_to", "lat_to", "load_weight"])
+                                         "refined_parallel", "lon_from", "lat_from", "lon_to", "lat_to", "load_weight",
+                                         "r_ohm_per_km", "x_ohm_per_km", "r_neutral_ohm_per_km", "permissible_current_a"])
         duckdb.sql(f"COPY (SELECT * FROM sg) TO '{sd / f'lv_geo_segments_{cc}.parquet'}' (FORMAT parquet)")
     if df.empty or "geo_refined_vmin" not in df:
         return {"concelho": cc, "ptds_solved": int(len(df)), "seconds": round(time.time() - t0, 1)}
