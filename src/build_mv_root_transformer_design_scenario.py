@@ -33,7 +33,8 @@ def main() -> int:
         con.execute("""CREATE OR REPLACE TABLE parameter.mv_root_transformer_design_scenario AS
             WITH lv_station_coeff AS (
               SELECT c.mv_root_bus,a.profile_station_code,
-                     sum(a.factor*a.station_lv_fraction) AS lv_station_p_coeff,
+                     sum(CASE WHEN a.lv_share_mode='STATION_TIME_VARYING' THEN a.factor ELSE 0 END) AS lv_tv_coeff,
+                     sum(CASE WHEN a.lv_share_mode='STATION_TIME_VARYING' THEN 0 ELSE a.factor*a.station_lv_fraction END) AS lv_fixed_coeff,
                      sum(CASE WHEN a.allocation_status='DIRECT_STATION_LV_SHARE_WITH_MV_RESIDUAL'
                               THEN a.factor*a.station_pv_weight ELSE a.ptd_pv_weight END)
                          AS gross_solar_coeff,
@@ -44,20 +45,20 @@ def main() -> int:
             ),
             mv_station_coeff AS (
               SELECT a.mv_root_bus,a.station_code AS profile_station_code,
-                     sum((1-coalesce(s.lv_fraction,0))*a.station_root_fraction) AS mv_station_p_coeff
+                     sum(a.station_root_fraction) AS mv_station_p_coeff
               FROM operating.mv_load_resource_allocation a
               LEFT JOIN operating.station_lv_split s USING(station_code)
               GROUP BY 1,2
             ),
             station_coeff AS (
               SELECT mv_root_bus,profile_station_code,
-                     sum(lv_coeff) AS lv_station_p_coeff,
+                     sum(lv_tv) AS lv_tv_coeff,sum(lv_fx) AS lv_fixed_coeff,
                      sum(mv_coeff) AS mv_station_p_coeff
               FROM (
-                SELECT mv_root_bus,profile_station_code,lv_station_p_coeff AS lv_coeff,0::DOUBLE AS mv_coeff
+                SELECT mv_root_bus,profile_station_code,lv_tv_coeff AS lv_tv,lv_fixed_coeff AS lv_fx,0::DOUBLE AS mv_coeff
                 FROM lv_station_coeff
                 UNION ALL
-                SELECT mv_root_bus,profile_station_code,0::DOUBLE,mv_station_p_coeff
+                SELECT mv_root_bus,profile_station_code,0::DOUBLE,0::DOUBLE,mv_station_p_coeff
                 FROM mv_station_coeff
               ) x GROUP BY 1,2
             ),
@@ -68,7 +69,7 @@ def main() -> int:
             ),
             station_time AS (
               SELECT c.mv_root_bus,s.timestamp_utc,
-                     sum(s.p_mw*(c.lv_station_p_coeff+c.mv_station_p_coeff)) AS station_component_p_mw
+                     sum(s.p_mw*(c.lv_tv_coeff*s.lv_share+c.lv_fixed_coeff+c.mv_station_p_coeff*(1-s.lv_share))) AS station_component_p_mw
               FROM station_coeff c
               JOIN operating.station_15min_complete s
                 ON s.station_code=c.profile_station_code

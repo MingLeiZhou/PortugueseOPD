@@ -46,6 +46,7 @@ def main() -> int:
                      a.profile_station_code AS baseline_profile_station_code,
                      a.factor AS baseline_factor,
                      a.station_lv_fraction AS baseline_station_lv_fraction,
+                     a.lv_share_mode AS baseline_lv_share_mode,
                      a.peak_proxy_mw,
                      z.candidate_station_code AS zone_candidate_station_code,
                      z.component_id AS zone_component_id,
@@ -76,6 +77,8 @@ def main() -> int:
                         ELSE p.baseline_factor END AS scenario_factor,
                    CASE WHEN p.has_scenario_station_profile THEN p.scenario_station_lv_fraction
                         ELSE p.baseline_station_lv_fraction END AS scenario_station_lv_fraction,
+                   CASE WHEN p.has_scenario_station_profile THEN 'STATION_TIME_VARYING'
+                        ELSE p.baseline_lv_share_mode END AS scenario_lv_share_mode,
                    d.assigned_peak_proxy_sum_mw,d.assigned_ptd_count,
                    p.assignment_status,
                    CASE WHEN p.has_scenario_station_profile
@@ -85,8 +88,8 @@ def main() -> int:
             FROM profiled p LEFT JOIN denominator d USING(scenario_assigned_station_code)""")
         con.execute("""CREATE OR REPLACE VIEW scenario.osm_zone_ptd_load_15min AS
             SELECT a.ptd_code,s.timestamp_utc,
-                   s.p_mw*a.scenario_factor*a.scenario_station_lv_fraction AS p_mw,
-                   s.p_mw*a.scenario_factor*a.scenario_station_lv_fraction*tan(acos(0.97)) AS q_mvar,
+                   s.p_mw*a.scenario_factor*(CASE WHEN a.scenario_lv_share_mode='STATION_TIME_VARYING' THEN s.lv_share ELSE a.scenario_station_lv_fraction END) AS p_mw,
+                   s.p_mw*a.scenario_factor*(CASE WHEN a.scenario_lv_share_mode='STATION_TIME_VARYING' THEN s.lv_share ELSE a.scenario_station_lv_fraction END)*tan(acos(0.97)) AS q_mvar,
                    a.scenario_assigned_station_code,a.zone_component_id,
                    a.scenario_profile_station_code,a.assignment_status,a.profile_status,
                    s.data_status AS profile_data_status,a.evidence_status
@@ -123,12 +126,12 @@ def main() -> int:
                   GROUP BY 1
                 ), expected AS (
                   SELECT a.scenario_assigned_station_code AS station_code,
-                         s.p_mw*max(a.scenario_station_lv_fraction) AS p_mw
+                         s.p_mw*s.lv_share AS p_mw
                   FROM scenario.osm_zone_ptd_assignment a
                   JOIN operating.station_15min_complete s
                     ON s.station_code=a.scenario_assigned_station_code AND s.timestamp_utc=?
                   WHERE a.profile_status='SCENARIO_ASSIGNED_STATION_PUBLIC_OR_IMPUTED_COMPLETE_PROFILE'
-                  GROUP BY 1,s.p_mw
+                  GROUP BY 1,s.p_mw,s.lv_share
                 ) SELECT max(abs(actual.p_mw-expected.p_mw))
                 FROM actual JOIN expected USING(station_code)""", [timestamp, timestamp]).fetchone()[0]
             conservation.append({"timestamp_utc": timestamp, "max_station_lv_balance_error_mw": float(maximum or 0.0)})

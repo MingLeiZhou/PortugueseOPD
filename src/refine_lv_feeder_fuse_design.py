@@ -27,6 +27,10 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--database", type=Path, default=DB)
     parser.add_argument("--report", type=Path, default=REPORT)
+    parser.add_argument("--voltage-margin-pu", type=float, default=0.005,
+                        help="r4: design end voltage = target + margin when adding feeders for voltage")
+    parser.add_argument("--ampacity-utilisation", type=float, default=0.95,
+                        help="r4: maximum design current as a fraction of catalogue ampacity")
     args = parser.parse_args()
 
     with duckdb.connect(str(args.database)) as con:
@@ -75,8 +79,17 @@ def main() -> int:
                         ELSE greatest(1,ceil(d.fresh_abcn_total_max_conductor_current_a/
                           nullif(c.fuse_service_current_a,0)-1e-12)::INTEGER) END
                      AS abcn_fuse_required_feeder_count,
+                   -- r4: the nonlinear root-peak result also drives voltage and ampacity feeder counts
+                   CASE WHEN d.actual_end_voltage_pu>=d.target_voltage_pu+?
+                          OR d.actual_source_voltage_pu<=d.target_voltage_pu+?+0.002 THEN d.pre_fuse_count
+                        ELSE ceil(d.pre_fuse_count*(d.actual_source_voltage_pu-d.actual_end_voltage_pu)
+                             /(d.actual_source_voltage_pu-d.target_voltage_pu-?)-1e-12)::INTEGER END
+                     AS voltage_required_feeder_count_r4,
+                   greatest(1,ceil(d.actual_total_line_current_a/nullif(d.permissible_current_a*?,0)-1e-12)::INTEGER)
+                     AS ampacity_required_feeder_count_r4,
                    greatest(d.pre_fuse_count,fuse_required_feeder_count,
-                            coalesce(abcn_fuse_required_feeder_count,1))
+                            coalesce(abcn_fuse_required_feeder_count,1),
+                            voltage_required_feeder_count_r4,ampacity_required_feeder_count_r4)
                      AS selected_feeder_count,
                    selected_feeder_count-d.pre_fuse_count AS additional_feeder_count,
                    d.actual_total_line_current_a/selected_feeder_count
@@ -92,7 +105,8 @@ def main() -> int:
                    c.source_url,c.source_sha256
             FROM base d
             JOIN parameter.lv_cable_catalog c ON c.designation=d.cable_designation
-            ORDER BY d.ptd_code""", [SCENARIO_ID])
+            ORDER BY d.ptd_code""", [SCENARIO_ID, args.voltage_margin_pu, args.voltage_margin_pu,
+                                      args.voltage_margin_pu, args.ampacity_utilisation])
 
         for column, data_type in (
             ("fuse_service_current_a", "DOUBLE"),
@@ -137,7 +151,11 @@ def main() -> int:
             (SELECT count(*) FROM protection.lv_feeder_fuse_refinement_scenario WHERE selected_current_a_per_feeder>fuse_service_current_a+1e-9) AS fuse_current_violations,
             (SELECT count(*) FROM protection.lv_feeder_fuse_refinement_scenario WHERE selected_abcn_max_conductor_current_a>fuse_service_current_a+1e-9) AS abcn_fuse_current_violations,
             (SELECT count(*) FROM phase.lv_feeder_root_peak_design_scenario WHERE design_current_a_per_feeder>permissible_current_a+1e-9) AS ampacity_violations,
-            (SELECT count(*) FROM phase.lv_feeder_root_peak_design_scenario WHERE linearized_refined_end_voltage_pu<target_voltage_pu-1e-12) AS linearized_voltage_violations,
+            (SELECT count(*) FROM phase.lv_feeder_root_peak_design_scenario WHERE linearized_refined_end_voltage_pu<target_voltage_pu-1e-12
+               AND root_peak_source_voltage_pu>target_voltage_pu+0.002) AS linearized_voltage_violations,
+            (SELECT count(*) FROM phase.lv_feeder_root_peak_design_scenario WHERE root_peak_source_voltage_pu<=target_voltage_pu+0.002) AS source_voltage_limited_ptds,
+            (SELECT count(*) FROM protection.lv_feeder_fuse_refinement_scenario WHERE voltage_required_feeder_count_r4>pre_fuse_feeder_count) AS ptds_added_for_voltage_r4,
+            (SELECT count(*) FROM protection.lv_feeder_fuse_refinement_scenario WHERE ampacity_required_feeder_count_r4>pre_fuse_feeder_count) AS ptds_added_for_ampacity_r4,
             (SELECT count(*) FROM phase.lv_feeder_root_peak_design_scenario WHERE fuse_service_current_a IS NULL) AS missing_fuse_values
         """)
         checks = dict(zip([item[0] for item in cursor.description], cursor.fetchone()))
@@ -153,7 +171,7 @@ def main() -> int:
         "result": "PASS" if not errors else "FAIL",
         "scenario_id": SCENARIO_ID,
         "checks": checks,
-        "rule": "selected feeder count = max(existing voltage/ampacity count, ceil(balanced root-peak total current / public E-REDES fuse current), ceil(ABCN root-peak maximum-phase total current / public E-REDES fuse current) when a matching fresh ABCN result exists)",
+        "rule": "selected feeder count = max(existing count, r4 nonlinear-result voltage count (target + margin), r4 ampacity count (utilisation), ceil(balanced root-peak total current / public E-REDES fuse current), ceil(ABCN root-peak maximum-phase total current / public E-REDES fuse current) when a matching fresh ABCN result exists)",
         "why": "The public standard service-fuse current is lower than cable thermal ampacity; the ABCN term also prevents phase imbalance from overloading the most heavily loaded fuse.",
         "provenance": "parameter.lv_cable_catalog imported from E-REDES DIT-C14-100/N Ed.9, with public source URL and SHA-256 retained per cable type.",
         "limitations": [

@@ -38,7 +38,7 @@ def main() -> int:
             GROUP BY 1""")
         con.execute("""CREATE OR REPLACE TABLE operating.ptd_reverse_flow_allocation AS
             SELECT a.ptd_code,a.assigned_station_code,a.profile_station_code,
-                   a.factor,a.station_lv_fraction,a.allocation_status,
+                   a.factor,a.station_lv_fraction,a.lv_share_mode,a.allocation_status,
                    p.national_weight AS ptd_pv_weight,
                    w.station_pv_weight,
                    'SYNTHETIC_INDEPENDENT_GROSS_AND_PV_WEIGHTS' AS evidence_status
@@ -50,12 +50,12 @@ def main() -> int:
             WITH components AS (
               SELECT a.ptd_code,s.timestamp_utc,a.assigned_station_code,
                      a.allocation_status,s.data_status AS profile_data_status,
-                     s.p_mw*a.factor*a.station_lv_fraction AS baseline_net_p_mw,
+                     s.p_mw*a.factor*(CASE WHEN a.lv_share_mode='STATION_TIME_VARYING' THEN s.lv_share ELSE a.station_lv_fraction END) AS baseline_net_p_mw,
                      ren.national_solar_mw*f.lv_fraction*a.ptd_pv_weight AS pv_p_mw,
                      CASE WHEN a.allocation_status='DIRECT_STATION_LV_SHARE_WITH_MV_RESIDUAL'
-                          THEN a.factor*(s.p_mw*a.station_lv_fraction+
+                          THEN a.factor*(s.p_mw*(CASE WHEN a.lv_share_mode='STATION_TIME_VARYING' THEN s.lv_share ELSE a.station_lv_fraction END)+
                                ren.national_solar_mw*f.lv_fraction*a.station_pv_weight)
-                          ELSE s.p_mw*a.factor*a.station_lv_fraction+
+                          ELSE s.p_mw*a.factor*(CASE WHEN a.lv_share_mode='STATION_TIME_VARYING' THEN s.lv_share ELSE a.station_lv_fraction END)+
                                ren.national_solar_mw*f.lv_fraction*a.ptd_pv_weight
                      END AS gross_p_mw
               FROM operating.ptd_reverse_flow_allocation a
@@ -81,7 +81,7 @@ def main() -> int:
         station_balance = con.execute("""SELECT max(abs(reconstructed_net_mw-public_station_lv_mw))
             FROM (
               SELECT r.assigned_station_code,sum(r.net_p_mw) AS reconstructed_net_mw,
-                     max(s.p_mw*f.lv_fraction) AS public_station_lv_mw
+                     max(s.p_mw*s.lv_share) AS public_station_lv_mw
               FROM study.ptd_reverse_flow_peak_solar_snapshot r
               JOIN operating.station_15min_complete s
                 ON r.assigned_station_code=s.station_code
