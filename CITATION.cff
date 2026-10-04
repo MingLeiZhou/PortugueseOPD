@@ -6,8 +6,8 @@ authors:
   - family-names: Zhou
     given-names: Minglei
     affiliation: University of Minho
-version: simpt-power-2026.10.03-r3.1
-date-released: 2026-10-03
+version: simpt-power-2026.10.04-r4
+date-released: 2026-10-04
 license: MIT
 repository-code: "https://github.com/MingLeiZhou/PortugueseOPD"
 abstract: >-
@@ -29,5 +29,6 @@ references:
     authors:
       - family-names: Zhou
         given-names: Minglei
-    doi: 10.5281/zenodo.23067064
-    url: "https://doi.org/10.5281/zenodo.23067064"
+    doi: 10.5281/zenodo.23132707
+    url: "https://doi.org/10.5281/zenodo.23132707"
+    notes: "Release 2026.10.04-r4; all versions: 10.5281/zenodo.23067064"
