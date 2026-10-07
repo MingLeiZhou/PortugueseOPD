@@ -1,33 +1,34 @@
 cff-version: 1.2.0
-message: "If you use this software, cite it and the SimPT-Power data release (https://doi.org/10.5281/zenodo.23067065)."
+message: "If you use this software, cite it and the SimPT-Power data release (https://doi.org/10.5281/zenodo.23132707)."
 title: "PortugueseOPD: build, validation and release code for SimPT-Power, a public-data multi-voltage (0.4-400 kV) simulation database of mainland Portugal"
 type: software
 authors:
-  - family-names: "Zhou"
-    given-names: "Minglei"
-    affiliation: "University of Minho"
-version: "simpt-power-2026.09.30-r3"
-date-released: 2026-09-30
+  - family-names: Zhou
+    given-names: Minglei
+    affiliation: University of Minho
+version: simpt-power-2026.10.04-r4
+date-released: 2026-10-04
 license: MIT
 repository-code: "https://github.com/MingLeiZhou/PortugueseOPD"
+abstract: >-
+  Acquisition, network-building, power-flow, validation and release code for
+  SimPT-Power: the 60-400 kV core CORE-3787-REN with 31,492 solved 15-minute AC
+  power-flow snapshots, medium-voltage root slices, secondary substations,
+  four-wire and geographic low-voltage networks, and the frozen and public
+  release tooling, plus example notebooks.
 keywords:
   - power systems
   - power flow
   - distribution network
+  - pandapower
   - open data
   - Portugal
-  - pandapower
-abstract: >-
-  Acquisition, network-building, power-flow, validation and release code for
-  SimPT-Power: the 60-400 kV core CORE-3787-REN with 31,492 solved 15-minute
-  AC power-flow snapshots, medium-voltage root slices, secondary substations,
-  four-wire and geographic low-voltage networks, and the frozen and public
-  release tooling, plus example notebooks.
 references:
   - type: dataset
-    title: "SimPT-Power: a public-data multi-voltage (0.4-400 kV) power-system simulation database of mainland Portugal (release 2026.09.30-r3)"
+    title: "SimPT-Power: a public-data multi-voltage (0.4-400 kV) power-system simulation database of mainland Portugal"
     authors:
-      - family-names: "Zhou"
-        given-names: "Minglei"
-    doi: "10.5281/zenodo.23067065"
-    year: 2026
+      - family-names: Zhou
+        given-names: Minglei
+    doi: 10.5281/zenodo.23132707
+    url: "https://doi.org/10.5281/zenodo.23132707"
+    notes: "Release 2026.10.04-r4; all versions: 10.5281/zenodo.23067064"

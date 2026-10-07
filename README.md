@@ -33,19 +33,25 @@ pending. The paper is a manuscript, not a published article. The Python package 
 The main line of work extends the 60-400 kV core to a public-data-based
 **multi-voltage simulation database of mainland Portugal (0.4-400 kV)**.
 
-- **Data release:** [SimPT-Power-2026.09.30-r3 on Zenodo](https://doi.org/10.5281/zenodo.23067065)
+- **Data release:** [SimPT-Power-2026.10.04-r4 on Zenodo](https://doi.org/10.5281/zenodo.23132707)
   (all versions: [10.5281/zenodo.23067064](https://doi.org/10.5281/zenodo.23067064)).
   HV core CORE-3787-REN (3,787 buses, 4,926 lines, 219 transformers, reconciled with
   the REN RNT characterisation of 31-12-2025) with 31,492 solved 15-minute AC
   power-flow snapshots (May 2025 - March 2026); 617 MV root slices with inferred
   urban cable networks and an MV customer estimate; 72,434 secondary substations
   with four-wire LV feeders and the geographic LV network LV-GEO-A.
-- **Notebooks:** [`kaggle/`](kaggle/) - quick start and HV power flow (peak-snapshot
-  re-solve, loading map, N-1 example) on the uncompressed open bundle.
+- **What changed in r4:** the LV/MV split of each substation load is time-varying,
+  calibrated to the national LV share of LV+MV consumption
+  (`src/build_station_lv_share.py`), and every load-dependent layer was rebuilt
+  (`scripts/rebuild_r4.sh`). The HV core and observation files are identical to r3.1.
+- **Notebooks:** [`kaggle/`](kaggle/) - quick start, HV power flow (peak-snapshot
+  re-solve, loading map, N-1 example), MV/LV power flow and HV graph learning on the
+  uncompressed open bundle.
 - **Code:** HV core `portuguese_hv_network/src/` (`run_pipeline.py`,
   `run_ren_reconciliation.py`, `run_monthly_15min.py`); MV/LV layers and release
-  tooling `src/` (`build_simpt_power_release.py`, `build_public_release.py`,
-  `build_open_bundle.py`); run scripts `scripts/`. Large inputs are expected under
+  tooling `src/` (`build_simpt_power_r4.py` for the current release,
+  `build_simpt_power_release.py`, `build_public_release.py`, `build_open_bundle.py`);
+  run and Zenodo upload scripts `scripts/`. Large inputs are expected under
   `data/external/` (for example a link to the external drive holding
   `PT60_public_data_2025-05-01_2026-03-24`).
 

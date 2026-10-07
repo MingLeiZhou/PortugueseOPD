@@ -74,11 +74,14 @@ def main() -> int:
               SELECT d.*,e.mv_root_bus,e.timestamp_utc,s.root_peak_source_voltage_pu,
                      e.root_peak_end_voltage_pu,c.i_ka*1000 AS root_peak_current_a_per_base_circuit,
                      c.loading_percent AS root_peak_base_loading_percent,
-                     CASE WHEN e.root_peak_end_voltage_pu>=? THEN d.feeder_count
-                          WHEN s.root_peak_source_voltage_pu<=? THEN d.feeder_count
-                          ELSE greatest(d.feeder_count,ceil(
-                            d.feeder_count*(s.root_peak_source_voltage_pu-e.root_peak_end_voltage_pu)
-                            /(s.root_peak_source_voltage_pu-?)-1e-12)::INTEGER) END
+                     greatest(
+                       CASE WHEN e.root_peak_end_voltage_pu>=? THEN d.feeder_count
+                            WHEN s.root_peak_source_voltage_pu<=? THEN d.feeder_count
+                            ELSE greatest(d.feeder_count,ceil(
+                              d.feeder_count*(s.root_peak_source_voltage_pu-e.root_peak_end_voltage_pu)
+                              /(s.root_peak_source_voltage_pu-?)-1e-12)::INTEGER) END,
+                       -- r4: parallel feeders are also added until the catalogue ampacity is met
+                       ceil(d.feeder_count*c.loading_percent/100-1e-9)::INTEGER)
                        AS refined_feeder_count
               FROM phase.lv_feeder_design_scenario d
               JOIN source_v s USING(ptd_code)
@@ -116,7 +119,7 @@ def main() -> int:
                      (root_peak_source_voltage_pu-root_peak_end_voltage_pu)*feeder_count/refined_feeder_count
                      AS linearized_refined_end_voltage_pu,
                    CASE WHEN refined_feeder_count>feeder_count
-                        THEN 'ROOT_PEAK_VOLTAGE_REFINED_SCENARIO'
+                        THEN 'ROOT_PEAK_VOLTAGE_OR_AMPACITY_REFINED_SCENARIO'
                         ELSE 'BASE_FEEDER_DESIGN_RETAINED' END AS refinement_status
             FROM required ORDER BY ptd_code""",
             [args.target_voltage_pu,args.target_voltage_pu,args.target_voltage_pu,args.target_voltage_pu])
