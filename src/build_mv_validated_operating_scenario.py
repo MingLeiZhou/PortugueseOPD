@@ -57,18 +57,19 @@ def build_all_zone_synchronized_snapshot(
         con.executemany("INSERT INTO selected_zone_ptd VALUES (?,?)", zone_ptds)
         con.execute("""CREATE TEMP TABLE selected_zone_profile_weight AS
             SELECT z.zone_id,a.scenario_profile_station_code AS profile_station_code,
-                   sum(a.scenario_factor*a.scenario_station_lv_fraction) AS weight
+                   sum(CASE WHEN a.scenario_lv_share_mode='STATION_TIME_VARYING' THEN a.scenario_factor ELSE 0 END) AS weight_tv,
+                   sum(CASE WHEN a.scenario_lv_share_mode='STATION_TIME_VARYING' THEN 0 ELSE a.scenario_factor*a.scenario_station_lv_fraction END) AS weight
             FROM selected_zone_ptd z
             JOIN scenario.osm_zone_ptd_assignment a USING(ptd_code)
             GROUP BY 1,2""")
         con.execute("""CREATE TEMP TABLE selected_zone_peak AS
             SELECT zone_id,timestamp_utc,p_mw,profile_count,public_profile_count
             FROM (
-              SELECT w.zone_id,s.timestamp_utc,sum(w.weight*s.p_mw) AS p_mw,
+              SELECT w.zone_id,s.timestamp_utc,sum((w.weight_tv*s.lv_share+w.weight)*s.p_mw) AS p_mw,
                      count(*) AS profile_count,
                      count(*) FILTER (WHERE s.data_status='PUBLIC_EREDES_STATION_AGGREGATE') AS public_profile_count,
                      row_number() OVER (PARTITION BY w.zone_id
-                       ORDER BY sum(w.weight*s.p_mw) DESC,s.timestamp_utc) AS rank
+                       ORDER BY sum((w.weight_tv*s.lv_share+w.weight)*s.p_mw) DESC,s.timestamp_utc) AS rank
               FROM selected_zone_profile_weight w
               JOIN operating.station_15min_complete s
                 ON s.station_code=w.profile_station_code
@@ -80,8 +81,8 @@ def build_all_zone_synchronized_snapshot(
         ).fetchall()
         load_rows = con.execute("""
             SELECT z.zone_id,z.ptd_code,p.timestamp_utc,
-                   s.p_mw*a.scenario_factor*a.scenario_station_lv_fraction AS p_mw,
-                   s.p_mw*a.scenario_factor*a.scenario_station_lv_fraction*tan(acos(0.97)) AS q_mvar,
+                   s.p_mw*a.scenario_factor*(CASE WHEN a.scenario_lv_share_mode='STATION_TIME_VARYING' THEN s.lv_share ELSE a.scenario_station_lv_fraction END) AS p_mw,
+                   s.p_mw*a.scenario_factor*(CASE WHEN a.scenario_lv_share_mode='STATION_TIME_VARYING' THEN s.lv_share ELSE a.scenario_station_lv_fraction END)*tan(acos(0.97)) AS q_mvar,
                    s.data_status,a.profile_status
             FROM selected_zone_ptd z
             JOIN scenario.osm_zone_ptd_assignment a USING(ptd_code)
